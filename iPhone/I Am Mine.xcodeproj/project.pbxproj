@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		649DCEA016D28DB8003F5A83 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 649DCE9E16D28DB7003F5A83 /* Model.xcdatamodeld */; };
+		649DCEA016D28DB8003F5A83 /* IAmMine.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 649DCE9E16D28DB7003F5A83 /* IAmMine.xcdatamodeld */; };
 		649DCEA316D29B0A003F5A83 /* CoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 649DCEA216D29AAD003F5A83 /* CoreDataController.m */; };
 		649DCEA616D29B32003F5A83 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 649DCEA516D29B32003F5A83 /* Note.m */; };
 		64A0507016D28CCA0025E179 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64A0506F16D28CCA0025E179 /* UIKit.framework */; };
@@ -24,7 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		649DCE9F16D28DB7003F5A83 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		649DCE9F16D28DB7003F5A83 /* IAmMine.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = IAmMine.xcdatamodel; sourceTree = "<group>"; };
 		649DCEA116D29AAD003F5A83 /* CoreDataController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CoreDataController.h; path = ../common/iCloud/CoreDataController.h; sourceTree = "<group>"; };
 		649DCEA216D29AAD003F5A83 /* CoreDataController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CoreDataController.m; path = ../common/iCloud/CoreDataController.m; sourceTree = "<group>"; };
 		649DCEA416D29B32003F5A83 /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Note.h; path = ../common/iCloud/Note.h; sourceTree = "<group>"; };
@@ -66,7 +66,7 @@
 			children = (
 				649DCEA116D29AAD003F5A83 /* CoreDataController.h */,
 				649DCEA216D29AAD003F5A83 /* CoreDataController.m */,
-				649DCE9E16D28DB7003F5A83 /* Model.xcdatamodeld */,
+				649DCE9E16D28DB7003F5A83 /* IAmMine.xcdatamodeld */,
 				649DCEA416D29B32003F5A83 /* Note.h */,
 				649DCEA516D29B32003F5A83 /* Note.m */,
 			);
@@ -198,7 +198,7 @@
 				64A0507C16D28CCA0025E179 /* main.m in Sources */,
 				64A0508016D28CCA0025E179 /* IAMAppDelegate.m in Sources */,
 				64A0508C16D28CCA0025E179 /* IAMViewController.m in Sources */,
-				649DCEA016D28DB8003F5A83 /* Model.xcdatamodeld in Sources */,
+				649DCEA016D28DB8003F5A83 /* IAmMine.xcdatamodeld in Sources */,
 				649DCEA316D29B0A003F5A83 /* CoreDataController.m in Sources */,
 				649DCEA616D29B32003F5A83 /* Note.m in Sources */,
 			);
@@ -288,6 +288,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "I Am Mine/I Am Mine-Prefix.pch";
 				INFOPLIST_FILE = "I Am Mine/I Am Mine-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -299,6 +300,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "I Am Mine/I Am Mine-Prefix.pch";
 				INFOPLIST_FILE = "I Am Mine/I Am Mine-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -328,14 +330,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		649DCE9E16D28DB7003F5A83 /* Model.xcdatamodeld */ = {
+		649DCE9E16D28DB7003F5A83 /* IAmMine.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				649DCE9F16D28DB7003F5A83 /* Model.xcdatamodel */,
+				649DCE9F16D28DB7003F5A83 /* IAmMine.xcdatamodel */,
 			);
-			currentVersion = 649DCE9F16D28DB7003F5A83 /* Model.xcdatamodel */;
-			name = Model.xcdatamodeld;
-			path = ../common/iCloud/Model.xcdatamodeld;
+			currentVersion = 649DCE9F16D28DB7003F5A83 /* IAmMine.xcdatamodel */;
+			name = IAmMine.xcdatamodeld;
+			path = ../common/iCloud/IAmMine.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
