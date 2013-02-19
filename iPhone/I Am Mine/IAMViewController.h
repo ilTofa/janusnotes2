@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface IAMViewController : UIViewController
+@interface IAMViewController : UITableViewController
 
 @end
