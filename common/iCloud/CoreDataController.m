@@ -102,7 +102,7 @@ NSString * kSeedStoreFilename = @"seedStore.sqlite"; //holds the seed person rec
 NSString * kLocalStoreFilename = @"localStore.sqlite"; //holds the states information
 
 #define SEED_ICLOUD_STORE NO
-//#define FORCE_FALLBACK_STORE
+#define FORCE_FALLBACK_STORE
 
 static NSOperationQueue *_presentedItemOperationQueue;
 
