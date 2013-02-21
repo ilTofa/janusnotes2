@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		640D40BE16D5128B003034B3 /* IAMTextNoteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 640D40BD16D5128B003034B3 /* IAMTextNoteCell.m */; };
+		640D40C016D6DF92003034B3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 640D40BF16D6DF92003034B3 /* CoreData.framework */; };
+		640D40C216D6DFAF003034B3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 640D40C116D6DFAF003034B3 /* CoreLocation.framework */; };
 		649DCEA016D28DB8003F5A83 /* IAmMine.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 649DCE9E16D28DB7003F5A83 /* IAmMine.xcdatamodeld */; };
 		649DCEA316D29B0A003F5A83 /* CoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 649DCEA216D29AAD003F5A83 /* CoreDataController.m */; };
 		649DCEA616D29B32003F5A83 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 649DCEA516D29B32003F5A83 /* Note.m */; };
@@ -24,6 +27,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		640D40BC16D5128B003034B3 /* IAMTextNoteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IAMTextNoteCell.h; path = "List Cells/IAMTextNoteCell.h"; sourceTree = "<group>"; };
+		640D40BD16D5128B003034B3 /* IAMTextNoteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IAMTextNoteCell.m; path = "List Cells/IAMTextNoteCell.m"; sourceTree = "<group>"; };
+		640D40BF16D6DF92003034B3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		640D40C116D6DFAF003034B3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		649DCE9F16D28DB7003F5A83 /* IAmMine.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = IAmMine.xcdatamodel; sourceTree = "<group>"; };
 		649DCEA116D29AAD003F5A83 /* CoreDataController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CoreDataController.h; path = ../common/iCloud/CoreDataController.h; sourceTree = "<group>"; };
 		649DCEA216D29AAD003F5A83 /* CoreDataController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CoreDataController.m; path = ../common/iCloud/CoreDataController.m; sourceTree = "<group>"; };
@@ -52,6 +59,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				640D40C216D6DFAF003034B3 /* CoreLocation.framework in Frameworks */,
+				640D40C016D6DF92003034B3 /* CoreData.framework in Frameworks */,
 				64A0507016D28CCA0025E179 /* UIKit.framework in Frameworks */,
 				64A0507216D28CCA0025E179 /* Foundation.framework in Frameworks */,
 				64A0507416D28CCA0025E179 /* CoreGraphics.framework in Frameworks */,
@@ -61,6 +70,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		640D40BB16D5123C003034B3 /* List Cells */ = {
+			isa = PBXGroup;
+			children = (
+				640D40BC16D5128B003034B3 /* IAMTextNoteCell.h */,
+				640D40BD16D5128B003034B3 /* IAMTextNoteCell.m */,
+			);
+			name = "List Cells";
+			sourceTree = "<group>";
+		};
 		649DCE9A16D28D30003F5A83 /* iCloud (common) */ = {
 			isa = PBXGroup;
 			children = (
@@ -94,6 +112,8 @@
 		64A0506E16D28CCA0025E179 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				640D40C116D6DFAF003034B3 /* CoreLocation.framework */,
+				640D40BF16D6DF92003034B3 /* CoreData.framework */,
 				64A0506F16D28CCA0025E179 /* UIKit.framework */,
 				64A0507116D28CCA0025E179 /* Foundation.framework */,
 				64A0507316D28CCA0025E179 /* CoreGraphics.framework */,
@@ -104,6 +124,7 @@
 		64A0507516D28CCA0025E179 /* I Am Mine */ = {
 			isa = PBXGroup;
 			children = (
+				640D40BB16D5123C003034B3 /* List Cells */,
 				64A0507E16D28CCA0025E179 /* IAMAppDelegate.h */,
 				64A0507F16D28CCA0025E179 /* IAMAppDelegate.m */,
 				64A0508716D28CCA0025E179 /* MainStoryboard.storyboard */,
@@ -201,6 +222,7 @@
 				649DCEA016D28DB8003F5A83 /* IAmMine.xcdatamodeld in Sources */,
 				649DCEA316D29B0A003F5A83 /* CoreDataController.m in Sources */,
 				649DCEA616D29B32003F5A83 /* Note.m in Sources */,
+				640D40BE16D5128B003034B3 /* IAMTextNoteCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

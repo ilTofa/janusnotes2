@@ -8,12 +8,75 @@
         <scene sceneID="5">
             <objects>
                 <viewController id="2" userLabel="Start" customClass="IAMViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="OWz-As-j3n">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="88" sectionHeaderHeight="22" sectionFooterHeight="22" id="OWz-As-j3n">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" showsCancelButton="YES" id="S1E-lU-tyc">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="2" id="mj8-Zi-rUD"/>
+                            </connections>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TextCell" id="pRi-48-rCr" customClass="IAMTextNoteCell">
+                                <rect key="frame" x="0.0" y="66" width="320" height="88"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="87"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1BU-Bw-kmV" userLabel="Title">
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ief-EF-hhP" userLabel="Date">
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="vnZ-gU-tXT"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="Fe0-vp-SbE" userLabel="Text Extract">
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="34" id="IW7-Bl-Rik"/>
+                                            </constraints>
+                                            <string key="text">Label riga 1,
+Label riga 2</string>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstItem="1BU-Bw-kmV" firstAttribute="top" secondItem="pRi-48-rCr" secondAttribute="top" constant="6" id="Hfl-Ij-Ofn"/>
+                                    <constraint firstAttribute="trailing" secondItem="1BU-Bw-kmV" secondAttribute="trailing" constant="20" type="default" id="ISI-bP-ezf"/>
+                                    <constraint firstAttribute="trailing" secondItem="Fe0-vp-SbE" secondAttribute="trailing" constant="20" type="default" id="L7D-sC-Ugw"/>
+                                    <constraint firstItem="Fe0-vp-SbE" firstAttribute="leading" secondItem="pRi-48-rCr" secondAttribute="leading" constant="20" type="default" id="N9S-vD-WQp"/>
+                                    <constraint firstAttribute="trailing" secondItem="ief-EF-hhP" secondAttribute="trailing" constant="20" type="default" id="ZG7-5s-Sa7"/>
+                                    <constraint firstItem="1BU-Bw-kmV" firstAttribute="leading" secondItem="pRi-48-rCr" secondAttribute="leading" constant="20" type="default" id="cNF-It-dMh"/>
+                                    <constraint firstAttribute="bottom" secondItem="ief-EF-hhP" secondAttribute="bottom" constant="6" id="l6j-bU-Me1"/>
+                                    <constraint firstItem="ief-EF-hhP" firstAttribute="leading" secondItem="pRi-48-rCr" secondAttribute="leading" constant="20" type="default" id="mau-JP-waS"/>
+                                    <constraint firstItem="Fe0-vp-SbE" firstAttribute="centerY" secondItem="pRi-48-rCr" secondAttribute="centerY" type="default" id="vxb-kw-Snw"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="dateLabel" destination="ief-EF-hhP" id="lHP-0Z-xc1"/>
+                                    <outlet property="textLabel" destination="Fe0-vp-SbE" id="EBY-aE-c5G"/>
+                                    <outlet property="titleLabel" destination="1BU-Bw-kmV" id="hH8-of-aJq"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
                     </tableView>
                     <navigationItem key="navigationItem" title="Notes" id="Qev-6j-uPA"/>
+                    <connections>
+                        <outlet property="searchBar" destination="S1E-lU-tyc" id="FDm-If-qSz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
@@ -39,8 +102,22 @@
         </scene>
     </scenes>
     <classes>
+        <class className="IAMTextNoteCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/IAMTextNoteCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="dateLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="textLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
         <class className="IAMViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IAMViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

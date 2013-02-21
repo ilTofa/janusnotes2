@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface IAMViewController : UITableViewController
+#import <CoreData/CoreData.h>
+
+@interface IAMViewController : UITableViewController <UISearchBarDelegate, NSFetchedResultsControllerDelegate>
+
+@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (strong, nonatomic) NSString *searchText;
 
 @end
