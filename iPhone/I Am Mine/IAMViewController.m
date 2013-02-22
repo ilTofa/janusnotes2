@@ -28,10 +28,10 @@
     // Set some sane defaults
     IAMAppDelegate *appDelegate = (IAMAppDelegate *)[[UIApplication sharedApplication] delegate];
     self.managedObjectContext = appDelegate.coreDataController.mainThreadContext;
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-	[dateFormatter setLocale:[NSLocale currentLocale]];
-	[dateFormatter setDateStyle:NSDateFormatterLongStyle];
-	[dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    self.dateFormatter = [[NSDateFormatter alloc] init];
+	[self.dateFormatter setLocale:[NSLocale currentLocale]];
+	[self.dateFormatter setDateStyle:NSDateFormatterLongStyle];
+	[self.dateFormatter setTimeStyle:NSDateFormatterShortStyle];
     // Notifications to be honored during controller lifecycle
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadFetchedResults:) name:NSPersistentStoreCoordinatorStoresDidChangeNotification object:appDelegate.coreDataController.psc];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadFetchedResults:) name:NSPersistentStoreDidImportUbiquitousContentChangesNotification object:appDelegate.coreDataController.psc];
@@ -230,6 +230,8 @@
     cell.titleLabel.text = note.title;
     cell.textLabel.text = note.text;
     cell.dateLabel.text = [self.dateFormatter stringFromDate:note.created];
+    DLog(@"d:%@, t:%@, t:%@", note.title, note.text, note.created);
+    DLog(@"d:%@, t:%@, t:%@ ***", cell.titleLabel.text, cell.textLabel.text, cell.dateLabel.text);
 }
 
 // Override to customize the look of a cell representing an object. The default is to display
@@ -259,7 +261,8 @@
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
         // Delete the managed object for the given index path
         NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
         [context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
@@ -275,9 +278,6 @@
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
             abort();
         }
-    }
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }
 }
 
@@ -311,9 +311,18 @@
         Note *newNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:self.managedObjectContext];
         newNote.text = @"";
         newNote.title = @"";
+        newNote.uuid = [NSUUID UUID];
         newNote.created = [NSDate date];
         newNote.modified = [NSDate date];
         textNoteEditor.editedNote = newNote;
+        textNoteEditor.moc = self.managedObjectContext;
+    }
+    if ([[segue identifier] isEqualToString:@"EditTextNote"])
+    {
+        IAMTextNoteEdit *textNoteEditor = [segue destinationViewController];
+        Note *selectedNote =  [[self fetchedResultsController] objectAtIndexPath:self.tableView.indexPathForSelectedRow];
+        selectedNote.modified = [NSDate date];
+        textNoteEditor.editedNote = selectedNote;
         textNoteEditor.moc = self.managedObjectContext;
     }
 }

@@ -28,6 +28,8 @@
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
+    self.titleEdit.text = self.editedNote.title;
+    self.textEdit.text = self.editedNote.text;
     [self.titleEdit becomeFirstResponder];
 }
 
