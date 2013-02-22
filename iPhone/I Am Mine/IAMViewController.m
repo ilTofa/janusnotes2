@@ -151,9 +151,9 @@
             if([term length] == 0)
                 continue;
             if(queryString == nil)
-                queryString = [NSString stringWithFormat:@"text contains[cd] \"%@\"", term];
+                queryString = [NSString stringWithFormat:@"(text contains[cd] \"%@\" OR title contains[cd] \"%@\")", term, term];
             else
-                queryString = [queryString stringByAppendingFormat:@" AND text contains[cd] \"%@\"", term];
+                queryString = [queryString stringByAppendingFormat:@" AND (text contains[cd] \"%@\" OR title contains[cd] \"%@\")", term, term];
         }
     }
     else
