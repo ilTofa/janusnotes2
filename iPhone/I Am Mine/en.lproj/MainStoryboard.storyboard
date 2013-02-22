@@ -86,16 +86,71 @@ Label riga 2</string>
                     <connections>
                         <outlet property="searchBar" destination="S1E-lU-tyc" id="FDm-If-qSz"/>
                         <segue destination="aYD-Rr-6C9" kind="push" identifier="AddTextNote" id="yBH-q9-jqE"/>
+                        <segue destination="bjo-VI-Bb6" kind="push" identifier="AddImageNote" id="iMJ-Di-nZb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="442" y="101"/>
         </scene>
-        <!--Node Editor-->
+        <!--Image Note Editor-->
+        <scene sceneID="rKg-4v-6PW">
+            <objects>
+                <viewController id="bjo-VI-Bb6" userLabel="Image Note Editor" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ICF-yF-EGc">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="p8h-oo-PYS">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Add title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bB5-lA-BUE">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="306" id="ACg-NB-hnd"/>
+                                    <constraint firstAttribute="height" constant="30" type="user" id="iqU-yR-dBa"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kea-x6-g8F">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="320" type="user" id="RJF-ch-XWm"/>
+                                </constraints>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="46Q-mS-dtt">
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="46Q-mS-dtt" firstAttribute="trailing" secondItem="ICF-yF-EGc" secondAttribute="trailing" type="default" id="4oT-4O-a8r"/>
+                            <constraint firstItem="p8h-oo-PYS" firstAttribute="leading" secondItem="ICF-yF-EGc" secondAttribute="leading" type="default" id="AdV-vg-H7A"/>
+                            <constraint firstItem="p8h-oo-PYS" firstAttribute="trailing" secondItem="ICF-yF-EGc" secondAttribute="trailing" type="default" id="T82-Lu-Eo2"/>
+                            <constraint firstItem="bB5-lA-BUE" firstAttribute="centerX" secondItem="p8h-oo-PYS" secondAttribute="centerX" type="default" id="a51-JG-dLs"/>
+                            <constraint firstItem="46Q-mS-dtt" firstAttribute="leading" secondItem="ICF-yF-EGc" secondAttribute="leading" type="default" id="cdd-ya-qsz"/>
+                            <constraint firstItem="46Q-mS-dtt" firstAttribute="top" secondItem="p8h-oo-PYS" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="jAn-L4-UjE"/>
+                            <constraint firstItem="p8h-oo-PYS" firstAttribute="top" secondItem="ICF-yF-EGc" secondAttribute="top" type="default" id="kXz-xd-3Js"/>
+                            <constraint firstItem="kea-x6-g8F" firstAttribute="bottom" secondItem="ICF-yF-EGc" secondAttribute="bottom" type="default" id="mLA-HL-Ddg"/>
+                            <constraint firstItem="kea-x6-g8F" firstAttribute="top" secondItem="46Q-mS-dtt" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="n2t-6K-XKC"/>
+                            <constraint firstItem="kea-x6-g8F" firstAttribute="trailing" secondItem="ICF-yF-EGc" secondAttribute="trailing" type="default" id="oCu-8h-51j"/>
+                            <constraint firstItem="46Q-mS-dtt" firstAttribute="top" secondItem="bB5-lA-BUE" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="vRR-mZ-tPJ"/>
+                            <constraint firstItem="bB5-lA-BUE" firstAttribute="top" secondItem="ICF-yF-EGc" secondAttribute="top" type="user" id="ygp-Ix-u4x"/>
+                            <constraint firstItem="kea-x6-g8F" firstAttribute="leading" secondItem="ICF-yF-EGc" secondAttribute="leading" type="default" id="yyC-ab-GVG"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Note" id="hSE-1v-E8Y"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zxh-Yz-Jvj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1036" y="-278"/>
+        </scene>
+        <!--Text Note Editor-->
         <scene sceneID="yJT-eO-p6A">
             <objects>
-                <viewController id="aYD-Rr-6C9" userLabel="Node Editor" customClass="IAMNoteEdit" sceneMemberID="viewController">
+                <viewController id="aYD-Rr-6C9" userLabel="Text Note Editor" customClass="IAMNoteEdit" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uxP-bS-Qfh">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -166,7 +221,7 @@ Label riga 2</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pfC-hY-1zX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="920" y="101"/>
+            <point key="canvasLocation" x="1038" y="409"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Z0j-FR-EXT">
@@ -187,35 +242,6 @@ Label riga 2</string>
             <point key="canvasLocation" x="56" y="101"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="IAMNoteCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/IAMNoteCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="dateLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="textLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="IAMNoteEdit" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/IAMNoteEdit.h"/>
-            <relationships>
-                <relationship kind="action" name="done:"/>
-                <relationship kind="outlet" name="linkEdit" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="textEdit" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="titleEdit" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="IAMViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/IAMViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="addNote:"/>
-                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

@@ -13,9 +13,11 @@
 #import "Note.h"
 #import "IAMNoteEdit.h"
 
-@interface IAMViewController ()
+@interface IAMViewController () <UIActionSheetDelegate, UIImagePickerControllerDelegate>
 
 @property (nonatomic) NSDateFormatter *dateFormatter;
+
+@property int textSelector, cameraSelector, librarySelector, savedAlbumsSelector;
 
 @end
 
@@ -338,7 +340,108 @@
 // DEBUG: add type of note management here (image, photo, text)
 - (IBAction)addNote:(id)sender
 {
-    [self performSegueWithIdentifier:@"AddTextNote" sender:self];
+    // Check what the client have.
+    BOOL library = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary];
+    BOOL camera = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
+    BOOL savedAlbums = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
+    NSString *b1, *b2, *b3;
+    if(library) {
+        b1 = @"Image from Library";
+        self.librarySelector = 1;
+        if(camera) {
+            b2 = @"Image from Camera";
+            self.cameraSelector = 2;
+            if(savedAlbums) {
+                b3 = @"Image from saved Albums";
+                self.savedAlbumsSelector = 3;
+            }
+        } else if (savedAlbums) {
+            b2 = @"Image from saved albums";
+            self.savedAlbumsSelector = 2;
+        }
+    } else if(camera) {
+        b1 = @"Image from Camera";
+        self.cameraSelector = 1;
+        if(savedAlbums) {
+            b2 = @"Image from saved Albums";
+            self.savedAlbumsSelector = 2;
+        }
+    } else if (savedAlbums) {
+        b1 = @"Image from saved albums";
+        self.savedAlbumsSelector = 1;
+    } else {
+        // If no images go with text note
+        [self actionSheet:nil clickedButtonAtIndex:0];
+    }
+    UIActionSheet *chooseIt = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"New Note", nil)
+                                                           delegate:self
+                                                  cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                                             destructiveButtonTitle:nil
+                                                  otherButtonTitles:NSLocalizedString(@"Text", nil), b1, b2, b3, nil];
+    [chooseIt showFromToolbar:self.navigationController.toolbar];
 }
+
+#pragma mark UIActionSheetDelegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    DLog(@"Clicked button at index %d", buttonIndex);
+    if(buttonIndex == 0) {
+        DLog(@"Text requested");
+        [self performSegueWithIdentifier:@"AddTextNote" sender:self];
+    } else if (buttonIndex == self.librarySelector) {
+        DLog(@"Library requested");
+    } else if (buttonIndex == self.cameraSelector) {
+        DLog(@"Camera requested");
+    } else if (buttonIndex == self.savedAlbumsSelector) {
+        DLog(@"Saved album selected");
+    } else {
+        DLog(@"Cancel selected");
+    }
+}
+
+-(void)showMediaPickerFor:(UIImagePickerControllerSourceType)type
+{
+//	UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+//	imagePicker.delegate = self;
+//	imagePicker.sourceType = type;
+//	[self presentModalViewController:imagePicker animated:YES];
+}
+
+#pragma mark UIImagePickerControllerDelegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+//	// MediaType can be kUTTypeImage or kUTTypeMovie. If it's a movie then you
+//    // can get the URL to the actual file itself. This example only looks for images.
+//    NSLog(@"info: %@", info);
+//    NSString* mediaType = [info objectForKey:UIImagePickerControllerMediaType];
+//    // NSString* videoUrl = [info objectForKey:UIImagePickerControllerMediaURL];
+//	
+//    // Try getting the edited image first. If it doesn't exist then you get the
+//    // original image.
+//    //
+//    if (CFStringCompare((CFStringRef) mediaType, kUTTypeImage, 0) == kCFCompareEqualTo)
+//	{
+//        self.theImage = [info objectForKey:UIImagePickerControllerEditedImage];
+//        if (!self.theImage)
+//			self.theImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+//		[self dismissModalViewControllerAnimated:YES];
+//		[self showImageSenderController];
+//    }
+//	else
+//	{
+//		// user don't want to do something, dismiss
+//		[self dismissModalViewControllerAnimated:YES];
+//		[self showImageSenderController];
+//	}
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+//	[self dismissModalViewControllerAnimated:YES];
+//	[self showImageSenderController];
+}
+
 
 @end
