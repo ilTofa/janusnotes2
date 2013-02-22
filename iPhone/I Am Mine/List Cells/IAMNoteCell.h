@@ -1,5 +1,5 @@
 //
-//  IAMTextNoteCell.h
+//  IAMNoteCell.h
 //  I Am Mine
 //
 //  Created by Giacomo Tufano on 20/02/13.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface IAMTextNoteCell : UITableViewCell
+@interface IAMNoteCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *textLabel;

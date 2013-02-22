@@ -7,12 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		640D40BE16D5128B003034B3 /* IAMTextNoteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 640D40BD16D5128B003034B3 /* IAMTextNoteCell.m */; };
+		640D40BE16D5128B003034B3 /* IAMNoteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 640D40BD16D5128B003034B3 /* IAMNoteCell.m */; };
 		640D40C016D6DF92003034B3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 640D40BF16D6DF92003034B3 /* CoreData.framework */; };
 		640D40C216D6DFAF003034B3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 640D40C116D6DFAF003034B3 /* CoreLocation.framework */; };
-		6416314B16D7B51B0004CB52 /* IAMLinkNoteEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 6416314A16D7B51B0004CB52 /* IAMLinkNoteEdit.m */; };
-		6416315216D7B8F00004CB52 /* IAMNoteSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 6416315116D7B8F00004CB52 /* IAMNoteSelector.m */; };
-		6416315516D7BD0B0004CB52 /* IAMLinkNoteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6416315416D7BD0B0004CB52 /* IAMLinkNoteCell.m */; };
+		6416315716D7DB830004CB52 /* IAMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6416315616D7DB830004CB52 /* IAMViewController.m */; };
 		649DCEA016D28DB8003F5A83 /* IAmMine.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 649DCE9E16D28DB7003F5A83 /* IAmMine.xcdatamodeld */; };
 		649DCEA316D29B0A003F5A83 /* CoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 649DCEA216D29AAD003F5A83 /* CoreDataController.m */; };
 		649DCEA616D29B32003F5A83 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 649DCEA516D29B32003F5A83 /* Note.m */; };
@@ -26,21 +24,15 @@
 		64A0508416D28CCA0025E179 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64A0508316D28CCA0025E179 /* Default@2x.png */; };
 		64A0508616D28CCA0025E179 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64A0508516D28CCA0025E179 /* Default-568h@2x.png */; };
 		64A0508916D28CCA0025E179 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64A0508716D28CCA0025E179 /* MainStoryboard.storyboard */; };
-		64A0508C16D28CCA0025E179 /* IAMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A0508B16D28CCA0025E179 /* IAMViewController.m */; };
-		64B9B4A516D7801100607F39 /* IAMTextNoteEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 64B9B4A416D7801100607F39 /* IAMTextNoteEdit.m */; };
+		64B9B4A516D7801100607F39 /* IAMNoteEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 64B9B4A416D7801100607F39 /* IAMNoteEdit.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		640D40BC16D5128B003034B3 /* IAMTextNoteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IAMTextNoteCell.h; path = "List Cells/IAMTextNoteCell.h"; sourceTree = "<group>"; };
-		640D40BD16D5128B003034B3 /* IAMTextNoteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IAMTextNoteCell.m; path = "List Cells/IAMTextNoteCell.m"; sourceTree = "<group>"; };
+		640D40BC16D5128B003034B3 /* IAMNoteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IAMNoteCell.h; path = "List Cells/IAMNoteCell.h"; sourceTree = "<group>"; };
+		640D40BD16D5128B003034B3 /* IAMNoteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IAMNoteCell.m; path = "List Cells/IAMNoteCell.m"; sourceTree = "<group>"; };
 		640D40BF16D6DF92003034B3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		640D40C116D6DFAF003034B3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		6416314916D7B51B0004CB52 /* IAMLinkNoteEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMLinkNoteEdit.h; sourceTree = "<group>"; };
-		6416314A16D7B51B0004CB52 /* IAMLinkNoteEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMLinkNoteEdit.m; sourceTree = "<group>"; };
-		6416315016D7B8F00004CB52 /* IAMNoteSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMNoteSelector.h; sourceTree = "<group>"; };
-		6416315116D7B8F00004CB52 /* IAMNoteSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMNoteSelector.m; sourceTree = "<group>"; };
-		6416315316D7BD0B0004CB52 /* IAMLinkNoteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IAMLinkNoteCell.h; path = "List Cells/IAMLinkNoteCell.h"; sourceTree = "<group>"; };
-		6416315416D7BD0B0004CB52 /* IAMLinkNoteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IAMLinkNoteCell.m; path = "List Cells/IAMLinkNoteCell.m"; sourceTree = "<group>"; };
+		6416315616D7DB830004CB52 /* IAMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMViewController.m; sourceTree = "<group>"; };
 		649DCE9F16D28DB7003F5A83 /* IAmMine.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = IAmMine.xcdatamodel; sourceTree = "<group>"; };
 		649DCEA116D29AAD003F5A83 /* CoreDataController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CoreDataController.h; path = ../common/iCloud/CoreDataController.h; sourceTree = "<group>"; };
 		649DCEA216D29AAD003F5A83 /* CoreDataController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CoreDataController.m; path = ../common/iCloud/CoreDataController.m; sourceTree = "<group>"; };
@@ -61,9 +53,8 @@
 		64A0508516D28CCA0025E179 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		64A0508816D28CCA0025E179 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		64A0508A16D28CCA0025E179 /* IAMViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IAMViewController.h; sourceTree = "<group>"; };
-		64A0508B16D28CCA0025E179 /* IAMViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IAMViewController.m; sourceTree = "<group>"; };
-		64B9B4A316D7801100607F39 /* IAMTextNoteEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMTextNoteEdit.h; sourceTree = "<group>"; };
-		64B9B4A416D7801100607F39 /* IAMTextNoteEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMTextNoteEdit.m; sourceTree = "<group>"; };
+		64B9B4A316D7801100607F39 /* IAMNoteEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMNoteEdit.h; sourceTree = "<group>"; };
+		64B9B4A416D7801100607F39 /* IAMNoteEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMNoteEdit.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,10 +76,8 @@
 		640D40BB16D5123C003034B3 /* List Cells */ = {
 			isa = PBXGroup;
 			children = (
-				640D40BC16D5128B003034B3 /* IAMTextNoteCell.h */,
-				640D40BD16D5128B003034B3 /* IAMTextNoteCell.m */,
-				6416315316D7BD0B0004CB52 /* IAMLinkNoteCell.h */,
-				6416315416D7BD0B0004CB52 /* IAMLinkNoteCell.m */,
+				640D40BC16D5128B003034B3 /* IAMNoteCell.h */,
+				640D40BD16D5128B003034B3 /* IAMNoteCell.m */,
 			);
 			name = "List Cells";
 			sourceTree = "<group>";
@@ -96,12 +85,8 @@
 		6416314C16D7B5270004CB52 /* Notes Editing */ = {
 			isa = PBXGroup;
 			children = (
-				6416314916D7B51B0004CB52 /* IAMLinkNoteEdit.h */,
-				6416314A16D7B51B0004CB52 /* IAMLinkNoteEdit.m */,
-				64B9B4A316D7801100607F39 /* IAMTextNoteEdit.h */,
-				64B9B4A416D7801100607F39 /* IAMTextNoteEdit.m */,
-				6416315016D7B8F00004CB52 /* IAMNoteSelector.h */,
-				6416315116D7B8F00004CB52 /* IAMNoteSelector.m */,
+				64B9B4A316D7801100607F39 /* IAMNoteEdit.h */,
+				64B9B4A416D7801100607F39 /* IAMNoteEdit.m */,
 			);
 			name = "Notes Editing";
 			sourceTree = "<group>";
@@ -157,7 +142,7 @@
 				64A0508716D28CCA0025E179 /* MainStoryboard.storyboard */,
 				6416314C16D7B5270004CB52 /* Notes Editing */,
 				64A0508A16D28CCA0025E179 /* IAMViewController.h */,
-				64A0508B16D28CCA0025E179 /* IAMViewController.m */,
+				6416315616D7DB830004CB52 /* IAMViewController.m */,
 				64A0507616D28CCA0025E179 /* Supporting Files */,
 			);
 			path = "I Am Mine";
@@ -246,15 +231,12 @@
 			files = (
 				64A0507C16D28CCA0025E179 /* main.m in Sources */,
 				64A0508016D28CCA0025E179 /* IAMAppDelegate.m in Sources */,
-				64A0508C16D28CCA0025E179 /* IAMViewController.m in Sources */,
 				649DCEA016D28DB8003F5A83 /* IAmMine.xcdatamodeld in Sources */,
 				649DCEA316D29B0A003F5A83 /* CoreDataController.m in Sources */,
 				649DCEA616D29B32003F5A83 /* Note.m in Sources */,
-				640D40BE16D5128B003034B3 /* IAMTextNoteCell.m in Sources */,
-				64B9B4A516D7801100607F39 /* IAMTextNoteEdit.m in Sources */,
-				6416314B16D7B51B0004CB52 /* IAMLinkNoteEdit.m in Sources */,
-				6416315216D7B8F00004CB52 /* IAMNoteSelector.m in Sources */,
-				6416315516D7BD0B0004CB52 /* IAMLinkNoteCell.m in Sources */,
+				640D40BE16D5128B003034B3 /* IAMNoteCell.m in Sources */,
+				64B9B4A516D7801100607F39 /* IAMNoteEdit.m in Sources */,
+				6416315716D7DB830004CB52 /* IAMViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

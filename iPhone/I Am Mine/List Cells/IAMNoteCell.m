@@ -1,14 +1,14 @@
 //
-//  IAMTextNoteCell.m
+//  IAMNoteCell.m
 //  I Am Mine
 //
 //  Created by Giacomo Tufano on 20/02/13.
 //  Copyright (c) 2013 Giacomo Tufano. All rights reserved.
 //
 
-#import "IAMTextNoteCell.h"
+#import "IAMNoteCell.h"
 
-@implementation IAMTextNoteCell
+@implementation IAMNoteCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

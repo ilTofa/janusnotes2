@@ -18,4 +18,6 @@
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (strong, nonatomic) NSString *searchText;
 
+- (IBAction)addNote:(id)sender;
+
 @end

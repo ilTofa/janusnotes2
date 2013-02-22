@@ -4,154 +4,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
-        <!--Note type selection-->
-        <scene sceneID="8PW-fv-Bc8">
-            <objects>
-                <tableViewController id="YVk-LY-34R" userLabel="Note type selection" customClass="IAMNoteSelector" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="SUu-eG-Pzl">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="1QS-kA-Uzv">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Select the note type" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="exP-KB-x1j">
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstItem="exP-KB-x1j" firstAttribute="top" secondItem="1QS-kA-Uzv" secondAttribute="top" constant="11" id="LnS-kN-QaU"/>
-                                <constraint firstItem="exP-KB-x1j" firstAttribute="leading" secondItem="1QS-kA-Uzv" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="NQd-Zv-ie1"/>
-                                <constraint firstAttribute="trailing" secondItem="exP-KB-x1j" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="x1c-lB-m6N"/>
-                            </constraints>
-                        </view>
-                        <sections>
-                            <tableViewSection id="7fj-g4-k17">
-                                <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="dPu-AY-yfE">
-                                        <rect key="frame" x="0.0" y="54" width="320" height="46"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="10" y="1" width="280" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Text Note" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="phT-Vr-rPZ">
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="260" id="ehX-GZ-qPA"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                        <constraints>
-                                            <constraint firstItem="phT-Vr-rPZ" firstAttribute="centerY" secondItem="dPu-AY-yfE" secondAttribute="centerY" type="default" id="bPy-NO-6Za"/>
-                                            <constraint firstItem="phT-Vr-rPZ" firstAttribute="centerX" secondItem="dPu-AY-yfE" secondAttribute="centerX" type="default" id="cbD-a3-ILb"/>
-                                        </constraints>
-                                        <connections>
-                                            <segue destination="aYD-Rr-6C9" kind="push" identifier="AddTextNote" id="gYI-GL-DxI"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                            <tableViewSection id="WPG-CQ-VFS">
-                                <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="3ja-Jj-RDV">
-                                        <rect key="frame" x="0.0" y="120" width="320" height="46"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="10" y="1" width="280" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Bookmark Note" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I8m-ib-iZ6">
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="260" id="uky-Dx-9i0"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                        <constraints>
-                                            <constraint firstItem="I8m-ib-iZ6" firstAttribute="centerX" secondItem="3ja-Jj-RDV" secondAttribute="centerX" type="default" id="h6U-Af-2hR"/>
-                                            <constraint firstItem="I8m-ib-iZ6" firstAttribute="centerY" secondItem="3ja-Jj-RDV" secondAttribute="centerY" type="default" id="x4v-bQ-PJS"/>
-                                        </constraints>
-                                        <connections>
-                                            <segue destination="m0X-G2-8Zx" kind="push" identifier="AddLinkNote" id="kda-nl-Os0"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                            <tableViewSection id="B0V-Ah-ZR7">
-                                <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="pfU-nM-MpS">
-                                        <rect key="frame" x="0.0" y="186" width="320" height="45"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="10" y="1" width="300" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Image From Library" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ngB-J6-525">
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="260" id="vYc-qu-O0s"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                        <constraints>
-                                            <constraint firstItem="ngB-J6-525" firstAttribute="centerY" secondItem="pfU-nM-MpS" secondAttribute="centerY" type="default" id="gyG-ig-HOq"/>
-                                            <constraint firstItem="ngB-J6-525" firstAttribute="centerX" secondItem="pfU-nM-MpS" secondAttribute="centerX" type="default" id="hoe-9m-5Hy"/>
-                                        </constraints>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="wPA-jB-i2e">
-                                        <rect key="frame" x="0.0" y="231" width="320" height="45"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="10" y="0.0" width="300" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Shoot an image" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5EX-Gn-I1b">
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="260" id="vdX-7Z-67I"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                        <constraints>
-                                            <constraint firstItem="5EX-Gn-I1b" firstAttribute="top" secondItem="wPA-jB-i2e" secondAttribute="top" constant="11" id="4uu-HH-ZEa"/>
-                                            <constraint firstItem="5EX-Gn-I1b" firstAttribute="centerX" secondItem="wPA-jB-i2e" secondAttribute="centerX" type="default" id="tML-cM-s45"/>
-                                        </constraints>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                        </sections>
-                        <connections>
-                            <outlet property="dataSource" destination="YVk-LY-34R" id="IXg-hK-KF2"/>
-                            <outlet property="delegate" destination="YVk-LY-34R" id="Hjy-qN-cOy"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Note Selection" id="XE3-nK-VAZ"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9xl-Gc-TU1" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="795" y="-627"/>
-        </scene>
         <!--Start-->
         <scene sceneID="5">
             <objects>
@@ -169,7 +21,7 @@
                             </connections>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell autoresizesSubviews="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TextCell" id="pRi-48-rCr" customClass="IAMTextNoteCell">
+                            <tableViewCell autoresizesSubviews="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TextCell" id="pRi-48-rCr" customClass="IAMNoteCell">
                                 <rect key="frame" x="0.0" y="66" width="320" height="88"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -219,58 +71,7 @@ Label riga 2</string>
                                     <outlet property="dateLabel" destination="ief-EF-hhP" id="lHP-0Z-xc1"/>
                                     <outlet property="textLabel" destination="Fe0-vp-SbE" id="EBY-aE-c5G"/>
                                     <outlet property="titleLabel" destination="DBM-WO-au6" id="arc-6K-fBR"/>
-                                    <segue destination="aYD-Rr-6C9" kind="push" identifier="EditTextNote" id="nBs-C7-sJp"/>
-                                </connections>
-                            </tableViewCell>
-                            <tableViewCell autoresizesSubviews="NO" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LinkCell" id="BMc-gb-9F3" customClass="IAMTextNoteCell">
-                                <rect key="frame" x="0.0" y="154" width="320" height="88"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="300" height="87"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="link" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ICD-Rl-TmF" userLabel="Text Extract">
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="34" id="LdX-PS-9BT"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EK9-LF-muf" userLabel="Date">
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="21" id="gc0-Hj-4Eh"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OsX-cC-Gvi">
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="300" id="d1t-bk-W3W"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </label>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                                <constraints>
-                                    <constraint firstItem="OsX-cC-Gvi" firstAttribute="leading" secondItem="ICD-Rl-TmF" secondAttribute="leading" type="default" id="5kG-oM-Pik"/>
-                                    <constraint firstItem="EK9-LF-muf" firstAttribute="trailing" secondItem="ICD-Rl-TmF" secondAttribute="trailing" type="default" id="AKD-HD-iE7"/>
-                                    <constraint firstItem="OsX-cC-Gvi" firstAttribute="centerX" secondItem="BMc-gb-9F3" secondAttribute="centerX" type="default" id="G18-O5-285"/>
-                                    <constraint firstItem="OsX-cC-Gvi" firstAttribute="top" secondItem="BMc-gb-9F3" secondAttribute="top" constant="7" id="VBq-ds-L7D"/>
-                                    <constraint firstItem="OsX-cC-Gvi" firstAttribute="trailing" secondItem="ICD-Rl-TmF" secondAttribute="trailing" type="default" id="ZYL-CP-e82"/>
-                                    <constraint firstItem="ICD-Rl-TmF" firstAttribute="leading" secondItem="EK9-LF-muf" secondAttribute="leading" type="default" id="fmv-3V-5hA"/>
-                                    <constraint firstItem="ICD-Rl-TmF" firstAttribute="centerY" secondItem="BMc-gb-9F3" secondAttribute="centerY" type="default" id="sCn-NU-mA4"/>
-                                    <constraint firstAttribute="bottom" secondItem="EK9-LF-muf" secondAttribute="bottom" constant="5" id="sx4-Q5-aen"/>
-                                </constraints>
-                                <connections>
-                                    <outlet property="dateLabel" destination="EK9-LF-muf" id="Vfi-zw-Ge6"/>
-                                    <outlet property="textLabel" destination="ICD-Rl-TmF" id="gGm-My-rTW"/>
-                                    <outlet property="titleLabel" destination="OsX-cC-Gvi" id="dTN-Jk-TIP"/>
-                                    <segue destination="m0X-G2-8Zx" kind="push" identifier="EditLinkNote" id="EDm-7T-cO8"/>
+                                    <segue destination="aYD-Rr-6C9" kind="push" identifier="EditNote" id="nBs-C7-sJp"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -278,22 +79,23 @@ Label riga 2</string>
                     <navigationItem key="navigationItem" title="Notes" id="Qev-6j-uPA">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="N2Q-cH-vbh">
                             <connections>
-                                <segue destination="YVk-LY-34R" kind="push" identifier="AddNote" id="dnh-9U-eY2"/>
+                                <action selector="addNote:" destination="2" id="iSi-ic-3bm"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="searchBar" destination="S1E-lU-tyc" id="FDm-If-qSz"/>
+                        <segue destination="aYD-Rr-6C9" kind="push" identifier="AddTextNote" id="yBH-q9-jqE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="442" y="101"/>
         </scene>
-        <!--Text Note Edit - Text Note-->
+        <!--Node Editor-->
         <scene sceneID="yJT-eO-p6A">
             <objects>
-                <viewController id="aYD-Rr-6C9" customClass="IAMTextNoteEdit" sceneMemberID="viewController">
+                <viewController id="aYD-Rr-6C9" userLabel="Node Editor" customClass="IAMNoteEdit" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uxP-bS-Qfh">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -302,10 +104,21 @@ Label riga 2</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Insert title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bFY-L8-a9Q">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Add title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bFY-L8-a9Q">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="306" id="AnC-3C-mpr"/>
-                                    <constraint firstAttribute="height" constant="30" id="i58-CF-uoj"/>
+                                    <constraint firstAttribute="height" constant="30" id="QVP-Ch-sEe"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u20-WH-GtP">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Add link" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6j8-bd-Axf">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="VJY-93-KFi"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -313,7 +126,7 @@ Label riga 2</string>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TM1-dV-cxf">
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="473" id="9y8-Ph-ZiW"/>
+                                    <constraint firstAttribute="height" constant="437" id="rah-ih-gWI"/>
                                 </constraints>
                                 <attributedString key="attributedText"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -321,18 +134,25 @@ Label riga 2</string>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="bFY-L8-a9Q" firstAttribute="bottom" secondItem="rFO-5H-JJI" secondAttribute="bottom" type="default" id="0FE-P1-lBC"/>
                             <constraint firstItem="bFY-L8-a9Q" firstAttribute="top" secondItem="uxP-bS-Qfh" secondAttribute="top" type="default" id="5bN-Yl-lQ8"/>
+                            <constraint firstItem="6j8-bd-Axf" firstAttribute="top" secondItem="u20-WH-GtP" secondAttribute="top" type="default" id="5iv-4D-Dlw"/>
                             <constraint firstItem="rFO-5H-JJI" firstAttribute="leading" secondItem="uxP-bS-Qfh" secondAttribute="leading" type="default" id="60y-2u-A9S"/>
                             <constraint firstItem="rFO-5H-JJI" firstAttribute="trailing" secondItem="uxP-bS-Qfh" secondAttribute="trailing" type="default" id="Aoa-B7-kg5"/>
+                            <constraint firstItem="u20-WH-GtP" firstAttribute="leading" secondItem="uxP-bS-Qfh" secondAttribute="leading" type="default" id="BsN-oC-TF0"/>
+                            <constraint firstItem="u20-WH-GtP" firstAttribute="trailing" secondItem="uxP-bS-Qfh" secondAttribute="trailing" type="default" id="Eav-Ms-6Rw"/>
                             <constraint firstItem="rFO-5H-JJI" firstAttribute="centerX" secondItem="bFY-L8-a9Q" secondAttribute="centerX" type="default" id="FA6-ha-uQg"/>
+                            <constraint firstItem="TM1-dV-cxf" firstAttribute="top" secondItem="6j8-bd-Axf" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Q5o-xR-Lg5"/>
                             <constraint firstItem="rFO-5H-JJI" firstAttribute="top" secondItem="uxP-bS-Qfh" secondAttribute="top" type="default" id="UFQ-IB-Kwd"/>
                             <constraint firstItem="TM1-dV-cxf" firstAttribute="leading" secondItem="uxP-bS-Qfh" secondAttribute="leading" type="default" id="bck-95-ROR"/>
+                            <constraint firstItem="6j8-bd-Axf" firstAttribute="trailing" secondItem="bFY-L8-a9Q" secondAttribute="trailing" type="default" id="dp1-hT-YpT"/>
                             <constraint firstItem="TM1-dV-cxf" firstAttribute="trailing" secondItem="uxP-bS-Qfh" secondAttribute="trailing" type="default" id="iaz-IX-KPJ"/>
-                            <constraint firstItem="TM1-dV-cxf" firstAttribute="bottom" secondItem="uxP-bS-Qfh" secondAttribute="bottom" type="default" id="tjd-mn-eWU"/>
+                            <constraint firstItem="TM1-dV-cxf" firstAttribute="top" secondItem="u20-WH-GtP" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="uVP-wM-asg"/>
+                            <constraint firstItem="TM1-dV-cxf" firstAttribute="bottom" secondItem="uxP-bS-Qfh" secondAttribute="bottom" type="default" id="uYw-so-lft"/>
+                            <constraint firstItem="6j8-bd-Axf" firstAttribute="leading" secondItem="bFY-L8-a9Q" secondAttribute="leading" type="default" id="v2x-CH-3Da"/>
+                            <constraint firstItem="bFY-L8-a9Q" firstAttribute="bottom" secondItem="rFO-5H-JJI" secondAttribute="bottom" type="default" id="v49-Xx-O76"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Text Note" id="86x-W0-j7C">
+                    <navigationItem key="navigationItem" title="Note" id="86x-W0-j7C">
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="arX-0v-vjH">
                             <connections>
                                 <action selector="done:" destination="aYD-Rr-6C9" id="Uob-U3-f3y"/>
@@ -346,84 +166,7 @@ Label riga 2</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pfC-hY-1zX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1601" y="-595"/>
-        </scene>
-        <!--Link Note Edit-->
-        <scene sceneID="Fl4-cI-N7d">
-            <objects>
-                <viewController id="m0X-G2-8Zx" userLabel="Link Note Edit" customClass="IAMLinkNoteEdit" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Yfg-q3-KSs">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A9K-5a-17Q">
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SL8-Dc-xmu">
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Insert title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wPg-0o-WgB">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="ATi-4e-mkj"/>
-                                    <constraint firstAttribute="width" constant="306" id="gww-R1-7EX"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vSP-4F-fjn">
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="437" id="sHV-A6-HzY"/>
-                                </constraints>
-                                <attributedString key="attributedText"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Insert link" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SgL-7N-mLA">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="VsX-cr-rX9"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="A9K-5a-17Q" firstAttribute="trailing" secondItem="Yfg-q3-KSs" secondAttribute="trailing" type="default" id="12c-st-hcg"/>
-                            <constraint firstItem="A9K-5a-17Q" firstAttribute="leading" secondItem="Yfg-q3-KSs" secondAttribute="leading" type="default" id="DyG-Yn-7Ak"/>
-                            <constraint firstItem="vSP-4F-fjn" firstAttribute="bottom" secondItem="Yfg-q3-KSs" secondAttribute="bottom" type="default" id="EHu-eA-3Kt"/>
-                            <constraint firstItem="vSP-4F-fjn" firstAttribute="top" secondItem="SgL-7N-mLA" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="IsD-pT-GiO"/>
-                            <constraint firstItem="A9K-5a-17Q" firstAttribute="centerX" secondItem="wPg-0o-WgB" secondAttribute="centerX" type="default" id="OKN-2p-t81"/>
-                            <constraint firstItem="wPg-0o-WgB" firstAttribute="top" secondItem="Yfg-q3-KSs" secondAttribute="top" type="default" id="QgD-aM-F3s"/>
-                            <constraint firstItem="vSP-4F-fjn" firstAttribute="top" secondItem="SL8-Dc-xmu" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Ry2-9l-JIx"/>
-                            <constraint firstItem="SL8-Dc-xmu" firstAttribute="trailing" secondItem="Yfg-q3-KSs" secondAttribute="trailing" type="default" id="Tjg-yb-59j"/>
-                            <constraint firstItem="A9K-5a-17Q" firstAttribute="top" secondItem="Yfg-q3-KSs" secondAttribute="top" type="default" id="dJD-tZ-5MA"/>
-                            <constraint firstItem="vSP-4F-fjn" firstAttribute="trailing" secondItem="Yfg-q3-KSs" secondAttribute="trailing" type="default" id="fc4-OX-V9V"/>
-                            <constraint firstItem="A9K-5a-17Q" firstAttribute="bottom" secondItem="wPg-0o-WgB" secondAttribute="bottom" type="default" id="i0j-ef-nIh"/>
-                            <constraint firstItem="SgL-7N-mLA" firstAttribute="leading" secondItem="wPg-0o-WgB" secondAttribute="leading" type="default" id="jcL-YH-5CI"/>
-                            <constraint firstItem="SL8-Dc-xmu" firstAttribute="top" secondItem="SgL-7N-mLA" secondAttribute="top" type="default" id="nQU-CB-Jht"/>
-                            <constraint firstItem="SgL-7N-mLA" firstAttribute="trailing" secondItem="wPg-0o-WgB" secondAttribute="trailing" type="default" id="rtb-Bd-kXz"/>
-                            <constraint firstItem="vSP-4F-fjn" firstAttribute="leading" secondItem="Yfg-q3-KSs" secondAttribute="leading" type="default" id="t2C-IS-Bik"/>
-                            <constraint firstItem="SL8-Dc-xmu" firstAttribute="leading" secondItem="Yfg-q3-KSs" secondAttribute="leading" type="default" id="ts9-Nh-9Lo"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Link Note" id="r27-ym-8J1">
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="VW0-cX-gV9">
-                            <connections>
-                                <action selector="done:" destination="m0X-G2-8Zx" id="9av-MK-x8f"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="linkEdit" destination="SgL-7N-mLA" id="BCz-gq-ZrS"/>
-                        <outlet property="textEdit" destination="vSP-4F-fjn" id="cWG-n2-NJZ"/>
-                        <outlet property="titleEdit" destination="wPg-0o-WgB" id="qoq-Wb-c8R"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dDa-E6-jDg" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1415" y="151"/>
+            <point key="canvasLocation" x="920" y="101"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Z0j-FR-EXT">
@@ -445,8 +188,16 @@ Label riga 2</string>
         </scene>
     </scenes>
     <classes>
-        <class className="IAMLinkNoteEdit" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/IAMLinkNoteEdit.h"/>
+        <class className="IAMNoteCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/IAMNoteCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="dateLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="textLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="IAMNoteEdit" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/IAMNoteEdit.h"/>
             <relationships>
                 <relationship kind="action" name="done:"/>
                 <relationship kind="outlet" name="linkEdit" candidateClass="UITextField"/>
@@ -454,28 +205,10 @@ Label riga 2</string>
                 <relationship kind="outlet" name="titleEdit" candidateClass="UITextField"/>
             </relationships>
         </class>
-        <class className="IAMNoteSelector" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/IAMNoteSelector.h"/>
-        </class>
-        <class className="IAMTextNoteCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/IAMTextNoteCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="dateLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="textLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="IAMTextNoteEdit" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/IAMTextNoteEdit.h"/>
-            <relationships>
-                <relationship kind="action" name="done:"/>
-                <relationship kind="outlet" name="textEdit" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="titleEdit" candidateClass="UITextField"/>
-            </relationships>
-        </class>
         <class className="IAMViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IAMViewController.h"/>
             <relationships>
+                <relationship kind="action" name="addNote:"/>
                 <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
             </relationships>
         </class>
@@ -489,7 +222,6 @@ Label riga 2</string>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="kda-nl-Os0"/>
-        <segue reference="gYI-GL-DxI"/>
+        <segue reference="yBH-q9-jqE"/>
     </inferredMetricsTieBreakers>
 </document>

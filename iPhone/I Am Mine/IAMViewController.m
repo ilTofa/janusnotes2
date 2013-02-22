@@ -9,10 +9,9 @@
 #import "IAMViewController.h"
 
 #import "IAMAppDelegate.h"
-#import "IAMTextNoteCell.h"
+#import "IAMNoteCell.h"
 #import "Note.h"
-#import "IAMTextNoteEdit.h"
-#import "IAMLinkNoteEdit.h"
+#import "IAMNoteEdit.h"
 
 @interface IAMViewController ()
 
@@ -212,7 +211,7 @@
             break;
             
         case NSFetchedResultsChangeUpdate:
-            [self configureCell:(IAMTextNoteCell *)[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+            [self configureCell:(IAMNoteCell *)[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
             break;
             
         case NSFetchedResultsChangeMove:
@@ -232,14 +231,12 @@
 #pragma mark -
 #pragma mark - Table view data source
 
-- (void)configureCell:(IAMTextNoteCell *)cell atIndexPath:(NSIndexPath *)indexPath
+- (void)configureCell:(IAMNoteCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     Note *note = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.titleLabel.text = note.title;
     cell.textLabel.text = note.text;
     cell.dateLabel.text = [self.dateFormatter stringFromDate:note.created];
-    DLog(@"tit:%@, tex:%@, dat:%@", note.title, note.text, note.created);
-    DLog(@"tit:%@, tex:%@, dat:%@ ***", cell.titleLabel.text, cell.textLabel.text, cell.dateLabel.text);
 }
 
 // Override to customize the look of a cell representing an object. The default is to display
@@ -248,9 +245,9 @@
 {
     static NSString *CellIdentifier = @"TextCell";
     
-    IAMTextNoteCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    IAMNoteCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[IAMTextNoteCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[IAMNoteCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     [self configureCell:cell atIndexPath:indexPath];
     return cell;
@@ -313,22 +310,35 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([[segue identifier] isEqualToString:@"EditTextNote"])
+    if ([[segue identifier] isEqualToString:@"AddTextNote"])
     {
-        IAMTextNoteEdit *textNoteEditor = [segue destinationViewController];
+        IAMNoteEdit *textNoteEditor = [segue destinationViewController];
+        // Create a new note
+        IAMAppDelegate *appDelegate = (IAMAppDelegate *)[[UIApplication sharedApplication] delegate];
+        Note *newNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:appDelegate.coreDataController.mainThreadContext];
+        newNote.text = @"";
+        newNote.title = @"";
+        newNote.link = @"";
+        newNote.uuid = [[NSUUID UUID] UUIDString];
+        newNote.created = [NSDate date];
+        newNote.modified = [NSDate date];
+        textNoteEditor.editedNote = newNote;
+        textNoteEditor.moc = appDelegate.coreDataController.mainThreadContext;
+    }
+    if ([[segue identifier] isEqualToString:@"EditNote"])
+    {
+        IAMNoteEdit *textNoteEditor = [segue destinationViewController];
         Note *selectedNote =  [[self fetchedResultsController] objectAtIndexPath:self.tableView.indexPathForSelectedRow];
         selectedNote.modified = [NSDate date];
         textNoteEditor.editedNote = selectedNote;
         textNoteEditor.moc = self.managedObjectContext;
     }
-    if ([[segue identifier] isEqualToString:@"EditLinkNote"])
-    {
-        IAMLinkNoteEdit *linkNoteEditor = [segue destinationViewController];
-        Note *selectedNote =  [[self fetchedResultsController] objectAtIndexPath:self.tableView.indexPathForSelectedRow];
-        selectedNote.modified = [NSDate date];
-        linkNoteEditor.editedNote = selectedNote;
-        linkNoteEditor.moc = self.managedObjectContext;
-    }
+}
+
+// DEBUG: add type of note management here (image, photo, text)
+- (IBAction)addNote:(id)sender
+{
+    [self performSegueWithIdentifier:@"AddTextNote" sender:self];
 }
 
 @end

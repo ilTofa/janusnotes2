@@ -1,5 +1,5 @@
 //
-//  IAMTextNoteEdit.h
+//  IAMNoteEdit.h
 //  I Am Mine
 //
 //  Created by Giacomo Tufano on 22/02/13.
@@ -10,9 +10,10 @@
 
 #import "Note.h"
 
-@interface IAMTextNoteEdit : UIViewController
+@interface IAMNoteEdit : UIViewController
 
 @property (weak, nonatomic) IBOutlet UITextField *titleEdit;
+@property (weak, nonatomic) IBOutlet UITextField *linkEdit;
 @property (weak, nonatomic) IBOutlet UITextView *textEdit;
 
 // The edited note and the corresponding moc
