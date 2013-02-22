@@ -44,6 +44,13 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    DLog(@"This is IAMViewController:viewDidAppear:");
+    [super viewDidAppear:animated];
+    [self.managedObjectContext rollback];
+}
+
 #pragma mark -
 #pragma mark Search and search delegate
 
@@ -230,8 +237,8 @@
     cell.titleLabel.text = note.title;
     cell.textLabel.text = note.text;
     cell.dateLabel.text = [self.dateFormatter stringFromDate:note.created];
-    DLog(@"d:%@, t:%@, t:%@", note.title, note.text, note.created);
-    DLog(@"d:%@, t:%@, t:%@ ***", cell.titleLabel.text, cell.textLabel.text, cell.dateLabel.text);
+    DLog(@"tit:%@, tex:%@, dat:%@", note.title, note.text, note.created);
+    DLog(@"tit:%@, tex:%@, dat:%@ ***", cell.titleLabel.text, cell.textLabel.text, cell.dateLabel.text);
 }
 
 // Override to customize the look of a cell representing an object. The default is to display
@@ -311,7 +318,7 @@
         Note *newNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:self.managedObjectContext];
         newNote.text = @"";
         newNote.title = @"";
-        newNote.uuid = [NSUUID UUID];
+        newNote.uuid = [[NSUUID UUID] UUIDString];
         newNote.created = [NSDate date];
         newNote.modified = [NSDate date];
         textNoteEditor.editedNote = newNote;

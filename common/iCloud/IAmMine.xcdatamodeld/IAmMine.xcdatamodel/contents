@@ -8,7 +8,7 @@
         <attribute name="text" optional="YES" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
         <attribute name="thumbnail" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="title" attributeType="String" defaultValueString="Title" indexed="YES" spotlightIndexingEnabled="YES" syncable="YES"/>
-        <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uuid" attributeType="String" syncable="YES"/>
     </entity>
     <configuration name="CloudConfig">
         <memberEntity name="Note"/>
