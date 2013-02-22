@@ -24,6 +24,7 @@
 		64A0508616D28CCA0025E179 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64A0508516D28CCA0025E179 /* Default-568h@2x.png */; };
 		64A0508916D28CCA0025E179 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64A0508716D28CCA0025E179 /* MainStoryboard.storyboard */; };
 		64A0508C16D28CCA0025E179 /* IAMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A0508B16D28CCA0025E179 /* IAMViewController.m */; };
+		64B9B4A516D7801100607F39 /* IAMTextNoteEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 64B9B4A416D7801100607F39 /* IAMTextNoteEdit.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,8 @@
 		64A0508816D28CCA0025E179 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		64A0508A16D28CCA0025E179 /* IAMViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IAMViewController.h; sourceTree = "<group>"; };
 		64A0508B16D28CCA0025E179 /* IAMViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IAMViewController.m; sourceTree = "<group>"; };
+		64B9B4A316D7801100607F39 /* IAMTextNoteEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMTextNoteEdit.h; sourceTree = "<group>"; };
+		64B9B4A416D7801100607F39 /* IAMTextNoteEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMTextNoteEdit.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +131,8 @@
 				64A0507E16D28CCA0025E179 /* IAMAppDelegate.h */,
 				64A0507F16D28CCA0025E179 /* IAMAppDelegate.m */,
 				64A0508716D28CCA0025E179 /* MainStoryboard.storyboard */,
+				64B9B4A316D7801100607F39 /* IAMTextNoteEdit.h */,
+				64B9B4A416D7801100607F39 /* IAMTextNoteEdit.m */,
 				64A0508A16D28CCA0025E179 /* IAMViewController.h */,
 				64A0508B16D28CCA0025E179 /* IAMViewController.m */,
 				64A0507616D28CCA0025E179 /* Supporting Files */,
@@ -223,6 +228,7 @@
 				649DCEA316D29B0A003F5A83 /* CoreDataController.m in Sources */,
 				649DCEA616D29B32003F5A83 /* Note.m in Sources */,
 				640D40BE16D5128B003034B3 /* IAMTextNoteCell.m in Sources */,
+				64B9B4A516D7801100607F39 /* IAMTextNoteEdit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

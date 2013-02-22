@@ -11,6 +11,7 @@
 #import "IAMAppDelegate.h"
 #import "IAMTextNoteCell.h"
 #import "Note.h"
+#import "IAMTextNoteEdit.h"
 
 @interface IAMViewController ()
 
@@ -298,6 +299,23 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     DLog(@"This is tableView:didSelectRowAtIndexPath: called for row %d", indexPath.row);
+}
+
+#pragma mark Segues
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"AddTextNote"])
+    {
+        IAMTextNoteEdit *textNoteEditor = [segue destinationViewController];
+        Note *newNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:self.managedObjectContext];
+        newNote.text = @"";
+        newNote.title = @"";
+        newNote.created = [NSDate date];
+        newNote.modified = [NSDate date];
+        textNoteEditor.editedNote = newNote;
+        textNoteEditor.moc = self.managedObjectContext;
+    }
 }
 
 @end

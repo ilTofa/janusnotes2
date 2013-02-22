@@ -21,11 +21,11 @@
                             </connections>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TextCell" id="pRi-48-rCr" customClass="IAMTextNoteCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TextCell" id="pRi-48-rCr" customClass="IAMTextNoteCell">
                                 <rect key="frame" x="0.0" y="66" width="320" height="88"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="87"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="87"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1BU-Bw-kmV" userLabel="Title">
@@ -69,11 +69,18 @@ Label riga 2</string>
                                     <outlet property="dateLabel" destination="ief-EF-hhP" id="lHP-0Z-xc1"/>
                                     <outlet property="textLabel" destination="Fe0-vp-SbE" id="EBY-aE-c5G"/>
                                     <outlet property="titleLabel" destination="1BU-Bw-kmV" id="hH8-of-aJq"/>
+                                    <segue destination="aYD-Rr-6C9" kind="push" identifier="EditTextNote" id="nBs-C7-sJp"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Notes" id="Qev-6j-uPA"/>
+                    <navigationItem key="navigationItem" title="Notes" id="Qev-6j-uPA">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="N2Q-cH-vbh">
+                            <connections>
+                                <segue destination="aYD-Rr-6C9" kind="push" identifier="AddTextNote" id="ejM-ec-mLt"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="searchBar" destination="S1E-lU-tyc" id="FDm-If-qSz"/>
                     </connections>
@@ -81,6 +88,64 @@ Label riga 2</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="442" y="101"/>
+        </scene>
+        <!--Text Note Edit - Text Note-->
+        <scene sceneID="yJT-eO-p6A">
+            <objects>
+                <viewController id="aYD-Rr-6C9" customClass="IAMTextNoteEdit" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uxP-bS-Qfh">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rFO-5H-JJI">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bFY-L8-a9Q">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="306" id="eUa-Ym-Lfh"/>
+                                    <constraint firstAttribute="height" constant="30" id="knN-dn-ZNg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TM1-dV-cxf">
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="473" id="qN9-B2-ICg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="rFO-5H-JJI" firstAttribute="leading" secondItem="uxP-bS-Qfh" secondAttribute="leading" type="default" id="3cm-92-kXN"/>
+                            <constraint firstItem="rFO-5H-JJI" firstAttribute="top" secondItem="uxP-bS-Qfh" secondAttribute="top" type="default" id="5WE-9e-Edr"/>
+                            <constraint firstItem="TM1-dV-cxf" firstAttribute="bottom" secondItem="uxP-bS-Qfh" secondAttribute="bottom" type="default" id="9s7-4S-45d"/>
+                            <constraint firstItem="rFO-5H-JJI" firstAttribute="trailing" secondItem="uxP-bS-Qfh" secondAttribute="trailing" type="default" id="ARf-j2-ZqK"/>
+                            <constraint firstItem="rFO-5H-JJI" firstAttribute="centerX" secondItem="bFY-L8-a9Q" secondAttribute="centerX" type="default" id="BqW-7i-wfg"/>
+                            <constraint firstItem="TM1-dV-cxf" firstAttribute="trailing" secondItem="uxP-bS-Qfh" secondAttribute="trailing" type="default" id="GtM-cf-h8P"/>
+                            <constraint firstItem="TM1-dV-cxf" firstAttribute="leading" secondItem="uxP-bS-Qfh" secondAttribute="leading" type="default" id="d7G-Qk-Mub"/>
+                            <constraint firstItem="bFY-L8-a9Q" firstAttribute="top" secondItem="uxP-bS-Qfh" secondAttribute="top" type="default" id="ful-IJ-yPP"/>
+                            <constraint firstItem="rFO-5H-JJI" firstAttribute="bottom" secondItem="bFY-L8-a9Q" secondAttribute="bottom" type="default" id="tdp-Jg-fq6"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Text Note" id="86x-W0-j7C">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="arX-0v-vjH">
+                            <connections>
+                                <action selector="done:" destination="aYD-Rr-6C9" id="Uob-U3-f3y"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="textEdit" destination="TM1-dV-cxf" id="gVR-9d-Pjg"/>
+                        <outlet property="titleEdit" destination="bFY-L8-a9Q" id="LV9-EX-IV6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pfC-hY-1zX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="865" y="101"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Z0j-FR-EXT">
@@ -110,6 +175,15 @@ Label riga 2</string>
                 <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
+        <class className="IAMTextNoteEdit" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/IAMTextNoteEdit.h"/>
+            <relationships>
+                <relationship kind="action" name="done:"/>
+                <relationship kind="outlet" name="done" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="textEdit" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="titleEdit" candidateClass="UITextField"/>
+            </relationships>
+        </class>
         <class className="IAMViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IAMViewController.h"/>
             <relationships>
@@ -125,4 +199,7 @@ Label riga 2</string>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="ejM-ec-mLt"/>
+    </inferredMetricsTieBreakers>
 </document>
