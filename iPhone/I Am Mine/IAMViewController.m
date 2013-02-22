@@ -12,6 +12,7 @@
 #import "IAMTextNoteCell.h"
 #import "Note.h"
 #import "IAMTextNoteEdit.h"
+#import "IAMLinkNoteEdit.h"
 
 @interface IAMViewController ()
 
@@ -312,18 +313,6 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([[segue identifier] isEqualToString:@"AddTextNote"])
-    {
-        IAMTextNoteEdit *textNoteEditor = [segue destinationViewController];
-        Note *newNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:self.managedObjectContext];
-        newNote.text = @"";
-        newNote.title = @"";
-        newNote.uuid = [[NSUUID UUID] UUIDString];
-        newNote.created = [NSDate date];
-        newNote.modified = [NSDate date];
-        textNoteEditor.editedNote = newNote;
-        textNoteEditor.moc = self.managedObjectContext;
-    }
     if ([[segue identifier] isEqualToString:@"EditTextNote"])
     {
         IAMTextNoteEdit *textNoteEditor = [segue destinationViewController];
@@ -331,6 +320,14 @@
         selectedNote.modified = [NSDate date];
         textNoteEditor.editedNote = selectedNote;
         textNoteEditor.moc = self.managedObjectContext;
+    }
+    if ([[segue identifier] isEqualToString:@"EditLinkNote"])
+    {
+        IAMLinkNoteEdit *linkNoteEditor = [segue destinationViewController];
+        Note *selectedNote =  [[self fetchedResultsController] objectAtIndexPath:self.tableView.indexPathForSelectedRow];
+        selectedNote.modified = [NSDate date];
+        linkNoteEditor.editedNote = selectedNote;
+        linkNoteEditor.moc = self.managedObjectContext;
     }
 }
 

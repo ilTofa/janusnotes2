@@ -1,18 +1,18 @@
 //
-//  IAMTextNoteEdit.m
+//  IAMLinkNoteEdit.m
 //  I Am Mine
 //
 //  Created by Giacomo Tufano on 22/02/13.
 //  Copyright (c) 2013 Giacomo Tufano. All rights reserved.
 //
 
-#import "IAMTextNoteEdit.h"
+#import "IAMLinkNoteEdit.h"
 
-@interface IAMTextNoteEdit ()
+@interface IAMLinkNoteEdit ()
 
 @end
 
-@implementation IAMTextNoteEdit
+@implementation IAMLinkNoteEdit
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,9 +26,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
     self.titleEdit.text = self.editedNote.title;
+    self.linkEdit.text = self.editedNote.link;
     self.textEdit.text = self.editedNote.text;
     [self.titleEdit becomeFirstResponder];
 }
@@ -66,11 +67,11 @@
 - (IBAction)done:(id)sender
 {
     // save (if useful) and pop back
-    if([self.titleEdit.text isEqualToString:@""] || [self.textEdit.text isEqualToString:@""])
+    if([self.titleEdit.text isEqualToString:@""] || [self.linkEdit.text isEqualToString:@""])
         return;
     self.editedNote.modified = [NSDate date];
     self.editedNote.title = self.titleEdit.text;
-    DLog(@"Text: %@\nAttributed text: %@", self.textEdit.text, self.textEdit.attributedText);
+    self.editedNote.link = self.linkEdit.text;
     self.editedNote.text = self.textEdit.text;
     NSError *error;
     if(![self.moc save:&error])
