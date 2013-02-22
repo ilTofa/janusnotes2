@@ -8,16 +8,20 @@
 
 #import "IAMViewController.h"
 
+#import <MobileCoreServices/MobileCoreServices.h>
+
 #import "IAMAppDelegate.h"
 #import "IAMNoteCell.h"
 #import "Note.h"
-#import "IAMNoteEdit.h"
+#import "IAMTextNoteEdit.h"
+#import "UIImage+RoundedCorner.h"
 
-@interface IAMViewController () <UIActionSheetDelegate, UIImagePickerControllerDelegate>
+@interface IAMViewController () <UIImagePickerControllerDelegate, UIActionSheetDelegate, UISearchBarDelegate, NSFetchedResultsControllerDelegate, UINavigationControllerDelegate>
 
 @property (nonatomic) NSDateFormatter *dateFormatter;
 
 @property int textSelector, cameraSelector, librarySelector, savedAlbumsSelector;
+@property UIImage *pickedImage;
 
 @end
 
@@ -137,7 +141,7 @@
     [fetchRequest setFetchBatchSize:25];
     
     // Edit the sort key as appropriate.
-    NSSortDescriptor *dateAddedSortDesc = [[NSSortDescriptor alloc] initWithKey:@"modified" ascending:YES];
+    NSSortDescriptor *dateAddedSortDesc = [[NSSortDescriptor alloc] initWithKey:@"modified" ascending:NO];
     NSArray *sortDescriptors = @[dateAddedSortDesc];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
@@ -314,7 +318,7 @@
 {
     if ([[segue identifier] isEqualToString:@"AddTextNote"])
     {
-        IAMNoteEdit *textNoteEditor = [segue destinationViewController];
+        IAMTextNoteEdit *textNoteEditor = [segue destinationViewController];
         // Create a new note
         IAMAppDelegate *appDelegate = (IAMAppDelegate *)[[UIApplication sharedApplication] delegate];
         Note *newNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:appDelegate.coreDataController.mainThreadContext];
@@ -327,9 +331,26 @@
         textNoteEditor.editedNote = newNote;
         textNoteEditor.moc = appDelegate.coreDataController.mainThreadContext;
     }
+    if ([[segue identifier] isEqualToString:@"AddImageNote"])
+    {
+        IAMTextNoteEdit *textNoteEditor = [segue destinationViewController];
+        // Create a new note
+        IAMAppDelegate *appDelegate = (IAMAppDelegate *)[[UIApplication sharedApplication] delegate];
+        Note *newNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:appDelegate.coreDataController.mainThreadContext];
+        newNote.text = @"";
+        newNote.title = @"";
+        newNote.link = @"";
+        newNote.uuid = [[NSUUID UUID] UUIDString];
+        newNote.created = [NSDate date];
+        newNote.modified = [NSDate date];
+        newNote.image = UIImagePNGRepresentation(self.pickedImage);
+        newNote.thumbnail = UIImagePNGRepresentation([self.pickedImage roundedThumbnail:88 withFixedScale:YES cornerSize:5 borderSize:0]);
+        textNoteEditor.editedNote = newNote;
+        textNoteEditor.moc = appDelegate.coreDataController.mainThreadContext;
+    }
     if ([[segue identifier] isEqualToString:@"EditNote"])
     {
-        IAMNoteEdit *textNoteEditor = [segue destinationViewController];
+        IAMTextNoteEdit *textNoteEditor = [segue destinationViewController];
         Note *selectedNote =  [[self fetchedResultsController] objectAtIndexPath:self.tableView.indexPathForSelectedRow];
         selectedNote.modified = [NSDate date];
         textNoteEditor.editedNote = selectedNote;
@@ -391,10 +412,13 @@
         [self performSegueWithIdentifier:@"AddTextNote" sender:self];
     } else if (buttonIndex == self.librarySelector) {
         DLog(@"Library requested");
+        [self showMediaPickerFor:UIImagePickerControllerSourceTypePhotoLibrary];
     } else if (buttonIndex == self.cameraSelector) {
         DLog(@"Camera requested");
+        [self showMediaPickerFor:UIImagePickerControllerSourceTypeCamera];
     } else if (buttonIndex == self.savedAlbumsSelector) {
         DLog(@"Saved album selected");
+        [self showMediaPickerFor:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
     } else {
         DLog(@"Cancel selected");
     }
@@ -402,45 +426,41 @@
 
 -(void)showMediaPickerFor:(UIImagePickerControllerSourceType)type
 {
-//	UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
-//	imagePicker.delegate = self;
-//	imagePicker.sourceType = type;
-//	[self presentModalViewController:imagePicker animated:YES];
+	UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+	imagePicker.delegate = self;
+	imagePicker.sourceType = type;
+    [self presentViewController:imagePicker animated:YES completion:^{}];
 }
 
 #pragma mark UIImagePickerControllerDelegate
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-//	// MediaType can be kUTTypeImage or kUTTypeMovie. If it's a movie then you
-//    // can get the URL to the actual file itself. This example only looks for images.
-//    NSLog(@"info: %@", info);
-//    NSString* mediaType = [info objectForKey:UIImagePickerControllerMediaType];
-//    // NSString* videoUrl = [info objectForKey:UIImagePickerControllerMediaURL];
-//	
-//    // Try getting the edited image first. If it doesn't exist then you get the
-//    // original image.
-//    //
-//    if (CFStringCompare((CFStringRef) mediaType, kUTTypeImage, 0) == kCFCompareEqualTo)
-//	{
-//        self.theImage = [info objectForKey:UIImagePickerControllerEditedImage];
-//        if (!self.theImage)
-//			self.theImage = [info objectForKey:UIImagePickerControllerOriginalImage];
-//		[self dismissModalViewControllerAnimated:YES];
-//		[self showImageSenderController];
-//    }
-//	else
-//	{
-//		// user don't want to do something, dismiss
-//		[self dismissModalViewControllerAnimated:YES];
-//		[self showImageSenderController];
-//	}
+	// MediaType can be kUTTypeImage or kUTTypeMovie. If it's a movie then you
+    // can get the URL to the actual file itself. This example only looks for images.
+    NSLog(@"info: %@", info);
+    NSString* mediaType = [info objectForKey:UIImagePickerControllerMediaType];
+    // Try getting the edited image first. If it doesn't exist then you get the
+    // original image.
+    //
+    if (CFStringCompare((CFStringRef) mediaType, kUTTypeImage, 0) == kCFCompareEqualTo)
+	{
+        self.pickedImage = [info objectForKey:UIImagePickerControllerEditedImage];
+        if (!self.pickedImage)
+			self.pickedImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+        [picker dismissViewControllerAnimated:YES completion:^{}];
+        [self performSegueWithIdentifier:@"AddImageNote" sender:self];
+    }
+	else
+	{
+		// user don't want to do something, dismiss
+        [picker dismissViewControllerAnimated:YES completion:^{}];
+	}
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
-//	[self dismissModalViewControllerAnimated:YES];
-//	[self showImageSenderController];
+    [picker dismissViewControllerAnimated:YES completion:^{}];
 }
 
 

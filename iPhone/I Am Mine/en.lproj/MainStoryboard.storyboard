@@ -96,7 +96,7 @@ Label riga 2</string>
         <!--Image Note Editor-->
         <scene sceneID="rKg-4v-6PW">
             <objects>
-                <viewController id="bjo-VI-Bb6" userLabel="Image Note Editor" sceneMemberID="viewController">
+                <viewController id="bjo-VI-Bb6" userLabel="Image Note Editor" customClass="IAMImageNoteEdit" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ICF-yF-EGc">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -113,13 +113,13 @@ Label riga 2</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kea-x6-g8F">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="kea-x6-g8F">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="320" type="user" id="RJF-ch-XWm"/>
                                 </constraints>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="46Q-mS-dtt">
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -141,7 +141,18 @@ Label riga 2</string>
                             <constraint firstItem="kea-x6-g8F" firstAttribute="leading" secondItem="ICF-yF-EGc" secondAttribute="leading" type="default" id="yyC-ab-GVG"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Note" id="hSE-1v-E8Y"/>
+                    <navigationItem key="navigationItem" title="Note" id="hSE-1v-E8Y">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="1m8-aK-2uU">
+                            <connections>
+                                <action selector="done:" destination="bjo-VI-Bb6" id="Ry7-jO-QyM"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="imageThumbnail" destination="kea-x6-g8F" id="cAa-A6-7Q8"/>
+                        <outlet property="textEdit" destination="46Q-mS-dtt" id="u2n-DE-C0d"/>
+                        <outlet property="titleEdit" destination="bB5-lA-BUE" id="4tQ-pv-sH7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zxh-Yz-Jvj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -150,7 +161,7 @@ Label riga 2</string>
         <!--Text Note Editor-->
         <scene sceneID="yJT-eO-p6A">
             <objects>
-                <viewController id="aYD-Rr-6C9" userLabel="Text Note Editor" customClass="IAMNoteEdit" sceneMemberID="viewController">
+                <viewController id="aYD-Rr-6C9" userLabel="Text Note Editor" customClass="IAMTextNoteEdit" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uxP-bS-Qfh">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -171,7 +182,7 @@ Label riga 2</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Add link" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6j8-bd-Axf">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Add link (optional)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6j8-bd-Axf">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="VJY-93-KFi"/>
                                 </constraints>
@@ -215,6 +226,7 @@ Label riga 2</string>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="linkEdit" destination="6j8-bd-Axf" id="Mns-wz-cn7"/>
                         <outlet property="textEdit" destination="TM1-dV-cxf" id="gVR-9d-Pjg"/>
                         <outlet property="titleEdit" destination="bFY-L8-a9Q" id="LV9-EX-IV6"/>
                     </connections>
@@ -242,6 +254,44 @@ Label riga 2</string>
             <point key="canvasLocation" x="56" y="101"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="IAMImageNoteEdit" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/IAMImageNoteEdit.h"/>
+            <relationships>
+                <relationship kind="action" name="done:"/>
+                <relationship kind="outlet" name="imageThumbnail" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="textEdit" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="titleEdit" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="IAMNoteCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/IAMNoteCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="dateLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="textLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="IAMTextNoteEdit" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/IAMTextNoteEdit.h"/>
+            <relationships>
+                <relationship kind="action" name="done:"/>
+                <relationship kind="outlet" name="linkEdit" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="textEdit" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="titleEdit" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="IAMViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/IAMViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="addNote:"/>
+                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

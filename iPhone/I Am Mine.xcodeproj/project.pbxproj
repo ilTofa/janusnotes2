@@ -11,6 +11,9 @@
 		640D40C016D6DF92003034B3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 640D40BF16D6DF92003034B3 /* CoreData.framework */; };
 		640D40C216D6DFAF003034B3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 640D40C116D6DFAF003034B3 /* CoreLocation.framework */; };
 		6416315716D7DB830004CB52 /* IAMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6416315616D7DB830004CB52 /* IAMViewController.m */; };
+		6416315916D831DB0004CB52 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6416315816D831DB0004CB52 /* MobileCoreServices.framework */; };
+		6416315D16D8345F0004CB52 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 6416315C16D8345F0004CB52 /* UIImage+RoundedCorner.m */; };
+		6416316016D835EF0004CB52 /* IAMImageNoteEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 6416315F16D835EF0004CB52 /* IAMImageNoteEdit.m */; };
 		649DCEA016D28DB8003F5A83 /* IAmMine.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 649DCE9E16D28DB7003F5A83 /* IAmMine.xcdatamodeld */; };
 		649DCEA316D29B0A003F5A83 /* CoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 649DCEA216D29AAD003F5A83 /* CoreDataController.m */; };
 		649DCEA616D29B32003F5A83 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 649DCEA516D29B32003F5A83 /* Note.m */; };
@@ -24,7 +27,7 @@
 		64A0508416D28CCA0025E179 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64A0508316D28CCA0025E179 /* Default@2x.png */; };
 		64A0508616D28CCA0025E179 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64A0508516D28CCA0025E179 /* Default-568h@2x.png */; };
 		64A0508916D28CCA0025E179 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64A0508716D28CCA0025E179 /* MainStoryboard.storyboard */; };
-		64B9B4A516D7801100607F39 /* IAMNoteEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 64B9B4A416D7801100607F39 /* IAMNoteEdit.m */; };
+		64B9B4A516D7801100607F39 /* IAMTextNoteEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 64B9B4A416D7801100607F39 /* IAMTextNoteEdit.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +36,11 @@
 		640D40BF16D6DF92003034B3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		640D40C116D6DFAF003034B3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		6416315616D7DB830004CB52 /* IAMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMViewController.m; sourceTree = "<group>"; };
+		6416315816D831DB0004CB52 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		6416315B16D8345F0004CB52 /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
+		6416315C16D8345F0004CB52 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
+		6416315E16D835EF0004CB52 /* IAMImageNoteEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMImageNoteEdit.h; sourceTree = "<group>"; };
+		6416315F16D835EF0004CB52 /* IAMImageNoteEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMImageNoteEdit.m; sourceTree = "<group>"; };
 		649DCE9F16D28DB7003F5A83 /* IAmMine.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = IAmMine.xcdatamodel; sourceTree = "<group>"; };
 		649DCEA116D29AAD003F5A83 /* CoreDataController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CoreDataController.h; path = ../common/iCloud/CoreDataController.h; sourceTree = "<group>"; };
 		649DCEA216D29AAD003F5A83 /* CoreDataController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CoreDataController.m; path = ../common/iCloud/CoreDataController.m; sourceTree = "<group>"; };
@@ -53,8 +61,8 @@
 		64A0508516D28CCA0025E179 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		64A0508816D28CCA0025E179 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		64A0508A16D28CCA0025E179 /* IAMViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IAMViewController.h; sourceTree = "<group>"; };
-		64B9B4A316D7801100607F39 /* IAMNoteEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMNoteEdit.h; sourceTree = "<group>"; };
-		64B9B4A416D7801100607F39 /* IAMNoteEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMNoteEdit.m; sourceTree = "<group>"; };
+		64B9B4A316D7801100607F39 /* IAMTextNoteEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMTextNoteEdit.h; sourceTree = "<group>"; };
+		64B9B4A416D7801100607F39 /* IAMTextNoteEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMTextNoteEdit.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6416315916D831DB0004CB52 /* MobileCoreServices.framework in Frameworks */,
 				640D40C216D6DFAF003034B3 /* CoreLocation.framework in Frameworks */,
 				640D40C016D6DF92003034B3 /* CoreData.framework in Frameworks */,
 				64A0507016D28CCA0025E179 /* UIKit.framework in Frameworks */,
@@ -85,10 +94,21 @@
 		6416314C16D7B5270004CB52 /* Notes Editing */ = {
 			isa = PBXGroup;
 			children = (
-				64B9B4A316D7801100607F39 /* IAMNoteEdit.h */,
-				64B9B4A416D7801100607F39 /* IAMNoteEdit.m */,
+				64B9B4A316D7801100607F39 /* IAMTextNoteEdit.h */,
+				64B9B4A416D7801100607F39 /* IAMTextNoteEdit.m */,
+				6416315E16D835EF0004CB52 /* IAMImageNoteEdit.h */,
+				6416315F16D835EF0004CB52 /* IAMImageNoteEdit.m */,
 			);
 			name = "Notes Editing";
+			sourceTree = "<group>";
+		};
+		6416315A16D8345F0004CB52 /* UIImage */ = {
+			isa = PBXGroup;
+			children = (
+				6416315B16D8345F0004CB52 /* UIImage+RoundedCorner.h */,
+				6416315C16D8345F0004CB52 /* UIImage+RoundedCorner.m */,
+			);
+			path = UIImage;
 			sourceTree = "<group>";
 		};
 		649DCE9A16D28D30003F5A83 /* iCloud (common) */ = {
@@ -124,6 +144,7 @@
 		64A0506E16D28CCA0025E179 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6416315816D831DB0004CB52 /* MobileCoreServices.framework */,
 				640D40C116D6DFAF003034B3 /* CoreLocation.framework */,
 				640D40BF16D6DF92003034B3 /* CoreData.framework */,
 				64A0506F16D28CCA0025E179 /* UIKit.framework */,
@@ -136,6 +157,7 @@
 		64A0507516D28CCA0025E179 /* I Am Mine */ = {
 			isa = PBXGroup;
 			children = (
+				6416315A16D8345F0004CB52 /* UIImage */,
 				640D40BB16D5123C003034B3 /* List Cells */,
 				64A0507E16D28CCA0025E179 /* IAMAppDelegate.h */,
 				64A0507F16D28CCA0025E179 /* IAMAppDelegate.m */,
@@ -235,8 +257,10 @@
 				649DCEA316D29B0A003F5A83 /* CoreDataController.m in Sources */,
 				649DCEA616D29B32003F5A83 /* Note.m in Sources */,
 				640D40BE16D5128B003034B3 /* IAMNoteCell.m in Sources */,
-				64B9B4A516D7801100607F39 /* IAMNoteEdit.m in Sources */,
+				64B9B4A516D7801100607F39 /* IAMTextNoteEdit.m in Sources */,
 				6416315716D7DB830004CB52 /* IAMViewController.m in Sources */,
+				6416315D16D8345F0004CB52 /* UIImage+RoundedCorner.m in Sources */,
+				6416316016D835EF0004CB52 /* IAMImageNoteEdit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

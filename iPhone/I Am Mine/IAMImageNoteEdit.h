@@ -1,8 +1,8 @@
 //
-//  IAMNoteEdit.h
+//  IAMImageNoteEdit.h
 //  I Am Mine
 //
-//  Created by Giacomo Tufano on 22/02/13.
+//  Created by Giacomo Tufano on 23/02/13.
 //  Copyright (c) 2013 Giacomo Tufano. All rights reserved.
 //
 
@@ -10,10 +10,10 @@
 
 #import "Note.h"
 
-@interface IAMNoteEdit : UIViewController
+@interface IAMImageNoteEdit : UIViewController
 
 @property (weak, nonatomic) IBOutlet UITextField *titleEdit;
-@property (weak, nonatomic) IBOutlet UITextField *linkEdit;
+@property (weak, nonatomic) IBOutlet UIImageView *imageThumbnail;
 @property (weak, nonatomic) IBOutlet UITextView *textEdit;
 
 // The edited note and the corresponding moc

@@ -18,6 +18,7 @@
 @property (nonatomic, retain) NSDate * modified;
 @property (nonatomic, retain) NSString * text;
 @property (nonatomic, retain) NSString * title;
+@property (nonatomic, retain) NSData * thumbnail;
 @property (nonatomic, retain) NSString * uuid;
 
 @end

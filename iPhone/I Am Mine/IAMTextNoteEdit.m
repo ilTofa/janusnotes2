@@ -1,18 +1,18 @@
 //
-//  IAMNoteEdit.m
+//  IAMTextNoteEdit.m
 //  I Am Mine
 //
 //  Created by Giacomo Tufano on 22/02/13.
 //  Copyright (c) 2013 Giacomo Tufano. All rights reserved.
 //
 
-#import "IAMNoteEdit.h"
+#import "IAMTextNoteEdit.h"
 
-@interface IAMNoteEdit ()
+@interface IAMTextNoteEdit ()
 
 @end
 
-@implementation IAMNoteEdit
+@implementation IAMTextNoteEdit
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,10 +26,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
     self.titleEdit.text = self.editedNote.title;
     self.textEdit.text = self.editedNote.text;
+    self.linkEdit.text = self.editedNote.link;
     // If this is a new note, set the cursor on title field
     if([self.titleEdit.text isEqualToString:@""])
         [self.titleEdit becomeFirstResponder];

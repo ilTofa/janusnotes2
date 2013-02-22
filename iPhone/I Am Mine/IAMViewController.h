@@ -10,7 +10,7 @@
 
 #import <CoreData/CoreData.h>
 
-@interface IAMViewController : UITableViewController <UISearchBarDelegate, NSFetchedResultsControllerDelegate>
+@interface IAMViewController : UITableViewController
 
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;

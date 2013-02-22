@@ -17,6 +17,7 @@
 @dynamic modified;
 @dynamic text;
 @dynamic title;
+@dynamic thumbnail;
 @dynamic uuid;
 
 @end
