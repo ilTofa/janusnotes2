@@ -39,6 +39,11 @@
 	[self.dateFormatter setLocale:[NSLocale currentLocale]];
 	[self.dateFormatter setDateStyle:NSDateFormatterLongStyle];
 	[self.dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+//    NSArray *leftButtons = @[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)],
+//                             self.editButtonItem];
+//    self.navigationItem.leftBarButtonItems = leftButtons;
+
+    self.navigationItem.leftBarButtonItem = self.editButtonItem;
     // Notifications to be honored during controller lifecycle
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadFetchedResults:) name:NSPersistentStoreCoordinatorStoresDidChangeNotification object:appDelegate.coreDataController.psc];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadFetchedResults:) name:NSPersistentStoreDidImportUbiquitousContentChangesNotification object:appDelegate.coreDataController.psc];
@@ -373,7 +378,6 @@
     }
 }
 
-// DEBUG: add type of note management here (image, photo, text)
 - (IBAction)addNote:(id)sender
 {
     // Check what the client have.
