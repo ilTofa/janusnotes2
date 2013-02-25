@@ -12,6 +12,7 @@
 
 @interface Note : NSManagedObject
 
+@property (nonatomic, retain) NSAttributedString * attributedText;
 @property (nonatomic, retain) NSDate * created;
 @property (nonatomic, retain) NSData * image;
 @property (nonatomic, retain) NSString * link;

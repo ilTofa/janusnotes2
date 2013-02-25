@@ -29,7 +29,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
     self.titleEdit.text = self.editedNote.title;
-    self.textEdit.text = self.editedNote.text;
+    self.textEdit.attributedText = self.editedNote.attributedText;
     self.linkEdit.text = self.editedNote.link;
     // If this is a new note, set the cursor on title field
     if([self.titleEdit.text isEqualToString:@""])
@@ -75,6 +75,7 @@
     self.editedNote.title = self.titleEdit.text;
     self.editedNote.link = self.linkEdit.text;
     DLog(@"Text: %@\nAttributed text: %@", self.textEdit.text, self.textEdit.attributedText);
+    self.editedNote.attributedText = self.textEdit.attributedText;
     self.editedNote.text = self.textEdit.text;
     NSError *error;
     if(![self.moc save:&error])

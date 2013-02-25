@@ -11,6 +11,7 @@
 
 @implementation Note
 
+@dynamic attributedText;
 @dynamic created;
 @dynamic image;
 @dynamic link;
