@@ -74,6 +74,54 @@ Label riga 2</string>
                                     <segue destination="aYD-Rr-6C9" kind="push" identifier="EditNote" id="nBs-C7-sJp"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ImageCell" id="k1L-DM-5Td" customClass="IAMNoteCell">
+                                <rect key="frame" x="0.0" y="154" width="320" height="88"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="87"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7DW-k3-VkR">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="218" id="2QX-ec-s5U"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GbA-Qu-s69" userLabel="Date">
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="VY3-ng-6TF"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VwQ-um-LLX">
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="80" id="9tk-RI-53s"/>
+                                                <constraint firstAttribute="width" constant="80" id="owc-Xr-BTU"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="GbA-Qu-s69" secondAttribute="bottom" constant="1" id="BWL-nd-tIl"/>
+                                    <constraint firstItem="7DW-k3-VkR" firstAttribute="top" secondItem="k1L-DM-5Td" secondAttribute="top" constant="20" type="default" id="ChF-dN-kbc"/>
+                                    <constraint firstItem="GbA-Qu-s69" firstAttribute="trailing" secondItem="7DW-k3-VkR" secondAttribute="trailing" type="default" id="D4h-2h-oMk"/>
+                                    <constraint firstItem="VwQ-um-LLX" firstAttribute="leading" secondItem="k1L-DM-5Td" secondAttribute="leading" constant="4" id="fei-qH-MEn"/>
+                                    <constraint firstItem="GbA-Qu-s69" firstAttribute="leading" secondItem="VwQ-um-LLX" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="r8y-zj-ofg"/>
+                                    <constraint firstItem="VwQ-um-LLX" firstAttribute="centerY" secondItem="k1L-DM-5Td" secondAttribute="centerY" type="default" id="smt-Jx-RWn"/>
+                                    <constraint firstItem="7DW-k3-VkR" firstAttribute="leading" secondItem="VwQ-um-LLX" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="w2Q-qL-7zy"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="dateLabel" destination="GbA-Qu-s69" id="mqs-38-fX9"/>
+                                    <outlet property="thumbImage" destination="VwQ-um-LLX" id="xVU-BS-vb1"/>
+                                    <outlet property="titleLabel" destination="7DW-k3-VkR" id="dkY-P9-SZ4"/>
+                                    <segue destination="bjo-VI-Bb6" kind="push" identifier="EditImageNote" id="hAg-PP-xXT"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                     </tableView>
                     <navigationItem key="navigationItem" title="Notes" id="Qev-6j-uPA">
@@ -115,11 +163,14 @@ Label riga 2</string>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="kea-x6-g8F">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="320" type="user" id="RJF-ch-XWm"/>
+                                    <constraint firstAttribute="height" constant="316" id="O3g-Fj-Ngz"/>
+                                    <constraint firstAttribute="width" constant="316" id="y6R-RG-WVw"/>
                                 </constraints>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="46Q-mS-dtt">
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="138" id="gLA-HG-g8S"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -127,18 +178,16 @@ Label riga 2</string>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="46Q-mS-dtt" firstAttribute="trailing" secondItem="ICF-yF-EGc" secondAttribute="trailing" type="default" id="4oT-4O-a8r"/>
+                            <constraint firstItem="kea-x6-g8F" firstAttribute="top" secondItem="ICF-yF-EGc" secondAttribute="top" constant="186" id="9t4-1m-cWm"/>
+                            <constraint firstItem="46Q-mS-dtt" firstAttribute="top" secondItem="ICF-yF-EGc" secondAttribute="top" constant="38" id="A9u-qU-4fq"/>
                             <constraint firstItem="p8h-oo-PYS" firstAttribute="leading" secondItem="ICF-yF-EGc" secondAttribute="leading" type="default" id="AdV-vg-H7A"/>
                             <constraint firstItem="p8h-oo-PYS" firstAttribute="trailing" secondItem="ICF-yF-EGc" secondAttribute="trailing" type="default" id="T82-Lu-Eo2"/>
+                            <constraint firstItem="kea-x6-g8F" firstAttribute="centerX" secondItem="46Q-mS-dtt" secondAttribute="centerX" type="default" id="VbY-oD-fE8"/>
                             <constraint firstItem="bB5-lA-BUE" firstAttribute="centerX" secondItem="p8h-oo-PYS" secondAttribute="centerX" type="default" id="a51-JG-dLs"/>
                             <constraint firstItem="46Q-mS-dtt" firstAttribute="leading" secondItem="ICF-yF-EGc" secondAttribute="leading" type="default" id="cdd-ya-qsz"/>
                             <constraint firstItem="46Q-mS-dtt" firstAttribute="top" secondItem="p8h-oo-PYS" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="jAn-L4-UjE"/>
                             <constraint firstItem="p8h-oo-PYS" firstAttribute="top" secondItem="ICF-yF-EGc" secondAttribute="top" type="default" id="kXz-xd-3Js"/>
-                            <constraint firstItem="kea-x6-g8F" firstAttribute="bottom" secondItem="ICF-yF-EGc" secondAttribute="bottom" type="default" id="mLA-HL-Ddg"/>
-                            <constraint firstItem="kea-x6-g8F" firstAttribute="top" secondItem="46Q-mS-dtt" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="n2t-6K-XKC"/>
-                            <constraint firstItem="kea-x6-g8F" firstAttribute="trailing" secondItem="ICF-yF-EGc" secondAttribute="trailing" type="default" id="oCu-8h-51j"/>
                             <constraint firstItem="46Q-mS-dtt" firstAttribute="top" secondItem="bB5-lA-BUE" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="vRR-mZ-tPJ"/>
-                            <constraint firstItem="bB5-lA-BUE" firstAttribute="top" secondItem="ICF-yF-EGc" secondAttribute="top" type="user" id="ygp-Ix-u4x"/>
-                            <constraint firstItem="kea-x6-g8F" firstAttribute="leading" secondItem="ICF-yF-EGc" secondAttribute="leading" type="default" id="yyC-ab-GVG"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Note" id="hSE-1v-E8Y">
@@ -269,6 +318,7 @@ Label riga 2</string>
             <relationships>
                 <relationship kind="outlet" name="dateLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="textLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="thumbImage" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
@@ -298,6 +348,7 @@ Label riga 2</string>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="yBH-q9-jqE"/>
+        <segue reference="hAg-PP-xXT"/>
+        <segue reference="nBs-C7-sJp"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -14,6 +14,7 @@
 #import "IAMNoteCell.h"
 #import "Note.h"
 #import "IAMTextNoteEdit.h"
+#import "IAMImageNoteEdit.h"
 #import "UIImage+RoundedCorner.h"
 
 @interface IAMViewController () <UIImagePickerControllerDelegate, UIActionSheetDelegate, UISearchBarDelegate, NSFetchedResultsControllerDelegate, UINavigationControllerDelegate>
@@ -234,14 +235,16 @@
 }
 
 
-#pragma mark -
 #pragma mark - Table view data source
 
 - (void)configureCell:(IAMNoteCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     Note *note = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.titleLabel.text = note.title;
-    cell.textLabel.text = note.text;
+    if(note.image)
+        cell.thumbImage.image = [UIImage imageWithData:note.thumbnail];
+    else
+        cell.textLabel.text = note.text;
     cell.dateLabel.text = [self.dateFormatter stringFromDate:note.created];
 }
 
@@ -249,8 +252,12 @@
 // a UITableViewCellStyleDefault style cell with the label being the first key in the object.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"TextCell";
-    
+    NSString *CellIdentifier;
+    // If the object has an image
+    if([[self.fetchedResultsController objectAtIndexPath:indexPath] valueForKey:@"image"])
+        CellIdentifier = @"ImageCell";
+    else
+        CellIdentifier = @"TextCell";
     IAMNoteCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[IAMNoteCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
@@ -333,7 +340,7 @@
     }
     if ([[segue identifier] isEqualToString:@"AddImageNote"])
     {
-        IAMTextNoteEdit *textNoteEditor = [segue destinationViewController];
+        IAMImageNoteEdit *imageNoteEditor = [segue destinationViewController];
         // Create a new note
         IAMAppDelegate *appDelegate = (IAMAppDelegate *)[[UIApplication sharedApplication] delegate];
         Note *newNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:appDelegate.coreDataController.mainThreadContext];
@@ -345,8 +352,8 @@
         newNote.modified = [NSDate date];
         newNote.image = UIImagePNGRepresentation(self.pickedImage);
         newNote.thumbnail = UIImagePNGRepresentation([self.pickedImage roundedThumbnail:88 withFixedScale:YES cornerSize:5 borderSize:0]);
-        textNoteEditor.editedNote = newNote;
-        textNoteEditor.moc = appDelegate.coreDataController.mainThreadContext;
+        imageNoteEditor.editedNote = newNote;
+        imageNoteEditor.moc = appDelegate.coreDataController.mainThreadContext;
     }
     if ([[segue identifier] isEqualToString:@"EditNote"])
     {
@@ -355,6 +362,14 @@
         selectedNote.modified = [NSDate date];
         textNoteEditor.editedNote = selectedNote;
         textNoteEditor.moc = self.managedObjectContext;
+    }
+    if ([[segue identifier] isEqualToString:@"EditImageNote"])
+    {
+        IAMImageNoteEdit *imageNoteEditor = [segue destinationViewController];
+        Note *selectedNote =  [[self fetchedResultsController] objectAtIndexPath:self.tableView.indexPathForSelectedRow];
+        selectedNote.modified = [NSDate date];
+        imageNoteEditor.editedNote = selectedNote;
+        imageNoteEditor.moc = self.managedObjectContext;
     }
 }
 
