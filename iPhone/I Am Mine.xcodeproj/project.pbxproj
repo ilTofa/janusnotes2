@@ -18,6 +18,8 @@
 		6466029D16DBC98E007622FC /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6466029C16DBC98E007622FC /* Icon.png */; };
 		646602A016DBC999007622FC /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 6466029E16DBC999007622FC /* Icon-72.png */; };
 		646602A116DBC999007622FC /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6466029F16DBC999007622FC /* Icon-72@2x.png */; };
+		646602A516DBD384007622FC /* cellbackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 646602A316DBD384007622FC /* cellbackground.png */; };
+		646602A616DBD384007622FC /* cellbackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 646602A416DBD384007622FC /* cellbackground@2x.png */; };
 		649DCEA016D28DB8003F5A83 /* IAmMine.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 649DCE9E16D28DB7003F5A83 /* IAmMine.xcdatamodeld */; };
 		649DCEA316D29B0A003F5A83 /* CoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 649DCEA216D29AAD003F5A83 /* CoreDataController.m */; };
 		649DCEA616D29B32003F5A83 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 649DCEA516D29B32003F5A83 /* Note.m */; };
@@ -49,6 +51,8 @@
 		6466029C16DBC98E007622FC /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
 		6466029E16DBC999007622FC /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = SOURCE_ROOT; };
 		6466029F16DBC999007622FC /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = SOURCE_ROOT; };
+		646602A316DBD384007622FC /* cellbackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cellbackground.png; path = Images/cellbackground.png; sourceTree = "<group>"; };
+		646602A416DBD384007622FC /* cellbackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cellbackground@2x.png"; path = "Images/cellbackground@2x.png"; sourceTree = "<group>"; };
 		649DCE9F16D28DB7003F5A83 /* IAmMine.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = IAmMine.xcdatamodel; sourceTree = "<group>"; };
 		649DCEA116D29AAD003F5A83 /* CoreDataController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CoreDataController.h; path = ../common/iCloud/CoreDataController.h; sourceTree = "<group>"; };
 		649DCEA216D29AAD003F5A83 /* CoreDataController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CoreDataController.m; path = ../common/iCloud/CoreDataController.m; sourceTree = "<group>"; };
@@ -119,6 +123,15 @@
 			path = UIImage;
 			sourceTree = "<group>";
 		};
+		646602A216DBD373007622FC /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				646602A316DBD384007622FC /* cellbackground.png */,
+				646602A416DBD384007622FC /* cellbackground@2x.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		649DCE9A16D28D30003F5A83 /* iCloud (common) */ = {
 			isa = PBXGroup;
 			children = (
@@ -165,6 +178,7 @@
 		64A0507516D28CCA0025E179 /* I Am Mine */ = {
 			isa = PBXGroup;
 			children = (
+				646602A216DBD373007622FC /* Images */,
 				6416315A16D8345F0004CB52 /* UIImage */,
 				640D40BB16D5123C003034B3 /* List Cells */,
 				64A0507E16D28CCA0025E179 /* IAMAppDelegate.h */,
@@ -257,6 +271,8 @@
 				6466029D16DBC98E007622FC /* Icon.png in Resources */,
 				646602A016DBC999007622FC /* Icon-72.png in Resources */,
 				646602A116DBC999007622FC /* Icon-72@2x.png in Resources */,
+				646602A516DBD384007622FC /* cellbackground.png in Resources */,
+				646602A616DBD384007622FC /* cellbackground@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
