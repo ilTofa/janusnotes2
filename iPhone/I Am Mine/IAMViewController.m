@@ -202,7 +202,6 @@
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
 {
-    DLog(@"this is controllerWillChangeContent");
     [self.tableView beginUpdates];
 }
 
@@ -210,35 +209,33 @@
        atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
       newIndexPath:(NSIndexPath *)newIndexPath
 {
-    DLog(@"This is controller didChangeObject:atIndexPath:forChangeType:newIndexPath:");
+    DLog(@"This is controller didChangeObject:atIndexPath:forChangeType:newIndexPath: (change type: %d)", type);
     UITableView *tableView = self.tableView;
     
     switch(type) {
         case NSFetchedResultsChangeInsert:
-            [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationNone];
             break;
             
         case NSFetchedResultsChangeDelete:
-            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+            break;
+            
+        case NSFetchedResultsChangeMove:
+            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+            [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationNone];
             break;
             
         case NSFetchedResultsChangeUpdate:
             [self configureCell:(IAMNoteCell *)[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
-            break;
-            
-        case NSFetchedResultsChangeMove:
-            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            [tableView insertRowsAtIndexPaths:@[newIndexPath]withRowAnimation:UITableViewRowAnimationFade];
             break;
     }
 }
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
-    DLog(@"This is controllerDidChangeContent:");
     [self.tableView endUpdates];
 }
-
 
 #pragma mark - Table view data source
 
@@ -383,7 +380,6 @@
     // Check what the client have.
     BOOL library = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary];
     BOOL camera = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
-    BOOL savedAlbums = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
     NSString *b1, *b2, *b3;
     if(library) {
         b1 = @"Image from Library";
@@ -391,24 +387,10 @@
         if(camera) {
             b2 = @"Image from Camera";
             self.cameraSelector = 2;
-            if(savedAlbums) {
-                b3 = @"Image from saved Albums";
-                self.savedAlbumsSelector = 3;
-            }
-        } else if (savedAlbums) {
-            b2 = @"Image from saved albums";
-            self.savedAlbumsSelector = 2;
         }
     } else if(camera) {
         b1 = @"Image from Camera";
         self.cameraSelector = 1;
-        if(savedAlbums) {
-            b2 = @"Image from saved Albums";
-            self.savedAlbumsSelector = 2;
-        }
-    } else if (savedAlbums) {
-        b1 = @"Image from saved albums";
-        self.savedAlbumsSelector = 1;
     } else {
         // If no images go with text note
         [self actionSheet:nil clickedButtonAtIndex:0];
@@ -417,7 +399,7 @@
                                                            delegate:self
                                                   cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
                                              destructiveButtonTitle:nil
-                                                  otherButtonTitles:NSLocalizedString(@"Text", nil), b1, b2, b3, nil];
+                                                  otherButtonTitles:NSLocalizedString(@"Text Note", nil), b1, b2, b3, nil];
     [chooseIt showFromToolbar:self.navigationController.toolbar];
 }
 
