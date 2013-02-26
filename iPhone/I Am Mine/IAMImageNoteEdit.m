@@ -27,6 +27,7 @@
 {
     [super viewDidLoad];
     self.titleEdit.text = self.editedNote.title;
+    self.textEdit.attributedText = self.editedNote.attributedText;
     self.imageThumbnail.image = [UIImage imageWithData:self.editedNote.image];
 }
 
@@ -43,8 +44,8 @@
         return;
     self.editedNote.modified = [NSDate date];
     self.editedNote.title = self.titleEdit.text;
-    self.editedNote.attributedText = self.editedNote.attributedText;
-    self.editedNote.text = self.textEdit.text;
+    self.editedNote.attributedText = self.textEdit.attributedText;
+    self.editedNote.text = self.textEdit.attributedText.string;
     NSError *error;
     if(![self.moc save:&error])
     {

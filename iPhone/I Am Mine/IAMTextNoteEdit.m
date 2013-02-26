@@ -74,9 +74,9 @@
     self.editedNote.modified = [NSDate date];
     self.editedNote.title = self.titleEdit.text;
     self.editedNote.link = self.linkEdit.text;
-    DLog(@"Text: %@\nAttributed text: %@", self.textEdit.text, self.textEdit.attributedText);
+    DLog(@"Text: %@\nAttributed text: %@", self.textEdit.attributedText.string, self.textEdit.attributedText);
     self.editedNote.attributedText = self.textEdit.attributedText;
-    self.editedNote.text = self.textEdit.text;
+    self.editedNote.text = self.textEdit.attributedText.string;
     NSError *error;
     if(![self.moc save:&error])
     {
