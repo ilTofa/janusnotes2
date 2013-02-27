@@ -264,7 +264,9 @@
     }
     cell.dateLabel.text = [self.dateFormatter stringFromDate:note.created];
     cell.dateLabel.textColor = self.appDelegate.textColor;
-    cell.titleLabel.font = cell.dateLabel.font = cell.textLabel.font = [UIFont gt_getStandardFontFromUserDefault];
+    cell.titleLabel.font = [UIFont gt_getStandardFontWithFaceID:[UIFont gt_getStandardFontFaceIdFromUserDefault] andSize:17];
+    cell.textLabel.font = [UIFont gt_getStandardFontWithFaceID:[UIFont gt_getStandardFontFaceIdFromUserDefault] andSize:12];
+    cell.dateLabel.font = [UIFont gt_getStandardFontWithFaceID:[UIFont gt_getStandardFontFaceIdFromUserDefault] andSize:10];
 }
 
 // Override to customize the look of a cell representing an object. The default is to display
