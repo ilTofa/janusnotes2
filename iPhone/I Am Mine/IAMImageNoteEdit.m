@@ -8,7 +8,12 @@
 
 #import "IAMImageNoteEdit.h"
 
+#import "IAMAppDelegate.h"
+#import "UIFont+GTFontMapper.h"
+
 @interface IAMImageNoteEdit ()
+
+@property IAMAppDelegate *appDelegate;
 
 @end
 
@@ -26,9 +31,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.appDelegate = (IAMAppDelegate *)[[UIApplication sharedApplication] delegate];
     self.titleEdit.text = self.editedNote.title;
+    self.titleEdit.font = [UIFont gt_getStandardFontWithFaceID:[UIFont gt_getStandardFontFaceIdFromUserDefault] andSize:[UIFont gt_getStandardFontSizeFromUserDefault]+3];
     self.textEdit.attributedText = self.editedNote.attributedText;
+    self.textEdit.font = [UIFont gt_getStandardFontFromUserDefault];
     self.imageThumbnail.image = [UIImage imageWithData:self.editedNote.image];
+    self.titleEdit.textColor = self.textEdit.textColor = self.appDelegate.textColor;
+    self.view.backgroundColor = self.appDelegate.backgroundColor;
 }
 
 - (void)didReceiveMemoryWarning

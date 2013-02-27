@@ -9,6 +9,7 @@
 #import "IAMTextNoteEdit.h"
 
 #import "IAMAppDelegate.h"
+#import "UIFont+GTFontMapper.h"
 
 @interface IAMTextNoteEdit ()
 
@@ -34,8 +35,11 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
     self.titleEdit.text = self.editedNote.title;
+    self.titleEdit.font = [UIFont gt_getStandardFontWithFaceID:[UIFont gt_getStandardFontFaceIdFromUserDefault] andSize:[UIFont gt_getStandardFontSizeFromUserDefault]+3];
     self.textEdit.attributedText = self.editedNote.attributedText;
+    self.textEdit.font = [UIFont gt_getStandardFontFromUserDefault];
     self.linkEdit.text = self.editedNote.link;
+    self.linkEdit.font = [UIFont gt_getStandardFontWithFaceID:[UIFont gt_getStandardFontFaceIdFromUserDefault] andSize:[UIFont gt_getStandardFontSizeFromUserDefault]];
     self.titleEdit.textColor = self.linkEdit.textColor = self.textEdit.textColor = self.appDelegate.textColor;
     self.view.backgroundColor = self.appDelegate.backgroundColor;
     // If this is a new note, set the cursor on title field
