@@ -486,18 +486,18 @@ static NSOperationQueue *_presentedItemOperationQueue;
         [countExprDesc setExpression:countExpr];
         [countExprDesc setExpressionResultType:NSInteger64AttributeType];
         
-        NSAttributeDescription *hexagramUUID = [[[[[_psc managedObjectModel] entitiesByName] objectForKey:@"Hexagram"] propertiesByName] objectForKey:@"uuid"];
-        [fr setPropertiesToFetch:[NSArray arrayWithObjects:hexagramUUID, countExprDesc, nil]];
-        [fr setPropertiesToGroupBy:[NSArray arrayWithObject:hexagramUUID]];
+        NSAttributeDescription *hexagramUUID = [[[_psc managedObjectModel] entitiesByName][@"Hexagram"] propertiesByName][@"uuid"];
+        [fr setPropertiesToFetch:@[hexagramUUID, countExprDesc]];
+        [fr setPropertiesToGroupBy:@[hexagramUUID]];
         
         [fr setResultType:NSDictionaryResultType];
         
         NSArray *countDictionaries = [moc executeFetchRequest:fr error:&error];
         NSMutableArray *dupedNotes = [[NSMutableArray alloc] init];
         for (NSDictionary *dict in countDictionaries) {
-            NSNumber *count = [dict objectForKey:@"count"];
+            NSNumber *count = dict[@"count"];
             if ([count integerValue] > 1) {
-                [dupedNotes addObject:[dict objectForKey:@"uuid"]];
+                [dupedNotes addObject:dict[@"uuid"]];
             }
         }
         
@@ -511,7 +511,7 @@ static NSOperationQueue *_presentedItemOperationQueue;
         [fr setPredicate:p];
     
         NSSortDescriptor *emailSort = [NSSortDescriptor sortDescriptorWithKey:@"uuid" ascending:YES];
-        [fr setSortDescriptors:[NSArray arrayWithObject:emailSort]];
+        [fr setSortDescriptors:@[emailSort]];
         
         NSUInteger batchSize = 500; //can be set 100-10000 objects depending on individual object size and available device memory
         [fr setFetchBatchSize:batchSize];
@@ -613,7 +613,7 @@ static NSOperationQueue *_presentedItemOperationQueue;
     
     NSManagedObjectModel *model = [NSManagedObjectModel mergedModelFromBundles:nil];
     NSPersistentStoreCoordinator *seedPSC = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model];
-    NSDictionary *seedStoreOptions = @{ NSReadOnlyPersistentStoreOption : [NSNumber numberWithBool:YES] };
+    NSDictionary *seedStoreOptions = @{ NSReadOnlyPersistentStoreOption : @YES };
     NSPersistentStore *seedStore = [seedPSC addPersistentStoreWithType:NSSQLiteStoreType
                                                          configuration:nil
                                                                    URL:seedStoreURL

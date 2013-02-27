@@ -465,15 +465,15 @@
 	// MediaType can be kUTTypeImage or kUTTypeMovie. If it's a movie then you
     // can get the URL to the actual file itself. This example only looks for images.
     NSLog(@"info: %@", info);
-    NSString* mediaType = [info objectForKey:UIImagePickerControllerMediaType];
+    NSString* mediaType = info[UIImagePickerControllerMediaType];
     // Try getting the edited image first. If it doesn't exist then you get the
     // original image.
     //
     if (CFStringCompare((CFStringRef) mediaType, kUTTypeImage, 0) == kCFCompareEqualTo)
 	{
-        self.pickedImage = [info objectForKey:UIImagePickerControllerEditedImage];
+        self.pickedImage = info[UIImagePickerControllerEditedImage];
         if (!self.pickedImage)
-			self.pickedImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+			self.pickedImage = info[UIImagePickerControllerOriginalImage];
         [picker dismissViewControllerAnimated:YES completion:^{}];
         [self performSegueWithIdentifier:@"AddImageNote" sender:self];
     }

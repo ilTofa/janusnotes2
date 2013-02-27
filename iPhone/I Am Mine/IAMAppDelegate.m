@@ -136,7 +136,7 @@
     [theNewReverseGeocoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray *placemarks, NSError *error) {
         if(placemarks != nil)
         {
-            CLPlacemark * placemark = [placemarks objectAtIndex:0];
+            CLPlacemark * placemark = placemarks[0];
             self.locationString = [NSString stringWithFormat:@"%@, %@, %@", placemark.locality, placemark.administrativeArea, placemark.country];
             // Notify the world that we have found ourselves
             [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kGotLocation object:self]];
