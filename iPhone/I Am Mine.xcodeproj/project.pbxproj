@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		64027D7B16DD7CB800DEA647 /* IAMPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64027D7A16DD7CB800DEA647 /* IAMPreferencesController.m */; };
+		64027D7F16DD809D00DEA647 /* UIFont+GTFontMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 64027D7E16DD809D00DEA647 /* UIFont+GTFontMapper.m */; };
 		640D40BE16D5128B003034B3 /* IAMNoteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 640D40BD16D5128B003034B3 /* IAMNoteCell.m */; };
 		640D40C016D6DF92003034B3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 640D40BF16D6DF92003034B3 /* CoreData.framework */; };
 		640D40C216D6DFAF003034B3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 640D40C116D6DFAF003034B3 /* CoreLocation.framework */; };
@@ -39,6 +41,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		64027D7916DD7CB800DEA647 /* IAMPreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMPreferencesController.h; sourceTree = "<group>"; };
+		64027D7A16DD7CB800DEA647 /* IAMPreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMPreferencesController.m; sourceTree = "<group>"; };
+		64027D7D16DD809D00DEA647 /* UIFont+GTFontMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIFont+GTFontMapper.h"; path = "Fonts/UIFont+GTFontMapper.h"; sourceTree = "<group>"; };
+		64027D7E16DD809D00DEA647 /* UIFont+GTFontMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIFont+GTFontMapper.m"; path = "Fonts/UIFont+GTFontMapper.m"; sourceTree = "<group>"; };
 		640D40BC16D5128B003034B3 /* IAMNoteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IAMNoteCell.h; path = "List Cells/IAMNoteCell.h"; sourceTree = "<group>"; };
 		640D40BD16D5128B003034B3 /* IAMNoteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IAMNoteCell.m; path = "List Cells/IAMNoteCell.m"; sourceTree = "<group>"; };
 		640D40BF16D6DF92003034B3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -98,6 +104,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		64027D7C16DD805500DEA647 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				64027D7D16DD809D00DEA647 /* UIFont+GTFontMapper.h */,
+				64027D7E16DD809D00DEA647 /* UIFont+GTFontMapper.m */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
 		640D40BB16D5123C003034B3 /* List Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -184,6 +199,7 @@
 		64A0507516D28CCA0025E179 /* I Am Mine */ = {
 			isa = PBXGroup;
 			children = (
+				64027D7C16DD805500DEA647 /* Fonts */,
 				646602A216DBD373007622FC /* Images */,
 				6416315A16D8345F0004CB52 /* UIImage */,
 				640D40BB16D5123C003034B3 /* List Cells */,
@@ -193,6 +209,8 @@
 				6416314C16D7B5270004CB52 /* Notes Editing */,
 				64A0508A16D28CCA0025E179 /* IAMViewController.h */,
 				6416315616D7DB830004CB52 /* IAMViewController.m */,
+				64027D7916DD7CB800DEA647 /* IAMPreferencesController.h */,
+				64027D7A16DD7CB800DEA647 /* IAMPreferencesController.m */,
 				64A0507616D28CCA0025E179 /* Supporting Files */,
 			);
 			path = "I Am Mine";
@@ -301,6 +319,8 @@
 				6416315716D7DB830004CB52 /* IAMViewController.m in Sources */,
 				6416315D16D8345F0004CB52 /* UIImage+RoundedCorner.m in Sources */,
 				6416316016D835EF0004CB52 /* IAMImageNoteEdit.m in Sources */,
+				64027D7B16DD7CB800DEA647 /* IAMPreferencesController.m in Sources */,
+				64027D7F16DD809D00DEA647 /* UIFont+GTFontMapper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

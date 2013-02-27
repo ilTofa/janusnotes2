@@ -39,11 +39,9 @@
 	[self.dateFormatter setLocale:[NSLocale currentLocale]];
 	[self.dateFormatter setDateStyle:NSDateFormatterLongStyle];
 	[self.dateFormatter setTimeStyle:NSDateFormatterShortStyle];
-//    NSArray *leftButtons = @[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)],
-//                             self.editButtonItem];
-//    self.navigationItem.leftBarButtonItems = leftButtons;
-
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    NSArray *leftButtons = @[self.editButtonItem,
+                             [[UIBarButtonItem alloc] initWithTitle:@"Prefs" style:UIBarButtonItemStylePlain target:self action:@selector(launchPreferences:)]];
+    self.navigationItem.leftBarButtonItems = leftButtons;
     // Notifications to be honored during controller lifecycle
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadFetchedResults:) name:NSPersistentStoreCoordinatorStoresDidChangeNotification object:appDelegate.coreDataController.psc];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadFetchedResults:) name:NSPersistentStoreDidImportUbiquitousContentChangesNotification object:appDelegate.coreDataController.psc];
@@ -373,6 +371,11 @@
         imageNoteEditor.editedNote = selectedNote;
         imageNoteEditor.moc = self.managedObjectContext;
     }
+}
+
+- (IBAction)launchPreferences:(id)sender
+{
+    [self performSegueWithIdentifier:@"Preferences" sender:self];
 }
 
 - (IBAction)addNote:(id)sender
