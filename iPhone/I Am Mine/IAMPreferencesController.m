@@ -31,10 +31,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    self.clearsSelectionOnViewWillAppear = NO;
-    
     self.versionLabel.text = [NSString stringWithFormat:@"This I Am Mine version %@ (%@)\n©2013 Giacomo Tufano - All rights reserved.", [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"], [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"]];
     // Load base values
     self.fontFace = [UIFont gt_getStandardFontFaceIdFromUserDefault];
@@ -42,7 +38,7 @@
     self.fontSize = [UIFont gt_getStandardFontSizeFromUserDefault];
     self.colorSet = [(IAMAppDelegate *)[[UIApplication sharedApplication] delegate] getStandardColorsID];
     [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:self.colorSet inSection:2] animated:YES scrollPosition:UITableViewScrollPositionMiddle];
-    [self fontChanged];
+    [self sizePressed:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -72,7 +68,7 @@
         [tableView deselectRowAtIndexPath:[NSIndexPath indexPathForRow:oldColorsSet inSection:2] animated:YES];
         self.colorSet = indexPath.row;
     }
-    [self fontChanged];
+    [self sizePressed:nil];
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willDeselectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -87,15 +83,6 @@
 }
 
 #pragma mark - Actions
-
-- (void)fontChanged
-{
-    DLog(@"This is fontChanged:");
-    self.fontSize = self.sizeStepper.value;
-    self.sizeLabel.text = [NSString stringWithFormat:@"Text Size is %d", self.fontSize];
-    self.theFoxLabel.font = self.sizeLabel.font = [UIFont gt_getStandardFontWithFaceID:self.fontFace andSize:self.fontSize];
-    [(IAMAppDelegate *)[[UIApplication sharedApplication] delegate] applyStandardColors:self.colorSet];
-}
 
 -(IBAction)sizePressed:(id)sender
 {
@@ -113,4 +100,5 @@
     [UIFont gt_setStandardFontInUserDefaultWithFaceID:self.fontFace andSize:self.fontSize];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
+
 @end
