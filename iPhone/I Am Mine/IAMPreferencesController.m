@@ -38,7 +38,16 @@
     self.fontSize = [UIFont gt_getStandardFontSizeFromUserDefault];
     self.colorSet = [(IAMAppDelegate *)[[UIApplication sharedApplication] delegate] getStandardColorsID];
     [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:self.colorSet inSection:2] animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+    [self tableView:self.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:self.colorSet inSection:2]];
     [self sizePressed:nil];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    // Mark selected color...
+    UITableViewCell * tableCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:self.colorSet inSection:2]];
+    tableCell.accessoryType = UITableViewCellAccessoryCheckmark;
 }
 
 - (void)didReceiveMemoryWarning
@@ -65,7 +74,12 @@
     {
         NSInteger oldColorsSet = [(IAMAppDelegate *)[[UIApplication sharedApplication] delegate] getStandardColorsID];
         DLog(@"Changing colors set from %d to %d.", oldColorsSet, indexPath.row);
-        [tableView deselectRowAtIndexPath:[NSIndexPath indexPathForRow:oldColorsSet inSection:2] animated:YES];
+        UITableViewCell * tableCell = [self.tableView cellForRowAtIndexPath:indexPath];
+        tableCell.accessoryType = UITableViewCellAccessoryCheckmark;
+        NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:oldColorsSet inSection:2];
+        tableCell = [self.tableView cellForRowAtIndexPath:oldIndexPath];
+        tableCell.accessoryType = UITableViewCellAccessoryNone;
+        [tableView deselectRowAtIndexPath:oldIndexPath animated:YES];
         self.colorSet = indexPath.row;
     }
     [self sizePressed:nil];
