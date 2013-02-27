@@ -8,11 +8,12 @@
 
 #import "IAMPreferencesController.h"
 
+#import "IAMAppDelegate.h"
 #import "UIFont+GTFontMapper.h"
 
 @interface IAMPreferencesController ()
 
-@property NSInteger fontFace, fontSize;
+@property NSInteger fontFace, fontSize, colorSet;
 
 @end
 
@@ -39,6 +40,8 @@
     self.fontFace = [UIFont gt_getStandardFontFaceIdFromUserDefault];
     [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:self.fontFace inSection:0] animated:false scrollPosition:UITableViewScrollPositionMiddle];
     self.fontSize = [UIFont gt_getStandardFontSizeFromUserDefault];
+    self.colorSet = [(IAMAppDelegate *)[[UIApplication sharedApplication] delegate] getStandardColorsID];
+    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:self.colorSet inSection:2] animated:YES scrollPosition:UITableViewScrollPositionMiddle];
     [self fontChanged:nil];
 }
 
@@ -53,16 +56,44 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Change font
-    self.fontFace = indexPath.row;
+    if(indexPath.section == 0)
+    {
+        NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:self.fontFace inSection:0];
+        DLog(@"Changing font from %d to %d.", self.fontFace, indexPath.row);
+        [tableView deselectRowAtIndexPath:oldIndexPath animated:YES];
+        self.fontFace = indexPath.row;
+    }
+    // Change colors
+    if(indexPath.section == 2)
+    {
+        NSInteger oldColorsSet = [(IAMAppDelegate *)[[UIApplication sharedApplication] delegate] getStandardColorsID];
+        DLog(@"Changing colors set from %d to %d.", oldColorsSet, indexPath.row);
+        [tableView deselectRowAtIndexPath:[NSIndexPath indexPathForRow:oldColorsSet inSection:2] animated:YES];
+        self.colorSet = indexPath.row;
+    }
     [self fontChanged:nil];
 }
+
+- (NSIndexPath *)tableView:(UITableView *)tableView willDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    DLog(@"This is tableView willDeselectRowAtIndexPath: %@", indexPath);
+    // Don't deselect the selected row.
+    if(indexPath.section == 0 && indexPath.row == self.fontFace)
+        return nil;
+    if(indexPath.section == 2 && indexPath.row == self.colorSet)
+        return nil;
+    return indexPath;
+}
+
+#pragma mark - Actions
 
 - (IBAction)fontChanged:(id)sender
 {
     DLog(@"This is sizeChanged: called for a value of: %.0f", self.sizeStepper.value);
     self.fontSize = self.sizeStepper.value;
     self.sizeLabel.text = [NSString stringWithFormat:@"Text Size is %d", self.fontSize];
-    self.sizeLabel.font = [UIFont gt_getStandardFontWithFaceID:self.fontFace andSize:self.fontSize];
+    self.theFoxLabel.font = self.sizeLabel.font = [UIFont gt_getStandardFontWithFaceID:self.fontFace andSize:self.fontSize];
+    [(IAMAppDelegate *)[[UIApplication sharedApplication] delegate] applyStandardColors:self.colorSet];
 }
 
 - (IBAction)done:(id)sender

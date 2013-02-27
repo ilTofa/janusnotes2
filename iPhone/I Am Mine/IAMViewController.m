@@ -403,7 +403,8 @@
                                                   cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
                                              destructiveButtonTitle:nil
                                                   otherButtonTitles:NSLocalizedString(@"Text Note", nil), b1, b2, b3, nil];
-    [chooseIt showFromToolbar:self.navigationController.toolbar];
+    [chooseIt showInView:self.view];
+//    [chooseIt showFromToolbar:self.navigationController.toolbar];
 }
 
 #pragma mark UIActionSheetDelegate

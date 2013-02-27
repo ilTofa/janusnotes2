@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *sizeLabel;
 @property (weak, nonatomic) IBOutlet UIStepper *sizeStepper;
 @property (weak, nonatomic) IBOutlet UILabel *versionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *theFoxLabel;
 
 - (IBAction)fontChanged:(id)sender;
 - (IBAction)done:(id)sender;

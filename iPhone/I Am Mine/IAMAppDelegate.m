@@ -8,10 +8,17 @@
 
 #import "IAMAppDelegate.h"
 
+@interface IAMAppDelegate()
+// Colors for the app
+@property NSInteger colorMix;
+
+@end
+
 @implementation IAMAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+
     // Core Location init: get number of times user denied location use in app lifetime...
 	self.nLocationUseDenies = [[NSUserDefaults standardUserDefaults] integerForKey:@"userDeny"];
 	self.isLocationDenied = NO;
@@ -50,8 +57,41 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-#pragma mark -
-#pragma mark CLLocationManagerDelegate and its delegate
+#pragma mark - colors
+
+-(NSInteger)getStandardColorsID
+{
+    return [[NSUserDefaults standardUserDefaults] integerForKey:@"standardColors"];
+}
+
+-(void)applyStandardColors:(NSInteger)colorMix
+{
+    [[NSUserDefaults standardUserDefaults] setInteger:colorMix forKey:@"standardColors"];
+    // Get colors
+    switch (colorMix) {
+        case 0:
+            self.textColor = [UIColor blackColor];
+            self.backgroundColor = [UIColor colorWithWhite:0.950 alpha:1.000];
+            self.tintColor = [UIColor colorWithWhite:0.667 alpha:1.000];
+            break;
+        case 1:
+            self.textColor = [UIColor whiteColor];
+            self.backgroundColor = [UIColor blackColor];
+            self.tintColor = [UIColor blackColor];
+        case 2:
+            self.textColor = [UIColor blackColor];
+            self.backgroundColor = [UIColor whiteColor];
+            self.tintColor = [UIColor colorWithWhite:0.667 alpha:1.000];
+        case 3:
+            self.textColor = [UIColor colorWithRed:0.216 green:0.212 blue:0.192 alpha:1.000];
+            self.backgroundColor = [UIColor colorWithRed:1.000 green:0.988 blue:0.922 alpha:1.000];
+            self.tintColor = [UIColor colorWithRed:1.000 green:0.988 blue:0.922 alpha:1.000];
+        default:
+            break;
+    }
+}
+
+#pragma mark - CLLocationManagerDelegate and its delegate
 
 - (void)startLocation
 {
