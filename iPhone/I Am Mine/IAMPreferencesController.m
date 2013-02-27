@@ -36,9 +36,9 @@
     self.fontFace = [UIFont gt_getStandardFontFaceIdFromUserDefault];
     [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:self.fontFace inSection:0] animated:false scrollPosition:UITableViewScrollPositionMiddle];
     self.fontSize = [UIFont gt_getStandardFontSizeFromUserDefault];
+    [self.sizeStepper setValue:self.fontSize];
     self.colorSet = [(IAMAppDelegate *)[[UIApplication sharedApplication] delegate] getStandardColorsID];
     [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:self.colorSet inSection:2] animated:YES scrollPosition:UITableViewScrollPositionMiddle];
-    [self tableView:self.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:self.colorSet inSection:2]];
     [self sizePressed:nil];
 }
 
@@ -110,6 +110,7 @@
 
 - (IBAction)done:(id)sender
 {
+    DLog(@"Saving. ColorSet n° %d, fontFace n° %d, fontSize %d", self.colorSet, self.fontFace, self.fontSize);
     [(IAMAppDelegate *)[[UIApplication sharedApplication] delegate] applyStandardColors:self.colorSet];
     [UIFont gt_setStandardFontInUserDefaultWithFaceID:self.fontFace andSize:self.fontSize];
     [self.navigationController popToRootViewControllerAnimated:YES];
