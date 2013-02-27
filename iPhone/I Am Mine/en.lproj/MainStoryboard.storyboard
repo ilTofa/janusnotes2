@@ -221,7 +221,7 @@ Label riga 3</string>
                             </tableViewSection>
                             <tableViewSection headerTitle="Size" id="ioU-qa-XWg">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="VYy-fZ-zPH">
+                                    <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="VYy-fZ-zPH">
                                         <rect key="frame" x="0.0" y="304" width="320" height="46"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -235,11 +235,11 @@ Label riga 3</string>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
-                                                <stepper opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="14" minimumValue="10" maximumValue="20" id="ODx-nG-BYI">
+                                                <stepper opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="14" minimumValue="10" maximumValue="21" id="csr-OD-z4G">
                                                     <rect key="frame" x="186" y="8" width="94" height="27"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <connections>
-                                                        <action selector="fontChanged:" destination="h9Z-1e-A0P" eventType="valueChanged" id="77s-ab-Txo"/>
+                                                        <action selector="sizePressed:" destination="h9Z-1e-A0P" eventType="valueChanged" id="WTw-ia-uh4"/>
                                                     </connections>
                                                 </stepper>
                                             </subviews>
@@ -344,7 +344,7 @@ Label riga 3</string>
                     </navigationItem>
                     <connections>
                         <outlet property="sizeLabel" destination="w8Z-zU-E6B" id="a2Z-0y-q2G"/>
-                        <outlet property="sizeStepper" destination="ODx-nG-BYI" id="ZkG-d6-3Je"/>
+                        <outlet property="sizeStepper" destination="csr-OD-z4G" id="Agw-qY-7w6"/>
                         <outlet property="theFoxLabel" destination="cxw-VW-OJb" id="nSi-1U-jer"/>
                         <outlet property="versionLabel" destination="noy-zs-ldo" id="I0g-Uu-hA4"/>
                     </connections>
@@ -519,7 +519,7 @@ Label riga 3</string>
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IAMPreferencesController.h"/>
             <relationships>
                 <relationship kind="action" name="done:"/>
-                <relationship kind="action" name="fontChanged:"/>
+                <relationship kind="action" name="sizePressed:"/>
                 <relationship kind="outlet" name="sizeLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="sizeStepper" candidateClass="UIStepper"/>
                 <relationship kind="outlet" name="theFoxLabel" candidateClass="UILabel"/>

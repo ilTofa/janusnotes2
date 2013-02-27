@@ -18,7 +18,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-
+    [self applyStandardColors:[self getStandardColorsID]];
     // Core Location init: get number of times user denied location use in app lifetime...
 	self.nLocationUseDenies = [[NSUserDefaults standardUserDefaults] integerForKey:@"userDeny"];
 	self.isLocationDenied = NO;
@@ -66,27 +66,30 @@
 
 -(void)applyStandardColors:(NSInteger)colorMix
 {
+    DLog(@"Applying color set n° %d", colorMix);
     [[NSUserDefaults standardUserDefaults] setInteger:colorMix forKey:@"standardColors"];
     // Get colors
     switch (colorMix) {
-        case 0:
-            self.textColor = [UIColor blackColor];
-            self.backgroundColor = [UIColor colorWithWhite:0.950 alpha:1.000];
-            self.tintColor = [UIColor colorWithWhite:0.667 alpha:1.000];
-            break;
         case 1:
             self.textColor = [UIColor whiteColor];
             self.backgroundColor = [UIColor blackColor];
             self.tintColor = [UIColor blackColor];
+            break;
         case 2:
             self.textColor = [UIColor blackColor];
             self.backgroundColor = [UIColor whiteColor];
             self.tintColor = [UIColor colorWithWhite:0.667 alpha:1.000];
+            break;
         case 3:
             self.textColor = [UIColor colorWithRed:0.216 green:0.212 blue:0.192 alpha:1.000];
             self.backgroundColor = [UIColor colorWithRed:1.000 green:0.988 blue:0.922 alpha:1.000];
-            self.tintColor = [UIColor colorWithRed:1.000 green:0.988 blue:0.922 alpha:1.000];
+            self.tintColor = [UIColor colorWithRed:0.502 green:0.251 blue:0.000 alpha:1.000];
+            break;
+        case 0:
         default:
+            self.textColor = [UIColor blackColor];
+            self.backgroundColor = [UIColor colorWithWhite:0.950 alpha:1.000];
+            self.tintColor = [UIColor colorWithWhite:0.667 alpha:1.000];
             break;
     }
 }

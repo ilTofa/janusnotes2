@@ -42,7 +42,7 @@
     self.fontSize = [UIFont gt_getStandardFontSizeFromUserDefault];
     self.colorSet = [(IAMAppDelegate *)[[UIApplication sharedApplication] delegate] getStandardColorsID];
     [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:self.colorSet inSection:2] animated:YES scrollPosition:UITableViewScrollPositionMiddle];
-    [self fontChanged:nil];
+    [self fontChanged];
 }
 
 - (void)didReceiveMemoryWarning
@@ -55,6 +55,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    DLog(@"This is tableView didSelectRowAtIndexPath:%@", indexPath);
     // Change font
     if(indexPath.section == 0)
     {
@@ -71,7 +72,7 @@
         [tableView deselectRowAtIndexPath:[NSIndexPath indexPathForRow:oldColorsSet inSection:2] animated:YES];
         self.colorSet = indexPath.row;
     }
-    [self fontChanged:nil];
+    [self fontChanged];
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willDeselectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -87,17 +88,28 @@
 
 #pragma mark - Actions
 
-- (IBAction)fontChanged:(id)sender
+- (void)fontChanged
 {
-    DLog(@"This is sizeChanged: called for a value of: %.0f", self.sizeStepper.value);
+    DLog(@"This is fontChanged:");
     self.fontSize = self.sizeStepper.value;
     self.sizeLabel.text = [NSString stringWithFormat:@"Text Size is %d", self.fontSize];
     self.theFoxLabel.font = self.sizeLabel.font = [UIFont gt_getStandardFontWithFaceID:self.fontFace andSize:self.fontSize];
     [(IAMAppDelegate *)[[UIApplication sharedApplication] delegate] applyStandardColors:self.colorSet];
 }
 
+-(IBAction)sizePressed:(id)sender
+{
+    DLog(@"This is sizePressed: called for a value of: %.0f", self.sizeStepper.value);
+    self.fontSize = self.sizeStepper.value;
+    self.sizeLabel.text = [NSString stringWithFormat:@"Text Size is %d", self.fontSize];
+    self.theFoxLabel.font = self.sizeLabel.font = [UIFont gt_getStandardFontWithFaceID:self.fontFace andSize:self.fontSize];
+    [(IAMAppDelegate *)[[UIApplication sharedApplication] delegate] applyStandardColors:self.colorSet];
+    
+}
+
 - (IBAction)done:(id)sender
 {
+    [(IAMAppDelegate *)[[UIApplication sharedApplication] delegate] applyStandardColors:self.colorSet];
     [UIFont gt_setStandardFontInUserDefaultWithFaceID:self.fontFace andSize:self.fontSize];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }

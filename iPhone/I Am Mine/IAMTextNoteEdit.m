@@ -8,7 +8,11 @@
 
 #import "IAMTextNoteEdit.h"
 
+#import "IAMAppDelegate.h"
+
 @interface IAMTextNoteEdit ()
+
+@property IAMAppDelegate *appDelegate;
 
 @end
 
@@ -26,11 +30,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.appDelegate = (IAMAppDelegate *)[[UIApplication sharedApplication] delegate];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
     self.titleEdit.text = self.editedNote.title;
     self.textEdit.attributedText = self.editedNote.attributedText;
     self.linkEdit.text = self.editedNote.link;
+    self.titleEdit.textColor = self.linkEdit.textColor = self.textEdit.textColor = self.appDelegate.textColor;
+    self.view.backgroundColor = self.appDelegate.backgroundColor;
     // If this is a new note, set the cursor on title field
     if([self.titleEdit.text isEqualToString:@""])
         [self.titleEdit becomeFirstResponder];

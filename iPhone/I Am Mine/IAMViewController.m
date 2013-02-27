@@ -16,6 +16,7 @@
 #import "IAMTextNoteEdit.h"
 #import "IAMImageNoteEdit.h"
 #import "UIImage+RoundedCorner.h"
+#import "UIFont+GTFontMapper.h"
 
 @interface IAMViewController () <UIImagePickerControllerDelegate, UIActionSheetDelegate, UISearchBarDelegate, NSFetchedResultsControllerDelegate, UINavigationControllerDelegate>
 
@@ -23,6 +24,7 @@
 
 @property int textSelector, cameraSelector, librarySelector, savedAlbumsSelector;
 @property UIImage *pickedImage;
+@property IAMAppDelegate *appDelegate;
 
 @end
 
@@ -33,8 +35,8 @@
     [super viewDidLoad];
     [self loadPreviousSearchKeys];
     // Set some sane defaults
-    IAMAppDelegate *appDelegate = (IAMAppDelegate *)[[UIApplication sharedApplication] delegate];
-    self.managedObjectContext = appDelegate.coreDataController.mainThreadContext;
+    self.appDelegate = (IAMAppDelegate *)[[UIApplication sharedApplication] delegate];
+    self.managedObjectContext = self.appDelegate.coreDataController.mainThreadContext;
     self.dateFormatter = [[NSDateFormatter alloc] init];
 	[self.dateFormatter setLocale:[NSLocale currentLocale]];
 	[self.dateFormatter setDateStyle:NSDateFormatterLongStyle];
@@ -43,8 +45,8 @@
                              [[UIBarButtonItem alloc] initWithTitle:@"Prefs" style:UIBarButtonItemStylePlain target:self action:@selector(launchPreferences:)]];
     self.navigationItem.leftBarButtonItems = leftButtons;
     // Notifications to be honored during controller lifecycle
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadFetchedResults:) name:NSPersistentStoreCoordinatorStoresDidChangeNotification object:appDelegate.coreDataController.psc];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadFetchedResults:) name:NSPersistentStoreDidImportUbiquitousContentChangesNotification object:appDelegate.coreDataController.psc];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadFetchedResults:) name:NSPersistentStoreCoordinatorStoresDidChangeNotification object:self.appDelegate.coreDataController.psc];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadFetchedResults:) name:NSPersistentStoreDidImportUbiquitousContentChangesNotification object:self.appDelegate.coreDataController.psc];
     [self setupFetchExecAndReload];
 }
 
@@ -58,7 +60,18 @@
 {
     DLog(@"This is IAMViewController:viewDidAppear:");
     [super viewDidAppear:animated];
+    [self colorize];
     [self.managedObjectContext rollback];
+}
+
+-(void)colorize
+{
+    DLog(@"Colorizing.\nback: %@\ntext: %@\ntint: %@", self.appDelegate.backgroundColor, self.appDelegate.textColor, self.appDelegate.tintColor);
+    [self.tableView setBackgroundColor:self.appDelegate.backgroundColor];
+    [self.navigationController.navigationBar setTintColor:self.appDelegate.tintColor];
+    [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
+    [self.searchBar setTintColor:self.appDelegate.tintColor];
+    [self.tableView reloadData];
 }
 
 #pragma mark -
@@ -241,11 +254,17 @@
 {
     Note *note = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.titleLabel.text = note.title;
+    cell.titleLabel.textColor = self.appDelegate.textColor;
     if(note.image)
         cell.thumbImage.image = [UIImage imageWithData:note.thumbnail];
     else
+    {
         cell.textLabel.text = note.text;
+        cell.textLabel.textColor = self.appDelegate.textColor;
+    }
     cell.dateLabel.text = [self.dateFormatter stringFromDate:note.created];
+    cell.dateLabel.textColor = self.appDelegate.textColor;
+    cell.titleLabel.font = cell.dateLabel.font = cell.textLabel.font = [UIFont gt_getStandardFontFromUserDefault];
 }
 
 // Override to customize the look of a cell representing an object. The default is to display
