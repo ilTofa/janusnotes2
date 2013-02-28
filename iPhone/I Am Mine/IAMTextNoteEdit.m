@@ -82,7 +82,6 @@
     // save (if useful) and pop back
     if([self.titleEdit.text isEqualToString:@""] || [self.textEdit.text isEqualToString:@""])
         return;
-    self.editedNote.modified = [NSDate date];
     self.editedNote.title = self.titleEdit.text;
     self.editedNote.link = self.linkEdit.text;
     DLog(@"Text: %@\nAttributed text: %@", self.textEdit.attributedText.string, self.textEdit.attributedText);

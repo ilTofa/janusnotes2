@@ -52,7 +52,6 @@
     // save (if useful) and pop back
     if([self.titleEdit.text isEqualToString:@""])
         return;
-    self.editedNote.modified = [NSDate date];
     self.editedNote.title = self.titleEdit.text;
     self.editedNote.attributedText = self.textEdit.attributedText;
     self.editedNote.text = self.textEdit.attributedText.string;

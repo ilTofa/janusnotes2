@@ -24,6 +24,7 @@
 		646602A116DBC999007622FC /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6466029F16DBC999007622FC /* Icon-72@2x.png */; };
 		646602A516DBD384007622FC /* cellbackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 646602A316DBD384007622FC /* cellbackground.png */; };
 		646602A616DBD384007622FC /* cellbackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 646602A416DBD384007622FC /* cellbackground@2x.png */; };
+		64845FE216E019EB0046BE9C /* NSDate+PassedTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 64845FE116E019EB0046BE9C /* NSDate+PassedTime.m */; };
 		649DCEA016D28DB8003F5A83 /* IAmMine.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 649DCE9E16D28DB7003F5A83 /* IAmMine.xcdatamodeld */; };
 		649DCEA316D29B0A003F5A83 /* CoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 649DCEA216D29AAD003F5A83 /* CoreDataController.m */; };
 		649DCEA616D29B32003F5A83 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 649DCEA516D29B32003F5A83 /* Note.m */; };
@@ -63,6 +64,8 @@
 		6466029F16DBC999007622FC /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = SOURCE_ROOT; };
 		646602A316DBD384007622FC /* cellbackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cellbackground.png; path = Images/cellbackground.png; sourceTree = "<group>"; };
 		646602A416DBD384007622FC /* cellbackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cellbackground@2x.png"; path = "Images/cellbackground@2x.png"; sourceTree = "<group>"; };
+		64845FE016E019EB0046BE9C /* NSDate+PassedTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+PassedTime.h"; path = "../common/Utilitites/NSDate+PassedTime.h"; sourceTree = "<group>"; };
+		64845FE116E019EB0046BE9C /* NSDate+PassedTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+PassedTime.m"; path = "../common/Utilitites/NSDate+PassedTime.m"; sourceTree = "<group>"; };
 		649DCE9F16D28DB7003F5A83 /* IAmMine.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = IAmMine.xcdatamodel; sourceTree = "<group>"; };
 		649DCEA116D29AAD003F5A83 /* CoreDataController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CoreDataController.h; path = ../common/iCloud/CoreDataController.h; sourceTree = "<group>"; };
 		649DCEA216D29AAD003F5A83 /* CoreDataController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CoreDataController.m; path = ../common/iCloud/CoreDataController.m; sourceTree = "<group>"; };
@@ -153,6 +156,15 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
+		64845FE316E019F20046BE9C /* Utilities (common) */ = {
+			isa = PBXGroup;
+			children = (
+				64845FE016E019EB0046BE9C /* NSDate+PassedTime.h */,
+				64845FE116E019EB0046BE9C /* NSDate+PassedTime.m */,
+			);
+			name = "Utilities (common)";
+			sourceTree = "<group>";
+		};
 		649DCE9A16D28D30003F5A83 /* iCloud (common) */ = {
 			isa = PBXGroup;
 			children = (
@@ -168,6 +180,7 @@
 		64A0506316D28CCA0025E179 = {
 			isa = PBXGroup;
 			children = (
+				64845FE316E019F20046BE9C /* Utilities (common) */,
 				649DCE9A16D28D30003F5A83 /* iCloud (common) */,
 				64A0507516D28CCA0025E179 /* I Am Mine */,
 				64A0506E16D28CCA0025E179 /* Frameworks */,
@@ -321,6 +334,7 @@
 				6416316016D835EF0004CB52 /* IAMImageNoteEdit.m in Sources */,
 				64027D7B16DD7CB800DEA647 /* IAMPreferencesController.m in Sources */,
 				64027D7F16DD809D00DEA647 /* UIFont+GTFontMapper.m in Sources */,
+				64845FE216E019EB0046BE9C /* NSDate+PassedTime.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

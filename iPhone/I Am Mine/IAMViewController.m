@@ -17,6 +17,7 @@
 #import "IAMImageNoteEdit.h"
 #import "UIImage+RoundedCorner.h"
 #import "UIFont+GTFontMapper.h"
+#import "NSDate+PassedTime.h"
 
 @interface IAMViewController () <UIImagePickerControllerDelegate, UIActionSheetDelegate, UISearchBarDelegate, NSFetchedResultsControllerDelegate, UINavigationControllerDelegate>
 
@@ -39,7 +40,7 @@
     self.managedObjectContext = self.appDelegate.coreDataController.mainThreadContext;
     self.dateFormatter = [[NSDateFormatter alloc] init];
 	[self.dateFormatter setLocale:[NSLocale currentLocale]];
-	[self.dateFormatter setDateStyle:NSDateFormatterLongStyle];
+	[self.dateFormatter setDateStyle:NSDateFormatterMediumStyle];
 	[self.dateFormatter setTimeStyle:NSDateFormatterShortStyle];
     NSArray *leftButtons = @[self.editButtonItem,
                              [[UIBarButtonItem alloc] initWithTitle:@"Prefs" style:UIBarButtonItemStylePlain target:self action:@selector(launchPreferences:)]];
@@ -278,11 +279,15 @@
         cell.textLabel.text = note.text;
         cell.textLabel.textColor = self.appDelegate.textColor;
     }
-    cell.dateLabel.text = [self.dateFormatter stringFromDate:note.timeStamp];
+    if(fabs([note.timeStamp timeIntervalSinceDate:note.modified]) < 2)
+        cell.dateLabel.text = [NSString stringWithFormat:@"%@", [self.dateFormatter stringFromDate:note.timeStamp]];
+    else
+        cell.dateLabel.text = [NSString stringWithFormat:@"%@, modified %@", [self.dateFormatter stringFromDate:note.timeStamp], [note.modified gt_timePassed]];
     cell.dateLabel.textColor = self.appDelegate.textColor;
     cell.titleLabel.font = [UIFont gt_getStandardFontWithFaceID:[UIFont gt_getStandardFontFaceIdFromUserDefault] andSize:17];
     cell.textLabel.font = [UIFont gt_getStandardFontWithFaceID:[UIFont gt_getStandardFontFaceIdFromUserDefault] andSize:12];
     cell.dateLabel.font = [UIFont gt_getStandardFontWithFaceID:[UIFont gt_getStandardFontFaceIdFromUserDefault] andSize:10];
+    
 }
 
 // Override to customize the look of a cell representing an object. The default is to display
@@ -399,8 +404,7 @@
         newNote.title = @"";
         newNote.link = @"";
         newNote.uuid = [[NSUUID UUID] UUIDString];
-        newNote.timeStamp = [NSDate date];
-        newNote.modified = [NSDate date];
+        newNote.timeStamp = newNote.modified = [NSDate date];
         textNoteEditor.editedNote = newNote;
         textNoteEditor.moc = appDelegate.coreDataController.mainThreadContext;
     }
@@ -414,8 +418,7 @@
         newNote.title = @"";
         newNote.link = @"";
         newNote.uuid = [[NSUUID UUID] UUIDString];
-        newNote.timeStamp = [NSDate date];
-        newNote.modified = [NSDate date];
+        newNote.timeStamp = newNote.modified = [NSDate date];
         newNote.image = UIImagePNGRepresentation(self.pickedImage);
         newNote.thumbnail = UIImagePNGRepresentation([self.pickedImage roundedThumbnail:88 withFixedScale:YES cornerSize:5 borderSize:0]);
         imageNoteEditor.editedNote = newNote;
