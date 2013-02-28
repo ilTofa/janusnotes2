@@ -158,7 +158,7 @@
     [fetchRequest setFetchBatchSize:25];
     
     // Edit the sort key as appropriate.
-    NSSortDescriptor *dateAddedSortDesc = [[NSSortDescriptor alloc] initWithKey:@"modified" ascending:NO];
+    NSSortDescriptor *dateAddedSortDesc = [[NSSortDescriptor alloc] initWithKey:@"timeStamp" ascending:NO];
     NSArray *sortDescriptors = @[dateAddedSortDesc];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
@@ -187,7 +187,7 @@
     
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
                                                                         managedObjectContext:self.managedObjectContext
-                                                                          sectionNameKeyPath:nil
+                                                                          sectionNameKeyPath:@"sectionIdentifier"
                                                                                    cacheName:nil];
     self.fetchedResultsController.delegate = self;
     DLog(@"Fetch setup to: %@", self.fetchedResultsController);
@@ -216,11 +216,27 @@
     [self.tableView beginUpdates];
 }
 
+- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
+           atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
+    DLog(@"This is controller didChangeSection: atIndex:%d forChangeType:%d", sectionIndex, type);
+    switch(type) {
+        case NSFetchedResultsChangeInsert:
+            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex]
+                          withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeDelete:
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex]
+                          withRowAnimation:UITableViewRowAnimationFade];
+            break;
+    }
+}
+
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
        atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
       newIndexPath:(NSIndexPath *)newIndexPath
 {
-    DLog(@"This is controller didChangeObject:atIndexPath:forChangeType:newIndexPath: (change type: %d)", type);
+    DLog(@"This is controller didChangeObject: atIndexPath:%@ forChangeType:%d newIndexPath:%@", indexPath, type, newIndexPath);
     UITableView *tableView = self.tableView;
     
     switch(type) {
@@ -262,7 +278,7 @@
         cell.textLabel.text = note.text;
         cell.textLabel.textColor = self.appDelegate.textColor;
     }
-    cell.dateLabel.text = [self.dateFormatter stringFromDate:note.created];
+    cell.dateLabel.text = [self.dateFormatter stringFromDate:note.timeStamp];
     cell.dateLabel.textColor = self.appDelegate.textColor;
     cell.titleLabel.font = [UIFont gt_getStandardFontWithFaceID:[UIFont gt_getStandardFontFaceIdFromUserDefault] andSize:17];
     cell.textLabel.font = [UIFont gt_getStandardFontWithFaceID:[UIFont gt_getStandardFontFaceIdFromUserDefault] andSize:12];
@@ -289,12 +305,15 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+	NSInteger count = [[self.fetchedResultsController sections] count];
+	return count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[self.fetchedResultsController fetchedObjects] count];
+	id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
+	NSInteger count = [sectionInfo numberOfObjects];
+	return count;
 }
 
 // Override to support editing the table view.
@@ -318,6 +337,32 @@
             abort();
         }
     }
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+	
+	id <NSFetchedResultsSectionInfo> theSection = [[self.fetchedResultsController sections] objectAtIndex:section];
+    
+    /*
+     Section information derives from an event's sectionIdentifier, which is a string representing the number (year * 1000) + month.
+     To display the section title, convert the year and month components to a string representation.
+     */
+    static NSArray *monthSymbols = nil;
+    
+    if (!monthSymbols) {
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setCalendar:[NSCalendar currentCalendar]];
+        monthSymbols = [formatter monthSymbols];
+    }
+    
+    NSInteger numericSection = [[theSection name] integerValue];
+    
+	NSInteger year = numericSection / 1000;
+	NSInteger month = numericSection - (year * 1000);
+	
+	NSString *titleString = [NSString stringWithFormat:@"%@ %d", [monthSymbols objectAtIndex:month-1], year];
+	
+	return titleString;
 }
 
 /*
@@ -354,7 +399,7 @@
         newNote.title = @"";
         newNote.link = @"";
         newNote.uuid = [[NSUUID UUID] UUIDString];
-        newNote.created = [NSDate date];
+        newNote.timeStamp = [NSDate date];
         newNote.modified = [NSDate date];
         textNoteEditor.editedNote = newNote;
         textNoteEditor.moc = appDelegate.coreDataController.mainThreadContext;
@@ -369,7 +414,7 @@
         newNote.title = @"";
         newNote.link = @"";
         newNote.uuid = [[NSUUID UUID] UUIDString];
-        newNote.created = [NSDate date];
+        newNote.timeStamp = [NSDate date];
         newNote.modified = [NSDate date];
         newNote.image = UIImagePNGRepresentation(self.pickedImage);
         newNote.thumbnail = UIImagePNGRepresentation([self.pickedImage roundedThumbnail:88 withFixedScale:YES cornerSize:5 borderSize:0]);

@@ -13,7 +13,6 @@
 @interface Note : NSManagedObject
 
 @property (nonatomic, retain) NSAttributedString * attributedText;
-@property (nonatomic, retain) NSDate * created;
 @property (nonatomic, retain) NSData * image;
 @property (nonatomic, retain) NSString * link;
 @property (nonatomic, retain) NSDate * modified;
@@ -21,5 +20,10 @@
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSData * thumbnail;
 @property (nonatomic, retain) NSString * uuid;
+
+@property (nonatomic, retain) NSDate *timeStamp;
+@property (nonatomic, retain) NSDate *primitiveTimeStamp;
+@property (nonatomic, retain) NSString *sectionIdentifier;
+@property (nonatomic, retain) NSString *primitiveSectionIdentifier;
 
 @end
