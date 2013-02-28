@@ -33,12 +33,12 @@
     [super viewDidLoad];
     self.versionLabel.text = [NSString stringWithFormat:@"This I Am Mine version %@ (%@)\n©2013 Giacomo Tufano - All rights reserved.", [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"], [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"]];
     // Load base values
-    self.fontFace = [UIFont gt_getStandardFontFaceIdFromUserDefault];
-    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:self.fontFace inSection:0] animated:false scrollPosition:UITableViewScrollPositionMiddle];
     self.fontSize = [UIFont gt_getStandardFontSizeFromUserDefault];
     [self.sizeStepper setValue:self.fontSize];
     self.colorSet = [(IAMAppDelegate *)[[UIApplication sharedApplication] delegate] getStandardColorsID];
     [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:self.colorSet inSection:2] animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+    self.fontFace = [UIFont gt_getStandardFontFaceIdFromUserDefault];
+    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:self.fontFace inSection:0] animated:false scrollPosition:UITableViewScrollPositionTop];
     [self sizePressed:nil];
 }
 
@@ -103,7 +103,7 @@
     DLog(@"This is sizePressed: called for a value of: %.0f", self.sizeStepper.value);
     self.fontSize = self.sizeStepper.value;
     self.sizeLabel.text = [NSString stringWithFormat:@"Text Size is %d", self.fontSize];
-    self.theFoxLabel.font = self.sizeLabel.font = [UIFont gt_getStandardFontWithFaceID:self.fontFace andSize:self.fontSize];
+    self.sizeLabel.font = [UIFont gt_getStandardFontWithFaceID:self.fontFace andSize:self.fontSize];
     [(IAMAppDelegate *)[[UIApplication sharedApplication] delegate] applyStandardColors:self.colorSet];
     
 }
