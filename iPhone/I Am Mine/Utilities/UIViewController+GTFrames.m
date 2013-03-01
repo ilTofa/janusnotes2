@@ -51,6 +51,9 @@
     if (self.tabBarController) {
         if (!self.tabBarController.view.hidden) maxFrame.size.height -= kToolBarHeight;
     }
+    // Compensate status bar
+    if(maxFrame.origin.y == 20)
+        maxFrame.origin.y = 0;
     return maxFrame;
 }
 

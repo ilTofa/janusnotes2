@@ -525,6 +525,7 @@ Label riga 3</string>
         <class className="IAMTextNoteEdit" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IAMTextNoteEdit.h"/>
             <relationships>
+                <relationship kind="action" name="done:"/>
                 <relationship kind="action" name="save:"/>
                 <relationship kind="outlet" name="linkEdit" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="lowerDivider" candidateClass="UIImageView"/>
