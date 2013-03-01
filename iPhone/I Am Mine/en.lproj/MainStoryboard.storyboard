@@ -348,7 +348,7 @@ Label riga 3</string>
         <!--Image Note Editor-->
         <scene sceneID="rKg-4v-6PW">
             <objects>
-                <viewController id="bjo-VI-Bb6" userLabel="Image Note Editor" customClass="IAMImageNoteEdit" sceneMemberID="viewController">
+                <viewController id="bjo-VI-Bb6" userLabel="Image Note Editor" customClass="IAMNoteEdit" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ICF-yF-EGc">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -375,6 +375,9 @@ Label riga 3</string>
                                     </fragment>
                                 </attributedString>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="bjo-VI-Bb6" id="SFf-Ev-6g7"/>
+                                </connections>
                             </textView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="SmallRow.png" id="BBU-2c-ndF" userLabel="Grey Row">
                                 <rect key="frame" x="0.0" y="36" width="320" height="2"/>
@@ -396,8 +399,10 @@ Label riga 3</string>
                     </navigationItem>
                     <connections>
                         <outlet property="imageThumbnail" destination="kea-x6-g8F" id="cAa-A6-7Q8"/>
+                        <outlet property="lowerDivider" destination="xlC-Jt-aQY" id="Dtx-eL-r9G"/>
                         <outlet property="textEdit" destination="46Q-mS-dtt" id="u2n-DE-C0d"/>
                         <outlet property="titleEdit" destination="bB5-lA-BUE" id="4tQ-pv-sH7"/>
+                        <outlet property="upperDivider" destination="BBU-2c-ndF" id="cPa-qk-aMf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zxh-Yz-Jvj" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -407,7 +412,7 @@ Label riga 3</string>
         <!--Text Note Editor-->
         <scene sceneID="yJT-eO-p6A">
             <objects>
-                <viewController id="aYD-Rr-6C9" userLabel="Text Note Editor" customClass="IAMTextNoteEdit" sceneMemberID="viewController">
+                <viewController id="aYD-Rr-6C9" userLabel="Text Note Editor" customClass="IAMNoteEdit" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uxP-bS-Qfh">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -494,15 +499,6 @@ Label riga 3</string>
         <image name="SmallRow.png" width="2" height="2"/>
     </resources>
     <classes>
-        <class className="IAMImageNoteEdit" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/IAMImageNoteEdit.h"/>
-            <relationships>
-                <relationship kind="action" name="done:"/>
-                <relationship kind="outlet" name="imageThumbnail" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="textEdit" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="titleEdit" candidateClass="UITextField"/>
-            </relationships>
-        </class>
         <class className="IAMNoteCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IAMNoteCell.h"/>
             <relationships>
@@ -510,6 +506,20 @@ Label riga 3</string>
                 <relationship kind="outlet" name="textLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="thumbImage" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="IAMNoteEdit" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/IAMNoteEdit.h"/>
+            <relationships>
+                <relationship kind="action" name="done:"/>
+                <relationship kind="action" name="save:"/>
+                <relationship kind="action" name="shareAction:"/>
+                <relationship kind="outlet" name="imageThumbnail" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="linkEdit" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="lowerDivider" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="textEdit" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="titleEdit" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="upperDivider" candidateClass="UIImageView"/>
             </relationships>
         </class>
         <class className="IAMPreferencesController" superclassName="UITableViewController">
@@ -522,22 +532,11 @@ Label riga 3</string>
                 <relationship kind="outlet" name="versionLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
-        <class className="IAMTextNoteEdit" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/IAMTextNoteEdit.h"/>
-            <relationships>
-                <relationship kind="action" name="done:"/>
-                <relationship kind="action" name="save:"/>
-                <relationship kind="outlet" name="linkEdit" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="lowerDivider" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="textEdit" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="titleEdit" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="upperDivider" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
         <class className="IAMViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IAMViewController.h"/>
             <relationships>
                 <relationship kind="action" name="addNote:"/>
+                <relationship kind="action" name="launchPreferences:"/>
                 <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
             </relationships>
         </class>

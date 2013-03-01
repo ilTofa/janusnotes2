@@ -6,13 +6,13 @@
 //  Copyright (c) 2013 Giacomo Tufano. All rights reserved.
 //
 
-#import "IAMTextNoteEdit.h"
+#import "IAMNoteEdit.h"
 
 #import "IAMAppDelegate.h"
 #import "UIFont+GTFontMapper.h"
 #import "UIViewController+GTFrames.h"
 
-@interface IAMTextNoteEdit () <UITextViewDelegate>
+@interface IAMNoteEdit () <UITextViewDelegate>
 
 @property IAMAppDelegate *appDelegate;
 @property CGRect oldFrame;
@@ -21,7 +21,7 @@
 
 @end
 
-@implementation IAMTextNoteEdit
+@implementation IAMNoteEdit
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -52,6 +52,7 @@
     self.linkEdit.text = self.editedNote.link;
     self.linkEdit.font = [UIFont gt_getStandardFontWithFaceID:[UIFont gt_getStandardFontFaceIdFromUserDefault] andSize:[UIFont gt_getStandardFontSizeFromUserDefault]];
     self.titleEdit.textColor = self.linkEdit.textColor = self.textEdit.textColor = self.appDelegate.textColor;
+    self.imageThumbnail.image = [UIImage imageWithData:self.editedNote.image];
     self.view.backgroundColor = self.appDelegate.backgroundColor;
     // If this is a new note, set the cursor on title field
     if([self.titleEdit.text isEqualToString:@""])
@@ -79,7 +80,7 @@
         DLog(@"This is textViewDidBeginEditing: for the main text editor");
         self.oldFrame = textView.frame;
         [textView setFrame:[self gt_maximumUsableFrame]];
-        self.lowerDivider.hidden = self.upperDivider.hidden = self.titleEdit.hidden = self.linkEdit.hidden = YES;
+        self.lowerDivider.hidden = self.upperDivider.hidden = self.titleEdit.hidden = self.linkEdit.hidden = self.imageThumbnail.hidden = YES;
         self.navigationItem.rightBarButtonItems = nil;
         self.navigationItem.rightBarButtonItem = self.doneButton;
     }
@@ -92,7 +93,7 @@
     {
         DLog(@"This is textViewDidEndEditing: for the main text editor");
         [textView setFrame:self.oldFrame];
-        self.lowerDivider.hidden = self.upperDivider.hidden = self.titleEdit.hidden = self.linkEdit.hidden = NO;
+        self.lowerDivider.hidden = self.upperDivider.hidden = self.titleEdit.hidden = self.linkEdit.hidden = self.imageThumbnail.hidden = NO;
         NSArray *rightButtons = @[self.saveButton, [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(shareAction:)]];
         self.navigationItem.rightBarButtonItems = rightButtons;
     }
@@ -127,7 +128,7 @@
 - (IBAction)save:(id)sender
 {
     // save (if useful) and pop back
-    if([self.titleEdit.text isEqualToString:@""] || [self.textEdit.text isEqualToString:@""])
+    if([self.titleEdit.text isEqualToString:@""] || ([self.textEdit.text isEqualToString:@""] && !self.editedNote.image))
         return;
     self.editedNote.title = self.titleEdit.text;
     self.editedNote.link = self.linkEdit.text;
@@ -147,7 +148,7 @@
 {
     // Save (but not return)
     [self save:nil];
-    NSMutableArray *activityItems = [[NSMutableArray alloc] initWithObjects:self.editedNote.attributedText, nil];
+    NSMutableArray *activityItems = [[NSMutableArray alloc] initWithObjects:self.editedNote.title, self.editedNote.attributedText, nil];
     if(self.editedNote.image)
     {
         UIImage *imageToAdd = [UIImage imageWithData:self.editedNote.image];

@@ -13,7 +13,7 @@
 #import "IAMAppDelegate.h"
 #import "IAMNoteCell.h"
 #import "Note.h"
-#import "IAMTextNoteEdit.h"
+#import "IAMNoteEdit.h"
 #import "IAMImageNoteEdit.h"
 #import "UIImage+RoundedCorner.h"
 #import "UIFont+GTFontMapper.h"
@@ -395,7 +395,7 @@
 {
     if ([[segue identifier] isEqualToString:@"AddTextNote"])
     {
-        IAMTextNoteEdit *textNoteEditor = [segue destinationViewController];
+        IAMNoteEdit *textNoteEditor = [segue destinationViewController];
         // Create a new note
         IAMAppDelegate *appDelegate = (IAMAppDelegate *)[[UIApplication sharedApplication] delegate];
         Note *newNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:appDelegate.coreDataController.mainThreadContext];
@@ -425,7 +425,7 @@
     }
     if ([[segue identifier] isEqualToString:@"EditNote"])
     {
-        IAMTextNoteEdit *textNoteEditor = [segue destinationViewController];
+        IAMNoteEdit *textNoteEditor = [segue destinationViewController];
         Note *selectedNote =  [[self fetchedResultsController] objectAtIndexPath:self.tableView.indexPathForSelectedRow];
         selectedNote.modified = [NSDate date];
         textNoteEditor.editedNote = selectedNote;

@@ -15,7 +15,6 @@
 		6416315716D7DB830004CB52 /* IAMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6416315616D7DB830004CB52 /* IAMViewController.m */; };
 		6416315916D831DB0004CB52 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6416315816D831DB0004CB52 /* MobileCoreServices.framework */; };
 		6416315D16D8345F0004CB52 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 6416315C16D8345F0004CB52 /* UIImage+RoundedCorner.m */; };
-		6416316016D835EF0004CB52 /* IAMImageNoteEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 6416315F16D835EF0004CB52 /* IAMImageNoteEdit.m */; };
 		6433103E16E0A85D0064EC5C /* UIViewController+GTFrames.m in Sources */ = {isa = PBXBuildFile; fileRef = 6433103D16E0A85D0064EC5C /* UIViewController+GTFrames.m */; };
 		6447056E16DD0FC4000A0262 /* SmallRow.png in Resources */ = {isa = PBXBuildFile; fileRef = 6447056C16DD0FC4000A0262 /* SmallRow.png */; };
 		6447056F16DD0FC4000A0262 /* SmallRow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6447056D16DD0FC4000A0262 /* SmallRow@2x.png */; };
@@ -39,7 +38,7 @@
 		64A0508416D28CCA0025E179 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64A0508316D28CCA0025E179 /* Default@2x.png */; };
 		64A0508616D28CCA0025E179 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64A0508516D28CCA0025E179 /* Default-568h@2x.png */; };
 		64A0508916D28CCA0025E179 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64A0508716D28CCA0025E179 /* MainStoryboard.storyboard */; };
-		64B9B4A516D7801100607F39 /* IAMTextNoteEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 64B9B4A416D7801100607F39 /* IAMTextNoteEdit.m */; };
+		64B9B4A516D7801100607F39 /* IAMNoteEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 64B9B4A416D7801100607F39 /* IAMNoteEdit.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,8 +54,6 @@
 		6416315816D831DB0004CB52 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		6416315B16D8345F0004CB52 /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
 		6416315C16D8345F0004CB52 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
-		6416315E16D835EF0004CB52 /* IAMImageNoteEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMImageNoteEdit.h; sourceTree = "<group>"; };
-		6416315F16D835EF0004CB52 /* IAMImageNoteEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMImageNoteEdit.m; sourceTree = "<group>"; };
 		6433103C16E0A85D0064EC5C /* UIViewController+GTFrames.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+GTFrames.h"; sourceTree = "<group>"; };
 		6433103D16E0A85D0064EC5C /* UIViewController+GTFrames.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+GTFrames.m"; sourceTree = "<group>"; };
 		6447056C16DD0FC4000A0262 /* SmallRow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SmallRow.png; path = Images/SmallRow.png; sourceTree = "<group>"; };
@@ -89,8 +86,8 @@
 		64A0508516D28CCA0025E179 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		64A0508816D28CCA0025E179 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		64A0508A16D28CCA0025E179 /* IAMViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IAMViewController.h; sourceTree = "<group>"; };
-		64B9B4A316D7801100607F39 /* IAMTextNoteEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMTextNoteEdit.h; sourceTree = "<group>"; };
-		64B9B4A416D7801100607F39 /* IAMTextNoteEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMTextNoteEdit.m; sourceTree = "<group>"; };
+		64B9B4A316D7801100607F39 /* IAMNoteEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMNoteEdit.h; sourceTree = "<group>"; };
+		64B9B4A416D7801100607F39 /* IAMNoteEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMNoteEdit.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,17 +121,6 @@
 				640D40BD16D5128B003034B3 /* IAMNoteCell.m */,
 			);
 			name = "List Cells";
-			sourceTree = "<group>";
-		};
-		6416314C16D7B5270004CB52 /* Notes Editing */ = {
-			isa = PBXGroup;
-			children = (
-				64B9B4A316D7801100607F39 /* IAMTextNoteEdit.h */,
-				64B9B4A416D7801100607F39 /* IAMTextNoteEdit.m */,
-				6416315E16D835EF0004CB52 /* IAMImageNoteEdit.h */,
-				6416315F16D835EF0004CB52 /* IAMImageNoteEdit.m */,
-			);
-			name = "Notes Editing";
 			sourceTree = "<group>";
 		};
 		6416315A16D8345F0004CB52 /* UIImage */ = {
@@ -233,7 +219,8 @@
 				64A0507E16D28CCA0025E179 /* IAMAppDelegate.h */,
 				64A0507F16D28CCA0025E179 /* IAMAppDelegate.m */,
 				64A0508716D28CCA0025E179 /* MainStoryboard.storyboard */,
-				6416314C16D7B5270004CB52 /* Notes Editing */,
+				64B9B4A316D7801100607F39 /* IAMNoteEdit.h */,
+				64B9B4A416D7801100607F39 /* IAMNoteEdit.m */,
 				64A0508A16D28CCA0025E179 /* IAMViewController.h */,
 				6416315616D7DB830004CB52 /* IAMViewController.m */,
 				64027D7916DD7CB800DEA647 /* IAMPreferencesController.h */,
@@ -342,10 +329,9 @@
 				649DCEA316D29B0A003F5A83 /* CoreDataController.m in Sources */,
 				649DCEA616D29B32003F5A83 /* Note.m in Sources */,
 				640D40BE16D5128B003034B3 /* IAMNoteCell.m in Sources */,
-				64B9B4A516D7801100607F39 /* IAMTextNoteEdit.m in Sources */,
+				64B9B4A516D7801100607F39 /* IAMNoteEdit.m in Sources */,
 				6416315716D7DB830004CB52 /* IAMViewController.m in Sources */,
 				6416315D16D8345F0004CB52 /* UIImage+RoundedCorner.m in Sources */,
-				6416316016D835EF0004CB52 /* IAMImageNoteEdit.m in Sources */,
 				64027D7B16DD7CB800DEA647 /* IAMPreferencesController.m in Sources */,
 				64027D7F16DD809D00DEA647 /* UIFont+GTFontMapper.m in Sources */,
 				64845FE216E019EB0046BE9C /* NSDate+PassedTime.m in Sources */,
