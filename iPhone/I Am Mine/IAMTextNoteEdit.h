@@ -15,11 +15,13 @@
 @property (weak, nonatomic) IBOutlet UITextField *titleEdit;
 @property (weak, nonatomic) IBOutlet UITextField *linkEdit;
 @property (weak, nonatomic) IBOutlet UITextView *textEdit;
+@property (weak, nonatomic) IBOutlet UIImageView *upperDivider;
+@property (weak, nonatomic) IBOutlet UIImageView *lowerDivider;
 
 // The edited note and the corresponding moc
 @property Note *editedNote;
 @property NSManagedObjectContext *moc;
 
-- (IBAction)done:(id)sender;
+- (IBAction)save:(id)sender;
 
 @end

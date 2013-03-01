@@ -16,6 +16,7 @@
 		6416315916D831DB0004CB52 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6416315816D831DB0004CB52 /* MobileCoreServices.framework */; };
 		6416315D16D8345F0004CB52 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 6416315C16D8345F0004CB52 /* UIImage+RoundedCorner.m */; };
 		6416316016D835EF0004CB52 /* IAMImageNoteEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 6416315F16D835EF0004CB52 /* IAMImageNoteEdit.m */; };
+		6433103E16E0A85D0064EC5C /* UIViewController+GTFrames.m in Sources */ = {isa = PBXBuildFile; fileRef = 6433103D16E0A85D0064EC5C /* UIViewController+GTFrames.m */; };
 		6447056E16DD0FC4000A0262 /* SmallRow.png in Resources */ = {isa = PBXBuildFile; fileRef = 6447056C16DD0FC4000A0262 /* SmallRow.png */; };
 		6447056F16DD0FC4000A0262 /* SmallRow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6447056D16DD0FC4000A0262 /* SmallRow@2x.png */; };
 		6466029B16DBC987007622FC /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6466029A16DBC987007622FC /* Icon@2x.png */; };
@@ -56,6 +57,8 @@
 		6416315C16D8345F0004CB52 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
 		6416315E16D835EF0004CB52 /* IAMImageNoteEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMImageNoteEdit.h; sourceTree = "<group>"; };
 		6416315F16D835EF0004CB52 /* IAMImageNoteEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMImageNoteEdit.m; sourceTree = "<group>"; };
+		6433103C16E0A85D0064EC5C /* UIViewController+GTFrames.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+GTFrames.h"; path = "Utilities/UIViewController+GTFrames.h"; sourceTree = "<group>"; };
+		6433103D16E0A85D0064EC5C /* UIViewController+GTFrames.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+GTFrames.m"; path = "Utilities/UIViewController+GTFrames.m"; sourceTree = "<group>"; };
 		6447056C16DD0FC4000A0262 /* SmallRow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SmallRow.png; path = Images/SmallRow.png; sourceTree = "<group>"; };
 		6447056D16DD0FC4000A0262 /* SmallRow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SmallRow@2x.png"; path = "Images/SmallRow@2x.png"; sourceTree = "<group>"; };
 		6466029A16DBC987007622FC /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
@@ -145,6 +148,15 @@
 			path = UIImage;
 			sourceTree = "<group>";
 		};
+		6433103F16E0A8950064EC5C /* Utilities (iOS) */ = {
+			isa = PBXGroup;
+			children = (
+				6433103C16E0A85D0064EC5C /* UIViewController+GTFrames.h */,
+				6433103D16E0A85D0064EC5C /* UIViewController+GTFrames.m */,
+			);
+			name = "Utilities (iOS)";
+			sourceTree = "<group>";
+		};
 		646602A216DBD373007622FC /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -212,6 +224,7 @@
 		64A0507516D28CCA0025E179 /* I Am Mine */ = {
 			isa = PBXGroup;
 			children = (
+				6433103F16E0A8950064EC5C /* Utilities (iOS) */,
 				64027D7C16DD805500DEA647 /* Fonts */,
 				646602A216DBD373007622FC /* Images */,
 				6416315A16D8345F0004CB52 /* UIImage */,
@@ -335,6 +348,7 @@
 				64027D7B16DD7CB800DEA647 /* IAMPreferencesController.m in Sources */,
 				64027D7F16DD809D00DEA647 /* UIFont+GTFontMapper.m in Sources */,
 				64845FE216E019EB0046BE9C /* NSDate+PassedTime.m in Sources */,
+				6433103E16E0A85D0064EC5C /* UIViewController+GTFrames.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

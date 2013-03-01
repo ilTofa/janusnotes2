@@ -436,6 +436,9 @@ Label riga 3</string>
                                     </fragment>
                                 </attributedString>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="aYD-Rr-6C9" id="Ybe-F2-cwS"/>
+                                </connections>
                             </textView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="SmallRow.png" id="PZq-Ci-A7X" userLabel="Grey Row">
                                 <rect key="frame" x="0.0" y="34" width="320" height="2"/>
@@ -449,16 +452,18 @@ Label riga 3</string>
                         <color key="backgroundColor" white="0.95000000000000007" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Note" id="86x-W0-j7C">
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="arX-0v-vjH">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="arX-0v-vjH">
                             <connections>
-                                <action selector="done:" destination="aYD-Rr-6C9" id="Uob-U3-f3y"/>
+                                <action selector="save:" destination="aYD-Rr-6C9" id="FwJ-iL-fyh"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="linkEdit" destination="6j8-bd-Axf" id="Mns-wz-cn7"/>
+                        <outlet property="lowerDivider" destination="Y3S-XW-Chl" id="7Uj-tn-cM1"/>
                         <outlet property="textEdit" destination="TM1-dV-cxf" id="gVR-9d-Pjg"/>
                         <outlet property="titleEdit" destination="bFY-L8-a9Q" id="LV9-EX-IV6"/>
+                        <outlet property="upperDivider" destination="PZq-Ci-A7X" id="7QH-vS-9tk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pfC-hY-1zX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -520,17 +525,18 @@ Label riga 3</string>
         <class className="IAMTextNoteEdit" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IAMTextNoteEdit.h"/>
             <relationships>
-                <relationship kind="action" name="done:"/>
+                <relationship kind="action" name="save:"/>
                 <relationship kind="outlet" name="linkEdit" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="lowerDivider" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="textEdit" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="titleEdit" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="upperDivider" candidateClass="UIImageView"/>
             </relationships>
         </class>
         <class className="IAMViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IAMViewController.h"/>
             <relationships>
                 <relationship kind="action" name="addNote:"/>
-                <relationship kind="action" name="launchPreferences:"/>
                 <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
             </relationships>
         </class>

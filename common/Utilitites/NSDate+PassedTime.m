@@ -23,6 +23,8 @@
         timePassed = [NSString stringWithFormat:@"%d days ago", idays];
     else if(idays == 1)
         timePassed = @"yesterday";
+    else if(ihours == 0 && iminutes == 0)
+        timePassed = @"now";
     else if(ihours == 0)
         timePassed = [NSString stringWithFormat:@"%d minutes ago", iminutes];
     else
