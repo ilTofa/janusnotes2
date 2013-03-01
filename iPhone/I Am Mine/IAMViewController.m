@@ -67,7 +67,6 @@
 
 -(void)colorize
 {
-    DLog(@"Colorizing.\nback: %@\ntext: %@\ntint: %@", self.appDelegate.backgroundColor, self.appDelegate.textColor, self.appDelegate.tintColor);
     [self.tableView setBackgroundColor:self.appDelegate.backgroundColor];
     [self.navigationController.navigationBar setTintColor:self.appDelegate.tintColor];
     [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
