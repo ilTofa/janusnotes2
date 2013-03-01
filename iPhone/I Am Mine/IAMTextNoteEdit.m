@@ -36,11 +36,15 @@
 {
     [super viewDidLoad];
     self.appDelegate = (IAMAppDelegate *)[[UIApplication sharedApplication] delegate];
+    // Keyboard notifications
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
+    // Right button(s)
     self.saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save:)];
-    self.navigationItem.rightBarButtonItem = self.saveButton;
     self.doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];
+    NSArray *rightButtons = @[self.saveButton, [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(shareAction:)]];
+    self.navigationItem.rightBarButtonItems = rightButtons;
+    // Preset the note
     self.titleEdit.text = self.editedNote.title;
     self.titleEdit.font = [UIFont gt_getStandardFontWithFaceID:[UIFont gt_getStandardFontFaceIdFromUserDefault] andSize:[UIFont gt_getStandardFontSizeFromUserDefault]+3];
     self.textEdit.attributedText = self.editedNote.attributedText;
@@ -76,6 +80,7 @@
         self.oldFrame = textView.frame;
         [textView setFrame:[self gt_maximumUsableFrame]];
         self.lowerDivider.hidden = self.upperDivider.hidden = self.titleEdit.hidden = self.linkEdit.hidden = YES;
+        self.navigationItem.rightBarButtonItems = nil;
         self.navigationItem.rightBarButtonItem = self.doneButton;
     }
 }
@@ -88,7 +93,8 @@
         DLog(@"This is textViewDidEndEditing: for the main text editor");
         [textView setFrame:self.oldFrame];
         self.lowerDivider.hidden = self.upperDivider.hidden = self.titleEdit.hidden = self.linkEdit.hidden = NO;
-        self.navigationItem.rightBarButtonItem = self.saveButton;
+        NSArray *rightButtons = @[self.saveButton, [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(shareAction:)]];
+        self.navigationItem.rightBarButtonItems = rightButtons;
     }
 }
 
@@ -133,7 +139,31 @@
     {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
     }
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    // If called via action
+    if(sender)
+        [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+- (IBAction)shareAction:(id)sender
+{
+    // Save (but not return)
+    [self save:nil];
+    NSMutableArray *activityItems = [[NSMutableArray alloc] initWithObjects:self.editedNote.attributedText, nil];
+    if(self.editedNote.image)
+    {
+        UIImage *imageToAdd = [UIImage imageWithData:self.editedNote.image];
+        if(imageToAdd)
+            [activityItems addObject:imageToAdd];
+    }
+    if(self.editedNote.link)
+    {
+        NSURL *linkToAdd = [NSURL URLWithString:self.editedNote.link];
+        if(linkToAdd)
+            [activityItems addObject:linkToAdd];
+    }
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
+    activityVC.excludedActivityTypes = @[UIActivityTypeSaveToCameraRoll, UIActivityTypeAssignToContact, UIActivityTypePrint, UIActivityTypePostToWeibo];
+    [self presentViewController:activityVC animated:TRUE completion:nil];
 }
 
 @end
