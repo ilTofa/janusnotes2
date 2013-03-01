@@ -14,7 +14,6 @@
 #import "IAMNoteCell.h"
 #import "Note.h"
 #import "IAMNoteEdit.h"
-#import "IAMImageNoteEdit.h"
 #import "UIImage+RoundedCorner.h"
 #import "UIFont+GTFontMapper.h"
 #import "NSDate+PassedTime.h"
@@ -409,7 +408,7 @@
     }
     if ([[segue identifier] isEqualToString:@"AddImageNote"])
     {
-        IAMImageNoteEdit *imageNoteEditor = [segue destinationViewController];
+        IAMNoteEdit *imageNoteEditor = [segue destinationViewController];
         // Create a new note
         IAMAppDelegate *appDelegate = (IAMAppDelegate *)[[UIApplication sharedApplication] delegate];
         Note *newNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:appDelegate.coreDataController.mainThreadContext];
@@ -423,21 +422,13 @@
         imageNoteEditor.editedNote = newNote;
         imageNoteEditor.moc = appDelegate.coreDataController.mainThreadContext;
     }
-    if ([[segue identifier] isEqualToString:@"EditNote"])
+    if ([[segue identifier] isEqualToString:@"EditNote"] || [[segue identifier] isEqualToString:@"EditImageNote"])
     {
         IAMNoteEdit *textNoteEditor = [segue destinationViewController];
         Note *selectedNote =  [[self fetchedResultsController] objectAtIndexPath:self.tableView.indexPathForSelectedRow];
         selectedNote.modified = [NSDate date];
         textNoteEditor.editedNote = selectedNote;
         textNoteEditor.moc = self.managedObjectContext;
-    }
-    if ([[segue identifier] isEqualToString:@"EditImageNote"])
-    {
-        IAMImageNoteEdit *imageNoteEditor = [segue destinationViewController];
-        Note *selectedNote =  [[self fetchedResultsController] objectAtIndexPath:self.tableView.indexPathForSelectedRow];
-        selectedNote.modified = [NSDate date];
-        imageNoteEditor.editedNote = selectedNote;
-        imageNoteEditor.moc = self.managedObjectContext;
     }
 }
 
