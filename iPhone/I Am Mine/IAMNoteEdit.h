@@ -13,10 +13,8 @@
 @interface IAMNoteEdit : UIViewController
 
 @property (weak, nonatomic) IBOutlet UITextField *titleEdit;
-@property (weak, nonatomic) IBOutlet UITextField *linkEdit;
 @property (weak, nonatomic) IBOutlet UITextView *textEdit;
-@property (weak, nonatomic) IBOutlet UIImageView *upperDivider;
-@property (weak, nonatomic) IBOutlet UIImageView *lowerDivider;
+@property (weak, nonatomic) IBOutlet UIImageView *greyRowImage;
 @property (weak, nonatomic) IBOutlet UIImageView *imageThumbnail;
 
 

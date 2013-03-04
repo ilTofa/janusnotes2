@@ -268,23 +268,23 @@
 - (void)configureCell:(IAMNoteCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     Note *note = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.titleLabel.text = note.title;
     cell.titleLabel.textColor = self.appDelegate.textColor;
-    if(note.image)
-        cell.thumbImage.image = [UIImage imageWithData:note.thumbnail];
-    else
-    {
-        cell.textLabel.text = note.text;
-        cell.textLabel.textColor = self.appDelegate.textColor;
-    }
-    if(fabs([note.timeStamp timeIntervalSinceDate:note.creationDate]) < 2)
-        cell.dateLabel.text = [NSString stringWithFormat:@"%@, never modified", [self.dateFormatter stringFromDate:note.timeStamp]];
-    else
-        cell.dateLabel.text = [NSString stringWithFormat:@"%@, modified %@", [self.dateFormatter stringFromDate:note.timeStamp], [note.creationDate gt_timePassed]];
-    cell.dateLabel.textColor = self.appDelegate.textColor;
     cell.titleLabel.font = [UIFont gt_getStandardFontWithFaceID:[UIFont gt_getStandardFontFaceIdFromUserDefault] andSize:17];
+    cell.titleLabel.text = note.title;
+    cell.textLabel.textColor = self.appDelegate.textColor;
     cell.textLabel.font = [UIFont gt_getStandardFontWithFaceID:[UIFont gt_getStandardFontFaceIdFromUserDefault] andSize:12];
+    cell.textLabel.text = note.text;
+    cell.dateLabel.textColor = cell.attachmentsQuantityLabel.textColor = self.appDelegate.textColor;
     cell.dateLabel.font = [UIFont gt_getStandardFontWithFaceID:[UIFont gt_getStandardFontFaceIdFromUserDefault] andSize:10];
+    if(fabs([note.timeStamp timeIntervalSinceDate:note.creationDate]) < 2)
+        cell.dateLabel.text = [NSString stringWithFormat:@"%@, never modified", [self.dateFormatter stringFromDate:note.creationDate]];
+    else
+        cell.dateLabel.text = [NSString stringWithFormat:@"%@, modified %@", [self.dateFormatter stringFromDate:note.creationDate], [note.timeStamp gt_timePassed]];
+    cell.attachmentsQuantityLabel.font = [UIFont gt_getStandardFontWithFaceID:[UIFont gt_getStandardFontFaceIdFromUserDefault] andSize:10];
+    NSUInteger attachmentsQuantity = 0;
+    if(note.attachment)
+        attachmentsQuantity = [note.attachment count];
+    cell.attachmentsQuantityLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%lu attachment(s)", nil), attachmentsQuantity];
     
 }
 
@@ -292,12 +292,7 @@
 // a UITableViewCellStyleDefault style cell with the label being the first key in the object.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *CellIdentifier;
-    // If the object has an image
-    if([[self.fetchedResultsController objectAtIndexPath:indexPath] valueForKey:@"image"])
-        CellIdentifier = @"ImageCell";
-    else
-        CellIdentifier = @"TextCell";
+    static NSString *CellIdentifier = @"TextCell";
     IAMNoteCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[IAMNoteCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
@@ -398,31 +393,16 @@
         // Create a new note
         IAMAppDelegate *appDelegate = (IAMAppDelegate *)[[UIApplication sharedApplication] delegate];
         Note *newNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:appDelegate.coreDataController.mainThreadContext];
-        newNote.text = @"";
-        newNote.title = @"";
-        newNote.link = @"";
-        newNote.uuid = [[NSUUID UUID] UUIDString];
-        newNote.timeStamp = newNote.creationDate = [NSDate date];
+//        [newNote setText:@""];
+//        [newNote setAttributedText:[[NSAttributedString alloc] initWithString:@""]];
+//        [newNote setTitle:NSLocalizedString(@"New note", nil)];
+//        [newNote setUuid:[[NSUUID UUID] UUIDString]];
+//        [newNote setTimeStamp:[NSDate date]];
+//        [newNote setCreationDate:[NSDate date]];
         textNoteEditor.editedNote = newNote;
         textNoteEditor.moc = appDelegate.coreDataController.mainThreadContext;
     }
-    if ([[segue identifier] isEqualToString:@"AddImageNote"])
-    {
-        IAMNoteEdit *imageNoteEditor = [segue destinationViewController];
-        // Create a new note
-        IAMAppDelegate *appDelegate = (IAMAppDelegate *)[[UIApplication sharedApplication] delegate];
-        Note *newNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:appDelegate.coreDataController.mainThreadContext];
-        newNote.text = @"";
-        newNote.title = @"";
-        newNote.link = @"";
-        newNote.uuid = [[NSUUID UUID] UUIDString];
-        newNote.timeStamp = newNote.creationDate = [NSDate date];
-        newNote.image = UIImagePNGRepresentation(self.pickedImage);
-        newNote.thumbnail = UIImagePNGRepresentation([self.pickedImage roundedThumbnail:88 withFixedScale:YES cornerSize:5 borderSize:0]);
-        imageNoteEditor.editedNote = newNote;
-        imageNoteEditor.moc = appDelegate.coreDataController.mainThreadContext;
-    }
-    if ([[segue identifier] isEqualToString:@"EditNote"] || [[segue identifier] isEqualToString:@"EditImageNote"])
+    if ([[segue identifier] isEqualToString:@"EditNote"])
     {
         IAMNoteEdit *textNoteEditor = [segue destinationViewController];
         Note *selectedNote =  [[self fetchedResultsController] objectAtIndexPath:self.tableView.indexPathForSelectedRow];
@@ -463,7 +443,6 @@
                                              destructiveButtonTitle:nil
                                                   otherButtonTitles:NSLocalizedString(@"Text Note", nil), b1, b2, b3, nil];
     [chooseIt showInView:self.view];
-//    [chooseIt showFromToolbar:self.navigationController.toolbar];
 }
 
 #pragma mark UIActionSheetDelegate

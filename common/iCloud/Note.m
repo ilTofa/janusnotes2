@@ -2,7 +2,7 @@
 //  Note.m
 //  I Am Mine
 //
-//  Created by Giacomo Tufano on 18/02/13.
+//  Created by Giacomo Tufano on 04/03/13.
 //  Copyright (c) 2013 Giacomo Tufano. All rights reserved.
 //
 
@@ -12,17 +12,32 @@
 @implementation Note
 
 @dynamic attributedText;
-@dynamic image;
-@dynamic link;
 @dynamic creationDate;
+@dynamic sectionIdentifier;
+@dynamic primitiveSectionIdentifier;
 @dynamic text;
-@dynamic timeStamp, primitiveTimeStamp, sectionIdentifier, primitiveSectionIdentifier;
+@dynamic timeStamp;
+@dynamic primitiveTimeStamp;
 @dynamic title;
-@dynamic thumbnail;
 @dynamic uuid;
+@dynamic attachment;
 
-#pragma mark -
-#pragma mark Transient properties
+
+#pragma mark - awakeFromInsert: setup initial values
+
+- (void) awakeFromInsert
+{
+    [super awakeFromInsert];
+    [self setText:@""];
+    [self setAttributedText:[[NSAttributedString alloc] initWithString:@""]];
+    [self setTitle:NSLocalizedString(@"New note", nil)];
+    [self setUuid:[[NSUUID UUID] UUIDString]];
+    [self setTimeStamp:[NSDate date]];
+    [self setCreationDate:[NSDate date]];
+    [self setAttachment:nil];
+}
+
+#pragma mark - Transient properties
 
 - (NSString *)sectionIdentifier
 {
@@ -44,8 +59,7 @@
 }
 
 
-#pragma mark -
-#pragma mark Time stamp setter
+#pragma mark - Time stamp setter
 
 - (void)setTimeStamp:(NSDate *)newDate {
     
@@ -57,8 +71,7 @@
 }
 
 
-#pragma mark -
-#pragma mark Key path dependencies
+#pragma mark - Key path dependencies
 
 + (NSSet *)keyPathsForValuesAffectingSectionIdentifier {
     // If the value of timeStamp changes, the section identifier may change as well.
