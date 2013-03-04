@@ -526,7 +526,7 @@ static NSOperationQueue *_presentedItemOperationQueue;
             {
                 if ([note.uuid isEqualToString:prevNote.uuid])
                 {
-                    if ([note.modified compare:prevNote.modified] == NSOrderedAscending)
+                    if ([note.creationDate compare:prevNote.creationDate] == NSOrderedAscending)
                     {
                         [moc deleteObject:note];
                     }

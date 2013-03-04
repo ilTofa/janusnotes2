@@ -15,7 +15,7 @@
 @property (nonatomic, retain) NSAttributedString * attributedText;
 @property (nonatomic, retain) NSData * image;
 @property (nonatomic, retain) NSString * link;
-@property (nonatomic, retain) NSDate * modified;
+@property (nonatomic, retain) NSDate * creationDate;
 @property (nonatomic, retain) NSString * text;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSData * thumbnail;

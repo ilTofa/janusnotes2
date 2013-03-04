@@ -20,15 +20,15 @@
     ihours = ihours - idays * 24;
     NSString *timePassed;
     if(idays > 1)
-        timePassed = [NSString stringWithFormat:@"%d days ago", idays];
+        timePassed = [NSString stringWithFormat:@"%dd ago", idays];
     else if(idays == 1)
         timePassed = @"yesterday";
     else if(ihours == 0 && iminutes == 0)
         timePassed = @"now";
     else if(ihours == 0)
-        timePassed = [NSString stringWithFormat:@"%d minutes ago", iminutes];
+        timePassed = [NSString stringWithFormat:@"%dm ago", iminutes];
     else
-        timePassed = [NSString stringWithFormat:@"%d hours %d minutes ago", ihours, iminutes];
+        timePassed = [NSString stringWithFormat:@"%dh %dm ago", ihours, iminutes];
     return timePassed;
 }
 

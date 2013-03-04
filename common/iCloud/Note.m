@@ -14,7 +14,7 @@
 @dynamic attributedText;
 @dynamic image;
 @dynamic link;
-@dynamic modified;
+@dynamic creationDate;
 @dynamic text;
 @dynamic timeStamp, primitiveTimeStamp, sectionIdentifier, primitiveSectionIdentifier;
 @dynamic title;

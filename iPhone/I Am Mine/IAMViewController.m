@@ -277,10 +277,10 @@
         cell.textLabel.text = note.text;
         cell.textLabel.textColor = self.appDelegate.textColor;
     }
-    if(fabs([note.timeStamp timeIntervalSinceDate:note.modified]) < 2)
+    if(fabs([note.timeStamp timeIntervalSinceDate:note.creationDate]) < 2)
         cell.dateLabel.text = [NSString stringWithFormat:@"%@", [self.dateFormatter stringFromDate:note.timeStamp]];
     else
-        cell.dateLabel.text = [NSString stringWithFormat:@"%@, modified %@", [self.dateFormatter stringFromDate:note.timeStamp], [note.modified gt_timePassed]];
+        cell.dateLabel.text = [NSString stringWithFormat:@"%@, modified %@", [self.dateFormatter stringFromDate:note.timeStamp], [note.creationDate gt_timePassed]];
     cell.dateLabel.textColor = self.appDelegate.textColor;
     cell.titleLabel.font = [UIFont gt_getStandardFontWithFaceID:[UIFont gt_getStandardFontFaceIdFromUserDefault] andSize:17];
     cell.textLabel.font = [UIFont gt_getStandardFontWithFaceID:[UIFont gt_getStandardFontFaceIdFromUserDefault] andSize:12];
@@ -402,7 +402,7 @@
         newNote.title = @"";
         newNote.link = @"";
         newNote.uuid = [[NSUUID UUID] UUIDString];
-        newNote.timeStamp = newNote.modified = [NSDate date];
+        newNote.timeStamp = newNote.creationDate = [NSDate date];
         textNoteEditor.editedNote = newNote;
         textNoteEditor.moc = appDelegate.coreDataController.mainThreadContext;
     }
@@ -416,7 +416,7 @@
         newNote.title = @"";
         newNote.link = @"";
         newNote.uuid = [[NSUUID UUID] UUIDString];
-        newNote.timeStamp = newNote.modified = [NSDate date];
+        newNote.timeStamp = newNote.creationDate = [NSDate date];
         newNote.image = UIImagePNGRepresentation(self.pickedImage);
         newNote.thumbnail = UIImagePNGRepresentation([self.pickedImage roundedThumbnail:88 withFixedScale:YES cornerSize:5 borderSize:0]);
         imageNoteEditor.editedNote = newNote;
@@ -426,7 +426,7 @@
     {
         IAMNoteEdit *textNoteEditor = [segue destinationViewController];
         Note *selectedNote =  [[self fetchedResultsController] objectAtIndexPath:self.tableView.indexPathForSelectedRow];
-        selectedNote.modified = [NSDate date];
+        selectedNote.timeStamp = [NSDate date];
         textNoteEditor.editedNote = selectedNote;
         textNoteEditor.moc = self.managedObjectContext;
     }
