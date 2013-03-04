@@ -15,7 +15,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *titleEdit;
 @property (weak, nonatomic) IBOutlet UITextView *textEdit;
 @property (weak, nonatomic) IBOutlet UIImageView *greyRowImage;
-@property (weak, nonatomic) IBOutlet UIImageView *imageThumbnail;
 
 
 // The edited note and the corresponding moc

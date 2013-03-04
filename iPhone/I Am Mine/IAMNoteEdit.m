@@ -76,8 +76,13 @@
     {
         DLog(@"This is textViewDidBeginEditing: for the main text editor");
         self.oldFrame = textView.frame;
-        [textView setFrame:[self gt_maximumUsableFrame]];
-        self.greyRowImage.hidden = self.titleEdit.hidden = self.imageThumbnail.hidden = YES;
+        [UIView animateWithDuration:0.5 animations:^{
+            [textView setFrame:[self gt_maximumUsableFrame]];
+            self.greyRowImage.alpha = self.titleEdit.alpha = 0.0;
+        }
+                         completion:^(BOOL finished){
+                             self.greyRowImage.hidden = self.titleEdit.hidden = YES;
+                         }];
         self.navigationItem.rightBarButtonItems = nil;
         self.navigationItem.rightBarButtonItem = self.doneButton;
     }
@@ -89,8 +94,11 @@
     if(textView == self.textEdit)
     {
         DLog(@"This is textViewDidEndEditing: for the main text editor");
-        [textView setFrame:self.oldFrame];
-        self.greyRowImage.hidden = self.titleEdit.hidden = self.imageThumbnail.hidden = NO;
+        self.greyRowImage.hidden = self.titleEdit.hidden = NO;
+        [UIView animateWithDuration:0.5 animations:^{
+            [textView setFrame:self.oldFrame];
+            self.greyRowImage.alpha = self.titleEdit.alpha = 1.0;
+        }];
         NSArray *rightButtons = @[self.saveButton, [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(shareAction:)]];
         self.navigationItem.rightBarButtonItems = rightButtons;
     }
