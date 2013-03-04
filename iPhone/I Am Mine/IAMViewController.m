@@ -393,12 +393,6 @@
         // Create a new note
         IAMAppDelegate *appDelegate = (IAMAppDelegate *)[[UIApplication sharedApplication] delegate];
         Note *newNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:appDelegate.coreDataController.mainThreadContext];
-//        [newNote setText:@""];
-//        [newNote setAttributedText:[[NSAttributedString alloc] initWithString:@""]];
-//        [newNote setTitle:NSLocalizedString(@"New note", nil)];
-//        [newNote setUuid:[[NSUUID UUID] UUIDString]];
-//        [newNote setTimeStamp:[NSDate date]];
-//        [newNote setCreationDate:[NSDate date]];
         textNoteEditor.editedNote = newNote;
         textNoteEditor.moc = appDelegate.coreDataController.mainThreadContext;
     }

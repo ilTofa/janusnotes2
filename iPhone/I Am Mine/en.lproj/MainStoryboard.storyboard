@@ -78,12 +78,12 @@ Label riga 3</string>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="N2Q-cH-vbh">
                             <connections>
                                 <action selector="addNote:" destination="2" id="iSi-ic-3bm"/>
+                                <segue destination="aYD-Rr-6C9" kind="push" identifier="AddTextNote" id="klE-Tc-QFq"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="searchBar" destination="S1E-lU-tyc" id="FDm-If-qSz"/>
-                        <segue destination="aYD-Rr-6C9" kind="push" identifier="AddTextNote" id="yBH-q9-jqE"/>
                         <segue destination="h9Z-1e-A0P" kind="push" identifier="Preferences" id="LMA-Aw-2O7"/>
                     </connections>
                 </viewController>
@@ -370,7 +370,7 @@ Label riga 3</string>
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="1075" y="101"/>
+            <point key="canvasLocation" x="912" y="101"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Z0j-FR-EXT">
@@ -430,6 +430,7 @@ Label riga 3</string>
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IAMViewController.h"/>
             <relationships>
                 <relationship kind="action" name="addNote:"/>
+                <relationship kind="action" name="launchPreferences:"/>
                 <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
             </relationships>
         </class>
@@ -440,6 +441,6 @@ Label riga 3</string>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="yBH-q9-jqE"/>
+        <segue reference="klE-Tc-QFq"/>
     </inferredMetricsTieBreakers>
 </document>
