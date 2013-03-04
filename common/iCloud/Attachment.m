@@ -21,4 +21,13 @@
 @dynamic filename;
 @dynamic note;
 
+#pragma mark - awakeFromInsert: setup initial values
+
+- (void) awakeFromInsert
+{
+    [super awakeFromInsert];
+    [self setUuid:[[NSUUID UUID] UUIDString]];
+    [self setCreationDate:[NSDate date]];
+}
+
 @end

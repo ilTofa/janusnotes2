@@ -16,11 +16,13 @@
 @property (weak, nonatomic) IBOutlet UITextView *textEdit;
 @property (weak, nonatomic) IBOutlet UIImageView *greyRowImage;
 
+@property (weak, nonatomic) IBOutlet UILabel *attachmentQuantityLabel;
 
 // The edited note and the corresponding moc
 @property Note *editedNote;
 @property NSManagedObjectContext *moc;
 
 - (IBAction)save:(id)sender;
+- (IBAction)addAttachmentToNote:(id)sender;
 
 @end

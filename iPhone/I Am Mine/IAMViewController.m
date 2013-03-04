@@ -8,8 +8,6 @@
 
 #import "IAMViewController.h"
 
-#import <MobileCoreServices/MobileCoreServices.h>
-
 #import "IAMAppDelegate.h"
 #import "IAMNoteCell.h"
 #import "Note.h"
@@ -18,12 +16,10 @@
 #import "UIFont+GTFontMapper.h"
 #import "NSDate+PassedTime.h"
 
-@interface IAMViewController () <UIImagePickerControllerDelegate, UIActionSheetDelegate, UISearchBarDelegate, NSFetchedResultsControllerDelegate, UINavigationControllerDelegate>
+@interface IAMViewController () <UISearchBarDelegate, NSFetchedResultsControllerDelegate>
 
 @property (nonatomic) NSDateFormatter *dateFormatter;
 
-@property int textSelector, cameraSelector, librarySelector, savedAlbumsSelector;
-@property UIImage *pickedImage;
 @property IAMAppDelegate *appDelegate;
 
 @end
@@ -389,20 +385,20 @@
 {
     if ([[segue identifier] isEqualToString:@"AddTextNote"])
     {
-        IAMNoteEdit *textNoteEditor = [segue destinationViewController];
+        IAMNoteEdit *noteEditor = [segue destinationViewController];
         // Create a new note
         IAMAppDelegate *appDelegate = (IAMAppDelegate *)[[UIApplication sharedApplication] delegate];
         Note *newNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:appDelegate.coreDataController.mainThreadContext];
-        textNoteEditor.editedNote = newNote;
-        textNoteEditor.moc = appDelegate.coreDataController.mainThreadContext;
+        noteEditor.editedNote = newNote;
+        noteEditor.moc = appDelegate.coreDataController.mainThreadContext;
     }
     if ([[segue identifier] isEqualToString:@"EditNote"])
     {
-        IAMNoteEdit *textNoteEditor = [segue destinationViewController];
+        IAMNoteEdit *noteEditor = [segue destinationViewController];
         Note *selectedNote =  [[self fetchedResultsController] objectAtIndexPath:self.tableView.indexPathForSelectedRow];
         selectedNote.timeStamp = [NSDate date];
-        textNoteEditor.editedNote = selectedNote;
-        textNoteEditor.moc = self.managedObjectContext;
+        noteEditor.editedNote = selectedNote;
+        noteEditor.moc = self.managedObjectContext;
     }
 }
 
@@ -410,95 +406,5 @@
 {
     [self performSegueWithIdentifier:@"Preferences" sender:self];
 }
-
-- (IBAction)addNote:(id)sender
-{
-    // Check what the client have.
-    BOOL library = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary];
-    BOOL camera = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
-    NSString *b1, *b2, *b3;
-    if(library) {
-        b1 = @"Image from Library";
-        self.librarySelector = 1;
-        if(camera) {
-            b2 = @"Image from Camera";
-            self.cameraSelector = 2;
-        }
-    } else if(camera) {
-        b1 = @"Image from Camera";
-        self.cameraSelector = 1;
-    } else {
-        // If no images go with text note
-        [self actionSheet:nil clickedButtonAtIndex:0];
-    }
-    UIActionSheet *chooseIt = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"New Note", nil)
-                                                           delegate:self
-                                                  cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
-                                             destructiveButtonTitle:nil
-                                                  otherButtonTitles:NSLocalizedString(@"Text Note", nil), b1, b2, b3, nil];
-    [chooseIt showInView:self.view];
-}
-
-#pragma mark UIActionSheetDelegate
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    DLog(@"Clicked button at index %d", buttonIndex);
-    if(buttonIndex == 0) {
-        DLog(@"Text requested");
-        [self performSegueWithIdentifier:@"AddTextNote" sender:self];
-    } else if (buttonIndex == self.librarySelector) {
-        DLog(@"Library requested");
-        [self showMediaPickerFor:UIImagePickerControllerSourceTypePhotoLibrary];
-    } else if (buttonIndex == self.cameraSelector) {
-        DLog(@"Camera requested");
-        [self showMediaPickerFor:UIImagePickerControllerSourceTypeCamera];
-    } else if (buttonIndex == self.savedAlbumsSelector) {
-        DLog(@"Saved album selected");
-        [self showMediaPickerFor:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
-    } else {
-        DLog(@"Cancel selected");
-    }
-}
-
--(void)showMediaPickerFor:(UIImagePickerControllerSourceType)type
-{
-	UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
-	imagePicker.delegate = self;
-	imagePicker.sourceType = type;
-    [self presentViewController:imagePicker animated:YES completion:^{}];
-}
-
-#pragma mark UIImagePickerControllerDelegate
-
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
-	// MediaType can be kUTTypeImage or kUTTypeMovie. If it's a movie then you
-    // can get the URL to the actual file itself. This example only looks for images.
-    NSLog(@"info: %@", info);
-    NSString* mediaType = info[UIImagePickerControllerMediaType];
-    // Try getting the edited image first. If it doesn't exist then you get the
-    // original image.
-    //
-    if (CFStringCompare((CFStringRef) mediaType, kUTTypeImage, 0) == kCFCompareEqualTo)
-	{
-        self.pickedImage = info[UIImagePickerControllerEditedImage];
-        if (!self.pickedImage)
-			self.pickedImage = info[UIImagePickerControllerOriginalImage];
-        [picker dismissViewControllerAnimated:YES completion:^{}];
-        [self performSegueWithIdentifier:@"AddImageNote" sender:self];
-    }
-	else
-	{
-		// user don't want to do something, dismiss
-        [picker dismissViewControllerAnimated:YES completion:^{}];
-	}
-}
-
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
-{
-    [picker dismissViewControllerAnimated:YES completion:^{}];
-}
-
 
 @end

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2057" systemVersion="12C2034" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Attachment" representedClassName="Attachment" syncable="YES">
-        <attribute name="creationDate" attributeType="String" syncable="YES"/>
+        <attribute name="creationDate" attributeType="Date" syncable="YES"/>
         <attribute name="data" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="extension" attributeType="String" syncable="YES"/>
         <attribute name="filename" optional="YES" attributeType="String" syncable="YES"/>

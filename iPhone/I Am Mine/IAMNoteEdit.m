@@ -8,16 +8,21 @@
 
 #import "IAMNoteEdit.h"
 
+#import <MobileCoreServices/MobileCoreServices.h>
+
 #import "IAMAppDelegate.h"
 #import "UIFont+GTFontMapper.h"
 #import "UIViewController+GTFrames.h"
+#import "Attachment.h"
 
-@interface IAMNoteEdit () <UITextViewDelegate>
+@interface IAMNoteEdit () <UITextViewDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @property IAMAppDelegate *appDelegate;
 @property CGRect oldFrame;
 @property UIBarButtonItem *doneButton;
 @property UIBarButtonItem *saveButton;
+
+@property int textSelector, cameraSelector, librarySelector, savedAlbumsSelector;
 
 @end
 
@@ -51,6 +56,8 @@
     self.textEdit.font = [UIFont gt_getStandardFontFromUserDefault];
     self.titleEdit.textColor = self.textEdit.textColor = self.appDelegate.textColor;
     self.view.backgroundColor = self.appDelegate.backgroundColor;
+    // Set attachment quantity
+    self.attachmentQuantityLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Attachments: %lu", nil), [self.editedNote.attachment count]];
     // If this is a new note, set the cursor on title field
     if([self.titleEdit.text isEqualToString:@""])
         [self.titleEdit becomeFirstResponder];
@@ -146,6 +153,108 @@
     // If called via action
     if(sender)
         [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+- (IBAction)addAttachmentToNote:(id)sender
+{
+    // Check what the client have.
+    BOOL library = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary];
+    BOOL camera = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
+    NSString *b1, *b2;
+    if(library) {
+        b1 = NSLocalizedString(@"Image from Library", nil);
+        self.librarySelector = 1;
+        if(camera) {
+            b2 = NSLocalizedString(@"Image from Camera", nil);
+            self.cameraSelector = 2;
+        }
+    } else if(camera) {
+        b1 = NSLocalizedString(@"Image from Camera", nil);
+        self.cameraSelector = 1;
+    } else {
+        // If no images go with link
+        [self actionSheet:nil clickedButtonAtIndex:0];
+    }
+    UIActionSheet *chooseIt = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"New Attachment", nil)
+                                                          delegate:self
+                                                 cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                                            destructiveButtonTitle:nil
+                                                 otherButtonTitles:NSLocalizedString(@"Link", nil), b1, b2, nil];
+    [chooseIt showInView:self.view];
+}
+
+#pragma mark UIActionSheetDelegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    DLog(@"Clicked button at index %d", buttonIndex);
+    if(buttonIndex == 0) {
+        DLog(@"Link requested");
+//        [self performSegueWithIdentifier:@"AddTextNote" sender:self];
+    } else if (buttonIndex == self.librarySelector) {
+        DLog(@"Library requested");
+        [self showMediaPickerFor:UIImagePickerControllerSourceTypePhotoLibrary];
+    } else if (buttonIndex == self.cameraSelector) {
+        DLog(@"Camera requested");
+        [self showMediaPickerFor:UIImagePickerControllerSourceTypeCamera];
+    } else if (buttonIndex == self.savedAlbumsSelector) {
+        DLog(@"Saved album selected");
+        [self showMediaPickerFor:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
+    } else {
+        DLog(@"Cancel selected");
+    }
+}
+
+-(void)showMediaPickerFor:(UIImagePickerControllerSourceType)type
+{
+	UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+	imagePicker.delegate = self;
+	imagePicker.sourceType = type;
+    [self presentViewController:imagePicker animated:YES completion:^{}];
+}
+
+#pragma mark UIImagePickerControllerDelegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+	// MediaType can be kUTTypeImage or kUTTypeMovie. If it's a movie then you
+    // can get the URL to the actual file itself. This example only looks for images.
+    NSLog(@"info: %@", info);
+    NSString* mediaType = info[UIImagePickerControllerMediaType];
+    // Try getting the edited image first. If it doesn't exist then you get the
+    // original image.
+    //
+    if (CFStringCompare((CFStringRef) mediaType, kUTTypeImage, 0) == kCFCompareEqualTo)
+	{
+        UIImage *pickedImage = info[UIImagePickerControllerEditedImage];
+        if (!pickedImage)
+			pickedImage = info[UIImagePickerControllerOriginalImage];
+        [picker dismissViewControllerAnimated:YES completion:^{}];
+        // Now add attachment...
+        Attachment *newAttachment = [NSEntityDescription insertNewObjectForEntityForName:@"Attachment" inManagedObjectContext:self.moc];
+        newAttachment.uti = (__bridge NSString *)(kUTTypeImage);
+        newAttachment.extension = (__bridge_transfer NSString *)UTTypeCopyPreferredTagWithClass(kUTTypeImage, kUTTagClassFilenameExtension);
+        if(!newAttachment.extension)
+            newAttachment.extension = @"png";
+        newAttachment.filename = @"";
+        newAttachment.type = @"Image";
+        newAttachment.data = UIImagePNGRepresentation(pickedImage);
+        // Now link attachment to the note
+        newAttachment.note = self.editedNote;
+        [self.editedNote addAttachmentObject:newAttachment];
+        self.attachmentQuantityLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Attachments: %lu", nil), [self.editedNote.attachment count]];
+        // Don't save now... the moc will be saved on exit.
+    }
+	else
+	{
+		// user don't want to do something, dismiss
+        [picker dismissViewControllerAnimated:YES completion:^{}];
+	}
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [picker dismissViewControllerAnimated:YES completion:^{}];
 }
 
 - (IBAction)shareAction:(id)sender
