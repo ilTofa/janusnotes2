@@ -439,9 +439,7 @@ Label riga 3</string>
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IAMNoteEdit.h"/>
             <relationships>
                 <relationship kind="action" name="addAttachmentToNote:"/>
-                <relationship kind="action" name="done:"/>
                 <relationship kind="action" name="save:"/>
-                <relationship kind="action" name="shareAction:"/>
                 <relationship kind="outlet" name="attachmentQuantityLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="greyRowImage" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="textEdit" candidateClass="UITextView"/>
