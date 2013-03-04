@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2057" systemVersion="12C2034" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Attachment" syncable="YES">
-        <attribute name="creationDate" attributeType="Date" syncable="YES"/>
+    <entity name="Attachment" representedClassName="Attachment" syncable="YES">
+        <attribute name="creationDate" attributeType="String" syncable="YES"/>
         <attribute name="data" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <attribute name="extension" attributeType="String" syncable="YES"/>
+        <attribute name="filename" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" attributeType="String" defaultValueString="image" syncable="YES"/>
-        <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uti" attributeType="String" syncable="YES"/>
+        <attribute name="uuid" attributeType="String" syncable="YES"/>
         <relationship name="note" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Note" inverseName="attachment" inverseEntity="Note" syncable="YES"/>
     </entity>
     <entity name="Note" representedClassName="Note" syncable="YES">
@@ -24,6 +27,6 @@
     <configuration name="LocalConfig"/>
     <elements>
         <element name="Note" positionX="0" positionY="0" width="128" height="165"/>
-        <element name="Attachment" positionX="160" positionY="192" width="128" height="120"/>
+        <element name="Attachment" positionX="160" positionY="192" width="128" height="165"/>
     </elements>
 </model>

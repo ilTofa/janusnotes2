@@ -16,7 +16,10 @@
 @property (nonatomic, retain) NSString * type;
 @property (nonatomic, retain) NSString * uuid;
 @property (nonatomic, retain) NSData * data;
-@property (nonatomic, retain) NSDate * creationDate;
+@property (nonatomic, retain) NSString * creationDate;
+@property (nonatomic, retain) NSString * uti;
+@property (nonatomic, retain) NSString * extension;
+@property (nonatomic, retain) NSString * filename;
 @property (nonatomic, retain) Note *note;
 
 @end

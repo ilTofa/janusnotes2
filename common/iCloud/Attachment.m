@@ -16,6 +16,9 @@
 @dynamic uuid;
 @dynamic data;
 @dynamic creationDate;
+@dynamic uti;
+@dynamic extension;
+@dynamic filename;
 @dynamic note;
 
 @end
