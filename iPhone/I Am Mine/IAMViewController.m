@@ -278,7 +278,7 @@
         cell.textLabel.textColor = self.appDelegate.textColor;
     }
     if(fabs([note.timeStamp timeIntervalSinceDate:note.creationDate]) < 2)
-        cell.dateLabel.text = [NSString stringWithFormat:@"%@", [self.dateFormatter stringFromDate:note.timeStamp]];
+        cell.dateLabel.text = [NSString stringWithFormat:@"%@, never modified", [self.dateFormatter stringFromDate:note.timeStamp]];
     else
         cell.dateLabel.text = [NSString stringWithFormat:@"%@, modified %@", [self.dateFormatter stringFromDate:note.timeStamp], [note.creationDate gt_timePassed]];
     cell.dateLabel.textColor = self.appDelegate.textColor;
