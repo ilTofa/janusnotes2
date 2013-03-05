@@ -83,7 +83,7 @@
     {
         DLog(@"This is textViewDidBeginEditing: for the main text editor");
         self.oldFrame = textView.frame;
-        [UIView animateWithDuration:0.5 animations:^{
+        [UIView animateWithDuration:0.2 animations:^{
             [textView setFrame:[self gt_maximumUsableFrame]];
             self.greyRowImage.alpha = self.titleEdit.alpha = 0.0;
         }
@@ -102,7 +102,7 @@
     {
         DLog(@"This is textViewDidEndEditing: for the main text editor");
         self.greyRowImage.hidden = self.titleEdit.hidden = NO;
-        [UIView animateWithDuration:0.5 animations:^{
+        [UIView animateWithDuration:0.2 animations:^{
             [textView setFrame:self.oldFrame];
             self.greyRowImage.alpha = self.titleEdit.alpha = 1.0;
         }];
@@ -147,9 +147,7 @@
     self.editedNote.text = self.textEdit.attributedText.string;
     NSError *error;
     if(![self.moc save:&error])
-    {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-    }
     // If called via action
     if(sender)
         [self.navigationController popToRootViewControllerAnimated:YES];

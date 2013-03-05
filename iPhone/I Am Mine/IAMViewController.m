@@ -56,8 +56,10 @@
 {
     DLog(@"This is IAMViewController:viewDidAppear:");
     [super viewDidAppear:animated];
+    // If we're getting back from an edit without saving...
+    if([self.managedObjectContext hasChanges])
+        [self.managedObjectContext rollback];
     [self colorize];
-    [self.managedObjectContext rollback];
 }
 
 -(void)colorize
@@ -66,7 +68,7 @@
     [self.navigationController.navigationBar setTintColor:self.appDelegate.tintColor];
     [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
     [self.searchBar setTintColor:self.appDelegate.tintColor];
-    [self.tableView reloadData];
+//    [self.tableView reloadData];
 }
 
 #pragma mark -
@@ -249,6 +251,7 @@
             break;
             
         case NSFetchedResultsChangeUpdate:
+            DLog(@"Calling configureCell: from didChangeObject:");
             [self configureCell:(IAMNoteCell *)[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
             break;
     }
@@ -267,9 +270,9 @@
     cell.titleLabel.textColor = self.appDelegate.textColor;
     cell.titleLabel.font = [UIFont gt_getStandardFontWithFaceID:[UIFont gt_getStandardFontFaceIdFromUserDefault] andSize:17];
     cell.titleLabel.text = note.title;
-    cell.textLabel.textColor = self.appDelegate.textColor;
-    cell.textLabel.font = [UIFont gt_getStandardFontWithFaceID:[UIFont gt_getStandardFontFaceIdFromUserDefault] andSize:12];
-    cell.textLabel.text = note.text;
+    cell.noteTextLabel.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin;
+    cell.noteTextLabel.font = [UIFont gt_getStandardFontWithFaceID:[UIFont gt_getStandardFontFaceIdFromUserDefault] andSize:12];
+    cell.noteTextLabel.text = note.text;
     cell.dateLabel.textColor = cell.attachmentsQuantityLabel.textColor = self.appDelegate.textColor;
     cell.dateLabel.font = [UIFont gt_getStandardFontWithFaceID:[UIFont gt_getStandardFontFaceIdFromUserDefault] andSize:10];
     if(fabs([note.timeStamp timeIntervalSinceDate:note.creationDate]) < 2)
@@ -281,7 +284,6 @@
     if(note.attachment)
         attachmentsQuantity = [note.attachment count];
     cell.attachmentsQuantityLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%lu attachment(s)", nil), attachmentsQuantity];
-    
 }
 
 // Override to customize the look of a cell representing an object. The default is to display

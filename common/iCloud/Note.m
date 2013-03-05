@@ -30,7 +30,7 @@
     [super awakeFromInsert];
     [self setText:@""];
     [self setAttributedText:[[NSAttributedString alloc] initWithString:@""]];
-    [self setTitle:NSLocalizedString(@"New note", nil)];
+    [self setTitle:@""];
     [self setUuid:[[NSUUID UUID] UUIDString]];
     [self setTimeStamp:[NSDate date]];
     [self setCreationDate:[NSDate date]];

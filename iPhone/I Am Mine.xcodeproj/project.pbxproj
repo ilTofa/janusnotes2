@@ -167,7 +167,7 @@
 			name = "Utilities (common)";
 			sourceTree = "<group>";
 		};
-		649DCE9A16D28D30003F5A83 /* iCloud (common) */ = {
+		649DCE9A16D28D30003F5A83 /* CoreData (common) */ = {
 			isa = PBXGroup;
 			children = (
 				649DCEA116D29AAD003F5A83 /* CoreDataController.h */,
@@ -178,14 +178,14 @@
 				64F31CC216E4AF9000A80BE0 /* Note.h */,
 				64F31CC316E4AF9000A80BE0 /* Note.m */,
 			);
-			name = "iCloud (common)";
+			name = "CoreData (common)";
 			sourceTree = "<group>";
 		};
 		64A0506316D28CCA0025E179 = {
 			isa = PBXGroup;
 			children = (
 				64845FE316E019F20046BE9C /* Utilities (common) */,
-				649DCE9A16D28D30003F5A83 /* iCloud (common) */,
+				649DCE9A16D28D30003F5A83 /* CoreData (common) */,
 				64A0507516D28CCA0025E179 /* I Am Mine */,
 				64A0506E16D28CCA0025E179 /* Frameworks */,
 				64A0506D16D28CCA0025E179 /* Products */,
