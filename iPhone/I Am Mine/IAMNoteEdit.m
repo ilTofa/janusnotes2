@@ -15,13 +15,18 @@
 #import "UIViewController+GTFrames.h"
 #import "Attachment.h"
 #import "IAMAddLinkViewController.h"
+#import "IAMAttachmentCell.h"
 
-@interface IAMNoteEdit () <UITextViewDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, IAMAddLinkViewControllerDelegate>
+@interface IAMNoteEdit () <UITextViewDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, IAMAddLinkViewControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property IAMAppDelegate *appDelegate;
 @property CGRect oldFrame;
 @property UIBarButtonItem *doneButton;
 @property UIBarButtonItem *saveButton;
+
+@property NSArray *attachmentsArray;
+
+@property(nonatomic, weak) IBOutlet UICollectionView *collectionView;
 
 @end
 
@@ -54,7 +59,7 @@
     self.textEdit.attributedText = self.editedNote.attributedText;
     self.textEdit.font = [UIFont gt_getStandardFontFromUserDefault];
     self.titleEdit.textColor = self.textEdit.textColor = self.appDelegate.textColor;
-    self.view.backgroundColor = self.appDelegate.backgroundColor;
+    self.view.backgroundColor = self.collectionView.backgroundColor = self.appDelegate.backgroundColor;
     [self attachmentsInterfaceSetup];
     // If this is a new note, set the cursor on title field
     if([self.titleEdit.text isEqualToString:@""])
@@ -77,6 +82,7 @@
     // Set attachment quantity
     self.attachmentQuantityLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Files: %lu", nil), [self.editedNote.attachment count]];
     self.viewButton.enabled = (self.attachmentQuantityLabel != 0);
+    [self fetchAttachments];
 }
 
 #pragma mark - UiTextViewDelegate
@@ -311,5 +317,50 @@
         segueController.delegate = self;
     }
 }
+
+#pragma mark - UICollectionViewDataSource
+
+-(void)fetchAttachments
+{
+    self.attachmentsArray = [self.editedNote.attachment allObjects];
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    NSInteger retValue = [self.editedNote.attachment count];
+    DLog(@"This is collectionView:numberOfItemsInSection: called for section %d, returning %d", section, retValue);
+    return retValue;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    IAMAttachmentCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"AttachmentCell" forIndexPath:indexPath];
+    Attachment *attachment = self.attachmentsArray[indexPath.row];
+    cell.cellLabelView.text = attachment.type;
+    if([attachment.type isEqualToString:@"Link"]) {
+        cell.cellImageView.image = [UIImage imageNamed:@"link-icon-big"];
+    }
+    else {
+        cell.cellImageView.image = [[UIImage alloc] initWithData:attachment.data];
+    }
+    return cell;
+}
+
+#pragma mark - UICollectionViewDelegate
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    DLog(@"This is collectionView:didSelectItemAtIndexPath:%d", indexPath.row);
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
+    DLog(@"This is collectionView:didDeselectItemAtIndexPath:%d", indexPath.row);
+}
+
+#pragma mark – UICollectionViewDelegateFlowLayout
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    return CGSizeMake(100, 100);
+}
+
 
 @end

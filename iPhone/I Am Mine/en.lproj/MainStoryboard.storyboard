@@ -332,7 +332,7 @@ Label riga 3</string>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" usesAttributedText="YES" id="TM1-dV-cxf">
-                                <rect key="frame" x="0.0" y="34" width="320" height="470"/>
+                                <rect key="frame" x="0.0" y="34" width="320" height="318"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <attributedString key="attributedText">
                                     <fragment content=" ">
@@ -351,6 +351,50 @@ Label riga 3</string>
                                 <rect key="frame" x="0.0" y="34" width="320" height="2"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="JlD-hL-CQO">
+                                <rect key="frame" x="0.0" y="360" width="320" height="100"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.94999999999999996" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Xek-no-DBZ">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AttachmentCell" id="Yyb-F9-qMx" customClass="IAMAttachmentCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qAf-oe-zc7">
+                                                    <rect key="frame" x="2" y="2" width="96" height="14"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="5yb-gh-LVT">
+                                                    <rect key="frame" x="10" y="15" width="80" height="80"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <size key="customSize" width="100" height="100"/>
+                                        <connections>
+                                            <outlet property="cellImageView" destination="5yb-gh-LVT" id="ad4-04-lpT"/>
+                                            <outlet property="cellLabelView" destination="qAf-oe-zc7" id="EeS-3L-RCF"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="aYD-Rr-6C9" id="gRd-5U-FY1"/>
+                                    <outlet property="delegate" destination="aYD-Rr-6C9" id="dbA-Uk-QnA"/>
+                                </connections>
+                            </collectionView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="8XP-bN-WGI">
                                 <rect key="frame" x="0.0" y="460" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -404,6 +448,7 @@ Label riga 3</string>
                     <connections>
                         <outlet property="addImageButton" destination="ZOI-qk-nyn" id="jSU-2F-5e9"/>
                         <outlet property="attachmentQuantityLabel" destination="pov-IN-gep" id="j5i-RB-2tJ"/>
+                        <outlet property="collectionView" destination="JlD-hL-CQO" id="tEa-Cz-838"/>
                         <outlet property="greyRowImage" destination="PZq-Ci-A7X" id="Kxb-Ij-gVN"/>
                         <outlet property="textEdit" destination="TM1-dV-cxf" id="gVR-9d-Pjg"/>
                         <outlet property="titleEdit" destination="bFY-L8-a9Q" id="LV9-EX-IV6"/>
@@ -514,6 +559,13 @@ Label riga 3</string>
                 <relationship kind="outlet" name="linkEditor" candidateClass="UITextField"/>
             </relationships>
         </class>
+        <class className="IAMAttachmentCell" superclassName="UICollectionViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/IAMAttachmentCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="cellImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="cellLabelView" candidateClass="UILabel"/>
+            </relationships>
+        </class>
         <class className="IAMNoteCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IAMNoteCell.h"/>
             <relationships>
@@ -528,10 +580,13 @@ Label riga 3</string>
             <relationships>
                 <relationship kind="action" name="addImageToNote:"/>
                 <relationship kind="action" name="addLinkToNote:"/>
+                <relationship kind="action" name="done:"/>
                 <relationship kind="action" name="save:"/>
+                <relationship kind="action" name="shareAction:"/>
                 <relationship kind="action" name="viewAttachments:"/>
                 <relationship kind="outlet" name="addImageButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="attachmentQuantityLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="collectionView" candidateClass="UICollectionView"/>
                 <relationship kind="outlet" name="greyRowImage" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="textEdit" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="titleEdit" candidateClass="UITextField"/>
@@ -554,6 +609,15 @@ Label riga 3</string>
                 <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
             </relationships>
         </class>
+        <class className="UICollectionReusableView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionReusableView.h"/>
+        </class>
+        <class className="UICollectionViewCell" superclassName="UICollectionReusableView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewCell.h"/>
+        </class>
+        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
+        </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -561,6 +625,6 @@ Label riga 3</string>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="klE-Tc-QFq"/>
+        <segue reference="nBs-C7-sJp"/>
     </inferredMetricsTieBreakers>
 </document>
