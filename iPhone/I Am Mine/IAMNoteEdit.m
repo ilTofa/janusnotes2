@@ -51,8 +51,7 @@
     // Right button(s)
     self.saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save:)];
     self.doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];
-    NSArray *rightButtons = @[self.saveButton, [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(shareAction:)]];
-    self.navigationItem.rightBarButtonItems = rightButtons;
+    self.navigationItem.rightBarButtonItem = self.saveButton;
     // Preset the note
     self.titleEdit.text = self.editedNote.title;
     self.titleEdit.font = [UIFont gt_getStandardFontWithFaceID:[UIFont gt_getStandardFontFaceIdFromUserDefault] andSize:[UIFont gt_getStandardFontSizeFromUserDefault]+3];
@@ -81,8 +80,8 @@
 {
     // Set attachment quantity
     self.attachmentQuantityLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Files: %lu", nil), [self.editedNote.attachment count]];
-    self.viewButton.enabled = (self.attachmentQuantityLabel != 0);
-    [self fetchAttachments];
+    self.attachmentsArray = [self.editedNote.attachment allObjects];
+    [self.collectionView reloadData];
 }
 
 #pragma mark - UiTextViewDelegate
@@ -101,7 +100,6 @@
                          completion:^(BOOL finished){
                              self.greyRowImage.hidden = self.titleEdit.hidden = YES;
                          }];
-        self.navigationItem.rightBarButtonItems = nil;
         self.navigationItem.rightBarButtonItem = self.doneButton;
     }
 }
@@ -117,8 +115,7 @@
             [textView setFrame:self.oldFrame];
             self.greyRowImage.alpha = self.titleEdit.alpha = 1.0;
         }];
-        NSArray *rightButtons = @[self.saveButton, [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(shareAction:)]];
-        self.navigationItem.rightBarButtonItems = rightButtons;
+        self.navigationItem.rightBarButtonItem = self.saveButton;
     }
 }
 
@@ -186,12 +183,6 @@
         [alert show];
         [self.addImageButton setEnabled:NO];
     }
-}
-
-- (IBAction)addLinkToNote:(id)sender {
-}
-
-- (IBAction)viewAttachments:(id)sender {
 }
 
 #pragma mark UIActionSheetDelegate
@@ -267,18 +258,18 @@
     // Save (but not return)
     [self save:nil];
     NSMutableArray *activityItems = [[NSMutableArray alloc] initWithObjects:self.editedNote.title, self.editedNote.attributedText, nil];
-//    if(self.editedNote.image)
-//    {
-//        UIImage *imageToAdd = [UIImage imageWithData:self.editedNote.image];
-//        if(imageToAdd)
-//            [activityItems addObject:imageToAdd];
-//    }
-//    if(self.editedNote.link)
-//    {
-//        NSURL *linkToAdd = [NSURL URLWithString:self.editedNote.link];
-//        if(linkToAdd)
-//            [activityItems addObject:linkToAdd];
-//    }
+    // loop on the attachments...
+    for (Attachment *attachment in self.editedNote.attachment) {
+        if([attachment.type isEqualToString:@"Link"]) {
+            NSURL *linkToAdd = [NSURL URLWithString:[[NSString alloc] initWithData:attachment.data encoding:NSUTF8StringEncoding]];
+            if(linkToAdd)
+                [activityItems addObject:linkToAdd];
+        } else if([attachment.type isEqualToString:@"Image"]) {
+            UIImage *imageToAdd = [[UIImage alloc] initWithData:attachment.data];
+            if(imageToAdd)
+                [activityItems addObject:imageToAdd];
+        }
+    }
     UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
     activityVC.excludedActivityTypes = @[UIActivityTypeSaveToCameraRoll, UIActivityTypeAssignToContact, UIActivityTypePrint, UIActivityTypePostToWeibo];
     [self presentViewController:activityVC animated:TRUE completion:nil];
@@ -319,12 +310,6 @@
 }
 
 #pragma mark - UICollectionViewDataSource
-
--(void)fetchAttachments
-{
-    self.attachmentsArray = [self.editedNote.attachment allObjects];
-    [self.collectionView reloadData];
-}
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {

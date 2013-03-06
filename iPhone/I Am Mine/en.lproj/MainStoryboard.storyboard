@@ -405,11 +405,11 @@ Label riga 3</string>
                                 <items>
                                     <barButtonItem style="plain" id="g31-is-Azx">
                                         <view key="customView" contentMode="scaleToFill" id="qQm-Ou-cgo">
-                                            <rect key="frame" x="12" y="6" width="120" height="33"/>
+                                            <rect key="frame" x="12" y="6" width="80" height="33"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Attachments: 0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pov-IN-gep">
-                                                    <rect key="frame" x="0.0" y="6" width="120" height="21"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Files: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pov-IN-gep">
+                                                    <rect key="frame" x="0.0" y="6" width="80" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -420,9 +420,9 @@ Label riga 3</string>
                                         </view>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="gG8-NC-sNs"/>
-                                    <barButtonItem title="View" id="NqX-jG-BAT">
+                                    <barButtonItem systemItem="action" id="NqX-jG-BAT">
                                         <connections>
-                                            <action selector="viewAttachments:" destination="aYD-Rr-6C9" id="y5a-Cc-lTo"/>
+                                            <action selector="shareAction:" destination="aYD-Rr-6C9" id="Qwe-q8-fpm"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="oK3-Fa-IWM"/>
@@ -456,7 +456,6 @@ Label riga 3</string>
                         <outlet property="greyRowImage" destination="PZq-Ci-A7X" id="Kxb-Ij-gVN"/>
                         <outlet property="textEdit" destination="TM1-dV-cxf" id="gVR-9d-Pjg"/>
                         <outlet property="titleEdit" destination="bFY-L8-a9Q" id="LV9-EX-IV6"/>
-                        <outlet property="viewButton" destination="NqX-jG-BAT" id="8Se-aT-kbU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pfC-hY-1zX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -584,7 +583,9 @@ Label riga 3</string>
             <relationships>
                 <relationship kind="action" name="addImageToNote:"/>
                 <relationship kind="action" name="addLinkToNote:"/>
+                <relationship kind="action" name="done:"/>
                 <relationship kind="action" name="save:"/>
+                <relationship kind="action" name="shareAction:"/>
                 <relationship kind="action" name="viewAttachments:"/>
                 <relationship kind="outlet" name="addImageButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="attachmentQuantityLabel" candidateClass="UILabel"/>
