@@ -435,6 +435,9 @@ Label riga 3</string>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Cochin-Bold" family="Cochin" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" keyboardType="URL" returnKeyType="done"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Vge-sM-MRZ" id="IMK-M2-tXb"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="RXJ-St-pWW">
                                 <rect key="frame" x="227" y="279" width="73" height="44"/>
@@ -447,6 +450,9 @@ Label riga 3</string>
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="done:" destination="Vge-sM-MRZ" eventType="touchUpInside" id="fHM-7K-Pd4"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="yaN-5d-p2g">
                                 <rect key="frame" x="20" y="279" width="73" height="44"/>
@@ -459,6 +465,9 @@ Label riga 3</string>
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="cancel:" destination="Vge-sM-MRZ" eventType="touchUpInside" id="iK8-VZ-xQf"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.94999999999999996" alpha="1" colorSpace="calibratedWhite"/>
@@ -500,6 +509,8 @@ Label riga 3</string>
         <class className="IAMAddLinkViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IAMAddLinkViewController.h"/>
             <relationships>
+                <relationship kind="action" name="cancel:"/>
+                <relationship kind="action" name="done:"/>
                 <relationship kind="outlet" name="linkEditor" candidateClass="UITextField"/>
             </relationships>
         </class>
@@ -517,9 +528,7 @@ Label riga 3</string>
             <relationships>
                 <relationship kind="action" name="addImageToNote:"/>
                 <relationship kind="action" name="addLinkToNote:"/>
-                <relationship kind="action" name="done:"/>
                 <relationship kind="action" name="save:"/>
-                <relationship kind="action" name="shareAction:"/>
                 <relationship kind="action" name="viewAttachments:"/>
                 <relationship kind="outlet" name="addImageButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="attachmentQuantityLabel" candidateClass="UILabel"/>
@@ -542,7 +551,6 @@ Label riga 3</string>
         <class className="IAMViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IAMViewController.h"/>
             <relationships>
-                <relationship kind="action" name="launchPreferences:"/>
                 <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
             </relationships>
         </class>
