@@ -22,8 +22,6 @@
 @property UIBarButtonItem *doneButton;
 @property UIBarButtonItem *saveButton;
 
-@property int textSelector, cameraSelector, librarySelector, savedAlbumsSelector;
-
 @end
 
 @implementation IAMNoteEdit
@@ -56,8 +54,7 @@
     self.textEdit.font = [UIFont gt_getStandardFontFromUserDefault];
     self.titleEdit.textColor = self.textEdit.textColor = self.appDelegate.textColor;
     self.view.backgroundColor = self.appDelegate.backgroundColor;
-    // Set attachment quantity
-    self.attachmentQuantityLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Attachments: %lu", nil), [self.editedNote.attachment count]];
+    [self attachmentsInterfaceSetup];
     // If this is a new note, set the cursor on title field
     if([self.titleEdit.text isEqualToString:@""])
         [self.titleEdit becomeFirstResponder];
@@ -72,6 +69,13 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)attachmentsInterfaceSetup
+{
+    // Set attachment quantity
+    self.attachmentQuantityLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Files: %lu", nil), [self.editedNote.attachment count]];
+    self.viewButton.enabled = (self.attachmentQuantityLabel != 0);
 }
 
 #pragma mark - UiTextViewDelegate
@@ -153,32 +157,35 @@
         [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
-- (IBAction)addAttachmentToNote:(id)sender
+- (IBAction)addImageToNote:(id)sender
 {
     // Check what the client have.
     BOOL library = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary];
     BOOL camera = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
-    NSString *b1, *b2;
-    if(library) {
-        b1 = NSLocalizedString(@"Image from Library", nil);
-        self.librarySelector = 1;
-        if(camera) {
-            b2 = NSLocalizedString(@"Image from Camera", nil);
-            self.cameraSelector = 2;
-        }
-    } else if(camera) {
-        b1 = NSLocalizedString(@"Image from Camera", nil);
-        self.cameraSelector = 1;
+    if(library && camera) {
+        // Let the user choose
+        UIActionSheet *chooseIt = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"New Attachment", nil)
+                                                              delegate:self
+                                                     cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                                                destructiveButtonTitle:nil
+                                                     otherButtonTitles:NSLocalizedString(@"Image from Library", nil), NSLocalizedString(@"Image from Camera", nil), nil];
+        [chooseIt showInView:self.view];
+    } else if (camera) {
+        [self showMediaPickerFor:UIImagePickerControllerSourceTypeCamera];
+    } else if (library) {
+        [self showMediaPickerFor:UIImagePickerControllerSourceTypePhotoLibrary];
     } else {
-        // If no images go with link
-        [self actionSheet:nil clickedButtonAtIndex:0];
+        // If no images available, tell user and disable button...
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:NSLocalizedString(@"No images available on this device", nil) delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
+        [alert show];
+        [self.addImageButton setEnabled:NO];
     }
-    UIActionSheet *chooseIt = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"New Attachment", nil)
-                                                          delegate:self
-                                                 cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
-                                            destructiveButtonTitle:nil
-                                                 otherButtonTitles:NSLocalizedString(@"Link", nil), b1, b2, nil];
-    [chooseIt showInView:self.view];
+}
+
+- (IBAction)addLinkToNote:(id)sender {
+}
+
+- (IBAction)viewAttachments:(id)sender {
 }
 
 #pragma mark UIActionSheetDelegate
@@ -186,18 +193,12 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     DLog(@"Clicked button at index %d", buttonIndex);
-    if(buttonIndex == 0) {
-        DLog(@"Link requested");
-//        [self performSegueWithIdentifier:@"AddTextNote" sender:self];
-    } else if (buttonIndex == self.librarySelector) {
+    if (buttonIndex == 0) {
         DLog(@"Library requested");
         [self showMediaPickerFor:UIImagePickerControllerSourceTypePhotoLibrary];
-    } else if (buttonIndex == self.cameraSelector) {
+    } else if (buttonIndex == 1) {
         DLog(@"Camera requested");
         [self showMediaPickerFor:UIImagePickerControllerSourceTypeCamera];
-    } else if (buttonIndex == self.savedAlbumsSelector) {
-        DLog(@"Saved album selected");
-        [self showMediaPickerFor:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
     } else {
         DLog(@"Cancel selected");
     }
@@ -240,7 +241,7 @@
         // Now link attachment to the note
         newAttachment.note = self.editedNote;
         [self.editedNote addAttachmentObject:newAttachment];
-        self.attachmentQuantityLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Attachments: %lu", nil), [self.editedNote.attachment count]];
+        [self attachmentsInterfaceSetup];
         // Don't save now... the moc will be saved on exit.
     }
 	else

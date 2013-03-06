@@ -16,6 +16,8 @@
 @property (weak, nonatomic) IBOutlet UITextView *textEdit;
 @property (weak, nonatomic) IBOutlet UIImageView *greyRowImage;
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *addImageButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *viewButton;
 @property (weak, nonatomic) IBOutlet UILabel *attachmentQuantityLabel;
 
 // The edited note and the corresponding moc
@@ -23,6 +25,8 @@
 @property NSManagedObjectContext *moc;
 
 - (IBAction)save:(id)sender;
-- (IBAction)addAttachmentToNote:(id)sender;
+- (IBAction)addImageToNote:(id)sender;
+- (IBAction)addLinkToNote:(id)sender;
+- (IBAction)viewAttachments:(id)sender;
 
 @end
