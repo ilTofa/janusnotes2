@@ -39,6 +39,7 @@
 		64A0508916D28CCA0025E179 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64A0508716D28CCA0025E179 /* MainStoryboard.storyboard */; };
 		64A8A7DC16E738A30013AFFF /* link-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 64A8A7D816E738A30013AFFF /* link-icon.png */; };
 		64A8A7DD16E738A30013AFFF /* link-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64A8A7D916E738A30013AFFF /* link-icon@2x.png */; };
+		64A8A7E316E781EB0013AFFF /* IAMAddLinkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A8A7E216E781EB0013AFFF /* IAMAddLinkViewController.m */; };
 		64B9B4A516D7801100607F39 /* IAMNoteEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 64B9B4A416D7801100607F39 /* IAMNoteEdit.m */; };
 		64F31CC416E4AF9000A80BE0 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F31CC316E4AF9000A80BE0 /* Note.m */; };
 		64F31CCA16E5009B00A80BE0 /* Attachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F31CC916E5009B00A80BE0 /* Attachment.m */; };
@@ -89,6 +90,8 @@
 		64A0508A16D28CCA0025E179 /* IAMViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IAMViewController.h; sourceTree = "<group>"; };
 		64A8A7D816E738A30013AFFF /* link-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "link-icon.png"; path = "Images/link-icon.png"; sourceTree = "<group>"; };
 		64A8A7D916E738A30013AFFF /* link-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "link-icon@2x.png"; path = "Images/link-icon@2x.png"; sourceTree = "<group>"; };
+		64A8A7E116E781EB0013AFFF /* IAMAddLinkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMAddLinkViewController.h; sourceTree = "<group>"; };
+		64A8A7E216E781EB0013AFFF /* IAMAddLinkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMAddLinkViewController.m; sourceTree = "<group>"; };
 		64B9B4A316D7801100607F39 /* IAMNoteEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMNoteEdit.h; sourceTree = "<group>"; };
 		64B9B4A416D7801100607F39 /* IAMNoteEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMNoteEdit.m; sourceTree = "<group>"; };
 		64F31CC216E4AF9000A80BE0 /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Note.h; path = ../common/iCloud/Note.h; sourceTree = "<group>"; };
@@ -224,6 +227,8 @@
 				64A0508716D28CCA0025E179 /* MainStoryboard.storyboard */,
 				64B9B4A316D7801100607F39 /* IAMNoteEdit.h */,
 				64B9B4A416D7801100607F39 /* IAMNoteEdit.m */,
+				64A8A7E116E781EB0013AFFF /* IAMAddLinkViewController.h */,
+				64A8A7E216E781EB0013AFFF /* IAMAddLinkViewController.m */,
 				64A0508A16D28CCA0025E179 /* IAMViewController.h */,
 				6416315616D7DB830004CB52 /* IAMViewController.m */,
 				64027D7916DD7CB800DEA647 /* IAMPreferencesController.h */,
@@ -342,6 +347,7 @@
 				6433103E16E0A85D0064EC5C /* UIViewController+GTFrames.m in Sources */,
 				64F31CC416E4AF9000A80BE0 /* Note.m in Sources */,
 				64F31CCA16E5009B00A80BE0 /* Attachment.m in Sources */,
+				64A8A7E316E781EB0013AFFF /* IAMAddLinkViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
