@@ -14,8 +14,9 @@
 #import "UIFont+GTFontMapper.h"
 #import "UIViewController+GTFrames.h"
 #import "Attachment.h"
+#import "IAMAddLinkViewController.h"
 
-@interface IAMNoteEdit () <UITextViewDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface IAMNoteEdit () <UITextViewDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, IAMAddLinkViewControllerDelegate>
 
 @property IAMAppDelegate *appDelegate;
 @property CGRect oldFrame;
@@ -275,6 +276,40 @@
     UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
     activityVC.excludedActivityTypes = @[UIActivityTypeSaveToCameraRoll, UIActivityTypeAssignToContact, UIActivityTypePrint, UIActivityTypePostToWeibo];
     [self presentViewController:activityVC animated:TRUE completion:nil];
+}
+
+#pragma mark - IAMAddLinkViewControllerDelegate
+
+- (void)addLinkViewController:(IAMAddLinkViewController *)addLinkViewController didAddThisLink:(NSString *)theLink {
+    // Now add attachment...
+    DLog(@"This is addLinkViewController: didAddThisLink: for '%@'", theLink);
+    Attachment *newAttachment = [NSEntityDescription insertNewObjectForEntityForName:@"Attachment" inManagedObjectContext:self.moc];
+    newAttachment.uti = (__bridge NSString *)(kUTTypeURL);
+    newAttachment.extension = (__bridge_transfer NSString *)UTTypeCopyPreferredTagWithClass(kUTTypeURL, kUTTagClassFilenameExtension);
+    if(!newAttachment.extension)
+        newAttachment.extension = @"url";
+    newAttachment.filename = @"";
+    newAttachment.type = @"Link";
+    newAttachment.data = [theLink dataUsingEncoding:NSUTF8StringEncoding];
+    // Now link attachment to the note
+    newAttachment.note = self.editedNote;
+    [self.editedNote addAttachmentObject:newAttachment];
+    [self attachmentsInterfaceSetup];
+}
+
+- (void)addLinkViewControllerDidCancelAction:(IAMAddLinkViewController *)addLinkViewController {
+    DLog(@"This is addLinkViewControllerDidCancelAction:");
+}
+
+#pragma mark Segues
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"AddLink"])
+    {
+        IAMAddLinkViewController *segueController = [segue destinationViewController];
+        segueController.delegate = self;
+    }
 }
 
 @end
