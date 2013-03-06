@@ -323,6 +323,7 @@
 -(void)fetchAttachments
 {
     self.attachmentsArray = [self.editedNote.attachment allObjects];
+    [self.collectionView reloadData];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -332,23 +333,22 @@
     return retValue;
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     IAMAttachmentCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"AttachmentCell" forIndexPath:indexPath];
     Attachment *attachment = self.attachmentsArray[indexPath.row];
     cell.cellLabelView.text = attachment.type;
     if([attachment.type isEqualToString:@"Link"]) {
         cell.cellImageView.image = [UIImage imageNamed:@"link-icon-big"];
-    }
-    else {
+    } else if([attachment.type isEqualToString:@"Image"]) {
         cell.cellImageView.image = [[UIImage alloc] initWithData:attachment.data];
+    } else {
+        cell.cellImageView.image = [UIImage imageNamed:@"link-unknown-big"];
     }
     return cell;
 }
 
 #pragma mark - UICollectionViewDelegate
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     DLog(@"This is collectionView:didSelectItemAtIndexPath:%d", indexPath.row);
 }
 

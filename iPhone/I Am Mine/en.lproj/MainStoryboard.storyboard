@@ -395,6 +395,10 @@ Label riga 3</string>
                                     <outlet property="delegate" destination="aYD-Rr-6C9" id="dbA-Uk-QnA"/>
                                 </connections>
                             </collectionView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="SmallRow.png" id="DSt-ZI-WmB" userLabel="Grey Row">
+                                <rect key="frame" x="2" y="360" width="320" height="2"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="8XP-bN-WGI">
                                 <rect key="frame" x="0.0" y="460" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -580,9 +584,7 @@ Label riga 3</string>
             <relationships>
                 <relationship kind="action" name="addImageToNote:"/>
                 <relationship kind="action" name="addLinkToNote:"/>
-                <relationship kind="action" name="done:"/>
                 <relationship kind="action" name="save:"/>
-                <relationship kind="action" name="shareAction:"/>
                 <relationship kind="action" name="viewAttachments:"/>
                 <relationship kind="outlet" name="addImageButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="attachmentQuantityLabel" candidateClass="UILabel"/>
