@@ -315,7 +315,7 @@ Label riga 3</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o2w-Jm-mzu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="379" y="833"/>
+            <point key="canvasLocation" x="989" y="869"/>
         </scene>
         <!--Text Note Editor-->
         <scene sceneID="yJT-eO-p6A">
@@ -455,12 +455,70 @@ Label riga 3</string>
                         <outlet property="collectionView" destination="JlD-hL-CQO" id="tEa-Cz-838"/>
                         <outlet property="greyRowImage" destination="PZq-Ci-A7X" id="Kxb-Ij-gVN"/>
                         <outlet property="textEdit" destination="TM1-dV-cxf" id="gVR-9d-Pjg"/>
+                        <outlet property="theToolbar" destination="8XP-bN-WGI" id="ZnP-PN-B9M"/>
                         <outlet property="titleEdit" destination="bFY-L8-a9Q" id="LV9-EX-IV6"/>
+                        <segue destination="3ss-f5-lsw" kind="modal" identifier="AttachmentDetail" modalTransitionStyle="crossDissolve" id="Rey-xr-E5h"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pfC-hY-1zX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="912" y="101"/>
+        </scene>
+        <!--Attachment Detail-->
+        <scene sceneID="Yfa-sm-gLB">
+            <objects>
+                <viewController id="3ss-f5-lsw" userLabel="Attachment Detail" customClass="IAMAttachmentDetailViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5PS-Tb-738">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i60-nT-jQg">
+                                <rect key="frame" x="0.0" y="504" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem systemItem="trash" id="ryE-CA-mBB">
+                                        <connections>
+                                            <action selector="deleteAttachment:" destination="3ss-f5-lsw" id="vVT-1z-awl"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="ePM-Iw-ZMM"/>
+                                    <barButtonItem systemItem="action" id="aU4-mm-dfc">
+                                        <connections>
+                                            <action selector="openInSafari:" destination="3ss-f5-lsw" id="bpT-Qp-EvP"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="bVS-6V-VK3"/>
+                                    <barButtonItem systemItem="done" id="DHP-hV-Wc3">
+                                        <connections>
+                                            <action selector="done:" destination="3ss-f5-lsw" id="Pb2-Q6-Hr4"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <webView multipleTouchEnabled="YES" contentMode="scaleToFill" scalesPageToFit="YES" id="e2A-cg-zw7">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.94999999999999996" alpha="1" colorSpace="calibratedWhite"/>
+                                <dataDetectorType key="dataDetectorTypes"/>
+                            </webView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" style="whiteLarge" id="6Tw-qc-Vyb">
+                                <rect key="frame" x="143" y="232" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="deleteButton" destination="ryE-CA-mBB" id="e8G-fl-wgI"/>
+                        <outlet property="shareButton" destination="aU4-mm-dfc" id="PBz-Fn-a7h"/>
+                        <outlet property="theSpinnerForWebView" destination="6Tw-qc-Vyb" id="4k9-eh-78Y"/>
+                        <outlet property="theToolbar" destination="i60-nT-jQg" id="7Zd-Py-IUO"/>
+                        <outlet property="theWebView" destination="e2A-cg-zw7" id="BPE-2R-9dk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ujQ-lJ-Myl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1436" y="435"/>
         </scene>
         <!--Add Link-->
         <scene sceneID="gTG-xv-b3j">
@@ -527,7 +585,7 @@ Label riga 3</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iZY-Kq-5oo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1360" y="101"/>
+            <point key="canvasLocation" x="1436" y="-301"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Z0j-FR-EXT">
@@ -569,6 +627,22 @@ Label riga 3</string>
                 <relationship kind="outlet" name="cellLabelView" candidateClass="UILabel"/>
             </relationships>
         </class>
+        <class className="IAMAttachmentDetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/IAMAttachmentDetailViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="deleteAttachment:"/>
+                <relationship kind="action" name="done:"/>
+                <relationship kind="action" name="goBackClicked:"/>
+                <relationship kind="action" name="goForwardClicked:"/>
+                <relationship kind="action" name="openInSafari:"/>
+                <relationship kind="action" name="readability:"/>
+                <relationship kind="outlet" name="deleteButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="shareButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="theSpinnerForWebView" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="theToolbar" candidateClass="UIToolbar"/>
+                <relationship kind="outlet" name="theWebView" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
         <class className="IAMNoteCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IAMNoteCell.h"/>
             <relationships>
@@ -582,18 +656,14 @@ Label riga 3</string>
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IAMNoteEdit.h"/>
             <relationships>
                 <relationship kind="action" name="addImageToNote:"/>
-                <relationship kind="action" name="addLinkToNote:"/>
-                <relationship kind="action" name="done:"/>
                 <relationship kind="action" name="save:"/>
-                <relationship kind="action" name="shareAction:"/>
-                <relationship kind="action" name="viewAttachments:"/>
                 <relationship kind="outlet" name="addImageButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="attachmentQuantityLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="collectionView" candidateClass="UICollectionView"/>
                 <relationship kind="outlet" name="greyRowImage" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="textEdit" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="theToolbar" candidateClass="UIToolbar"/>
                 <relationship kind="outlet" name="titleEdit" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="viewButton" candidateClass="UIBarButtonItem"/>
             </relationships>
         </class>
         <class className="IAMPreferencesController" superclassName="UITableViewController">
@@ -609,6 +679,7 @@ Label riga 3</string>
         <class className="IAMViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IAMViewController.h"/>
             <relationships>
+                <relationship kind="action" name="launchPreferences:"/>
                 <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
             </relationships>
         </class>
@@ -628,6 +699,6 @@ Label riga 3</string>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="nBs-C7-sJp"/>
+        <segue reference="klE-Tc-QFq"/>
     </inferredMetricsTieBreakers>
 </document>

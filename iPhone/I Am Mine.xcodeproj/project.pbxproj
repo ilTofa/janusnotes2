@@ -15,6 +15,7 @@
 		6416315716D7DB830004CB52 /* IAMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6416315616D7DB830004CB52 /* IAMViewController.m */; };
 		6416315916D831DB0004CB52 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6416315816D831DB0004CB52 /* MobileCoreServices.framework */; };
 		6416315D16D8345F0004CB52 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 6416315C16D8345F0004CB52 /* UIImage+RoundedCorner.m */; };
+		641D954416E8CF6E00A253E3 /* IAMAttachmentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 641D954316E8CF6E00A253E3 /* IAMAttachmentDetailViewController.m */; };
 		6433103E16E0A85D0064EC5C /* UIViewController+GTFrames.m in Sources */ = {isa = PBXBuildFile; fileRef = 6433103D16E0A85D0064EC5C /* UIViewController+GTFrames.m */; };
 		6447056E16DD0FC4000A0262 /* SmallRow.png in Resources */ = {isa = PBXBuildFile; fileRef = 6447056C16DD0FC4000A0262 /* SmallRow.png */; };
 		6447056F16DD0FC4000A0262 /* SmallRow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6447056D16DD0FC4000A0262 /* SmallRow@2x.png */; };
@@ -61,6 +62,8 @@
 		6416315816D831DB0004CB52 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		6416315B16D8345F0004CB52 /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
 		6416315C16D8345F0004CB52 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
+		641D954216E8CF6E00A253E3 /* IAMAttachmentDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMAttachmentDetailViewController.h; sourceTree = "<group>"; };
+		641D954316E8CF6E00A253E3 /* IAMAttachmentDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMAttachmentDetailViewController.m; sourceTree = "<group>"; };
 		6433103C16E0A85D0064EC5C /* UIViewController+GTFrames.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+GTFrames.h"; sourceTree = "<group>"; };
 		6433103D16E0A85D0064EC5C /* UIViewController+GTFrames.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+GTFrames.m"; sourceTree = "<group>"; };
 		6447056C16DD0FC4000A0262 /* SmallRow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SmallRow.png; path = Images/SmallRow.png; sourceTree = "<group>"; };
@@ -131,13 +134,30 @@
 			name = Fonts;
 			sourceTree = "<group>";
 		};
-		640D40BB16D5123C003034B3 /* List Cells */ = {
+		640D40BB16D5123C003034B3 /* Main View */ = {
 			isa = PBXGroup;
 			children = (
+				64A0508A16D28CCA0025E179 /* IAMViewController.h */,
+				6416315616D7DB830004CB52 /* IAMViewController.m */,
 				640D40BC16D5128B003034B3 /* IAMNoteCell.h */,
 				640D40BD16D5128B003034B3 /* IAMNoteCell.m */,
 			);
-			name = "List Cells";
+			name = "Main View";
+			sourceTree = "<group>";
+		};
+		641D954116E8CD8200A253E3 /* Note Edit */ = {
+			isa = PBXGroup;
+			children = (
+				64B9B4A316D7801100607F39 /* IAMNoteEdit.h */,
+				64B9B4A416D7801100607F39 /* IAMNoteEdit.m */,
+				64A8A7E416E7B4770013AFFF /* IAMAttachmentCell.h */,
+				64A8A7E516E7B4770013AFFF /* IAMAttachmentCell.m */,
+				64A8A7E116E781EB0013AFFF /* IAMAddLinkViewController.h */,
+				64A8A7E216E781EB0013AFFF /* IAMAddLinkViewController.m */,
+				641D954216E8CF6E00A253E3 /* IAMAttachmentDetailViewController.h */,
+				641D954316E8CF6E00A253E3 /* IAMAttachmentDetailViewController.m */,
+			);
+			name = "Note Edit";
 			sourceTree = "<group>";
 		};
 		6433103F16E0A8950064EC5C /* Utilities (iOS) */ = {
@@ -230,18 +250,11 @@
 				6433103F16E0A8950064EC5C /* Utilities (iOS) */,
 				64027D7C16DD805500DEA647 /* Fonts */,
 				646602A216DBD373007622FC /* Images */,
-				640D40BB16D5123C003034B3 /* List Cells */,
+				640D40BB16D5123C003034B3 /* Main View */,
 				64A0507E16D28CCA0025E179 /* IAMAppDelegate.h */,
 				64A0507F16D28CCA0025E179 /* IAMAppDelegate.m */,
 				64A0508716D28CCA0025E179 /* MainStoryboard.storyboard */,
-				64B9B4A316D7801100607F39 /* IAMNoteEdit.h */,
-				64B9B4A416D7801100607F39 /* IAMNoteEdit.m */,
-				64A8A7E416E7B4770013AFFF /* IAMAttachmentCell.h */,
-				64A8A7E516E7B4770013AFFF /* IAMAttachmentCell.m */,
-				64A8A7E116E781EB0013AFFF /* IAMAddLinkViewController.h */,
-				64A8A7E216E781EB0013AFFF /* IAMAddLinkViewController.m */,
-				64A0508A16D28CCA0025E179 /* IAMViewController.h */,
-				6416315616D7DB830004CB52 /* IAMViewController.m */,
+				641D954116E8CD8200A253E3 /* Note Edit */,
 				64027D7916DD7CB800DEA647 /* IAMPreferencesController.h */,
 				64027D7A16DD7CB800DEA647 /* IAMPreferencesController.m */,
 				64A0507616D28CCA0025E179 /* Supporting Files */,
@@ -362,6 +375,7 @@
 				64F31CCA16E5009B00A80BE0 /* Attachment.m in Sources */,
 				64A8A7E316E781EB0013AFFF /* IAMAddLinkViewController.m in Sources */,
 				64A8A7E616E7B4770013AFFF /* IAMAttachmentCell.m in Sources */,
+				641D954416E8CF6E00A253E3 /* IAMAttachmentDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -16,8 +16,9 @@
 #import "Attachment.h"
 #import "IAMAddLinkViewController.h"
 #import "IAMAttachmentCell.h"
+#import "IAMAttachmentDetailViewController.h"
 
-@interface IAMNoteEdit () <UITextViewDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, IAMAddLinkViewControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
+@interface IAMNoteEdit () <UITextViewDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, IAMAddLinkViewControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, AttachmentDeleter>
 
 @property IAMAppDelegate *appDelegate;
 @property CGRect oldFrame;
@@ -59,7 +60,8 @@
     self.textEdit.font = [UIFont gt_getStandardFontFromUserDefault];
     self.titleEdit.textColor = self.textEdit.textColor = self.appDelegate.textColor;
     self.view.backgroundColor = self.collectionView.backgroundColor = self.appDelegate.backgroundColor;
-    [self attachmentsInterfaceSetup];
+    self.theToolbar.tintColor = self.appDelegate.tintColor;
+    [self refreshAttachments];
     // If this is a new note, set the cursor on title field
     if([self.titleEdit.text isEqualToString:@""])
         [self.titleEdit becomeFirstResponder];
@@ -76,7 +78,7 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)attachmentsInterfaceSetup
+-(void)refreshAttachments
 {
     // Set attachment quantity
     self.attachmentQuantityLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Files: %lu", nil), [self.editedNote.attachment count]];
@@ -185,7 +187,7 @@
     }
 }
 
-#pragma mark UIActionSheetDelegate
+#pragma mark - UIActionSheetDelegate
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -209,7 +211,7 @@
     [self presentViewController:imagePicker animated:YES completion:^{}];
 }
 
-#pragma mark UIImagePickerControllerDelegate
+#pragma mark - UIImagePickerControllerDelegate
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
@@ -238,7 +240,7 @@
         // Now link attachment to the note
         newAttachment.note = self.editedNote;
         [self.editedNote addAttachmentObject:newAttachment];
-        [self attachmentsInterfaceSetup];
+        [self refreshAttachments];
         // Don't save now... the moc will be saved on exit.
     }
 	else
@@ -291,14 +293,23 @@
     // Now link attachment to the note
     newAttachment.note = self.editedNote;
     [self.editedNote addAttachmentObject:newAttachment];
-    [self attachmentsInterfaceSetup];
+    [self refreshAttachments];
 }
 
 - (void)addLinkViewControllerDidCancelAction:(IAMAddLinkViewController *)addLinkViewController {
     DLog(@"This is addLinkViewControllerDidCancelAction:");
 }
 
-#pragma mark Segues
+#pragma mark - AttachmentDeleter
+
+-(void)deleteAttachment:(Attachment *)toBeDeleted
+{
+    [self.editedNote removeAttachmentObject:toBeDeleted];
+    [self save:nil];
+    [self refreshAttachments];
+}
+
+#pragma mark - Segues
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -306,6 +317,15 @@
     {
         IAMAddLinkViewController *segueController = [segue destinationViewController];
         segueController.delegate = self;
+    }
+    if ([[segue identifier] isEqualToString:@"AttachmentDetail"]) {
+        IAMAttachmentDetailViewController *segueController = [segue destinationViewController];
+        NSArray *indexPaths = [self.collectionView indexPathsForSelectedItems];
+        NSIndexPath *index = [indexPaths objectAtIndex:0];
+        DLog(@"Opening the detail for cell %d", index.row);
+        Attachment *attachment = self.attachmentsArray[index.row];
+        segueController.theAttachment = attachment;
+        segueController.deleterObject = self;
     }
 }
 
@@ -335,6 +355,7 @@
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     DLog(@"This is collectionView:didSelectItemAtIndexPath:%d", indexPath.row);
+    [self performSegueWithIdentifier:@"AttachmentDetail" sender:nil];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
