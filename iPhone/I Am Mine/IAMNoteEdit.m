@@ -29,6 +29,8 @@
 
 @property(nonatomic, weak) IBOutlet UICollectionView *collectionView;
 
+@property BOOL attachmensAreHidden;
+
 @end
 
 @implementation IAMNoteEdit
@@ -61,6 +63,7 @@
     self.titleEdit.textColor = self.textEdit.textColor = self.appDelegate.textColor;
     self.view.backgroundColor = self.collectionView.backgroundColor = self.appDelegate.backgroundColor;
     self.theToolbar.tintColor = self.appDelegate.tintColor;
+    self.attachmensAreHidden = NO;
     [self refreshAttachments];
     // If this is a new note, set the cursor on title field
     if([self.titleEdit.text isEqualToString:@""])
@@ -83,6 +86,34 @@
     // Set attachment quantity
     self.attachmentQuantityLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Files: %lu", nil), [self.editedNote.attachment count]];
     self.attachmentsArray = [self.editedNote.attachment allObjects];
+    if([self.attachmentsArray count] == 0 && !self.attachmensAreHidden) {
+        DLog(@"No attachments. Hiding collection view");
+        [UIView animateWithDuration:0.5
+                         animations:^{
+                             CGRect textRect = self.textEdit.frame;
+                             textRect.size.height += self.collectionView.frame.size.height;
+                             self.textEdit.frame = textRect;
+                             self.collectionView.alpha = self.attachmentsGreyRow.alpha = 0.0;
+                         }
+                         completion:^(BOOL finished){
+                             self.collectionView.hidden = self.attachmentsGreyRow.hidden = YES;
+                             self.attachmensAreHidden = YES;
+                         }];
+    }
+    if([self.attachmentsArray count] != 0 && self.attachmensAreHidden){
+        DLog(@"Attachments found. Showing collection view");
+        self.collectionView.hidden = self.attachmentsGreyRow.hidden = NO;
+        [UIView animateWithDuration:0.5
+                         animations:^{
+                             CGRect textRect = self.textEdit.frame;
+                             textRect.size.height -= self.collectionView.frame.size.height;
+                             self.textEdit.frame = textRect;
+                             self.collectionView.alpha = self.attachmentsGreyRow.alpha = 1.0;
+                         }
+                         completion:^(BOOL finished){
+                             self.attachmensAreHidden = NO;
+                         }];
+    }
     [self.collectionView reloadData];
 }
 

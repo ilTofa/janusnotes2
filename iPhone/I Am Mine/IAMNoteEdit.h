@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *titleEdit;
 @property (weak, nonatomic) IBOutlet UITextView *textEdit;
 @property (weak, nonatomic) IBOutlet UIImageView *greyRowImage;
+@property (weak, nonatomic) IBOutlet UIImageView *attachmentsGreyRow;
 @property (weak, nonatomic) IBOutlet UIToolbar *theToolbar;
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *addImageButton;
