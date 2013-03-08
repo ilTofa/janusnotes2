@@ -8,7 +8,7 @@
 
 #import "IAMAppDelegate.h"
 
-#import "GTColorizer.h"
+#import "GTThemer.h"
 
 @interface IAMAppDelegate()
 
@@ -20,7 +20,7 @@
 {
     // TODO: reimplement GTColorizer init in a saner mode
     // init colorizer...
-    [[GTColorizer sharedInstance] applyStandardColors:[[GTColorizer sharedInstance] getStandardColorsID]];
+    [[GTThemer sharedInstance] applyStandardColors:[[GTThemer sharedInstance] getStandardColorsID]];
     // Core Location init: get number of times user denied location use in app lifetime...
 	self.nLocationUseDenies = [[NSUserDefaults standardUserDefaults] integerForKey:@"userDeny"];
 	self.isLocationDenied = NO;

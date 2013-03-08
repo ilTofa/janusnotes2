@@ -15,7 +15,7 @@
 #import "UIImage+RoundedCorner.h"
 #import "UIFont+GTFontMapper.h"
 #import "NSDate+PassedTime.h"
-#import "GTColorizer.h"
+#import "GTThemer.h"
 
 @interface IAMViewController () <UISearchBarDelegate, NSFetchedResultsControllerDelegate>
 
@@ -65,10 +65,10 @@
 
 -(void)colorize
 {
-    [self.tableView setBackgroundColor:[[GTColorizer sharedInstance] backgroundColor]];
-    [self.navigationController.navigationBar setTintColor:[[GTColorizer sharedInstance] tintColor]];
+    [self.tableView setBackgroundColor:[[GTThemer sharedInstance] backgroundColor]];
+    [self.navigationController.navigationBar setTintColor:[[GTThemer sharedInstance] tintColor]];
     [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
-    [self.searchBar setTintColor:[[GTColorizer sharedInstance] tintColor]];
+    [self.searchBar setTintColor:[[GTThemer sharedInstance] tintColor]];
 //    [self.tableView reloadData];
 }
 
@@ -268,13 +268,13 @@
 - (void)configureCell:(IAMNoteCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     Note *note = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.titleLabel.textColor = [[GTColorizer sharedInstance] textColor];
+    cell.titleLabel.textColor = [[GTThemer sharedInstance] textColor];
     cell.titleLabel.font = [UIFont gt_getStandardFontWithFaceID:[UIFont gt_getStandardFontFaceIdFromUserDefault] andSize:17];
     cell.titleLabel.text = note.title;
     cell.noteTextLabel.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin;
     cell.noteTextLabel.font = [UIFont gt_getStandardFontWithFaceID:[UIFont gt_getStandardFontFaceIdFromUserDefault] andSize:12];
     cell.noteTextLabel.text = note.text;
-    cell.dateLabel.textColor = cell.attachmentsQuantityLabel.textColor = [[GTColorizer sharedInstance] textColor];
+    cell.dateLabel.textColor = cell.attachmentsQuantityLabel.textColor = [[GTThemer sharedInstance] textColor];
     cell.dateLabel.font = [UIFont gt_getStandardFontWithFaceID:[UIFont gt_getStandardFontFaceIdFromUserDefault] andSize:10];
     if(fabs([note.timeStamp timeIntervalSinceDate:note.creationDate]) < 2)
         cell.dateLabel.text = [NSString stringWithFormat:@"%@, never modified", [self.dateFormatter stringFromDate:note.creationDate]];

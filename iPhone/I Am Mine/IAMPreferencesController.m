@@ -8,7 +8,7 @@
 
 #import "IAMPreferencesController.h"
 
-#import "GTColorizer.h"
+#import "GTThemer.h"
 #import "UIFont+GTFontMapper.h"
 
 @interface IAMPreferencesController ()
@@ -35,7 +35,7 @@
     // Load base values
     self.fontSize = [UIFont gt_getStandardFontSizeFromUserDefault];
     [self.sizeStepper setValue:self.fontSize];
-    self.colorSet = [[GTColorizer sharedInstance] getStandardColorsID];
+    self.colorSet = [[GTThemer sharedInstance] getStandardColorsID];
     [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:self.colorSet inSection:2] animated:YES scrollPosition:UITableViewScrollPositionMiddle];
     self.fontFace = [UIFont gt_getStandardFontFaceIdFromUserDefault];
     [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:self.fontFace inSection:0] animated:false scrollPosition:UITableViewScrollPositionTop];
@@ -72,7 +72,7 @@
     // Change colors
     if(indexPath.section == 2)
     {
-        NSInteger oldColorsSet = [[GTColorizer sharedInstance] getStandardColorsID];
+        NSInteger oldColorsSet = [[GTThemer sharedInstance] getStandardColorsID];
         DLog(@"Changing colors set from %d to %d.", oldColorsSet, indexPath.row);
         UITableViewCell * tableCell = [self.tableView cellForRowAtIndexPath:indexPath];
         tableCell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -104,14 +104,14 @@
     self.fontSize = self.sizeStepper.value;
     self.sizeLabel.text = [NSString stringWithFormat:@"Text Size is %d", self.fontSize];
     self.sizeLabel.font = [UIFont gt_getStandardFontWithFaceID:self.fontFace andSize:self.fontSize];
-    [[GTColorizer sharedInstance] applyStandardColors:self.colorSet];
+    [[GTThemer sharedInstance] applyStandardColors:self.colorSet];
     
 }
 
 - (IBAction)done:(id)sender
 {
     DLog(@"Saving. ColorSet n° %d, fontFace n° %d, fontSize %d", self.colorSet, self.fontFace, self.fontSize);
-    [[GTColorizer sharedInstance]  applyStandardColors:self.colorSet];
+    [[GTThemer sharedInstance]  applyStandardColors:self.colorSet];
     [UIFont gt_setStandardFontInUserDefaultWithFaceID:self.fontFace andSize:self.fontSize];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }

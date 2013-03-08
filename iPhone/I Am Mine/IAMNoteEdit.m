@@ -16,7 +16,7 @@
 #import "IAMAddLinkViewController.h"
 #import "IAMAttachmentCell.h"
 #import "IAMAttachmentDetailViewController.h"
-#import "GTColorizer.h"
+#import "GTThemer.h"
 
 @interface IAMNoteEdit () <UITextViewDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, IAMAddLinkViewControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, AttachmentDeleter>
 
@@ -58,9 +58,9 @@
     self.titleEdit.font = [UIFont gt_getStandardFontWithFaceID:[UIFont gt_getStandardFontFaceIdFromUserDefault] andSize:[UIFont gt_getStandardFontSizeFromUserDefault]+3];
     self.textEdit.attributedText = self.editedNote.attributedText;
     self.textEdit.font = [UIFont gt_getStandardFontFromUserDefault];
-    self.titleEdit.textColor = self.textEdit.textColor = [[GTColorizer sharedInstance] textColor];
-    self.view.backgroundColor = self.collectionView.backgroundColor = [[GTColorizer sharedInstance] backgroundColor];
-    self.theToolbar.tintColor = [[GTColorizer sharedInstance] tintColor];
+    self.titleEdit.textColor = self.textEdit.textColor = [[GTThemer sharedInstance] textColor];
+    self.view.backgroundColor = self.collectionView.backgroundColor = [[GTThemer sharedInstance] backgroundColor];
+    self.theToolbar.tintColor = [[GTThemer sharedInstance] tintColor];
     self.attachmensAreHidden = NO;
     [self refreshAttachments];
     // If this is a new note, set the cursor on title field

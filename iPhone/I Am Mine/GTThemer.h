@@ -1,5 +1,5 @@
 //
-//  GTColorizer.h
+//  GTThemer.h
 //  I Am Mine
 //
 //  Created by Giacomo Tufano on 08/03/13.
@@ -8,12 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@interface GTColorizer : NSObject
+@interface GTThemer : NSObject
 
 @property UIColor *backgroundColor, *textColor, *tintColor;
 -(NSInteger)getStandardColorsID;
 -(void)applyStandardColors:(NSInteger)colorMix;
 
-+ (GTColorizer *)sharedInstance;
++ (GTThemer *)sharedInstance;
 
 @end
