@@ -384,6 +384,7 @@
 }
 
 #pragma mark - UICollectionViewDelegate
+
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     DLog(@"This is collectionView:didSelectItemAtIndexPath:%d", indexPath.row);
     [self performSegueWithIdentifier:@"AttachmentDetail" sender:nil];
@@ -393,7 +394,7 @@
     DLog(@"This is collectionView:didDeselectItemAtIndexPath:%d", indexPath.row);
 }
 
-#pragma mark – UICollectionViewDelegateFlowLayout
+#pragma mark - UICollectionViewDelegateFlowLayout
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     return CGSizeMake(100, 100);

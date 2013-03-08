@@ -48,8 +48,17 @@
     NSURL *candidateURL = [NSURL URLWithString:self.linkEditor.text];
     if (candidateURL && candidateURL.scheme && candidateURL.host)
         return YES;
-    else
-        return NO;
+    else {
+        // Try to add the protocol and retry...
+        NSString *paddedString = [NSString stringWithFormat:@"http://%@", self.linkEditor.text];
+        candidateURL = [NSURL URLWithString:paddedString];
+        if (candidateURL && candidateURL.scheme && candidateURL.host) {
+            // Save the padded string and say yes
+            self.linkEditor.text = paddedString;
+            return YES;
+        }
+    }
+    return NO;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
