@@ -13,7 +13,6 @@
 #import "Note.h"
 #import "IAMNoteEdit.h"
 #import "UIImage+RoundedCorner.h"
-#import "UIFont+GTFontMapper.h"
 #import "NSDate+PassedTime.h"
 #import "GTThemer.h"
 
@@ -65,11 +64,11 @@
 
 -(void)colorize
 {
-    [self.tableView setBackgroundColor:[[GTThemer sharedInstance] backgroundColor]];
-    [self.navigationController.navigationBar setTintColor:[[GTThemer sharedInstance] tintColor]];
+    [[GTThemer sharedInstance] applyColorsToView:self.tableView];
+    [[GTThemer sharedInstance] applyColorsToView:self.navigationController.navigationBar];
     [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
-    [self.searchBar setTintColor:[[GTThemer sharedInstance] tintColor]];
-//    [self.tableView reloadData];
+    [[GTThemer sharedInstance] applyColorsToView:self.searchBar];
+    [self.tableView reloadData];
 }
 
 #pragma mark -
@@ -268,19 +267,16 @@
 - (void)configureCell:(IAMNoteCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     Note *note = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.titleLabel.textColor = [[GTThemer sharedInstance] textColor];
-    cell.titleLabel.font = [UIFont gt_getStandardFontWithFaceID:[UIFont gt_getStandardFontFaceIdFromUserDefault] andSize:17];
+    [[GTThemer sharedInstance] applyColorsToLabel:cell.titleLabel withFontSize:17];
     cell.titleLabel.text = note.title;
-    cell.noteTextLabel.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin;
-    cell.noteTextLabel.font = [UIFont gt_getStandardFontWithFaceID:[UIFont gt_getStandardFontFaceIdFromUserDefault] andSize:12];
+    [[GTThemer sharedInstance] applyColorsToLabel:cell.noteTextLabel withFontSize:12];
     cell.noteTextLabel.text = note.text;
-    cell.dateLabel.textColor = cell.attachmentsQuantityLabel.textColor = [[GTThemer sharedInstance] textColor];
-    cell.dateLabel.font = [UIFont gt_getStandardFontWithFaceID:[UIFont gt_getStandardFontFaceIdFromUserDefault] andSize:10];
+    [[GTThemer sharedInstance] applyColorsToLabel:cell.dateLabel withFontSize:10];
     if(fabs([note.timeStamp timeIntervalSinceDate:note.creationDate]) < 2)
         cell.dateLabel.text = [NSString stringWithFormat:@"%@, never modified", [self.dateFormatter stringFromDate:note.creationDate]];
     else
         cell.dateLabel.text = [NSString stringWithFormat:@"%@, modified %@", [self.dateFormatter stringFromDate:note.creationDate], [note.timeStamp gt_timePassed]];
-    cell.attachmentsQuantityLabel.font = [UIFont gt_getStandardFontWithFaceID:[UIFont gt_getStandardFontFaceIdFromUserDefault] andSize:10];
+    [[GTThemer sharedInstance] applyColorsToLabel:cell.attachmentsQuantityLabel withFontSize:10];
     NSUInteger attachmentsQuantity = 0;
     if(note.attachment)
         attachmentsQuantity = [note.attachment count];

@@ -20,7 +20,7 @@
 {
     // TODO: reimplement GTColorizer init in a saner mode
     // init colorizer...
-    [[GTThemer sharedInstance] applyStandardColors:[[GTThemer sharedInstance] getStandardColorsID]];
+    [[GTThemer sharedInstance] saveStandardColors:[[GTThemer sharedInstance] getStandardColorsID]];
     // Core Location init: get number of times user denied location use in app lifetime...
 	self.nLocationUseDenies = [[NSUserDefaults standardUserDefaults] integerForKey:@"userDeny"];
 	self.isLocationDenied = NO;

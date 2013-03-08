@@ -10,7 +10,6 @@
 
 #import <MobileCoreServices/MobileCoreServices.h>
 
-#import "UIFont+GTFontMapper.h"
 #import "UIViewController+GTFrames.h"
 #import "Attachment.h"
 #import "IAMAddLinkViewController.h"
@@ -54,13 +53,13 @@
     self.doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];
     self.navigationItem.rightBarButtonItem = self.saveButton;
     // Preset the note
+    [[GTThemer sharedInstance] applyColorsToView:self.titleEdit];
     self.titleEdit.text = self.editedNote.title;
-    self.titleEdit.font = [UIFont gt_getStandardFontWithFaceID:[UIFont gt_getStandardFontFaceIdFromUserDefault] andSize:[UIFont gt_getStandardFontSizeFromUserDefault]+3];
     self.textEdit.attributedText = self.editedNote.attributedText;
-    self.textEdit.font = [UIFont gt_getStandardFontFromUserDefault];
-    self.titleEdit.textColor = self.textEdit.textColor = [[GTThemer sharedInstance] textColor];
-    self.view.backgroundColor = self.collectionView.backgroundColor = [[GTThemer sharedInstance] backgroundColor];
-    self.theToolbar.tintColor = [[GTThemer sharedInstance] tintColor];
+    [[GTThemer sharedInstance] applyColorsToView:self.textEdit];
+    [[GTThemer sharedInstance] applyColorsToView:self.view];
+    [[GTThemer sharedInstance] applyColorsToView:self.collectionView];
+    [[GTThemer sharedInstance] applyColorsToView:self.theToolbar];
     self.attachmensAreHidden = NO;
     [self refreshAttachments];
     // If this is a new note, set the cursor on title field

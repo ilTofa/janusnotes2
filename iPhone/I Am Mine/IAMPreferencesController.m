@@ -9,7 +9,6 @@
 #import "IAMPreferencesController.h"
 
 #import "GTThemer.h"
-#import "UIFont+GTFontMapper.h"
 
 @interface IAMPreferencesController ()
 
@@ -33,11 +32,11 @@
     [super viewDidLoad];
     self.versionLabel.text = [NSString stringWithFormat:@"This I Am Mine version %@ (%@)\n©2013 Giacomo Tufano - All rights reserved.", [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"], [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"]];
     // Load base values
-    self.fontSize = [UIFont gt_getStandardFontSizeFromUserDefault];
+    self.fontSize = [[GTThemer sharedInstance] getStandardFontSize];
     [self.sizeStepper setValue:self.fontSize];
     self.colorSet = [[GTThemer sharedInstance] getStandardColorsID];
     [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:self.colorSet inSection:2] animated:YES scrollPosition:UITableViewScrollPositionMiddle];
-    self.fontFace = [UIFont gt_getStandardFontFaceIdFromUserDefault];
+    self.fontFace = [[GTThemer sharedInstance] getStandardFontFaceID];
     [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:self.fontFace inSection:0] animated:false scrollPosition:UITableViewScrollPositionTop];
     [self sizePressed:nil];
 }
@@ -103,16 +102,16 @@
     DLog(@"This is sizePressed: called for a value of: %.0f", self.sizeStepper.value);
     self.fontSize = self.sizeStepper.value;
     self.sizeLabel.text = [NSString stringWithFormat:@"Text Size is %d", self.fontSize];
-    self.sizeLabel.font = [UIFont gt_getStandardFontWithFaceID:self.fontFace andSize:self.fontSize];
-    [[GTThemer sharedInstance] applyStandardColors:self.colorSet];
+    [[GTThemer sharedInstance] applyColorsToLabel:self.sizeLabel withFontSize:self.fontSize];
+    [[GTThemer sharedInstance] saveStandardColors:self.colorSet];
     
 }
 
 - (IBAction)done:(id)sender
 {
     DLog(@"Saving. ColorSet n° %d, fontFace n° %d, fontSize %d", self.colorSet, self.fontFace, self.fontSize);
-    [[GTThemer sharedInstance]  applyStandardColors:self.colorSet];
-    [UIFont gt_setStandardFontInUserDefaultWithFaceID:self.fontFace andSize:self.fontSize];
+    [[GTThemer sharedInstance] saveStandardColors:self.colorSet];
+    [[GTThemer sharedInstance] saveStandardFontsWithFaceID:self.fontFace andSize:self.fontSize];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 

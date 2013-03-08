@@ -8,7 +8,6 @@
 
 #import "IAMAddLinkViewController.h"
 
-#import "UIFont+GTFontMapper.h"
 #import "GTThemer.h"
 
 @interface IAMAddLinkViewController ()
@@ -29,9 +28,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.linkEditor.font = [UIFont gt_getStandardFontWithFaceID:[UIFont gt_getStandardFontFaceIdFromUserDefault] andSize:[UIFont gt_getStandardFontSizeFromUserDefault]+3];
-    self.linkEditor.textColor = [[GTThemer sharedInstance] textColor];
-    [self.view setBackgroundColor:[[GTThemer sharedInstance] backgroundColor]];
+    [[GTThemer sharedInstance] applyColorsToView:self.linkEditor];
+    [[GTThemer sharedInstance] applyColorsToView:self.view];
     [self.linkEditor becomeFirstResponder];
 }
 

@@ -10,10 +10,19 @@
 
 @interface GTThemer : NSObject
 
-@property UIColor *backgroundColor, *textColor, *tintColor;
--(NSInteger)getStandardColorsID;
--(void)applyStandardColors:(NSInteger)colorMix;
-
 + (GTThemer *)sharedInstance;
+
+// Applies colors, font and tinting to the passed view
+- (void)applyColorsToView:(UIView *)view;
+- (void)applyColorsToLabel:(UILabel *)label withFontSize:(int)fontSize;
+
+// Get id (for user choose UI)
+- (NSInteger)getStandardColorsID;
+- (NSInteger)getStandardFontFaceID;
+- (NSInteger)getStandardFontSize;
+
+// Save colors (or font) from ID.
+- (void)saveStandardColors:(NSInteger)colorMix;
+- (void)saveStandardFontsWithFaceID:(NSInteger)fontFace andSize:(NSInteger)fontSize;
 
 @end
