@@ -8,7 +8,7 @@
 
 #import "IAMAttachmentDetailViewController.h"
 
-#import "IAMAppDelegate.h"
+#import "GTColorizer.h"
 
 #define kReadabilityBookmarkletCode @"(function(){window.baseUrl='https://www.readability.com';window.readabilityToken='';var s=document.createElement('script');s.setAttribute('type','text/javascript');s.setAttribute('charset','UTF-8');s.setAttribute('src',baseUrl+'/bookmarklet/read.js');document.documentElement.appendChild(s);})()"
 
@@ -45,7 +45,7 @@
 {
     [super viewDidLoad];
     NSAssert(self.theAttachment, @"No valid Attachment object sent to IAMAttachmentDetailViewController.");
-    self.theToolbar.tintColor = self.theSpinnerForWebView.color = ((IAMAppDelegate *)[[UIApplication sharedApplication] delegate]).tintColor;
+    self.theToolbar.tintColor = self.theSpinnerForWebView.color = [[GTColorizer sharedInstance] tintColor];
     if([self.theAttachment.type isEqualToString:@"Link"]) {
         [self.theWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[[NSString alloc] initWithData:self.theAttachment.data encoding:NSUTF8StringEncoding]]]];
     } else if([self.theAttachment.type isEqualToString:@"Image"]) {

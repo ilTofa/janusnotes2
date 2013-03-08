@@ -8,7 +8,7 @@
 
 #import "IAMPreferencesController.h"
 
-#import "IAMAppDelegate.h"
+#import "GTColorizer.h"
 #import "UIFont+GTFontMapper.h"
 
 @interface IAMPreferencesController ()
@@ -35,7 +35,7 @@
     // Load base values
     self.fontSize = [UIFont gt_getStandardFontSizeFromUserDefault];
     [self.sizeStepper setValue:self.fontSize];
-    self.colorSet = [(IAMAppDelegate *)[[UIApplication sharedApplication] delegate] getStandardColorsID];
+    self.colorSet = [[GTColorizer sharedInstance] getStandardColorsID];
     [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:self.colorSet inSection:2] animated:YES scrollPosition:UITableViewScrollPositionMiddle];
     self.fontFace = [UIFont gt_getStandardFontFaceIdFromUserDefault];
     [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:self.fontFace inSection:0] animated:false scrollPosition:UITableViewScrollPositionTop];
@@ -72,7 +72,7 @@
     // Change colors
     if(indexPath.section == 2)
     {
-        NSInteger oldColorsSet = [(IAMAppDelegate *)[[UIApplication sharedApplication] delegate] getStandardColorsID];
+        NSInteger oldColorsSet = [[GTColorizer sharedInstance] getStandardColorsID];
         DLog(@"Changing colors set from %d to %d.", oldColorsSet, indexPath.row);
         UITableViewCell * tableCell = [self.tableView cellForRowAtIndexPath:indexPath];
         tableCell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -104,14 +104,14 @@
     self.fontSize = self.sizeStepper.value;
     self.sizeLabel.text = [NSString stringWithFormat:@"Text Size is %d", self.fontSize];
     self.sizeLabel.font = [UIFont gt_getStandardFontWithFaceID:self.fontFace andSize:self.fontSize];
-    [(IAMAppDelegate *)[[UIApplication sharedApplication] delegate] applyStandardColors:self.colorSet];
+    [[GTColorizer sharedInstance] applyStandardColors:self.colorSet];
     
 }
 
 - (IBAction)done:(id)sender
 {
     DLog(@"Saving. ColorSet n° %d, fontFace n° %d, fontSize %d", self.colorSet, self.fontFace, self.fontSize);
-    [(IAMAppDelegate *)[[UIApplication sharedApplication] delegate] applyStandardColors:self.colorSet];
+    [[GTColorizer sharedInstance]  applyStandardColors:self.colorSet];
     [UIFont gt_setStandardFontInUserDefaultWithFaceID:self.fontFace andSize:self.fontSize];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }

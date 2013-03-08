@@ -10,17 +10,16 @@
 
 #import <MobileCoreServices/MobileCoreServices.h>
 
-#import "IAMAppDelegate.h"
 #import "UIFont+GTFontMapper.h"
 #import "UIViewController+GTFrames.h"
 #import "Attachment.h"
 #import "IAMAddLinkViewController.h"
 #import "IAMAttachmentCell.h"
 #import "IAMAttachmentDetailViewController.h"
+#import "GTColorizer.h"
 
 @interface IAMNoteEdit () <UITextViewDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, IAMAddLinkViewControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, AttachmentDeleter>
 
-@property IAMAppDelegate *appDelegate;
 @property CGRect oldFrame;
 @property UIBarButtonItem *doneButton;
 @property UIBarButtonItem *saveButton;
@@ -47,7 +46,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.appDelegate = (IAMAppDelegate *)[[UIApplication sharedApplication] delegate];
     // Keyboard notifications
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
@@ -60,9 +58,9 @@
     self.titleEdit.font = [UIFont gt_getStandardFontWithFaceID:[UIFont gt_getStandardFontFaceIdFromUserDefault] andSize:[UIFont gt_getStandardFontSizeFromUserDefault]+3];
     self.textEdit.attributedText = self.editedNote.attributedText;
     self.textEdit.font = [UIFont gt_getStandardFontFromUserDefault];
-    self.titleEdit.textColor = self.textEdit.textColor = self.appDelegate.textColor;
-    self.view.backgroundColor = self.collectionView.backgroundColor = self.appDelegate.backgroundColor;
-    self.theToolbar.tintColor = self.appDelegate.tintColor;
+    self.titleEdit.textColor = self.textEdit.textColor = [[GTColorizer sharedInstance] textColor];
+    self.view.backgroundColor = self.collectionView.backgroundColor = [[GTColorizer sharedInstance] backgroundColor];
+    self.theToolbar.tintColor = [[GTColorizer sharedInstance] tintColor];
     self.attachmensAreHidden = NO;
     [self refreshAttachments];
     // If this is a new note, set the cursor on title field

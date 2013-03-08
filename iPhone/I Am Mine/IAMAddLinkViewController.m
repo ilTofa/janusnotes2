@@ -8,12 +8,10 @@
 
 #import "IAMAddLinkViewController.h"
 
-#import "IAMAppDelegate.h"
 #import "UIFont+GTFontMapper.h"
+#import "GTColorizer.h"
 
 @interface IAMAddLinkViewController ()
-
-@property IAMAppDelegate *appDelegate;
 
 @end
 
@@ -31,10 +29,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.appDelegate = (IAMAppDelegate *)[[UIApplication sharedApplication] delegate];
     self.linkEditor.font = [UIFont gt_getStandardFontWithFaceID:[UIFont gt_getStandardFontFaceIdFromUserDefault] andSize:[UIFont gt_getStandardFontSizeFromUserDefault]+3];
-    self.linkEditor.textColor = self.appDelegate.textColor;
-    [self.view setBackgroundColor:self.appDelegate.backgroundColor];
+    self.linkEditor.textColor = [[GTColorizer sharedInstance] textColor];
+    [self.view setBackgroundColor:[[GTColorizer sharedInstance] backgroundColor]];
     [self.linkEditor becomeFirstResponder];
 }
 

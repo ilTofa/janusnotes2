@@ -26,10 +26,4 @@
 // CoreData helper
 @property (nonatomic, strong, readonly) CoreDataController *coreDataController;
 
-// Colors
-@property UIColor *backgroundColor, *textColor, *tintColor;
-
--(NSInteger)getStandardColorsID;
--(void)applyStandardColors:(NSInteger)colorMix;
-
 @end

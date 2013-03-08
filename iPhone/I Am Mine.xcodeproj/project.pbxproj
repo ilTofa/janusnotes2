@@ -45,6 +45,7 @@
 		64A8A7ED16E7BCF90013AFFF /* link-unknown-big.png in Resources */ = {isa = PBXBuildFile; fileRef = 64A8A7EB16E7BCF90013AFFF /* link-unknown-big.png */; };
 		64A8A7EE16E7BCF90013AFFF /* link-unknown-big@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64A8A7EC16E7BCF90013AFFF /* link-unknown-big@2x.png */; };
 		64B9B4A516D7801100607F39 /* IAMNoteEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 64B9B4A416D7801100607F39 /* IAMNoteEdit.m */; };
+		64BB200F16EA000E00FE6C77 /* GTColorizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 64BB200E16EA000E00FE6C77 /* GTColorizer.m */; };
 		64F31CC416E4AF9000A80BE0 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F31CC316E4AF9000A80BE0 /* Note.m */; };
 		64F31CCA16E5009B00A80BE0 /* Attachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F31CC916E5009B00A80BE0 /* Attachment.m */; };
 /* End PBXBuildFile section */
@@ -105,6 +106,8 @@
 		64A8A7EC16E7BCF90013AFFF /* link-unknown-big@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "link-unknown-big@2x.png"; path = "Images/link-unknown-big@2x.png"; sourceTree = "<group>"; };
 		64B9B4A316D7801100607F39 /* IAMNoteEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMNoteEdit.h; sourceTree = "<group>"; };
 		64B9B4A416D7801100607F39 /* IAMNoteEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMNoteEdit.m; sourceTree = "<group>"; };
+		64BB200D16EA000E00FE6C77 /* GTColorizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTColorizer.h; sourceTree = "<group>"; };
+		64BB200E16EA000E00FE6C77 /* GTColorizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTColorizer.m; sourceTree = "<group>"; };
 		64F31CC216E4AF9000A80BE0 /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Note.h; path = ../common/iCloud/Note.h; sourceTree = "<group>"; };
 		64F31CC316E4AF9000A80BE0 /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Note.m; path = ../common/iCloud/Note.m; sourceTree = "<group>"; };
 		64F31CC816E5009B00A80BE0 /* Attachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Attachment.h; path = ../common/iCloud/Attachment.h; sourceTree = "<group>"; };
@@ -254,6 +257,8 @@
 				640D40BB16D5123C003034B3 /* Main View */,
 				64A0507E16D28CCA0025E179 /* IAMAppDelegate.h */,
 				64A0507F16D28CCA0025E179 /* IAMAppDelegate.m */,
+				64BB200D16EA000E00FE6C77 /* GTColorizer.h */,
+				64BB200E16EA000E00FE6C77 /* GTColorizer.m */,
 				64A0508716D28CCA0025E179 /* MainStoryboard.storyboard */,
 				641D954116E8CD8200A253E3 /* Note Edit */,
 				64027D7916DD7CB800DEA647 /* IAMPreferencesController.h */,
@@ -378,6 +383,7 @@
 				64A8A7E316E781EB0013AFFF /* IAMAddLinkViewController.m in Sources */,
 				64A8A7E616E7B4770013AFFF /* IAMAttachmentCell.m in Sources */,
 				641D954416E8CF6E00A253E3 /* IAMAttachmentDetailViewController.m in Sources */,
+				64BB200F16EA000E00FE6C77 /* GTColorizer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
