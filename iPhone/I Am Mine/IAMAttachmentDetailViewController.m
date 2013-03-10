@@ -46,7 +46,7 @@
     [super viewDidLoad];
     NSAssert(self.theAttachment, @"No valid Attachment object sent to IAMAttachmentDetailViewController.");
     [[GTThemer sharedInstance] applyColorsToView:self.theToolbar];
-    [[GTThemer sharedInstance] applyColorsToView:self.theSpinnerForWebView];
+//    [[GTThemer sharedInstance] applyColorsToView:self.theSpinnerForWebView];
     if([self.theAttachment.type isEqualToString:@"Link"]) {
         [self.theWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[[NSString alloc] initWithData:self.theAttachment.data encoding:NSUTF8StringEncoding]]]];
     } else if([self.theAttachment.type isEqualToString:@"Image"]) {
