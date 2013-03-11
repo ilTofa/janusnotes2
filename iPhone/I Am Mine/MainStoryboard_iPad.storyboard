@@ -1,60 +1,66 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C2034" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="O93-e0-6cM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C2034" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="XeR-3C-pmH">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
-        <!--Start-->
-        <scene sceneID="vcl-TT-ulw">
+        <!--Mi Pad View Controller-->
+        <scene sceneID="Z5X-On-Pu0">
             <objects>
-                <viewController id="C59-nU-2Cr" userLabel="Start" customClass="IAMViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="100" sectionHeaderHeight="22" sectionFooterHeight="22" id="qgJ-ek-JKh">
+                <collectionViewController autoresizesArchivedViewToFullSize="NO" id="5cO-8Y-p76" customClass="IAMiPadViewController" sceneMemberID="viewController">
+                    <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="5mO-xY-1Ru">
                         <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="0.94999999999999996" alpha="1" colorSpace="calibratedWhite"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" showsCancelButton="YES" id="qbH-mH-OCi">
-                            <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="8lc-Cj-Y5i">
+                            <size key="itemSize" width="250" height="250"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <searchBar key="backgroundView" contentMode="redraw" id="ax3-US-FrM">
+                            <rect key="frame" x="0.0" y="0.0" width="768" height="960"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <textInputTraits key="textInputTraits"/>
-                            <connections>
-                                <outlet property="delegate" destination="C59-nU-2Cr" id="CzY-FV-bJv"/>
-                            </connections>
                         </searchBar>
-                        <prototypes>
-                            <tableViewCell autoresizesSubviews="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TextCell" id="j1V-Ob-FgK" customClass="IAMNoteCell">
-                                <rect key="frame" x="0.0" y="66" width="768" height="100"/>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="iPadCell" id="Xk6-Ta-Su6" customClass="IAMiPadNoteCell">
+                                <rect key="frame" x="0.0" y="0.0" width="250" height="250"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="768" height="99"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="250" height="250"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DNq-sc-nt8" userLabel="Text Extract">
-                                            <rect key="frame" x="10" y="26" width="738" height="48"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tjC-xs-h7l" userLabel="Date">
+                                            <rect key="frame" x="10" y="210" width="230" height="15"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
+                                            <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="10"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0 attachment(s)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="W4b-eG-7aY" userLabel="Attachments number">
+                                            <rect key="frame" x="10" y="225" width="230" height="15"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
+                                            <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="10"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rau-ZM-HXb" userLabel="Text Extract">
+                                            <rect key="frame" x="10" y="90" width="230" height="112"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <string key="text">Label riga 1,
 Label riga 2,
-Label riga 3</string>
+Label riga 3,
+Label riga 4,
+Label riga 5,
+Label riga 6,
+Label riga 7,
+</string>
                                             <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="12"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0 attachment(s)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Npg-Zb-frG" userLabel="Attachments number">
-                                            <rect key="frame" x="10" y="79" width="74" height="17"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
-                                            <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="10"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wEk-7d-3hP" userLabel="Date">
-                                            <rect key="frame" x="92" y="79" width="218" height="17"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
-                                            <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="10"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Rw8-Xr-49V" userLabel="Title">
-                                            <rect key="frame" x="10" y="3" width="738" height="24"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2kn-82-87H" userLabel="Title">
+                                            <rect key="frame" x="10" y="10" width="230" height="72"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <accessibility key="accessibilityConfiguration" label=""/>
                                             <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="17"/>
@@ -65,72 +71,12 @@ Label riga 3</string>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <connections>
-                                    <outlet property="attachmentsQuantityLabel" destination="Npg-Zb-frG" id="tqd-Hc-s5I"/>
-                                    <outlet property="dateLabel" destination="wEk-7d-3hP" id="ObE-Lo-0Fd"/>
-                                    <outlet property="noteTextLabel" destination="DNq-sc-nt8" id="E5i-P4-TJ5"/>
-                                    <outlet property="titleLabel" destination="Rw8-Xr-49V" id="Cc4-4f-EU9"/>
-                                    <segue destination="Ucd-PA-4nx" kind="push" identifier="EditNote" id="qVh-HA-E4v"/>
+                                    <outlet property="attachmentsQuantityLabel" destination="W4b-eG-7aY" id="Kuh-AY-Zkh"/>
+                                    <outlet property="dateLabel" destination="tjC-xs-h7l" id="ctj-5J-4RJ"/>
+                                    <outlet property="noteTextLabel" destination="rau-ZM-HXb" id="IxU-EN-pmw"/>
+                                    <outlet property="titleLabel" destination="2kn-82-87H" id="hmw-QI-I2Y"/>
+                                    <segue destination="Ucd-PA-4nx" kind="push" identifier="EditNote" id="IhM-IQ-cep"/>
                                 </connections>
-                            </tableViewCell>
-                        </prototypes>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Notes" id="emO-Kf-fjO">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="wZB-qB-FVm">
-                            <connections>
-                                <segue destination="Ucd-PA-4nx" kind="push" identifier="AddTextNote" id="BK3-7Y-0cr"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
-                    <connections>
-                        <outlet property="searchBar" destination="qbH-mH-OCi" id="bIH-E7-5dZ"/>
-                        <segue destination="qUU-3D-CI1" kind="push" identifier="Preferences" id="dUu-XW-BBG"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="MCc-fD-cqm" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1517" y="10"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="bZe-L5-RFF">
-            <objects>
-                <navigationController id="O93-e0-6cM" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8Pq-ew-Zlu">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="C59-nU-2Cr" kind="relationship" relationship="rootViewController" id="ThX-aB-GtK"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="a37-fI-ZuL" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="543" y="10"/>
-        </scene>
-        <!--Mi Pad View Controller-->
-        <scene sceneID="Z5X-On-Pu0">
-            <objects>
-                <collectionViewController autoresizesArchivedViewToFullSize="NO" id="5cO-8Y-p76" customClass="IAMiPadViewController" sceneMemberID="viewController">
-                    <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="5mO-xY-1Ru">
-                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="8lc-Cj-Y5i">
-                            <size key="itemSize" width="50" height="50"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Xk6-Ta-Su6">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -138,10 +84,20 @@ Label riga 3</string>
                             <outlet property="delegate" destination="5cO-8Y-p76" id="nGm-Oy-HB4"/>
                         </connections>
                     </collectionView>
+                    <navigationItem key="navigationItem" id="gB6-u2-Qcm">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Ae1-1Y-fD4">
+                            <connections>
+                                <segue destination="Ucd-PA-4nx" kind="push" identifier="AddTextNote" id="MAG-gs-XzX"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="qUU-3D-CI1" kind="push" identifier="Preferences" id="DOg-yP-O9N"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EGJ-gV-vUd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1517" y="1177"/>
+            <point key="canvasLocation" x="2491" y="1177"/>
         </scene>
         <!--Preferences-->
         <scene sceneID="NWX-UV-lWp">
@@ -370,7 +326,7 @@ Label riga 3</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bc1-Vg-9e2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2629" y="716"/>
+            <point key="canvasLocation" x="3507" y="2700"/>
         </scene>
         <!--Text Note Editor-->
         <scene sceneID="x2M-XJ-15O">
@@ -519,7 +475,7 @@ Label riga 3</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aEK-wC-SQn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2629" y="-427"/>
+            <point key="canvasLocation" x="3809" y="1149"/>
         </scene>
         <!--Add Link-->
         <scene sceneID="HzW-hG-gHP">
@@ -587,7 +543,7 @@ Label riga 3</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FLV-FF-t40" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3860" y="-1465"/>
+            <point key="canvasLocation" x="5096" y="1923"/>
         </scene>
         <!--Attachment Detail-->
         <scene sceneID="eJE-ZV-ke5">
@@ -645,7 +601,25 @@ Label riga 3</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KjY-Ib-8sp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4834" y="-173"/>
+            <point key="canvasLocation" x="4930" y="391"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ktW-rd-YK3">
+            <objects>
+                <navigationController id="XeR-3C-pmH" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="BC7-ap-UEa">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="5cO-8Y-p76" kind="relationship" relationship="rootViewController" id="jkW-7J-Maj"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z9o-5a-qJy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1517" y="1177"/>
         </scene>
     </scenes>
     <resources>
@@ -684,15 +658,6 @@ Label riga 3</string>
                 <relationship kind="outlet" name="theWebView" candidateClass="UIWebView"/>
             </relationships>
         </class>
-        <class className="IAMNoteCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/IAMNoteCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="attachmentsQuantityLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="dateLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="noteTextLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
         <class className="IAMNoteEdit" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IAMNoteEdit.h"/>
             <relationships>
@@ -720,17 +685,18 @@ Label riga 3</string>
                 <relationship kind="outlet" name="versionLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
-        <class className="IAMViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/IAMViewController.h"/>
+        <class className="IAMiPadNoteCell" superclassName="UICollectionViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/IAMiPadNoteCell.h"/>
             <relationships>
-                <relationship kind="action" name="launchPreferences:"/>
-                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
+                <relationship kind="outlet" name="attachmentsQuantityLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="dateLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="noteTextLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
         <class className="IAMiPadViewController" superclassName="UICollectionViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IAMiPadViewController.h"/>
             <relationships>
-                <relationship kind="action" name="launchPreferences:"/>
                 <relationship kind="outlet" name="collectionView" candidateClass="UICollectionView"/>
                 <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
             </relationships>
@@ -754,6 +720,6 @@ Label riga 3</string>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="qVh-HA-E4v"/>
+        <segue reference="MAG-gs-XzX"/>
     </inferredMetricsTieBreakers>
 </document>
