@@ -16,7 +16,7 @@
 #import "NSDate+PassedTime.h"
 #import "GTThemer.h"
 
-@interface IAMiPadViewController ()
+@interface IAMiPadViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UIActionSheetDelegate>
 
 @property NSMutableArray *objectChanges;
 @property NSMutableArray *sectionChanges;
@@ -27,7 +27,10 @@
 @property (nonatomic) NSDateFormatter *dateFormatter;
 @property IAMAppDelegate *appDelegate;
 
-@property(nonatomic, weak) IBOutlet UICollectionView *collectionView;
+@property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
+
+@property NSIndexPath *selectedCell;
+- (IBAction)deleteCell:(id)sender;
 
 @end
 
@@ -55,9 +58,6 @@
 	[self.dateFormatter setLocale:[NSLocale currentLocale]];
 	[self.dateFormatter setDateStyle:NSDateFormatterMediumStyle];
 	[self.dateFormatter setTimeStyle:NSDateFormatterShortStyle];
-    NSArray *leftButtons = @[self.editButtonItem,
-                             [[UIBarButtonItem alloc] initWithTitle:@"Prefs" style:UIBarButtonItemStylePlain target:self action:@selector(launchPreferences:)]];
-    self.navigationItem.leftBarButtonItems = leftButtons;
     // Notifications to be honored during controller lifecycle
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadFetchedResults:) name:NSPersistentStoreCoordinatorStoresDidChangeNotification object:self.appDelegate.coreDataController.psc];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadFetchedResults:) name:NSPersistentStoreDidImportUbiquitousContentChangesNotification object:self.appDelegate.coreDataController.psc];
@@ -433,6 +433,7 @@
     {
         IAMNoteEdit *noteEditor = [segue destinationViewController];
         NSIndexPath *selectedItem = self.collectionView.indexPathsForSelectedItems[0];
+        DLog(@"Calling EditNote for %@", selectedItem);
         if(selectedItem)
         {
             Note *selectedNote =  [[self fetchedResultsController] objectAtIndexPath:selectedItem];
@@ -443,9 +444,42 @@
     }
 }
 
-- (IBAction)launchPreferences:(id)sender
+- (IBAction)deleteCell:(UIGestureRecognizer *)sender
 {
-    [self performSegueWithIdentifier:@"Preferences" sender:self];
+    self.selectedCell = [self.collectionView indexPathForItemAtPoint:[sender locationInView:self.collectionView]];
+    if (sender.state == UIGestureRecognizerStateEnded) {
+        DLog(@"This is deleteCell: UIGestureRecognizerStateEnded called for %@", self.selectedCell);
+    }
+    else if (sender.state == UIGestureRecognizerStateBegan){
+        DLog(@"This is deleteCell: UIGestureRecognizerStateBegan called for %@", self.selectedCell);
+        UIActionSheet *chooseIt = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Delete This Note?", nil)
+                                                              delegate:self
+                                                     cancelButtonTitle:NSLocalizedString(@"No", nil)
+                                                destructiveButtonTitle:NSLocalizedString(@"Yes, Delete It!", nil)
+                                                     otherButtonTitles:nil];
+        [chooseIt showFromRect:[[self.collectionView cellForItemAtIndexPath:self.selectedCell] frame] inView:self.collectionView animated:YES];
+        [chooseIt showInView:self.view];
+    }
+}
+
+#pragma mark UIActionSheetDelegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    DLog(@"Clicked button at index %d", buttonIndex);
+    if(buttonIndex == 0)
+    {
+        // Delete the managed object for the given index path
+        NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
+        [context deleteObject:[self.fetchedResultsController objectAtIndexPath:self.selectedCell]];
+        
+        // Save the context.
+        NSError *error = nil;
+        if (![context save:&error]) {
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            abort();
+        }
+    }
 }
 
 @end

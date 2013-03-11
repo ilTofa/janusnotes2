@@ -10,7 +10,7 @@
 
 #import <CoreData/CoreData.h>
 
-@interface IAMiPadViewController : UICollectionViewController <NSFetchedResultsControllerDelegate>
+@interface IAMiPadViewController : UIViewController <NSFetchedResultsControllerDelegate>
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
