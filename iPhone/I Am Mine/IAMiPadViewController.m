@@ -1,33 +1,52 @@
 //
-//  IAMViewController.m
+//  IAMiPadViewController.m
 //  I Am Mine
 //
-//  Created by Giacomo Tufano on 18/02/13.
+//  Created by Giacomo Tufano on 11/03/13.
 //  Copyright (c) 2013 Giacomo Tufano. All rights reserved.
 //
 
-#import "IAMViewController.h"
+#import "IAMiPadViewController.h"
+
+#import "IAMiPadNoteCell.h"
 
 #import "IAMAppDelegate.h"
-#import "IAMNoteCell.h"
 #import "Note.h"
 #import "IAMNoteEdit.h"
 #import "NSDate+PassedTime.h"
 #import "GTThemer.h"
 
-@interface IAMViewController () <UISearchBarDelegate, NSFetchedResultsControllerDelegate>
+@interface IAMiPadViewController ()
+
+@property NSMutableArray *objectChanges;
+@property NSMutableArray *sectionChanges;
+
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (strong, nonatomic) NSString *searchText;
 
 @property (nonatomic) NSDateFormatter *dateFormatter;
-
 @property IAMAppDelegate *appDelegate;
+
+@property(nonatomic, weak) IBOutlet UICollectionView *collectionView;
 
 @end
 
-@implementation IAMViewController
+@implementation IAMiPadViewController
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.objectChanges = [NSMutableArray array];
+    self.sectionChanges = [NSMutableArray array];
     [self loadPreviousSearchKeys];
     // Set some sane defaults
     self.appDelegate = (IAMAppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -45,15 +64,9 @@
     [self setupFetchExecAndReload];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (void)viewDidAppear:(BOOL)animated
 {
-    DLog(@"This is IAMViewController:viewDidAppear:");
+    DLog(@"This is IAMiPadViewController:viewDidAppear:");
     [super viewDidAppear:animated];
     // If we're getting back from an edit without saving...
     if([self.managedObjectContext hasChanges])
@@ -63,11 +76,17 @@
 
 -(void)colorize
 {
-    [[GTThemer sharedInstance] applyColorsToView:self.tableView];
+    [[GTThemer sharedInstance] applyColorsToView:self.collectionView];
     [[GTThemer sharedInstance] applyColorsToView:self.navigationController.navigationBar];
     [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
     [[GTThemer sharedInstance] applyColorsToView:self.searchBar];
-    [self.tableView reloadData];
+    [self.collectionView reloadData];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark -
@@ -91,8 +110,8 @@
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
 {
     [searchBar setShowsCancelButton:YES animated:YES];
-    self.tableView.allowsSelection = NO;
-    self.tableView.scrollEnabled = NO;
+    self.collectionView.allowsSelection = NO;
+    self.collectionView.scrollEnabled = NO;
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
@@ -100,8 +119,8 @@
     DLog(@"Cancel clicked");
     [searchBar setShowsCancelButton:NO animated:YES];
     [searchBar resignFirstResponder];
-    self.tableView.allowsSelection = YES;
-    self.tableView.scrollEnabled = YES;
+    self.collectionView.allowsSelection = YES;
+    self.collectionView.scrollEnabled = YES;
     searchBar.text = self.searchText = @"";
     [self setupFetchExecAndReload];
 }
@@ -111,8 +130,8 @@
     DLog(@"Search should start for '%@'", searchBar.text);
     [searchBar resignFirstResponder];
     self.searchText = searchBar.text;
-    self.tableView.allowsSelection = YES;
-    self.tableView.scrollEnabled = YES;
+    self.collectionView.allowsSelection = YES;
+    self.collectionView.scrollEnabled = YES;
     // Perform search... :)
     DLog(@"Now searching %@", self.searchText);
     [self setupFetchExecAndReload];
@@ -136,7 +155,7 @@
                 NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
                 abort();
             } else {
-                [self.tableView reloadData];
+                [self.collectionView reloadData];
             }
         }
     });
@@ -183,7 +202,7 @@
     
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
                                                                         managedObjectContext:self.managedObjectContext
-                                                                          sectionNameKeyPath:@"sectionIdentifier"
+                                                                          sectionNameKeyPath:nil /* @"sectionIdentifier" */
                                                                                    cacheName:nil];
     self.fetchedResultsController.delegate = self;
     DLog(@"Fetch setup to: %@", self.fetchedResultsController);
@@ -199,71 +218,26 @@
             abort();
         }
         else
-            [self.tableView reloadData];
+            [self.collectionView reloadData];
     }
     [self saveSearchKeys];
 }
 
-#pragma mark -
-#pragma mark Fetched results controller delegate
+#pragma mark - UICollectionVIew
 
-- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    [self.tableView beginUpdates];
+    return [[self.fetchedResultsController sections] count];
 }
 
-- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
-           atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
-    DLog(@"This is controller didChangeSection: atIndex:%d forChangeType:%d", sectionIndex, type);
-    switch(type) {
-        case NSFetchedResultsChangeInsert:
-            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex]
-                          withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        case NSFetchedResultsChangeDelete:
-            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex]
-                          withRowAnimation:UITableViewRowAnimationFade];
-            break;
-    }
-}
-
-- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
-       atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
-      newIndexPath:(NSIndexPath *)newIndexPath
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    DLog(@"This is controller didChangeObject: atIndexPath:%@ forChangeType:%d newIndexPath:%@", indexPath, type, newIndexPath);
-    UITableView *tableView = self.tableView;
     
-    switch(type) {
-        case NSFetchedResultsChangeInsert:
-            [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationNone];
-            break;
-            
-        case NSFetchedResultsChangeDelete:
-            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-            break;
-            
-        case NSFetchedResultsChangeMove:
-            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-            [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationNone];
-            break;
-            
-        case NSFetchedResultsChangeUpdate:
-            DLog(@"Calling configureCell: from didChangeObject:");
-            [self configureCell:(IAMNoteCell *)[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
-            break;
-    }
+    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
+    return [sectionInfo numberOfObjects];
 }
 
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
-{
-    [self.tableView endUpdates];
-}
-
-#pragma mark - Table view data source
-
-- (void)configureCell:(IAMNoteCell *)cell atIndexPath:(NSIndexPath *)indexPath
+- (void)configureCell:(IAMiPadNoteCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     Note *note = [self.fetchedResultsController objectAtIndexPath:indexPath];
     [[GTThemer sharedInstance] applyColorsToLabel:cell.titleLabel withFontSize:17];
@@ -282,99 +256,164 @@
     cell.attachmentsQuantityLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%lu attachment(s)", nil), attachmentsQuantity];
 }
 
-// Override to customize the look of a cell representing an object. The default is to display
-// a UITableViewCellStyleDefault style cell with the label being the first key in the object.
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+// The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"TextCell";
-    IAMNoteCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[IAMNoteCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
+    static NSString *CellIdentifier = @"iPadCell";
+    IAMiPadNoteCell *cell = (IAMiPadNoteCell *)[collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
     [self configureCell:cell atIndexPath:indexPath];
     return cell;
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+#pragma mark - Fetched results controller delegate
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
+           atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
 {
-	NSInteger count = [[self.fetchedResultsController sections] count];
-	return count;
+    
+    NSMutableDictionary *change = [NSMutableDictionary new];
+    
+    switch(type) {
+        case NSFetchedResultsChangeInsert:
+            change[@(type)] = @(sectionIndex);
+            break;
+        case NSFetchedResultsChangeDelete:
+            change[@(type)] = @(sectionIndex);
+            break;
+    }
+    
+    [_sectionChanges addObject:change];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
+       atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
+      newIndexPath:(NSIndexPath *)newIndexPath
 {
-	id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
-	NSInteger count = [sectionInfo numberOfObjects];
-	return count;
-}
-
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete)
+    
+    NSMutableDictionary *change = [NSMutableDictionary new];
+    switch(type)
     {
-        // Delete the managed object for the given index path
-        NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-        [context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+        case NSFetchedResultsChangeInsert:
+            change[@(type)] = newIndexPath;
+            break;
+        case NSFetchedResultsChangeDelete:
+            change[@(type)] = indexPath;
+            break;
+        case NSFetchedResultsChangeUpdate:
+            change[@(type)] = indexPath;
+            break;
+        case NSFetchedResultsChangeMove:
+            change[@(type)] = @[indexPath, newIndexPath];
+            break;
+    }
+    [_objectChanges addObject:change];
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+{
+    if ([_sectionChanges count] > 0)
+    {
+        [self.collectionView performBatchUpdates:^{
+            
+            for (NSDictionary *change in _sectionChanges)
+            {
+                [change enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, id obj, BOOL *stop) {
+                    
+                    NSFetchedResultsChangeType type = [key unsignedIntegerValue];
+                    switch (type)
+                    {
+                        case NSFetchedResultsChangeInsert:
+                            [self.collectionView insertSections:[NSIndexSet indexSetWithIndex:[obj unsignedIntegerValue]]];
+                            break;
+                        case NSFetchedResultsChangeDelete:
+                            [self.collectionView deleteSections:[NSIndexSet indexSetWithIndex:[obj unsignedIntegerValue]]];
+                            break;
+                        case NSFetchedResultsChangeUpdate:
+                            [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:[obj unsignedIntegerValue]]];
+                            break;
+                    }
+                }];
+            }
+        } completion:nil];
+    }
+    
+    if ([_objectChanges count] > 0 && [_sectionChanges count] == 0)
+    {
         
-        // Save the context.
-        NSError *error = nil;
-        if (![context save:&error]) {
-            /*
-             Replace this implementation with code to handle the error appropriately.
-             
-             abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
-             */
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-            abort();
+        if ([self shouldReloadCollectionViewToPreventKnownIssue]) {
+            // This is to prevent a bug in UICollectionView from occurring.
+            // The bug presents itself when inserting the first object or deleting the last object in a collection view.
+            // http://stackoverflow.com/questions/12611292/uicollectionview-assertion-failure
+            // This code should be removed once the bug has been fixed, it is tracked in OpenRadar
+            // http://openradar.appspot.com/12954582
+            [self.collectionView reloadData];
+            
+        } else {
+            
+            [self.collectionView performBatchUpdates:^{
+                
+                for (NSDictionary *change in _objectChanges)
+                {
+                    [change enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, id obj, BOOL *stop) {
+                        
+                        NSFetchedResultsChangeType type = [key unsignedIntegerValue];
+                        switch (type)
+                        {
+                            case NSFetchedResultsChangeInsert:
+                                [self.collectionView insertItemsAtIndexPaths:@[obj]];
+                                break;
+                            case NSFetchedResultsChangeDelete:
+                                [self.collectionView deleteItemsAtIndexPaths:@[obj]];
+                                break;
+                            case NSFetchedResultsChangeUpdate:
+                                [self.collectionView reloadItemsAtIndexPaths:@[obj]];
+                                break;
+                            case NSFetchedResultsChangeMove:
+                                [self.collectionView moveItemAtIndexPath:obj[0] toIndexPath:obj[1]];
+                                break;
+                        }
+                    }];
+                }
+            } completion:nil];
         }
+        
+        [_sectionChanges removeAllObjects];
+        [_objectChanges removeAllObjects];
     }
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-	
-	id <NSFetchedResultsSectionInfo> theSection = [[self.fetchedResultsController sections] objectAtIndex:section];
-    
-    /*
-     Section information derives from an event's sectionIdentifier, which is a string representing the number (year * 1000) + month.
-     To display the section title, convert the year and month components to a string representation.
-     */
-    static NSArray *monthSymbols = nil;
-    
-    if (!monthSymbols) {
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        [formatter setCalendar:[NSCalendar currentCalendar]];
-        monthSymbols = [formatter monthSymbols];
+- (BOOL)shouldReloadCollectionViewToPreventKnownIssue {
+    __block BOOL shouldReload = NO;
+    for (NSDictionary *change in self.objectChanges) {
+        [change enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+            NSFetchedResultsChangeType type = [key unsignedIntegerValue];
+            NSIndexPath *indexPath = obj;
+            switch (type) {
+                case NSFetchedResultsChangeInsert:
+                    if ([self.collectionView numberOfItemsInSection:indexPath.section] == 0) {
+                        shouldReload = YES;
+                    } else {
+                        shouldReload = NO;
+                    }
+                    break;
+                case NSFetchedResultsChangeDelete:
+                    if ([self.collectionView numberOfItemsInSection:indexPath.section] == 1) {
+                        shouldReload = YES;
+                    } else {
+                        shouldReload = NO;
+                    }
+                    break;
+                case NSFetchedResultsChangeUpdate:
+                    shouldReload = NO;
+                    break;
+                case NSFetchedResultsChangeMove:
+                    shouldReload = NO;
+                    break;
+            }
+        }];
     }
     
-    NSInteger numericSection = [[theSection name] integerValue];
-    
-	NSInteger year = numericSection / 1000;
-	NSInteger month = numericSection - (year * 1000);
-	
-	NSString *titleString = [NSString stringWithFormat:@"%@ %d", [monthSymbols objectAtIndex:month-1], year];
-	
-	return titleString;
-}
-
-/*
- // Override to support rearranging the table view.
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
- {
- }
- */
-
-
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return NO;
-}
-
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    DLog(@"This is tableView:didSelectRowAtIndexPath: called for row %d", indexPath.row);
+    return shouldReload;
 }
 
 #pragma mark Segues
@@ -393,10 +432,14 @@
     if ([[segue identifier] isEqualToString:@"EditNote"])
     {
         IAMNoteEdit *noteEditor = [segue destinationViewController];
-        Note *selectedNote =  [[self fetchedResultsController] objectAtIndexPath:self.tableView.indexPathForSelectedRow];
-        selectedNote.timeStamp = [NSDate date];
-        noteEditor.editedNote = selectedNote;
-        noteEditor.moc = self.managedObjectContext;
+        NSIndexPath *selectedItem = self.collectionView.indexPathsForSelectedItems[0];
+        if(selectedItem)
+        {
+            Note *selectedNote =  [[self fetchedResultsController] objectAtIndexPath:selectedItem];
+            selectedNote.timeStamp = [NSDate date];
+            noteEditor.editedNote = selectedNote;
+            noteEditor.moc = self.managedObjectContext;
+        }
     }
 }
 
