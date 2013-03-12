@@ -9,6 +9,7 @@
 #import "IAMiPadViewController.h"
 
 #import "IAMiPadNoteCell.h"
+#import "IAMiPadSectionHeader.h"
 
 #import "IAMAppDelegate.h"
 #import "Note.h"
@@ -202,7 +203,7 @@
     
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
                                                                         managedObjectContext:self.managedObjectContext
-                                                                          sectionNameKeyPath:nil /* @"sectionIdentifier" */
+                                                                          sectionNameKeyPath:@"sectionIdentifier"
                                                                                    cacheName:nil];
     self.fetchedResultsController.delegate = self;
     DLog(@"Fetch setup to: %@", self.fetchedResultsController);
@@ -256,13 +257,32 @@
     cell.attachmentsQuantityLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%lu attachment(s)", nil), attachmentsQuantity];
 }
 
-// The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"iPadCell";
-    IAMiPadNoteCell *cell = (IAMiPadNoteCell *)[collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
+    IAMiPadNoteCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
     [self configureCell:cell atIndexPath:indexPath];
     return cell;
+}
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    id <NSFetchedResultsSectionInfo> theSection = [[self.fetchedResultsController sections] objectAtIndex:indexPath.section];
+    static NSArray *monthSymbols = nil;
+    if (!monthSymbols) {
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setCalendar:[NSCalendar currentCalendar]];
+        monthSymbols = [formatter monthSymbols];
+    }
+    NSInteger numericSection = [[theSection name] integerValue];
+	NSInteger year = numericSection / 1000;
+	NSInteger month = numericSection - (year * 1000);
+	NSString *titleString = [NSString stringWithFormat:@"%@ %d", [monthSymbols objectAtIndex:month-1], year];
+    static NSString *HeaderIdentifier = @"SectionHeader";
+    IAMiPadSectionHeader *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:HeaderIdentifier forIndexPath:indexPath];
+    [[GTThemer sharedInstance] applyColorsToLabel:headerView.sectionHeaderTitleLabel withFontSize:19];
+    headerView.sectionHeaderTitleLabel.text = titleString;
+    return headerView;
 }
 
 #pragma mark - Fetched results controller delegate

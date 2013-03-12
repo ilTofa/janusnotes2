@@ -11,6 +11,7 @@
 		640D40BE16D5128B003034B3 /* IAMNoteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 640D40BD16D5128B003034B3 /* IAMNoteCell.m */; };
 		640D40C016D6DF92003034B3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 640D40BF16D6DF92003034B3 /* CoreData.framework */; };
 		640D40C216D6DFAF003034B3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 640D40C116D6DFAF003034B3 /* CoreLocation.framework */; };
+		64101E2716EF6B4A0086AD5F /* IAMiPadSectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 64101E2616EF6B4A0086AD5F /* IAMiPadSectionHeader.m */; };
 		6416315716D7DB830004CB52 /* IAMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6416315616D7DB830004CB52 /* IAMViewController.m */; };
 		6416315916D831DB0004CB52 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6416315816D831DB0004CB52 /* MobileCoreServices.framework */; };
 		6416315D16D8345F0004CB52 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 6416315C16D8345F0004CB52 /* UIImage+RoundedCorner.m */; };
@@ -59,6 +60,8 @@
 		640D40BD16D5128B003034B3 /* IAMNoteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IAMNoteCell.m; path = "List Cells/IAMNoteCell.m"; sourceTree = "<group>"; };
 		640D40BF16D6DF92003034B3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		640D40C116D6DFAF003034B3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		64101E2516EF6B4A0086AD5F /* IAMiPadSectionHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMiPadSectionHeader.h; sourceTree = "<group>"; };
+		64101E2616EF6B4A0086AD5F /* IAMiPadSectionHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMiPadSectionHeader.m; sourceTree = "<group>"; };
 		6416315616D7DB830004CB52 /* IAMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMViewController.m; sourceTree = "<group>"; };
 		6416315816D831DB0004CB52 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		6416315B16D8345F0004CB52 /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
@@ -154,6 +157,8 @@
 				641A5EFE16EDD1B600D3440C /* IAMiPadViewController.m */,
 				641A5F0016EDD37F00D3440C /* IAMiPadNoteCell.h */,
 				641A5F0116EDD37F00D3440C /* IAMiPadNoteCell.m */,
+				64101E2516EF6B4A0086AD5F /* IAMiPadSectionHeader.h */,
+				64101E2616EF6B4A0086AD5F /* IAMiPadSectionHeader.m */,
 			);
 			name = "Main View (iPad)";
 			sourceTree = "<group>";
@@ -394,6 +399,7 @@
 				64BB200F16EA000E00FE6C77 /* GTThemer.m in Sources */,
 				641A5EFF16EDD1B600D3440C /* IAMiPadViewController.m in Sources */,
 				641A5F0216EDD37F00D3440C /* IAMiPadNoteCell.m in Sources */,
+				64101E2716EF6B4A0086AD5F /* IAMiPadSectionHeader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
