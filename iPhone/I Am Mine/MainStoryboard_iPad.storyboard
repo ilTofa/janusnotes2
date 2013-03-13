@@ -30,6 +30,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="250" height="250"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="1_CellBackground.png" id="OTK-rS-ZQE">
+                                                    <rect key="frame" x="5" y="5" width="240" height="240"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cdQ-Q8-YRg" userLabel="Date">
                                                     <rect key="frame" x="10" y="210" width="230" height="15"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
@@ -72,6 +76,7 @@ Label riga 7,
                                         </view>
                                         <connections>
                                             <outlet property="attachmentsQuantityLabel" destination="ptt-va-cyW" id="8dm-OM-UZ9"/>
+                                            <outlet property="cellBackground" destination="OTK-rS-ZQE" id="M5D-NP-ik5"/>
                                             <outlet property="dateLabel" destination="cdQ-Q8-YRg" id="P4b-s8-E6a"/>
                                             <outlet property="noteTextLabel" destination="0aS-n9-R5J" id="WGG-Aq-dVY"/>
                                             <outlet property="titleLabel" destination="pox-Hr-Mfi" id="i7M-ec-Na9"/>
@@ -661,6 +666,7 @@ Label riga 7,
         </scene>
     </scenes>
     <resources>
+        <image name="1_CellBackground.png" width="240" height="240"/>
         <image name="SmallRow.png" width="2" height="2"/>
         <image name="link-icon.png" width="25" height="25"/>
     </resources>
@@ -700,7 +706,9 @@ Label riga 7,
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IAMNoteEdit.h"/>
             <relationships>
                 <relationship kind="action" name="addImageToNote:"/>
+                <relationship kind="action" name="done:"/>
                 <relationship kind="action" name="save:"/>
+                <relationship kind="action" name="shareAction:"/>
                 <relationship kind="outlet" name="addImageButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="attachmentQuantityLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="attachmentsGreyRow" candidateClass="UIImageView"/>
@@ -725,6 +733,7 @@ Label riga 7,
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IAMiPadNoteCell.h"/>
             <relationships>
                 <relationship kind="outlet" name="attachmentsQuantityLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="cellBackground" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="dateLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="noteTextLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
@@ -752,6 +761,9 @@ Label riga 7,
         </class>
         <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
+        </class>
+        <class className="UICollectionViewLayout" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

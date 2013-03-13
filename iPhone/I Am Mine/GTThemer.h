@@ -16,6 +16,9 @@
 - (void)applyColorsToView:(UIView *)view;
 - (void)applyColorsToLabel:(UILabel *)label withFontSize:(int)fontSize;
 
+// Background image name for current theme
+-(NSString *)backgroundImageName;
+
 // Get id (for user choose UI)
 - (NSInteger)getStandardColorsID;
 - (NSInteger)getStandardFontFaceID;

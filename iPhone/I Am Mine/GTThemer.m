@@ -18,6 +18,7 @@
 @property NSString *defaultFontFace;
 @property NSInteger defaultFontSize;
 @property NSDictionary *defaultColors;
+@property NSArray *backgroundImagesNames;
 
 @property UIColor *backgroundColor, *textColor, *tintColor;
 
@@ -50,6 +51,7 @@
                                              @"tintColor" : [UIColor colorWithHue:0.083 saturation:1.000 brightness:0.502 alpha:1.000]},
                                          ];
         sharedInstance.fontsConfigs = @[@"Cochin", @"Georgia", @"Helvetica", @"Marker Felt"];
+        sharedInstance.backgroundImagesNames = @[@"1_CellBackground", @"2_CellBackground", @"3_CellBackground", @"4_CellBackground"];
         [sharedInstance getDefaultValues];
     });
     return sharedInstance;
@@ -63,6 +65,11 @@
     self.defaultFontSize = [[NSUserDefaults standardUserDefaults] integerForKey:@"fontSize"];
     if(self.defaultFontSize == 0)
         self.defaultFontSize = 14;
+}
+
+-(NSString *)backgroundImageName
+{
+    return self.backgroundImagesNames[[[NSUserDefaults standardUserDefaults] integerForKey:@"standardColors"]];
 }
 
 - (void)applyColorsToView:(UIView *)view

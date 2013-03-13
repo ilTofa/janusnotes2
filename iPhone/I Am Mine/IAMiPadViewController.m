@@ -241,6 +241,7 @@
 - (void)configureCell:(IAMiPadNoteCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     Note *note = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    cell.cellBackground.image = [UIImage imageNamed:[[GTThemer sharedInstance] backgroundImageName]];
     [[GTThemer sharedInstance] applyColorsToLabel:cell.titleLabel withFontSize:17];
     cell.titleLabel.text = note.title;
     [[GTThemer sharedInstance] applyColorsToLabel:cell.noteTextLabel withFontSize:12];

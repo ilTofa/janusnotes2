@@ -14,5 +14,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *noteTextLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *attachmentsQuantityLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *cellBackground;
 
 @end
