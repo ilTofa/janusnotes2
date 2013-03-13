@@ -16,6 +16,7 @@
 #import "IAMNoteEdit.h"
 #import "NSDate+PassedTime.h"
 #import "GTThemer.h"
+#import "IAMPreferencesController.h"
 
 @interface IAMiPadViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UIActionSheetDelegate>
 
@@ -32,6 +33,8 @@
 
 @property NSIndexPath *selectedCell;
 - (IBAction)deleteCell:(id)sender;
+
+@property UIStoryboardPopoverSegue* popSegue;
 
 @end
 
@@ -62,6 +65,7 @@
     // Notifications to be honored during controller lifecycle
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadFetchedResults:) name:NSPersistentStoreCoordinatorStoresDidChangeNotification object:self.appDelegate.coreDataController.psc];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadFetchedResults:) name:NSPersistentStoreDidImportUbiquitousContentChangesNotification object:self.appDelegate.coreDataController.psc];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismissPopoverRequested:) name:kPreferencesPopoverCanBeDismissed object:nil];
     [self setupFetchExecAndReload];
 }
 
@@ -439,6 +443,14 @@
 
 #pragma mark Segues
 
+-(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+    // If we already have an active popover for preferences, don't perform segue
+    if ([identifier isEqualToString:@"Preferences"] && [self.popSegue.popoverController isPopoverVisible])
+        return NO;
+    return YES;
+}
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"AddTextNote"])
@@ -463,6 +475,8 @@
             noteEditor.moc = self.managedObjectContext;
         }
     }
+    if ([[segue identifier] isEqualToString:@"Preferences"])
+        self.popSegue = (UIStoryboardPopoverSegue *)segue;
 }
 
 - (IBAction)deleteCell:(UIGestureRecognizer *)sender
@@ -480,6 +494,17 @@
                                                      otherButtonTitles:nil];
         [chooseIt showFromRect:[[self.collectionView cellForItemAtIndexPath:self.selectedCell] frame] inView:self.collectionView animated:YES];
         [chooseIt showInView:self.view];
+    }
+}
+
+- (void)dismissPopoverRequested:(NSNotification *) notification
+{
+    DLog(@"This is dismissPopoverRequested: called for %@", notification.object);
+    if ([self.popSegue.popoverController isPopoverVisible])
+    {
+        [self.popSegue.popoverController dismissPopoverAnimated:YES];
+        self.popSegue = nil;
+        [self colorize];
     }
 }
 

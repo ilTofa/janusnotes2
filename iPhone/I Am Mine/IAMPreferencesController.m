@@ -112,7 +112,11 @@
     DLog(@"Saving. ColorSet n° %d, fontFace n° %d, fontSize %d", self.colorSet, self.fontFace, self.fontSize);
     [[GTThemer sharedInstance] saveStandardColors:self.colorSet];
     [[GTThemer sharedInstance] saveStandardFontsWithFaceID:self.fontFace andSize:self.fontSize];
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    // Dismiss (or ask for dismissing)
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+        [[NSNotificationCenter defaultCenter] postNotificationName:kPreferencesPopoverCanBeDismissed object:self];
+    else
+        [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 @end

@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#define kPreferencesPopoverCanBeDismissed @"PreferencesPopoverCanBeDismissed"
+
 @interface IAMPreferencesController : UITableViewController
 
 @property (weak, nonatomic) IBOutlet UILabel *sizeLabel;
