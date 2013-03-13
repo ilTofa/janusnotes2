@@ -29,6 +29,8 @@
 
 @property BOOL attachmensAreHidden;
 
+@property UIPopoverController *popover;
+
 @end
 
 @implementation IAMNoteEdit
@@ -238,7 +240,13 @@
 	UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
 	imagePicker.delegate = self;
 	imagePicker.sourceType = type;
-    [self presentViewController:imagePicker animated:YES completion:^{}];
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone || type == UIImagePickerControllerSourceTypeCamera)
+        [self presentViewController:imagePicker animated:YES completion:^{}];
+    else
+    {
+         self.popover = [[UIPopoverController alloc] initWithContentViewController:imagePicker];
+        [self.popover presentPopoverFromBarButtonItem:self.addImageButton permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    }
 }
 
 #pragma mark - UIImagePickerControllerDelegate
@@ -257,7 +265,6 @@
         UIImage *pickedImage = info[UIImagePickerControllerEditedImage];
         if (!pickedImage)
 			pickedImage = info[UIImagePickerControllerOriginalImage];
-        [picker dismissViewControllerAnimated:YES completion:^{}];
         // Now add attachment...
         Attachment *newAttachment = [NSEntityDescription insertNewObjectForEntityForName:@"Attachment" inManagedObjectContext:self.moc];
         newAttachment.uti = (__bridge NSString *)(kUTTypeImage);
@@ -273,16 +280,18 @@
         [self refreshAttachments];
         // Don't save now... the moc will be saved on exit.
     }
-	else
-	{
-		// user don't want to do something, dismiss
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
         [picker dismissViewControllerAnimated:YES completion:^{}];
-	}
+    else
+        [self.popover dismissPopoverAnimated:YES];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
-    [picker dismissViewControllerAnimated:YES completion:^{}];
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+        [picker dismissViewControllerAnimated:YES completion:^{}];
+    else
+        [self.popover dismissPopoverAnimated:YES];
 }
 
 - (IBAction)shareAction:(id)sender

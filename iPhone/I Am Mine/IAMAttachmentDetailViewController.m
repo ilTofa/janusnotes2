@@ -125,7 +125,10 @@
                                                  cancelButtonTitle:NSLocalizedString(@"No", nil)
                                             destructiveButtonTitle:NSLocalizedString(@"Yes, Delete It!", nil)
                                                  otherButtonTitles:nil];
-    [chooseIt showInView:self.view];
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+        [chooseIt showInView:self.view];
+    else
+        [chooseIt showFromBarButtonItem:self.deleteButton animated:YES];
 }
 
 #pragma mark UIActionSheetDelegate
