@@ -52,7 +52,7 @@
         NSCalendar *calendar = [NSCalendar currentCalendar];
         
         NSDateComponents *components = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit) fromDate:[self timeStamp]];
-        tmp = [NSString stringWithFormat:@"%d", ([components year] * 1000) + [components month]];
+        tmp = [NSString stringWithFormat:@"%d", (int)(([components year] * 1000) + [components month])];
         [self setPrimitiveSectionIdentifier:tmp];
     }
     return tmp;

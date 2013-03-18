@@ -13,7 +13,6 @@
 		64EA622016F7110300F4838E /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 64EA621E16F7110300F4838E /* Credits.rtf */; };
 		64EA622316F7110300F4838E /* IAMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 64EA622216F7110300F4838E /* IAMAppDelegate.m */; };
 		64EA622616F7110300F4838E /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64EA622416F7110300F4838E /* MainMenu.xib */; };
-		64EA622916F7110300F4838E /* Janus.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 64EA622716F7110300F4838E /* Janus.xcdatamodeld */; };
 		64EA623116F7110300F4838E /* JanusImporter.mdimporter in Resources */ = {isa = PBXBuildFile; fileRef = 64EA622E16F7110300F4838E /* JanusImporter.mdimporter */; };
 		64EA623316F7110300F4838E /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64EA623216F7110300F4838E /* CoreServices.framework */; };
 		64EA623516F7110300F4838E /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64EA623416F7110300F4838E /* CoreFoundation.framework */; };
@@ -24,6 +23,11 @@
 		64EA624316F7110300F4838E /* GetMetadataForFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 64EA624216F7110300F4838E /* GetMetadataForFile.m */; };
 		64EA624616F7110300F4838E /* MySpotlightImporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 64EA624516F7110300F4838E /* MySpotlightImporter.m */; };
 		64EA625216F7166700F4838E /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 64EA625116F7166700F4838E /* icon.icns */; };
+		64EA627416F71E1400F4838E /* Attachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 64EA626D16F71E1400F4838E /* Attachment.m */; };
+		64EA627516F71E1400F4838E /* CoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64EA626F16F71E1400F4838E /* CoreDataController.m */; };
+		64EA627616F71E1400F4838E /* IAmMine.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 64EA627016F71E1400F4838E /* IAmMine.xcdatamodeld */; };
+		64EA627716F71E1400F4838E /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 64EA627316F71E1400F4838E /* Note.m */; };
+		64EA627B16F71E8A00F4838E /* NSDate+PassedTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 64EA627A16F71E8A00F4838E /* NSDate+PassedTime.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,7 +54,6 @@
 		64EA622116F7110300F4838E /* IAMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IAMAppDelegate.h; sourceTree = "<group>"; };
 		64EA622216F7110300F4838E /* IAMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IAMAppDelegate.m; sourceTree = "<group>"; };
 		64EA622516F7110300F4838E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		64EA622816F7110300F4838E /* Janus.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Janus.xcdatamodel; sourceTree = "<group>"; };
 		64EA622E16F7110300F4838E /* JanusImporter.mdimporter */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JanusImporter.mdimporter; sourceTree = BUILT_PRODUCTS_DIR; };
 		64EA623216F7110300F4838E /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		64EA623416F7110300F4838E /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
@@ -64,7 +67,16 @@
 		64EA624516F7110300F4838E /* MySpotlightImporter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MySpotlightImporter.m; sourceTree = "<group>"; };
 		64EA624716F7110300F4838E /* Importer Read Me.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Importer Read Me.txt"; sourceTree = "<group>"; };
 		64EA624816F7110300F4838E /* JanusImporter-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JanusImporter-Prefix.pch"; sourceTree = "<group>"; };
-		64EA625116F7166700F4838E /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
+		64EA625116F7166700F4838E /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = ../icon.icns; sourceTree = "<group>"; };
+		64EA626C16F71E1400F4838E /* Attachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Attachment.h; path = ../common/iCloud/Attachment.h; sourceTree = "<group>"; };
+		64EA626D16F71E1400F4838E /* Attachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Attachment.m; path = ../common/iCloud/Attachment.m; sourceTree = "<group>"; };
+		64EA626E16F71E1400F4838E /* CoreDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoreDataController.h; path = ../common/iCloud/CoreDataController.h; sourceTree = "<group>"; };
+		64EA626F16F71E1400F4838E /* CoreDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoreDataController.m; path = ../common/iCloud/CoreDataController.m; sourceTree = "<group>"; };
+		64EA627116F71E1400F4838E /* IAmMine.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = IAmMine.xcdatamodel; sourceTree = "<group>"; };
+		64EA627216F71E1400F4838E /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Note.h; path = ../common/iCloud/Note.h; sourceTree = "<group>"; };
+		64EA627316F71E1400F4838E /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Note.m; path = ../common/iCloud/Note.m; sourceTree = "<group>"; };
+		64EA627916F71E8A00F4838E /* NSDate+PassedTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+PassedTime.h"; path = "../common/Utilitites/NSDate+PassedTime.h"; sourceTree = "<group>"; };
+		64EA627A16F71E8A00F4838E /* NSDate+PassedTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+PassedTime.m"; path = "../common/Utilitites/NSDate+PassedTime.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,7 +105,8 @@
 		64EA620316F7110300F4838E = {
 			isa = PBXGroup;
 			children = (
-				64EA625116F7166700F4838E /* icon.icns */,
+				64EA627816F71E7600F4838E /* Utilities (common) */,
+				64EA626B16F71DF500F4838E /* CoreData (common) */,
 				64EA621516F7110300F4838E /* Janus */,
 				64EA623A16F7110300F4838E /* JanusImporter */,
 				64EA620E16F7110300F4838E /* Frameworks */,
@@ -139,7 +152,6 @@
 				64EA622116F7110300F4838E /* IAMAppDelegate.h */,
 				64EA622216F7110300F4838E /* IAMAppDelegate.m */,
 				64EA622416F7110300F4838E /* MainMenu.xib */,
-				64EA622716F7110300F4838E /* Janus.xcdatamodeld */,
 				64EA621616F7110300F4838E /* Supporting Files */,
 			);
 			path = Janus;
@@ -148,6 +160,7 @@
 		64EA621616F7110300F4838E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				64EA625116F7166700F4838E /* icon.icns */,
 				64EA621716F7110300F4838E /* Janus-Info.plist */,
 				64EA621816F7110300F4838E /* InfoPlist.strings */,
 				64EA621B16F7110300F4838E /* main.m */,
@@ -178,6 +191,29 @@
 				64EA624816F7110300F4838E /* JanusImporter-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		64EA626B16F71DF500F4838E /* CoreData (common) */ = {
+			isa = PBXGroup;
+			children = (
+				64EA626C16F71E1400F4838E /* Attachment.h */,
+				64EA626D16F71E1400F4838E /* Attachment.m */,
+				64EA626E16F71E1400F4838E /* CoreDataController.h */,
+				64EA626F16F71E1400F4838E /* CoreDataController.m */,
+				64EA627016F71E1400F4838E /* IAmMine.xcdatamodeld */,
+				64EA627216F71E1400F4838E /* Note.h */,
+				64EA627316F71E1400F4838E /* Note.m */,
+			);
+			name = "CoreData (common)";
+			sourceTree = "<group>";
+		};
+		64EA627816F71E7600F4838E /* Utilities (common) */ = {
+			isa = PBXGroup;
+			children = (
+				64EA627916F71E8A00F4838E /* NSDate+PassedTime.h */,
+				64EA627A16F71E8A00F4838E /* NSDate+PassedTime.m */,
+			);
+			name = "Utilities (common)";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -276,7 +312,11 @@
 			files = (
 				64EA621C16F7110300F4838E /* main.m in Sources */,
 				64EA622316F7110300F4838E /* IAMAppDelegate.m in Sources */,
-				64EA622916F7110300F4838E /* Janus.xcdatamodeld in Sources */,
+				64EA627416F71E1400F4838E /* Attachment.m in Sources */,
+				64EA627516F71E1400F4838E /* CoreDataController.m in Sources */,
+				64EA627616F71E1400F4838E /* IAmMine.xcdatamodeld in Sources */,
+				64EA627716F71E1400F4838E /* Note.m in Sources */,
+				64EA627B16F71E8A00F4838E /* NSDate+PassedTime.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,6 +510,7 @@
 				64EA624D16F7110300F4838E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		64EA624E16F7110300F4838E /* Build configuration list for PBXNativeTarget "Janus" */ = {
 			isa = XCConfigurationList;
@@ -478,17 +519,19 @@
 				64EA625016F7110300F4838E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		64EA622716F7110300F4838E /* Janus.xcdatamodeld */ = {
+		64EA627016F71E1400F4838E /* IAmMine.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				64EA622816F7110300F4838E /* Janus.xcdatamodel */,
+				64EA627116F71E1400F4838E /* IAmMine.xcdatamodel */,
 			);
-			currentVersion = 64EA622816F7110300F4838E /* Janus.xcdatamodel */;
-			path = Janus.xcdatamodeld;
+			currentVersion = 64EA627116F71E1400F4838E /* IAmMine.xcdatamodel */;
+			name = IAmMine.xcdatamodeld;
+			path = ../common/iCloud/IAmMine.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

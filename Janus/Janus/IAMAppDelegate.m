@@ -16,7 +16,14 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    // Insert code here to initialize your application
+    // Core Location init: get number of times user denied location use in app lifetime...
+	self.nLocationUseDenies = [[NSUserDefaults standardUserDefaults] integerForKey:@"userDeny"];
+	self.isLocationDenied = NO;
+    self.locationString = NSLocalizedString(@"Location unknown", @"");
+    // Init core data (and iCloud)
+    _coreDataController = [[CoreDataController alloc] init];
+    // [_coreDataController nukeAndPave];
+    [_coreDataController loadPersistentStores];
 }
 
 // Returns the directory the application uses to store the Core Data store file. This code uses a directory named "it.iltofa.Janus" in the user's Application Support directory.
