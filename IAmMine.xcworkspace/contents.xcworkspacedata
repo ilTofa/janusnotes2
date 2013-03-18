@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:Janus/Janus.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:iPhone/I Am Mine.xcodeproj">
    </FileRef>
 </Workspace>
