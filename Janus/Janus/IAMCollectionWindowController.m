@@ -1,50 +1,40 @@
 //
-//  IAMMainWindowController.m
+//  IAMCollectionWindowController.m
 //  Janus
 //
 //  Created by Giacomo Tufano on 20/03/13.
 //  Copyright (c) 2013 Giacomo Tufano. All rights reserved.
 //
 
-#import "IAMMainWindowController.h"
-
-#import "IAMAppDelegate.h"
-#import "IAMNoteWindowController.h"
 #import "IAMCollectionWindowController.h"
 
-@interface IAMMainWindowController () <IAMNoteWindowControllerDelegate>
+#import "IAMNoteWindowController.h"
+#import "IAMAppDelegate.h"
+
+@interface IAMCollectionWindowController () <IAMNoteWindowControllerDelegate>
 
 @property NSMutableArray *noteWindowControllers;
 
 - (IBAction)addNote:(id)sender;
-- (IBAction)testNew:(id)sender;
 
 @end
 
-@implementation IAMMainWindowController
+@implementation IAMCollectionWindowController
 
 - (id)initWithWindow:(NSWindow *)window
 {
     self = [super initWithWindow:window];
     if (self) {
-        _noteWindowControllers = [[NSMutableArray alloc] initWithCapacity:1];
+        // Initialization code here.
     }
     
     return self;
 }
 
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
 - (void)windowDidLoad
 {
     [super windowDidLoad];
-}
-
--(void) awakeFromNib
-{
-    DLog(@"Setting up main window");
+    
     self.sharedManagedObjectContext = ((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).coreDataController.mainThreadContext;
     DLog(@"Array controller: %@", self.arrayController);
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pscChanged:) name:NSPersistentStoreCoordinatorStoresDidChangeNotification object:((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).coreDataController.psc];
@@ -53,8 +43,8 @@
 - (void)pscChanged:(NSNotification *)notification
 {
     DLog(@"called for: %@", notification);
-    self.sharedManagedObjectContext = ((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).coreDataController.mainThreadContext;
-//    [self.arrayController setAutomaticallyPreparesContent:YES];
+//    self.sharedManagedObjectContext = ((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).coreDataController.mainThreadContext;
+    //    [self.arrayController setAutomaticallyPreparesContent:YES];
 }
 
 #pragma mark - Notes Editing management
@@ -68,13 +58,6 @@
     [noteEditor showWindow:self];
 }
 
-- (IBAction)testNew:(id)sender {
-    IAMCollectionWindowController *collectionController = [[IAMCollectionWindowController alloc] initWithWindowNibName:@"IAMCollectionWindowController"];
-    // Preserve a reference to the controller to keep ARC happy
-    [self.noteWindowControllers addObject:collectionController];
-    [collectionController showWindow:self];
-}
-
 -(void)IAMNoteWindowControllerDidCloseWindow:(IAMNoteWindowController *)windowController
 {
     // Note editor closed, now find and delete it from our controller array (so to allow ARC dealloc it)
@@ -84,5 +67,6 @@
         }
     }
 }
+
 
 @end

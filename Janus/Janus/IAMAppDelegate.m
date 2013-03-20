@@ -8,7 +8,11 @@
 
 #import "IAMAppDelegate.h"
 
+#import "IAMCollectionWindowController.h"
+
 @interface IAMAppDelegate ()
+
+@property (strong, nonatomic) IAMCollectionWindowController *collectionController;
 
 @end
 
@@ -23,6 +27,10 @@
     _coreDataController = [[CoreDataController alloc] init];
     // [_coreDataController nukeAndPave];
     [_coreDataController loadPersistentStores];
+    self.collectionController = [[IAMCollectionWindowController alloc] initWithWindowNibName:@"IAMCollectionWindowController"];
+    // Preserve a reference to the controller to keep ARC happy
+//    [self.noteWindowControllers addObject:collectionController];
+    [self.collectionController showWindow:self];
 }
 
 // Returns the directory the application uses to store the Core Data store file. This code uses a directory named "it.iltofa.Janus" in the user's Application Support directory.
