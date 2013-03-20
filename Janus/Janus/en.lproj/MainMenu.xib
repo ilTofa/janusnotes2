@@ -26,6 +26,7 @@
 			<string>NSSearchFieldCell</string>
 			<string>NSTextField</string>
 			<string>NSTextFieldCell</string>
+			<string>NSUserDefaultsController</string>
 			<string>NSView</string>
 			<string>NSWindowTemplate</string>
 		</array>
@@ -1487,6 +1488,7 @@
 							<string key="NSFrame">{{411, 13}, {114, 32}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="653070542">
@@ -1574,11 +1576,15 @@
 			<object class="NSCustomObject" id="135008467">
 				<string key="NSClassName">IAMMainWindowController</string>
 			</object>
+			<object class="NSCustomObject" id="699541375">
+				<string key="NSClassName">CoreDataController</string>
+			</object>
 			<object class="NSArrayController" id="439272729">
 				<object class="_NSManagedProxy" key="_NSManagedProxy">
 					<string key="NSEntityName">Note</string>
 				</object>
 				<bool key="_NSIsUsingManagedProxy">YES</bool>
+				<bool key="_NSUsesLazyFetching">YES</bool>
 				<bool key="NSAvoidsEmptySelection">YES</bool>
 				<bool key="NSPreservesSelection">YES</bool>
 				<bool key="NSSelectsInsertedObjects">YES</bool>
@@ -1596,6 +1602,7 @@
 						<string key="NSFrame">{{2, 5}, {193, 12}}</string>
 						<reference key="NSSuperview" ref="534718262"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:1535</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="810493602">
@@ -1648,9 +1655,7 @@
 						<object class="NSTextFieldCell" key="NSCell" id="940703560">
 							<int key="NSCellFlags">67108864</int>
 							<int key="NSCellFlags2">272629760</int>
-							<string type="base64-UTF8" key="NSContents">TGFiZWwgcmlnYSAxLApMYWJlbCByaWdhIDIsCkxhYmVsIHJpZ2EgMyzigKhsYWJlbCByaWdhIDQgKGUg
-Y29zw6wgc2lhKSwKTGFiZWwgcmlnYSA1Lgp1biBwbycgZGkgdGVzdG8sIGNvc8OsLi4uIGdpdXN0byBw
-ZXIgdmVkZXJlIGwnZWZmZXR0byBjaGUgZmEuLi4</string>
+							<string key="NSContents">Label (text)</string>
 							<object class="NSFont" key="NSSupport">
 								<string key="NSName">LucidaGrande</string>
 								<double key="NSSize">11</double>
@@ -1677,7 +1682,7 @@ ZXIgdmVkZXJlIGwnZWZmZXR0byBjaGUgZmEuLi4</string>
 						<object class="NSTextFieldCell" key="NSCell" id="673420326">
 							<int key="NSCellFlags">67108864</int>
 							<int key="NSCellFlags2">272629760</int>
-							<string type="base64-UTF8" key="NSContents">VGl0b2xvIHJpZ2EgMQpUaXRvbG8gcmlnYSAyClRpdG9sbyByaWdhIDMuA</string>
+							<string key="NSContents">Titolo</string>
 							<object class="NSFont" key="NSSupport">
 								<string key="NSName">LucidaGrande-Bold</string>
 								<double key="NSSize">13</double>
@@ -1696,6 +1701,9 @@ ZXIgdmVkZXJlIGwnZWZmZXR0byBjaGUgZmEuLi4</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="278759729"/>
+			</object>
+			<object class="NSUserDefaultsController" id="930000318">
+				<bool key="NSSharedInstance">YES</bool>
 			</object>
 		</array>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -2474,7 +2482,7 @@ ZXIgdmVkZXJlIGwnZWZmZXR0byBjaGUgZmEuLi4</string>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">641</int>
+					<int key="connectionID">681</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -2491,6 +2499,30 @@ ZXIgdmVkZXJlIGwnZWZmZXR0byBjaGUgZmEuLi4</string>
 						<reference key="destination" ref="637311240"/>
 					</object>
 					<int key="connectionID">677</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">arrayController</string>
+						<reference key="source" ref="135008467"/>
+						<reference key="destination" ref="439272729"/>
+					</object>
+					<int key="connectionID">684</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">managedObjectContext: self.managedObjectContext</string>
+						<reference key="source" ref="439272729"/>
+						<reference key="destination" ref="976324537"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="439272729"/>
+							<reference key="NSDestination" ref="976324537"/>
+							<string key="NSLabel">managedObjectContext: self.managedObjectContext</string>
+							<string key="NSBinding">managedObjectContext</string>
+							<string key="NSKeyPath">self.managedObjectContext</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">694</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -4241,6 +4273,16 @@ ZXIgdmVkZXJlIGwnZWZmZXR0byBjaGUgZmEuLi4</string>
 						<reference key="object" ref="465130497"/>
 						<reference key="parent" ref="439893737"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">685</int>
+						<reference key="object" ref="930000318"/>
+						<reference key="parent" ref="0"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">689</int>
+						<reference key="object" ref="699541375"/>
+						<reference key="parent" ref="0"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -4468,6 +4510,7 @@ ZXIgdmVkZXJlIGwnZWZmZXR0byBjaGUgZmEuLi4</string>
 				<string key="633.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="634.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="637.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="637.ibExternalFetchPredicateFormat"/>
 				<array key="652.IBNSViewMetadataConstraints">
 					<reference ref="305289048"/>
 				</array>
@@ -4488,6 +4531,8 @@ ZXIgdmVkZXJlIGwnZWZmZXR0byBjaGUgZmEuLi4</string>
 				<string key="671.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="674.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="675.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="685.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="689.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="72.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="73.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="74.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -4504,13 +4549,21 @@ ZXIgdmVkZXJlIGwnZWZmZXR0byBjaGUgZmEuLi4</string>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">677</int>
+			<int key="maxID">696</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
-					<string key="className">IAMAppDelegate</string>
+					<string key="className">CoreDataController</string>
 					<string key="superclassName">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/CoreDataController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">IAMAppDelegate</string>
+					<string key="superclassName">UIResponder</string>
 					<object class="NSMutableDictionary" key="actions">
 						<string key="NS.key.0">saveAction:</string>
 						<string key="NS.object.0">id</string>
@@ -4524,13 +4577,13 @@ ZXIgdmVkZXJlIGwnZWZmZXR0byBjaGUgZmEuLi4</string>
 					</object>
 					<object class="NSMutableDictionary" key="outlets">
 						<string key="NS.key.0">window</string>
-						<string key="NS.object.0">NSWindow</string>
+						<string key="NS.object.0">UIWindow</string>
 					</object>
 					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<string key="NS.key.0">window</string>
 						<object class="IBToOneOutletInfo" key="NS.object.0">
 							<string key="name">window</string>
-							<string key="candidateClassName">NSWindow</string>
+							<string key="candidateClassName">UIWindow</string>
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
@@ -4552,6 +4605,17 @@ ZXIgdmVkZXJlIGwnZWZmZXR0byBjaGUgZmEuLi4</string>
 							<string key="candidateClassName">id</string>
 						</object>
 					</object>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">arrayController</string>
+						<string key="NS.object.0">NSArrayController</string>
+					</object>
+					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<string key="NS.key.0">arrayController</string>
+						<object class="IBToOneOutletInfo" key="NS.object.0">
+							<string key="name">arrayController</string>
+							<string key="candidateClassName">NSArrayController</string>
+						</object>
+					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/IAMMainWindowController.h</string>
@@ -4563,6 +4627,14 @@ ZXIgdmVkZXJlIGwnZWZmZXR0byBjaGUgZmEuLi4</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/NSLayoutConstraint.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">UIWindow</string>
+					<string key="superclassName">UIView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/UIWindow.h</string>
 					</object>
 				</object>
 			</array>

@@ -100,7 +100,7 @@
 @interface CoreDataController : NSObject <NSFilePresenter> 
 
 @property (nonatomic, readonly) NSPersistentStoreCoordinator *psc;
-@property (nonatomic, readonly) NSManagedObjectContext *mainThreadContext;
+@property (nonatomic) NSManagedObjectContext *mainThreadContext;
 @property (nonatomic, readonly) NSPersistentStore *iCloudStore;
 @property (nonatomic, readonly) NSPersistentStore *fallbackStore;
 @property (nonatomic, readonly) NSPersistentStore *localStore;
