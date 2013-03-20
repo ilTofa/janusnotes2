@@ -381,7 +381,7 @@ static NSOperationQueue *_presentedItemOperationQueue;
     
     if (useFallbackStore) {
         if ([self loadFallbackStore:&error]) {
-            DLog(@"Added fallback store: %@", self.fallbackStore);
+            DLog(@"Added fallback store: (%@) at %@", self.fallbackStore, [self.fallbackStoreURL absoluteString]);
             
             //you can seed the fallback store if you want to examine seeding performance without iCloud enabled
             //check to see if we need to seed data from the seed store

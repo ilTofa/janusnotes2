@@ -25,7 +25,6 @@
 {
     self = [super initWithWindow:window];
     if (self) {
-        // Initialization code here.
     }
     
     return self;
@@ -35,15 +34,29 @@
 {
     [super windowDidLoad];
     DLog(@"This is IAMNoteWindowController's windowDidLoad.");
-    // Create a new note
-    IAMAppDelegate *appDelegate = ((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]);
-    Note *newNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:appDelegate.managedObjectContext];
-    self.editedNote = newNote;
+    if(!self.editedNote) {
+        // It seems that we're created without a note, that will mean that we're required to create a new one.
+        IAMAppDelegate *appDelegate = ((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]);
+        Note *newNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:appDelegate.managedObjectContext];
+        self.editedNote = newNote;
+    }
 }
 
 - (IBAction)save:(id)sender
 {
     DLog(@"This is IAMNoteWindowController's save.");
+    // save (if useful) and pop back
+    if([self.editedNote.title isEqualToString:@""] || [[self.editedNote.attributedText string] isEqualToString:@""]) {
+        DLog(@"Save refused because no text ('%@') or no title ('%@')", self.editedNote.title, [self.editedNote.attributedText string]);
+        return;
+    }
+    self.editedNote.text = self.editedNote.attributedText.string;
+    NSError *error;
+    if(![((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).managedObjectContext save:&error])
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+    // If called via action
+    if(sender)
+        [self.window performClose:sender];
 }
 
 #pragma mark - NSWindowDelegate
