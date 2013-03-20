@@ -13,7 +13,7 @@
 
 @interface IAMCollectionWindowController () <IAMNoteWindowControllerDelegate>
 
-@property NSMutableArray *noteWindowControllers;
+@property (strong, nonatomic) NSMutableArray *noteWindowControllers;
 
 - (IBAction)addNote:(id)sender;
 
@@ -25,7 +25,7 @@
 {
     self = [super initWithWindow:window];
     if (self) {
-        // Initialization code here.
+        _noteWindowControllers = [[NSMutableArray alloc] initWithCapacity:1];
     }
     
     return self;
