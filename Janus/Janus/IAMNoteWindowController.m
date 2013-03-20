@@ -8,7 +8,9 @@
 
 #import "IAMNoteWindowController.h"
 
-@interface IAMNoteWindowController ()
+#import "IAMAppDelegate.h"
+
+@interface IAMNoteWindowController () <NSWindowDelegate>
 
 @property (weak) IBOutlet NSTextField *title;
 @property (weak) IBOutlet NSScrollView *text;
@@ -32,10 +34,26 @@
 - (void)windowDidLoad
 {
     [super windowDidLoad];
-    
-    // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+    DLog(@"This is IAMNoteWindowController's windowDidLoad.");
+    // Create a new note
+    IAMAppDelegate *appDelegate = ((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]);
+    Note *newNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:appDelegate.managedObjectContext];
+    self.editedNote = newNote;
 }
 
-- (IBAction)save:(id)sender {
+- (IBAction)save:(id)sender
+{
+    DLog(@"This is IAMNoteWindowController's save.");
 }
+
+#pragma mark - NSWindowDelegate
+
+- (void)windowWillClose:(NSNotification *)notification
+{
+    // Notify delegate that we're closing ourselves
+    DLog(@"Notifying delegate.");
+    if(self.delegate)
+        [self.delegate IAMNoteWindowControllerDidCloseWindow:self];
+}
+
 @end

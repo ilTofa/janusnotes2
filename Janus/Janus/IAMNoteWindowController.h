@@ -8,6 +8,19 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "Note.h"
+
+@class IAMNoteWindowController;
+
+@protocol IAMNoteWindowControllerDelegate <NSObject>
+
+-(void)IAMNoteWindowControllerDidCloseWindow:(IAMNoteWindowController *)windowController;
+
+@end
+
 @interface IAMNoteWindowController : NSWindowController
+
+@property Note *editedNote;
+@property (weak, nonatomic) id<IAMNoteWindowControllerDelegate> delegate;
 
 @end

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6461385116F9D5A800967BFF /* IAMMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6461385016F9D5A800967BFF /* IAMMainWindowController.m */; };
 		64EA621016F7110300F4838E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64EA620F16F7110300F4838E /* Cocoa.framework */; };
 		64EA621A16F7110300F4838E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64EA621816F7110300F4838E /* InfoPlist.strings */; };
 		64EA621C16F7110300F4838E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 64EA621B16F7110300F4838E /* main.m */; };
@@ -43,6 +44,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6461384F16F9D5A800967BFF /* IAMMainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMMainWindowController.h; sourceTree = "<group>"; };
+		6461385016F9D5A800967BFF /* IAMMainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMMainWindowController.m; sourceTree = "<group>"; };
 		64EA620C16F7110300F4838E /* Janus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Janus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64EA620F16F7110300F4838E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		64EA621216F7110300F4838E /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -156,6 +159,8 @@
 			children = (
 				64EA622116F7110300F4838E /* IAMAppDelegate.h */,
 				64EA622216F7110300F4838E /* IAMAppDelegate.m */,
+				6461384F16F9D5A800967BFF /* IAMMainWindowController.h */,
+				6461385016F9D5A800967BFF /* IAMMainWindowController.m */,
 				64EA622416F7110300F4838E /* MainMenu.xib */,
 				64EA628216F75E0000F4838E /* IAMNoteWindowController.h */,
 				64EA628316F75E0000F4838E /* IAMNoteWindowController.m */,
@@ -327,6 +332,7 @@
 				64EA627716F71E1400F4838E /* Note.m in Sources */,
 				64EA627B16F71E8A00F4838E /* NSDate+PassedTime.m in Sources */,
 				64EA628516F75E0000F4838E /* IAMNoteWindowController.m in Sources */,
+				6461385116F9D5A800967BFF /* IAMMainWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
