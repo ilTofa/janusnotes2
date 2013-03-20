@@ -9,13 +9,11 @@
 #import "IAMMainWindowController.h"
 
 #import "IAMAppDelegate.h"
-#import "CoreDataController.h"
 #import "IAMNoteWindowController.h"
 
 @interface IAMMainWindowController () <IAMNoteWindowControllerDelegate>
 
 @property NSMutableArray *noteWindowControllers;
-@property (weak) IBOutlet NSArrayController *arrayController;
 
 - (IBAction)addNote:(id)sender;
 
@@ -45,14 +43,16 @@
 -(void) awakeFromNib
 {
     DLog(@"Setting up main window");
+    self.sharedManagedObjectContext = ((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).coreDataController.mainThreadContext;
     DLog(@"Array controller: %@", self.arrayController);
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(testNotifications:) name:GTCoreDataReady object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pscChanged:) name:NSPersistentStoreCoordinatorStoresDidChangeNotification object:((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).coreDataController.psc];
 }
 
-- (void)testNotifications:(NSNotification *)notification
+- (void)pscChanged:(NSNotification *)notification
 {
     DLog(@"called for: %@", notification);
-    DLog(@"Array controller: %@", self.arrayController);
+    self.sharedManagedObjectContext = ((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).coreDataController.mainThreadContext;
+//    [self.arrayController setAutomaticallyPreparesContent:YES];
 }
 
 #pragma mark - Notes Editing management

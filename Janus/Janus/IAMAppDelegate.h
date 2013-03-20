@@ -18,12 +18,6 @@
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
-// helpers for corelocation.
-@property (nonatomic, assign) BOOL isLocationDenied;
-@property (nonatomic, assign) int nLocationUseDenies;
-@property (nonatomic, strong) CLLocationManager *locationManager;
-@property (nonatomic) NSString *locationString;
-
 // CoreData helper
 @property (nonatomic, strong, readonly) CoreDataController *coreDataController;
 

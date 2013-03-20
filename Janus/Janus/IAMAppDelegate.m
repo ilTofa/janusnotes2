@@ -19,10 +19,6 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    // Core Location init: get number of times user denied location use in app lifetime...
-	self.nLocationUseDenies = [[NSUserDefaults standardUserDefaults] integerForKey:@"userDeny"];
-	self.isLocationDenied = NO;
-    self.locationString = NSLocalizedString(@"Location unknown", @"");
     // Init core data (and iCloud)
     _coreDataController = [[CoreDataController alloc] init];
     // [_coreDataController nukeAndPave];

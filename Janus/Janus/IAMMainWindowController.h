@@ -10,4 +10,7 @@
 
 @interface IAMMainWindowController : NSWindowController
 
+@property (weak, atomic) IBOutlet NSManagedObjectContext *sharedManagedObjectContext;
+@property (strong) IBOutlet NSArrayController *arrayController;
+
 @end
