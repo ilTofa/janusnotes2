@@ -53,6 +53,16 @@
 
 #pragma mark - Notes Editing management
 
+// This event comes from the collection item view subclass
+- (IBAction)collectionItemViewDoubleClick:(id)sender {
+    if([[self.arrayController selectedObjects] count] != 0) {
+        DLog(@"Double click detected in collection view, sending event to editNote:");
+        [self editNote:sender];
+    } else {
+        DLog(@"Double click detected in collection view, but no collection is selected. This should not happen");
+    }
+}
+
 - (IBAction)addNote:(id)sender {
     DLog(@"This is addNote handler in MainWindowController");
     IAMNoteWindowController *noteEditor = [[IAMNoteWindowController alloc] initWithWindowNibName:@"IAMNoteWindowController"];
