@@ -16,6 +16,7 @@
 @property (strong, nonatomic) NSMutableArray *noteWindowControllers;
 
 - (IBAction)addNote:(id)sender;
+- (IBAction)editNote:(id)sender;
 
 @end
 
@@ -56,6 +57,16 @@
     DLog(@"This is addNote handler in MainWindowController");
     IAMNoteWindowController *noteEditor = [[IAMNoteWindowController alloc] initWithWindowNibName:@"IAMNoteWindowController"];
     [noteEditor setDelegate:self];
+    // Preserve a reference to the controller to keep ARC happy
+    [self.noteWindowControllers addObject:noteEditor];
+    [noteEditor showWindow:self];
+}
+
+- (IBAction)editNote:(id)sender {
+    DLog(@"Selected note for editing is: %@", [self.arrayController selectedObjects][0]);
+    IAMNoteWindowController *noteEditor = [[IAMNoteWindowController alloc] initWithWindowNibName:@"IAMNoteWindowController"];
+    [noteEditor setDelegate:self];
+    [noteEditor setEditedNote:[self.arrayController selectedObjects][0]];
     // Preserve a reference to the controller to keep ARC happy
     [self.noteWindowControllers addObject:noteEditor];
     [noteEditor showWindow:self];

@@ -51,6 +51,7 @@
         return;
     }
     self.editedNote.text = self.editedNote.attributedText.string;
+    self.editedNote.timeStamp = [NSDate date];
     NSError *error;
     if(![((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).managedObjectContext save:&error])
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
@@ -63,6 +64,9 @@
 
 - (void)windowWillClose:(NSNotification *)notification
 {
+    // Rollback any unsaved change
+    if([((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).managedObjectContext hasChanges])
+        [((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).managedObjectContext rollback];
     // Notify delegate that we're closing ourselves
     DLog(@"Notifying delegate.");
     if(self.delegate)
