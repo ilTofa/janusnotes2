@@ -6,20 +6,17 @@
 //  Copyright (c) 2013 Giacomo Tufano. All rights reserved.
 //
 
-#import "IAMNoteWindowController.h"
+#import "IAMNoteEditorWC.h"
 
 #import "IAMAppDelegate.h"
 
-@interface IAMNoteWindowController () <NSWindowDelegate>
-
-@property (weak) IBOutlet NSTextField *title;
-@property (weak) IBOutlet NSScrollView *text;
+@interface IAMNoteEditorWC () <NSWindowDelegate>
 
 - (IBAction)save:(id)sender;
 
 @end
 
-@implementation IAMNoteWindowController
+@implementation IAMNoteEditorWC
 
 - (id)initWithWindow:(NSWindow *)window
 {
@@ -70,7 +67,7 @@
     // Notify delegate that we're closing ourselves
     DLog(@"Notifying delegate.");
     if(self.delegate)
-        [self.delegate IAMNoteWindowControllerDidCloseWindow:self];
+        [self.delegate IAMNoteEditorWCDidCloseWindow:self];
 }
 
 @end

@@ -31,8 +31,8 @@
 		64EA627616F71E1400F4838E /* IAmMine.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 64EA627016F71E1400F4838E /* IAmMine.xcdatamodeld */; };
 		64EA627716F71E1400F4838E /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 64EA627316F71E1400F4838E /* Note.m */; };
 		64EA627B16F71E8A00F4838E /* NSDate+PassedTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 64EA627A16F71E8A00F4838E /* NSDate+PassedTime.m */; };
-		64EA628516F75E0000F4838E /* IAMNoteWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64EA628316F75E0000F4838E /* IAMNoteWindowController.m */; };
-		64EA628616F75E0000F4838E /* IAMNoteWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64EA628416F75E0000F4838E /* IAMNoteWindowController.xib */; };
+		64EA628516F75E0000F4838E /* IAMNoteEditorWC.m in Sources */ = {isa = PBXBuildFile; fileRef = 64EA628316F75E0000F4838E /* IAMNoteEditorWC.m */; };
+		64EA628616F75E0000F4838E /* IAMNoteEditorWC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64EA628416F75E0000F4838E /* IAMNoteEditorWC.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,9 +87,9 @@
 		64EA627316F71E1400F4838E /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Note.m; path = ../common/iCloud/Note.m; sourceTree = "<group>"; };
 		64EA627916F71E8A00F4838E /* NSDate+PassedTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+PassedTime.h"; path = "../common/Utilitites/NSDate+PassedTime.h"; sourceTree = "<group>"; };
 		64EA627A16F71E8A00F4838E /* NSDate+PassedTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+PassedTime.m"; path = "../common/Utilitites/NSDate+PassedTime.m"; sourceTree = "<group>"; };
-		64EA628216F75E0000F4838E /* IAMNoteWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMNoteWindowController.h; sourceTree = "<group>"; };
-		64EA628316F75E0000F4838E /* IAMNoteWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMNoteWindowController.m; sourceTree = "<group>"; };
-		64EA628416F75E0000F4838E /* IAMNoteWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IAMNoteWindowController.xib; sourceTree = "<group>"; };
+		64EA628216F75E0000F4838E /* IAMNoteEditorWC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMNoteEditorWC.h; sourceTree = "<group>"; };
+		64EA628316F75E0000F4838E /* IAMNoteEditorWC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMNoteEditorWC.m; sourceTree = "<group>"; };
+		64EA628416F75E0000F4838E /* IAMNoteEditorWC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IAMNoteEditorWC.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +115,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6461385F16FBCC5600967BFF /* Main Collection */ = {
+			isa = PBXGroup;
+			children = (
+				6461385716FA3BE200967BFF /* IAMCollectionWindowController.h */,
+				6461385816FA3BE200967BFF /* IAMCollectionWindowController.m */,
+				6461385916FA3BE200967BFF /* IAMCollectionWindowController.xib */,
+				6461385C16FBC88300967BFF /* IAMCollectionItemView.h */,
+				6461385D16FBC88300967BFF /* IAMCollectionItemView.m */,
+			);
+			name = "Main Collection";
+			sourceTree = "<group>";
+		};
 		64EA620316F7110300F4838E = {
 			isa = PBXGroup;
 			children = (
@@ -165,14 +177,10 @@
 				64EA622116F7110300F4838E /* IAMAppDelegate.h */,
 				64EA622216F7110300F4838E /* IAMAppDelegate.m */,
 				64EA622416F7110300F4838E /* MainMenu.xib */,
-				6461385716FA3BE200967BFF /* IAMCollectionWindowController.h */,
-				6461385816FA3BE200967BFF /* IAMCollectionWindowController.m */,
-				6461385916FA3BE200967BFF /* IAMCollectionWindowController.xib */,
-				6461385C16FBC88300967BFF /* IAMCollectionItemView.h */,
-				6461385D16FBC88300967BFF /* IAMCollectionItemView.m */,
-				64EA628216F75E0000F4838E /* IAMNoteWindowController.h */,
-				64EA628316F75E0000F4838E /* IAMNoteWindowController.m */,
-				64EA628416F75E0000F4838E /* IAMNoteWindowController.xib */,
+				6461385F16FBCC5600967BFF /* Main Collection */,
+				64EA628216F75E0000F4838E /* IAMNoteEditorWC.h */,
+				64EA628316F75E0000F4838E /* IAMNoteEditorWC.m */,
+				64EA628416F75E0000F4838E /* IAMNoteEditorWC.xib */,
 				64EA621616F7110300F4838E /* Supporting Files */,
 			);
 			path = Janus;
@@ -313,7 +321,7 @@
 				64EA622616F7110300F4838E /* MainMenu.xib in Resources */,
 				64EA623116F7110300F4838E /* JanusImporter.mdimporter in Resources */,
 				64EA625216F7166700F4838E /* icon.icns in Resources */,
-				64EA628616F75E0000F4838E /* IAMNoteWindowController.xib in Resources */,
+				64EA628616F75E0000F4838E /* IAMNoteEditorWC.xib in Resources */,
 				6461385B16FA3BE200967BFF /* IAMCollectionWindowController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -340,7 +348,7 @@
 				64EA627616F71E1400F4838E /* IAmMine.xcdatamodeld in Sources */,
 				64EA627716F71E1400F4838E /* Note.m in Sources */,
 				64EA627B16F71E8A00F4838E /* NSDate+PassedTime.m in Sources */,
-				64EA628516F75E0000F4838E /* IAMNoteWindowController.m in Sources */,
+				64EA628516F75E0000F4838E /* IAMNoteEditorWC.m in Sources */,
 				6461385A16FA3BE200967BFF /* IAMCollectionWindowController.m in Sources */,
 				6461385E16FBC88300967BFF /* IAMCollectionItemView.m in Sources */,
 			);

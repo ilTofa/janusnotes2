@@ -8,10 +8,10 @@
 
 #import "IAMCollectionWindowController.h"
 
-#import "IAMNoteWindowController.h"
+#import "IAMNoteEditorWC.h"
 #import "IAMAppDelegate.h"
 
-@interface IAMCollectionWindowController () <IAMNoteWindowControllerDelegate>
+@interface IAMCollectionWindowController () <IAMNoteEditorWCDelegate>
 
 @property (strong, nonatomic) NSMutableArray *noteWindowControllers;
 
@@ -65,7 +65,7 @@
 
 - (IBAction)addNote:(id)sender {
     DLog(@"This is addNote handler in MainWindowController");
-    IAMNoteWindowController *noteEditor = [[IAMNoteWindowController alloc] initWithWindowNibName:@"IAMNoteWindowController"];
+    IAMNoteEditorWC *noteEditor = [[IAMNoteEditorWC alloc] initWithWindowNibName:@"IAMNoteEditorWC"];
     [noteEditor setDelegate:self];
     // Preserve a reference to the controller to keep ARC happy
     [self.noteWindowControllers addObject:noteEditor];
@@ -74,7 +74,7 @@
 
 - (IBAction)editNote:(id)sender {
     DLog(@"Selected note for editing is: %@", [self.arrayController selectedObjects][0]);
-    IAMNoteWindowController *noteEditor = [[IAMNoteWindowController alloc] initWithWindowNibName:@"IAMNoteWindowController"];
+    IAMNoteEditorWC *noteEditor = [[IAMNoteEditorWC alloc] initWithWindowNibName:@"IAMNoteEditorWC"];
     [noteEditor setDelegate:self];
     [noteEditor setEditedNote:[self.arrayController selectedObjects][0]];
     // Preserve a reference to the controller to keep ARC happy
@@ -82,10 +82,10 @@
     [noteEditor showWindow:self];
 }
 
--(void)IAMNoteWindowControllerDidCloseWindow:(IAMNoteWindowController *)windowController
+-(void)IAMNoteEditorWCDidCloseWindow:(IAMNoteEditorWC *)windowController
 {
     // Note editor closed, now find and delete it from our controller array (so to allow ARC dealloc it)
-    for (IAMNoteWindowController *storedController in self.noteWindowControllers) {
+    for (IAMNoteEditorWC *storedController in self.noteWindowControllers) {
         if(storedController == windowController) {
             [self.noteWindowControllers removeObject:storedController];
         }
