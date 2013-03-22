@@ -13,6 +13,7 @@
 @interface IAMNoteEditorWC () <NSWindowDelegate>
 
 - (IBAction)save:(id)sender;
+- (IBAction)addAttachment:(id)sender;
 
 @end
 
@@ -57,6 +58,29 @@
     // If called via action
     if(sender)
         [self.window performClose:sender];
+}
+
+- (IBAction)addAttachment:(id)sender {
+    NSOpenPanel *openPanel = [NSOpenPanel openPanel];
+    openPanel.allowsMultipleSelection = NO;
+    openPanel.canChooseDirectories = NO;
+    openPanel.canChooseFiles = YES;
+    [openPanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result){
+        if(result == NSFileHandlingPanelCancelButton) {
+            DLog(@"User canceled");
+        } else {
+            DLog(@"User selected URL: %@", openPanel.URL);
+            CFStringRef fileExtension = (__bridge CFStringRef) [openPanel.URL pathExtension];
+            CFStringRef fileUTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, fileExtension, NULL);
+            DLog(@"FileUTI is: %@", fileUTI);
+            if (UTTypeConformsTo(fileUTI, kUTTypeImage)) NSLog(@"It's an image");
+            else if (UTTypeConformsTo(fileUTI, kUTTypeMovie)) NSLog(@"It's a movie");
+            else if (UTTypeConformsTo(fileUTI, kUTTypeText)) NSLog(@"It's text");
+            else if (UTTypeConformsTo(fileUTI, kUTTypeFileURL)) NSLog(@"It's an URL");
+            else NSLog(@"It's an unknown type");
+            CFRelease(fileUTI);
+        }
+    }];
 }
 
 #pragma mark - NSWindowDelegate
