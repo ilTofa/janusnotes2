@@ -92,16 +92,15 @@
             else if (UTTypeConformsTo(fileUTI, kUTTypeURL))
                 newAttachment.type = @"Link";
             else
-                newAttachment.type = @"Unknown";
+                newAttachment.type = @"Other";
             newAttachment.uti = (__bridge NSString *)(fileUTI);
             CFRelease(fileUTI);
             newAttachment.extension = [openPanel.URL pathExtension];
             newAttachment.filename = [openPanel.URL lastPathComponent];
-            newAttachment.type = @"Link";
             newAttachment.data = [NSData dataWithContentsOfURL:[openPanel URL]];
             // Now link attachment to the note
-            DLog(@"Adding attachment: %@", newAttachment);
             newAttachment.note = self.editedNote;
+            DLog(@"Adding attachment: %@", newAttachment);
             [self.editedNote addAttachmentObject:newAttachment];
             [self refreshAttachments];
         }
@@ -119,6 +118,27 @@
     DLog(@"Notifying delegate.");
     if(self.delegate)
         [self.delegate IAMNoteEditorWCDidCloseWindow:self];
+}
+
+#pragma mark - Bold and Italic management
+
+- (IBAction) toggleBold:(id)sender
+{
+    // Should be CGEventCreateKeyboardEvent
+    // Send Cmd-B Event
+//    CGPostKeyboardEvent((CGCharCode)0,(CGKeyCode)55,true );
+//    CGPostKeyboardEvent((CGCharCode)'B',(CGKeyCode)11,true );
+//    CGPostKeyboardEvent((CGCharCode)'B',(CGKeyCode)11,false );
+//    CGPostKeyboardEvent((CGCharCode)0,(CGKeyCode)55,false );
+}
+
+- (IBAction) toggleItalic:(id)sender
+{
+    // Send Cmd-I Event
+//    CGPostKeyboardEvent((CGCharCode)0,(CGKeyCode)55,true );
+//    CGPostKeyboardEvent((CGCharCode)'I',(CGKeyCode)34,true );
+//    CGPostKeyboardEvent((CGCharCode)'I',(CGKeyCode)34,false );
+//    CGPostKeyboardEvent((CGCharCode)0,(CGKeyCode)55,false );
 }
 
 @end
