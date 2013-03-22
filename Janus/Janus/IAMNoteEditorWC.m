@@ -30,11 +30,13 @@
 - (void)windowDidLoad
 {
     [super windowDidLoad];
+    // TODO: The NSManagedObjectContext instance should change for a local (to the controller instance) one.
+    self.noteEditorMOC = ((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).managedObjectContext;
+    self.attachmentsArray = [self.editedNote.attachment allObjects];
     DLog(@"This is IAMNoteWindowController's windowDidLoad.");
     if(!self.editedNote) {
         // It seems that we're created without a note, that will mean that we're required to create a new one.
-        IAMAppDelegate *appDelegate = ((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]);
-        Note *newNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:appDelegate.managedObjectContext];
+        Note *newNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:self.noteEditorMOC];
         self.editedNote = newNote;
     }
 }
@@ -50,7 +52,7 @@
     self.editedNote.text = self.editedNote.attributedText.string;
     self.editedNote.timeStamp = [NSDate date];
     NSError *error;
-    if(![((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).managedObjectContext save:&error])
+    if(![self.noteEditorMOC save:&error])
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
     // If called via action
     if(sender)
@@ -62,8 +64,8 @@
 - (void)windowWillClose:(NSNotification *)notification
 {
     // Rollback any unsaved change
-    if([((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).managedObjectContext hasChanges])
-        [((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).managedObjectContext rollback];
+    if([self.noteEditorMOC hasChanges])
+        [self.noteEditorMOC rollback];
     // Notify delegate that we're closing ourselves
     DLog(@"Notifying delegate.");
     if(self.delegate)

@@ -51,6 +51,7 @@
 		6461385916FA3BE200967BFF /* IAMCollectionWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IAMCollectionWindowController.xib; sourceTree = "<group>"; };
 		6461385C16FBC88300967BFF /* IAMCollectionItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMCollectionItemView.h; sourceTree = "<group>"; };
 		6461385D16FBC88300967BFF /* IAMCollectionItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMCollectionItemView.m; sourceTree = "<group>"; };
+		64A1D4EC16FC9F7C00E50CC1 /* Janus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Janus.entitlements; sourceTree = "<group>"; };
 		64EA620C16F7110300F4838E /* Janus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Janus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64EA620F16F7110300F4838E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		64EA621216F7110300F4838E /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -127,6 +128,16 @@
 			name = "Main Collection";
 			sourceTree = "<group>";
 		};
+		64A1D4ED16FCA12700E50CC1 /* Note Edit */ = {
+			isa = PBXGroup;
+			children = (
+				64EA628216F75E0000F4838E /* IAMNoteEditorWC.h */,
+				64EA628316F75E0000F4838E /* IAMNoteEditorWC.m */,
+				64EA628416F75E0000F4838E /* IAMNoteEditorWC.xib */,
+			);
+			name = "Note Edit";
+			sourceTree = "<group>";
+		};
 		64EA620316F7110300F4838E = {
 			isa = PBXGroup;
 			children = (
@@ -178,9 +189,7 @@
 				64EA622216F7110300F4838E /* IAMAppDelegate.m */,
 				64EA622416F7110300F4838E /* MainMenu.xib */,
 				6461385F16FBCC5600967BFF /* Main Collection */,
-				64EA628216F75E0000F4838E /* IAMNoteEditorWC.h */,
-				64EA628316F75E0000F4838E /* IAMNoteEditorWC.m */,
-				64EA628416F75E0000F4838E /* IAMNoteEditorWC.xib */,
+				64A1D4ED16FCA12700E50CC1 /* Note Edit */,
 				64EA621616F7110300F4838E /* Supporting Files */,
 			);
 			path = Janus;
@@ -189,6 +198,7 @@
 		64EA621616F7110300F4838E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				64A1D4EC16FC9F7C00E50CC1 /* Janus.entitlements */,
 				64EA625116F7166700F4838E /* icon.icns */,
 				64EA621716F7110300F4838E /* Janus-Info.plist */,
 				64EA621816F7110300F4838E /* InfoPlist.strings */,
@@ -504,6 +514,8 @@
 		64EA624F16F7110300F4838E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Janus/Janus.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Janus/Janus-Prefix.pch";
@@ -517,6 +529,8 @@
 		64EA625016F7110300F4838E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Janus/Janus.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Janus/Janus-Prefix.pch";
