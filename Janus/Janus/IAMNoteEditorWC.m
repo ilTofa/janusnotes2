@@ -9,6 +9,7 @@
 #import "IAMNoteEditorWC.h"
 
 #import "IAMAppDelegate.h"
+#import "Attachment.h"
 
 @interface IAMNoteEditorWC () <NSWindowDelegate>
 
@@ -33,7 +34,7 @@
     [super windowDidLoad];
     // TODO: The NSManagedObjectContext instance should change for a local (to the controller instance) one.
     self.noteEditorMOC = ((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).managedObjectContext;
-    self.attachmentsArray = [self.editedNote.attachment allObjects];
+    [self refreshAttachments];
     DLog(@"This is IAMNoteWindowController's windowDidLoad.");
     if(!self.editedNote) {
         // It seems that we're created without a note, that will mean that we're required to create a new one.
@@ -60,6 +61,11 @@
         [self.window performClose:sender];
 }
 
+-(void)refreshAttachments {
+    self.attachmentsArray = [self.editedNote.attachment allObjects];
+    // TODO: hide collection view if no attachments?
+}
+
 - (IBAction)addAttachment:(id)sender {
     NSOpenPanel *openPanel = [NSOpenPanel openPanel];
     openPanel.allowsMultipleSelection = NO;
@@ -69,16 +75,35 @@
         if(result == NSFileHandlingPanelCancelButton) {
             DLog(@"User canceled");
         } else {
-            DLog(@"User selected URL: %@", openPanel.URL);
+            DLog(@"User selected URL %@, now saving.", openPanel.URL);
+            Attachment *newAttachment = [NSEntityDescription insertNewObjectForEntityForName:@"Attachment" inManagedObjectContext:self.noteEditorMOC];
+
             CFStringRef fileExtension = (__bridge CFStringRef) [openPanel.URL pathExtension];
             CFStringRef fileUTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, fileExtension, NULL);
             DLog(@"FileUTI is: %@", fileUTI);
-            if (UTTypeConformsTo(fileUTI, kUTTypeImage)) NSLog(@"It's an image");
-            else if (UTTypeConformsTo(fileUTI, kUTTypeMovie)) NSLog(@"It's a movie");
-            else if (UTTypeConformsTo(fileUTI, kUTTypeText)) NSLog(@"It's text");
-            else if (UTTypeConformsTo(fileUTI, kUTTypeFileURL)) NSLog(@"It's an URL");
-            else NSLog(@"It's an unknown type");
+            if (UTTypeConformsTo(fileUTI, kUTTypeImage))
+                newAttachment.type = @"Image";
+            else if (UTTypeConformsTo(fileUTI, kUTTypeMovie))
+                newAttachment.type = @"Movie";
+            else if (UTTypeConformsTo(fileUTI, kUTTypeText))
+                newAttachment.type = @"Text";
+            else if (UTTypeConformsTo(fileUTI, kUTTypeFileURL))
+                newAttachment.type = @"Link";
+            else if (UTTypeConformsTo(fileUTI, kUTTypeURL))
+                newAttachment.type = @"Link";
+            else
+                newAttachment.type = @"Unknown";
+            newAttachment.uti = (__bridge NSString *)(fileUTI);
             CFRelease(fileUTI);
+            newAttachment.extension = [openPanel.URL pathExtension];
+            newAttachment.filename = [openPanel.URL lastPathComponent];
+            newAttachment.type = @"Link";
+            newAttachment.data = [NSData dataWithContentsOfURL:[openPanel URL]];
+            // Now link attachment to the note
+            DLog(@"Adding attachment: %@", newAttachment);
+            newAttachment.note = self.editedNote;
+            [self.editedNote addAttachmentObject:newAttachment];
+            [self refreshAttachments];
         }
     }];
 }
