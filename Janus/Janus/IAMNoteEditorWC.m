@@ -13,6 +13,8 @@
 
 @interface IAMNoteEditorWC () <NSWindowDelegate>
 
+@property (strong) IBOutlet NSArrayController *arrayController;
+
 - (IBAction)save:(id)sender;
 - (IBAction)addAttachment:(id)sender;
 
@@ -85,6 +87,8 @@
                 newAttachment.type = @"Image";
             else if (UTTypeConformsTo(fileUTI, kUTTypeMovie))
                 newAttachment.type = @"Movie";
+            else if (UTTypeConformsTo(fileUTI, kUTTypeAudio))
+                newAttachment.type = @"Audio";
             else if (UTTypeConformsTo(fileUTI, kUTTypeText))
                 newAttachment.type = @"Text";
             else if (UTTypeConformsTo(fileUTI, kUTTypeFileURL))
@@ -105,6 +109,28 @@
             [self refreshAttachments];
         }
     }];
+}
+
+// This event comes from the collection item view subclass
+- (IBAction)collectionItemViewDoubleClick:(id)sender {
+    if([[self.arrayController selectedObjects] count] != 0) {
+        DLog(@"Double click detected in collection view, processing event.");
+        DLog(@"Selected object array: %@", [self.arrayController selectedObjects]);
+        Attachment *toBeOpened = [self.arrayController selectedObjects][0];
+        NSError *error;
+        NSURL *cacheDirectory = [[NSFileManager defaultManager] URLForDirectory:NSCachesDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:&error];
+        NSURL *cacheFile;
+        if(toBeOpened.filename)
+            cacheFile = [cacheDirectory URLByAppendingPathComponent:toBeOpened.filename];
+        else
+            cacheFile = [cacheDirectory URLByAppendingPathComponent:[NSUUID UUID]];
+        DLog(@"Filename will be: %@", cacheFile);
+        if(![toBeOpened.data writeToURL:cacheFile options:0 error:&error])
+            NSLog(@"Error %@ writing attachment data to temporary file %@\nData: %@.", [error description], cacheFile, toBeOpened);
+        [[NSWorkspace sharedWorkspace] openURL:cacheFile];
+    } else {
+        NSLog(@"Double click detected in collection view, but no collection item is selected. This should not happen");
+    }
 }
 
 #pragma mark - NSWindowDelegate
