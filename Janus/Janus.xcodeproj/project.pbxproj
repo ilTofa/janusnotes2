@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		64348EF817008CDC003593BE /* IAMDragDroppingCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 64348EF717008CDC003593BE /* IAMDragDroppingCollectionView.m */; };
 		6461385A16FA3BE200967BFF /* IAMCollectionWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6461385816FA3BE200967BFF /* IAMCollectionWindowController.m */; };
 		6461385B16FA3BE200967BFF /* IAMCollectionWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6461385916FA3BE200967BFF /* IAMCollectionWindowController.xib */; };
 		6461385E16FBC88300967BFF /* IAMCollectionItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6461385D16FBC88300967BFF /* IAMCollectionItemView.m */; };
@@ -47,8 +46,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		64348EF617008CDC003593BE /* IAMDragDroppingCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMDragDroppingCollectionView.h; sourceTree = "<group>"; };
-		64348EF717008CDC003593BE /* IAMDragDroppingCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMDragDroppingCollectionView.m; sourceTree = "<group>"; };
 		6461385716FA3BE200967BFF /* IAMCollectionWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMCollectionWindowController.h; sourceTree = "<group>"; };
 		6461385816FA3BE200967BFF /* IAMCollectionWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMCollectionWindowController.m; sourceTree = "<group>"; };
 		6461385916FA3BE200967BFF /* IAMCollectionWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IAMCollectionWindowController.xib; sourceTree = "<group>"; };
@@ -137,8 +134,6 @@
 				64EA628216F75E0000F4838E /* IAMNoteEditorWC.h */,
 				64EA628316F75E0000F4838E /* IAMNoteEditorWC.m */,
 				64EA628416F75E0000F4838E /* IAMNoteEditorWC.xib */,
-				64348EF617008CDC003593BE /* IAMDragDroppingCollectionView.h */,
-				64348EF717008CDC003593BE /* IAMDragDroppingCollectionView.m */,
 			);
 			name = "Note Edit";
 			sourceTree = "<group>";
@@ -366,7 +361,6 @@
 				64EA628516F75E0000F4838E /* IAMNoteEditorWC.m in Sources */,
 				6461385A16FA3BE200967BFF /* IAMCollectionWindowController.m in Sources */,
 				6461385E16FBC88300967BFF /* IAMCollectionItemView.m in Sources */,
-				64348EF817008CDC003593BE /* IAMDragDroppingCollectionView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

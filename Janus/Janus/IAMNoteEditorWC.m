@@ -11,12 +11,10 @@
 #import "IAMAppDelegate.h"
 #import "Attachment.h"
 
-#import "IAMDragDroppingCollectionView.h"
-
-@interface IAMNoteEditorWC () <NSWindowDelegate, IAMDragDroppingCollectionViewDelegate>
+@interface IAMNoteEditorWC () <NSWindowDelegate, NSCollectionViewDelegate>
 
 @property (strong) IBOutlet NSArrayController *arrayController;
-@property (weak) IBOutlet IAMDragDroppingCollectionView *attachmentsCollectionView;
+@property (weak) IBOutlet NSCollectionView *attachmentsCollectionView;
 
 - (IBAction)save:(id)sender;
 - (IBAction)addAttachment:(id)sender;
@@ -40,8 +38,7 @@
     // TODO: The NSManagedObjectContext instance should change for a local (to the controller instance) one.
     self.noteEditorMOC = ((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).managedObjectContext;
     // Prepare to receive drag & drops into CollectionView
-    [self.attachmentsCollectionView setDroppingDelegate:self];
-    [self.attachmentsCollectionView registerForDragAndDrop];
+    [self.attachmentsCollectionView registerForDraggedTypes:@[NSFilenamesPboardType]];
     [self refreshAttachments];
     if(!self.editedNote) {
         // It seems that we're created without a note, that will mean that we're required to create a new one.
@@ -71,13 +68,6 @@
 -(void)refreshAttachments {
     self.attachmentsArray = [self.editedNote.attachment allObjects];
     // TODO: hide collection view if no attachments?
-}
-
--(void)fileDropped:(NSString *)fileName
-{
-    NSURL *url = [[NSURL alloc] initFileURLWithPath:fileName];
-    DLog(@"User dropped URL %@, now saving.", url);
-    [self attachAttachment:url];
 }
 
 -(void) attachAttachment:(NSURL *)url {
@@ -161,6 +151,47 @@
     DLog(@"Notifying delegate.");
     if(self.delegate)
         [self.delegate IAMNoteEditorWCDidCloseWindow:self];
+}
+
+#pragma mark - NSCollectionViewDelegate
+
+- (NSDragOperation)collectionView:(NSCollectionView *)collectionView validateDrop:(id < NSDraggingInfo >)draggingInfo proposedIndex:(NSInteger *)proposedDropIndex dropOperation:(NSCollectionViewDropOperation *)proposedDropOperation {
+    NSPasteboard *pboard;
+    NSDragOperation sourceDragMask;
+    
+    sourceDragMask = [draggingInfo draggingSourceOperationMask];
+    pboard = [draggingInfo draggingPasteboard];
+    NSDragOperation retValue = NSDragOperationNone;
+    if ([[pboard types] containsObject:NSFilenamesPboardType]) {
+        if (sourceDragMask & NSDragOperationCopy) {
+            retValue = NSDragOperationCopy;
+            // Set drop after the last element
+        }
+    }
+    DLog(@"Dragging entered %@ position %ld for %@\nReturn value: %ld", (*proposedDropOperation == 0) ? @"on" : @"before", (long)*proposedDropIndex , [pboard types], retValue);
+    return retValue;
+}
+
+- (BOOL)collectionView:(NSCollectionView *)collectionView acceptDrop:(id < NSDraggingInfo >)draggingInfo index:(NSInteger)index dropOperation:(NSCollectionViewDropOperation)dropOperation {
+    NSPasteboard *pboard;
+    NSDragOperation sourceDragMask;
+    
+    sourceDragMask = [draggingInfo draggingSourceOperationMask];
+    pboard = [draggingInfo draggingPasteboard];
+    DLog(@"Should perform drag on %@", [pboard types]);
+    
+    if ( [[pboard types] containsObject:NSFilenamesPboardType] ) {
+        NSArray *files = [pboard propertyListForType:NSFilenamesPboardType];
+        DLog(@"Files to be copied: %@", files);
+        // Send file(s) to delegate for processing
+        for (NSString *fileName in files) {
+            NSURL *url = [[NSURL alloc] initFileURLWithPath:fileName];
+            DLog(@"User dropped URL %@, now saving.", url);
+            [self attachAttachment:url];
+        }
+    }
+
+    return YES;
 }
 
 #pragma mark - Bold and Italic management
