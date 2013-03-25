@@ -39,6 +39,7 @@
     self.noteEditorMOC = ((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).managedObjectContext;
     // Prepare to receive drag & drops into CollectionView
     [self.attachmentsCollectionView registerForDraggedTypes:@[NSFilenamesPboardType]];
+    [self.attachmentsCollectionView setDraggingSourceOperationMask:NSDragOperationCopy forLocal:NO];
     [self refreshAttachments];
     if(!self.editedNote) {
         // It seems that we're created without a note, that will mean that we're required to create a new one.
@@ -100,7 +101,20 @@
     DLog(@"Adding attachment: %@", newAttachment);
     [self.editedNote addAttachmentObject:newAttachment];
     [self refreshAttachments];
+}
 
+- (NSURL *)writeAttachment:(Attachment *)attachment {
+    NSError *error;
+    NSURL *cacheDirectory = [[NSFileManager defaultManager] URLForDirectory:NSCachesDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:&error];
+    NSURL *cacheFile;
+    if(attachment.filename)
+        cacheFile = [cacheDirectory URLByAppendingPathComponent:attachment.filename];
+    else
+        cacheFile = [cacheDirectory URLByAppendingPathComponent:[NSUUID UUID]];
+    DLog(@"Filename will be: %@", cacheFile);
+    if(![attachment.data writeToURL:cacheFile options:0 error:&error])
+        NSLog(@"Error %@ writing attachment data to temporary file %@\nData: %@.", [error description], cacheFile, attachment);
+    return cacheFile;
 }
 
 - (IBAction)addAttachment:(id)sender {
@@ -124,17 +138,8 @@
         DLog(@"Double click detected in collection view, processing event.");
         DLog(@"Selected object array: %@", [self.arrayController selectedObjects]);
         Attachment *toBeOpened = [self.arrayController selectedObjects][0];
-        NSError *error;
-        NSURL *cacheDirectory = [[NSFileManager defaultManager] URLForDirectory:NSCachesDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:&error];
-        NSURL *cacheFile;
-        if(toBeOpened.filename)
-            cacheFile = [cacheDirectory URLByAppendingPathComponent:toBeOpened.filename];
-        else
-            cacheFile = [cacheDirectory URLByAppendingPathComponent:[NSUUID UUID]];
-        DLog(@"Filename will be: %@", cacheFile);
-        if(![toBeOpened.data writeToURL:cacheFile options:0 error:&error])
-            NSLog(@"Error %@ writing attachment data to temporary file %@\nData: %@.", [error description], cacheFile, toBeOpened);
-        [[NSWorkspace sharedWorkspace] openURL:cacheFile];
+        NSURL *file = [self writeAttachment:toBeOpened];
+        [[NSWorkspace sharedWorkspace] openURL:file];
     } else {
         NSLog(@"Double click detected in collection view, but no collection item is selected. This should not happen");
     }
@@ -192,6 +197,32 @@
     }
 
     return YES;
+}
+
+- (NSDragOperation)draggingSession:(NSDraggingSession *)session sourceOperationMaskForDraggingContext:(NSDraggingContext)context {
+    switch(context) {
+        case NSDraggingContextOutsideApplication:
+            DLog(@"Called for outside drag.");
+            return NSDragOperationCopy;
+            break;
+            
+        case NSDraggingContextWithinApplication:
+        default:
+            DLog(@"Called for drag inside the application.");
+            return NSDragOperationNone;
+            break;
+    }
+}
+
+- (BOOL)collectionView:(NSCollectionView *)collectionView writeItemsAtIndexes:(NSIndexSet *)indexes toPasteboard:(NSPasteboard *)pasteboard {
+    Attachment *toBeDragged = [self.arrayController arrangedObjects][indexes.firstIndex];
+    DLog(@"Writing %@ to pasteboard for dragging.", toBeDragged);
+    NSURL *file = [self writeAttachment:toBeDragged];
+    if(file) {
+        [pasteboard clearContents];
+        return [pasteboard writeObjects:@[file]];
+    }
+    return NO;
 }
 
 #pragma mark - Bold and Italic management
