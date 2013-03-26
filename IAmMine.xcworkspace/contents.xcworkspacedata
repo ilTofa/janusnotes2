@@ -5,6 +5,6 @@
       location = "group:Janus/Janus.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:iPhone/I Am Mine.xcodeproj">
+      location = "group:iPhone/iJanus.xcodeproj">
    </FileRef>
 </Workspace>
