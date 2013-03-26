@@ -14,9 +14,11 @@
 @interface IAMCollectionWindowController () <IAMNoteEditorWCDelegate>
 
 @property (strong, nonatomic) NSMutableArray *noteWindowControllers;
+@property (weak) IBOutlet NSSearchFieldCell *searchField;
 
 - (IBAction)addNote:(id)sender;
 - (IBAction)editNote:(id)sender;
+- (IBAction)searched:(id)sender;
 
 @end
 
@@ -80,6 +82,30 @@
     // Preserve a reference to the controller to keep ARC happy
     [self.noteWindowControllers addObject:noteEditor];
     [noteEditor showWindow:self];
+}
+
+- (IBAction)searched:(id)sender {
+    DLog(@"Search string is %@", [self.searchField stringValue]);
+    NSString *queryString = nil;
+    if(![[self.searchField stringValue] isEqualToString:@""])
+    {
+        // Complex NSPredicate needed to match any word in the search string
+        DLog(@"Fetching again. Query string is: '%@'", [self.searchField stringValue]);
+        NSArray *terms = [[self.searchField stringValue] componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        for(NSString *term in terms)
+        {
+            if([term length] == 0)
+                continue;
+            if(queryString == nil)
+                queryString = [NSString stringWithFormat:@"(text contains[cd] \"%@\" OR title contains[cd] \"%@\")", term, term];
+            else
+                queryString = [queryString stringByAppendingFormat:@" AND (text contains[cd] \"%@\" OR title contains[cd] \"%@\")", term, term];
+        }
+    }
+    else
+        queryString = @"text  like[c] \"*\"";
+    DLog(@"Fetching again. Query string is: '%@'", queryString);
+    [self.arrayController setFilterPredicate:[NSPredicate predicateWithFormat:queryString]];
 }
 
 -(void)IAMNoteEditorWCDidCloseWindow:(IAMNoteEditorWC *)windowController
