@@ -95,6 +95,7 @@
 #import "CoreDataController.h"
 
 #import "Note.h"
+#import "ManagedObjectCloner.h"
 
 NSString * kiCloudPersistentStoreFilename = @"iCloudStore.sqlite";
 NSString * kFallbackPersistentStoreFilename = @"fallbackStore.sqlite"; //used when iCloud is not available
@@ -576,33 +577,8 @@ static NSOperationQueue *_presentedItemOperationQueue;
 
 - (void)addNote:(Note *)note toStore:(NSPersistentStore *)store withContext:(NSManagedObjectContext *)moc
 {
-    NSEntityDescription *entity = [note entity];
-    NSString *entityName = [entity name];
-    Note *newNote = [[Note alloc] initWithEntity:entity insertIntoManagedObjectContext:moc];
-    //loop through all attributes and assign then to the clone
-    NSDictionary *attributes = [[NSEntityDescription entityForName:entityName inManagedObjectContext:moc] attributesByName];
-    for (NSString *attr in attributes)
-        [newNote setValue:[note valueForKey:attr] forKey:attr];
-
-    //Loop through all relationships, and clone them.
-//    NSDictionary *relationships = [[NSEntityDescription
-//                                    entityForName:entityName
-//                                    inManagedObjectContext:context] relationshipsByName];
-//    for (NSRelationshipDescription *rel in relationships){
-//        NSString *keyName = [NSString stringWithFormat:@"%@",rel];
-//        //get a set of all objects in the relationship
-//        NSMutableSet *sourceSet = [source mutableSetValueForKey:keyName];
-//        NSMutableSet *clonedSet = [cloned mutableSetValueForKey:keyName];
-//        NSEnumerator *e = [sourceSet objectEnumerator];
-//        NSManagedObject *relatedObject;
-//        while ( relatedObject = [e nextObject]){
-//            //Clone it, and add clone to set
-//            NSManagedObject *clonedRelatedObject = [ManagedObjectCloner clone:relatedObject
-//                                                                    inContext:context];
-//            [clonedSet addObject:clonedRelatedObject];
-//        }
-//        
-//    }
+    // Clone note (relationships included) and assign it to store.
+    Note *newNote = (Note *) [ManagedObjectCloner clone:note inContext:moc];
     [moc assignObject:newNote toPersistentStore:store];
 }
 
