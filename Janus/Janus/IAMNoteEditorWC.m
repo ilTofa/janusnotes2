@@ -36,7 +36,9 @@
 {
     [super windowDidLoad];
     // TODO: The NSManagedObjectContext instance should change for a local (to the controller instance) one.
-    self.noteEditorMOC = ((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).managedObjectContext;
+    self.noteEditorMOC = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSConfinementConcurrencyType];
+    [self.noteEditorMOC setPersistentStoreCoordinator:((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).persistentStoreCoordinator];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(localContextSaved:) name:NSManagedObjectContextDidSaveNotification object:self.noteEditorMOC];
     // Prepare to receive drag & drops into CollectionView
     [self.attachmentsCollectionView registerForDraggedTypes:@[NSFilenamesPboardType]];
     [self.attachmentsCollectionView setDraggingSourceOperationMask:NSDragOperationCopy forLocal:NO];
@@ -46,6 +48,11 @@
         Note *newNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:self.noteEditorMOC];
         self.editedNote = newNote;
     }
+}
+
+- (void)localContextSaved:(NSNotification *)notification {
+    /* Merge the changes into the original managed object context */
+    [((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).managedObjectContext mergeChangesFromContextDidSaveNotification:notification];
 }
 
 - (IBAction)save:(id)sender
@@ -64,6 +71,10 @@
     // If called via action
     if(sender)
         [self.window performClose:sender];
+}
+
+-(void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 -(void)refreshAttachments {

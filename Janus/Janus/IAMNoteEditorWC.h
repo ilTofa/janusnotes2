@@ -22,7 +22,7 @@
 
 @property Note *editedNote;
 @property (weak, nonatomic) id<IAMNoteEditorWCDelegate> delegate;
-@property (weak, atomic) IBOutlet NSManagedObjectContext *noteEditorMOC;
+@property (strong, atomic) IBOutlet NSManagedObjectContext *noteEditorMOC;
 @property NSArray *attachmentsArray;
 
 @end
