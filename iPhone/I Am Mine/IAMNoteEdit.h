@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIToolbar *theToolbar;
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *addImageButton;
+@property (nonatomic, weak) IBOutlet UIBarButtonItem *recordingButton;
 @property (weak, nonatomic) IBOutlet UILabel *attachmentQuantityLabel;
 
 // The edited note and the corresponding moc
@@ -27,5 +28,6 @@
 
 - (IBAction)save:(id)sender;
 - (IBAction)addImageToNote:(id)sender;
+- (IBAction)recordAudio:(id)sender;
 
 @end

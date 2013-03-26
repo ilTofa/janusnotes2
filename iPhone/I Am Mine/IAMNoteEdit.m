@@ -15,9 +15,10 @@
 #import "IAMAddLinkViewController.h"
 #import "IAMAttachmentCell.h"
 #import "IAMAttachmentDetailViewController.h"
+#import "MicrophoneWindow.h"
 #import "GTThemer.h"
 
-@interface IAMNoteEdit () <UITextViewDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, IAMAddLinkViewControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, AttachmentDeleter>
+@interface IAMNoteEdit () <UITextViewDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, IAMAddLinkViewControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, AttachmentDeleter, MicrophoneWindowDelegate>
 
 @property CGRect oldFrame;
 @property UIBarButtonItem *doneButton;
@@ -26,6 +27,8 @@
 @property NSArray *attachmentsArray;
 
 @property(nonatomic, weak) IBOutlet UICollectionView *collectionView;
+
+@property (strong, nonatomic) MicrophoneWindow *recordView;
 
 @property BOOL attachmensAreHidden;
 
@@ -408,5 +411,59 @@
     return CGSizeMake(100, 100);
 }
 
+#pragma mark - AudioRecording Management
+
+-(void)recordingOK:(NSString *)recordingFilename
+{
+	DLog(@"Received a record on %@", recordingFilename);
+	// Now get rid of the view
+	[self recordingCancelled];
+}
+
+- (void)recordingCancelled
+{
+	if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad)
+		[self.recordView.view removeFromSuperview];
+	else
+		[self.popover dismissPopoverAnimated:YES];
+	self.recordView = nil;
+	self.recordView = nil;
+}
+
+- (IBAction)recordAudio:(id)sender
+{
+	NSLog(@"This is voiceMail: handler");
+	// Check for audio... (only on actual device)
+	if(![[AVAudioSession sharedInstance] inputIsAvailable])
+	{
+		UIAlertView *theAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", @"")
+                                                           message:NSLocalizedString(@"No audio input available", @"")
+                                                          delegate:nil
+                                                 cancelButtonTitle:@"OK"
+                                                 otherButtonTitles:nil];
+		[theAlert show];
+		return;
+	}
+	if(self.recordView == nil)
+	{
+		if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+			self.recordView = [[MicrophoneWindow alloc] initWithNibName:@"MicrophoneWindow-iPad" bundle:nil];
+		else
+			self.recordView = [[MicrophoneWindow alloc] initWithNibName:@"MicrophoneWindow" bundle:nil];
+		self.recordView.delegate = self;
+		if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad)
+			[self.view addSubview:self.recordView.view];
+	}
+	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+	{
+		UIPopoverController* aPopover = [[UIPopoverController alloc]
+										 initWithContentViewController:self.recordView];
+		aPopover.popoverContentSize = CGSizeMake(220.0, 300.0);
+		
+		// Store the popover in a custom property for later use.
+		self.popover = aPopover;
+		[self.popover presentPopoverFromBarButtonItem:self.recordingButton permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+	}
+}
 
 @end

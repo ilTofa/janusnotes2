@@ -121,7 +121,7 @@
     if(attachment.filename)
         cacheFile = [cacheDirectory URLByAppendingPathComponent:attachment.filename];
     else
-        cacheFile = [cacheDirectory URLByAppendingPathComponent:[NSUUID UUID]];
+        cacheFile = [cacheDirectory URLByAppendingPathComponent:[[NSUUID UUID] UUIDString]];
     DLog(@"Filename will be: %@", cacheFile);
     if(![attachment.data writeToURL:cacheFile options:0 error:&error])
         NSLog(@"Error %@ writing attachment data to temporary file %@\nData: %@.", [error description], cacheFile, attachment);
