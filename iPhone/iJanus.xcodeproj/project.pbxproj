@@ -89,11 +89,11 @@
 		641A5F0116EDD37F00D3440C /* IAMiPadNoteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMiPadNoteCell.m; sourceTree = "<group>"; };
 		641D954216E8CF6E00A253E3 /* IAMAttachmentDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMAttachmentDetailViewController.h; sourceTree = "<group>"; };
 		641D954316E8CF6E00A253E3 /* IAMAttachmentDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMAttachmentDetailViewController.m; sourceTree = "<group>"; };
-		641D954516E9019200A253E3 /* I Am Mine.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "I Am Mine.entitlements"; sourceTree = "<group>"; };
 		6433103C16E0A85D0064EC5C /* UIViewController+GTFrames.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+GTFrames.h"; sourceTree = "<group>"; };
 		6433103D16E0A85D0064EC5C /* UIViewController+GTFrames.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+GTFrames.m"; sourceTree = "<group>"; };
 		6447056C16DD0FC4000A0262 /* SmallRow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SmallRow.png; path = Images/SmallRow.png; sourceTree = "<group>"; };
 		6447056D16DD0FC4000A0262 /* SmallRow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SmallRow@2x.png"; path = "Images/SmallRow@2x.png"; sourceTree = "<group>"; };
+		645A13A01701BFC800CCB4FB /* iJanus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = iJanus.entitlements; path = ../iJanus.entitlements; sourceTree = "<group>"; };
 		6466029A16DBC987007622FC /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
 		6466029C16DBC98E007622FC /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
 		6466029E16DBC999007622FC /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = SOURCE_ROOT; };
@@ -103,14 +103,14 @@
 		649DCE9F16D28DB7003F5A83 /* IAmMine.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = IAmMine.xcdatamodel; sourceTree = "<group>"; };
 		649DCEA116D29AAD003F5A83 /* CoreDataController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CoreDataController.h; path = ../common/iCloud/CoreDataController.h; sourceTree = "<group>"; };
 		649DCEA216D29AAD003F5A83 /* CoreDataController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CoreDataController.m; path = ../common/iCloud/CoreDataController.m; sourceTree = "<group>"; };
-		64A0506C16D28CCA0025E179 /* I Am Mine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "I Am Mine.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		64A0506C16D28CCA0025E179 /* iJanus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iJanus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64A0506F16D28CCA0025E179 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		64A0507116D28CCA0025E179 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		64A0507316D28CCA0025E179 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		64A0507716D28CCA0025E179 /* I Am Mine-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "I Am Mine-Info.plist"; sourceTree = "<group>"; };
+		64A0507716D28CCA0025E179 /* iJanus-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iJanus-Info.plist"; sourceTree = "<group>"; };
 		64A0507916D28CCA0025E179 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		64A0507B16D28CCA0025E179 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		64A0507D16D28CCA0025E179 /* I Am Mine-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "I Am Mine-Prefix.pch"; sourceTree = "<group>"; };
+		64A0507D16D28CCA0025E179 /* iJanus-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iJanus-Prefix.pch"; sourceTree = "<group>"; };
 		64A0507E16D28CCA0025E179 /* IAMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IAMAppDelegate.h; sourceTree = "<group>"; };
 		64A0507F16D28CCA0025E179 /* IAMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IAMAppDelegate.m; sourceTree = "<group>"; };
 		64A0508116D28CCA0025E179 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -284,7 +284,7 @@
 		64A0506D16D28CCA0025E179 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				64A0506C16D28CCA0025E179 /* I Am Mine.app */,
+				64A0506C16D28CCA0025E179 /* iJanus.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -325,15 +325,15 @@
 		64A0507616D28CCA0025E179 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				641D954516E9019200A253E3 /* I Am Mine.entitlements */,
+				645A13A01701BFC800CCB4FB /* iJanus.entitlements */,
 				6466029C16DBC98E007622FC /* Icon.png */,
 				6466029A16DBC987007622FC /* Icon@2x.png */,
 				6466029E16DBC999007622FC /* Icon-72.png */,
 				6466029F16DBC999007622FC /* Icon-72@2x.png */,
-				64A0507716D28CCA0025E179 /* I Am Mine-Info.plist */,
+				64A0507716D28CCA0025E179 /* iJanus-Info.plist */,
 				64A0507816D28CCA0025E179 /* InfoPlist.strings */,
 				64A0507B16D28CCA0025E179 /* main.m */,
-				64A0507D16D28CCA0025E179 /* I Am Mine-Prefix.pch */,
+				64A0507D16D28CCA0025E179 /* iJanus-Prefix.pch */,
 				64A0508116D28CCA0025E179 /* Default.png */,
 				64A0508316D28CCA0025E179 /* Default@2x.png */,
 				64A0508516D28CCA0025E179 /* Default-568h@2x.png */,
@@ -344,9 +344,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		64A0506B16D28CCA0025E179 /* I Am Mine */ = {
+		64A0506B16D28CCA0025E179 /* iJanus */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 64A0508F16D28CCA0025E179 /* Build configuration list for PBXNativeTarget "I Am Mine" */;
+			buildConfigurationList = 64A0508F16D28CCA0025E179 /* Build configuration list for PBXNativeTarget "iJanus" */;
 			buildPhases = (
 				64A0506816D28CCA0025E179 /* Sources */,
 				64A0506916D28CCA0025E179 /* Frameworks */,
@@ -356,9 +356,9 @@
 			);
 			dependencies = (
 			);
-			name = "I Am Mine";
+			name = iJanus;
 			productName = "I Am Mine";
-			productReference = 64A0506C16D28CCA0025E179 /* I Am Mine.app */;
+			productReference = 64A0506C16D28CCA0025E179 /* iJanus.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -371,7 +371,7 @@
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Giacomo Tufano";
 			};
-			buildConfigurationList = 64A0506716D28CCA0025E179 /* Build configuration list for PBXProject "I Am Mine" */;
+			buildConfigurationList = 64A0506716D28CCA0025E179 /* Build configuration list for PBXProject "iJanus" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -383,7 +383,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				64A0506B16D28CCA0025E179 /* I Am Mine */,
+				64A0506B16D28CCA0025E179 /* iJanus */,
 			);
 		};
 /* End PBXProject section */
@@ -533,12 +533,12 @@
 		64A0509016D28CCA0025E179 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = "I Am Mine/I Am Mine.entitlements";
+				CODE_SIGN_ENTITLEMENTS = iJanus.entitlements;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "I Am Mine/I Am Mine-Prefix.pch";
-				INFOPLIST_FILE = "I Am Mine/I Am Mine-Info.plist";
+				GCC_PREFIX_HEADER = "I Am Mine/iJanus-Prefix.pch";
+				INFOPLIST_FILE = "I Am Mine/iJanus-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = iJanus;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -547,14 +547,14 @@
 		64A0509116D28CCA0025E179 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = "I Am Mine/I Am Mine.entitlements";
+				CODE_SIGN_ENTITLEMENTS = iJanus.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "I Am Mine/I Am Mine-Prefix.pch";
-				INFOPLIST_FILE = "I Am Mine/I Am Mine-Info.plist";
+				GCC_PREFIX_HEADER = "I Am Mine/iJanus-Prefix.pch";
+				INFOPLIST_FILE = "I Am Mine/iJanus-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = iJanus;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -565,7 +565,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		64A0506716D28CCA0025E179 /* Build configuration list for PBXProject "I Am Mine" */ = {
+		64A0506716D28CCA0025E179 /* Build configuration list for PBXProject "iJanus" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				64A0508D16D28CCA0025E179 /* Debug */,
@@ -574,7 +574,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		64A0508F16D28CCA0025E179 /* Build configuration list for PBXNativeTarget "I Am Mine" */ = {
+		64A0508F16D28CCA0025E179 /* Build configuration list for PBXNativeTarget "iJanus" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				64A0509016D28CCA0025E179 /* Debug */,

@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "64A0506B16D28CCA0025E179"
-               BuildableName = "I Am Mine.app"
-               BlueprintName = "I Am Mine"
-               ReferencedContainer = "container:I Am Mine.xcodeproj">
+               BuildableName = "iJanus.app"
+               BlueprintName = "iJanus"
+               ReferencedContainer = "container:iJanus.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "64A0506B16D28CCA0025E179"
-            BuildableName = "I Am Mine.app"
-            BlueprintName = "I Am Mine"
-            ReferencedContainer = "container:I Am Mine.xcodeproj">
+            BuildableName = "iJanus.app"
+            BlueprintName = "iJanus"
+            ReferencedContainer = "container:iJanus.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -52,9 +52,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "64A0506B16D28CCA0025E179"
-            BuildableName = "I Am Mine.app"
-            BlueprintName = "I Am Mine"
-            ReferencedContainer = "container:I Am Mine.xcodeproj">
+            BuildableName = "iJanus.app"
+            BlueprintName = "iJanus"
+            ReferencedContainer = "container:iJanus.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -70,9 +70,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "64A0506B16D28CCA0025E179"
-            BuildableName = "I Am Mine.app"
-            BlueprintName = "I Am Mine"
-            ReferencedContainer = "container:I Am Mine.xcodeproj">
+            BuildableName = "iJanus.app"
+            BlueprintName = "iJanus"
+            ReferencedContainer = "container:iJanus.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
