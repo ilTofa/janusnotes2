@@ -36,6 +36,7 @@
 	[self.dateFormatter setLocale:[NSLocale currentLocale]];
 	[self.dateFormatter setDateStyle:NSDateFormatterMediumStyle];
 	[self.dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    [self.dateFormatter setDoesRelativeDateFormatting:YES];
     NSArray *leftButtons = @[self.editButtonItem,
                              [[UIBarButtonItem alloc] initWithTitle:@"Prefs" style:UIBarButtonItemStylePlain target:self action:@selector(launchPreferences:)]];
     self.navigationItem.leftBarButtonItems = leftButtons;

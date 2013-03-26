@@ -234,6 +234,7 @@
 							<string key="NSFrame">{{471, 13}, {114, 32}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="661429977">
@@ -308,7 +309,7 @@
 					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="525709001"/>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {1366, 768}}</string>
+				<string key="NSScreenRect">{{0, 0}, {2560, 1418}}</string>
 				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
 				<bool key="NSWindowIsRestorable">YES</bool>
 			</object>
@@ -326,7 +327,7 @@
 			</object>
 			<object class="NSCollectionViewItem" id="684948190"/>
 			<object class="NSView" id="248888879">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">256</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="NSBox" id="313134278">
@@ -339,12 +340,14 @@
 								<array class="NSMutableArray" key="NSSubviews"/>
 								<string key="NSFrame">{{1, 1}, {213, 234}}</string>
 								<reference key="NSSuperview" ref="313134278"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="853057943"/>
 								<string key="NSReuseIdentifierKey">_NS:11</string>
 							</object>
 						</array>
 						<string key="NSFrame">{{6, 4}, {215, 236}}</string>
 						<reference key="NSSuperview" ref="248888879"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="676106785"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<string key="NSOffsets">{0, 0}</string>
@@ -379,12 +382,14 @@
 								<array class="NSMutableArray" key="NSSubviews"/>
 								<string key="NSFrame">{{1, 1}, {217, 238}}</string>
 								<reference key="NSSuperview" ref="289323880"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="313134278"/>
 								<string key="NSReuseIdentifierKey">_NS:11</string>
 							</object>
 						</array>
 						<string key="NSFrame">{{4, 2}, {219, 240}}</string>
 						<reference key="NSSuperview" ref="248888879"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="884147692"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<string key="NSOffsets">{0, 0}</string>
@@ -410,6 +415,7 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{17, 208}, {193, 17}}</string>
 						<reference key="NSSuperview" ref="248888879"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="465277798"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<string key="NSAntiCompressionPriority">{250, 750}</string>
@@ -436,6 +442,7 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{17, 63}, {193, 107}}</string>
 						<reference key="NSSuperview" ref="248888879"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="365857438"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<string key="NSAntiCompressionPriority">{250, 750}</string>
@@ -458,6 +465,7 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{17, 44}, {16, 11}}</string>
 						<reference key="NSSuperview" ref="248888879"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="225316512"/>
 						<string key="NSReuseIdentifierKey">_NS:1535</string>
 						<bool key="NSEnabled">YES</bool>
@@ -482,6 +490,7 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{17, 20}, {98, 12}}</string>
 						<reference key="NSSuperview" ref="248888879"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="739730799"/>
 						<string key="NSReuseIdentifierKey">_NS:1535</string>
 						<bool key="NSEnabled">YES</bool>
@@ -493,7 +502,7 @@
 							<object class="NSDateFormatter" key="NSFormatter" id="551660392">
 								<dictionary class="NSMutableDictionary" key="NS.attributes">
 									<integer value="1" key="dateStyle"/>
-									<boolean value="NO" key="doesRelativeDateFormatting"/>
+									<boolean value="YES" key="doesRelativeDateFormatting"/>
 									<integer value="1040" key="formatterBehavior"/>
 									<integer value="1" key="timeStyle"/>
 								</dictionary>
@@ -512,6 +521,8 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{112, 20}, {98, 12}}</string>
 						<reference key="NSSuperview" ref="248888879"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:1535</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="616788026">
@@ -541,6 +552,7 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{30, 44}, {72, 11}}</string>
 						<reference key="NSSuperview" ref="248888879"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="294873557"/>
 						<string key="NSReuseIdentifierKey">_NS:1535</string>
 						<bool key="NSEnabled">YES</bool>
@@ -558,6 +570,8 @@
 					</object>
 				</array>
 				<string key="NSFrameSize">{227, 245}</string>
+				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="289323880"/>
 			</object>
 			<object class="NSUserDefaultsController" id="1033713137">
@@ -2148,17 +2162,12 @@
 					<string key="superclassName">NSWindowController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="addNote:">id</string>
-						<string key="collectionItemViewDoubleClick:">id</string>
 						<string key="editNote:">id</string>
 						<string key="searched:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="addNote:">
 							<string key="name">addNote:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="collectionItemViewDoubleClick:">
-							<string key="name">collectionItemViewDoubleClick:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="editNote:">
@@ -2192,27 +2201,6 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/IAMCollectionWindowController.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">NSCollectionViewItem</string>
-					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="imageView">NSImageView</string>
-						<string key="textField">NSTextField</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="imageView">
-							<string key="name">imageView</string>
-							<string key="candidateClassName">NSImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="textField">
-							<string key="name">textField</string>
-							<string key="candidateClassName">NSTextField</string>
-						</object>
-					</dictionary>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/NSCollectionViewItem.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
