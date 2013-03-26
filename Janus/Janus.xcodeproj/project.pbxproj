@@ -10,7 +10,6 @@
 		6461385A16FA3BE200967BFF /* IAMCollectionWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6461385816FA3BE200967BFF /* IAMCollectionWindowController.m */; };
 		6461385B16FA3BE200967BFF /* IAMCollectionWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6461385916FA3BE200967BFF /* IAMCollectionWindowController.xib */; };
 		6461385E16FBC88300967BFF /* IAMCollectionItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6461385D16FBC88300967BFF /* IAMCollectionItemView.m */; };
-		64A755601701E61E0085933D /* ManagedObjectCloner.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A7555F1701E61E0085933D /* ManagedObjectCloner.m */; };
 		64EA621016F7110300F4838E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64EA620F16F7110300F4838E /* Cocoa.framework */; };
 		64EA621A16F7110300F4838E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64EA621816F7110300F4838E /* InfoPlist.strings */; };
 		64EA621C16F7110300F4838E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 64EA621B16F7110300F4838E /* main.m */; };
@@ -53,8 +52,6 @@
 		6461385C16FBC88300967BFF /* IAMCollectionItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMCollectionItemView.h; sourceTree = "<group>"; };
 		6461385D16FBC88300967BFF /* IAMCollectionItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMCollectionItemView.m; sourceTree = "<group>"; };
 		64A1D4EC16FC9F7C00E50CC1 /* Janus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Janus.entitlements; sourceTree = "<group>"; };
-		64A7555E1701E61E0085933D /* ManagedObjectCloner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ManagedObjectCloner.h; path = ../common/iCloud/ManagedObjectCloner.h; sourceTree = "<group>"; };
-		64A7555F1701E61E0085933D /* ManagedObjectCloner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ManagedObjectCloner.m; path = ../common/iCloud/ManagedObjectCloner.m; sourceTree = "<group>"; };
 		64EA620C16F7110300F4838E /* Janus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Janus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64EA620F16F7110300F4838E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		64EA621216F7110300F4838E /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -245,8 +242,6 @@
 				64EA627016F71E1400F4838E /* IAmMine.xcdatamodeld */,
 				64EA627216F71E1400F4838E /* Note.h */,
 				64EA627316F71E1400F4838E /* Note.m */,
-				64A7555E1701E61E0085933D /* ManagedObjectCloner.h */,
-				64A7555F1701E61E0085933D /* ManagedObjectCloner.m */,
 			);
 			name = "CoreData (common)";
 			sourceTree = "<group>";
@@ -366,7 +361,6 @@
 				64EA628516F75E0000F4838E /* IAMNoteEditorWC.m in Sources */,
 				6461385A16FA3BE200967BFF /* IAMCollectionWindowController.m in Sources */,
 				6461385E16FBC88300967BFF /* IAMCollectionItemView.m in Sources */,
-				64A755601701E61E0085933D /* ManagedObjectCloner.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

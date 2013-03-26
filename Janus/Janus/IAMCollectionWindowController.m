@@ -44,13 +44,14 @@
     [self.arrayController setSortDescriptors:sortDescriptors];
     DLog(@"Array controller: %@", self.arrayController);
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pscChanged:) name:NSPersistentStoreCoordinatorStoresDidChangeNotification object:((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).coreDataController.psc];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pscChanged:) name:NSPersistentStoreDidImportUbiquitousContentChangesNotification object:((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).coreDataController.psc];
 }
 
 - (void)pscChanged:(NSNotification *)notification
 {
     DLog(@"called for: %@", notification);
-//    self.sharedManagedObjectContext = ((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).coreDataController.mainThreadContext;
-    //    [self.arrayController setAutomaticallyPreparesContent:YES];
+    // send to searched: to refresh
+    [self searched:nil];
 }
 
 #pragma mark - Notes Editing management

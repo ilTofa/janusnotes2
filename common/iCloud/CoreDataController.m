@@ -95,7 +95,7 @@
 #import "CoreDataController.h"
 
 #import "Note.h"
-#import "ManagedObjectCloner.h"
+#import "Attachment.h"
 
 NSString * kiCloudPersistentStoreFilename = @"iCloudStore.sqlite";
 NSString * kFallbackPersistentStoreFilename = @"fallbackStore.sqlite"; //used when iCloud is not available
@@ -103,7 +103,7 @@ NSString * kSeedStoreFilename = @"seedStore.sqlite"; //holds the seed person rec
 NSString * kLocalStoreFilename = @"localStore.sqlite"; //holds the states information
 
 #define SEED_ICLOUD_STORE NO
-#define FORCE_FALLBACK_STORE
+// #define FORCE_FALLBACK_STORE
 
 static NSOperationQueue *_presentedItemOperationQueue;
 
@@ -578,7 +578,22 @@ static NSOperationQueue *_presentedItemOperationQueue;
 - (void)addNote:(Note *)note toStore:(NSPersistentStore *)store withContext:(NSManagedObjectContext *)moc
 {
     // Clone note (relationships included) and assign it to store.
-    Note *newNote = (Note *) [ManagedObjectCloner clone:note inContext:moc];
+    //create new object in data store
+    Note *newNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:moc];
+    //loop through all attributes and assign then to the clone
+    NSDictionary *attributes = [[NSEntityDescription entityForName:@"Note" inManagedObjectContext:moc] attributesByName];
+    for (NSString *attr in attributes) {
+        [newNote setValue:[note valueForKey:attr] forKey:attr];
+    }
+    //Loop through attachments, and clone them.
+    for (Attachment *attachment in note.attachment) {
+        Attachment *newAttachment = [NSEntityDescription insertNewObjectForEntityForName:@"Attachment" inManagedObjectContext:moc];
+        NSDictionary *attributes = [[NSEntityDescription entityForName:@"Attachment" inManagedObjectContext:moc] attributesByName];
+        for (NSString *attr in attributes) {
+            [newAttachment setValue:[attachment valueForKey:attr] forKey:attr];
+        }
+        [moc assignObject:newAttachment toPersistentStore:store];
+    }
     [moc assignObject:newNote toPersistentStore:store];
 }
 
