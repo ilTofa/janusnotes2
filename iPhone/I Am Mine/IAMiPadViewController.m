@@ -120,6 +120,12 @@
     self.collectionView.scrollEnabled = NO;
 }
 
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
+    DLog(@"End editing on search bar. Last search and restoring colelctionView");
+    [self searchBarSearchButtonClicked:searchBar];
+}
+
+
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
     DLog(@"Cancel clicked");
@@ -133,13 +139,20 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    DLog(@"Search should start for '%@'", searchBar.text);
+    DLog(@"Search clicked, should start for '%@'", searchBar.text);
     [searchBar resignFirstResponder];
     self.searchText = searchBar.text;
     self.collectionView.allowsSelection = YES;
     self.collectionView.scrollEnabled = YES;
     // Perform search... :)
     DLog(@"Now searching %@", self.searchText);
+    [self setupFetchExecAndReload];
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    self.searchText = searchBar.text;
+    DLog(@"Now searching (continous) %@", self.searchText);
     [self setupFetchExecAndReload];
 }
 

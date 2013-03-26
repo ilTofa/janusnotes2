@@ -107,6 +107,13 @@
     [self setupFetchExecAndReload];
 }
 
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    self.searchText = searchBar.text;
+    DLog(@"Now searching (continous) %@", self.searchText);
+    [self setupFetchExecAndReload];
+}
+
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     DLog(@"Search should start for '%@'", searchBar.text);
