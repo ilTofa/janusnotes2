@@ -22,4 +22,6 @@
 @property (nonatomic, retain) NSString * filename;
 @property (nonatomic, retain) Note *note;
 
+- (NSURL *)generateFile;
+
 @end

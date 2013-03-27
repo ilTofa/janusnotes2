@@ -274,7 +274,7 @@
         newAttachment.extension = (__bridge_transfer NSString *)UTTypeCopyPreferredTagWithClass(kUTTypeImage, kUTTagClassFilenameExtension);
         if(!newAttachment.extension)
             newAttachment.extension = @"png";
-        newAttachment.filename = @"";
+        newAttachment.filename = [NSString stringWithFormat:@"%@.%@", [[NSUUID UUID] UUIDString], newAttachment.extension];
         newAttachment.type = @"Image";
         newAttachment.data = UIImagePNGRepresentation(pickedImage);
         // Now link attachment to the note
@@ -329,7 +329,7 @@
     newAttachment.extension = (__bridge_transfer NSString *)UTTypeCopyPreferredTagWithClass(kUTTypeURL, kUTTagClassFilenameExtension);
     if(!newAttachment.extension)
         newAttachment.extension = @"url";
-    newAttachment.filename = @"";
+    newAttachment.filename = [NSString stringWithFormat:@"%@.%@", [[NSUUID UUID] UUIDString], newAttachment.extension];
     newAttachment.type = @"Link";
     newAttachment.data = [theLink dataUsingEncoding:NSUTF8StringEncoding];
     // Now link attachment to the note

@@ -114,20 +114,6 @@
     [self refreshAttachments];
 }
 
-- (NSURL *)writeAttachment:(Attachment *)attachment {
-    NSError *error;
-    NSURL *cacheDirectory = [[NSFileManager defaultManager] URLForDirectory:NSCachesDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:&error];
-    NSURL *cacheFile;
-    if(attachment.filename)
-        cacheFile = [cacheDirectory URLByAppendingPathComponent:attachment.filename];
-    else
-        cacheFile = [cacheDirectory URLByAppendingPathComponent:[[NSUUID UUID] UUIDString]];
-    DLog(@"Filename will be: %@", cacheFile);
-    if(![attachment.data writeToURL:cacheFile options:0 error:&error])
-        NSLog(@"Error %@ writing attachment data to temporary file %@\nData: %@.", [error description], cacheFile, attachment);
-    return cacheFile;
-}
-
 - (IBAction)addAttachment:(id)sender {
     NSOpenPanel *openPanel = [NSOpenPanel openPanel];
     openPanel.allowsMultipleSelection = NO;
@@ -149,7 +135,7 @@
         DLog(@"Double click detected in collection view, processing event.");
         DLog(@"Selected object array: %@", [self.arrayController selectedObjects]);
         Attachment *toBeOpened = [self.arrayController selectedObjects][0];
-        NSURL *file = [self writeAttachment:toBeOpened];
+        NSURL *file = [toBeOpened generateFile];
         [[NSWorkspace sharedWorkspace] openURL:file];
     } else {
         NSLog(@"Double click detected in collection view, but no collection item is selected. This should not happen");
@@ -228,7 +214,7 @@
 - (BOOL)collectionView:(NSCollectionView *)collectionView writeItemsAtIndexes:(NSIndexSet *)indexes toPasteboard:(NSPasteboard *)pasteboard {
     Attachment *toBeDragged = [self.arrayController arrangedObjects][indexes.firstIndex];
     DLog(@"Writing %@ to pasteboard for dragging.", toBeDragged);
-    NSURL *file = [self writeAttachment:toBeDragged];
+    NSURL *file = [toBeDragged generateFile];
     if(file) {
         [pasteboard clearContents];
         return [pasteboard writeObjects:@[file]];

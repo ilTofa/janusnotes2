@@ -30,4 +30,20 @@
     [self setCreationDate:[NSDate date]];
 }
 
+#pragma mark - write out
+
+- (NSURL *)generateFile {
+    NSError *error;
+    NSURL *cacheDirectory = [[NSFileManager defaultManager] URLForDirectory:NSCachesDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:&error];
+    NSURL *cacheFile;
+    if(self.filename && ![self.filename isEqualToString:@""])
+        cacheFile = [cacheDirectory URLByAppendingPathComponent:self.filename];
+    else
+        cacheFile = [cacheDirectory URLByAppendingPathComponent:[[NSUUID UUID] UUIDString]];
+    DLog(@"Filename will be: %@", cacheFile);
+    if(![self.data writeToURL:cacheFile options:0 error:&error])
+        NSLog(@"Error %@ writing attachment data to temporary file %@\nData: %@.", [error description], cacheFile, self);
+    return cacheFile;
+}
+
 @end

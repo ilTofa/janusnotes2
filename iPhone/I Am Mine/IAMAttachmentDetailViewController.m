@@ -12,13 +12,15 @@
 
 #define kReadabilityBookmarkletCode @"(function(){window.baseUrl='https://www.readability.com';window.readabilityToken='';var s=document.createElement('script');s.setAttribute('type','text/javascript');s.setAttribute('charset','UTF-8');s.setAttribute('src',baseUrl+'/bookmarklet/read.js');document.documentElement.appendChild(s);})()"
 
-@interface IAMAttachmentDetailViewController () <UIActionSheetDelegate>
+@interface IAMAttachmentDetailViewController () <UIActionSheetDelegate, UIDocumentInteractionControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIWebView *theWebView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *theSpinnerForWebView;
 @property (weak, nonatomic) IBOutlet UIToolbar *theToolbar;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *shareButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *deleteButton;
+
+@property (strong, nonatomic) UIDocumentInteractionController *interationController;
 
 - (IBAction)goBackClicked:(id)sender;
 - (IBAction)goForwardClicked:(id)sender;
@@ -46,24 +48,44 @@
     [super viewDidLoad];
     NSAssert(self.theAttachment, @"No valid Attachment object sent to IAMAttachmentDetailViewController.");
     [[GTThemer sharedInstance] applyColorsToView:self.theToolbar];
-//    [[GTThemer sharedInstance] applyColorsToView:self.theSpinnerForWebView];
-    if([self.theAttachment.type isEqualToString:@"Link"]) {
-        [self.theWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[[NSString alloc] initWithData:self.theAttachment.data encoding:NSUTF8StringEncoding]]]];
-    } else if([self.theAttachment.type isEqualToString:@"Image"]) {
-        [self.shareButton setEnabled:NO];
-        [self.theWebView loadData:self.theAttachment.data MIMEType:@"image/png" textEncodingName:nil baseURL:nil];
-    } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:NSLocalizedString(@"Unknown attachment type, cannot show it.", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
-        [alert show];
-    }
+    [[GTThemer sharedInstance] applyColorsToView:self.theWebView];
+    [[GTThemer sharedInstance] applyColorsToView:self.view];
     if(!self.deleterObject)
         [self.deleteButton setEnabled:NO];
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    self.interationController = nil;
+    if([self.theAttachment.type isEqualToString:@"Link"]) {
+        [self.theWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[[NSString alloc] initWithData:self.theAttachment.data encoding:NSUTF8StringEncoding]]]];
+    } else {
+        NSURL *file = [self.theAttachment generateFile];
+        self.interationController = [UIDocumentInteractionController interactionControllerWithURL:file];
+        self.interationController.delegate = self;
+        self.interationController.UTI = self.theAttachment.uti;
+        if([self.theAttachment.type isEqualToString:@"Image"]) {
+            [self.theWebView loadData:self.theAttachment.data MIMEType:@"image/png" textEncodingName:nil baseURL:nil];
+        } else {
+            [self.interationController presentOptionsMenuFromBarButtonItem:self.shareButton animated:YES];
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - UIDocumentInterationControllerDelegate
+
+- (UIView *) documentInteractionControllerViewForPreview: (UIDocumentInteractionController *) controller {
+    return self.theWebView;
+}
+
+- (UIViewController *) documentInteractionControllerViewControllerForPreview: (UIDocumentInteractionController *) controller {
+    return self;
 }
 
 #pragma mark - UIWebViewDelegate and actions
@@ -110,11 +132,18 @@
 
 - (IBAction)openInSafari:(id)sender
 {
-    [[UIApplication sharedApplication] openURL:self.theWebView.request.URL];
+    if(self.interationController)
+        [self.interationController presentOptionsMenuFromBarButtonItem:self.shareButton animated:YES];
+    else
+        [[UIApplication sharedApplication] openURL:self.theWebView.request.URL];
 }
 
 - (IBAction)done:(id)sender
 {
+    if(self.interationController) {
+        [self.interationController dismissMenuAnimated:YES];
+        self.interationController = nil;
+    }
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

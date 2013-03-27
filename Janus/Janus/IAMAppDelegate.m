@@ -31,6 +31,7 @@
     // Preserve a reference to the controller to keep ARC happy
 //    [self.noteWindowControllers addObject:collectionController];
     [self.collectionController showWindow:self];
+    [self deleteCache];
 }
 
 // Returns the directory the application uses to store the Core Data store file. This code uses a directory named "it.iltofa.Janus" in the user's Application Support directory.
@@ -117,6 +118,21 @@
     }
 
     return NSTerminateNow;
+}
+#pragma mark - cache management
+
+-(void)deleteCache {
+    // Async load, please (so don't use defaultManage, not thread safe)
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSFileManager *fileMgr = [[NSFileManager alloc] init];
+        NSError *error;
+        NSString *directory = [[fileMgr URLForDirectory:NSCachesDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:&error] path];
+        NSArray *fileArray = [fileMgr contentsOfDirectoryAtPath:directory error:nil];
+        for (NSString *filename in fileArray)  {
+            [fileMgr removeItemAtPath:[directory stringByAppendingPathComponent:filename] error:NULL];
+        }
+        fileMgr = nil;
+    });
 }
 
 @end

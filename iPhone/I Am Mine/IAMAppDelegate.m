@@ -29,6 +29,8 @@
     _coreDataController = [[CoreDataController alloc] init];
     // [_coreDataController nukeAndPave];
     [_coreDataController loadPersistentStores];
+    // Purge cache directory
+    [self deleteCache];
     return YES;
 }
 							
@@ -57,6 +59,22 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+#pragma mark - cache management
+
+-(void)deleteCache {
+    // Async load, please (so don't use defaultManage, not thread safe)
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSFileManager *fileMgr = [[NSFileManager alloc] init];
+        NSError *error;
+        NSString *directory = [[fileMgr URLForDirectory:NSCachesDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:&error] path];
+        NSArray *fileArray = [fileMgr contentsOfDirectoryAtPath:directory error:nil];
+        for (NSString *filename in fileArray)  {
+            [fileMgr removeItemAtPath:[directory stringByAppendingPathComponent:filename] error:NULL];
+        }
+        fileMgr = nil;
+    });
 }
 
 #pragma mark - CLLocationManagerDelegate and its delegate
