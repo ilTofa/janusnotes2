@@ -151,10 +151,18 @@ int countDown;
         [audioSession setCategory:AVAudioSessionCategoryRecord error:nil];
         DLog(@"Audio Session: %@", audioSession);
         NSAssert(audioSession.inputAvailable, @"No input available");
+#if TARGET_IPHONE_SIMULATOR
+        NSDictionary *recordSettings = @{AVFormatIDKey: @(kAudioFormatAppleLossless),
+                                         AVSampleRateKey: @(44100.0),
+                                         AVNumberOfChannelsKey: @(1),
+                                         AVEncoderAudioQualityKey: @(AVAudioQualityMax)
+                                         };
+#else
         NSDictionary *recordSettings = @{AVFormatIDKey: @(kAudioFormatMPEG4AAC),
                                          AVSampleRateKey: @(8000.0),
                                          AVNumberOfChannelsKey: @(1),
                                          };
+#endif
 		self.theRecorder = [[AVAudioRecorder alloc] initWithURL:self.recordingURL settings:recordSettings error:&outError];
 		if(self.theRecorder == nil)
 		{
@@ -173,13 +181,6 @@ int countDown;
 		[self.bAction setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"three" ofType:@"png"]] forState:UIControlStateNormal];
 		countDown = 2;
 		[NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerFireMethod:) userInfo:nil repeats:YES];
-//        Works as...
-//        NSDictionary *recordSettings = @{AVFormatIDKey: @(kAudioFormatAppleLossless),
-//                                         AVSampleRateKey: @(44100.0),
-//                                         AVNumberOfChannelsKey: @(1),
-//                                         AVEncoderAudioQualityKey: @(AVAudioQualityMax)
-//                                         };
-
 	}
 	else // if already recorded (implicitly not recording or playing now), play it :)
 	{
