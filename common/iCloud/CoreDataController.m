@@ -420,6 +420,7 @@ static NSOperationQueue *_presentedItemOperationQueue;
         [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:GTCoreDataReady object:self]];
     });
     self.coreDataIsReady = YES;
+    DLog(@"Core Data Store are ready");
     // DEBUG: nukeAndPave
 //    [self nukeAndPave];
 }

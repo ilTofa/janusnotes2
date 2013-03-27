@@ -85,7 +85,7 @@
 
 -(void)refreshAttachments {
     self.attachmentsArray = [self.editedNote.attachment allObjects];
-    // TODO: hide collection view if no attachments?
+    [self.arrayController fetch:nil];
 }
 
 -(void) attachAttachment:(NSURL *)url {
@@ -117,11 +117,18 @@
     newAttachment.note = self.editedNote;
     DLog(@"Adding attachment: %@", newAttachment);
     [self.editedNote addAttachmentObject:newAttachment];
+    [self save:nil];
     [self refreshAttachments];
 }
 
 - (IBAction)deleteAttachment:(id)sender {
-    
+    if([[self.arrayController selectedObjects] count] != 0) {
+        DLog(@"Delete requested for attachment: %@", [self.arrayController selectedObjects][0]);
+        Attachment *toBeDeleted = [self.arrayController selectedObjects][0];
+        [self.editedNote removeAttachmentObject:toBeDeleted];
+        [self save:nil];
+        [self refreshAttachments];
+    }
 }
 
 - (IBAction)addAttachment:(id)sender {
