@@ -432,7 +432,11 @@ Label riga 3</string>
                                             <segue destination="Vge-sM-MRZ" kind="modal" identifier="AddLink" modalTransitionStyle="partialCurl" id="EdG-xU-IGM"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem image="link-microphone.png" id="ngK-vY-6zQ"/>
+                                    <barButtonItem image="link-microphone.png" id="ngK-vY-6zQ" userLabel="Bar Button Item - Audio">
+                                        <connections>
+                                            <action selector="recordAudio:" destination="aYD-Rr-6C9" id="SWk-Oy-mqC"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem systemItem="camera" id="ZOI-qk-nyn">
                                         <connections>
                                             <action selector="addImageToNote:" destination="aYD-Rr-6C9" id="m1l-Jw-sPC"/>
@@ -457,6 +461,7 @@ Label riga 3</string>
                         <outlet property="attachmentsGreyRow" destination="DSt-ZI-WmB" id="ied-uK-ZI3"/>
                         <outlet property="collectionView" destination="JlD-hL-CQO" id="tEa-Cz-838"/>
                         <outlet property="greyRowImage" destination="PZq-Ci-A7X" id="Kxb-Ij-gVN"/>
+                        <outlet property="recordingButton" destination="ngK-vY-6zQ" id="0Hh-x9-2qM"/>
                         <outlet property="textEdit" destination="TM1-dV-cxf" id="gVR-9d-Pjg"/>
                         <outlet property="theToolbar" destination="8XP-bN-WGI" id="ZnP-PN-B9M"/>
                         <outlet property="titleEdit" destination="bFY-L8-a9Q" id="LV9-EX-IV6"/>
@@ -660,12 +665,16 @@ Label riga 3</string>
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IAMNoteEdit.h"/>
             <relationships>
                 <relationship kind="action" name="addImageToNote:"/>
+                <relationship kind="action" name="done:"/>
+                <relationship kind="action" name="recordAudio:"/>
                 <relationship kind="action" name="save:"/>
+                <relationship kind="action" name="shareAction:"/>
                 <relationship kind="outlet" name="addImageButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="attachmentQuantityLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="attachmentsGreyRow" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="collectionView" candidateClass="UICollectionView"/>
                 <relationship kind="outlet" name="greyRowImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="recordingButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="textEdit" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="theToolbar" candidateClass="UIToolbar"/>
                 <relationship kind="outlet" name="titleEdit" candidateClass="UITextField"/>

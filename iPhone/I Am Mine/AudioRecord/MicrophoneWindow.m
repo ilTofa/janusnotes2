@@ -146,32 +146,44 @@ int countDown;
 	// if not recorded already start recording
 	if(self.bRecorded == NO)
 	{
-		// Record audio, very low quality (output device is a Nabaztag, after all) :)
-		NSDictionary *recordSettings = [[NSDictionary alloc] initWithObjectsAndKeys:
-										[NSNumber numberWithInt: kAudioFormatMPEG4AAC], AVFormatIDKey,
-										[NSNumber numberWithFloat: 11025.0], AVSampleRateKey,
-										[NSNumber numberWithInt: 1], AVNumberOfChannelsKey,
-										[NSNumber numberWithInt: AVAudioQualityMin], AVEncoderAudioQualityKey,
-										nil];
+        // Init audio with record capability
+        AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+        [audioSession setCategory:AVAudioSessionCategoryRecord error:nil];
+        DLog(@"Audio Session: %@", audioSession);
+        NSAssert(audioSession.inputAvailable, @"No input available");
+        NSDictionary *recordSettings = @{AVFormatIDKey: @(kAudioFormatMPEG4AAC),
+                                         AVSampleRateKey: @(8000.0),
+                                         AVNumberOfChannelsKey: @(1),
+                                         };
 		self.theRecorder = [[AVAudioRecorder alloc] initWithURL:self.recordingURL settings:recordSettings error:&outError];
 		if(self.theRecorder == nil)
 		{
+            NSString *errorString = [NSString stringWithFormat:@"Error: %@", [outError localizedDescription]];
 			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                             message:[outError localizedDescription]
+                                                             message:errorString
                                                             delegate:nil
-                                                   cancelButtonTitle:nil
+                                                   cancelButtonTitle:@"OK"
                                                    otherButtonTitles:nil];
             [alert show];
-			NSLog(@"%@", [outError description]);
+			DLog(@"Error initing recorder for URL %@: %@", self.recordingURL, errorString);
+            return;
 		}
 		self.theRecorder.delegate = self;
 		// Now setup a timer. Record start will be started on the timer at third invocation.
 		[self.bAction setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"three" ofType:@"png"]] forState:UIControlStateNormal];
 		countDown = 2;
 		[NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerFireMethod:) userInfo:nil repeats:YES];
+//        Works as...
+//        NSDictionary *recordSettings = @{AVFormatIDKey: @(kAudioFormatAppleLossless),
+//                                         AVSampleRateKey: @(44100.0),
+//                                         AVNumberOfChannelsKey: @(1),
+//                                         AVEncoderAudioQualityKey: @(AVAudioQualityMax)
+//                                         };
+
 	}
 	else // if already recorded (implicitly not recording or playing now), play it :)
 	{
+        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
 		self.thePlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:self.recordingURL error:&outError];
 		self.thePlayer.delegate = self;
 		[self.thePlayer prepareToPlay];
@@ -201,7 +213,7 @@ int countDown;
 	// Prepare the URL for the recorder
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
 	NSString *documentsDirectory = [paths objectAtIndex:0];
-	NSString *fileName = [NSString stringWithFormat:@"%.0f-%@.m4a", 
+	NSString *fileName = [NSString stringWithFormat:@"%.0f-%@.caf", 
   						  [[NSDate date] timeIntervalSince1970],
 						  [[NSUUID UUID] UUIDString]];
 	NSString *path = [documentsDirectory stringByAppendingPathComponent:fileName];
