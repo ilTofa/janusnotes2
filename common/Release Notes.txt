@@ -1,0 +1,30 @@
+Janus Release Notes
+
+Note per i testers.
+
+Per prima cosa: se non volete prendere parte al test, mail a me e vi elimino dalla lista (con le mie scuse).
+
+janus-beta@iltofa.com è una mailing list che comprende tutti i tester di janus. Potete usarlo per scrivere a tutti, o scrivere direttamente a me (gt@iltofa.com).
+
+Il programma gestisce note di testo (con attributi) e file allegati alle note. La sincronizzazione è automatica su iCloud (se configurato). 
+
+Richiede iOS6 o successivo su iPhone/iPad.
+Per installare la versione iOS andate dal browser del device direttamente su http://www.iltofa.com/beta/janus.
+Per installare la versione OS X scaricate da http://www.iltofa.com/beta/janus-osx.dmg; aprite il file; fate doppio click sul file Janus_dev.provisionprofile (inserite la password ad installatelo nel pannello di controllo); copiate Janus nella cartella Applicazioni ed eseguitelo da lì. Se vi dice "Impossibile eseguire codice ... sviluppatore non identificato" non vi preoccupate (succede, e non so perché) :) Andate nella cartella applicazioni, tasto destro, Apri e dite che volete davvero farlo. ;)
+
+0.3 (128) First beta.
+
+Dovrebbe essere di semplice uso (spero). Fatemi sapere cosa c'è che non si capisce come si fa.
+La versione OS X non ha i menu completamente funzionanti. Su OS X supporta anche testi con le font e gli attributi. Per farlo usate il menu formato (che funziona) o fate i soliti Cmd-B, Cmd-I, ecc. Cmd-T apre il selettore completo delle font.
+La versione iOS ha come attachment: foto (sia da camera che da libreria), audio (si registra dall'applicazione) e link (URL).
+La versione OS X accetta quasi tutto. "Buttate" file nella sezione attachent di una nuova nota o testo direttamente nella nota. Per aprire gli attachment fate doppio click sull'icona. Fate drag & drop per salvarli o aprirli in applicazioni.
+La versione iOS permette lo sharing della nota (o degli attachment) su un tot di cose (email, twitter, facebook, ecc.)
+
+I programmi dovrebbero essere abbastanza stabili, ma ricordate che è una prima beta di una cosa molto complessa, mi attendo molti bug. Le interfacce utenti non sono finali, anzi (soprattutto quella OS X che è solo abbozzata). Si accettano suggerimenti e proposte. Soprattutto per il workflow. Ditemi come lo state usando e cosa vi semplificherebbe l'uso.
+
+Know bugs.
+Il delete degli attachment funziona solo alla seconda pressione del tasto (strano, lo so).
+La sincronizzazione non è abbastanza testata. Segnalatemi cosa vi sembra strano (con i maggiori dettagli possibili).
+Non sono convintissimo della sincronizzazione degli attributi del testo. il testo delle note in sé sincronizza, gli attributi non sempre (però fatemi sapere che non ne sono certo).
+iCloud è iCloud... a volte è molto lento nella sincronizzazione. Abbiate pazienza.
+In generale il sistema tende a non cancellare piuttosto che a cancellare. Il che implica che i dati non dovrebbero perdersi mai, ma che potrebbe essere difficile cancellare le cose (tipo terminator, potrebbero ritornare in vita dopo la cancellazione). :D Again, fatemi sapere.
