@@ -10,6 +10,7 @@
 
 #import "IAMAppDelegate.h"
 #import "Attachment.h"
+#import "NSManagedObjectContext+FetchedObjectFromURI.h"
 
 @interface IAMNoteEditorWC () <NSWindowDelegate, NSCollectionViewDelegate>
 
@@ -35,10 +36,10 @@
 - (void)windowDidLoad
 {
     [super windowDidLoad];
-    // TODO: The NSManagedObjectContext instance should change for a local (to the controller instance) one.
+    // The NSManagedObjectContext instance should change for a local (to the controller instance) one.
+    // We need to migrate the passed object to the new moc.
     self.noteEditorMOC = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSConfinementConcurrencyType];
     [self.noteEditorMOC setPersistentStoreCoordinator:((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).persistentStoreCoordinator];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(localContextSaved:) name:NSManagedObjectContextDidSaveNotification object:self.noteEditorMOC];
     // Prepare to receive drag & drops into CollectionView
     [self.attachmentsCollectionView registerForDraggedTypes:@[NSFilenamesPboardType]];
     [self.attachmentsCollectionView setDraggingSourceOperationMask:NSDragOperationCopy forLocal:NO];
@@ -47,7 +48,11 @@
         // It seems that we're created without a note, that will mean that we're required to create a new one.
         Note *newNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:self.noteEditorMOC];
         self.editedNote = newNote;
+    } else { // Get a copy of edited note into the local context.
+        NSURL *uri = [[self.editedNote objectID] URIRepresentation];
+        self.editedNote = (Note *)[self.noteEditorMOC objectWithURI:uri];
     }
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(localContextSaved:) name:NSManagedObjectContextDidSaveNotification object:self.noteEditorMOC];
 }
 
 - (void)localContextSaved:(NSNotification *)notification {

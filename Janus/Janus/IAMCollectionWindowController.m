@@ -45,13 +45,19 @@
     DLog(@"Array controller: %@", self.arrayController);
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pscChanged:) name:NSPersistentStoreCoordinatorStoresDidChangeNotification object:((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).coreDataController.psc];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pscChanged:) name:NSPersistentStoreDidImportUbiquitousContentChangesNotification object:((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).coreDataController.psc];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldMergeChanges:) name:NSManagedObjectContextObjectsDidChangeNotification object:self.sharedManagedObjectContext];
 }
 
 - (void)pscChanged:(NSNotification *)notification
 {
     DLog(@"called for: %@", notification);
     // send to searched: to refresh
-    [self searched:nil];
+    [self.arrayController fetch:nil];
+}
+
+- (void)shouldMergeChanges:(NSNotification *)notification {
+    DLog(@"called for: %@", notification);
+    [self.arrayController fetch:nil];
 }
 
 #pragma mark - Notes Editing management
@@ -107,6 +113,7 @@
         queryString = @"text  like[c] \"*\"";
     DLog(@"Fetching again. Query string is: '%@'", queryString);
     [self.arrayController setFilterPredicate:[NSPredicate predicateWithFormat:queryString]];
+    [self.arrayController fetch:nil];
 }
 
 -(void)IAMNoteEditorWCDidCloseWindow:(IAMNoteEditorWC *)windowController
