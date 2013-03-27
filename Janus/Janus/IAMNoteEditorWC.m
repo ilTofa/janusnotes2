@@ -19,6 +19,7 @@
 
 - (IBAction)save:(id)sender;
 - (IBAction)addAttachment:(id)sender;
+- (IBAction)deleteAttachment:(id)sender;
 
 @end
 
@@ -117,6 +118,10 @@
     DLog(@"Adding attachment: %@", newAttachment);
     [self.editedNote addAttachmentObject:newAttachment];
     [self refreshAttachments];
+}
+
+- (IBAction)deleteAttachment:(id)sender {
+    
 }
 
 - (IBAction)addAttachment:(id)sender {
