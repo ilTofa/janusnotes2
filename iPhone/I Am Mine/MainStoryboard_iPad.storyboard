@@ -493,6 +493,11 @@ Label riga 7,
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="8pG-Fl-0yJ"/>
+                                    <barButtonItem image="link-microphone.png" id="bMY-6y-ukZ" userLabel="Bar Button Item - Audio">
+                                        <connections>
+                                            <action selector="recordAudio:" destination="Ucd-PA-4nx" id="Kcr-cR-ddm"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem image="link-icon.png" id="u05-Ds-FVu" userLabel="Bar Button Item - Link">
                                         <connections>
                                             <segue destination="RpV-8R-Gwy" kind="modal" identifier="AddLink" modalPresentationStyle="formSheet" id="iyk-mA-n43"/>
@@ -523,6 +528,7 @@ Label riga 7,
                         <outlet property="attachmentsGreyRow" destination="DKG-5w-YOb" id="Syg-Tk-giQ"/>
                         <outlet property="collectionView" destination="Tlu-OU-Ezs" id="2Zs-yz-5sb"/>
                         <outlet property="greyRowImage" destination="Og5-3L-Ope" id="wVk-JI-h2B"/>
+                        <outlet property="recordingButton" destination="bMY-6y-ukZ" id="1wQ-Ga-jQz"/>
                         <outlet property="textEdit" destination="yhs-mQ-beR" id="xL5-su-Gn3"/>
                         <outlet property="theToolbar" destination="hYl-Yr-sju" id="5ol-Qw-aQ6"/>
                         <outlet property="titleEdit" destination="GTf-zU-8nE" id="Sik-V0-eTh"/>
@@ -682,6 +688,7 @@ Label riga 7,
         <image name="1_CellBackground.png" width="240" height="240"/>
         <image name="SmallRow.png" width="2" height="2"/>
         <image name="link-icon.png" width="25" height="25"/>
+        <image name="link-microphone.png" width="25" height="25"/>
     </resources>
     <classes>
         <class className="IAMAddLinkViewController" superclassName="UIViewController">
@@ -719,12 +726,14 @@ Label riga 7,
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IAMNoteEdit.h"/>
             <relationships>
                 <relationship kind="action" name="addImageToNote:"/>
+                <relationship kind="action" name="recordAudio:"/>
                 <relationship kind="action" name="save:"/>
                 <relationship kind="outlet" name="addImageButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="attachmentQuantityLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="attachmentsGreyRow" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="collectionView" candidateClass="UICollectionView"/>
                 <relationship kind="outlet" name="greyRowImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="recordingButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="textEdit" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="theToolbar" candidateClass="UIToolbar"/>
                 <relationship kind="outlet" name="titleEdit" candidateClass="UITextField"/>
@@ -772,6 +781,9 @@ Label riga 7,
         </class>
         <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
+        </class>
+        <class className="UICollectionViewLayout" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
