@@ -41,10 +41,10 @@
 				<int key="NSvFlags">301</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<object class="IBUIImageView" id="946545461">
+					<object class="IBUIImageView" id="58848094">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{60, 206}, {200, 199}}</string>
+						<int key="NSvFlags">269</int>
+						<string key="NSFrame">{{50, 195}, {220, 220}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="343253107"/>
@@ -58,7 +58,7 @@
 					</object>
 					<object class="IBUITextView" id="343253107">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">269</int>
 						<string key="NSFrame">{{62, 317}, {195, 43}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
@@ -101,7 +101,7 @@
 					</object>
 					<object class="IBUIButton" id="633977638">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">269</int>
 						<string key="NSFrame">{{178, 361}, {72, 37}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
@@ -143,7 +143,7 @@
 					</object>
 					<object class="IBUIButton" id="554756522">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">269</int>
 						<string key="NSFrame">{{72, 361}, {72, 37}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
@@ -174,7 +174,7 @@
 					</object>
 					<object class="IBUIButton" id="118251901">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">269</int>
 						<string key="NSFrame">{{105, 212}, {111, 111}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
@@ -202,13 +202,29 @@
 				<string key="NSFrame">{{0, 20}, {320, 460}}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView"/>
-				<object class="NSColor" key="IBUIBackgroundColor">
-					<int key="NSColorSpace">1</int>
-					<bytes key="NSRGB">MSAxIDEAA</bytes>
-				</object>
-				<float key="IBUIAlpha">0.85000002384185791</float>
+				<reference key="NSNextKeyView" ref="58848094"/>
+				<reference key="IBUIBackgroundColor" ref="49748329"/>
+				<float key="IBUIAlpha">0.80000001192092896</float>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
+				<object class="IBUIScreenMetrics" key="IBUISimulatedDestinationMetrics">
+					<string key="IBUISimulatedSizeMetricsClass">IBUIScreenMetrics</string>
+					<object class="NSMutableDictionary" key="IBUINormalizedOrientationToSizeMap">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<integer value="1"/>
+							<integer value="3"/>
+						</object>
+						<object class="NSArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>{320, 480}</string>
+							<string>{480, 320}</string>
+						</object>
+					</object>
+					<string key="IBUITargetRuntime">IBCocoaTouchFramework</string>
+					<string key="IBUIDisplayName">Retina 3.5 Full Screen</string>
+					<int key="IBUIType">0</int>
+				</object>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 		</object>
@@ -303,7 +319,7 @@
 							<reference ref="633977638"/>
 							<reference ref="343253107"/>
 							<reference ref="118251901"/>
-							<reference ref="946545461"/>
+							<reference ref="58848094"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -319,13 +335,8 @@
 						<reference key="parent" ref="0"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">5</int>
-						<reference key="object" ref="343253107"/>
-						<reference key="parent" ref="191373211"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">8</int>
-						<reference key="object" ref="633977638"/>
+						<int key="objectID">11</int>
+						<reference key="object" ref="118251901"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -334,13 +345,18 @@
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">11</int>
-						<reference key="object" ref="118251901"/>
+						<int key="objectID">8</int>
+						<reference key="object" ref="633977638"/>
+						<reference key="parent" ref="191373211"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">5</int>
+						<reference key="object" ref="343253107"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">19</int>
-						<reference key="object" ref="946545461"/>
+						<reference key="object" ref="58848094"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</object>
@@ -386,7 +402,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">19</int>
+			<int key="maxID">21</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
