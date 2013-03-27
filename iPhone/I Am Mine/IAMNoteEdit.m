@@ -418,6 +418,18 @@
 	DLog(@"Received a record on %@", recordingFilename);
 	// Now get rid of the view
 	[self recordingCancelled];
+    Attachment *newAttachment = [NSEntityDescription insertNewObjectForEntityForName:@"Attachment" inManagedObjectContext:self.moc];
+    NSURL *url = [NSURL fileURLWithPath:recordingFilename];
+    newAttachment.uti = (__bridge NSString *)(kUTTypeAudio);
+    newAttachment.extension = [url pathExtension];
+    newAttachment.filename = [url lastPathComponent];
+    newAttachment.data = [NSData dataWithContentsOfURL:url];
+    newAttachment.type = @"Audio";
+    // Now link attachment to the note
+    newAttachment.note = self.editedNote;
+    [self.editedNote addAttachmentObject:newAttachment];
+    [self refreshAttachments];
+    // Don't save now... the moc will be saved on exit.
 }
 
 - (void)recordingCancelled
