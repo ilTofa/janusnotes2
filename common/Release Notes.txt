@@ -12,6 +12,14 @@ Richiede iOS6 o successivo su iPhone/iPad.
 Per installare la versione iOS andate dal browser del device direttamente su http://www.iltofa.com/beta/janus.
 Per installare la versione OS X scaricate da http://www.iltofa.com/beta/janus-osx.dmg; aprite il file; fate doppio click sul file Janus_dev.provisionprofile (inserite la password ad installatelo nel pannello di controllo); copiate Janus nella cartella Applicazioni ed eseguitelo da lì. Se vi dice "Impossibile eseguire codice ... sviluppatore non identificato" non vi preoccupate (succede, e non so perché) :) Andate nella cartella applicazioni, tasto destro, Apri e dite che volete davvero farlo. ;)
 
+0.3.1 (134)
+
+Bug fixes:
+Parte anche su OS X 10.7
+OS X apre anche le foto fatte su iOS
+Fix per l'orientamento delle foto fatte su iOS (spesso storte)
+Ora si possono cancellare le note e gli attachment anche su OS X.
+
 0.3 (128) First beta.
 
 Dovrebbe essere di semplice uso (spero). Fatemi sapere cosa c'è che non si capisce come si fa.
