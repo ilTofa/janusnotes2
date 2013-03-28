@@ -163,12 +163,30 @@ static NSOperationQueue *_presentedItemOperationQueue;
     _mainThreadContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
     [_mainThreadContext setPersistentStoreCoordinator:_psc];
     
-    _currentUbiquityToken = [[NSFileManager defaultManager] ubiquityIdentityToken];
-    //subscribe to the account change notification
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(iCloudAccountChanged:)
-                                                 name:NSUbiquityIdentityDidChangeNotification
-                                               object:nil];
+    if([NSFileManager instancesRespondToSelector:@selector(ubiquityIdentityToken)])
+    {
+        DLog(@"iCloud on iOS6+/OSX10.8+ present");
+        _currentUbiquityToken = [[NSFileManager defaultManager] ubiquityIdentityToken];
+        //subscribe to the account change notification
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(iCloudAccountChanged:)
+                                                     name:NSUbiquityIdentityDidChangeNotification
+                                                   object:nil];
+    }
+    else
+    {
+        NSURL *iCloudContainer = [[NSFileManager defaultManager] URLForUbiquityContainerIdentifier:nil];
+        if(iCloudContainer)
+        {
+            DLog(@"iCloud on iOS5+/OSX10.7+ present");
+            _currentUbiquityToken = iCloudContainer;
+        }
+        else // iCloud not available
+        {
+            DLog(@"iCloud *NOT* present");
+            _currentUbiquityToken = nil;
+        }
+    }
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(persistentStoreChanged:)
                                                  name:NSPersistentStoreDidImportUbiquitousContentChangesNotification
