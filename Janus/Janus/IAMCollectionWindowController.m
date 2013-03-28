@@ -20,6 +20,7 @@
 - (IBAction)addNote:(id)sender;
 - (IBAction)editNote:(id)sender;
 - (IBAction)searched:(id)sender;
+- (IBAction)deleteNote:(id)sender;
 
 @end
 
@@ -109,6 +110,28 @@
     // Preserve a reference to the controller to keep ARC happy
     [self.noteWindowControllers addObject:noteEditor];
     [noteEditor showWindow:self];
+}
+
+- (IBAction)deleteNote:(id)sender {
+    DLog(@"Selected note for deleting is: %@", [self.arrayController selectedObjects][0]);
+    NSAlert *alert = [[NSAlert alloc] init];
+    [alert setInformativeText:NSLocalizedString(@"Are you sure you want to delete the note?", nil)];
+    [alert setMessageText:NSLocalizedString(@"Warning", @"")];
+    [alert addButtonWithTitle:@"Cancel"];
+    [alert addButtonWithTitle:@"Delete"];
+    [alert beginSheetModalForWindow:self.window modalDelegate:self didEndSelector:@selector(alertDidEnd:returnCode:contextInfo:) contextInfo:nil];
+}
+
+- (void) alertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
+{
+    if(returnCode == NSAlertSecondButtonReturn)
+    {
+        DLog(@"User confirmed delete, now really deleting note.");
+        [self.arrayController removeObject:[self.arrayController selectedObjects][0]];
+        NSError *error;
+        if(![self.sharedManagedObjectContext save:&error])
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+    }
 }
 
 - (IBAction)searched:(id)sender {
