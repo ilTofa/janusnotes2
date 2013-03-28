@@ -46,7 +46,8 @@
     DLog(@"Array controller: %@", self.arrayController);
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pscChanged:) name:NSPersistentStoreCoordinatorStoresDidChangeNotification object:((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).coreDataController.psc];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pscChanged:) name:NSPersistentStoreDidImportUbiquitousContentChangesNotification object:((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).coreDataController.psc];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldMergeChanges:) name:NSManagedObjectContextObjectsDidChangeNotification object:self.sharedManagedObjectContext];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldRefresh:) name:NSManagedObjectContextObjectsDidChangeNotification object:self.sharedManagedObjectContext];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldMergeChanges:) name:NSManagedObjectContextDidSaveNotification object:self.sharedManagedObjectContext];
     // If db is still to be loaded, register to be notified.
     if(!((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).coreDataController.coreDataIsReady)
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(coreDataIsReady:) name:GTCoreDataReady object:nil];
@@ -57,19 +58,25 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pscChanged:) name:NSPersistentStoreCoordinatorStoresDidChangeNotification object:((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).coreDataController.psc];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pscChanged:) name:NSPersistentStoreDidImportUbiquitousContentChangesNotification object:((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).coreDataController.psc];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldMergeChanges:) name:NSManagedObjectContextObjectsDidChangeNotification object:self.sharedManagedObjectContext];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldRefresh:) name:NSManagedObjectContextObjectsDidChangeNotification object:self.sharedManagedObjectContext];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldMergeChanges:) name:NSManagedObjectContextDidSaveNotification object:self.sharedManagedObjectContext];
     [self.arrayController fetch:nil];
 }
 
 - (void)pscChanged:(NSNotification *)notification
 {
-    DLog(@"called.");
-    // send to searched: to refresh
+    DLog(@"called for %@", notification.name);
+    [self.arrayController fetch:nil];
+}
+
+- (void)shouldRefresh:(NSNotification *)notification {
+    DLog(@"called for %@", notification.name);
     [self.arrayController fetch:nil];
 }
 
 - (void)shouldMergeChanges:(NSNotification *)notification {
-    DLog(@"called.");
+    DLog(@"called for %@", notification.name);
+    [self.sharedManagedObjectContext mergeChangesFromContextDidSaveNotification:notification];
     [self.arrayController fetch:nil];
 }
 

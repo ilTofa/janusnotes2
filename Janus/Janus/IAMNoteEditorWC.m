@@ -54,10 +54,12 @@
         self.editedNote = (Note *)[self.noteEditorMOC objectWithURI:uri];
     }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(localContextSaved:) name:NSManagedObjectContextDidSaveNotification object:self.noteEditorMOC];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(localContextSaved:) name:NSManagedObjectContextObjectsDidChangeNotification object:self.noteEditorMOC];
 }
 
 - (void)localContextSaved:(NSNotification *)notification {
     /* Merge the changes into the original managed object context */
+    DLog(@"called for %@", notification.name);
     [((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).managedObjectContext mergeChangesFromContextDidSaveNotification:notification];
 }
 
@@ -125,6 +127,7 @@
     if([[self.arrayController selectedObjects] count] != 0) {
         DLog(@"Delete requested for attachment: %@", [self.arrayController selectedObjects][0]);
         Attachment *toBeDeleted = [self.arrayController selectedObjects][0];
+        [self.arrayController removeSelectedObjects:[self.arrayController selectedObjects]];
         [self.editedNote removeAttachmentObject:toBeDeleted];
         [self save:nil];
         [self refreshAttachments];
