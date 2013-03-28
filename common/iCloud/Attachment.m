@@ -38,8 +38,10 @@
     NSURL *cacheFile;
     if(self.filename && ![self.filename isEqualToString:@""])
         cacheFile = [cacheDirectory URLByAppendingPathComponent:self.filename];
-    else
-        cacheFile = [cacheDirectory URLByAppendingPathComponent:[[NSUUID UUID] UUIDString]];
+    else {
+        NSString *temporaryFilename = [NSString stringWithFormat:@"%@.%@", [[NSUUID UUID] UUIDString], self.extension];
+        cacheFile = [cacheDirectory URLByAppendingPathComponent:temporaryFilename];
+    }
     DLog(@"Filename will be: %@", cacheFile);
     if(![self.data writeToURL:cacheFile options:0 error:&error])
         NSLog(@"Error %@ writing attachment data to temporary file %@\nData: %@.", [error description], cacheFile, self);
