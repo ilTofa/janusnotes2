@@ -78,6 +78,7 @@
 		64BB200F16EA000E00FE6C77 /* GTThemer.m in Sources */ = {isa = PBXBuildFile; fileRef = 64BB200E16EA000E00FE6C77 /* GTThemer.m */; };
 		64F31CC416E4AF9000A80BE0 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F31CC316E4AF9000A80BE0 /* Note.m */; };
 		64F31CCA16E5009B00A80BE0 /* Attachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F31CC916E5009B00A80BE0 /* Attachment.m */; };
+		64F9AC4D1704544800299C1B /* UIImage+FixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F9AC4C1704544800299C1B /* UIImage+FixOrientation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -177,6 +178,8 @@
 		64F31CC316E4AF9000A80BE0 /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Note.m; path = ../common/iCloud/Note.m; sourceTree = "<group>"; };
 		64F31CC816E5009B00A80BE0 /* Attachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Attachment.h; path = ../common/iCloud/Attachment.h; sourceTree = "<group>"; };
 		64F31CC916E5009B00A80BE0 /* Attachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Attachment.m; path = ../common/iCloud/Attachment.m; sourceTree = "<group>"; };
+		64F9AC4B1704544800299C1B /* UIImage+FixOrientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+FixOrientation.h"; sourceTree = "<group>"; };
+		64F9AC4C1704544800299C1B /* UIImage+FixOrientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+FixOrientation.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -269,6 +272,8 @@
 				6416315C16D8345F0004CB52 /* UIImage+RoundedCorner.m */,
 				6433103C16E0A85D0064EC5C /* UIViewController+GTFrames.h */,
 				6433103D16E0A85D0064EC5C /* UIViewController+GTFrames.m */,
+				64F9AC4B1704544800299C1B /* UIImage+FixOrientation.h */,
+				64F9AC4C1704544800299C1B /* UIImage+FixOrientation.m */,
 			);
 			name = "Utilities (iOS)";
 			path = Utilities;
@@ -540,6 +545,7 @@
 				641A5F0216EDD37F00D3440C /* IAMiPadNoteCell.m in Sources */,
 				64101E2716EF6B4A0086AD5F /* IAMiPadSectionHeader.m in Sources */,
 				64A755831702137A0085933D /* MicrophoneWindow.m in Sources */,
+				64F9AC4D1704544800299C1B /* UIImage+FixOrientation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

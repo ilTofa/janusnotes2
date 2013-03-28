@@ -17,6 +17,7 @@
 #import "IAMAttachmentDetailViewController.h"
 #import "MicrophoneWindow.h"
 #import "GTThemer.h"
+#import "UIImage+FixOrientation.h"
 
 @interface IAMNoteEdit () <UITextViewDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, IAMAddLinkViewControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, AttachmentDeleter, MicrophoneWindowDelegate>
 
@@ -268,6 +269,8 @@
         UIImage *pickedImage = info[UIImagePickerControllerEditedImage];
         if (!pickedImage)
 			pickedImage = info[UIImagePickerControllerOriginalImage];
+        // Fix orientation
+        pickedImage = [pickedImage normalizedImage];
         // Now add attachment...
         Attachment *newAttachment = [NSEntityDescription insertNewObjectForEntityForName:@"Attachment" inManagedObjectContext:self.moc];
         newAttachment.uti = (__bridge NSString *)(kUTTypeImage);
