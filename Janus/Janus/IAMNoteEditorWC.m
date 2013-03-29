@@ -15,7 +15,7 @@
 @interface IAMNoteEditorWC () <NSWindowDelegate, NSCollectionViewDelegate>
 
 @property (strong) IBOutlet NSArrayController *arrayController;
-@property (weak) IBOutlet NSCollectionView *attachmentsCollectionView;
+@property (strong) IBOutlet NSCollectionView *attachmentsCollectionView;
 
 - (IBAction)save:(id)sender;
 - (IBAction)addAttachment:(id)sender;
