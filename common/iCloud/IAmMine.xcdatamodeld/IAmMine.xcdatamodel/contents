@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2057" systemVersion="12C2034" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12D78" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Attachment" representedClassName="Attachment" syncable="YES">
-        <attribute name="creationDate" attributeType="Date" syncable="YES"/>
+        <attribute name="creationDate" attributeType="Date" indexed="YES" syncable="YES"/>
         <attribute name="data" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="extension" attributeType="String" syncable="YES"/>
-        <attribute name="filename" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="type" attributeType="String" defaultValueString="image" syncable="YES"/>
-        <attribute name="uti" attributeType="String" syncable="YES"/>
-        <attribute name="uuid" attributeType="String" syncable="YES"/>
+        <attribute name="filename" attributeType="String" syncable="YES"/>
+        <attribute name="timeStamp" optional="YES" attributeType="Date" indexed="YES" syncable="YES"/>
+        <attribute name="type" optional="YES" transient="YES" attributeType="String" defaultValueString="image" indexed="YES" syncable="YES"/>
+        <attribute name="uti" optional="YES" transient="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uuid" attributeType="String" indexed="YES" syncable="YES"/>
         <relationship name="note" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Note" inverseName="attachment" inverseEntity="Note" syncable="YES"/>
     </entity>
     <entity name="Note" representedClassName="Note" syncable="YES">
-        <attribute name="attributedText" optional="YES" attributeType="Transformable" valueTransformerName="" syncable="YES"/>
         <attribute name="creationDate" attributeType="Date" indexed="YES" syncable="YES"/>
         <attribute name="sectionIdentifier" optional="YES" transient="YES" attributeType="String" syncable="YES"/>
         <attribute name="text" optional="YES" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
         <attribute name="timeStamp" attributeType="Date" indexed="YES" syncable="YES"/>
         <attribute name="title" attributeType="String" defaultValueString="Title" indexed="YES" spotlightIndexingEnabled="YES" syncable="YES"/>
-        <attribute name="uuid" attributeType="String" syncable="YES"/>
+        <attribute name="uuid" attributeType="String" indexed="YES" syncable="YES"/>
         <relationship name="attachment" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Attachment" inverseName="note" inverseEntity="Attachment" syncable="YES"/>
     </entity>
-    <configuration name="CloudConfig">
-        <memberEntity name="Note"/>
+    <configuration name="CloudConfig"/>
+    <configuration name="LocalConfig">
         <memberEntity name="Attachment"/>
+        <memberEntity name="Note"/>
     </configuration>
-    <configuration name="LocalConfig"/>
     <elements>
-        <element name="Attachment" positionX="160" positionY="192" width="128" height="165"/>
-        <element name="Note" positionX="0" positionY="0" width="128" height="165"/>
+        <element name="Attachment" positionX="160" positionY="192" width="128" height="180"/>
+        <element name="Note" positionX="0" positionY="0" width="128" height="150"/>
     </elements>
 </model>

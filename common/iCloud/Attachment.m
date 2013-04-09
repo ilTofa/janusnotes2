@@ -9,17 +9,23 @@
 #import "Attachment.h"
 #import "Note.h"
 
+#import <MobileCoreServices/MobileCoreServices.h>
 
 @implementation Attachment
 
 @dynamic type;
+@dynamic primitiveType;
 @dynamic uuid;
 @dynamic data;
 @dynamic creationDate;
 @dynamic uti;
+@dynamic primitiveUti;
 @dynamic extension;
+@dynamic primitiveExtension;
 @dynamic filename;
+@dynamic primitiveFilename;
 @dynamic note;
+@dynamic timeStamp;
 
 #pragma mark - awakeFromInsert: setup initial values
 
@@ -28,6 +34,70 @@
     [super awakeFromInsert];
     [self setUuid:[[NSUUID UUID] UUIDString]];
     [self setCreationDate:[NSDate date]];
+}
+
+#pragma mark - Transient properties
+
+- (NSString *)type
+{
+    // Create and cache the section identifier on demand.
+    [self willAccessValueForKey:@"type"];
+    NSString *tmp = [self primitiveType];
+    [self didAccessValueForKey:@"type"];
+    if (!tmp) {
+        CFStringRef fileUTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)(self.extension), NULL);
+        if (UTTypeConformsTo(fileUTI, kUTTypeImage))
+            tmp = @"Image";
+        else if (UTTypeConformsTo(fileUTI, kUTTypeMovie))
+            tmp = @"Movie";
+        else if (UTTypeConformsTo(fileUTI, kUTTypeAudio))
+            tmp = @"Audio";
+        else if (UTTypeConformsTo(fileUTI, kUTTypeText))
+            tmp = @"Text";
+        else if (UTTypeConformsTo(fileUTI, kUTTypeFileURL))
+            tmp = @"Link";
+        else if (UTTypeConformsTo(fileUTI, kUTTypeURL))
+            tmp = @"Link";
+        else
+            tmp = @"Other";
+        CFRelease(fileUTI);
+        [self setPrimitiveType:tmp];
+    }
+    return tmp;
+}
+
+- (NSString *)uti
+{
+    // Create and cache the section identifier on demand.
+    [self willAccessValueForKey:@"uti"];
+    NSString *tmp = [self primitiveUti];
+    [self didAccessValueForKey:@"uti"];
+    if (!tmp) {
+        CFStringRef fileUTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)(self.extension), NULL);
+        tmp = (__bridge NSString *)(fileUTI);
+        [self setPrimitiveUti:tmp];
+        CFRelease(fileUTI);
+    }
+    return tmp;
+}
+
+#pragma mark - Filename setter
+
+// if filename or extension changes, type and uti become invalid
+- (void)setFilename:(NSString *)filename {
+    [self willChangeValueForKey:@"filename"];
+    [self setPrimitiveFilename:filename];
+    [self didChangeValueForKey:@"filename"];
+    [self setPrimitiveType:nil];
+    [self setPrimitiveUti:nil];
+}
+
+- (void)setExtension:(NSString *)extension {
+    [self willChangeValueForKey:@"extension"];
+    [self setPrimitiveExtension:extension];
+    [self didChangeValueForKey:@"extension"];
+    [self setPrimitiveType:nil];
+    [self setPrimitiveUti:nil];
 }
 
 #pragma mark - write out

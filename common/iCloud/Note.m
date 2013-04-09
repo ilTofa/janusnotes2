@@ -58,7 +58,6 @@
     return tmp;
 }
 
-
 #pragma mark - Time stamp setter
 
 - (void)setTimeStamp:(NSDate *)newDate {
