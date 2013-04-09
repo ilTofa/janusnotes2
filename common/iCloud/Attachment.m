@@ -9,7 +9,7 @@
 #import "Attachment.h"
 #import "Note.h"
 
-#import <MobileCoreServices/MobileCoreServices.h>
+#import <Cocoa/Cocoa.h>
 
 @implementation Attachment
 

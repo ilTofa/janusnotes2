@@ -54,7 +54,6 @@
         self.editedNote = (Note *)[self.noteEditorMOC objectWithURI:uri];
     }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(localContextSaved:) name:NSManagedObjectContextDidSaveNotification object:self.noteEditorMOC];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(localContextSaved:) name:NSManagedObjectContextObjectsDidChangeNotification object:self.noteEditorMOC];
 }
 
 - (void)localContextSaved:(NSNotification *)notification {
@@ -67,11 +66,10 @@
 {
     DLog(@"This is IAMNoteWindowController's save.");
     // save (if useful) and pop back
-    if([self.editedNote.title isEqualToString:@""] || [[self.editedNote.attributedText string] isEqualToString:@""]) {
-        DLog(@"Save refused because no text ('%@') or no title ('%@')", self.editedNote.title, [self.editedNote.attributedText string]);
+    if([self.editedNote.title isEqualToString:@""] || [self.editedNote.text isEqualToString:@""]) {
+        DLog(@"Save refused because no title ('%@') or no text ('%@')", self.editedNote.title, self.editedNote.text);
         return;
     }
-    self.editedNote.text = self.editedNote.attributedText.string;
     self.editedNote.timeStamp = [NSDate date];
     NSError *error;
     if(![self.noteEditorMOC save:&error])
