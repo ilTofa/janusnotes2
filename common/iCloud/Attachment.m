@@ -9,7 +9,11 @@
 #import "Attachment.h"
 #import "Note.h"
 
+#if TARGET_OS_IPHONE
+#import <MobileCoreServices/MobileCoreServices.h>
+#else
 #import <Cocoa/Cocoa.h>
+#endif
 
 @implementation Attachment
 
