@@ -63,7 +63,7 @@
     // Preset the note
     [[GTThemer sharedInstance] applyColorsToView:self.titleEdit];
     self.titleEdit.text = self.editedNote.title;
-    self.textEdit.attributedText = self.editedNote.attributedText;
+    self.textEdit.text = self.editedNote.text;
     [[GTThemer sharedInstance] applyColorsToView:self.textEdit];
     [[GTThemer sharedInstance] applyColorsToView:self.view];
     [[GTThemer sharedInstance] applyColorsToView:self.collectionView];
@@ -188,8 +188,7 @@
     if([self.titleEdit.text isEqualToString:@""] || [self.textEdit.text isEqualToString:@""])
         return;
     self.editedNote.title = self.titleEdit.text;
-    self.editedNote.attributedText = self.textEdit.attributedText;
-    self.editedNote.text = self.textEdit.attributedText.string;
+    self.editedNote.text = self.textEdit.text;
     NSError *error;
     if(![self.moc save:&error])
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
@@ -304,7 +303,7 @@
 {
     // Save (but not return)
     [self save:nil];
-    NSMutableArray *activityItems = [[NSMutableArray alloc] initWithObjects:self.editedNote.title, self.editedNote.attributedText, nil];
+    NSMutableArray *activityItems = [[NSMutableArray alloc] initWithObjects:self.editedNote.title, self.editedNote.text, nil];
     // loop on the attachments...
     for (Attachment *attachment in self.editedNote.attachment) {
         if([attachment.type isEqualToString:@"Link"]) {

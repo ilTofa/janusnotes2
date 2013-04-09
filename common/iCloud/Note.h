@@ -12,7 +12,6 @@
 
 @interface Note : NSManagedObject
 
-@property (nonatomic, retain) NSAttributedString *attributedText;
 @property (nonatomic, retain) NSDate * creationDate;
 @property (nonatomic, retain) NSString * sectionIdentifier;
 @property (nonatomic, retain) NSString *primitiveSectionIdentifier;

@@ -11,7 +11,6 @@
 
 @implementation Note
 
-@dynamic attributedText;
 @dynamic creationDate;
 @dynamic sectionIdentifier;
 @dynamic primitiveSectionIdentifier;
@@ -29,7 +28,6 @@
 {
     [super awakeFromInsert];
     [self setText:@""];
-    [self setAttributedText:[[NSAttributedString alloc] initWithString:@""]];
     [self setTitle:@""];
     [self setUuid:[[NSUUID UUID] UUIDString]];
     [self setTimeStamp:[NSDate date]];
