@@ -76,6 +76,11 @@
 		64A8A7EE16E7BCF90013AFFF /* link-unknown-big@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64A8A7EC16E7BCF90013AFFF /* link-unknown-big@2x.png */; };
 		64B9B4A516D7801100607F39 /* IAMNoteEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 64B9B4A416D7801100607F39 /* IAMNoteEdit.m */; };
 		64BB200F16EA000E00FE6C77 /* GTThemer.m in Sources */ = {isa = PBXBuildFile; fileRef = 64BB200E16EA000E00FE6C77 /* GTThemer.m */; };
+		64BB69EC1715BB2C00875601 /* Dropbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64BB69EB1715BB2C00875601 /* Dropbox.framework */; };
+		64BB69EE1715BB4A00875601 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64BB69ED1715BB4A00875601 /* CFNetwork.framework */; };
+		64BB69F01715BB5700875601 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64BB69EF1715BB5700875601 /* Security.framework */; };
+		64BB69F21715BB5F00875601 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64BB69F11715BB5F00875601 /* SystemConfiguration.framework */; };
+		64BB69F41715BB6600875601 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64BB69F31715BB6600875601 /* QuartzCore.framework */; };
 		64F31CC416E4AF9000A80BE0 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F31CC316E4AF9000A80BE0 /* Note.m */; };
 		64F31CCA16E5009B00A80BE0 /* Attachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F31CC916E5009B00A80BE0 /* Attachment.m */; };
 		64F9AC4D1704544800299C1B /* UIImage+FixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F9AC4C1704544800299C1B /* UIImage+FixOrientation.m */; };
@@ -174,6 +179,11 @@
 		64B9B4A416D7801100607F39 /* IAMNoteEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMNoteEdit.m; sourceTree = "<group>"; };
 		64BB200D16EA000E00FE6C77 /* GTThemer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTThemer.h; sourceTree = "<group>"; };
 		64BB200E16EA000E00FE6C77 /* GTThemer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTThemer.m; sourceTree = "<group>"; };
+		64BB69EB1715BB2C00875601 /* Dropbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Dropbox.framework; sourceTree = "<group>"; };
+		64BB69ED1715BB4A00875601 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		64BB69EF1715BB5700875601 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		64BB69F11715BB5F00875601 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		64BB69F31715BB6600875601 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		64F31CC216E4AF9000A80BE0 /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Note.h; path = ../common/iCloud/Note.h; sourceTree = "<group>"; };
 		64F31CC316E4AF9000A80BE0 /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Note.m; path = ../common/iCloud/Note.m; sourceTree = "<group>"; };
 		64F31CC816E5009B00A80BE0 /* Attachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Attachment.h; path = ../common/iCloud/Attachment.h; sourceTree = "<group>"; };
@@ -187,6 +197,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64BB69F41715BB6600875601 /* QuartzCore.framework in Frameworks */,
+				64BB69F21715BB5F00875601 /* SystemConfiguration.framework in Frameworks */,
+				64BB69F01715BB5700875601 /* Security.framework in Frameworks */,
+				64BB69EE1715BB4A00875601 /* CFNetwork.framework in Frameworks */,
 				64A7558E1702EFA70085933D /* AVFoundation.framework in Frameworks */,
 				6416315916D831DB0004CB52 /* MobileCoreServices.framework in Frameworks */,
 				640D40C216D6DFAF003034B3 /* CoreLocation.framework in Frameworks */,
@@ -194,6 +208,7 @@
 				64A0507016D28CCA0025E179 /* UIKit.framework in Frameworks */,
 				64A0507216D28CCA0025E179 /* Foundation.framework in Frameworks */,
 				64A0507416D28CCA0025E179 /* CoreGraphics.framework in Frameworks */,
+				64BB69EC1715BB2C00875601 /* Dropbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,6 +356,11 @@
 		64A0506E16D28CCA0025E179 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				64BB69F31715BB6600875601 /* QuartzCore.framework */,
+				64BB69F11715BB5F00875601 /* SystemConfiguration.framework */,
+				64BB69EF1715BB5700875601 /* Security.framework */,
+				64BB69ED1715BB4A00875601 /* CFNetwork.framework */,
+				64BB69EB1715BB2C00875601 /* Dropbox.framework */,
 				64A7558D1702EFA70085933D /* AVFoundation.framework */,
 				6416315816D831DB0004CB52 /* MobileCoreServices.framework */,
 				640D40C116D6DFAF003034B3 /* CoreLocation.framework */,
@@ -641,6 +661,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = iJanus.entitlements;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "I Am Mine/iJanus-Prefix.pch";
 				INFOPLIST_FILE = "I Am Mine/iJanus-Info.plist";
@@ -657,6 +681,10 @@
 				CODE_SIGN_ENTITLEMENTS = iJanus.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "I Am Mine/iJanus-Prefix.pch";
 				INFOPLIST_FILE = "I Am Mine/iJanus-Info.plist";
