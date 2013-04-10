@@ -38,6 +38,7 @@
     [super awakeFromInsert];
     [self setUuid:[[NSUUID UUID] UUIDString]];
     [self setCreationDate:[NSDate date]];
+    [self setTimeStamp:[NSDate date]];
 }
 
 #pragma mark - Transient properties
@@ -64,7 +65,8 @@
             tmp = @"Link";
         else
             tmp = @"Other";
-        CFRelease(fileUTI);
+        if(fileUTI)
+            CFRelease(fileUTI);
         [self setPrimitiveType:tmp];
     }
     return tmp;

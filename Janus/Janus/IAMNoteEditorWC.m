@@ -89,6 +89,18 @@
 }
 
 -(void) attachAttachment:(NSURL *)url {
+    // Check if it is a normal file
+    NSError *err;
+    NSFileWrapper *fw = [[NSFileWrapper alloc] initWithURL:url options:NSFileWrapperReadingImmediate error:&err];
+    if(!fw) {
+        NSLog(@"Error creating file wrapper for %@: %@", url, [err description]);
+        return;
+    }
+    // TODO: show a box to the user explaining the problem.
+    if(![fw isRegularFile]) {
+        NSLog(@"This is not a \"regular\" file. Abort attachment.");
+        return;
+    }
     Attachment *newAttachment = [NSEntityDescription insertNewObjectForEntityForName:@"Attachment" inManagedObjectContext:self.noteEditorMOC];
     
     CFStringRef fileExtension = (__bridge CFStringRef) [url pathExtension];
@@ -112,7 +124,8 @@
     CFRelease(fileUTI);
     newAttachment.extension = [url pathExtension];
     newAttachment.filename = [url lastPathComponent];
-    newAttachment.data = [NSData dataWithContentsOfURL:url];
+    newAttachment.data = [fw regularFileContents];
+//    newAttachment.data = [NSData dataWithContentsOfURL:url];
     // Now link attachment to the note
     newAttachment.note = self.editedNote;
     DLog(@"Adding attachment: %@", newAttachment);
