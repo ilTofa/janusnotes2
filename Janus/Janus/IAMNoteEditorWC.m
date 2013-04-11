@@ -98,7 +98,12 @@
     }
     // TODO: show a box to the user explaining the problem.
     if(![fw isRegularFile]) {
-        NSLog(@"This is not a \"regular\" file. Abort attachment.");
+        NSAlert *alert = [[NSAlert alloc] init];
+        NSString *message = [NSString stringWithFormat:@"The file at \"%@\" is not a \"regular\" file and cannot currently be attached to a note. Sorry for that. You can try to compress it and attach the compresssed file to the note", [url path]];
+        [alert setInformativeText:message];
+        [alert setMessageText:NSLocalizedString(@"Warning", @"")];
+        [alert addButtonWithTitle:@"OK"];
+        [alert beginSheetModalForWindow:self.window modalDelegate:nil didEndSelector:nil contextInfo:nil];
         return;
     }
     Attachment *newAttachment = [NSEntityDescription insertNewObjectForEntityForName:@"Attachment" inManagedObjectContext:self.noteEditorMOC];
@@ -167,7 +172,14 @@
         DLog(@"Selected object array: %@", [self.arrayController selectedObjects]);
         Attachment *toBeOpened = [self.arrayController selectedObjects][0];
         NSURL *file = [toBeOpened generateFile];
-        [[NSWorkspace sharedWorkspace] openURL:file];
+        if(![[NSWorkspace sharedWorkspace] openURL:file]) {
+            NSAlert *alert = [[NSAlert alloc] init];
+            NSString *message = [NSString stringWithFormat:@"No application is able to open the file \"%@\"", toBeOpened.filename];
+            [alert setInformativeText:message];
+            [alert setMessageText:NSLocalizedString(@"Warning", @"")];
+            [alert addButtonWithTitle:@"OK"];
+            [alert beginSheetModalForWindow:self.window modalDelegate:nil didEndSelector:nil contextInfo:nil];
+        }            
     } else {
         NSLog(@"Double click detected in collection view, but no collection item is selected. This should not happen");
     }

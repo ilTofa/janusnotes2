@@ -6,7 +6,7 @@
         <attribute name="extension" attributeType="String" syncable="YES"/>
         <attribute name="filename" attributeType="String" syncable="YES"/>
         <attribute name="timeStamp" optional="YES" attributeType="Date" indexed="YES" syncable="YES"/>
-        <attribute name="type" optional="YES" transient="YES" attributeType="String" defaultValueString="image" indexed="YES" syncable="YES"/>
+        <attribute name="type" optional="YES" transient="YES" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="uti" optional="YES" transient="YES" attributeType="String" syncable="YES"/>
         <attribute name="uuid" attributeType="String" indexed="YES" syncable="YES"/>
         <relationship name="note" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Note" inverseName="attachment" inverseEntity="Note" syncable="YES"/>
