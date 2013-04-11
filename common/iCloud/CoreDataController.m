@@ -97,6 +97,8 @@
 #import "Note.h"
 #import "Attachment.h"
 
+#import "NSString+UUID.h"
+
 NSString * kiCloudPersistentStoreFilename = @"iCloudStore.sqlite";
 NSString * kFallbackPersistentStoreFilename = @"fallbackStore.sqlite"; //used when iCloud is not available
 NSString * kSeedStoreFilename = @"seedStore.sqlite"; //holds the seed person records
@@ -816,8 +818,10 @@ static NSOperationQueue *_presentedItemOperationQueue;
     NSString *storeDirectoryUUID = foldersByToken[token];
     if (storeDirectoryUUID == nil)
     {
-        NSUUID *uuid = [[NSUUID alloc] init];
-        storeDirectoryUUID = [uuid UUIDString];
+        if([NSUUID class])
+            storeDirectoryUUID = [[NSUUID UUID] UUIDString];
+        else
+            storeDirectoryUUID = [NSString uuid];
         foldersByToken[token] = storeDirectoryUUID;
         tokenData = [NSKeyedArchiver archivedDataWithRootObject:foldersByToken];
         [tokenData writeToFile:[tokenURL path] atomically:YES];

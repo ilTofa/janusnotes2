@@ -8,6 +8,7 @@
 
 #import "Note.h"
 
+#import "NSString+UUID.h"
 
 @implementation Note
 
@@ -29,7 +30,10 @@
     [super awakeFromInsert];
     [self setText:@""];
     [self setTitle:@""];
-    [self setUuid:[[NSUUID UUID] UUIDString]];
+    if([NSUUID class])
+        [self setUuid:[[NSUUID UUID] UUIDString]];
+    else
+        [self setUuid:[NSString uuid]];
     [self setTimeStamp:[NSDate date]];
     [self setCreationDate:[NSDate date]];
     [self setAttachment:nil];
