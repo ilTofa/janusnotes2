@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *sizeLabel;
 @property (weak, nonatomic) IBOutlet UIStepper *sizeStepper;
 @property (weak, nonatomic) IBOutlet UILabel *versionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dropboxLabel;
 
 - (IBAction)sizePressed:(id)sender;
 - (IBAction)done:(id)sender;

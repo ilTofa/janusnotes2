@@ -705,7 +705,7 @@ static NSOperationQueue *_presentedItemOperationQueue;
 #pragma mark Debugging Helpers
 - (void)copyContainerToSandbox {
     @autoreleasepool {
-        NSFileCoordinator *fc = [[NSFileCoordinator alloc] initWithFilePresenter:nil];
+        NSFileCoordinator __unused *fc = [[NSFileCoordinator alloc] initWithFilePresenter:nil];
         NSError *error = nil;
         NSFileManager *fm = [[NSFileManager alloc] init];
         NSString *path = [self.ubiquityURL path];

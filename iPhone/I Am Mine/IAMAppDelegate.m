@@ -9,6 +9,7 @@
 #import "IAMAppDelegate.h"
 
 #import "GTThemer.h"
+#import <Dropbox/Dropbox.h>
 
 @interface IAMAppDelegate()
 
@@ -29,11 +30,23 @@
     _coreDataController = [[CoreDataController alloc] init];
     // [_coreDataController nukeAndPave];
     [_coreDataController loadPersistentStores];
+    // Init dropbox sync API
+    DBAccountManager* accountMgr = [[DBAccountManager alloc] initWithAppKey:@"8mwm9fif4s1fju2" secret:@"pvafyx258qkx2fm"];
+    [DBAccountManager setSharedManager:accountMgr];
     // Purge cache directory
     [self deleteCache];
     return YES;
 }
-							
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url sourceApplication:(NSString *)source annotation:(id)annotation {
+    DBAccount *account = [[DBAccountManager sharedManager] handleOpenURL:url];
+    if (account) {
+        DLog(@"App linked successfully!");
+        return YES;
+    }
+    return NO;
+}
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

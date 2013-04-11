@@ -14,9 +14,8 @@
 {
     NSString *uuidString = nil;
     CFUUIDRef uuid = CFUUIDCreate(NULL);
-    if (uuid) 
-    {
-        uuidString = (__bridge NSString *)CFUUIDCreateString(NULL, uuid);
+    if (uuid) {
+        uuidString = CFBridgingRelease(CFUUIDCreateString(NULL, uuid));
         CFRelease(uuid);
     }
     return uuidString;

@@ -9,10 +9,13 @@
 #import "IAMPreferencesController.h"
 
 #import "GTThemer.h"
+#import <Dropbox/Dropbox.h>
 
 @interface IAMPreferencesController ()
 
 @property NSInteger fontFace, fontSize, colorSet;
+
+@property BOOL dropboxLinked;
 
 @end
 
@@ -35,9 +38,9 @@
     self.fontSize = [[GTThemer sharedInstance] getStandardFontSize];
     [self.sizeStepper setValue:self.fontSize];
     self.colorSet = [[GTThemer sharedInstance] getStandardColorsID];
-    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:self.colorSet inSection:2] animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:self.colorSet inSection:3] animated:YES scrollPosition:UITableViewScrollPositionMiddle];
     self.fontFace = [[GTThemer sharedInstance] getStandardFontFaceID];
-    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:self.fontFace inSection:0] animated:false scrollPosition:UITableViewScrollPositionTop];
+    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:self.fontFace inSection:1] animated:false scrollPosition:UITableViewScrollPositionTop];
     [self sizePressed:nil];
 }
 
@@ -47,6 +50,21 @@
     // Mark selected color...
     UITableViewCell * tableCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:self.colorSet inSection:2]];
     tableCell.accessoryType = UITableViewCellAccessoryCheckmark;
+    [self updateDropboxUI];
+}
+
+-(void)updateDropboxUI {
+    // Check Dropbox linking
+    DBAccount *dropboxAccount = [[DBAccountManager sharedManager] linkedAccount];
+    if(!dropboxAccount) {
+        self.dropboxLinked = NO;
+        self.dropboxLabel.text = NSLocalizedString(@"Syncronize Notes with Dropbox", nil);
+    }
+    else {
+        self.dropboxLinked = YES;
+        NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Stop notes sync with %@", nil), dropboxAccount.info.displayName];
+        self.dropboxLabel.text = message;
+    }    
 }
 
 - (void)didReceiveMemoryWarning
@@ -60,17 +78,31 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     DLog(@"This is tableView didSelectRowAtIndexPath:%@", indexPath);
+    // Dropbox
+    if(indexPath.section == 0) {
+        if(self.dropboxLinked) {
+            DLog(@"Logout from dropbox");
+            [[[DBAccountManager sharedManager] linkedAccount] unlink];
+        } else {
+            DLog(@"Login into dropbox");
+            [[DBAccountManager sharedManager] linkFromController:self];
+            // Wait a while for app syncing.
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^(void){
+                [self updateDropboxUI];
+            });
+        }
+        [self updateDropboxUI];
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
     // Change font
-    if(indexPath.section == 0)
-    {
+    if(indexPath.section == 1) {
         NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:self.fontFace inSection:0];
         DLog(@"Changing font from %d to %d.", self.fontFace, indexPath.row);
         [tableView deselectRowAtIndexPath:oldIndexPath animated:YES];
         self.fontFace = indexPath.row;
     }
     // Change colors
-    if(indexPath.section == 2)
-    {
+    if(indexPath.section == 3) {
         NSInteger oldColorsSet = [[GTThemer sharedInstance] getStandardColorsID];
         DLog(@"Changing colors set from %d to %d.", oldColorsSet, indexPath.row);
         UITableViewCell * tableCell = [self.tableView cellForRowAtIndexPath:indexPath];
@@ -88,9 +120,9 @@
 {
     DLog(@"This is tableView willDeselectRowAtIndexPath: %@", indexPath);
     // Don't deselect the selected row.
-    if(indexPath.section == 0 && indexPath.row == self.fontFace)
+    if(indexPath.section == 1 && indexPath.row == self.fontFace)
         return nil;
-    if(indexPath.section == 2 && indexPath.row == self.colorSet)
+    if(indexPath.section == 3 && indexPath.row == self.colorSet)
         return nil;
     return indexPath;
 }
