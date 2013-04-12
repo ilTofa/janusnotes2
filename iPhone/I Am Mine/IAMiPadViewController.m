@@ -17,6 +17,7 @@
 #import "NSDate+PassedTime.h"
 #import "GTThemer.h"
 #import "IAMPreferencesController.h"
+#import "IAMDataSyncController.h"
 
 @interface IAMiPadViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UIActionSheetDelegate>
 
@@ -67,6 +68,9 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadFetchedResults:) name:NSPersistentStoreCoordinatorStoresDidChangeNotification object:self.appDelegate.coreDataController.psc];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadFetchedResults:) name:NSPersistentStoreDidImportUbiquitousContentChangesNotification object:self.appDelegate.coreDataController.psc];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismissPopoverRequested:) name:kPreferencesPopoverCanBeDismissed object:nil];
+    NSManagedObjectContext *syncMOC = [IAMDataSyncController sharedInstance].dataSyncThreadContext;
+    NSAssert(syncMOC, @"The Managed Object Context for the Sync Engine is still not set while setting main view.");
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mergeSyncChanges:) name:NSManagedObjectContextDidSaveNotification object:syncMOC];
     [self setupFetchExecAndReload];
 }
 
@@ -153,6 +157,11 @@
 {
     self.searchText = searchBar.text;
     DLog(@"Now searching (continous) %@", self.searchText);
+    [self setupFetchExecAndReload];
+}
+
+- (void)mergeSyncChanges:(NSNotification *)note {
+    [self.managedObjectContext mergeChangesFromContextDidSaveNotification:note];
     [self setupFetchExecAndReload];
 }
 

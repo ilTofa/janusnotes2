@@ -10,6 +10,7 @@
 
 #import "GTThemer.h"
 #import <Dropbox/Dropbox.h>
+#import "IAMDataSyncController.h"
 
 @interface IAMAppDelegate()
 
@@ -30,9 +31,8 @@
     _coreDataController = [[CoreDataController alloc] init];
     // [_coreDataController nukeAndPave];
     [_coreDataController loadPersistentStores];
-    // Init dropbox sync API
-    DBAccountManager* accountMgr = [[DBAccountManager alloc] initWithAppKey:@"8mwm9fif4s1fju2" secret:@"pvafyx258qkx2fm"];
-    [DBAccountManager setSharedManager:accountMgr];
+    // Init datasync engine
+    [IAMDataSyncController sharedInstance];
     // Purge cache directory
     [self deleteCache];
     return YES;

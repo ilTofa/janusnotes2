@@ -14,6 +14,7 @@
 #import "IAMNoteEdit.h"
 #import "NSDate+PassedTime.h"
 #import "GTThemer.h"
+#import "IAMDataSyncController.h"
 
 @interface IAMViewController () <UISearchBarDelegate, NSFetchedResultsControllerDelegate>
 
@@ -43,6 +44,9 @@
     // Notifications to be honored during controller lifecycle
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadFetchedResults:) name:NSPersistentStoreCoordinatorStoresDidChangeNotification object:self.appDelegate.coreDataController.psc];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadFetchedResults:) name:NSPersistentStoreDidImportUbiquitousContentChangesNotification object:self.appDelegate.coreDataController.psc];
+    NSManagedObjectContext *syncMOC = [IAMDataSyncController sharedInstance].dataSyncThreadContext;
+    NSAssert(syncMOC, @"The Managed Object Context for the Sync Engine is still not set while setting main view.");
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mergeSyncChanges:) name:NSManagedObjectContextDidSaveNotification object:syncMOC];
     [self setupFetchExecAndReload];
 }
 
@@ -123,6 +127,11 @@
     self.tableView.scrollEnabled = YES;
     // Perform search... :)
     DLog(@"Now searching %@", self.searchText);
+    [self setupFetchExecAndReload];
+}
+
+- (void)mergeSyncChanges:(NSNotification *)note {
+    [self.managedObjectContext mergeChangesFromContextDidSaveNotification:note];
     [self setupFetchExecAndReload];
 }
 

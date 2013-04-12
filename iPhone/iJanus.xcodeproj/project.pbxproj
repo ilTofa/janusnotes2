@@ -82,6 +82,7 @@
 		64BB69F01715BB5700875601 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64BB69EF1715BB5700875601 /* Security.framework */; };
 		64BB69F21715BB5F00875601 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64BB69F11715BB5F00875601 /* SystemConfiguration.framework */; };
 		64BB69F41715BB6600875601 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64BB69F31715BB6600875601 /* QuartzCore.framework */; };
+		64CC812F1717F1B800C129B0 /* IAMDataSyncController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64CC812E1717F1B800C129B0 /* IAMDataSyncController.m */; };
 		64F31CC416E4AF9000A80BE0 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F31CC316E4AF9000A80BE0 /* Note.m */; };
 		64F31CCA16E5009B00A80BE0 /* Attachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F31CC916E5009B00A80BE0 /* Attachment.m */; };
 		64F9AC4D1704544800299C1B /* UIImage+FixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F9AC4C1704544800299C1B /* UIImage+FixOrientation.m */; };
@@ -187,6 +188,8 @@
 		64BB69EF1715BB5700875601 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		64BB69F11715BB5F00875601 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		64BB69F31715BB6600875601 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		64CC812D1717F1B800C129B0 /* IAMDataSyncController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IAMDataSyncController.h; path = ../common/iCloud/IAMDataSyncController.h; sourceTree = "<group>"; };
+		64CC812E1717F1B800C129B0 /* IAMDataSyncController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IAMDataSyncController.m; path = ../common/iCloud/IAMDataSyncController.m; sourceTree = "<group>"; };
 		64F31CC216E4AF9000A80BE0 /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Note.h; path = ../common/iCloud/Note.h; sourceTree = "<group>"; };
 		64F31CC316E4AF9000A80BE0 /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Note.m; path = ../common/iCloud/Note.m; sourceTree = "<group>"; };
 		64F31CC816E5009B00A80BE0 /* Attachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Attachment.h; path = ../common/iCloud/Attachment.h; sourceTree = "<group>"; };
@@ -335,6 +338,8 @@
 				64F31CC916E5009B00A80BE0 /* Attachment.m */,
 				64F31CC216E4AF9000A80BE0 /* Note.h */,
 				64F31CC316E4AF9000A80BE0 /* Note.m */,
+				64CC812D1717F1B800C129B0 /* IAMDataSyncController.h */,
+				64CC812E1717F1B800C129B0 /* IAMDataSyncController.m */,
 			);
 			name = "CoreData (common)";
 			sourceTree = "<group>";
@@ -572,6 +577,7 @@
 				64A755831702137A0085933D /* MicrophoneWindow.m in Sources */,
 				64F9AC4D1704544800299C1B /* UIImage+FixOrientation.m in Sources */,
 				6429F2C81716FBD60030E932 /* NSString+UUID.m in Sources */,
+				64CC812F1717F1B800C129B0 /* IAMDataSyncController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

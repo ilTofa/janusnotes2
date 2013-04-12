@@ -62,8 +62,7 @@
     }
     else {
         self.dropboxLinked = YES;
-        NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Stop notes sync with %@", nil), dropboxAccount.info.displayName];
-        self.dropboxLabel.text = message;
+        self.dropboxLabel.text = NSLocalizedString(@"Stop Notes Sync with Dropbox", nil);
     }    
 }
 
