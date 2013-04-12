@@ -10,13 +10,14 @@
 
 #import "IAMAppDelegate.h"
 #import "CoreDataController.h"
+#import "Note.h"
+#import "Attachment.h"
 
 @interface IAMDataSyncController() {
     dispatch_queue_t _syncQueue;
 }
 
 @property (weak) CoreDataController *coreDataController;
-@property DBFilesystem *fileSystem;
 
 @end
 
@@ -50,11 +51,41 @@
 }
 
 - (void)asyncSyncronize {
-    DLog(@"Syncronization init");
     dispatch_async(_syncQueue, ^{
-        // do the work on the private queue
+        DLog(@"Syncronization init");
+        // Get notes ids
+        NSError *error;
+        NSArray *filesAtRoot = [[DBFilesystem sharedFilesystem] listFolder:[DBPath root] error:&error];
+        if(!filesAtRoot) {
+            NSLog(@"Aborting. Error reading notes: %d (%@)", [error code], [error description]);
+            return;
+        }
+        NSMutableArray *notesOnFS = [[NSMutableArray alloc] initWithCapacity:5];
+        for (DBFileInfo *fileInfo in filesAtRoot) {
+            if(fileInfo.isFolder) {
+                [notesOnFS addObject:fileInfo];
+                DLog(@"Note: %@ (%@)", fileInfo.path.name, fileInfo.modifiedTime);
+            } else {
+                DLog(@"Spurious file: %@ (%@)", fileInfo.path.name, fileInfo.modifiedTime);
+            }
+        }
+        filesAtRoot = nil;
+        // Loop on the data set and write anything not already present
+        NSFetchRequest *fr = [[NSFetchRequest alloc] initWithEntityName:@"Note"];
+        [fr setIncludesPendingChanges:NO]; //distinct has to go down to the db, not implemented for in memory filtering
+        [fr setFetchBatchSize:1000]; //protect thy memory
+        NSSortDescriptor *sortKey = [NSSortDescriptor sortDescriptorWithKey:@"uuid" ascending:YES];
+        [fr setSortDescriptors:@[sortKey]];
+        NSArray *notes = [self.dataSyncThreadContext executeFetchRequest:fr error:&error];
+        for (Note *note in notes) {
+            for (DBFileInfo *fileinfo in notesOnFS) {
+                if([fileinfo.path.name caseInsensitiveCompare:note.uuid] == NSOrderedSame) {
+                    
+                }
+            }
+        }
+        DLog(@"Syncronization end");
     });
-    DLog(@"Syncronization end");
 }
 
 - (void)mergeSyncChanges:(NSNotification *)note {
@@ -67,23 +98,39 @@
 
 #pragma mark - Dropbox init
 
+- (void)checkFirstSync:(NSTimer*)theTimer {
+    if([DBFilesystem sharedFilesystem].completedFirstSync)
+        [self dataSyncEngineReady];
+    else {
+        DLog(@"Still waiting for first sync completion");
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(checkFirstSync:) userInfo:nil repeats:NO];
+        });        
+    }
+}
+
+- (void)dataSyncEngineReady {
+    // Notify interested parties that the sync engine is ready to be used (and set the flag)
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kIAMDataSyncControllerReady object:self]];
+        self.syncControllerReady = YES;
+        DLog(@"IAMDataSyncController is ready.");
+        [self asyncSyncronize];
+    });    
+}
+
 - (void)gotNewDropboxUser:(DBAccount *)account {
     DBAccount *currentAccount = [DBAccountManager sharedManager].linkedAccount;
     if(currentAccount) {
         DBFilesystem *filesystem = [[DBFilesystem alloc] initWithAccount:currentAccount];
         [DBFilesystem setSharedFilesystem:filesystem];
-        // Notify interested parties that the sync engine is ready to be used (and set the flag)
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kIAMDataSyncControllerReady object:self]];
-            _syncControllerReady = YES;
-            DLog(@"IAMDataSyncController is ready.");
-        });
+        [self checkFirstSync:nil];
     } else {
         // Stop the sync engine
         dispatch_async(dispatch_get_main_queue(), ^{
             // TODO: we should probably kill the private queue and reset our moc
             [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kIAMDataSyncControllerStopped object:self]];
-            _syncControllerReady = NO;
+            self.syncControllerReady = NO;
             DLog(@"IAMDataSyncController is stopped.");
         });
     }
