@@ -74,7 +74,6 @@
 
 - (void)applyColorsToView:(UIView *)view
 {
-    DLog(@"applyColorsToView: called for a %@.", [view class]);
     // if is a text field, set font (bigger) and color
     if([view isMemberOfClass:[UITextField class]]){
         [(UITextField *)view setFont:[UIFont fontWithName:self.defaultFontFace size:self.defaultFontSize + 3]];
