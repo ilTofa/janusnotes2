@@ -13,6 +13,8 @@
 #import "Note.h"
 #import "Attachment.h"
 
+#define kNotesExtension @"txt"
+
 @interface IAMDataSyncController() {
     dispatch_queue_t _syncQueue;
 }
@@ -123,7 +125,7 @@
         DLog(@"Error %d (%@) creating folder at %@.", [error code], [error description], [notePath stringValue]);
     }
     // write note
-    NSString *encodedTitle = [note.title stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *encodedTitle = [[NSString stringWithFormat:@"%@.%@", note.title, kNotesExtension] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     DBPath *noteTextPath = [notePath childPath:encodedTitle];
     DBFile *noteTextFile = [[DBFilesystem sharedFilesystem] createFile:noteTextPath error:&error];
     if(!noteTextFile) {
@@ -198,7 +200,8 @@
 
 - (void)checkFirstSync:(NSTimer*)theTimer {
     if([DBFilesystem sharedFilesystem].completedFirstSync) {
-        // TODO: Ask user if he wants to copy current data to Dropbox
+        // Copy current notes to dropbox and notify
+        [self copyDataToDropbox];
         [self dataSyncEngineReady];
     } else {
         DLog(@"Still waiting for first sync completion");

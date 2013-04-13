@@ -48,7 +48,7 @@
 {
     [super viewDidAppear:animated];
     // Mark selected color...
-    UITableViewCell * tableCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:self.colorSet inSection:2]];
+    UITableViewCell * tableCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:self.colorSet inSection:3]];
     tableCell.accessoryType = UITableViewCellAccessoryCheckmark;
     [self updateDropboxUI];
 }
