@@ -58,7 +58,6 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    DLog(@"This is IAMViewController:viewDidAppear:");
     [super viewDidAppear:animated];
     // If we're getting back from an edit without saving...
     if([self.managedObjectContext hasChanges])
@@ -80,7 +79,6 @@
 
 -(void)loadPreviousSearchKeys
 {
-    DLog(@"Loading previous search keys.");
     self.searchText = [[NSUserDefaults standardUserDefaults] stringForKey:@"searchText"];
     if(!self.searchText)
         self.searchText = @"";
@@ -89,7 +87,6 @@
 
 -(void)saveSearchKeys
 {
-    DLog(@"Saving search keys for later use.");
     [[NSUserDefaults standardUserDefaults] setObject:self.searchText forKey:@"searchText"];
 }
 
@@ -102,7 +99,6 @@
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
-    DLog(@"Cancel clicked");
     [searchBar setShowsCancelButton:NO animated:YES];
     [searchBar resignFirstResponder];
     self.tableView.allowsSelection = YES;
@@ -114,30 +110,41 @@
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
     self.searchText = searchBar.text;
-    DLog(@"Now searching (continous) %@", self.searchText);
     [self setupFetchExecAndReload];
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    DLog(@"Search should start for '%@'", searchBar.text);
     [searchBar resignFirstResponder];
     self.searchText = searchBar.text;
     self.tableView.allowsSelection = YES;
     self.tableView.scrollEnabled = YES;
     // Perform search... :)
-    DLog(@"Now searching %@", self.searchText);
     [self setupFetchExecAndReload];
 }
 
 - (void)mergeSyncChanges:(NSNotification *)note {
+    DLog(@"Merging data from sync Engine");
+    NSDictionary *info = note.userInfo;
+    NSSet *insertedObjects = [info objectForKey:NSInsertedObjectsKey];
+    NSSet *deletedObjects = [info objectForKey:NSDeletedObjectsKey];
+    NSSet *updatedObjects = [info objectForKey:NSUpdatedObjectsKey];
+    for(NSManagedObject *obj in updatedObjects){
+        DLog(@"Updated a %@: %@", obj.entity.name, obj);
+    }
+    for(NSManagedObject *obj in insertedObjects){
+        DLog(@"Inserted a %@: %@", obj.entity.name, obj);
+    }
+    for(NSManagedObject *obj in deletedObjects){
+        DLog(@"Deleted a %@: %@", obj.entity.name, obj);
+    }
+
     [self.managedObjectContext mergeChangesFromContextDidSaveNotification:note];
     [self setupFetchExecAndReload];
 }
 
 - (void)reloadFetchedResults:(NSNotification *)note
 {
-    DLog(@"this is reloadFetchedResults: that got a notification.");
     dispatch_async(dispatch_get_main_queue(), ^{
         NSError *error = nil;
         
@@ -180,7 +187,6 @@
     if(![self.searchText isEqualToString:@""])
     {
         // Complex NSPredicate needed to match any word in the search string
-        DLog(@"Fetching again. Query string is: '%@'", self.searchText);
         NSArray *terms = [self.searchText componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         for(NSString *term in terms)
         {
@@ -203,7 +209,6 @@
                                                                           sectionNameKeyPath:@"sectionIdentifier"
                                                                                    cacheName:nil];
     self.fetchedResultsController.delegate = self;
-    DLog(@"Fetch setup to: %@", self.fetchedResultsController);
     NSError *error = nil;
     if (self.fetchedResultsController != nil) {
         if (![[self fetchedResultsController] performFetch:&error]) {
@@ -231,7 +236,6 @@
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
            atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
-    DLog(@"This is controller didChangeSection: atIndex:%d forChangeType:%d", sectionIndex, type);
     switch(type) {
         case NSFetchedResultsChangeInsert:
             [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex]
@@ -249,7 +253,6 @@
        atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
       newIndexPath:(NSIndexPath *)newIndexPath
 {
-    DLog(@"This is controller didChangeObject: atIndexPath:%@ forChangeType:%d newIndexPath:%@", indexPath, type, newIndexPath);
     UITableView *tableView = self.tableView;
     
     switch(type) {
@@ -267,7 +270,6 @@
             break;
             
         case NSFetchedResultsChangeUpdate:
-            DLog(@"Calling configureCell: from didChangeObject:");
             [self configureCell:(IAMNoteCell *)[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
             break;
     }
@@ -385,13 +387,6 @@
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return NO;
-}
-
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    DLog(@"This is tableView:didSelectRowAtIndexPath: called for row %d", indexPath.row);
 }
 
 #pragma mark Segues

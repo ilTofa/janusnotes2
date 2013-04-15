@@ -61,7 +61,6 @@
 {
     self.defaultFontFace = self.fontsConfigs[[[NSUserDefaults standardUserDefaults] integerForKey:@"fontFace"]];
     self.defaultColors = self.colorsConfigs[[[NSUserDefaults standardUserDefaults] integerForKey:@"standardColors"]];
-    DLog(@"Loading defaultColors from set %d as %@", [[NSUserDefaults standardUserDefaults] integerForKey:@"standardColors"], self.defaultColors);
     self.defaultFontSize = [[NSUserDefaults standardUserDefaults] integerForKey:@"fontSize"];
     if(self.defaultFontSize == 0)
         self.defaultFontSize = 14;
@@ -128,7 +127,6 @@
 
 -(void)saveStandardColors:(NSInteger)colorMix
 {
-    DLog(@"Applying color set n° %d", colorMix);
     [[NSUserDefaults standardUserDefaults] setInteger:colorMix forKey:@"standardColors"];
     // Reload...
     [self getDefaultValues];
