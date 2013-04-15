@@ -127,17 +127,7 @@
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
     // Maximize edit view and change button.
-    if(textView == self.textEdit)
-    {
-        DLog(@"This is textViewDidBeginEditing: for the main text editor");
-        self.oldFrame = textView.frame;
-        [UIView animateWithDuration:0.2 animations:^{
-            [textView setFrame:[self gt_maximumUsableFrame]];
-            self.greyRowImage.alpha = self.titleEdit.alpha = 0.0;
-        }
-                         completion:^(BOOL finished){
-                             self.greyRowImage.hidden = self.titleEdit.hidden = YES;
-                         }];
+    if(textView == self.textEdit) {
         self.navigationItem.rightBarButtonItem = self.doneButton;
     }
 }
@@ -145,18 +135,10 @@
 - (void)textViewDidEndEditing:(UITextView *)textView
 {
     // Resize back the view.
-    if(textView == self.textEdit)
-    {
-        DLog(@"This is textViewDidEndEditing: for the main text editor");
-        self.greyRowImage.hidden = self.titleEdit.hidden = NO;
-        [UIView animateWithDuration:0.2 animations:^{
-            [textView setFrame:self.oldFrame];
-            self.greyRowImage.alpha = self.titleEdit.alpha = 1.0;
-        }];
+    if(textView == self.textEdit) {
         self.navigationItem.rightBarButtonItem = self.saveButton;
     }
 }
-
 
 // Called when the UIKeyboardDidShowNotification is sent.
 - (void)keyboardWasShown:(NSNotification*)aNotification
@@ -180,6 +162,7 @@
 - (IBAction)done:(id)sender
 {
     [self.textEdit resignFirstResponder];
+    [self save:nil];
 }
 
 - (IBAction)save:(id)sender
@@ -282,8 +265,8 @@
         // Now link attachment to the note
         newAttachment.note = self.editedNote;
         [self.editedNote addAttachmentObject:newAttachment];
+        [self save:nil];
         [self refreshAttachments];
-        // Don't save now... the moc will be saved on exit.
     }
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
         [picker dismissViewControllerAnimated:YES completion:^{}];
@@ -337,6 +320,7 @@
     // Now link attachment to the note
     newAttachment.note = self.editedNote;
     [self.editedNote addAttachmentObject:newAttachment];
+    [self save:nil];
     [self refreshAttachments];
 }
 
@@ -430,8 +414,8 @@
     // Now link attachment to the note
     newAttachment.note = self.editedNote;
     [self.editedNote addAttachmentObject:newAttachment];
+    [self save:nil];
     [self refreshAttachments];
-    // Don't save now... the moc will be saved on exit.
 }
 
 - (void)recordingCancelled

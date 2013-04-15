@@ -47,7 +47,7 @@
         NSAssert(self.coreDataController.psc, @"DataSyncController inited when CoreDataController Persistent Storage is still invalid");
         _syncQueue = dispatch_queue_create("dataSyncControllerQueue", DISPATCH_QUEUE_SERIAL);
         dispatch_sync(_syncQueue, ^{
-            _dataSyncThreadContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+            _dataSyncThreadContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSConfinementConcurrencyType];
             [_dataSyncThreadContext setPersistentStoreCoordinator:self.coreDataController.psc];
         });
         // Init dropbox sync API
@@ -72,6 +72,7 @@
     if(currentAccount) {
         DBFilesystem *filesystem = [[DBFilesystem alloc] initWithAccount:currentAccount];
         [DBFilesystem setSharedFilesystem:filesystem];
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
         [self checkFirstSync:nil];
     } else {
         // Stop the sync engine
@@ -113,6 +114,13 @@
     }
 }
 
+#pragma mark - RefreshContent from dropbox
+
+- (void)refreshContentFromRemote {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    [self copyAllFromDropbox];
+}
+
 #pragma mark - handler propagating new (and updated) notes from coredata to dropbox
 
 - (void)mergeSyncChanges:(NSNotification *)note {
@@ -123,14 +131,14 @@
         NSSet *deletedObjects = [info objectForKey:NSDeletedObjectsKey];
         NSSet *updatedObjects = [info objectForKey:NSUpdatedObjectsKey];
         for(NSManagedObject *obj in deletedObjects){
-            DLog(@"Deleted a %@: %@", obj.entity.name, obj);
+            DLog(@"Deleted a %@: %@", obj.entity.name, [obj valueForKey:@"uuid"]);
             if([obj.entity.name isEqualToString:@"Attachment"])
                 [self deleteAttachmentInDropbox:(Attachment *)obj];
             else
                 [self deleteNoteToDropbox:(Note *)obj];
         }
         for(NSManagedObject *obj in insertedObjects){
-            DLog(@"Inserted a %@: %@", obj.entity.name, obj);
+            DLog(@"Inserted a %@: %@", obj.entity.name, [obj valueForKey:@"uuid"]);
             // If attachment get the corresponding note to insert
             if([obj.entity.name isEqualToString:@"Attachment"])
                 [self saveNoteToDropbox:((Attachment *)obj).note];
@@ -138,7 +146,7 @@
                 [self saveNoteToDropbox:(Note *)obj];
         }
         for(NSManagedObject *obj in updatedObjects){
-            DLog(@"Updated a %@: %@", obj.entity.name, obj);
+            DLog(@"Updated a %@: %@", obj.entity.name, [obj valueForKey:@"uuid"]);
             // If attachment get the corresponding note to update
             if([obj.entity.name isEqualToString:@"Attachment"])
                 [self saveNoteToDropbox:((Attachment *)obj).note];
@@ -213,9 +221,13 @@
     if(![[encodedTitle pathExtension] isEqualToString:kNotesExtension])
         encodedTitle = [encodedTitle stringByAppendingFormat:@".%@", kNotesExtension];
     DBPath *noteTextPath = [notePath childPath:encodedTitle];
-    DBFile *noteTextFile = [[DBFilesystem sharedFilesystem] createFile:noteTextPath error:&error];
+    DBFile *noteTextFile = [[DBFilesystem sharedFilesystem] openFile:noteTextPath error:&error];
     if(!noteTextFile) {
-        DLog(@"Error %d (%@) creating file at %@.", [error code], [error description], [noteTextPath stringValue]);
+        // tring to create it.
+        noteTextFile = [[DBFilesystem sharedFilesystem] createFile:noteTextPath error:&error];
+        if(!noteTextFile) {
+            DLog(@"Error %d (%@) creating file at %@.", [error code], [error description], [noteTextPath stringValue]);
+        }
     }
     if(![noteTextFile writeString:note.text error:&error]) {
         DLog(@"Error %d (%@) writing note text at %@.", [error code], [error description], [noteTextPath stringValue]);
@@ -230,9 +242,13 @@
         // write attachment
         NSString *encodedAttachmentName = [attachment.filename stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         DBPath *attachmentDataPath = [attachmentPath childPath:encodedAttachmentName];
-        DBFile *attachmentDataFile = [[DBFilesystem sharedFilesystem] createFile:attachmentDataPath error:&error];
+        DBFile *attachmentDataFile = [[DBFilesystem sharedFilesystem] openFile:attachmentDataPath error:&error];
         if(!attachmentDataFile) {
-            DLog(@"Error %d (%@) creating file at %@.", [error code], [error description], [attachmentDataPath stringValue]);
+            [[DBFilesystem sharedFilesystem] createFile:attachmentDataPath error:&error];
+            if(!attachmentDataFile) {
+                DLog(@"Error %d (%@) creating file at %@.", [error code], [error description], [attachmentDataPath stringValue]);
+            }
+   
         }
         if(![attachmentDataFile writeData:attachment.data error:&error]) {
             DLog(@"Error %d (%@) writing attachment data at %@.", [error code], [error description], [attachmentDataPath stringValue]);
@@ -269,7 +285,6 @@
         NSError *error;
         NSArray *notes = [self.dataSyncThreadContext executeFetchRequest:fetchRequest error:&error];
         for (Note *note in notes) {
-            [note removeAttachment:note.attachment];
             [self.dataSyncThreadContext deleteObject:note];
         }
         // Save deleting
@@ -299,6 +314,10 @@
             return;
         }
         DLog(@"Syncronization end");
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kIAMDataSyncRefreshTerminated object:self]];
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        });
     });
 }
 
@@ -361,7 +380,7 @@
             DLog(@"Copying note: %@ (%@) to CoreData", fileInfo.path.name, fileInfo.modifiedTime);
             newNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:self.dataSyncThreadContext];
             newNote.uuid = pathToNoteDir.name;
-            newNote.title = [fileInfo.path.name stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            newNote.title = [[fileInfo.path.name stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding] lastPathComponent];
             newNote.creationDate = newNote.timeStamp = fileInfo.modifiedTime;
             DBFile *noteOnDropbox = [[DBFilesystem sharedFilesystem] openFile:fileInfo.path error:&error];
             if(!noteOnDropbox) {
@@ -370,6 +389,9 @@
                 return;
             }
             newNote.text = [noteOnDropbox readString:&error];
+            if(!newNote.text) {
+                DLog(@"Serious error reading note %@: %d (%@)", fileInfo.path.stringValue, [error code], [error description]);
+            }
             // Remove the file from the index (leaving only attachments in the array) and exit the enumeration
             [filesInNoteDir removeObject:fileInfo];
             break;
@@ -407,10 +429,12 @@
             newAttachment.filename = attachmentInfo.path.name;
             newAttachment.extension = [attachmentInfo.path.stringValue pathExtension];
             newAttachment.data = [attachmentOnDropbox readData:&error];
+            if(!newAttachment.data) {
+                DLog(@"Serious error reading attachment %@: %d (%@)", fileInfo.path.stringValue, [error code], [error description]);
+            }
             // Now link attachment to the note
             newAttachment.note = note;
             [note addAttachmentObject:newAttachment];
-            note.text = [attachmentOnDropbox readString:&error];
         }
     }
 }

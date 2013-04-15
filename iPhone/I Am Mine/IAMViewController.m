@@ -47,6 +47,10 @@
     NSManagedObjectContext *syncMOC = [IAMDataSyncController sharedInstance].dataSyncThreadContext;
     NSAssert(syncMOC, @"The Managed Object Context for the Sync Engine is still not set while setting main view.");
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mergeSyncChanges:) name:NSManagedObjectContextDidSaveNotification object:syncMOC];
+    if([IAMDataSyncController sharedInstance].syncControllerReady)
+        [self refreshControlSetup];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(syncStoreNotificationHandler:) name:kIAMDataSyncControllerReady object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(syncStoreNotificationHandler:) name:kIAMDataSyncControllerStopped object:nil];
     [self setupFetchExecAndReload];
 }
 
@@ -60,8 +64,8 @@
 {
     [super viewDidAppear:animated];
     // If we're getting back from an edit without saving...
-    if([self.managedObjectContext hasChanges])
-        [self.managedObjectContext rollback];
+//    if([self.managedObjectContext hasChanges])
+//        [self.managedObjectContext rollback];
     [self colorize];
 }
 
@@ -74,31 +78,53 @@
     [self.tableView reloadData];
 }
 
+- (void)refreshControlSetup {
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Dropbox refresh", nil)];
+    [refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
+    self.refreshControl = refreshControl;
+}
+
+-(void)refresh {
+    [self.refreshControl beginRefreshing];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(endSyncNotificationHandler:) name:kIAMDataSyncRefreshTerminated object:nil];
+    [[IAMDataSyncController sharedInstance] refreshContentFromRemote];
+}
+
+- (void)syncStoreNotificationHandler:(NSNotification *)note {
+    IAMDataSyncController *controller = note.object;
+    if(controller.syncControllerReady)
+        [self refreshControlSetup];
+    else
+        self.refreshControl = nil;
+}
+
+- (void)endSyncNotificationHandler:(NSNotification *)note {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kIAMDataSyncRefreshTerminated object:nil];
+    [self.refreshControl endRefreshing];
+}
+
 #pragma mark -
 #pragma mark Search and search delegate
 
--(void)loadPreviousSearchKeys
-{
+-(void)loadPreviousSearchKeys {
     self.searchText = [[NSUserDefaults standardUserDefaults] stringForKey:@"searchText"];
     if(!self.searchText)
         self.searchText = @"";
     self.searchBar.text = self.searchText;
 }
 
--(void)saveSearchKeys
-{
+-(void)saveSearchKeys {
     [[NSUserDefaults standardUserDefaults] setObject:self.searchText forKey:@"searchText"];
 }
 
-- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
-{
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
     [searchBar setShowsCancelButton:YES animated:YES];
     self.tableView.allowsSelection = NO;
     self.tableView.scrollEnabled = NO;
 }
 
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
-{
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
     [searchBar setShowsCancelButton:NO animated:YES];
     [searchBar resignFirstResponder];
     self.tableView.allowsSelection = YES;
@@ -107,14 +133,12 @@
     [self setupFetchExecAndReload];
 }
 
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
-{
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     self.searchText = searchBar.text;
     [self setupFetchExecAndReload];
 }
 
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
-{
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     [searchBar resignFirstResponder];
     self.searchText = searchBar.text;
     self.tableView.allowsSelection = YES;
@@ -142,8 +166,7 @@
     // No need to perform the fetch, the NSFetchedResultsController will detect the changes by itself
 }
 
-- (void)reloadFetchedResults:(NSNotification *)note
-{
+- (void)reloadFetchedResults:(NSNotification *)note {
     dispatch_async(dispatch_get_main_queue(), ^{
         NSError *error = nil;
         
@@ -165,8 +188,7 @@
     });
 }
 
-- (void)setupFetchExecAndReload
-{
+- (void)setupFetchExecAndReload {
     // Set up the fetched results controller
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     // Edit the entity name as appropriate.
@@ -228,6 +250,11 @@
 #pragma mark -
 #pragma mark Fetched results controller delegate
 
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+    [self.tableView reloadData];
+}
+
+/*
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
 {
     [self.tableView beginUpdates];
@@ -278,7 +305,7 @@
 {
     [self.tableView endUpdates];
 }
-
+*/
 #pragma mark - Table view data source
 
 - (void)configureCell:(IAMNoteCell *)cell atIndexPath:(NSIndexPath *)indexPath

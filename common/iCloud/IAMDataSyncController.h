@@ -12,6 +12,7 @@
 
 #define kIAMDataSyncControllerReady @"IAMDataSyncControllerReady"
 #define kIAMDataSyncControllerStopped @"IAMDataSyncControllerStopped"
+#define kIAMDataSyncRefreshTerminated @"IAMDataSyncRefreshTerminated"
 
 @interface IAMDataSyncController : NSObject
 
@@ -19,5 +20,7 @@
 @property (nonatomic, readonly) NSManagedObjectContext *dataSyncThreadContext;
 
 + (IAMDataSyncController *)sharedInstance;
+
+- (void)refreshContentFromRemote;
 
 @end
