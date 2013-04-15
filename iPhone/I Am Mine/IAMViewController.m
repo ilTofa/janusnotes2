@@ -125,22 +125,21 @@
 
 - (void)mergeSyncChanges:(NSNotification *)note {
     DLog(@"Merging data from sync Engine");
-    NSDictionary *info = note.userInfo;
-    NSSet *insertedObjects = [info objectForKey:NSInsertedObjectsKey];
-    NSSet *deletedObjects = [info objectForKey:NSDeletedObjectsKey];
-    NSSet *updatedObjects = [info objectForKey:NSUpdatedObjectsKey];
-    for(NSManagedObject *obj in updatedObjects){
-        DLog(@"Updated a %@: %@", obj.entity.name, obj);
-    }
-    for(NSManagedObject *obj in insertedObjects){
-        DLog(@"Inserted a %@: %@", obj.entity.name, obj);
-    }
-    for(NSManagedObject *obj in deletedObjects){
-        DLog(@"Deleted a %@: %@", obj.entity.name, obj);
-    }
-
+//    NSDictionary *info = note.userInfo;
+//    NSSet *insertedObjects = [info objectForKey:NSInsertedObjectsKey];
+//    NSSet *deletedObjects = [info objectForKey:NSDeletedObjectsKey];
+//    NSSet *updatedObjects = [info objectForKey:NSUpdatedObjectsKey];
+//    for(NSManagedObject *obj in updatedObjects){
+//        DLog(@"Updated a %@", obj.entity.name);
+//    }
+//    for(NSManagedObject *obj in insertedObjects){
+//        DLog(@"Inserted a %@", obj.entity.name);
+//    }
+//    for(NSManagedObject *obj in deletedObjects){
+//        DLog(@"Deleted a %@", obj.entity.name);
+//    }
     [self.managedObjectContext mergeChangesFromContextDidSaveNotification:note];
-    [self setupFetchExecAndReload];
+    // No need to perform the fetch, the NSFetchedResultsController will detect the changes by itself
 }
 
 - (void)reloadFetchedResults:(NSNotification *)note

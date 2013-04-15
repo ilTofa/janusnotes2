@@ -95,11 +95,16 @@
             [self copyDataToDropbox];
         // Notify interested parties that the sync engine is ready to be used (and set the flag)
         dispatch_async(dispatch_get_main_queue(), ^{
-            [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kIAMDataSyncControllerReady object:self]];
-            self.syncControllerReady = YES;
-            DLog(@"IAMDataSyncController is ready.");
             [self copyAllFromDropbox];
+            DLog(@"IAMDataSyncController is ready.");
+            self.syncControllerReady = YES;
+            [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kIAMDataSyncControllerReady object:self]];
         });
+        // Listen to incoming changes from dropbox remotes
+//        [[DBFilesystem sharedFilesystem] addObserver:self forPathAndDescendants:[DBPath root] block:^{
+//            DLog(@"Got a change in dropbox filesystem");
+//            [self copyAllFromDropbox];
+//        }];
     } else {
         DLog(@"Still waiting for first sync completion");
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -117,13 +122,12 @@
         NSSet *insertedObjects = [info objectForKey:NSInsertedObjectsKey];
         NSSet *deletedObjects = [info objectForKey:NSDeletedObjectsKey];
         NSSet *updatedObjects = [info objectForKey:NSUpdatedObjectsKey];
-        for(NSManagedObject *obj in updatedObjects){
-            DLog(@"Updated a %@: %@", obj.entity.name, obj);
-            // If attachment get the corresponding note to update
+        for(NSManagedObject *obj in deletedObjects){
+            DLog(@"Deleted a %@: %@", obj.entity.name, obj);
             if([obj.entity.name isEqualToString:@"Attachment"])
-                [self saveNoteToDropbox:((Attachment *)obj).note];
+                [self deleteAttachmentInDropbox:(Attachment *)obj];
             else
-                [self saveNoteToDropbox:(Note *)obj];
+                [self deleteNoteToDropbox:(Note *)obj];
         }
         for(NSManagedObject *obj in insertedObjects){
             DLog(@"Inserted a %@: %@", obj.entity.name, obj);
@@ -133,15 +137,16 @@
             else
                 [self saveNoteToDropbox:(Note *)obj];
         }
-        for(NSManagedObject *obj in deletedObjects){
-            DLog(@"Deleted a %@: %@", obj.entity.name, obj);
+        for(NSManagedObject *obj in updatedObjects){
+            DLog(@"Updated a %@: %@", obj.entity.name, obj);
+            // If attachment get the corresponding note to update
             if([obj.entity.name isEqualToString:@"Attachment"])
-                [self deleteAttachmentInDropbox:(Attachment *)obj];
+                [self saveNoteToDropbox:((Attachment *)obj).note];
             else
-                [self deleteNoteToDropbox:(Note *)obj];
+                [self saveNoteToDropbox:(Note *)obj];
         }
     }
-    // merge changes on the private queue and sync back
+    // merge changes on the private queue
     dispatch_async(_syncQueue, ^{
         [self.dataSyncThreadContext mergeChangesFromContextDidSaveNotification:note];
     });
@@ -204,7 +209,9 @@
         DLog(@"Error %d (%@) creating folder at %@.", [error code], [error description], [notePath stringValue]);
     }
     // write note
-    NSString *encodedTitle = [[NSString stringWithFormat:@"%@.%@", note.title, kNotesExtension] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *encodedTitle = [note.title stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    if(![[encodedTitle pathExtension] isEqualToString:kNotesExtension])
+        encodedTitle = [encodedTitle stringByAppendingFormat:@".%@", kNotesExtension];
     DBPath *noteTextPath = [notePath childPath:encodedTitle];
     DBFile *noteTextFile = [[DBFilesystem sharedFilesystem] createFile:noteTextPath error:&error];
     if(!noteTextFile) {
@@ -264,6 +271,12 @@
         for (Note *note in notes) {
             [note removeAttachment:note.attachment];
             [self.dataSyncThreadContext deleteObject:note];
+        }
+        // Save deleting
+        if (![self.dataSyncThreadContext save:&error]) {
+            NSLog(@"Aborting. Error deleting all notes from dropbox to core data, error: %@", [error description]);
+            [self.dataSyncThreadContext rollback];
+            return;
         }
         // Get notes ids
         NSArray *filesAtRoot = [[DBFilesystem sharedFilesystem] listFolder:[DBPath root] error:&error];
