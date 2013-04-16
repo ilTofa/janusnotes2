@@ -131,33 +131,39 @@
 
 - (void)mergeSyncChanges:(NSNotification *)note {
     if(self.syncControllerReady) {
-        // Propagate changes to dropbox (if we have a dropbox store attached).
+        DLog(@"Propagating moc changes to dropbox");
         NSDictionary *info = note.userInfo;
         NSSet *insertedObjects = [info objectForKey:NSInsertedObjectsKey];
         NSSet *deletedObjects = [info objectForKey:NSDeletedObjectsKey];
         NSSet *updatedObjects = [info objectForKey:NSUpdatedObjectsKey];
         for(NSManagedObject *obj in deletedObjects){
-            DLog(@"Deleted a %@: %@", obj.entity.name, [obj valueForKey:@"uuid"]);
-            if([obj.entity.name isEqualToString:@"Attachment"])
+            if([obj.entity.name isEqualToString:@"Attachment"]) {
+                DLog(@"Deleting the attachment %@ from note %@", ((Attachment *)obj).filename, ((Attachment *)obj).note.title);
                 dispatch_async(_syncQueue, ^{ [self deleteAttachmentInDropbox:(Attachment *)obj]; });
-            else
+            } else {
+                DLog(@"Deleting note %@", ((Note *)obj).title);
                 dispatch_async(_syncQueue, ^{ [self deleteNoteInDropbox:(Note *)obj]; });
+            }
         }
         for(NSManagedObject *obj in insertedObjects){
-            DLog(@"Inserted a %@: %@", obj.entity.name, [obj valueForKey:@"uuid"]);
             // If attachment get the corresponding note to insert
-            if([obj.entity.name isEqualToString:@"Attachment"])
+            if([obj.entity.name isEqualToString:@"Attachment"]) {
+                DLog(@"Inserting the attachment %@ for note %@", ((Attachment *)obj).filename, ((Attachment *)obj).note.title);
                 dispatch_async(_syncQueue, ^{ [self saveNoteToDropbox:((Attachment *)obj).note]; });
-            else
+            } else {
+                DLog(@"Inserting note %@", ((Note *)obj).title);
                 dispatch_async(_syncQueue, ^{ [self saveNoteToDropbox:(Note *)obj]; });
+            }
         }
         for(NSManagedObject *obj in updatedObjects){
-            DLog(@"Updated a %@: %@", obj.entity.name, [obj valueForKey:@"uuid"]);
             // If attachment get the corresponding note to update
-            if([obj.entity.name isEqualToString:@"Attachment"])
+            if([obj.entity.name isEqualToString:@"Attachment"]) {
+                DLog(@"Updating the attachment %@ for note %@", ((Attachment *)obj).filename, ((Attachment *)obj).note.title);
                 dispatch_async(_syncQueue, ^{ [self saveNoteToDropbox:((Attachment *)obj).note]; });
-            else
+            } else {
+                DLog(@"Updating note %@", ((Note *)obj).title);
                 dispatch_async(_syncQueue, ^{ [self saveNoteToDropbox:(Note *)obj]; });
+            }
         }
     }
     // merge changes on the private queue
