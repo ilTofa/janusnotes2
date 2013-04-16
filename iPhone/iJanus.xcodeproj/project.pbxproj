@@ -36,6 +36,7 @@
 		646602A016DBC999007622FC /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 6466029E16DBC999007622FC /* Icon-72.png */; };
 		646602A116DBC999007622FC /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6466029F16DBC999007622FC /* Icon-72@2x.png */; };
 		64845FE216E019EB0046BE9C /* NSDate+PassedTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 64845FE116E019EB0046BE9C /* NSDate+PassedTime.m */; };
+		648A2773171D875000338218 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 648A2772171D875000338218 /* MBProgressHUD.m */; };
 		649DCEA016D28DB8003F5A83 /* IAmMine.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 649DCE9E16D28DB7003F5A83 /* IAmMine.xcdatamodeld */; };
 		649DCEA316D29B0A003F5A83 /* CoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 649DCEA216D29AAD003F5A83 /* CoreDataController.m */; };
 		64A0507016D28CCA0025E179 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64A0506F16D28CCA0025E179 /* UIKit.framework */; };
@@ -129,6 +130,8 @@
 		6466029F16DBC999007622FC /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = SOURCE_ROOT; };
 		64845FE016E019EB0046BE9C /* NSDate+PassedTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+PassedTime.h"; path = "../common/Utilitites/NSDate+PassedTime.h"; sourceTree = "<group>"; };
 		64845FE116E019EB0046BE9C /* NSDate+PassedTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+PassedTime.m"; path = "../common/Utilitites/NSDate+PassedTime.m"; sourceTree = "<group>"; };
+		648A2771171D875000338218 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		648A2772171D875000338218 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		649DCE9F16D28DB7003F5A83 /* IAmMine.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = IAmMine.xcdatamodel; sourceTree = "<group>"; };
 		649DCEA116D29AAD003F5A83 /* CoreDataController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CoreDataController.h; path = ../common/iCloud/CoreDataController.h; sourceTree = "<group>"; };
 		649DCEA216D29AAD003F5A83 /* CoreDataController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CoreDataController.m; path = ../common/iCloud/CoreDataController.m; sourceTree = "<group>"; };
@@ -289,6 +292,8 @@
 		6433103F16E0A8950064EC5C /* Utilities (iOS) */ = {
 			isa = PBXGroup;
 			children = (
+				648A2771171D875000338218 /* MBProgressHUD.h */,
+				648A2772171D875000338218 /* MBProgressHUD.m */,
 				6416315B16D8345F0004CB52 /* UIImage+RoundedCorner.h */,
 				6416315C16D8345F0004CB52 /* UIImage+RoundedCorner.m */,
 				6433103C16E0A85D0064EC5C /* UIViewController+GTFrames.h */,
@@ -578,6 +583,7 @@
 				64F9AC4D1704544800299C1B /* UIImage+FixOrientation.m in Sources */,
 				6429F2C81716FBD60030E932 /* NSString+UUID.m in Sources */,
 				64CC812F1717F1B800C129B0 /* IAMDataSyncController.m in Sources */,
+				648A2773171D875000338218 /* MBProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

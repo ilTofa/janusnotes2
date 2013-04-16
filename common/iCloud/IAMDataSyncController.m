@@ -79,6 +79,7 @@
 - (void)gotNewDropboxUser:(DBAccount *)account {
     DBAccount *currentAccount = [DBAccountManager sharedManager].linkedAccount;
     if(currentAccount) {
+        self.syncControllerInited = YES;
         DBFilesystem *filesystem = [[DBFilesystem alloc] initWithAccount:currentAccount];
         [DBFilesystem setSharedFilesystem:filesystem];
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
@@ -86,6 +87,7 @@
     } else {
         // Stop the sync engine
         dispatch_async(dispatch_get_main_queue(), ^{
+            self.syncControllerInited = NO;
             [[NSUserDefaults standardUserDefaults] setValue:nil forKey:@"currentDropboxAccount"];
             // TODO: we should probably kill the private queue and reset our moc
             [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kIAMDataSyncControllerStopped object:self]];

@@ -17,6 +17,7 @@
 @interface IAMDataSyncController : NSObject
 
 @property BOOL syncControllerReady;
+@property BOOL syncControllerInited;
 @property (nonatomic, readonly) NSManagedObjectContext *dataSyncThreadContext;
 
 + (IAMDataSyncController *)sharedInstance;

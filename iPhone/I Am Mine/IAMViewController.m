@@ -15,10 +15,12 @@
 #import "NSDate+PassedTime.h"
 #import "GTThemer.h"
 #import "IAMDataSyncController.h"
+#import "MBProgressHUD.h"
 
 @interface IAMViewController () <UISearchBarDelegate, NSFetchedResultsControllerDelegate>
 
 @property (nonatomic) NSDateFormatter *dateFormatter;
+@property MBProgressHUD *hud;
 
 @property IAMAppDelegate *appDelegate;
 
@@ -63,10 +65,13 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    // If we're getting back from an edit without saving...
-//    if([self.managedObjectContext hasChanges])
-//        [self.managedObjectContext rollback];
     [self colorize];
+    // if the dropbox backend have an user, but is not ready (that means it's waiting on something)
+    if([IAMDataSyncController sharedInstance].syncControllerInited && ![IAMDataSyncController sharedInstance].syncControllerReady) {
+        self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        self.hud.labelText = NSLocalizedString(@"Waiting for Dropbox", nil);
+        self.hud.detailsLabelText = NSLocalizedString(@"First sync in progress, please wait.", nil);
+    }
 }
 
 -(void)colorize
@@ -97,6 +102,10 @@
         [self refreshControlSetup];
     else
         self.refreshControl = nil;
+    if(self.hud) {
+        [self.hud hide:YES];
+        self.hud = nil;
+    }
 }
 
 - (void)endSyncNotificationHandler:(NSNotification *)note {
