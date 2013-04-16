@@ -112,11 +112,6 @@
             self.syncControllerReady = YES;
             [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kIAMDataSyncControllerReady object:self]];
         });
-//        // Listen to incoming changes from dropbox remotes
-//        [[DBFilesystem sharedFilesystem] addObserver:self forPathAndDescendants:[DBPath root] block:^{
-//            DLog(@"Got a change in dropbox filesystem");
-//            [self copyAllFromDropbox];
-//        }];
     } else {
         DLog(@"Still waiting for first sync completion");
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -327,9 +322,10 @@
         }
         for (DBFileInfo *fileInfo in filesAtRoot) {
             if(fileInfo.isFolder) {
-                [self saveDropboxNoteToCoreData:fileInfo.path];
-                if (![self.dataSyncThreadContext save:&error]) {
-                    ALog(@"Error copying note %@ from dropbox to core data, error: %@", fileInfo.path.stringValue, [error description]);
+                if([self saveDropboxNoteToCoreData:fileInfo.path]) {
+                    if (![self.dataSyncThreadContext save:&error]) {
+                        ALog(@"Error copying note %@ from dropbox to core data, error: %@", fileInfo.path.stringValue, [error description]);
+                    }
                 }
             } else {
                 DLog(@"Deleting spurious file at notes dropbox root: %@ (%@)", fileInfo.path.name, fileInfo.modifiedTime);
@@ -345,15 +341,14 @@
 }
 
 // Save the note from dropbox folder to CoreData
-- (void)saveDropboxNoteToCoreData:(DBPath *)pathToNoteDir {
+- (BOOL)saveDropboxNoteToCoreData:(DBPath *)pathToNoteDir {
     // BEWARE that this code needs to be called in the _syncqueue dispatch_queue beacuse it's using dataSyncThreadContext
     Note *newNote = nil;
     DBError *error;
     NSMutableArray *filesInNoteDir = [[[DBFilesystem sharedFilesystem] listFolder:pathToNoteDir error:&error] mutableCopy];
     if(!filesInNoteDir) {
-        NSLog(@"Aborting. Error reading notes: %d (%@)", [error code], [error description]);
-        DLog(@"Aborting. Error reading notes: %d (%@)", [error code], [error description]);
-        return;
+        ALog(@"Aborting. Error reading notes: %d (%@)", [error code], [error description]);
+        return NO;
     }
     for (DBFileInfo *fileInfo in filesInNoteDir) {
         if(!fileInfo.isFolder) {
@@ -369,9 +364,16 @@
             newNote.creationDate = newNote.timeStamp = fileInfo.modifiedTime;
             DBFile *noteOnDropbox = [[DBFilesystem sharedFilesystem] openFile:fileInfo.path error:&error];
             if(!noteOnDropbox) {
-                NSLog(@"Aborting note copy to coredata. Error opening note: %d (%@)", [error code], [error description]);
+                ALog(@"Aborting note copy to coredata. Error opening note: %d (%@)", [error code], [error description]);
                 [self.dataSyncThreadContext rollback];
-                return;
+                return NO;
+            }
+            if(!noteOnDropbox.status.state == DBFileStateIdle || !noteOnDropbox.status.cached) {
+                // If the file is not stable, abort copy
+                // TODO: make a queue for later loading
+                DLog(@"File for note %@ is still not ready to copy. State: %d. Cached: %d", fileInfo.path.stringValue, noteOnDropbox.status.state, noteOnDropbox.status.cached);
+                [self.dataSyncThreadContext rollback];
+                return NO;
             }
             newNote.text = [noteOnDropbox readString:&error];
             if(!newNote.text) {
@@ -387,7 +389,7 @@
         if(!filesInAttachmentDir) {
             // No attachments directory -> No attachments
             DLog(@"Cannot list attachment directory for note %@, no attachments then.", newNote.title);
-            return;
+            return YES;
         }
         for (DBFileInfo *attachmentInfo in filesInAttachmentDir) {
             DLog(@"Copying attachment: %@ to CoreData note %@", attachmentInfo.path.name, newNote.title);
@@ -396,6 +398,14 @@
                 ALog(@"Aborting attachment copy to coredata. Error %d opening attachment %@", [error code], attachmentInfo.path.stringValue);
                 continue;
             }
+            if(!attachmentOnDropbox.status.state == DBFileStateIdle || !attachmentOnDropbox.status.cached) {
+                // If the file is not stable, abort copy
+                // TODO: make a queue for later loading
+                DLog(@"Attachment file %@ is still not ready to copy. State: %d. Cached: %d", attachmentInfo.path.stringValue, attachmentOnDropbox.status.state, attachmentOnDropbox.status.cached);
+                [self.dataSyncThreadContext rollback];
+                return NO;
+            }
+
             Attachment *newAttachment = [NSEntityDescription insertNewObjectForEntityForName:@"Attachment" inManagedObjectContext:self.dataSyncThreadContext];
             newAttachment.filename = attachmentInfo.path.name;
             newAttachment.extension = [attachmentInfo.path.stringValue pathExtension];
@@ -409,6 +419,7 @@
         }        
     }
     filesInNoteDir = nil;
+    return YES;
 }
 
 @end
