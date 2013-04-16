@@ -22,6 +22,8 @@
 @property (nonatomic) NSDateFormatter *dateFormatter;
 @property MBProgressHUD *hud;
 
+@property NSTimer *syncStatusTimer;
+
 @property IAMAppDelegate *appDelegate;
 
 @end
@@ -88,6 +90,24 @@
     refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Dropbox refresh", nil)];
     [refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
     self.refreshControl = refreshControl;
+    // Here we are sure there is an active dropbox link
+    self.syncStatusTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(syncStatus:) userInfo:nil repeats:YES];
+}
+
+-(void)syncStatus:(NSTimer *)timer {
+    DBSyncStatus status = [[DBFilesystem sharedFilesystem] status];
+    NSMutableString *title = [[NSMutableString alloc] initWithString:@"DB "];
+    if(!status)
+        [title appendString:@"✔"];
+    if(status & DBSyncStatusOnline)
+        [title appendString:@"📡"];
+    if(status & DBSyncStatusSyncing)
+        [title appendString:@"␖"];
+    if(status & DBSyncStatusDownloading)
+        [title appendString:@"↓"];
+    if(status & DBSyncStatusUploading)
+        [title appendString:@"↑"];
+    self.title = title;
 }
 
 -(void)refresh {
@@ -100,8 +120,13 @@
     IAMDataSyncController *controller = note.object;
     if(controller.syncControllerReady)
         [self refreshControlSetup];
-    else
+    else {
         self.refreshControl = nil;
+        if(self.syncStatusTimer) {
+            [self.syncStatusTimer invalidate];
+            self.syncStatusTimer = nil;
+        }
+    }
     if(self.hud) {
         [self.hud hide:YES];
         self.hud = nil;
