@@ -133,25 +133,25 @@
         for(NSManagedObject *obj in deletedObjects){
             DLog(@"Deleted a %@: %@", obj.entity.name, [obj valueForKey:@"uuid"]);
             if([obj.entity.name isEqualToString:@"Attachment"])
-                [self deleteAttachmentInDropbox:(Attachment *)obj];
+                dispatch_async(_syncQueue, ^{ [self deleteAttachmentInDropbox:(Attachment *)obj]; });
             else
-                [self deleteNoteToDropbox:(Note *)obj];
+                dispatch_async(_syncQueue, ^{ [self deleteNoteToDropbox:(Note *)obj]; });
         }
         for(NSManagedObject *obj in insertedObjects){
             DLog(@"Inserted a %@: %@", obj.entity.name, [obj valueForKey:@"uuid"]);
             // If attachment get the corresponding note to insert
             if([obj.entity.name isEqualToString:@"Attachment"])
-                [self saveNoteToDropbox:((Attachment *)obj).note];
+                dispatch_async(_syncQueue, ^{ [self saveNoteToDropbox:((Attachment *)obj).note]; });
             else
-                [self saveNoteToDropbox:(Note *)obj];
+                dispatch_async(_syncQueue, ^{ [self saveNoteToDropbox:(Note *)obj]; });
         }
         for(NSManagedObject *obj in updatedObjects){
             DLog(@"Updated a %@: %@", obj.entity.name, [obj valueForKey:@"uuid"]);
             // If attachment get the corresponding note to update
             if([obj.entity.name isEqualToString:@"Attachment"])
-                [self saveNoteToDropbox:((Attachment *)obj).note];
+                dispatch_async(_syncQueue, ^{ [self saveNoteToDropbox:((Attachment *)obj).note]; });
             else
-                [self saveNoteToDropbox:(Note *)obj];
+                dispatch_async(_syncQueue, ^{ [self saveNoteToDropbox:(Note *)obj]; });
         }
     }
     // merge changes on the private queue
@@ -252,6 +252,39 @@
         }
         if(![attachmentDataFile writeData:attachment.data error:&error]) {
             DLog(@"Error %d (%@) writing attachment data at %@.", [error code], [error description], [attachmentDataPath stringValue]);
+        }
+    }
+    // Now ensure that no stale attachments are still in the dropbox
+    NSArray *filesInNoteDir = [[DBFilesystem sharedFilesystem] listFolder:notePath error:&error];
+    if(!filesInNoteDir) {
+        DLog(@"Aborting. Error reading notes: %d (%@)", [error code], [error description]);
+        return;
+    }
+    for (DBFileInfo *fileInfo in filesInNoteDir) {
+        // If a directory is an attachment
+        if(fileInfo.isFolder) {
+            NSMutableArray *filesInAttachmentDir = [[[DBFilesystem sharedFilesystem] listFolder:fileInfo.path error:&error] mutableCopy];
+            if(!filesInAttachmentDir) {
+                DLog(@"Error reading attachment directory: %d (%@)", [error code], [error description]);
+                continue;
+            }
+            if([filesInAttachmentDir count] != 1) {
+                DLog(@"Too many or too few files in attachment directory %@: %d.", fileInfo.path.stringValue, [filesInAttachmentDir count]);
+                continue;
+            }
+            // Create and copy attachment
+            DBFileInfo *attachmentInfo = [filesInAttachmentDir objectAtIndex:0];
+            BOOL found = NO;
+            for (Attachment *attachments in note.attachment) {
+                if([attachments.uuid isEqualToString:attachmentInfo.path.name]) {
+                    found = YES;
+                }
+            }
+            if(!found) {
+                // Delete attachment file & folder
+                [[DBFilesystem sharedFilesystem] deletePath:attachmentInfo.path error:&error];
+                [[DBFilesystem sharedFilesystem] deletePath:fileInfo.path error:&error];
+            }
         }
     }
 }
@@ -380,7 +413,11 @@
             DLog(@"Copying note: %@ (%@) to CoreData", fileInfo.path.name, fileInfo.modifiedTime);
             newNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:self.dataSyncThreadContext];
             newNote.uuid = pathToNoteDir.name;
-            newNote.title = [[fileInfo.path.name stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding] lastPathComponent];
+            NSString *titolo = [fileInfo.path.name stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            if([titolo hasSuffix:kNotesExtension]) {
+                titolo = [titolo substringToIndex:([titolo length] - 4)];
+            }
+            newNote.title = titolo;
             newNote.creationDate = newNote.timeStamp = fileInfo.modifiedTime;
             DBFile *noteOnDropbox = [[DBFilesystem sharedFilesystem] openFile:fileInfo.path error:&error];
             if(!noteOnDropbox) {
