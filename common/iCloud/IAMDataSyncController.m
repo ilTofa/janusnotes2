@@ -18,9 +18,13 @@
 
 @interface IAMDataSyncController() {
     dispatch_queue_t _syncQueue;
+    NSLock *_deletedLock, *_mutatedLock;
 }
 
 @property (weak) CoreDataController *coreDataController;
+
+@property (atomic) NSMutableSet *deletedNotesWhileNotReady;
+@property NSMutableSet *mutatedNotesWhileNotReady;
 
 @end
 
@@ -51,6 +55,10 @@
             _dataSyncThreadContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSConfinementConcurrencyType];
             [_dataSyncThreadContext setPersistentStoreCoordinator:self.coreDataController.psc];
         });
+        self.deletedNotesWhileNotReady = [[NSMutableSet alloc] initWithCapacity:10];
+        self.mutatedNotesWhileNotReady = [[NSMutableSet alloc] initWithCapacity:10];
+        _deletedLock = [[NSLock alloc] init];
+        _mutatedLock = [[NSLock alloc] init];
         // Init dropbox sync API
         DBAccountManager* accountMgr = [[DBAccountManager alloc] initWithAppKey:@"8mwm9fif4s1fju2" secret:@"pvafyx258qkx2fm"];
         [DBAccountManager setSharedManager:accountMgr];
@@ -102,7 +110,7 @@
             self.syncControllerReady = YES;
             [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kIAMDataSyncControllerReady object:self]];
         });
-        // Listen to incoming changes from dropbox remotes
+//        // Listen to incoming changes from dropbox remotes
 //        [[DBFilesystem sharedFilesystem] addObserver:self forPathAndDescendants:[DBPath root] block:^{
 //            DLog(@"Got a change in dropbox filesystem");
 //            [self copyAllFromDropbox];
@@ -125,8 +133,8 @@
 #pragma mark - handler propagating new (and updated) notes from coredata to dropbox
 
 - (void)mergeSyncChanges:(NSNotification *)note {
-    // Propagate changes to dropbox (if we have a dropbox store attached).
     if(self.syncControllerReady) {
+        // Propagate changes to dropbox (if we have a dropbox store attached).
         NSDictionary *info = note.userInfo;
         NSSet *insertedObjects = [info objectForKey:NSInsertedObjectsKey];
         NSSet *deletedObjects = [info objectForKey:NSDeletedObjectsKey];
@@ -268,6 +276,7 @@
             [[DBFilesystem sharedFilesystem] deletePath:fileInfo.path error:&error];
         }
     }
+    DLog(@"note %@ copied to dropbox.", note.title);
 }
 
 - (void)deleteNoteInDropbox:(Note *)note {
