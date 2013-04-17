@@ -21,6 +21,7 @@
 
 @property (nonatomic) NSDateFormatter *dateFormatter;
 @property MBProgressHUD *hud;
+@property (atomic) BOOL dropboxSyncronizedSomething;
 
 @property NSTimer *syncStatusTimer;
 
@@ -33,6 +34,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.dropboxSyncronizedSomething = YES;
     [self loadPreviousSearchKeys];
     // Set some sane defaults
     self.appDelegate = (IAMAppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -97,8 +99,17 @@
 -(void)syncStatus:(NSTimer *)timer {
     DBSyncStatus status = [[DBFilesystem sharedFilesystem] status];
     NSMutableString *title = [[NSMutableString alloc] initWithString:@"DB "];
-    if(!status)
+    if(!status) {
+        // If all is quiet and dropbox says it's fully synced (and it was not before), then reload.
         [title appendString:@"✔"];
+        if(self.dropboxSyncronizedSomething) {
+            DLog(@"Dropbox synced everything, time to reload!");
+            self.dropboxSyncronizedSomething = NO;
+            [[IAMDataSyncController sharedInstance] refreshContentFromRemote];
+        }
+    } else {
+        self.dropboxSyncronizedSomething = YES;
+    }
     if(status & DBSyncStatusOnline)
         [title appendString:@"📡"];
     if(status & DBSyncStatusSyncing)
@@ -197,7 +208,9 @@
 //        DLog(@"Deleted a %@", obj.entity.name);
 //    }
     [self.managedObjectContext mergeChangesFromContextDidSaveNotification:note];
-    // No need to perform the fetch, the NSFetchedResultsController will detect the changes by itself
+    // Reset the moc, so we don't get changes back.
+    [self.managedObjectContext reset];
+    [self setupFetchExecAndReload];
 }
 
 - (void)reloadFetchedResults:(NSNotification *)note {

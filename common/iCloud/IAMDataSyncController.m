@@ -136,6 +136,37 @@
         NSSet *insertedObjects = [info objectForKey:NSInsertedObjectsKey];
         NSSet *deletedObjects = [info objectForKey:NSDeletedObjectsKey];
         NSSet *updatedObjects = [info objectForKey:NSUpdatedObjectsKey];
+        
+        DLog(@"MERGESYNCDEBUGSECTION - BEGIN");
+        DLog(@"Deleted objects");
+        for(NSManagedObject *obj in deletedObjects){
+            if([obj.entity.name isEqualToString:@"Attachment"]) {
+                DLog(@"D - An attachment %@ from note %@", ((Attachment *)obj).filename, ((Attachment *)obj).note.title);
+            } else {
+                DLog(@"D - A note %@", ((Note *)obj).title);
+            }
+        }
+        DLog(@"Inserted objects");
+        for(NSManagedObject *obj in insertedObjects){
+            // If attachment get the corresponding note to insert
+            if([obj.entity.name isEqualToString:@"Attachment"]) {
+                DLog(@"I - An attachment %@ for note %@", ((Attachment *)obj).filename, ((Attachment *)obj).note.title);
+            } else {
+                DLog(@"I - A note %@", ((Note *)obj).title);
+            }
+        }
+        DLog(@"Updated objects");
+        for(NSManagedObject *obj in updatedObjects){
+            // If attachment get the corresponding note to update
+            if([obj.entity.name isEqualToString:@"Attachment"]) {
+                DLog(@"U - An attachment %@ for note %@", ((Attachment *)obj).filename, ((Attachment *)obj).note.title);
+            } else {
+                DLog(@"U - A note %@", ((Note *)obj).title);
+            }
+        }
+        DLog(@"MERGESYNCDEBUGSECTION - END");
+
+        
         for(NSManagedObject *obj in deletedObjects){
             if([obj.entity.name isEqualToString:@"Attachment"]) {
                 DLog(@"Deleting the attachment %@ from note %@", ((Attachment *)obj).filename, ((Attachment *)obj).note.title);
@@ -264,7 +295,7 @@
     // Now ensure that no stale attachments are still in the dropbox
     NSArray *attachmentFiles = [[DBFilesystem sharedFilesystem] listFolder:attachmentPath error:&error];
     if(!attachmentFiles) {
-        DLog(@"Error reading attachment files %d for note %@", [error code], note.title);
+        DLog(@"note %@ copied to dropbox.", note.title);
         return;
     }
     for (DBFileInfo *fileInfo in attachmentFiles) {
