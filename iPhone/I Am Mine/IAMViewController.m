@@ -21,7 +21,9 @@
 
 @property (nonatomic) NSDateFormatter *dateFormatter;
 @property MBProgressHUD *hud;
+
 @property (atomic) BOOL dropboxSyncronizedSomething;
+@property (atomic) NSDate *lastDropboxSync;
 
 @property NSTimer *syncStatusTimer;
 
@@ -100,11 +102,12 @@
     DBSyncStatus status = [[DBFilesystem sharedFilesystem] status];
     NSMutableString *title = [[NSMutableString alloc] initWithString:@"DB "];
     if(!status) {
-        // If all is quiet and dropbox says it's fully synced (and it was not before), then reload.
+        // If all is quiet and dropbox says it's fully synced (and it was not before), then reload (only if last reload were more than 45 seconds ago).
         [title appendString:@"✔"];
-        if(self.dropboxSyncronizedSomething) {
-            DLog(@"Dropbox synced everything, time to reload!");
+        if(self.dropboxSyncronizedSomething && [self.lastDropboxSync timeIntervalSinceNow] < -45.0) {
+            DLog(@"Dropbox synced everything, time to reload! Last reload %.0f seconds ago", -[self.lastDropboxSync timeIntervalSinceNow]);
             self.dropboxSyncronizedSomething = NO;
+            self.lastDropboxSync = [NSDate date];
             [[IAMDataSyncController sharedInstance] refreshContentFromRemote];
         }
     } else {
@@ -129,8 +132,10 @@
 
 - (void)syncStoreNotificationHandler:(NSNotification *)note {
     IAMDataSyncController *controller = note.object;
-    if(controller.syncControllerReady)
+    if(controller.syncControllerReady) {
         [self refreshControlSetup];
+        self.lastDropboxSync = [NSDate date];
+    }
     else {
         self.refreshControl = nil;
         if(self.syncStatusTimer) {
