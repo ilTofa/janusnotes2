@@ -99,8 +99,9 @@
 }
 
 -(void)syncStatus:(NSTimer *)timer {
+    
     DBSyncStatus status = [[DBFilesystem sharedFilesystem] status];
-    NSMutableString *title = [[NSMutableString alloc] initWithString:@"DB "];
+    NSMutableString *title = [[NSMutableString alloc] initWithString:@"Sync "];
     if(!status) {
         // If all is quiet and dropbox says it's fully synced (and it was not before), then reload (only if last reload were more than 45 seconds ago).
         [title appendString:@"✔"];
@@ -110,15 +111,15 @@
             self.lastDropboxSync = [NSDate date];
             [[IAMDataSyncController sharedInstance] refreshContentFromRemote];
         }
-    } else {
-        self.dropboxSyncronizedSomething = YES;
     }
     if(status & DBSyncStatusOnline)
         [title appendString:@"📡"];
     if(status & DBSyncStatusSyncing)
         [title appendString:@"␖"];
-    if(status & DBSyncStatusDownloading)
+    if(status & DBSyncStatusDownloading) {
         [title appendString:@"↓"];
+        self.dropboxSyncronizedSomething = YES;
+    }
     if(status & DBSyncStatusUploading)
         [title appendString:@"↑"];
     self.title = title;
@@ -199,21 +200,8 @@
 
 - (void)mergeSyncChanges:(NSNotification *)note {
     DLog(@"Merging data from sync Engine");
-//    NSDictionary *info = note.userInfo;
-//    NSSet *insertedObjects = [info objectForKey:NSInsertedObjectsKey];
-//    NSSet *deletedObjects = [info objectForKey:NSDeletedObjectsKey];
-//    NSSet *updatedObjects = [info objectForKey:NSUpdatedObjectsKey];
-//    for(NSManagedObject *obj in updatedObjects){
-//        DLog(@"Updated a %@", obj.entity.name);
-//    }
-//    for(NSManagedObject *obj in insertedObjects){
-//        DLog(@"Inserted a %@", obj.entity.name);
-//    }
-//    for(NSManagedObject *obj in deletedObjects){
-//        DLog(@"Deleted a %@", obj.entity.name);
-//    }
     [self.managedObjectContext mergeChangesFromContextDidSaveNotification:note];
-    // Reset the moc, so we don't get changes back.
+    // Reset the moc, so we don't get changes back to the background moc.
     [self.managedObjectContext reset];
     [self setupFetchExecAndReload];
 }
@@ -306,58 +294,6 @@
     [self.tableView reloadData];
 }
 
-/*
-- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
-{
-    [self.tableView beginUpdates];
-}
-
-- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
-           atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
-    switch(type) {
-        case NSFetchedResultsChangeInsert:
-            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex]
-                          withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        case NSFetchedResultsChangeDelete:
-            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex]
-                          withRowAnimation:UITableViewRowAnimationFade];
-            break;
-    }
-}
-
-- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
-       atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
-      newIndexPath:(NSIndexPath *)newIndexPath
-{
-    UITableView *tableView = self.tableView;
-    
-    switch(type) {
-        case NSFetchedResultsChangeInsert:
-            [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationNone];
-            break;
-            
-        case NSFetchedResultsChangeDelete:
-            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-            break;
-            
-        case NSFetchedResultsChangeMove:
-            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-            [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationNone];
-            break;
-            
-        case NSFetchedResultsChangeUpdate:
-            [self configureCell:(IAMNoteCell *)[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
-            break;
-    }
-}
-
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
-{
-    [self.tableView endUpdates];
-}
-*/
 #pragma mark - Table view data source
 
 - (void)configureCell:(IAMNoteCell *)cell atIndexPath:(NSIndexPath *)indexPath
@@ -368,10 +304,7 @@
     [[GTThemer sharedInstance] applyColorsToLabel:cell.noteTextLabel withFontSize:12];
     cell.noteTextLabel.text = note.text;
     [[GTThemer sharedInstance] applyColorsToLabel:cell.dateLabel withFontSize:10];
-    if(fabs([note.timeStamp timeIntervalSinceDate:note.creationDate]) < 2)
-        cell.dateLabel.text = [NSString stringWithFormat:@"%@, never modified", [self.dateFormatter stringFromDate:note.creationDate]];
-    else
-        cell.dateLabel.text = [NSString stringWithFormat:@"%@, modified %@", [self.dateFormatter stringFromDate:note.creationDate], [note.timeStamp gt_timePassed]];
+    cell.dateLabel.text = [self.dateFormatter stringFromDate:note.creationDate];
     [[GTThemer sharedInstance] applyColorsToLabel:cell.attachmentsQuantityLabel withFontSize:10];
     NSUInteger attachmentsQuantity = 0;
     if(note.attachment)
