@@ -24,7 +24,6 @@
 
 @property (atomic) BOOL dropboxSyncronizedSomething;
 @property (atomic) NSDate *lastDropboxSync;
-
 @property NSTimer *syncStatusTimer;
 
 @property IAMAppDelegate *appDelegate;

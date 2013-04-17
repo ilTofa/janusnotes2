@@ -18,6 +18,7 @@
 #import "GTThemer.h"
 #import "IAMPreferencesController.h"
 #import "IAMDataSyncController.h"
+#import "MBProgressHUD.h"
 
 @interface IAMiPadViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UIActionSheetDelegate>
 
@@ -26,6 +27,11 @@
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (strong, nonatomic) NSString *searchText;
+
+@property (atomic) BOOL dropboxSyncronizedSomething;
+@property (atomic) NSDate *lastDropboxSync;
+@property NSTimer *syncStatusTimer;
+@property MBProgressHUD *hud;
 
 @property (nonatomic) NSDateFormatter *dateFormatter;
 @property IAMAppDelegate *appDelegate;
@@ -36,6 +42,8 @@
 - (IBAction)deleteCell:(id)sender;
 
 @property UIStoryboardPopoverSegue* popSegue;
+
+- (IBAction)showPreferences:(id)sender;
 
 @end
 
@@ -55,6 +63,7 @@
     [super viewDidLoad];
     self.objectChanges = [NSMutableArray array];
     self.sectionChanges = [NSMutableArray array];
+    self.dropboxSyncronizedSomething = YES;
     [self loadPreviousSearchKeys];
     // Set some sane defaults
     self.appDelegate = (IAMAppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -64,6 +73,8 @@
 	[self.dateFormatter setDateStyle:NSDateFormatterMediumStyle];
 	[self.dateFormatter setTimeStyle:NSDateFormatterShortStyle];
     [self.dateFormatter setDoesRelativeDateFormatting:YES];
+    // Left button
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Prefs" style:UIBarButtonItemStylePlain target:self action:@selector(showPreferences:)];
     // Notifications to be honored during controller lifecycle
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadFetchedResults:) name:NSPersistentStoreCoordinatorStoresDidChangeNotification object:self.appDelegate.coreDataController.psc];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadFetchedResults:) name:NSPersistentStoreDidImportUbiquitousContentChangesNotification object:self.appDelegate.coreDataController.psc];
@@ -71,17 +82,23 @@
     NSManagedObjectContext *syncMOC = [IAMDataSyncController sharedInstance].dataSyncThreadContext;
     NSAssert(syncMOC, @"The Managed Object Context for the Sync Engine is still not set while setting main view.");
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mergeSyncChanges:) name:NSManagedObjectContextDidSaveNotification object:syncMOC];
+    if([IAMDataSyncController sharedInstance].syncControllerReady)
+        [self refreshControlSetup];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(syncStoreNotificationHandler:) name:kIAMDataSyncControllerReady object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(syncStoreNotificationHandler:) name:kIAMDataSyncControllerStopped object:nil];
     [self setupFetchExecAndReload];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    DLog(@"This is IAMiPadViewController:viewDidAppear:");
     [super viewDidAppear:animated];
-    // If we're getting back from an edit without saving...
-    if([self.managedObjectContext hasChanges])
-        [self.managedObjectContext rollback];
     [self colorize];
+    // if the dropbox backend have an user, but is not ready (that means it's waiting on something)
+    if([IAMDataSyncController sharedInstance].syncControllerInited && ![IAMDataSyncController sharedInstance].syncControllerReady) {
+        self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        self.hud.labelText = NSLocalizedString(@"Waiting for Dropbox", nil);
+        self.hud.detailsLabelText = NSLocalizedString(@"First sync in progress, please wait.", nil);
+    }
 }
 
 -(void)colorize
@@ -97,6 +114,70 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)refreshControlSetup {
+    // Here we are sure there is an active dropbox link
+    self.navigationItem.leftBarButtonItem = nil;
+    NSArray *leftButtons = @[[[UIBarButtonItem alloc] initWithTitle:@"Prefs" style:UIBarButtonItemStylePlain target:self action:@selector(showPreferences:)],
+                             [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)]];
+    self.navigationItem.leftBarButtonItems = leftButtons;
+    self.syncStatusTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(syncStatus:) userInfo:nil repeats:YES];
+}
+
+-(void)syncStatus:(NSTimer *)timer {
+    
+    DBSyncStatus status = [[DBFilesystem sharedFilesystem] status];
+    NSMutableString *title = [[NSMutableString alloc] initWithString:@"Sync "];
+    if(!status) {
+        // If all is quiet and dropbox says it's fully synced (and it was not before), then reload (only if last reload were more than 45 seconds ago).
+        [title appendString:@"✔"];
+        if(self.dropboxSyncronizedSomething && [self.lastDropboxSync timeIntervalSinceNow] < -45.0) {
+            DLog(@"Dropbox synced everything, time to reload! Last reload %.0f seconds ago", -[self.lastDropboxSync timeIntervalSinceNow]);
+            self.dropboxSyncronizedSomething = NO;
+            self.lastDropboxSync = [NSDate date];
+            [[IAMDataSyncController sharedInstance] refreshContentFromRemote];
+        }
+    }
+    if(status & DBSyncStatusOnline)
+        [title appendString:@"📡"];
+    if(status & DBSyncStatusSyncing)
+        [title appendString:@"␖"];
+    if(status & DBSyncStatusDownloading) {
+        [title appendString:@"↓"];
+        self.dropboxSyncronizedSomething = YES;
+    }
+    if(status & DBSyncStatusUploading)
+        [title appendString:@"↑"];
+    self.title = title;
+}
+
+-(void)refresh {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(endSyncNotificationHandler:) name:kIAMDataSyncRefreshTerminated object:nil];
+    [[IAMDataSyncController sharedInstance] refreshContentFromRemote];
+}
+
+- (void)syncStoreNotificationHandler:(NSNotification *)note {
+    IAMDataSyncController *controller = note.object;
+    if(controller.syncControllerReady) {
+        [self refreshControlSetup];
+        self.lastDropboxSync = [NSDate date];
+    }
+    else {
+        if(self.syncStatusTimer) {
+            [self.syncStatusTimer invalidate];
+            self.syncStatusTimer = nil;
+        }
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Prefs" style:UIBarButtonItemStylePlain target:self action:@selector(showPreferences:)];
+    }
+    if(self.hud) {
+        [self.hud hide:YES];
+        self.hud = nil;
+    }
+}
+
+- (void)endSyncNotificationHandler:(NSNotification *)note {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kIAMDataSyncRefreshTerminated object:nil];
 }
 
 #pragma mark -
@@ -161,7 +242,11 @@
 }
 
 - (void)mergeSyncChanges:(NSNotification *)note {
+    DLog(@"Merging data from sync Engine");
     [self.managedObjectContext mergeChangesFromContextDidSaveNotification:note];
+    // Reset the moc, so we don't get changes back to the background moc.
+    self.fetchedResultsController = nil;
+    [self.managedObjectContext reset];
     [self setupFetchExecAndReload];
 }
 
@@ -274,10 +359,7 @@
     [[GTThemer sharedInstance] applyColorsToLabel:cell.noteTextLabel withFontSize:12];
     cell.noteTextLabel.text = note.text;
     [[GTThemer sharedInstance] applyColorsToLabel:cell.dateLabel withFontSize:10];
-    if(fabs([note.timeStamp timeIntervalSinceDate:note.creationDate]) < 2)
-        cell.dateLabel.text = [NSString stringWithFormat:@"%@, never modified", [self.dateFormatter stringFromDate:note.creationDate]];
-    else
-        cell.dateLabel.text = [NSString stringWithFormat:@"%@, modified %@", [self.dateFormatter stringFromDate:note.creationDate], [note.timeStamp gt_timePassed]];
+    cell.dateLabel.text = [self.dateFormatter stringFromDate:note.creationDate];
     [[GTThemer sharedInstance] applyColorsToLabel:cell.attachmentsQuantityLabel withFontSize:10];
     NSUInteger attachmentsQuantity = 0;
     if(note.attachment)
@@ -551,4 +633,6 @@
     }
 }
 
+- (IBAction)showPreferences:(id)sender {
+}
 @end
