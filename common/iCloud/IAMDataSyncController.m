@@ -16,6 +16,40 @@
 #define kNotesExtension @"txt"
 #define kAttachmentDirectory @"Attachments"
 
+#pragma mark - filename helpers
+
+NSString * convertToValidDropboxFilenames(NSString * originalString) {
+    NSMutableString * temp = [originalString mutableCopy];
+    
+    [temp replaceOccurrencesOfString:@"%" withString:@"%25" options:0 range:NSMakeRange(0, [temp length])];
+    [temp replaceOccurrencesOfString:@"/" withString:@"%2f" options:0 range:NSMakeRange(0, [temp length])];
+    [temp replaceOccurrencesOfString:@"\\" withString:@"%5c" options:0 range:NSMakeRange(0, [temp length])];
+    [temp replaceOccurrencesOfString:@"<" withString:@"%3c" options:0 range:NSMakeRange(0, [temp length])];
+    [temp replaceOccurrencesOfString:@">" withString:@"%3e" options:0 range:NSMakeRange(0, [temp length])];
+    [temp replaceOccurrencesOfString:@":" withString:@"%3a" options:0 range:NSMakeRange(0, [temp length])];
+    [temp replaceOccurrencesOfString:@"\"" withString:@"%22" options:0 range:NSMakeRange(0, [temp length])];
+    [temp replaceOccurrencesOfString:@"|" withString:@"%7c" options:0 range:NSMakeRange(0, [temp length])];
+    [temp replaceOccurrencesOfString:@"?" withString:@"%3f" options:0 range:NSMakeRange(0, [temp length])];
+    [temp replaceOccurrencesOfString:@"*" withString:@"%2a" options:0 range:NSMakeRange(0, [temp length])];
+    return temp;
+}
+
+NSString * convertFromValidDropboxFilenames(NSString * originalString) {
+    NSMutableString * temp = [originalString mutableCopy];
+    
+    [temp replaceOccurrencesOfString:@"%2f" withString:@"/" options:0 range:NSMakeRange(0, [temp length])];
+    [temp replaceOccurrencesOfString:@"%5c" withString:@"\\" options:0 range:NSMakeRange(0, [temp length])];
+    [temp replaceOccurrencesOfString:@"%3c" withString:@"<" options:0 range:NSMakeRange(0, [temp length])];
+    [temp replaceOccurrencesOfString:@"%3e" withString:@">" options:0 range:NSMakeRange(0, [temp length])];
+    [temp replaceOccurrencesOfString:@"%3a" withString:@":" options:0 range:NSMakeRange(0, [temp length])];
+    [temp replaceOccurrencesOfString:@"%22" withString:@"\"" options:0 range:NSMakeRange(0, [temp length])];
+    [temp replaceOccurrencesOfString:@"%7c" withString:@"|" options:0 range:NSMakeRange(0, [temp length])];
+    [temp replaceOccurrencesOfString:@"%3f" withString:@"?" options:0 range:NSMakeRange(0, [temp length])];
+    [temp replaceOccurrencesOfString:@"%2a" withString:@"*" options:0 range:NSMakeRange(0, [temp length])];
+    [temp replaceOccurrencesOfString:@"%25" withString:@"%" options:0 range:NSMakeRange(0, [temp length])];
+    return temp;
+}
+
 @interface IAMDataSyncController() {
     dispatch_queue_t _syncQueue;
     NSLock *_deletedLock, *_mutatedLock;
@@ -259,7 +293,7 @@
         DLog(@"Creating folder to save note. Error could be 'normal'. Error %d creating folder at %@.", [error code], [notePath stringValue]);
     }
     // write note
-    NSString *encodedTitle = [note.title stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *encodedTitle = convertToValidDropboxFilenames(note.title);
     if(![[encodedTitle pathExtension] isEqualToString:kNotesExtension])
         encodedTitle = [encodedTitle stringByAppendingFormat:@".%@", kNotesExtension];
     DBPath *noteTextPath = [notePath childPath:encodedTitle];
@@ -278,7 +312,7 @@
     DBPath *attachmentPath = [notePath childPath:kAttachmentDirectory];
     for (Attachment *attachment in note.attachment) {
         // write attachment
-        NSString *encodedAttachmentName = [attachment.filename stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSString *encodedAttachmentName = convertToValidDropboxFilenames(attachment.filename);
         DBPath *attachmentDataPath = [attachmentPath childPath:encodedAttachmentName];
         DBFile *attachmentDataFile = [[DBFilesystem sharedFilesystem] openFile:attachmentDataPath error:&error];
         if(!attachmentDataFile) {
@@ -393,7 +427,7 @@
             DLog(@"Copying note at path %@ to CoreData", fileInfo.path.name);
             newNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:self.dataSyncThreadContext];
             newNote.uuid = pathToNoteDir.name;
-            NSString *titolo = [fileInfo.path.name stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            NSString *titolo = convertFromValidDropboxFilenames(fileInfo.path.name);
             if([titolo hasSuffix:kNotesExtension]) {
                 titolo = [titolo substringToIndex:([titolo length] - 4)];
             }
