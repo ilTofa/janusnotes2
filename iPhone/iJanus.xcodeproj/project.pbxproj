@@ -11,7 +11,6 @@
 		640D40BE16D5128B003034B3 /* IAMNoteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 640D40BD16D5128B003034B3 /* IAMNoteCell.m */; };
 		640D40C016D6DF92003034B3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 640D40BF16D6DF92003034B3 /* CoreData.framework */; };
 		640D40C216D6DFAF003034B3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 640D40C116D6DFAF003034B3 /* CoreLocation.framework */; };
-		64101E2716EF6B4A0086AD5F /* IAMiPadSectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 64101E2616EF6B4A0086AD5F /* IAMiPadSectionHeader.m */; };
 		64101E3216F087D80086AD5F /* 1_CellBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 64101E2A16F087D80086AD5F /* 1_CellBackground.png */; };
 		64101E3316F087D80086AD5F /* 1_CellBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64101E2B16F087D80086AD5F /* 1_CellBackground@2x.png */; };
 		64101E3416F087D80086AD5F /* 2_CellBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 64101E2C16F087D80086AD5F /* 2_CellBackground.png */; };
@@ -24,8 +23,6 @@
 		6416315916D831DB0004CB52 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6416315816D831DB0004CB52 /* MobileCoreServices.framework */; };
 		6416315D16D8345F0004CB52 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 6416315C16D8345F0004CB52 /* UIImage+RoundedCorner.m */; };
 		641A5EFC16ED463B00D3440C /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 641A5EFB16ED463B00D3440C /* MainStoryboard_iPad.storyboard */; };
-		641A5EFF16EDD1B600D3440C /* IAMiPadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 641A5EFE16EDD1B600D3440C /* IAMiPadViewController.m */; };
-		641A5F0216EDD37F00D3440C /* IAMiPadNoteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 641A5F0116EDD37F00D3440C /* IAMiPadNoteCell.m */; };
 		641D954416E8CF6E00A253E3 /* IAMAttachmentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 641D954316E8CF6E00A253E3 /* IAMAttachmentDetailViewController.m */; };
 		6429F2C81716FBD60030E932 /* NSString+UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 6429F2C71716FBD60030E932 /* NSString+UUID.m */; };
 		6433103E16E0A85D0064EC5C /* UIViewController+GTFrames.m in Sources */ = {isa = PBXBuildFile; fileRef = 6433103D16E0A85D0064EC5C /* UIViewController+GTFrames.m */; };
@@ -96,8 +93,6 @@
 		640D40BD16D5128B003034B3 /* IAMNoteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IAMNoteCell.m; path = "List Cells/IAMNoteCell.m"; sourceTree = "<group>"; };
 		640D40BF16D6DF92003034B3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		640D40C116D6DFAF003034B3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		64101E2516EF6B4A0086AD5F /* IAMiPadSectionHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMiPadSectionHeader.h; sourceTree = "<group>"; };
-		64101E2616EF6B4A0086AD5F /* IAMiPadSectionHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMiPadSectionHeader.m; sourceTree = "<group>"; };
 		64101E2A16F087D80086AD5F /* 1_CellBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1_CellBackground.png; sourceTree = "<group>"; };
 		64101E2B16F087D80086AD5F /* 1_CellBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1_CellBackground@2x.png"; sourceTree = "<group>"; };
 		64101E2C16F087D80086AD5F /* 2_CellBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2_CellBackground.png; sourceTree = "<group>"; };
@@ -111,10 +106,6 @@
 		6416315B16D8345F0004CB52 /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
 		6416315C16D8345F0004CB52 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
 		641A5EFB16ED463B00D3440C /* MainStoryboard_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
-		641A5EFD16EDD1B600D3440C /* IAMiPadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMiPadViewController.h; sourceTree = "<group>"; };
-		641A5EFE16EDD1B600D3440C /* IAMiPadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMiPadViewController.m; sourceTree = "<group>"; };
-		641A5F0016EDD37F00D3440C /* IAMiPadNoteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMiPadNoteCell.h; sourceTree = "<group>"; };
-		641A5F0116EDD37F00D3440C /* IAMiPadNoteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMiPadNoteCell.m; sourceTree = "<group>"; };
 		641D954216E8CF6E00A253E3 /* IAMAttachmentDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMAttachmentDetailViewController.h; sourceTree = "<group>"; };
 		641D954316E8CF6E00A253E3 /* IAMAttachmentDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMAttachmentDetailViewController.m; sourceTree = "<group>"; };
 		6429F2C61716FBD60030E932 /* NSString+UUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+UUID.h"; path = "../common/Utilitites/NSString+UUID.h"; sourceTree = "<group>"; };
@@ -261,19 +252,6 @@
 			path = Images/CellBackgrounds;
 			sourceTree = "<group>";
 		};
-		641A5F0316EDD38800D3440C /* Main View (iPad) */ = {
-			isa = PBXGroup;
-			children = (
-				641A5EFD16EDD1B600D3440C /* IAMiPadViewController.h */,
-				641A5EFE16EDD1B600D3440C /* IAMiPadViewController.m */,
-				641A5F0016EDD37F00D3440C /* IAMiPadNoteCell.h */,
-				641A5F0116EDD37F00D3440C /* IAMiPadNoteCell.m */,
-				64101E2516EF6B4A0086AD5F /* IAMiPadSectionHeader.h */,
-				64101E2616EF6B4A0086AD5F /* IAMiPadSectionHeader.m */,
-			);
-			name = "Main View (iPad)";
-			sourceTree = "<group>";
-		};
 		641D954116E8CD8200A253E3 /* Note Edit */ = {
 			isa = PBXGroup;
 			children = (
@@ -396,7 +374,6 @@
 				640D40BB16D5123C003034B3 /* Main View (iPhone) */,
 				64A0507E16D28CCA0025E179 /* IAMAppDelegate.h */,
 				64A0507F16D28CCA0025E179 /* IAMAppDelegate.m */,
-				641A5F0316EDD38800D3440C /* Main View (iPad) */,
 				64101E2816F087CF0086AD5F /* Themes */,
 				64A0508716D28CCA0025E179 /* MainStoryboard.storyboard */,
 				641A5EFB16ED463B00D3440C /* MainStoryboard_iPad.storyboard */,
@@ -576,9 +553,6 @@
 				64A8A7E616E7B4770013AFFF /* IAMAttachmentCell.m in Sources */,
 				641D954416E8CF6E00A253E3 /* IAMAttachmentDetailViewController.m in Sources */,
 				64BB200F16EA000E00FE6C77 /* GTThemer.m in Sources */,
-				641A5EFF16EDD1B600D3440C /* IAMiPadViewController.m in Sources */,
-				641A5F0216EDD37F00D3440C /* IAMiPadNoteCell.m in Sources */,
-				64101E2716EF6B4A0086AD5F /* IAMiPadSectionHeader.m in Sources */,
 				64A755831702137A0085933D /* MicrophoneWindow.m in Sources */,
 				64F9AC4D1704544800299C1B /* UIImage+FixOrientation.m in Sources */,
 				6429F2C81716FBD60030E932 /* NSString+UUID.m in Sources */,
