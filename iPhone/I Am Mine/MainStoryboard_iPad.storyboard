@@ -206,26 +206,29 @@ Label riga 3</string>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Notes" id="H8f-sb-BPG">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="TQc-eN-hxg">
+                        <barButtonItem key="leftBarButtonItem" title="Preferences" id="qIB-nN-cad">
                             <connections>
-                                <segue destination="Ucd-PA-4nx" kind="push" identifier="AddTextNote" id="Lhk-Bk-9mN"/>
+                                <segue destination="qUU-3D-CI1" kind="popover" identifier="Preferences" popoverAnchorBarButtonItem="qIB-nN-cad" id="1Zq-4z-OrZ">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="EDt-TX-pWW"/>
                     </navigationItem>
                     <connections>
-                        <segue destination="qUU-3D-CI1" kind="push" identifier="Preferences" id="nbR-Hd-pkE"/>
+                        <outlet property="preferencesButton" destination="qIB-nN-cad" id="xrd-RH-Tth"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sN5-2v-xNr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3066" y="2268"/>
+            <point key="canvasLocation" x="3074" y="2296"/>
         </scene>
         <!--Preferences-->
         <scene sceneID="NWX-UV-lWp">
             <objects>
                 <tableViewController id="qUU-3D-CI1" userLabel="Preferences" customClass="IAMPreferencesController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="m2g-ct-feZ">
-                        <rect key="frame" x="0.0" y="64" width="400" height="720"/>
+                        <rect key="frame" x="0.0" y="20" width="400" height="720"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <toolbar key="tableHeaderView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="bzj-li-bxy">
@@ -871,6 +874,7 @@ Label riga 3</string>
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IAMViewController.h"/>
             <relationships>
                 <relationship kind="action" name="launchPreferences:"/>
+                <relationship kind="outlet" name="preferencesButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
             </relationships>
         </class>
@@ -914,7 +918,4 @@ Label riga 3</string>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
-    <inferredMetricsTieBreakers>
-        <segue reference="XGh-vq-uwL"/>
-    </inferredMetricsTieBreakers>
 </document>

@@ -75,6 +75,11 @@ Label riga 3</string>
                         </prototypes>
                     </tableView>
                     <navigationItem key="navigationItem" title="Notes" id="Qev-6j-uPA">
+                        <barButtonItem key="leftBarButtonItem" title="Prefs" id="iVc-Ij-d3T">
+                            <connections>
+                                <segue destination="h9Z-1e-A0P" kind="push" identifier="Preferences" id="E0F-ga-xyu"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="N2Q-cH-vbh">
                             <connections>
                                 <segue destination="aYD-Rr-6C9" kind="push" identifier="AddTextNote" id="klE-Tc-QFq"/>
@@ -82,8 +87,8 @@ Label riga 3</string>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="preferencesButton" destination="iVc-Ij-d3T" id="FbY-eO-oin"/>
                         <outlet property="searchBar" destination="S1E-lU-tyc" id="FDm-If-qSz"/>
-                        <segue destination="h9Z-1e-A0P" kind="push" identifier="Preferences" id="LMA-Aw-2O7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
@@ -681,10 +686,8 @@ Label riga 3</string>
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IAMNoteEdit.h"/>
             <relationships>
                 <relationship kind="action" name="addImageToNote:"/>
-                <relationship kind="action" name="done:"/>
                 <relationship kind="action" name="recordAudio:"/>
                 <relationship kind="action" name="save:"/>
-                <relationship kind="action" name="shareAction:"/>
                 <relationship kind="outlet" name="addImageButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="attachmentQuantityLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="attachmentsGreyRow" candidateClass="UIImageView"/>
@@ -711,6 +714,7 @@ Label riga 3</string>
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IAMViewController.h"/>
             <relationships>
                 <relationship kind="action" name="launchPreferences:"/>
+                <relationship kind="outlet" name="preferencesButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
             </relationships>
         </class>

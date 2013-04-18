@@ -16,6 +16,7 @@
 #import "GTThemer.h"
 #import "IAMDataSyncController.h"
 #import "MBProgressHUD.h"
+#import "IAMPreferencesController.h"
 
 @interface IAMViewController () <UISearchBarDelegate, NSFetchedResultsControllerDelegate>
 
@@ -26,7 +27,11 @@
 @property (atomic) NSDate *lastDropboxSync;
 @property NSTimer *syncStatusTimer;
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *preferencesButton;
+
 @property IAMAppDelegate *appDelegate;
+
+@property UIStoryboardPopoverSegue* popSegue;
 
 @end
 
@@ -45,12 +50,13 @@
 	[self.dateFormatter setDateStyle:NSDateFormatterMediumStyle];
 	[self.dateFormatter setTimeStyle:NSDateFormatterShortStyle];
     [self.dateFormatter setDoesRelativeDateFormatting:YES];
-    NSArray *leftButtons = @[self.editButtonItem,
-                             [[UIBarButtonItem alloc] initWithTitle:@"Prefs" style:UIBarButtonItemStylePlain target:self action:@selector(launchPreferences:)]];
+    NSArray *leftButtons = @[self.editButtonItem, self.preferencesButton];
     self.navigationItem.leftBarButtonItems = leftButtons;
     // Notifications to be honored during controller lifecycle
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadFetchedResults:) name:NSPersistentStoreCoordinatorStoresDidChangeNotification object:self.appDelegate.coreDataController.psc];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadFetchedResults:) name:NSPersistentStoreDidImportUbiquitousContentChangesNotification object:self.appDelegate.coreDataController.psc];
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismissPopoverRequested:) name:kPreferencesPopoverCanBeDismissed object:nil];
     NSManagedObjectContext *syncMOC = [IAMDataSyncController sharedInstance].dataSyncThreadContext;
     NSAssert(syncMOC, @"The Managed Object Context for the Sync Engine is still not set while setting main view.");
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mergeSyncChanges:) name:NSManagedObjectContextDidSaveNotification object:syncMOC];
@@ -406,6 +412,14 @@
 
 #pragma mark Segues
 
+-(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+    // If on iPad and we already have an active popover for preferences, don't perform segue
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && [identifier isEqualToString:@"Preferences"] && [self.popSegue.popoverController isPopoverVisible])
+        return NO;
+    return YES;
+}
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"AddTextNote"])
@@ -424,6 +438,19 @@
         selectedNote.timeStamp = [NSDate date];
         noteEditor.editedNote = selectedNote;
         noteEditor.moc = self.managedObjectContext;
+    }
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && [[segue identifier] isEqualToString:@"Preferences"])
+        self.popSegue = (UIStoryboardPopoverSegue *)segue;
+}
+
+- (void)dismissPopoverRequested:(NSNotification *) notification
+{
+    DLog(@"This is dismissPopoverRequested: called for %@", notification.object);
+    if ([self.popSegue.popoverController isPopoverVisible])
+    {
+        [self.popSegue.popoverController dismissPopoverAnimated:YES];
+        self.popSegue = nil;
+        [self colorize];
     }
 }
 
