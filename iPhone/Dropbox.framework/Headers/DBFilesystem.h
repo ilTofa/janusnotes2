@@ -107,6 +107,11 @@ typedef NSUInteger DBSyncStatus;
 
 /** @name Watching for changes */
 
+/** Add an observer to be notified any time a property of the filesystem changes.
+
+ The block will be called anytime completedFirstSync, shutDown, or status changes. */
+- (BOOL)addObserver:(id)observer block:(DBObserver)block;
+
 /** Add an observer to be notified any time the file or folder at `path` changes. */
 - (BOOL)addObserver:(id)observer forPath:(DBPath *)path block:(DBObserver)block;
 

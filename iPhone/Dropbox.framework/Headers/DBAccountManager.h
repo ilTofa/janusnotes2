@@ -50,8 +50,16 @@ typedef void (^DBAccountManagerObserver)(DBAccount *account);
 
 /** @name Getting the current state */
 
-/** The currently linked account, or `nil` if there are no accounts currently linked. */
+/** The currently linked account, or `nil` if there are no accounts currently linked.
+
+ If your app needs to link multiple accounts at the same time, you should always use the
+ <linkedAccounts> property. */
 @property (nonatomic, readonly) DBAccount *linkedAccount;
+
+/** All currently linked accounts, or `nil` if there are no accounts currently linked.
+
+ The accounts are ordered from the least recently to the most recently linked. */
+@property (nonatomic, readonly) NSArray *linkedAccounts;
 
 
 /** @name Watching for changes */
