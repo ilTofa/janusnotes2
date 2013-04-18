@@ -215,7 +215,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		640D40BB16D5123C003034B3 /* Main View (iPhone) */ = {
+		640D40BB16D5123C003034B3 /* Main View */ = {
 			isa = PBXGroup;
 			children = (
 				64A0508A16D28CCA0025E179 /* IAMViewController.h */,
@@ -223,7 +223,7 @@
 				640D40BC16D5128B003034B3 /* IAMNoteCell.h */,
 				640D40BD16D5128B003034B3 /* IAMNoteCell.m */,
 			);
-			name = "Main View (iPhone)";
+			name = "Main View";
 			sourceTree = "<group>";
 		};
 		64101E2816F087CF0086AD5F /* Themes */ = {
@@ -371,7 +371,7 @@
 				64A755681702137A0085933D /* AudioRecord */,
 				6433103F16E0A8950064EC5C /* Utilities (iOS) */,
 				646602A216DBD373007622FC /* Images */,
-				640D40BB16D5123C003034B3 /* Main View (iPhone) */,
+				640D40BB16D5123C003034B3 /* Main View */,
 				64A0507E16D28CCA0025E179 /* IAMAppDelegate.h */,
 				64A0507F16D28CCA0025E179 /* IAMAppDelegate.m */,
 				64101E2816F087CF0086AD5F /* Themes */,

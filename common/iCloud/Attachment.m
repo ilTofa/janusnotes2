@@ -68,6 +68,8 @@
             tmp = @"Link";
         else if (UTTypeConformsTo(fileUTI, kUTTypeURL))
             tmp = @"Link";
+        else if([self.extension isEqualToString:@"url"])
+            tmp = @"Link";
         else
             tmp = @"Other";
         if(fileUTI)
