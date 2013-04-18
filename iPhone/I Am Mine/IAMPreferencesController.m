@@ -11,6 +11,13 @@
 #import "GTThemer.h"
 #import <Dropbox/Dropbox.h>
 
+typedef enum {
+    syncManagement = 0,
+    fontSelector,
+    sizeSelector,
+    colorSelector
+} sectionIdentifiers;
+
 @interface IAMPreferencesController ()
 
 @property NSInteger fontFace, fontSize, colorSet;
@@ -78,7 +85,7 @@
 {
     DLog(@"This is tableView didSelectRowAtIndexPath:%@", indexPath);
     // Dropbox
-    if(indexPath.section == 0) {
+    if(indexPath.section == syncManagement) {
         if(self.dropboxLinked) {
             DLog(@"Logout from dropbox");
             [[[DBAccountManager sharedManager] linkedAccount] unlink];
@@ -94,19 +101,19 @@
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
     // Change font
-    if(indexPath.section == 1) {
-        NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:self.fontFace inSection:0];
+    if(indexPath.section == fontSelector) {
+        NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:self.fontFace inSection:fontSelector];
         DLog(@"Changing font from %d to %d.", self.fontFace, indexPath.row);
         [tableView deselectRowAtIndexPath:oldIndexPath animated:YES];
         self.fontFace = indexPath.row;
     }
     // Change colors
-    if(indexPath.section == 3) {
+    if(indexPath.section == colorSelector) {
         NSInteger oldColorsSet = [[GTThemer sharedInstance] getStandardColorsID];
         DLog(@"Changing colors set from %d to %d.", oldColorsSet, indexPath.row);
         UITableViewCell * tableCell = [self.tableView cellForRowAtIndexPath:indexPath];
         tableCell.accessoryType = UITableViewCellAccessoryCheckmark;
-        NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:oldColorsSet inSection:2];
+        NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:oldColorsSet inSection:colorSelector];
         tableCell = [self.tableView cellForRowAtIndexPath:oldIndexPath];
         tableCell.accessoryType = UITableViewCellAccessoryNone;
         [tableView deselectRowAtIndexPath:oldIndexPath animated:YES];
@@ -119,9 +126,9 @@
 {
     DLog(@"This is tableView willDeselectRowAtIndexPath: %@", indexPath);
     // Don't deselect the selected row.
-    if(indexPath.section == 1 && indexPath.row == self.fontFace)
+    if(indexPath.section == fontSelector && indexPath.row == self.fontFace)
         return nil;
-    if(indexPath.section == 3 && indexPath.row == self.colorSet)
+    if(indexPath.section == colorSelector && indexPath.row == self.colorSet)
         return nil;
     return indexPath;
 }
