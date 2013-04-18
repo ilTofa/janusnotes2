@@ -121,8 +121,6 @@
     } else {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     }
-    if(status & DBSyncStatusOnline)
-        [title appendString:@"📡"];
     if(status & DBSyncStatusSyncing)
         [title appendString:@"␖"];
     if(status & DBSyncStatusDownloading) {
