@@ -274,10 +274,10 @@
         newAttachment.uti = (__bridge NSString *)(kUTTypeImage);
         newAttachment.extension = (__bridge_transfer NSString *)UTTypeCopyPreferredTagWithClass(kUTTypeImage, kUTTagClassFilenameExtension);
         if(!newAttachment.extension)
-            newAttachment.extension = @"png";
+            newAttachment.extension = @"jpg";
         newAttachment.filename = [NSString stringWithFormat:@"%@.%@", [[NSUUID UUID] UUIDString], newAttachment.extension];
         newAttachment.type = @"Image";
-        newAttachment.data = UIImagePNGRepresentation(pickedImage);
+        newAttachment.data = UIImageJPEGRepresentation(pickedImage, 0.5);
         // Now link attachment to the note
         newAttachment.note = self.editedNote;
         [self.editedNote addAttachmentObject:newAttachment];

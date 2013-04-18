@@ -65,7 +65,7 @@
         self.interationController.delegate = self;
         self.interationController.UTI = self.theAttachment.uti;
         if([self.theAttachment.type isEqualToString:@"Image"]) {
-            [self.theWebView loadData:self.theAttachment.data MIMEType:@"image/png" textEncodingName:nil baseURL:nil];
+            [self.theWebView loadData:self.theAttachment.data MIMEType:@"image/jpeg" textEncodingName:nil baseURL:nil];
         } else {
             [self.interationController presentOptionsMenuFromBarButtonItem:self.shareButton animated:YES];
         }
