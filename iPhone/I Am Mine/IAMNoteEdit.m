@@ -51,11 +51,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Keyboard notifications (iPhone only)
-//    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
-//    }
+    // Keyboard notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
     // Right button(s)
     self.saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save:)];
     self.doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];
@@ -127,7 +125,17 @@
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
     // Maximize edit view and change button.
-    if(textView == self.textEdit) {
+    if(textView == self.textEdit)
+    {
+        DLog(@"This is textViewDidBeginEditing: for the main text editor");
+        self.oldFrame = textView.frame;
+        [UIView animateWithDuration:0.2 animations:^{
+            [textView setFrame:[self gt_maximumUsableFrame]];
+            self.greyRowImage.alpha = self.titleEdit.alpha = 0.0;
+        }
+                         completion:^(BOOL finished){
+                             self.greyRowImage.hidden = self.titleEdit.hidden = YES;
+                         }];
         self.navigationItem.rightBarButtonItem = self.doneButton;
     }
 }
@@ -135,7 +143,14 @@
 - (void)textViewDidEndEditing:(UITextView *)textView
 {
     // Resize back the view.
-    if(textView == self.textEdit) {
+    if(textView == self.textEdit)
+    {
+        DLog(@"This is textViewDidEndEditing: for the main text editor");
+        self.greyRowImage.hidden = self.titleEdit.hidden = NO;
+        [UIView animateWithDuration:0.2 animations:^{
+            [textView setFrame:self.oldFrame];
+            self.greyRowImage.alpha = self.titleEdit.alpha = 1.0;
+        }];
         self.navigationItem.rightBarButtonItem = self.saveButton;
     }
 }
@@ -147,7 +162,7 @@
     CGRect kbRect = [info[UIKeyboardFrameBeginUserInfoKey] CGRectValue];
     kbRect = [self.view convertRect:kbRect toView:nil];
     CGSize kbSize = kbRect.size;
-    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height - self.titleEdit.bounds.size.height, 0.0);
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height + 12.0 /* - self.titleEdit.bounds.size.height */, 0.0);
     self.textEdit.contentInset = contentInsets;
     self.textEdit.scrollIndicatorInsets = contentInsets;
 }
