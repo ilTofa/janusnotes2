@@ -18,21 +18,18 @@
 #import "MicrophoneWindow.h"
 #import "GTThemer.h"
 #import "UIImage+FixOrientation.h"
+#import "IAMDataSyncController.h"
 
 @interface IAMNoteEdit () <UITextViewDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, IAMAddLinkViewControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, AttachmentDeleter, MicrophoneWindowDelegate>
 
 @property CGRect oldFrame;
 @property UIBarButtonItem *doneButton;
 @property UIBarButtonItem *saveButton;
-
+@property (copy) NSString *originalTitle;
 @property NSArray *attachmentsArray;
-
 @property(nonatomic, weak) IBOutlet UICollectionView *collectionView;
-
 @property (strong, nonatomic) MicrophoneWindow *recordView;
-
 @property BOOL attachmensAreHidden;
-
 @property UIPopoverController *popover;
 
 @end
@@ -60,7 +57,7 @@
     self.navigationItem.rightBarButtonItem = self.saveButton;
     // Preset the note
     [[GTThemer sharedInstance] applyColorsToView:self.titleEdit];
-    self.titleEdit.text = self.editedNote.title;
+    self.originalTitle = self.titleEdit.text = self.editedNote.title;
     self.textEdit.text = self.editedNote.text;
     [[GTThemer sharedInstance] applyColorsToView:self.textEdit];
     [[GTThemer sharedInstance] applyColorsToView:self.view];
@@ -191,6 +188,11 @@
     NSError *error;
     if(![self.moc save:&error])
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+    // If title is changed, delete old note (with wrong name)
+    if(![self.editedNote.title isEqualToString:self.originalTitle]) {
+        [[IAMDataSyncController sharedInstance] deleteNoteTextWithUUID:self.editedNote.uuid afterFilenameChangeFrom:self.originalTitle];
+        self.originalTitle = self.editedNote.title;
+    }
     // If called via action
     if(sender)
         [self.navigationController popToRootViewControllerAnimated:YES];

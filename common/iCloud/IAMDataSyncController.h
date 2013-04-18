@@ -23,5 +23,6 @@
 + (IAMDataSyncController *)sharedInstance;
 
 - (void)refreshContentFromRemote;
+- (void)deleteNoteTextWithUUID:(NSString *)uuid afterFilenameChangeFrom:(NSString *)oldFilename;
 
 @end

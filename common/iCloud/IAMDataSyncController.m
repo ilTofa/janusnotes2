@@ -347,6 +347,19 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
     DLog(@"note %@ copied to dropbox.", note.title);
 }
 
+- (void)deleteNoteTextWithUUID:(NSString *)uuid afterFilenameChangeFrom:(NSString *)oldFilename {
+    DLog(@"Delete note %@ in dropbox folder after change in filename from %@", uuid, oldFilename);
+    DBError *error;
+    NSString *encodedFilename = convertToValidDropboxFilenames(oldFilename);
+    encodedFilename = [encodedFilename stringByAppendingFormat:@".%@", kNotesExtension];
+    DBPath *noteTextPath = [[[DBPath root] childPath:uuid] childPath:encodedFilename];
+    if(![[DBFilesystem sharedFilesystem] deletePath:noteTextPath error:&error]) {
+        ALog(@"*** Error %d deleting note text after filename change at %@.", [error code], [noteTextPath stringValue]);
+    } else {
+        DLog(@"Note deleted.");
+    }
+}
+
 - (void)deleteNoteInDropbox:(Note *)note {
     DLog(@"Delete note in dropbox folder");
     DBError *error;
