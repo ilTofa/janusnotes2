@@ -109,6 +109,7 @@
     NSMutableString *title = [[NSMutableString alloc] initWithString:@"Sync "];
     if(!status) {
         // If all is quiet and dropbox says it's fully synced (and it was not before), then reload (only if last reload were more than 45 seconds ago).
+        title = [NSLocalizedString(@"Notes ", nil) mutableCopy];
         [title appendString:@"✔"];
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         if(self.dropboxSyncronizedSomething && [self.lastDropboxSync timeIntervalSinceNow] < -45.0) {
