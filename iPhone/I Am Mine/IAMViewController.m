@@ -104,12 +104,15 @@
     if(!status) {
         // If all is quiet and dropbox says it's fully synced (and it was not before), then reload (only if last reload were more than 45 seconds ago).
         [title appendString:@"✔"];
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         if(self.dropboxSyncronizedSomething && [self.lastDropboxSync timeIntervalSinceNow] < -45.0) {
             DLog(@"Dropbox synced everything, time to reload! Last reload %.0f seconds ago", -[self.lastDropboxSync timeIntervalSinceNow]);
             self.dropboxSyncronizedSomething = NO;
             self.lastDropboxSync = [NSDate date];
             [[IAMDataSyncController sharedInstance] refreshContentFromRemote];
         }
+    } else {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     }
     if(status & DBSyncStatusOnline)
         [title appendString:@"📡"];
@@ -280,8 +283,10 @@
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
             abort();
         }
-        else
+        else {
             [self.tableView reloadData];
+            [self colorize];
+        }
     }
     [self saveSearchKeys];
 }
