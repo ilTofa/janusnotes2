@@ -386,105 +386,117 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
         }
         // Get notes ids
         NSArray *filesAtRoot = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:self.syncDirectory
-                                                             includingPropertiesForKeys:@[NSURLIsDirectoryKey]
+                                                             includingPropertiesForKeys:@[NSURLIsDirectoryKey, NSURLNameKey]
                                                                                 options:NSDirectoryEnumerationSkipsHiddenFiles error:&error];
         if(!filesAtRoot) {
             ALog(@"Aborting. Error reading notes: %@", [error description]);
             [self.dataSyncThreadContext rollback];
             return;
         }
-        for (DBFileInfo *fileInfo in filesAtRoot) {
-            if(fileInfo.isFolder) {
-                if([self saveDropboxNoteToCoreData:fileInfo.path]) {
+        for (NSURL *fileInfo in filesAtRoot) {
+            NSNumber *isDirectory;
+            NSString *name;
+            if (![fileInfo getResourceValue:&name forKey:NSURLNameKey error:&error]) {
+                ALog(@"error looking for filename: %@", [error localizedDescription]);
+                error = nil;
+            }
+            if (![fileInfo getResourceValue:&isDirectory forKey:NSURLIsDirectoryKey error:&error]) {
+                ALog(@"Error looking for directory type: %@", [error localizedDescription]);
+                error = nil;
+            }
+            if(isDirectory) {
+                if([self saveDropboxNoteToCoreData:fileInfo]) {
                     if (![self.dataSyncThreadContext save:&error]) {
-                        ALog(@"Error copying note %@ from dropbox to core data, error: %@", fileInfo.path.stringValue, [error description]);
+                        ALog(@"Error copying note %@ from dropbox to core data, error: %@", name, [error description]);
                     }
                 }
             } else {
-                DLog(@"Deleting spurious file at notes dropbox root: %@ (%@)", fileInfo.path.name, fileInfo.modifiedTime);
-                [[DBFilesystem sharedFilesystem] deletePath:fileInfo.path error:&error];
+                DLog(@"Deleting spurious file at notes root: %@.", name);
+                [[NSFileManager defaultManager] removeItemAtURL:fileInfo error:&error];
             }
         }
         DLog(@"Syncronization end");
         dispatch_async(dispatch_get_main_queue(), ^{
             [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kIAMDataSyncRefreshTerminated object:self]];
-            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         });
     });
 }
 
 // Save the note from dropbox folder to CoreData
-- (BOOL)saveDropboxNoteToCoreData:(DBPath *)pathToNoteDir {
+- (BOOL)saveDropboxNoteToCoreData:(NSURL *)pathToNoteDir {
     // BEWARE that this code needs to be called in the _syncqueue dispatch_queue beacuse it's using dataSyncThreadContext
     Note *newNote = nil;
-    DBError *error;
-    NSMutableArray *filesInNoteDir = [[[DBFilesystem sharedFilesystem] listFolder:pathToNoteDir error:&error] mutableCopy];
+    NSError *error;
+    NSMutableArray *filesInNoteDir = [[[NSFileManager defaultManager] contentsOfDirectoryAtURL:pathToNoteDir
+                                                                    includingPropertiesForKeys:@[NSURLIsDirectoryKey, NSURLNameKey, NSURLContentModificationDateKey]
+                                                                                       options:NSDirectoryEnumerationSkipsHiddenFiles error:&error] mutableCopy];
     if(!filesInNoteDir) {
-        ALog(@"Aborting. Error reading notes: %d (%@)", [error code], [error description]);
+        ALog(@"Aborting. Error reading notes: %@", [error description]);
         return NO;
     }
-    for (DBFileInfo *fileInfo in filesInNoteDir) {
-        if(!fileInfo.isFolder) {
+    for (NSURL *fileInfo in filesInNoteDir) {
+        NSNumber *isDirectory;
+        NSString *name;
+        NSDate *modificationDate;
+        if (![fileInfo getResourceValue:&name forKey:NSURLNameKey error:&error]) {
+            ALog(@"error looking for filename: %@", [error localizedDescription]);
+            error = nil;
+        }
+        if (![fileInfo getResourceValue:&isDirectory forKey:NSURLIsDirectoryKey error:&error]) {
+            ALog(@"Error looking for directory type: %@", [error localizedDescription]);
+            error = nil;
+        }
+        if (![fileInfo getResourceValue:&modificationDate forKey:NSURLContentModificationDateKey error:&error]) {
+            ALog(@"Error looking for modificationDate: %@", [error localizedDescription]);
+            error = nil;
+        }
+        if(!isDirectory) {
             // This is the note
-            DLog(@"Copying note at path %@ to CoreData", fileInfo.path.name);
+            DLog(@"Copying note at path %@ to CoreData", name);
             newNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:self.dataSyncThreadContext];
-            newNote.uuid = pathToNoteDir.name;
-            NSString *titolo = convertFromValidDropboxFilenames(fileInfo.path.name);
+            newNote.uuid = [[pathToNoteDir path] lastPathComponent];
+            NSString *titolo = convertFromValidDropboxFilenames([[fileInfo path] lastPathComponent]);
             if([titolo hasSuffix:kNotesExtension]) {
                 titolo = [titolo substringToIndex:([titolo length] - 4)];
             }
             newNote.title = titolo;
-            newNote.creationDate = newNote.timeStamp = fileInfo.modifiedTime;
-            DBFile *noteOnDropbox = [[DBFilesystem sharedFilesystem] openFile:fileInfo.path error:&error];
-            if(!noteOnDropbox) {
-                ALog(@"Aborting note copy to coredata. Error opening note: %d (%@)", [error code], [error description]);
-                [self.dataSyncThreadContext rollback];
-                return NO;
-            }
-            if(!noteOnDropbox.status.state == DBFileStateIdle || !noteOnDropbox.status.cached) {
-                // If the file is not stable, abort copy
-                // TODO: make a queue for later loading
-                DLog(@"File for note %@ is still not ready to copy. State: %d. Cached: %d", fileInfo.path.stringValue, noteOnDropbox.status.state, noteOnDropbox.status.cached);
-                [self.dataSyncThreadContext rollback];
-                return NO;
-            }
-            newNote.text = [noteOnDropbox readString:&error];
+            newNote.creationDate = newNote.timeStamp = modificationDate;
+            newNote.text = [[NSString alloc] initWithContentsOfURL:fileInfo encoding:NSUTF8StringEncoding error:&error];
             if(!newNote.text) {
-                DLog(@"Serious error reading note %@: %d (%@)", fileInfo.path.stringValue, [error code], [error description]);
+                ALog(@"Serious error reading note %@: %@", fileInfo, [error description]);
             }
             break;
         }
     }
     // Now copy attachment(s) (if note exists)
     if(newNote) {
-        DBPath *attachmentsPath = [pathToNoteDir childPath:kAttachmentDirectory];
-        NSArray *filesInAttachmentDir = [[DBFilesystem sharedFilesystem] listFolder:attachmentsPath error:&error];
-        if(!filesInAttachmentDir) {
+        NSURL *attachmentsPath = [pathToNoteDir URLByAppendingPathComponent:kAttachmentDirectory isDirectory:YES];
+        NSArray *filesInAttachmentDir =  [[NSFileManager defaultManager] contentsOfDirectoryAtURL:attachmentsPath
+                                                                       includingPropertiesForKeys:@[NSURLIsDirectoryKey, NSURLNameKey]
+                                                                                          options:NSDirectoryEnumerationSkipsHiddenFiles error:&error];
+        if(!filesInAttachmentDir || [filesInAttachmentDir count] == 0) {
             // No attachments directory -> No attachments
             DLog(@"Cannot list attachment directory for note %@, no attachments then.", newNote.title);
             return YES;
         }
-        for (DBFileInfo *attachmentInfo in filesInAttachmentDir) {
-            DLog(@"Copying attachment: %@ to CoreData note %@", attachmentInfo.path.name, newNote.title);
-            DBFile *attachmentOnDropbox = [[DBFilesystem sharedFilesystem] openFile:attachmentInfo.path error:&error];
-            if(!attachmentOnDropbox) {
-                ALog(@"Aborting attachment copy to coredata. Error %d opening attachment %@", [error code], attachmentInfo.path.stringValue);
-                continue;
+        for (NSURL *attachmentInfo in filesInAttachmentDir) {
+            NSNumber *isDirectory;
+            NSString *name;
+            if (![attachmentInfo getResourceValue:&name forKey:NSURLNameKey error:&error]) {
+                ALog(@"error looking for filename: %@", [error localizedDescription]);
+                error = nil;
             }
-            if(!attachmentOnDropbox.status.state == DBFileStateIdle || !attachmentOnDropbox.status.cached) {
-                // If the file is not stable, abort copy
-                // TODO: make a queue for later loading
-                DLog(@"Attachment file %@ is still not ready to copy. State: %d. Cached: %d", attachmentInfo.path.stringValue, attachmentOnDropbox.status.state, attachmentOnDropbox.status.cached);
-                [self.dataSyncThreadContext rollback];
-                return NO;
+            if (![attachmentInfo getResourceValue:&isDirectory forKey:NSURLIsDirectoryKey error:&error]) {
+                ALog(@"Error looking for directory type: %@", [error localizedDescription]);
+                error = nil;
             }
-
+            DLog(@"Copying attachment: %@ to CoreData note %@", name, newNote.title);
             Attachment *newAttachment = [NSEntityDescription insertNewObjectForEntityForName:@"Attachment" inManagedObjectContext:self.dataSyncThreadContext];
-            newAttachment.filename = attachmentInfo.path.name;
-            newAttachment.extension = [attachmentInfo.path.stringValue pathExtension];
-            newAttachment.data = [attachmentOnDropbox readData:&error];
+            newAttachment.filename = [[attachmentInfo path] lastPathComponent];
+            newAttachment.extension = attachmentInfo.path.pathExtension;
+            newAttachment.data = [NSData dataWithContentsOfURL:attachmentInfo options:NSDataReadingMappedIfSafe error:&error];
             if(!newAttachment.data) {
-                DLog(@"Serious error (data loss?) reading attachment %@: %d", attachmentInfo.path.stringValue, [error code]);
+                ALog(@"Serious error (data loss?) reading attachment %@: %@", attachmentInfo, [error description]);
             }
             // Now link attachment to the note
             newAttachment.note = newNote;
