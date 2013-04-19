@@ -106,6 +106,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
         } else {
             self.syncDirectory = [NSURL URLByResolvingBookmarkData:self.secureBookmarkToData options:NSURLBookmarkResolutionWithSecurityScope  relativeToURL:nil bookmarkDataIsStale:YES error:&error];
             [self.syncDirectory startAccessingSecurityScopedResource];
+            [self firstAccessToData];
         }
         // Listen to the mainThreadMOC, so to sync changes
         NSAssert(self.coreDataController.mainThreadContext, @"The Managed Object Context for CoreDataController is still invalid");
@@ -130,62 +131,25 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
         [self.syncDirectory stopAccessingSecurityScopedResource];
     self.syncDirectory = [NSURL URLByResolvingBookmarkData:self.secureBookmarkToData options:NSURLBookmarkResolutionWithSecurityScope  relativeToURL:nil bookmarkDataIsStale:YES error:&error];
     [self.syncDirectory startAccessingSecurityScopedResource];
+    [self firstAccessToData];
+    return YES;
 }
 
-// This is called at startup and everytime a new account is linked (or unlinked). The real engine readiness is in checkFirstSync.
-- (void)gotNewDropboxUser:(DBAccount *)account {
-    DBAccount *currentAccount = [DBAccountManager sharedManager].linkedAccount;
-    if(currentAccount) {
-        self.syncControllerInited = YES;
-        DBFilesystem *filesystem = [[DBFilesystem alloc] initWithAccount:currentAccount];
-        [DBFilesystem setSharedFilesystem:filesystem];
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-        [self checkFirstSync:nil];
-    } else {
-        // Stop the sync engine
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.syncControllerInited = NO;
-            [[NSUserDefaults standardUserDefaults] setValue:nil forKey:@"currentDropboxAccount"];
-            // TODO: we should probably kill the private queue and reset our moc
-            [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kIAMDataSyncControllerStopped object:self]];
-            self.syncControllerReady = NO;
-            DLog(@"IAMDataSyncController is stopped.");
-        });
-    }
-}
-
-// This check if first sync is completed every second. When ready:
-// If this is a new account copy coredata db to dropbox,
-// in any case, copy all data from dropbox to CoreData db.
-- (void)checkFirstSync:(NSTimer*)theTimer {
-    if([DBFilesystem sharedFilesystem].completedFirstSync) {
-        // Copy current notes (if new account) to dropbox and notify
-        if(![[[NSUserDefaults standardUserDefaults] stringForKey:@"currentDropboxAccount"] isEqualToString:[DBAccountManager sharedManager].linkedAccount.info.email])
-            [self copyDataToDropbox];
-        // Notify interested parties that the sync engine is ready to be used (and set the flag)
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self copyAllFromDropbox];
-            DLog(@"IAMDataSyncController is ready.");
-            self.syncControllerReady = YES;
-            [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kIAMDataSyncControllerReady object:self]];
-        });
-    } else {
-        DLog(@"Still waiting for first sync completion");
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(checkFirstSync:) userInfo:nil repeats:NO];
-        });
-    }
+- (void)firstAccessToData {
+    [self copyAllFromDropbox];
+    DLog(@"IAMDataSyncController is ready.");
+    self.syncControllerReady = YES;
+    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kIAMDataSyncControllerReady object:self]];
 }
 
 #pragma mark - RefreshContent from dropbox
 
 - (void)refreshContentFromRemote {
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     [self copyAllFromDropbox];
 }
 
 #pragma mark - handler propagating new (and updated) notes from coredata to dropbox
-
+/*
 - (void)mergeSyncChanges:(NSNotification *)note {
     if(self.syncControllerReady) {
         DLog(@"Propagating moc changes to dropbox");
@@ -400,7 +364,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
         ALog(@"*** Error %d deleting attachment at %@.", [error code], [attachmentPath stringValue]);
     }
 }
-
+*/
 #pragma mark - from dropbox to core data
 
 - (void)copyAllFromDropbox {
@@ -421,9 +385,11 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
             return;
         }
         // Get notes ids
-        NSArray *filesAtRoot = [[DBFilesystem sharedFilesystem] listFolder:[DBPath root] error:&error];
+        NSArray *filesAtRoot = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:self.syncDirectory
+                                                             includingPropertiesForKeys:@[NSURLIsDirectoryKey]
+                                                                                options:NSDirectoryEnumerationSkipsHiddenFiles error:&error];
         if(!filesAtRoot) {
-            ALog(@"Aborting. Error reading notes: %d (%@)", [error code], [error description]);
+            ALog(@"Aborting. Error reading notes: %@", [error description]);
             [self.dataSyncThreadContext rollback];
             return;
         }
