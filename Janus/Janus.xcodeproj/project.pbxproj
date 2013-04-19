@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		6429F2C41716EB3C0030E932 /* NSString+UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 6429F2C31716EB3C0030E932 /* NSString+UUID.m */; };
 		6429F2C51716EB3C0030E932 /* NSString+UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 6429F2C31716EB3C0030E932 /* NSString+UUID.m */; };
+		642D29CF1721470400006FC1 /* IAMFilesystemSyncController.m in Sources */ = {isa = PBXBuildFile; fileRef = 642D29CE1721470400006FC1 /* IAMFilesystemSyncController.m */; };
+		642D29D01721470400006FC1 /* IAMFilesystemSyncController.m in Sources */ = {isa = PBXBuildFile; fileRef = 642D29CE1721470400006FC1 /* IAMFilesystemSyncController.m */; };
 		6461385A16FA3BE200967BFF /* IAMCollectionWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6461385816FA3BE200967BFF /* IAMCollectionWindowController.m */; };
 		6461385B16FA3BE200967BFF /* IAMCollectionWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6461385916FA3BE200967BFF /* IAMCollectionWindowController.xib */; };
 		6461385E16FBC88300967BFF /* IAMCollectionItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6461385D16FBC88300967BFF /* IAMCollectionItemView.m */; };
@@ -51,6 +53,8 @@
 /* Begin PBXFileReference section */
 		6429F2C21716EB3C0030E932 /* NSString+UUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+UUID.h"; path = "../common/Utilitites/NSString+UUID.h"; sourceTree = "<group>"; };
 		6429F2C31716EB3C0030E932 /* NSString+UUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+UUID.m"; path = "../common/Utilitites/NSString+UUID.m"; sourceTree = "<group>"; };
+		642D29CD1721470400006FC1 /* IAMFilesystemSyncController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMFilesystemSyncController.h; sourceTree = "<group>"; };
+		642D29CE1721470400006FC1 /* IAMFilesystemSyncController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMFilesystemSyncController.m; sourceTree = "<group>"; };
 		6461385716FA3BE200967BFF /* IAMCollectionWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMCollectionWindowController.h; sourceTree = "<group>"; };
 		6461385816FA3BE200967BFF /* IAMCollectionWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMCollectionWindowController.m; sourceTree = "<group>"; };
 		6461385916FA3BE200967BFF /* IAMCollectionWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IAMCollectionWindowController.xib; sourceTree = "<group>"; };
@@ -123,6 +127,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		642D29CC172146E400006FC1 /* Sync */ = {
+			isa = PBXGroup;
+			children = (
+				642D29CD1721470400006FC1 /* IAMFilesystemSyncController.h */,
+				642D29CE1721470400006FC1 /* IAMFilesystemSyncController.m */,
+			);
+			name = Sync;
+			path = Janus/Sync;
+			sourceTree = "<group>";
+		};
 		6461385F16FBCC5600967BFF /* Main Collection */ = {
 			isa = PBXGroup;
 			children = (
@@ -148,6 +162,7 @@
 		64EA620316F7110300F4838E = {
 			isa = PBXGroup;
 			children = (
+				642D29CC172146E400006FC1 /* Sync */,
 				64EA627816F71E7600F4838E /* Utilities (common) */,
 				64EA626B16F71DF500F4838E /* CoreData (common) */,
 				64EA621516F7110300F4838E /* Janus */,
@@ -374,6 +389,7 @@
 				6461385E16FBC88300967BFF /* IAMCollectionItemView.m in Sources */,
 				64A75591170358BC0085933D /* NSManagedObjectContext+FetchedObjectFromURI.m in Sources */,
 				6429F2C41716EB3C0030E932 /* NSString+UUID.m in Sources */,
+				642D29CF1721470400006FC1 /* IAMFilesystemSyncController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -385,6 +401,7 @@
 				64EA624316F7110300F4838E /* GetMetadataForFile.m in Sources */,
 				64EA624616F7110300F4838E /* MySpotlightImporter.m in Sources */,
 				6429F2C51716EB3C0030E932 /* NSString+UUID.m in Sources */,
+				642D29D01721470400006FC1 /* IAMFilesystemSyncController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
