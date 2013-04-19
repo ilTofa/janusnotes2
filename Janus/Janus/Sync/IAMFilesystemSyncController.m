@@ -103,12 +103,14 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
             NSURL *cacheDirectory = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:&error];
             self.syncDirectory = [cacheDirectory URLByAppendingPathComponent:@"Janus-Notes" isDirectory:YES];
             [[NSFileManager defaultManager] createDirectoryAtURL:self.syncDirectory withIntermediateDirectories:YES attributes:nil error:&error];
+            [self modifySyncDirectory:self.syncDirectory];
         } else {
             BOOL staleData;
             self.syncDirectory = [NSURL URLByResolvingBookmarkData:self.secureBookmarkToData options:NSURLBookmarkResolutionWithSecurityScope  relativeToURL:nil bookmarkDataIsStale:&staleData error:&error];
             [self.syncDirectory startAccessingSecurityScopedResource];
             [self firstAccessToData];
         }
+        [self copyDataToDropbox];
         // Listen to the mainThreadMOC, so to sync changes
         NSAssert(self.coreDataController.mainThreadContext, @"The Managed Object Context for CoreDataController is still invalid");
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mergeSyncChanges:) name:NSManagedObjectContextDidSaveNotification object:self.coreDataController.mainThreadContext];
@@ -133,7 +135,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
     BOOL staleData;
     self.syncDirectory = [NSURL URLByResolvingBookmarkData:self.secureBookmarkToData options:NSURLBookmarkResolutionWithSecurityScope  relativeToURL:nil bookmarkDataIsStale:&staleData error:&error];
     [self.syncDirectory startAccessingSecurityScopedResource];
-    [self firstAccessToData];
+    [self copyDataToDropbox];
     return YES;
 }
 
@@ -318,8 +320,8 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
     // Now ensure that no stale attachments are still in the dropbox
     NSURL *attachmentsPath = [notePath URLByAppendingPathComponent:kAttachmentDirectory isDirectory:YES];
     NSArray *attachmentFiles =  [[NSFileManager defaultManager] contentsOfDirectoryAtURL:attachmentsPath
-                                                                   includingPropertiesForKeys:@[NSURLNameKey]
-                                                                                      options:NSDirectoryEnumerationSkipsHiddenFiles error:&error];
+                                                              includingPropertiesForKeys:@[NSURLNameKey]
+                                                                                 options:NSDirectoryEnumerationSkipsHiddenFiles error:&error];
     if(!attachmentFiles || [attachmentFiles count] == 0) {
         // No attachments directory -> No attachments
         DLog(@"note %@ copied to dropbox.", note.title);
