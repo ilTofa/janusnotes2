@@ -104,7 +104,8 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
             self.syncDirectory = [cacheDirectory URLByAppendingPathComponent:@"Janus-Notes" isDirectory:YES];
             [[NSFileManager defaultManager] createDirectoryAtURL:self.syncDirectory withIntermediateDirectories:YES attributes:nil error:&error];
         } else {
-            self.syncDirectory = [NSURL URLByResolvingBookmarkData:self.secureBookmarkToData options:NSURLBookmarkResolutionWithSecurityScope  relativeToURL:nil bookmarkDataIsStale:YES error:&error];
+            BOOL staleData;
+            self.syncDirectory = [NSURL URLByResolvingBookmarkData:self.secureBookmarkToData options:NSURLBookmarkResolutionWithSecurityScope  relativeToURL:nil bookmarkDataIsStale:&staleData error:&error];
             [self.syncDirectory startAccessingSecurityScopedResource];
             [self firstAccessToData];
         }
@@ -129,7 +130,8 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
     [[NSUserDefaults standardUserDefaults] setObject:self.secureBookmarkToData forKey:@"syncDirectory"];
     if(alreadySyncingToPrivilegedDir)
         [self.syncDirectory stopAccessingSecurityScopedResource];
-    self.syncDirectory = [NSURL URLByResolvingBookmarkData:self.secureBookmarkToData options:NSURLBookmarkResolutionWithSecurityScope  relativeToURL:nil bookmarkDataIsStale:YES error:&error];
+    BOOL staleData;
+    self.syncDirectory = [NSURL URLByResolvingBookmarkData:self.secureBookmarkToData options:NSURLBookmarkResolutionWithSecurityScope  relativeToURL:nil bookmarkDataIsStale:&staleData error:&error];
     [self.syncDirectory startAccessingSecurityScopedResource];
     [self firstAccessToData];
     return YES;
@@ -304,39 +306,41 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
         DLog(@"Error writing note text saving to dropbox at %@: %@.", noteTextPath, [error description]);
     }
     // Now write all the attachments
-    DBPath *attachmentPath = [notePath childPath:kAttachmentDirectory];
+    NSURL *attachmentPath = [notePath URLByAppendingPathComponent:kAttachmentDirectory isDirectory:YES];
     for (Attachment *attachment in note.attachment) {
         // write attachment
         NSString *encodedAttachmentName = convertToValidDropboxFilenames(attachment.filename);
-        DBPath *attachmentDataPath = [attachmentPath childPath:encodedAttachmentName];
-        DBFile *attachmentDataFile = [[DBFilesystem sharedFilesystem] openFile:attachmentDataPath error:&error];
-        if(!attachmentDataFile) {
-            [[DBFilesystem sharedFilesystem] createFile:attachmentDataPath error:&error];
-            if(!attachmentDataFile) {
-                DLog(@"Error %d saving attachment file at %@ for note %@.", [error code], [attachmentDataPath stringValue], note.title);
-            }
-   
-        }
-        if(![attachmentDataFile writeData:attachment.data error:&error]) {
-            DLog(@"Error %d writing attachment data at %@ for note %@.", [error code], [attachmentDataPath stringValue], note.title);
+        NSURL *attachmentDataPath = [attachmentPath URLByAppendingPathComponent:encodedAttachmentName isDirectory:NO];
+        if([attachment.data writeToURL:attachmentDataPath atomically:YES]) {
+            DLog(@"Error writing attachment data at %@ for note %@: %@", attachmentDataPath, note.title, [error description]);
         }
     }
     // Now ensure that no stale attachments are still in the dropbox
-    NSArray *attachmentFiles = [[DBFilesystem sharedFilesystem] listFolder:attachmentPath error:&error];
-    if(!attachmentFiles) {
+    NSURL *attachmentsPath = [notePath URLByAppendingPathComponent:kAttachmentDirectory isDirectory:YES];
+    NSArray *attachmentFiles =  [[NSFileManager defaultManager] contentsOfDirectoryAtURL:attachmentsPath
+                                                                   includingPropertiesForKeys:@[NSURLNameKey]
+                                                                                      options:NSDirectoryEnumerationSkipsHiddenFiles error:&error];
+    if(!attachmentFiles || [attachmentFiles count] == 0) {
+        // No attachments directory -> No attachments
         DLog(@"note %@ copied to dropbox.", note.title);
         return;
     }
-    for (DBFileInfo *fileInfo in attachmentFiles) {
+
+    for (NSURL *fileInfo in attachmentFiles) {
         BOOL found = NO;
+        NSString *name;
+        if (![fileInfo getResourceValue:&name forKey:NSURLNameKey error:&error]) {
+            ALog(@"error looking for filename: %@", [error localizedDescription]);
+            error = nil;
+        }
         for (Attachment *attachments in note.attachment) {
-            if([attachments.filename isEqualToString:fileInfo.path.name]) {
+            if([attachments.filename isEqualToString:name]) {
                 found = YES;
             }
         }
         if(!found) {
             // Delete attachment file
-            [[DBFilesystem sharedFilesystem] deletePath:fileInfo.path error:&error];
+            [[NSFileManager defaultManager] removeItemAtURL:fileInfo error:&error];
         }
     }
     DLog(@"note %@ copied to dropbox.", note.title);
@@ -344,12 +348,12 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
 
 - (void)deleteNoteTextWithUUID:(NSString *)uuid afterFilenameChangeFrom:(NSString *)oldFilename {
     DLog(@"Delete note %@ in dropbox folder after change in filename from %@", uuid, oldFilename);
-    DBError *error;
+    NSError *error;
     NSString *encodedFilename = convertToValidDropboxFilenames(oldFilename);
     encodedFilename = [encodedFilename stringByAppendingFormat:@".%@", kNotesExtension];
-    DBPath *noteTextPath = [[[DBPath root] childPath:uuid] childPath:encodedFilename];
-    if(![[DBFilesystem sharedFilesystem] deletePath:noteTextPath error:&error]) {
-        ALog(@"*** Error %d deleting note text after filename change at %@.", [error code], [noteTextPath stringValue]);
+    NSURL *noteTextPath = [[self.syncDirectory URLByAppendingPathComponent:uuid isDirectory:YES] URLByAppendingPathComponent:encodedFilename isDirectory:NO];
+    if(![[NSFileManager defaultManager] removeItemAtURL:noteTextPath error:&error]) {
+        ALog(@"*** Error deleting note text after filename change at %@: %@", noteTextPath, [error description]);
     } else {
         DLog(@"Note deleted.");
     }
@@ -357,19 +361,19 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
 
 - (void)deleteNoteInDropbox:(Note *)note {
     DLog(@"Delete note in dropbox folder");
-    DBError *error;
-    DBPath *notePath = [[DBPath root] childPath:note.uuid];
-    if(![[DBFilesystem sharedFilesystem] deletePath:notePath error:&error]) {
-        ALog(@"*** Error %d deleting note at %@.", [error code], [notePath stringValue]);
+    NSError *error;
+    NSURL *notePath = [self.syncDirectory URLByAppendingPathComponent:note.uuid isDirectory:YES];
+    if(![[NSFileManager defaultManager] removeItemAtURL:notePath error:&error]) {
+        ALog(@"*** Error deleting note at %@: %@", notePath, [error description]);
     }
 }
 
 - (void)deleteAttachmentInDropbox:(Attachment *)attachment {
-    DBError *error;
-    DBPath *notePath = [[DBPath root] childPath:attachment.note.uuid];
-    DBPath *attachmentPath = [[notePath childPath:kAttachmentDirectory] childPath:attachment.filename];
-    if(![[DBFilesystem sharedFilesystem] deletePath:attachmentPath error:&error]) {
-        ALog(@"*** Error %d deleting attachment at %@.", [error code], [attachmentPath stringValue]);
+    NSError *error;
+    NSURL *notePath = [self.syncDirectory URLByAppendingPathComponent:attachment.note.uuid isDirectory:YES];
+    NSURL *attachmentPath = [notePath URLByAppendingPathComponent:attachment.filename isDirectory:NO];
+    if(![[NSFileManager defaultManager] removeItemAtURL:attachmentPath error:&error]) {
+        ALog(@"*** Error deleting attachment at %@: %@",attachmentPath, [error description]);
     }
 }
 

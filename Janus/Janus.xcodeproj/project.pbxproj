@@ -10,7 +10,6 @@
 		6429F2C41716EB3C0030E932 /* NSString+UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 6429F2C31716EB3C0030E932 /* NSString+UUID.m */; };
 		6429F2C51716EB3C0030E932 /* NSString+UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 6429F2C31716EB3C0030E932 /* NSString+UUID.m */; };
 		642D29CF1721470400006FC1 /* IAMFilesystemSyncController.m in Sources */ = {isa = PBXBuildFile; fileRef = 642D29CE1721470400006FC1 /* IAMFilesystemSyncController.m */; };
-		642D29D01721470400006FC1 /* IAMFilesystemSyncController.m in Sources */ = {isa = PBXBuildFile; fileRef = 642D29CE1721470400006FC1 /* IAMFilesystemSyncController.m */; };
 		6461385A16FA3BE200967BFF /* IAMCollectionWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6461385816FA3BE200967BFF /* IAMCollectionWindowController.m */; };
 		6461385B16FA3BE200967BFF /* IAMCollectionWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6461385916FA3BE200967BFF /* IAMCollectionWindowController.xib */; };
 		6461385E16FBC88300967BFF /* IAMCollectionItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6461385D16FBC88300967BFF /* IAMCollectionItemView.m */; };
@@ -401,7 +400,6 @@
 				64EA624316F7110300F4838E /* GetMetadataForFile.m in Sources */,
 				64EA624616F7110300F4838E /* MySpotlightImporter.m in Sources */,
 				6429F2C51716EB3C0030E932 /* NSString+UUID.m in Sources */,
-				642D29D01721470400006FC1 /* IAMFilesystemSyncController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
