@@ -52,13 +52,9 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
 
 @interface IAMDataSyncController() {
     dispatch_queue_t _syncQueue;
-    NSLock *_deletedLock, *_mutatedLock;
 }
 
 @property (weak) CoreDataController *coreDataController;
-
-@property (atomic) NSMutableSet *deletedNotesWhileNotReady;
-@property NSMutableSet *mutatedNotesWhileNotReady;
 
 @end
 
@@ -89,10 +85,6 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
             _dataSyncThreadContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSConfinementConcurrencyType];
             [_dataSyncThreadContext setPersistentStoreCoordinator:self.coreDataController.psc];
         });
-        self.deletedNotesWhileNotReady = [[NSMutableSet alloc] initWithCapacity:10];
-        self.mutatedNotesWhileNotReady = [[NSMutableSet alloc] initWithCapacity:10];
-        _deletedLock = [[NSLock alloc] init];
-        _mutatedLock = [[NSLock alloc] init];
         // Init dropbox sync API
         DBAccountManager* accountMgr = [[DBAccountManager alloc] initWithAppKey:@"8mwm9fif4s1fju2" secret:@"pvafyx258qkx2fm"];
         [DBAccountManager setSharedManager:accountMgr];

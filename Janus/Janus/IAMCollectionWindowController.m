@@ -11,11 +11,14 @@
 #import "IAMNoteEditorWC.h"
 #import "IAMAppDelegate.h"
 #import "CoreDataController.h"
+#import "IAMFileSystemSyncController.h"
 
 @interface IAMCollectionWindowController () <IAMNoteEditorWCDelegate>
 
 @property (strong, nonatomic) NSMutableArray *noteWindowControllers;
 @property (weak) IBOutlet NSSearchFieldCell *searchField;
+
+@property NSTimer *syncStatusTimer;
 
 - (IBAction)addNote:(id)sender;
 - (IBAction)editNote:(id)sender;
@@ -36,6 +39,10 @@
     return self;
 }
 
+// Startup sequence
+// when coredata is loaded exec coredataisready
+// register for sync data (mergeSyncChanges:) from datasync thread
+
 - (void)windowDidLoad
 {
     [super windowDidLoad];
@@ -45,28 +52,26 @@
     NSArray *sortDescriptors = @[dateAddedSortDesc];
     [self.arrayController setSortDescriptors:sortDescriptors];
     DLog(@"Array controller: %@", self.arrayController);
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pscChanged:) name:NSPersistentStoreCoordinatorStoresDidChangeNotification object:((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).coreDataController.psc];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pscChanged:) name:NSPersistentStoreDidImportUbiquitousContentChangesNotification object:((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).coreDataController.psc];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldRefresh:) name:NSManagedObjectContextObjectsDidChangeNotification object:self.sharedManagedObjectContext];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldMergeChanges:) name:NSManagedObjectContextDidSaveNotification object:self.sharedManagedObjectContext];
-    // If db is still to be loaded, register to be notified.
+    // If db is still to be loaded, register to be notified else go directly
     if(!((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).coreDataController.coreDataIsReady)
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(coreDataIsReady:) name:GTCoreDataReady object:nil];
+    else
+        [self coreDataIsReady:nil];
 }
 
 - (void)coreDataIsReady:(NSNotification *)notification {
-    DLog(@"called with notification %@", notification);
+    if(notification)
+        DLog(@"called with notification %@", notification);
+    else
+        DLog(@"called directly from init");
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pscChanged:) name:NSPersistentStoreCoordinatorStoresDidChangeNotification object:((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).coreDataController.psc];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pscChanged:) name:NSPersistentStoreDidImportUbiquitousContentChangesNotification object:((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).coreDataController.psc];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldRefresh:) name:NSManagedObjectContextObjectsDidChangeNotification object:self.sharedManagedObjectContext];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldMergeChanges:) name:NSManagedObjectContextDidSaveNotification object:self.sharedManagedObjectContext];
-    [self.arrayController fetch:nil];
-}
-
-- (void)pscChanged:(NSNotification *)notification
-{
-    DLog(@"called for %@", notification.name);
+    NSManagedObjectContext *syncMOC = [IAMFilesystemSyncController sharedInstance].dataSyncThreadContext;
+    NSAssert(syncMOC, @"The Managed Object Context for the Sync Engine is still not set while setting main view.");
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mergeSyncChanges:) name:NSManagedObjectContextDidSaveNotification object:syncMOC];
+    if([IAMFilesystemSyncController sharedInstance].syncControllerReady)
+        [self refreshControlSetup];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(syncStoreNotificationHandler:) name:kIAMDataSyncControllerReady object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(syncStoreNotificationHandler:) name:kIAMDataSyncControllerStopped object:nil];
     [self.arrayController fetch:nil];
 }
 
@@ -75,10 +80,83 @@
     [self.arrayController fetch:nil];
 }
 
+- (void)mergeSyncChanges:(NSNotification *)note {
+    DLog(@"Merging data from sync Engine");
+    [self.sharedManagedObjectContext mergeChangesFromContextDidSaveNotification:note];
+    // Reset the moc, so we don't get changes back to the background moc.
+    [self.sharedManagedObjectContext reset];
+    [self.arrayController fetch:nil];
+}
+
 - (void)shouldMergeChanges:(NSNotification *)notification {
     DLog(@"called for %@", notification.name);
     [self.sharedManagedObjectContext mergeChangesFromContextDidSaveNotification:notification];
     [self.arrayController fetch:nil];
+}
+
+#pragma mark - sync management
+
+- (void)refreshControlSetup {
+    // Here we are sure there is an active dropbox link
+    self.syncStatusTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(syncStatus:) userInfo:nil repeats:YES];
+}
+
+-(void)syncStatus:(NSTimer *)timer {
+    
+    DBSyncStatus status = [[DBFilesystem sharedFilesystem] status];
+    NSMutableString *title = [[NSMutableString alloc] initWithString:@"Sync "];
+    if(!status) {
+        // If all is quiet and dropbox says it's fully synced (and it was not before), then reload (only if last reload were more than 45 seconds ago).
+        title = [NSLocalizedString(@"Notes ", nil) mutableCopy];
+        [title appendString:@"✔"];
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        if(self.dropboxSyncronizedSomething && [self.lastDropboxSync timeIntervalSinceNow] < -45.0) {
+            DLog(@"Dropbox synced everything, time to reload! Last reload %.0f seconds ago", -[self.lastDropboxSync timeIntervalSinceNow]);
+            self.dropboxSyncronizedSomething = NO;
+            self.lastDropboxSync = [NSDate date];
+            [[IAMDataSyncController sharedInstance] refreshContentFromRemote];
+        }
+    } else {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    }
+    if(status & DBSyncStatusSyncing)
+        [title appendString:@"␖"];
+    if(status & DBSyncStatusDownloading) {
+        [title appendString:@"↓"];
+        self.dropboxSyncronizedSomething = YES;
+    }
+    if(status & DBSyncStatusUploading)
+        [title appendString:@"↑"];
+    self.title = title;
+}
+
+// Reload management
+- (IBAction)refresh:(id)sender {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(endSyncNotificationHandler:) name:kIAMDataSyncRefreshTerminated object:nil];
+    [[IAMDataSyncController sharedInstance] refreshContentFromRemote];
+}
+
+- (void)syncStoreNotificationHandler:(NSNotification *)note {
+    IAMDataSyncController *controller = note.object;
+    if(controller.syncControllerReady) {
+        [self refreshControlSetup];
+        self.lastDropboxSync = [NSDate date];
+    }
+    else {
+        self.refreshControl = nil;
+        if(self.syncStatusTimer) {
+            [self.syncStatusTimer invalidate];
+            self.syncStatusTimer = nil;
+        }
+    }
+    if(self.hud) {
+        [self.hud hide:YES];
+        self.hud = nil;
+    }
+}
+
+- (void)endSyncNotificationHandler:(NSNotification *)note {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kIAMDataSyncRefreshTerminated object:nil];
 }
 
 #pragma mark - Notes Editing management
