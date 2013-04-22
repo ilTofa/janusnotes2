@@ -10,6 +10,17 @@
 		6429F2C41716EB3C0030E932 /* NSString+UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 6429F2C31716EB3C0030E932 /* NSString+UUID.m */; };
 		6429F2C51716EB3C0030E932 /* NSString+UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 6429F2C31716EB3C0030E932 /* NSString+UUID.m */; };
 		642D29CF1721470400006FC1 /* IAMFilesystemSyncController.m in Sources */ = {isa = PBXBuildFile; fileRef = 642D29CE1721470400006FC1 /* IAMFilesystemSyncController.m */; };
+		644AC25B17257FE4007B51FF /* IAMTableUIWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 644AC25917257FE4007B51FF /* IAMTableUIWindowController.m */; };
+		644AC25C17257FE4007B51FF /* IAMTableUIWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 644AC25A17257FE4007B51FF /* IAMTableUIWindowController.xib */; };
+		644AC26117258273007B51FF /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 644AC25F17258273007B51FF /* plus.png */; };
+		644AC26217258273007B51FF /* plus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 644AC26017258273007B51FF /* plus@2x.png */; };
+		644AC265172584A0007B51FF /* edit.png in Resources */ = {isa = PBXBuildFile; fileRef = 644AC263172584A0007B51FF /* edit.png */; };
+		644AC266172584A0007B51FF /* edit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 644AC264172584A0007B51FF /* edit@2x.png */; };
+		644AC2691725855B007B51FF /* delete.png in Resources */ = {isa = PBXBuildFile; fileRef = 644AC2671725855B007B51FF /* delete.png */; };
+		644AC26A1725855B007B51FF /* delete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 644AC2681725855B007B51FF /* delete@2x.png */; };
+		644AC26D17258645007B51FF /* prefs.png in Resources */ = {isa = PBXBuildFile; fileRef = 644AC26B17258645007B51FF /* prefs.png */; };
+		644AC26E17258645007B51FF /* prefs@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 644AC26C17258645007B51FF /* prefs@2x.png */; };
+		644AC27117258D9B007B51FF /* IAMTableUICellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 644AC27017258D9B007B51FF /* IAMTableUICellView.m */; };
 		6461385A16FA3BE200967BFF /* IAMCollectionWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6461385816FA3BE200967BFF /* IAMCollectionWindowController.m */; };
 		6461385B16FA3BE200967BFF /* IAMCollectionWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6461385916FA3BE200967BFF /* IAMCollectionWindowController.xib */; };
 		6461385E16FBC88300967BFF /* IAMCollectionItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6461385D16FBC88300967BFF /* IAMCollectionItemView.m */; };
@@ -54,6 +65,19 @@
 		6429F2C31716EB3C0030E932 /* NSString+UUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+UUID.m"; path = "../common/Utilitites/NSString+UUID.m"; sourceTree = "<group>"; };
 		642D29CD1721470400006FC1 /* IAMFilesystemSyncController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMFilesystemSyncController.h; sourceTree = "<group>"; };
 		642D29CE1721470400006FC1 /* IAMFilesystemSyncController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMFilesystemSyncController.m; sourceTree = "<group>"; };
+		644AC25817257FE4007B51FF /* IAMTableUIWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMTableUIWindowController.h; sourceTree = "<group>"; };
+		644AC25917257FE4007B51FF /* IAMTableUIWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMTableUIWindowController.m; sourceTree = "<group>"; };
+		644AC25A17257FE4007B51FF /* IAMTableUIWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IAMTableUIWindowController.xib; sourceTree = "<group>"; };
+		644AC25F17258273007B51FF /* plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = plus.png; path = Buttons/plus.png; sourceTree = "<group>"; };
+		644AC26017258273007B51FF /* plus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "plus@2x.png"; path = "Buttons/plus@2x.png"; sourceTree = "<group>"; };
+		644AC263172584A0007B51FF /* edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = edit.png; path = Buttons/edit.png; sourceTree = "<group>"; };
+		644AC264172584A0007B51FF /* edit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "edit@2x.png"; path = "Buttons/edit@2x.png"; sourceTree = "<group>"; };
+		644AC2671725855B007B51FF /* delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = delete.png; path = Buttons/delete.png; sourceTree = "<group>"; };
+		644AC2681725855B007B51FF /* delete@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "delete@2x.png"; path = "Buttons/delete@2x.png"; sourceTree = "<group>"; };
+		644AC26B17258645007B51FF /* prefs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = prefs.png; path = Buttons/prefs.png; sourceTree = "<group>"; };
+		644AC26C17258645007B51FF /* prefs@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "prefs@2x.png"; path = "Buttons/prefs@2x.png"; sourceTree = "<group>"; };
+		644AC26F17258D9B007B51FF /* IAMTableUICellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMTableUICellView.h; sourceTree = "<group>"; };
+		644AC27017258D9B007B51FF /* IAMTableUICellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMTableUICellView.m; sourceTree = "<group>"; };
 		6461385716FA3BE200967BFF /* IAMCollectionWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMCollectionWindowController.h; sourceTree = "<group>"; };
 		6461385816FA3BE200967BFF /* IAMCollectionWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMCollectionWindowController.m; sourceTree = "<group>"; };
 		6461385916FA3BE200967BFF /* IAMCollectionWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IAMCollectionWindowController.xib; sourceTree = "<group>"; };
@@ -136,6 +160,33 @@
 			path = Janus/Sync;
 			sourceTree = "<group>";
 		};
+		644AC25D17257FEB007B51FF /* Main UI */ = {
+			isa = PBXGroup;
+			children = (
+				644AC25817257FE4007B51FF /* IAMTableUIWindowController.h */,
+				644AC25917257FE4007B51FF /* IAMTableUIWindowController.m */,
+				644AC25A17257FE4007B51FF /* IAMTableUIWindowController.xib */,
+				644AC26F17258D9B007B51FF /* IAMTableUICellView.h */,
+				644AC27017258D9B007B51FF /* IAMTableUICellView.m */,
+			);
+			name = "Main UI";
+			sourceTree = "<group>";
+		};
+		644AC25E17258213007B51FF /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				644AC26B17258645007B51FF /* prefs.png */,
+				644AC26C17258645007B51FF /* prefs@2x.png */,
+				644AC2671725855B007B51FF /* delete.png */,
+				644AC2681725855B007B51FF /* delete@2x.png */,
+				644AC263172584A0007B51FF /* edit.png */,
+				644AC264172584A0007B51FF /* edit@2x.png */,
+				644AC25F17258273007B51FF /* plus.png */,
+				644AC26017258273007B51FF /* plus@2x.png */,
+			);
+			name = Buttons;
+			sourceTree = "<group>";
+		};
 		6461385F16FBCC5600967BFF /* Main Collection */ = {
 			isa = PBXGroup;
 			children = (
@@ -206,12 +257,14 @@
 		64EA621516F7110300F4838E /* Janus */ = {
 			isa = PBXGroup;
 			children = (
+				644AC25E17258213007B51FF /* Buttons */,
 				64EA622116F7110300F4838E /* IAMAppDelegate.h */,
 				64EA622216F7110300F4838E /* IAMAppDelegate.m */,
 				64EA622416F7110300F4838E /* MainMenu.xib */,
 				6461385F16FBCC5600967BFF /* Main Collection */,
 				64A1D4ED16FCA12700E50CC1 /* Note Edit */,
 				64EA621616F7110300F4838E /* Supporting Files */,
+				644AC25D17257FEB007B51FF /* Main UI */,
 			);
 			path = Janus;
 			sourceTree = "<group>";
@@ -358,6 +411,15 @@
 				64EA625216F7166700F4838E /* icon.icns in Resources */,
 				64EA628616F75E0000F4838E /* IAMNoteEditorWC.xib in Resources */,
 				6461385B16FA3BE200967BFF /* IAMCollectionWindowController.xib in Resources */,
+				644AC25C17257FE4007B51FF /* IAMTableUIWindowController.xib in Resources */,
+				644AC26117258273007B51FF /* plus.png in Resources */,
+				644AC26217258273007B51FF /* plus@2x.png in Resources */,
+				644AC265172584A0007B51FF /* edit.png in Resources */,
+				644AC266172584A0007B51FF /* edit@2x.png in Resources */,
+				644AC2691725855B007B51FF /* delete.png in Resources */,
+				644AC26A1725855B007B51FF /* delete@2x.png in Resources */,
+				644AC26D17258645007B51FF /* prefs.png in Resources */,
+				644AC26E17258645007B51FF /* prefs@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,6 +451,8 @@
 				64A75591170358BC0085933D /* NSManagedObjectContext+FetchedObjectFromURI.m in Sources */,
 				6429F2C41716EB3C0030E932 /* NSString+UUID.m in Sources */,
 				642D29CF1721470400006FC1 /* IAMFilesystemSyncController.m in Sources */,
+				644AC25B17257FE4007B51FF /* IAMTableUIWindowController.m in Sources */,
+				644AC27117258D9B007B51FF /* IAMTableUICellView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
