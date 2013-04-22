@@ -12,6 +12,8 @@
 #import "Attachment.h"
 #import "NSManagedObjectContext+FetchedObjectFromURI.h"
 
+#import "IAMFilesystemSyncController.h"
+
 @interface IAMNoteEditorWC () <NSWindowDelegate, NSCollectionViewDelegate>
 
 @property (strong) IBOutlet NSArrayController *arrayController;
@@ -40,7 +42,7 @@
     // The NSManagedObjectContext instance should change for a local (to the controller instance) one.
     // We need to migrate the passed object to the new moc.
     self.noteEditorMOC = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSConfinementConcurrencyType];
-    [self.noteEditorMOC setPersistentStoreCoordinator:((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).persistentStoreCoordinator];
+    [self.noteEditorMOC setParentContext:[IAMFilesystemSyncController sharedInstance].dataSyncThreadContext];
     // Prepare to receive drag & drops into CollectionView
     [self.attachmentsCollectionView registerForDraggedTypes:@[NSFilenamesPboardType]];
     [self.attachmentsCollectionView setDraggingSourceOperationMask:NSDragOperationCopy forLocal:NO];
@@ -53,13 +55,6 @@
         NSURL *uri = [[self.editedNote objectID] URIRepresentation];
         self.editedNote = (Note *)[self.noteEditorMOC objectWithURI:uri];
     }
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(localContextSaved:) name:NSManagedObjectContextDidSaveNotification object:self.noteEditorMOC];
-}
-
-- (void)localContextSaved:(NSNotification *)notification {
-    /* Merge the changes into the original managed object context */
-    DLog(@"called for %@", notification.name);
-    [((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).managedObjectContext mergeChangesFromContextDidSaveNotification:notification];
 }
 
 - (IBAction)save:(id)sender
@@ -73,7 +68,13 @@
     self.editedNote.timeStamp = [NSDate date];
     NSError *error;
     if(![self.noteEditorMOC save:&error])
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        ALog(@"Unresolved error %@, %@", error, [error userInfo]);
+    // Save on parent context
+    [[IAMFilesystemSyncController sharedInstance].dataSyncThreadContext performBlock:^{
+        NSError *localError;
+        if(![[IAMFilesystemSyncController sharedInstance].dataSyncThreadContext save:&localError])
+            ALog(@"Unresolved error saving parent context %@, %@", error, [error userInfo]);
+    }];
     // If called via action
     if(sender)
         [self.window performClose:sender];

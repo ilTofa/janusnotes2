@@ -52,6 +52,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
 
 @interface IAMFilesystemSyncController() {
     dispatch_queue_t _syncQueue;
+    BOOL _isResettingDataFromDropbox;
 }
 
 @property (weak) CoreDataController *coreDataController;
@@ -85,9 +86,10 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
         NSAssert(self.coreDataController.psc, @"DataSyncController inited when CoreDataController Persistent Storage is still invalid");
         _syncQueue = dispatch_queue_create("dataSyncControllerQueue", DISPATCH_QUEUE_SERIAL);
         dispatch_sync(_syncQueue, ^{
-            _dataSyncThreadContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSConfinementConcurrencyType];
+            _dataSyncThreadContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
             [_dataSyncThreadContext setPersistentStoreCoordinator:self.coreDataController.psc];
         });
+        _isResettingDataFromDropbox = NO;
         // Init security bookmark
         NSError *error;
         self.secureBookmarkToData = [[NSUserDefaults standardUserDefaults] dataForKey:@"syncDirectory"];
@@ -102,10 +104,8 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
             [self.syncDirectory startAccessingSecurityScopedResource];
             [self firstAccessToData];
         }
-        [self copyDataToDropbox];
-        // Listen to the mainThreadMOC, so to sync changes
-        NSAssert(self.coreDataController.mainThreadContext, @"The Managed Object Context for CoreDataController is still invalid");
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mergeSyncChanges:) name:NSManagedObjectContextDidSaveNotification object:self.coreDataController.mainThreadContext];
+        // Listen to ourself, so to sync changes
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(localContextSaved:) name:NSManagedObjectContextDidSaveNotification object:_dataSyncThreadContext];
     }
     return self;
 }
@@ -127,7 +127,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
     BOOL staleData;
     self.syncDirectory = [NSURL URLByResolvingBookmarkData:self.secureBookmarkToData options:NSURLBookmarkResolutionWithSecurityScope  relativeToURL:nil bookmarkDataIsStale:&staleData error:&error];
     [self.syncDirectory startAccessingSecurityScopedResource];
-    [self copyDataToDropbox];
+    [self copyCurrentDataToDropbox];
     return YES;
 }
 
@@ -146,84 +146,47 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
 
 #pragma mark - handler propagating new (and updated) notes from coredata to dropbox
 
-- (void)mergeSyncChanges:(NSNotification *)note {
-    if(self.syncControllerReady) {
+- (void)localContextSaved:(NSNotification *)notification {
+    // Any change to our context will be reflected here.
+    // Reflect them to the dropbox store UNLESS we're init loading from it
+    if(!_isResettingDataFromDropbox) {
         DLog(@"Propagating moc changes to dropbox");
-        NSDictionary *info = note.userInfo;
-        NSSet *insertedObjects = [info objectForKey:NSInsertedObjectsKey];
-        NSSet *deletedObjects = [info objectForKey:NSDeletedObjectsKey];
-        NSSet *updatedObjects = [info objectForKey:NSUpdatedObjectsKey];
-        
-        DLog(@"MERGESYNCDEBUGSECTION - BEGIN");
-        DLog(@"Deleted objects");
+        NSSet *deletedObjects = [notification.userInfo objectForKey:NSDeletedObjectsKey];
+        NSMutableSet *changedObjects = [[NSMutableSet alloc] initWithSet:[notification.userInfo objectForKey:NSInsertedObjectsKey]];
+        [changedObjects unionSet:[notification.userInfo objectForKey:NSUpdatedObjectsKey]];
         for(NSManagedObject *obj in deletedObjects){
+            DLog(@"Deleted objects");
             if([obj.entity.name isEqualToString:@"Attachment"]) {
                 DLog(@"D - An attachment %@ from note %@", ((Attachment *)obj).filename, ((Attachment *)obj).note.title);
+                [self deleteAttachmentInDropbox:(Attachment *)obj];
             } else {
                 DLog(@"D - A note %@", ((Note *)obj).title);
+                [self deleteNoteInDropbox:(Note *)obj];
             }
         }
-        DLog(@"Inserted objects");
-        for(NSManagedObject *obj in insertedObjects){
+        for(NSManagedObject *obj in changedObjects){
+            DLog(@"changed objects");
             // If attachment get the corresponding note to insert
             if([obj.entity.name isEqualToString:@"Attachment"]) {
-                DLog(@"I - An attachment %@ for note %@", ((Attachment *)obj).filename, ((Attachment *)obj).note.title);
+                DLog(@"C - An attachment %@ for note %@", ((Attachment *)obj).filename, ((Attachment *)obj).note.title);
+                [self attachAttachment:(Attachment *)obj toNoteInDropbox:((Attachment *)obj).note];
             } else {
-                DLog(@"I - A note %@", ((Note *)obj).title);
-            }
-        }
-        DLog(@"Updated objects");
-        for(NSManagedObject *obj in updatedObjects){
-            // If attachment get the corresponding note to update
-            if([obj.entity.name isEqualToString:@"Attachment"]) {
-                DLog(@"U - An attachment %@ for note %@", ((Attachment *)obj).filename, ((Attachment *)obj).note.title);
-            } else {
-                DLog(@"U - A note %@", ((Note *)obj).title);
-            }
-        }
-        DLog(@"MERGESYNCDEBUGSECTION - END");
-
-        
-        for(NSManagedObject *obj in deletedObjects){
-            if([obj.entity.name isEqualToString:@"Attachment"]) {
-                DLog(@"Deleting the attachment %@ from note %@", ((Attachment *)obj).filename, ((Attachment *)obj).note.title);
-                dispatch_async(_syncQueue, ^{ [self deleteAttachmentInDropbox:(Attachment *)obj]; });
-            } else {
-                DLog(@"Deleting note %@", ((Note *)obj).title);
-                dispatch_async(_syncQueue, ^{ [self deleteNoteInDropbox:(Note *)obj]; });
-            }
-        }
-        for(NSManagedObject *obj in insertedObjects){
-            // If attachment get the corresponding note to insert
-            if([obj.entity.name isEqualToString:@"Attachment"]) {
-                DLog(@"Inserting the attachment %@ for note %@", ((Attachment *)obj).filename, ((Attachment *)obj).note.title);
-                dispatch_async(_syncQueue, ^{ [self saveNoteToDropbox:((Attachment *)obj).note]; });
-            } else {
-                DLog(@"Inserting note %@", ((Note *)obj).title);
-                dispatch_async(_syncQueue, ^{ [self saveNoteToDropbox:(Note *)obj]; });
-            }
-        }
-        for(NSManagedObject *obj in updatedObjects){
-            // If attachment get the corresponding note to update
-            if([obj.entity.name isEqualToString:@"Attachment"]) {
-                DLog(@"Updating the attachment %@ for note %@", ((Attachment *)obj).filename, ((Attachment *)obj).note.title);
-                dispatch_async(_syncQueue, ^{ [self saveNoteToDropbox:((Attachment *)obj).note]; });
-            } else {
-                DLog(@"Updating note %@", ((Note *)obj).title);
-                dispatch_async(_syncQueue, ^{ [self saveNoteToDropbox:(Note *)obj]; });
+                DLog(@"C - A note %@", ((Note *)obj).title);
+                [self saveNoteToDropbox:(Note *)obj];
             }
         }
     }
-    // merge changes on the private queue
-    dispatch_async(_syncQueue, ^{
-        [self.dataSyncThreadContext mergeChangesFromContextDidSaveNotification:note];
-    });
+    // In any case, merge back to mainview moc
+    DLog(@"propagating save to main UI moc");
+    [self.coreDataController.mainThreadContext performBlock:^{
+        [self.coreDataController.mainThreadContext mergeChangesFromContextDidSaveNotification:notification];
+    }];
 }
 
 #pragma mark - from CoreData to Dropbox (first sync AND user changes to data)
 
 // Copy all coredata db to dropbox (this is only if we move to a new directory for syncing)
-- (void)copyDataToDropbox {
+- (void)copyCurrentDataToDropbox {
     dispatch_async(_syncQueue, ^{
         DLog(@"Started copy of coredata db to dropbox (new directory here).");
         // Get notes ids
@@ -278,6 +241,8 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
             if(!found)
                 [self saveNoteToDropbox:note];
         }
+        self.syncControllerReady = YES;
+        [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kIAMDataSyncControllerReady object:self]];
         DLog(@"End copy of coredata db to dropbox.");
     });
 }
@@ -301,11 +266,15 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
     }
     // Now write all the attachments
     NSURL *attachmentPath = [notePath URLByAppendingPathComponent:kAttachmentDirectory isDirectory:YES];
+    // Check Attachment directory
+    if(![[NSFileManager defaultManager] createDirectoryAtURL:attachmentPath withIntermediateDirectories:YES attributes:nil error:&error]) {
+        DLog(@"Error creating attachment directory, probably it's OK. %@", [error description]);
+    }
     for (Attachment *attachment in note.attachment) {
         // write attachment
         NSString *encodedAttachmentName = convertToValidDropboxFilenames(attachment.filename);
         NSURL *attachmentDataPath = [attachmentPath URLByAppendingPathComponent:encodedAttachmentName isDirectory:NO];
-        if([attachment.data writeToURL:attachmentDataPath atomically:YES]) {
+        if(![attachment.data writeToURL:attachmentDataPath atomically:YES]) {
             DLog(@"Error writing attachment data at %@ for note %@: %@", attachmentDataPath, note.title, [error description]);
         }
     }
@@ -338,6 +307,22 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
         }
     }
     DLog(@"note %@ copied to dropbox.", note.title);
+}
+
+- (void)attachAttachment:(Attachment *)attachment toNoteInDropbox:(Note *)note {
+    DLog(@"Attach attachment %@ to note %@.", attachment.filename, note.title);
+    NSError *error;
+    NSURL *notePath = [self.syncDirectory URLByAppendingPathComponent:note.uuid isDirectory:YES];
+    NSURL *attachmentPath = [notePath URLByAppendingPathComponent:kAttachmentDirectory isDirectory:YES];
+    // Check Attachment directory
+    if(![[NSFileManager defaultManager] createDirectoryAtURL:attachmentPath withIntermediateDirectories:YES attributes:nil error:&error]) {
+        DLog(@"Error creating attachment directory, probably it's OK. %@", [error description]);
+    }
+    NSString *encodedAttachmentName = convertToValidDropboxFilenames(attachment.filename);
+    NSURL *attachmentDataPath = [attachmentPath URLByAppendingPathComponent:encodedAttachmentName isDirectory:NO];
+    if(![attachment.data writeToURL:attachmentDataPath atomically:YES]) {
+        DLog(@"Error writing attachment data at %@ for note %@: %@", attachmentDataPath, note.title, [error description]);
+    }
 }
 
 - (void)deleteNoteTextWithUUID:(NSString *)uuid afterFilenameChangeFrom:(NSString *)oldFilename {
@@ -375,6 +360,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
 
 - (void)copyAllFromDropbox {
     dispatch_async(_syncQueue, ^{
+        _isResettingDataFromDropbox = YES;
         DLog(@"Deleting current coreData db init");
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"Note" inManagedObjectContext:self.dataSyncThreadContext];
@@ -388,6 +374,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
         if (![self.dataSyncThreadContext save:&error]) {
             ALog(@"Aborting. Error deleting all notes from dropbox to core data, error: %@", [error description]);
             [self.dataSyncThreadContext rollback];
+            _isResettingDataFromDropbox = NO;
             return;
         }
         // Get notes ids
@@ -397,6 +384,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
         if(!filesAtRoot) {
             ALog(@"Aborting. Error reading notes: %@", [error description]);
             [self.dataSyncThreadContext rollback];
+            _isResettingDataFromDropbox = NO;
             return;
         }
         for (NSURL *fileInfo in filesAtRoot) {
@@ -422,6 +410,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
             }
         }
         DLog(@"Syncronization end");
+        _isResettingDataFromDropbox = NO;
         dispatch_async(dispatch_get_main_queue(), ^{
             [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kIAMDataSyncRefreshTerminated object:self]];
         });
@@ -456,9 +445,9 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
             ALog(@"Error looking for modificationDate: %@", [error localizedDescription]);
             error = nil;
         }
-        if(!isDirectory) {
+        if(![isDirectory boolValue]) {
             // This is the note
-            DLog(@"Copying note at path %@ to CoreData", name);
+            DLog(@"Copying note %@ to CoreData", name);
             newNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:self.dataSyncThreadContext];
             newNote.uuid = [[pathToNoteDir path] lastPathComponent];
             NSString *titolo = convertFromValidDropboxFilenames([[fileInfo path] lastPathComponent]);
@@ -482,7 +471,6 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
                                                                                           options:NSDirectoryEnumerationSkipsHiddenFiles error:&error];
         if(!filesInAttachmentDir || [filesInAttachmentDir count] == 0) {
             // No attachments directory -> No attachments
-            DLog(@"Cannot list attachment directory for note %@, no attachments then.", newNote.title);
             return YES;
         }
         for (NSURL *attachmentInfo in filesInAttachmentDir) {

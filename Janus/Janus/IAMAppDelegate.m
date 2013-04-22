@@ -28,11 +28,8 @@
     _coreDataController = [[CoreDataController alloc] init];
     // [_coreDataController nukeAndPave];
     [_coreDataController loadPersistentStores];
-    // Init datasync engine
-    [IAMFilesystemSyncController sharedInstance];
     self.collectionController = [[IAMCollectionWindowController alloc] initWithWindowNibName:@"IAMCollectionWindowController"];
     // Preserve a reference to the controller to keep ARC happy
-//    [self.noteWindowControllers addObject:collectionController];
     [self.collectionController showWindow:self];
     [self deleteCache];
 }

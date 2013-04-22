@@ -12,6 +12,8 @@
 #import "IAMAppDelegate.h"
 #import "CoreDataController.h"
 #import "IAMFileSystemSyncController.h"
+#import "NSManagedObjectContext+FetchedObjectFromURI.h"
+#import "Attachment.h"
 
 @interface IAMCollectionWindowController () <IAMNoteEditorWCDelegate>
 
@@ -65,94 +67,56 @@
     else
         DLog(@"called directly from init");
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    NSManagedObjectContext *syncMOC = [IAMFilesystemSyncController sharedInstance].dataSyncThreadContext;
-    NSAssert(syncMOC, @"The Managed Object Context for the Sync Engine is still not set while setting main view.");
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mergeSyncChanges:) name:NSManagedObjectContextDidSaveNotification object:syncMOC];
-    if([IAMFilesystemSyncController sharedInstance].syncControllerReady)
-        [self refreshControlSetup];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(syncStoreNotificationHandler:) name:kIAMDataSyncControllerReady object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(syncStoreNotificationHandler:) name:kIAMDataSyncControllerStopped object:nil];
-    [self.arrayController fetch:nil];
-}
-
-- (void)shouldRefresh:(NSNotification *)notification {
-    DLog(@"called for %@", notification.name);
+    // Init sync mamagement
+    [IAMFilesystemSyncController sharedInstance];
     [self.arrayController fetch:nil];
 }
 
 - (void)mergeSyncChanges:(NSNotification *)note {
     DLog(@"Merging data from sync Engine");
-    [self.sharedManagedObjectContext mergeChangesFromContextDidSaveNotification:note];
-    // Reset the moc, so we don't get changes back to the background moc.
-    [self.sharedManagedObjectContext reset];
-    [self.arrayController fetch:nil];
-}
+    DLog(@"MAINMERGESYNCDEBUGSECTION - BEGIN");
+    NSDictionary *info = note.userInfo;
+    NSSet *insertedObjects = [info objectForKey:NSInsertedObjectsKey];
+    NSSet *deletedObjects = [info objectForKey:NSDeletedObjectsKey];
+    NSSet *updatedObjects = [info objectForKey:NSUpdatedObjectsKey];
+    DLog(@"Deleted objects");
+    for(NSManagedObject *obj in deletedObjects){
+        if([obj.entity.name isEqualToString:@"Attachment"]) {
+            DLog(@"D - An attachment %@ from note %@", ((Attachment *)obj).filename, ((Attachment *)obj).note.title);
+        } else {
+            DLog(@"D - A note %@", ((Note *)obj).title);
+        }
+    }
+    DLog(@"Inserted objects");
+    for(NSManagedObject *obj in insertedObjects){
+        // If attachment get the corresponding note to insert
+        if([obj.entity.name isEqualToString:@"Attachment"]) {
+            DLog(@"I - An attachment %@ for note %@", ((Attachment *)obj).filename, ((Attachment *)obj).note.title);
+        } else {
+            DLog(@"I - A note %@", ((Note *)obj).title);
+        }
+    }
+    DLog(@"Updated objects");
+    for(NSManagedObject *obj in updatedObjects){
+        // If attachment get the corresponding note to update
+        if([obj.entity.name isEqualToString:@"Attachment"]) {
+            DLog(@"U - An attachment %@ for note %@", ((Attachment *)obj).filename, ((Attachment *)obj).note.title);
+        } else {
+            DLog(@"U - A note %@", ((Note *)obj).title);
+        }
+    }
+    DLog(@"MAINMERGESYNCDEBUGSECTION - END");
 
-- (void)shouldMergeChanges:(NSNotification *)notification {
-    DLog(@"called for %@", notification.name);
-    [self.sharedManagedObjectContext mergeChangesFromContextDidSaveNotification:notification];
+    [self.sharedManagedObjectContext mergeChangesFromContextDidSaveNotification:note];
     [self.arrayController fetch:nil];
 }
 
 #pragma mark - sync management
 
-- (void)refreshControlSetup {
-    // Here we are sure there is an active dropbox link
-    self.syncStatusTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(syncStatus:) userInfo:nil repeats:YES];
-}
-
--(void)syncStatus:(NSTimer *)timer {
-    
-    DBSyncStatus status = [[DBFilesystem sharedFilesystem] status];
-    NSMutableString *title = [[NSMutableString alloc] initWithString:@"Sync "];
-    if(!status) {
-        // If all is quiet and dropbox says it's fully synced (and it was not before), then reload (only if last reload were more than 45 seconds ago).
-        title = [NSLocalizedString(@"Notes ", nil) mutableCopy];
-        [title appendString:@"✔"];
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-        if(self.dropboxSyncronizedSomething && [self.lastDropboxSync timeIntervalSinceNow] < -45.0) {
-            DLog(@"Dropbox synced everything, time to reload! Last reload %.0f seconds ago", -[self.lastDropboxSync timeIntervalSinceNow]);
-            self.dropboxSyncronizedSomething = NO;
-            self.lastDropboxSync = [NSDate date];
-            [[IAMDataSyncController sharedInstance] refreshContentFromRemote];
-        }
-    } else {
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-    }
-    if(status & DBSyncStatusSyncing)
-        [title appendString:@"␖"];
-    if(status & DBSyncStatusDownloading) {
-        [title appendString:@"↓"];
-        self.dropboxSyncronizedSomething = YES;
-    }
-    if(status & DBSyncStatusUploading)
-        [title appendString:@"↑"];
-    self.title = title;
-}
-
 // Reload management
 - (IBAction)refresh:(id)sender {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(endSyncNotificationHandler:) name:kIAMDataSyncRefreshTerminated object:nil];
-    [[IAMDataSyncController sharedInstance] refreshContentFromRemote];
-}
-
-- (void)syncStoreNotificationHandler:(NSNotification *)note {
-    IAMDataSyncController *controller = note.object;
-    if(controller.syncControllerReady) {
-        [self refreshControlSetup];
-        self.lastDropboxSync = [NSDate date];
-    }
-    else {
-        self.refreshControl = nil;
-        if(self.syncStatusTimer) {
-            [self.syncStatusTimer invalidate];
-            self.syncStatusTimer = nil;
-        }
-    }
-    if(self.hud) {
-        [self.hud hide:YES];
-        self.hud = nil;
-    }
+    [[IAMFilesystemSyncController sharedInstance] refreshContentFromRemote];
 }
 
 - (void)endSyncNotificationHandler:(NSNotification *)note {
@@ -204,11 +168,23 @@
 {
     if(returnCode == NSAlertSecondButtonReturn)
     {
+        // Create a local moc, children of the sync moc and delete there.
         DLog(@"User confirmed delete, now really deleting note.");
-        [self.arrayController removeObject:[self.arrayController selectedObjects][0]];
+        NSManagedObjectContext *moc = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSConfinementConcurrencyType];
+        [moc setParentContext:[IAMFilesystemSyncController sharedInstance].dataSyncThreadContext];
+        NSURL *uri = [[[self.arrayController selectedObjects][0] objectID] URIRepresentation];
+        Note *delenda = (Note *)[moc objectWithURI:uri];
+        DLog(@"About to delete note: %@", delenda);
+        [moc deleteObject:delenda];
         NSError *error;
-        if(![self.sharedManagedObjectContext save:&error])
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        if(![moc save:&error])
+            ALog(@"Unresolved error %@, %@", error, [error userInfo]);
+        // Save on parent context
+        [[IAMFilesystemSyncController sharedInstance].dataSyncThreadContext performBlock:^{
+            NSError *localError;
+            if(![[IAMFilesystemSyncController sharedInstance].dataSyncThreadContext save:&localError])
+                ALog(@"Unresolved error saving parent context %@, %@", error, [error userInfo]);
+        }];
     }
 }
 
