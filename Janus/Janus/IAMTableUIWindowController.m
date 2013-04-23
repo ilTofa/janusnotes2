@@ -19,6 +19,7 @@
 
 @property (strong, nonatomic) NSMutableArray *noteWindowControllers;
 @property (weak) IBOutlet NSSearchFieldCell *searchField;
+@property (copy) NSArray *sortDescriptors;
 
 @property NSTimer *syncStatusTimer;
 
@@ -47,7 +48,7 @@
     [self.theTable setTarget:self];
     [self.theTable setDoubleAction:@selector(tableItemDoubleClick:)];
     self.sharedManagedObjectContext = ((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).coreDataController.mainThreadContext;
-    NSSortDescriptor *dateAddedSortDesc = [[NSSortDescriptor alloc] initWithKey:@"timeStamp" ascending:NO];
+    NSSortDescriptor *dateAddedSortDesc = [[NSSortDescriptor alloc] initWithKey:@"creationDate" ascending:NO];
     NSArray *sortDescriptors = @[dateAddedSortDesc];
     [self.arrayController setSortDescriptors:sortDescriptors];
     DLog(@"Array controller: %@", self.arrayController);
