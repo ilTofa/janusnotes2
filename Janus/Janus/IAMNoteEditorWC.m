@@ -87,9 +87,10 @@
 -(void)refreshAttachments {
     NSMutableArray *tempArray = [[NSMutableArray alloc] initWithCapacity:[self.editedNote.attachment count]];
     for (Attachment *attach in self.editedNote.attachment) {
-        NSImage *icon = [[NSWorkspace sharedWorkspace] iconForFileType:attach.filename];
+        
+        NSImage *icon = [[NSWorkspace sharedWorkspace] iconForFileType:attach.extension];
         NSDictionary *attachmentDictionary = @{@"attachment": attach, @"icon": icon};
-        DLog(@"Attachment dictionary: %@", attachmentDictionary);
+        DLog(@"Added attachment to the collection: %@", attach.filename);
         [tempArray addObject:attachmentDictionary];
     }
 //    self.attachmentsArray = [self.editedNote.attachment allObjects];
@@ -151,7 +152,7 @@
 - (IBAction)deleteAttachment:(id)sender {
     if([[self.arrayController selectedObjects] count] != 0) {
         DLog(@"Delete requested for attachment: %@", [self.arrayController selectedObjects][0]);
-        Attachment *toBeDeleted = [self.arrayController selectedObjects][0];
+        Attachment *toBeDeleted = [self.arrayController selectedObjects][0][@"attachment"];
         [self.arrayController removeSelectedObjects:[self.arrayController selectedObjects]];
         [self.editedNote removeAttachmentObject:toBeDeleted];
         [self save:nil];
@@ -179,7 +180,7 @@
     if([[self.arrayController selectedObjects] count] != 0) {
         DLog(@"Double click detected in collection view, processing event.");
         DLog(@"Selected object array: %@", [self.arrayController selectedObjects]);
-        Attachment *toBeOpened = [self.arrayController selectedObjects][0];
+        Attachment *toBeOpened = [self.arrayController selectedObjects][0][@"attachment"];
         NSURL *file = [toBeOpened generateFile];
         if(![[NSWorkspace sharedWorkspace] openURL:file]) {
             NSAlert *alert = [[NSAlert alloc] init];
@@ -264,7 +265,7 @@
 }
 
 - (BOOL)collectionView:(NSCollectionView *)collectionView writeItemsAtIndexes:(NSIndexSet *)indexes toPasteboard:(NSPasteboard *)pasteboard {
-    Attachment *toBeDragged = [self.arrayController arrangedObjects][indexes.firstIndex];
+    Attachment *toBeDragged = [self.arrayController arrangedObjects][indexes.firstIndex][@"attachment"];
     DLog(@"Writing %@ to pasteboard for dragging.", toBeDragged);
     NSURL *file = [toBeDragged generateFile];
     if(file) {

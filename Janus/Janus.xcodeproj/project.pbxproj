@@ -20,6 +20,7 @@
 		644AC26A1725855B007B51FF /* delete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 644AC2681725855B007B51FF /* delete@2x.png */; };
 		644AC26D17258645007B51FF /* prefs.png in Resources */ = {isa = PBXBuildFile; fileRef = 644AC26B17258645007B51FF /* prefs.png */; };
 		644AC26E17258645007B51FF /* prefs@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 644AC26C17258645007B51FF /* prefs@2x.png */; };
+		644AC2741726C343007B51FF /* IAMCollectionItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 644AC2731726C343007B51FF /* IAMCollectionItemView.m */; };
 		64A75591170358BC0085933D /* NSManagedObjectContext+FetchedObjectFromURI.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A75590170358BC0085933D /* NSManagedObjectContext+FetchedObjectFromURI.m */; };
 		64EA621016F7110300F4838E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64EA620F16F7110300F4838E /* Cocoa.framework */; };
 		64EA621A16F7110300F4838E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64EA621816F7110300F4838E /* InfoPlist.strings */; };
@@ -72,6 +73,8 @@
 		644AC2681725855B007B51FF /* delete@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "delete@2x.png"; path = "Buttons/delete@2x.png"; sourceTree = "<group>"; };
 		644AC26B17258645007B51FF /* prefs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = prefs.png; path = Buttons/prefs.png; sourceTree = "<group>"; };
 		644AC26C17258645007B51FF /* prefs@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "prefs@2x.png"; path = "Buttons/prefs@2x.png"; sourceTree = "<group>"; };
+		644AC2721726C343007B51FF /* IAMCollectionItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMCollectionItemView.h; sourceTree = "<group>"; };
+		644AC2731726C343007B51FF /* IAMCollectionItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMCollectionItemView.m; sourceTree = "<group>"; };
 		64A1D4EC16FC9F7C00E50CC1 /* Janus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Janus.entitlements; sourceTree = "<group>"; };
 		64A7558F170358BC0085933D /* NSManagedObjectContext+FetchedObjectFromURI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSManagedObjectContext+FetchedObjectFromURI.h"; path = "../common/iCloud/NSManagedObjectContext+FetchedObjectFromURI.h"; sourceTree = "<group>"; };
 		64A75590170358BC0085933D /* NSManagedObjectContext+FetchedObjectFromURI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSManagedObjectContext+FetchedObjectFromURI.m"; path = "../common/iCloud/NSManagedObjectContext+FetchedObjectFromURI.m"; sourceTree = "<group>"; };
@@ -177,6 +180,8 @@
 		64A1D4ED16FCA12700E50CC1 /* Note Edit */ = {
 			isa = PBXGroup;
 			children = (
+				644AC2721726C343007B51FF /* IAMCollectionItemView.h */,
+				644AC2731726C343007B51FF /* IAMCollectionItemView.m */,
 				64EA628216F75E0000F4838E /* IAMNoteEditorWC.h */,
 				64EA628316F75E0000F4838E /* IAMNoteEditorWC.m */,
 				64EA628416F75E0000F4838E /* IAMNoteEditorWC.xib */,
@@ -423,6 +428,7 @@
 				6429F2C41716EB3C0030E932 /* NSString+UUID.m in Sources */,
 				642D29CF1721470400006FC1 /* IAMFilesystemSyncController.m in Sources */,
 				644AC25B17257FE4007B51FF /* IAMTableUIWindowController.m in Sources */,
+				644AC2741726C343007B51FF /* IAMCollectionItemView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
