@@ -128,6 +128,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
     self.syncDirectory = [NSURL URLByResolvingBookmarkData:self.secureBookmarkToData options:NSURLBookmarkResolutionWithSecurityScope  relativeToURL:nil bookmarkDataIsStale:&staleData error:&error];
     [self.syncDirectory startAccessingSecurityScopedResource];
     [self copyCurrentDataToDropbox];
+    [self firstAccessToData];
     return YES;
 }
 

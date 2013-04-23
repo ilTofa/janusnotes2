@@ -56,7 +56,7 @@
         } else {
             DLog(@"User selected URL %@", openPanel.URL);
             self.currentURL = [openPanel.URL path];
-//            [[IAMFilesystemSyncController sharedInstance] modifySyncDirectory:openPanel.URL];
+            [[IAMFilesystemSyncController sharedInstance] modifySyncDirectory:openPanel.URL];
         }
     }];
 }
