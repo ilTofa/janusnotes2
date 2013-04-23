@@ -22,5 +22,6 @@
 @property (nonatomic, strong, readonly) CoreDataController *coreDataController;
 
 - (IBAction)saveAction:(id)sender;
+- (IBAction)preferencesAction:(id)sender;
 
 @end

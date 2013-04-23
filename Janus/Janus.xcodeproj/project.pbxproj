@@ -21,6 +21,8 @@
 		644AC26D17258645007B51FF /* prefs.png in Resources */ = {isa = PBXBuildFile; fileRef = 644AC26B17258645007B51FF /* prefs.png */; };
 		644AC26E17258645007B51FF /* prefs@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 644AC26C17258645007B51FF /* prefs@2x.png */; };
 		644AC2741726C343007B51FF /* IAMCollectionItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 644AC2731726C343007B51FF /* IAMCollectionItemView.m */; };
+		644AC2781726CFAC007B51FF /* IAMPrefsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 644AC2761726CFAB007B51FF /* IAMPrefsWindowController.m */; };
+		644AC2791726CFAC007B51FF /* IAMPrefsWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 644AC2771726CFAB007B51FF /* IAMPrefsWindowController.xib */; };
 		64A75591170358BC0085933D /* NSManagedObjectContext+FetchedObjectFromURI.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A75590170358BC0085933D /* NSManagedObjectContext+FetchedObjectFromURI.m */; };
 		64EA621016F7110300F4838E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64EA620F16F7110300F4838E /* Cocoa.framework */; };
 		64EA621A16F7110300F4838E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64EA621816F7110300F4838E /* InfoPlist.strings */; };
@@ -75,6 +77,9 @@
 		644AC26C17258645007B51FF /* prefs@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "prefs@2x.png"; path = "Buttons/prefs@2x.png"; sourceTree = "<group>"; };
 		644AC2721726C343007B51FF /* IAMCollectionItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMCollectionItemView.h; sourceTree = "<group>"; };
 		644AC2731726C343007B51FF /* IAMCollectionItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMCollectionItemView.m; sourceTree = "<group>"; };
+		644AC2751726CFAB007B51FF /* IAMPrefsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMPrefsWindowController.h; sourceTree = "<group>"; };
+		644AC2761726CFAB007B51FF /* IAMPrefsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMPrefsWindowController.m; sourceTree = "<group>"; };
+		644AC2771726CFAB007B51FF /* IAMPrefsWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IAMPrefsWindowController.xib; sourceTree = "<group>"; };
 		64A1D4EC16FC9F7C00E50CC1 /* Janus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Janus.entitlements; sourceTree = "<group>"; };
 		64A7558F170358BC0085933D /* NSManagedObjectContext+FetchedObjectFromURI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSManagedObjectContext+FetchedObjectFromURI.h"; path = "../common/iCloud/NSManagedObjectContext+FetchedObjectFromURI.h"; sourceTree = "<group>"; };
 		64A75590170358BC0085933D /* NSManagedObjectContext+FetchedObjectFromURI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSManagedObjectContext+FetchedObjectFromURI.m"; path = "../common/iCloud/NSManagedObjectContext+FetchedObjectFromURI.m"; sourceTree = "<group>"; };
@@ -177,6 +182,16 @@
 			name = Buttons;
 			sourceTree = "<group>";
 		};
+		644AC27A1726CFB1007B51FF /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				644AC2751726CFAB007B51FF /* IAMPrefsWindowController.h */,
+				644AC2761726CFAB007B51FF /* IAMPrefsWindowController.m */,
+				644AC2771726CFAB007B51FF /* IAMPrefsWindowController.xib */,
+			);
+			name = Preferences;
+			sourceTree = "<group>";
+		};
 		64A1D4ED16FCA12700E50CC1 /* Note Edit */ = {
 			isa = PBXGroup;
 			children = (
@@ -244,6 +259,7 @@
 				64A1D4ED16FCA12700E50CC1 /* Note Edit */,
 				64EA621616F7110300F4838E /* Supporting Files */,
 				644AC25D17257FEB007B51FF /* Main UI */,
+				644AC27A1726CFB1007B51FF /* Preferences */,
 			);
 			path = Janus;
 			sourceTree = "<group>";
@@ -398,6 +414,7 @@
 				644AC26A1725855B007B51FF /* delete@2x.png in Resources */,
 				644AC26D17258645007B51FF /* prefs.png in Resources */,
 				644AC26E17258645007B51FF /* prefs@2x.png in Resources */,
+				644AC2791726CFAC007B51FF /* IAMPrefsWindowController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,6 +446,7 @@
 				642D29CF1721470400006FC1 /* IAMFilesystemSyncController.m in Sources */,
 				644AC25B17257FE4007B51FF /* IAMTableUIWindowController.m in Sources */,
 				644AC2741726C343007B51FF /* IAMCollectionItemView.m in Sources */,
+				644AC2781726CFAC007B51FF /* IAMPrefsWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

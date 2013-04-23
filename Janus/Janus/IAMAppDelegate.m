@@ -10,11 +10,12 @@
 
 #import "IAMTableUIWindowController.h"
 #import "IAMFilesystemSyncController.h"
+#import "IAMPrefsWindowController.h"
 
 @interface IAMAppDelegate ()
 
-//@property (strong, nonatomic) IAMCollectionWindowController *collectionController;
 @property (strong, nonatomic) IAMTableUIWindowController *collectionController;
+@property (strong) IAMPrefsWindowController *prefsController;
 
 @end
 
@@ -72,6 +73,13 @@
     if (![[self managedObjectContext] save:&error]) {
         [[NSApplication sharedApplication] presentError:error];
     }
+}
+
+- (IBAction)preferencesAction:(id)sender {
+    if(!self.prefsController) {
+        self.prefsController = [[IAMPrefsWindowController alloc] initWithWindowNibName:@"IAMPrefsWindowController"];
+    }
+    [self.prefsController showWindow:self];
 }
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender
