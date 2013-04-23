@@ -8,7 +8,6 @@
 
 #import "IAMAppDelegate.h"
 
-#import "IAMCollectionWindowController.h"
 #import "IAMTableUIWindowController.h"
 #import "IAMFilesystemSyncController.h"
 
@@ -30,9 +29,6 @@
     _coreDataController = [[CoreDataController alloc] init];
     // [_coreDataController nukeAndPave];
     [_coreDataController loadPersistentStores];
-//    self.collectionController = [[IAMCollectionWindowController alloc] initWithWindowNibName:@"IAMCollectionWindowController"];
-//    // Preserve a reference to the controller to keep ARC happy
-//    [self.collectionController showWindow:self];
     self.collectionController = [[IAMTableUIWindowController alloc] initWithWindowNibName:@"IAMTableUIWindowController"];
     [self.collectionController showWindow:self];
     [self deleteCache];
