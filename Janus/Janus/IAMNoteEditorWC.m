@@ -85,7 +85,15 @@
 }
 
 -(void)refreshAttachments {
-    self.attachmentsArray = [self.editedNote.attachment allObjects];
+    NSMutableArray *tempArray = [[NSMutableArray alloc] initWithCapacity:[self.editedNote.attachment count]];
+    for (Attachment *attach in self.editedNote.attachment) {
+        NSImage *icon = [[NSWorkspace sharedWorkspace] iconForFileType:attach.filename];
+        NSDictionary *attachmentDictionary = @{@"attachment": attach, @"icon": icon};
+        DLog(@"Attachment dictionary: %@", attachmentDictionary);
+        [tempArray addObject:attachmentDictionary];
+    }
+//    self.attachmentsArray = [self.editedNote.attachment allObjects];
+    self.attachmentsArray = tempArray;
     [self.arrayController fetch:nil];
 }
 
