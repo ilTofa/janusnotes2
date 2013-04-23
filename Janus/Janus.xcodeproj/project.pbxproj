@@ -153,8 +153,7 @@
 				642D29CD1721470400006FC1 /* IAMFilesystemSyncController.h */,
 				642D29CE1721470400006FC1 /* IAMFilesystemSyncController.m */,
 			);
-			name = Sync;
-			path = Janus/Sync;
+			path = Sync;
 			sourceTree = "<group>";
 		};
 		644AC25D17257FEB007B51FF /* Main UI */ = {
@@ -207,7 +206,6 @@
 		64EA620316F7110300F4838E = {
 			isa = PBXGroup;
 			children = (
-				642D29CC172146E400006FC1 /* Sync */,
 				64EA627816F71E7600F4838E /* Utilities (common) */,
 				64EA626B16F71DF500F4838E /* CoreData (common) */,
 				64EA621516F7110300F4838E /* Janus */,
@@ -252,6 +250,7 @@
 		64EA621516F7110300F4838E /* Janus */ = {
 			isa = PBXGroup;
 			children = (
+				642D29CC172146E400006FC1 /* Sync */,
 				644AC25E17258213007B51FF /* Buttons */,
 				64EA622116F7110300F4838E /* IAMAppDelegate.h */,
 				64EA622216F7110300F4838E /* IAMAppDelegate.m */,

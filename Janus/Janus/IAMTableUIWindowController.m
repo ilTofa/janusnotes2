@@ -27,6 +27,7 @@
 - (IBAction)editNote:(id)sender;
 - (IBAction)searched:(id)sender;
 - (IBAction)deleteNote:(id)sender;
+- (IBAction)actionPreferences:(id)sender;
 
 @end
 
@@ -118,6 +119,10 @@
     [alert addButtonWithTitle:@"Cancel"];
     [alert addButtonWithTitle:@"Delete"];
     [alert beginSheetModalForWindow:self.window modalDelegate:self didEndSelector:@selector(alertDidEnd:returnCode:contextInfo:) contextInfo:nil];
+}
+
+- (IBAction)actionPreferences:(id)sender {
+    [(IAMAppDelegate *)[[NSApplication sharedApplication] delegate] preferencesAction:sender];
 }
 
 - (void) alertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo

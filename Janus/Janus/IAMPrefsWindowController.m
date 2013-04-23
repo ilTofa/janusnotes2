@@ -33,6 +33,10 @@
     
     NSData *originalDataPath = [[NSUserDefaults standardUserDefaults] dataForKey:@"syncDirectory"];
     NSAssert(originalDataPath, @"syncDirectory userdefault is not set!");
+    NSString *fontName = [[NSUserDefaults standardUserDefaults] stringForKey:@"fontName"];
+    NSAssert(fontName, @"Default font not set in user defaults");
+    double fontSize = [[NSUserDefaults standardUserDefaults] doubleForKey:@"fontSize"];
+    self.currentFont = [NSFont fontWithName:fontName size:fontSize];
     BOOL staleData;
     NSError *error;
     NSURL *originalSyncDirectory = [NSURL URLByResolvingBookmarkData:originalDataPath options:NSURLBookmarkResolutionWithSecurityScope relativeToURL:nil bookmarkDataIsStale:&staleData error:&error];
@@ -55,6 +59,22 @@
 //            [[IAMFilesystemSyncController sharedInstance] modifySyncDirectory:openPanel.URL];
         }
     }];
+}
+
+- (IBAction)actionChangeFont:(id)sender {
+    NSFontManager * fontManager = [NSFontManager sharedFontManager];
+    [fontManager setTarget:self];
+    [fontManager setSelectedFont:self.currentFont isMultiple:NO];
+    [fontManager orderFrontFontPanel:self];
+}
+
+- (void)changeFont:(id)sender {
+    NSFont *newFont = [sender convertFont:self.currentFont];
+    DLog(@"New selected font: %@", newFont);
+    self.currentFont = newFont;
+    [[NSUserDefaults standardUserDefaults] setObject:self.currentFont.fontName forKey:@"fontName"];
+    [[NSUserDefaults standardUserDefaults] setDouble:self.currentFont.pointSize forKey:@"fontSize"];
+    return;
 }
 
 @end

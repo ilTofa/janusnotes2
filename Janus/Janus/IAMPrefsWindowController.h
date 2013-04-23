@@ -11,7 +11,9 @@
 @interface IAMPrefsWindowController : NSWindowController
 
 @property (weak) IBOutlet NSTextField *pathToLabel;
+@property NSFont *currentFont;
 
 - (IBAction)changePath:(id)sender;
+- (IBAction)actionChangeFont:(id)sender;
 
 @end

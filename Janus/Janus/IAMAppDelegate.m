@@ -30,6 +30,12 @@
     _coreDataController = [[CoreDataController alloc] init];
     // [_coreDataController nukeAndPave];
     [_coreDataController loadPersistentStores];
+    // Set base font if not set
+    NSString *fontName = [[NSUserDefaults standardUserDefaults] stringForKey:@"fontName"];
+    if(!fontName) {
+        [[NSUserDefaults standardUserDefaults] setObject:@"Lucida Grande" forKey:@"fontName"];
+        [[NSUserDefaults standardUserDefaults] setDouble:13.0 forKey:@"fontSize"];
+    }
     self.collectionController = [[IAMTableUIWindowController alloc] initWithWindowNibName:@"IAMTableUIWindowController"];
     [self.collectionController showWindow:self];
     [self deleteCache];

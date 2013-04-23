@@ -39,6 +39,10 @@
 - (void)windowDidLoad
 {
     [super windowDidLoad];
+    NSString *fontName = [[NSUserDefaults standardUserDefaults] stringForKey:@"fontName"];
+    NSAssert(fontName, @"Default font not set in user defaults");
+    double fontSize = [[NSUserDefaults standardUserDefaults] doubleForKey:@"fontSize"];
+    self.editorFont = [NSFont fontWithName:fontName size:fontSize];
     // The NSManagedObjectContext instance should change for a local (to the controller instance) one.
     // We need to migrate the passed object to the new moc.
     self.noteEditorMOC = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSConfinementConcurrencyType];
