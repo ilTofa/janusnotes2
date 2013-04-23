@@ -133,10 +133,11 @@
 
     return NSTerminateNow;
 }
+
 #pragma mark - cache management
 
--(void)deleteCache {
-    // Async load, please (so don't use defaultManage, not thread safe)
+- (void)deleteCache {
+    // Async load, please (so don't use defaultManager, not thread safe)
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSFileManager *fileMgr = [[NSFileManager alloc] init];
         NSError *error;
@@ -147,6 +148,10 @@
         }
         fileMgr = nil;
     });
+}
+
+- (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)theApplication {
+    return YES;
 }
 
 @end
