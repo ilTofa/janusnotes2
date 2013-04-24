@@ -19,6 +19,7 @@
 #import "GTThemer.h"
 #import "UIImage+FixOrientation.h"
 #import "IAMDataSyncController.h"
+#import "NSManagedObjectContext+FetchedObjectFromURI.h"
 
 @interface IAMNoteEdit () <UITextViewDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, IAMAddLinkViewControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, AttachmentDeleter, MicrophoneWindowDelegate>
 
@@ -31,6 +32,8 @@
 @property (strong, nonatomic) MicrophoneWindow *recordView;
 @property BOOL attachmensAreHidden;
 @property UIPopoverController *popover;
+
+@property NSManagedObjectContext *noteEditorMOC;
 
 @end
 
@@ -48,6 +51,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    // The NSManagedObjectContext instance should change for a local (to the controller instance) one.
+    // We need to migrate the passed object to the new moc.
+    self.noteEditorMOC = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSConfinementConcurrencyType];
+    [self.noteEditorMOC setParentContext:[IAMDataSyncController sharedInstance].dataSyncThreadContext];
+    if(!self.editedNote) {
+        // It seems that we're created without a note, that will mean that we're required to create a new one.
+        Note *newNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:self.noteEditorMOC];
+        self.editedNote = newNote;
+    } else { // Get a copy of edited note into the local context.
+        NSURL *uri = [[self.editedNote objectID] URIRepresentation];
+        self.editedNote = (Note *)[self.noteEditorMOC objectWithURI:uri];
+    }
     // Keyboard notifications
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
@@ -186,8 +201,14 @@
     self.editedNote.title = self.titleEdit.text;
     self.editedNote.text = self.textEdit.text;
     NSError *error;
-    if(![self.moc save:&error])
+    if(![self.noteEditorMOC save:&error])
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+    // Save on parent context
+    [[IAMDataSyncController sharedInstance].dataSyncThreadContext performBlock:^{
+        NSError *localError;
+        if(![[IAMDataSyncController sharedInstance].dataSyncThreadContext save:&localError])
+            ALog(@"Unresolved error saving parent context %@, %@", error, [error userInfo]);
+    }];
     // If title is changed, delete old note (with wrong name)
     if(![self.editedNote.title isEqualToString:self.originalTitle]) {
         [[IAMDataSyncController sharedInstance] deleteNoteTextWithUUID:self.editedNote.uuid afterFilenameChangeFrom:self.originalTitle];
@@ -272,7 +293,7 @@
         // Fix orientation
         pickedImage = [pickedImage normalizedImage];
         // Now add attachment...
-        Attachment *newAttachment = [NSEntityDescription insertNewObjectForEntityForName:@"Attachment" inManagedObjectContext:self.moc];
+        Attachment *newAttachment = [NSEntityDescription insertNewObjectForEntityForName:@"Attachment" inManagedObjectContext:self.noteEditorMOC];
         newAttachment.uti = (__bridge NSString *)(kUTTypeImage);
         newAttachment.extension = (__bridge_transfer NSString *)UTTypeCopyPreferredTagWithClass(kUTTypeImage, kUTTagClassFilenameExtension);
         if(!newAttachment.extension)
@@ -327,7 +348,7 @@
 - (void)addLinkViewController:(IAMAddLinkViewController *)addLinkViewController didAddThisLink:(NSString *)theLink {
     // Now add attachment...
     DLog(@"This is addLinkViewController: didAddThisLink: for '%@'", theLink);
-    Attachment *newAttachment = [NSEntityDescription insertNewObjectForEntityForName:@"Attachment" inManagedObjectContext:self.moc];
+    Attachment *newAttachment = [NSEntityDescription insertNewObjectForEntityForName:@"Attachment" inManagedObjectContext:self.noteEditorMOC];
     newAttachment.uti = (__bridge NSString *)(kUTTypeURL);
     newAttachment.extension = (__bridge_transfer NSString *)UTTypeCopyPreferredTagWithClass(kUTTypeURL, kUTTagClassFilenameExtension);
     if(!newAttachment.extension)
@@ -422,7 +443,7 @@
 	DLog(@"Received a record on %@", recordingFilename);
 	// Now get rid of the view
 	[self recordingCancelled];
-    Attachment *newAttachment = [NSEntityDescription insertNewObjectForEntityForName:@"Attachment" inManagedObjectContext:self.moc];
+    Attachment *newAttachment = [NSEntityDescription insertNewObjectForEntityForName:@"Attachment" inManagedObjectContext:self.noteEditorMOC];
     NSURL *url = [NSURL fileURLWithPath:recordingFilename];
     newAttachment.uti = (__bridge NSString *)(kUTTypeAudio);
     newAttachment.extension = [url pathExtension];

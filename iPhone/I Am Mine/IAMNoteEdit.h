@@ -24,7 +24,6 @@
 
 // The edited note and the corresponding moc
 @property Note *editedNote;
-@property NSManagedObjectContext *moc;
 
 - (IBAction)save:(id)sender;
 - (IBAction)addImageToNote:(id)sender;

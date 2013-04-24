@@ -149,7 +149,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
 
 - (void)localContextSaved:(NSNotification *)notification {
     // Any change to our context will be reflected here.
-    // Reflect them to the dropbox store UNLESS we're init loading from it
+    // Propagate them also to the dropbox store UNLESS we're init loading from it
     if(!_isResettingDataFromDropbox) {
         DLog(@"Propagating moc changes to dropbox");
         NSSet *deletedObjects = [notification.userInfo objectForKey:NSDeletedObjectsKey];

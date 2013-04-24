@@ -53,13 +53,8 @@
     NSArray *leftButtons = @[self.editButtonItem, self.preferencesButton];
     self.navigationItem.leftBarButtonItems = leftButtons;
     // Notifications to be honored during controller lifecycle
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadFetchedResults:) name:NSPersistentStoreCoordinatorStoresDidChangeNotification object:self.appDelegate.coreDataController.psc];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadFetchedResults:) name:NSPersistentStoreDidImportUbiquitousContentChangesNotification object:self.appDelegate.coreDataController.psc];
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismissPopoverRequested:) name:kPreferencesPopoverCanBeDismissed object:nil];
-    NSManagedObjectContext *syncMOC = [IAMDataSyncController sharedInstance].dataSyncThreadContext;
-    NSAssert(syncMOC, @"The Managed Object Context for the Sync Engine is still not set while setting main view.");
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mergeSyncChanges:) name:NSManagedObjectContextDidSaveNotification object:syncMOC];
     if([IAMDataSyncController sharedInstance].syncControllerReady)
         [self refreshControlSetup];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(syncStoreNotificationHandler:) name:kIAMDataSyncControllerReady object:nil];
@@ -203,36 +198,6 @@
     self.tableView.scrollEnabled = YES;
     // Perform search... :)
     [self setupFetchExecAndReload];
-}
-
-- (void)mergeSyncChanges:(NSNotification *)note {
-    DLog(@"Merging data from sync Engine");
-    [self.managedObjectContext mergeChangesFromContextDidSaveNotification:note];
-    // Reset the moc, so we don't get changes back to the background moc.
-    [self.managedObjectContext reset];
-    [self setupFetchExecAndReload];
-}
-
-- (void)reloadFetchedResults:(NSNotification *)note {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        NSError *error = nil;
-        
-        if (self.fetchedResultsController)
-        {
-            if (![[self fetchedResultsController] performFetch:&error])
-            {
-                /*
-                 Replace this implementation with code to handle the error appropriately.
-                 
-                 abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
-                 */
-                NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-                abort();
-            } else {
-                [self.tableView reloadData];
-            }
-        }
-    });
 }
 
 - (void)setupFetchExecAndReload {
@@ -421,7 +386,7 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([[segue identifier] isEqualToString:@"AddTextNote"])
+/*    if ([[segue identifier] isEqualToString:@"AddTextNote"])
     {
         IAMNoteEdit *noteEditor = [segue destinationViewController];
         // Create a new note
@@ -429,14 +394,13 @@
         Note *newNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:appDelegate.coreDataController.mainThreadContext];
         noteEditor.editedNote = newNote;
         noteEditor.moc = appDelegate.coreDataController.mainThreadContext;
-    }
+    }*/
     if ([[segue identifier] isEqualToString:@"EditNote"])
     {
         IAMNoteEdit *noteEditor = [segue destinationViewController];
         Note *selectedNote =  [[self fetchedResultsController] objectAtIndexPath:self.tableView.indexPathForSelectedRow];
         selectedNote.timeStamp = [NSDate date];
         noteEditor.editedNote = selectedNote;
-        noteEditor.moc = self.managedObjectContext;
     }
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && [[segue identifier] isEqualToString:@"Preferences"])
         self.popSegue = (UIStoryboardPopoverSegue *)segue;
