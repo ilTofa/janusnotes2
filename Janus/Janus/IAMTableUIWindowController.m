@@ -49,10 +49,6 @@
     [self.theTable setTarget:self];
     [self.theTable setDoubleAction:@selector(tableItemDoubleClick:)];
     self.sharedManagedObjectContext = ((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).coreDataController.mainThreadContext;
-    NSSortDescriptor *dateAddedSortDesc = [[NSSortDescriptor alloc] initWithKey:@"creationDate" ascending:NO];
-    NSArray *sortDescriptors = @[dateAddedSortDesc];
-    [self.arrayController setSortDescriptors:sortDescriptors];
-    DLog(@"Array controller: %@", self.arrayController);
     // If db is still to be loaded, register to be notified else go directly
     if(!((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).coreDataController.coreDataIsReady)
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(coreDataIsReady:) name:GTCoreDataReady object:nil];
@@ -68,7 +64,9 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     // Init sync mamagement
     [IAMFilesystemSyncController sharedInstance];
-    [self.arrayController fetch:nil];
+    NSSortDescriptor *dateAddedSortDesc = [[NSSortDescriptor alloc] initWithKey:@"creationDate" ascending:NO];
+    NSArray *sortDescriptors = @[dateAddedSortDesc];
+    [self.arrayController setSortDescriptors:sortDescriptors];
 }
 
 - (IBAction)refresh:(id)sender {
@@ -155,7 +153,6 @@
     if(![[self.searchField stringValue] isEqualToString:@""])
     {
         // Complex NSPredicate needed to match any word in the search string
-        DLog(@"Fetching again. Query string is: '%@'", [self.searchField stringValue]);
         NSArray *terms = [[self.searchField stringValue] componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         for(NSString *term in terms)
         {
@@ -169,9 +166,8 @@
     }
     else
         queryString = @"text  like[c] \"*\"";
-    DLog(@"Fetching again. Query string is: '%@'", queryString);
+    DLog(@"Filtering on: '%@'", queryString);
     [self.arrayController setFilterPredicate:[NSPredicate predicateWithFormat:queryString]];
-    [self.arrayController fetch:nil];
 }
 
 -(void)IAMNoteEditorWCDidCloseWindow:(IAMNoteEditorWC *)windowController

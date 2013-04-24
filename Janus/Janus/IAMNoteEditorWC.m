@@ -97,7 +97,6 @@
         DLog(@"Added attachment to the collection: %@", attach.filename);
         [tempArray addObject:attachmentDictionary];
     }
-//    self.attachmentsArray = [self.editedNote.attachment allObjects];
     self.attachmentsArray = tempArray;
     [self.arrayController fetch:nil];
 }
