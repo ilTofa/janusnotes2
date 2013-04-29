@@ -158,8 +158,12 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
         for(NSManagedObject *obj in deletedObjects){
             DLog(@"Deleted objects");
             if([obj.entity.name isEqualToString:@"Attachment"]) {
-                DLog(@"D - An attachment %@ from note %@", ((Attachment *)obj).filename, ((Attachment *)obj).note.title);
-                [self deleteAttachmentInDropbox:(Attachment *)obj];
+                if(!((Attachment *)obj).note) {
+                    ALog(@"Deleted attachment belongs to a nil note, don't delete!");
+                } else {
+                    DLog(@"D - An attachment %@ from note %@", ((Attachment *)obj).filename, ((Attachment *)obj).note.title);
+                    [self deleteAttachmentInDropbox:(Attachment *)obj];
+                }
             } else {
                 DLog(@"D - A note %@", ((Note *)obj).title);
                 [self deleteNoteInDropbox:(Note *)obj];

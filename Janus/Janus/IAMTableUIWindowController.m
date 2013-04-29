@@ -133,6 +133,10 @@
         [moc setParentContext:[IAMFilesystemSyncController sharedInstance].dataSyncThreadContext];
         NSURL *uri = [[[self.arrayController selectedObjects][0] objectID] URIRepresentation];
         Note *delenda = (Note *)[moc objectWithURI:uri];
+        if(!delenda) {
+            ALog(@"*** Note is nil while deleting note!");
+            return;
+        }
         DLog(@"About to delete note: %@", delenda);
         [moc deleteObject:delenda];
         NSError *error;
