@@ -116,8 +116,6 @@
     } else {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     }
-    if(status & DBSyncStatusSyncing)
-        [title appendString:@"␖"];
     if(status & DBSyncStatusDownloading) {
         [title appendString:@"↓"];
         self.dropboxSyncronizedSomething = YES;
