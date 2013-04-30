@@ -17,6 +17,7 @@
 #import "IAMDataSyncController.h"
 #import "MBProgressHUD.h"
 #import "IAMPreferencesController.h"
+#import "NSManagedObjectContext+FetchedObjectFromURI.h"
 
 @interface IAMViewController () <UISearchBarDelegate, NSFetchedResultsControllerDelegate>
 
@@ -315,21 +316,28 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {
-        // Delete the managed object for the given index path
-        NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-        [context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
-        
-        // Save the context.
-        NSError *error = nil;
-        if (![context save:&error]) {
-            /*
-             Replace this implementation with code to handle the error appropriately.
-             
-             abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
-             */
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-            abort();
+        // Create a local moc, children of the sync moc and delete there.
+        Note *noteInThisContext = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        DLog(@"Deleting note %@", noteInThisContext.title);
+        NSManagedObjectContext *moc = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSConfinementConcurrencyType];
+        [moc setParentContext:[IAMDataSyncController sharedInstance].dataSyncThreadContext];
+        NSURL *uri = [[noteInThisContext objectID] URIRepresentation];
+        Note *delenda = (Note *)[moc objectWithURI:uri];
+        if(!delenda) {
+            ALog(@"*** Note is nil while deleting note!");
+            return;
         }
+        DLog(@"About to delete note: %@", delenda);
+        [moc deleteObject:delenda];
+        NSError *error;
+        if(![moc save:&error])
+            ALog(@"Unresolved error %@, %@", error, [error userInfo]);
+        // Save on parent context
+        [[IAMDataSyncController sharedInstance].dataSyncThreadContext performBlock:^{
+            NSError *localError;
+            if(![[IAMDataSyncController sharedInstance].dataSyncThreadContext save:&localError])
+                ALog(@"Unresolved error saving parent context %@, %@", error, [error userInfo]);
+        }];
     }
 }
 
