@@ -1,0 +1,3 @@
+[submodule "common/PiwikTracker"]
+	path = common/PiwikTracker
+	url = git://github.com/ilTofa/PiwikTracker
