@@ -260,9 +260,6 @@
 
 - (void)windowWillClose:(NSNotification *)notification
 {
-    // Rollback any unsaved change
-    if([self.noteEditorMOC hasChanges])
-        [self.noteEditorMOC rollback];
     // Notify delegate that we're closing ourselves
     DLog(@"Notifying delegate.");
     if(self.delegate)

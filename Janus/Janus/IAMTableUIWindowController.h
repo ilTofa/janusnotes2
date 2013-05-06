@@ -14,4 +14,7 @@
 @property (assign) IBOutlet NSArrayController *arrayController;
 @property (assign) IBOutlet NSTableView *theTable;
 
+- (IBAction)showUIWindow:(id)sender;
+@property (weak) IBOutlet NSMenuItem *notesWindowMenuItem;
+
 @end

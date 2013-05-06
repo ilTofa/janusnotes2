@@ -23,5 +23,6 @@
 
 - (IBAction)saveAction:(id)sender;
 - (IBAction)preferencesAction:(id)sender;
+- (IBAction)notesWindowAction:(id)sender;
 
 @end

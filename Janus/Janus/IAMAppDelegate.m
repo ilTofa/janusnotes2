@@ -88,6 +88,13 @@
     [self.prefsController showWindow:self];
 }
 
+- (IBAction)notesWindowAction:(id)sender {
+    if(!self.collectionController) {
+        self.collectionController = [[IAMTableUIWindowController alloc] initWithWindowNibName:@"IAMTableUIWindowController"];
+    }
+    [self.collectionController showUIWindow:self];
+}
+
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender
 {
     // Save changes in the application's managed object context before the application terminates.
@@ -150,8 +157,8 @@
     });
 }
 
-- (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)theApplication {
-    return YES;
-}
+//- (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)theApplication {
+//    return YES;
+//}
 
 @end

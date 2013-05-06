@@ -15,7 +15,7 @@
 #import "NSManagedObjectContext+FetchedObjectFromURI.h"
 #import "Attachment.h"
 
-@interface IAMTableUIWindowController () <IAMNoteEditorWCDelegate>
+@interface IAMTableUIWindowController () <IAMNoteEditorWCDelegate, NSWindowDelegate>
 
 @property (strong, nonatomic) NSMutableArray *noteWindowControllers;
 @property (weak) IBOutlet NSSearchFieldCell *searchField;
@@ -46,6 +46,8 @@
 - (void)windowDidLoad
 {
     [super windowDidLoad];
+    [self.window setExcludedFromWindowsMenu:YES];
+    [self.notesWindowMenuItem setState:NSOnState];
     [self.theTable setTarget:self];
     [self.theTable setDoubleAction:@selector(tableItemDoubleClick:)];
     self.sharedManagedObjectContext = ((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).coreDataController.mainThreadContext;
@@ -54,6 +56,24 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(coreDataIsReady:) name:GTCoreDataReady object:nil];
     else
         [self coreDataIsReady:nil];
+}
+
+- (IBAction)showUIWindow:(id)sender {
+    DLog(@"called.");
+    [self.window makeKeyAndOrderFront:self];
+    [NSApp activateIgnoringOtherApps:YES];
+    [self.notesWindowMenuItem setState:NSOnState];
+}
+
+- (BOOL)windowShouldClose:(id)sender {
+    DLog(@"Hiding main UI");
+    [self.window orderOut:self];
+    return NO;
+}
+
+- (void)windowWillClose:(NSNotification *)notification {
+    DLog(@"Main UI closing");
+    [self.notesWindowMenuItem setState:NSOffState];
 }
 
 - (void)coreDataIsReady:(NSNotification *)notification {
