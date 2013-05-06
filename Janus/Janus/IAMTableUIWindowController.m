@@ -23,12 +23,6 @@
 
 @property NSTimer *syncStatusTimer;
 
-- (IBAction)addNote:(id)sender;
-- (IBAction)editNote:(id)sender;
-- (IBAction)searched:(id)sender;
-- (IBAction)deleteNote:(id)sender;
-- (IBAction)actionPreferences:(id)sender;
-
 @end
 
 @implementation IAMTableUIWindowController

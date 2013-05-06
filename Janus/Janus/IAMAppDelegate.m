@@ -95,6 +95,26 @@
     [self.collectionController showUIWindow:self];
 }
 
+- (IBAction)newNoteAction:(id)sender {
+    [self.collectionController addNote:sender];
+}
+
+- (IBAction)editNoteAction:(id)sender {
+    [self.collectionController editNote:sender];
+}
+
+- (IBAction)closeNoteAction:(id)sender {
+    [self.collectionController.window performClose:sender];
+}
+
+- (IBAction)deleteNoteAction:(id)sender {
+    [self.collectionController deleteNote:sender];
+}
+
+- (IBAction)refreshNotesAction:(id)sender {
+    [self.collectionController refresh:sender];
+}
+
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender
 {
     // Save changes in the application's managed object context before the application terminates.

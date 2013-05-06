@@ -17,4 +17,11 @@
 - (IBAction)showUIWindow:(id)sender;
 @property (weak) IBOutlet NSMenuItem *notesWindowMenuItem;
 
+- (IBAction)addNote:(id)sender;
+- (IBAction)editNote:(id)sender;
+- (IBAction)searched:(id)sender;
+- (IBAction)deleteNote:(id)sender;
+- (IBAction)actionPreferences:(id)sender;
+- (IBAction)refresh:(id)sender;
+
 @end
