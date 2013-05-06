@@ -49,6 +49,7 @@ typedef enum {
     self.fontFace = [[GTThemer sharedInstance] getStandardFontFaceID];
     [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:self.fontFace inSection:1] animated:false scrollPosition:UITableViewScrollPositionTop];
     [self sizePressed:nil];
+    [self.tableView setContentOffset:CGPointZero animated:YES];
 }
 
 -(void)viewDidAppear:(BOOL)animated
