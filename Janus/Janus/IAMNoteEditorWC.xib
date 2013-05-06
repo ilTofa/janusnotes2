@@ -147,7 +147,7 @@
 															<string key="NSFrameSize">{441, 376}</string>
 															<reference key="NSSuperview" ref="1045978454"/>
 															<reference key="NSWindow"/>
-															<reference key="NSNextKeyView" ref="187455086"/>
+															<reference key="NSNextKeyView" ref="367849510"/>
 															<string key="NSReuseIdentifierKey">_NS:13</string>
 															<object class="NSTextContainer" key="NSTextContainer" id="955606968">
 																<object class="NSLayoutManager" key="NSLayoutManager">
@@ -270,7 +270,7 @@
 											<string key="NSFrameSize">{443, 378}</string>
 											<reference key="NSSuperview" ref="266360478"/>
 											<reference key="NSWindow"/>
-											<reference key="NSNextKeyView" ref="367849510"/>
+											<reference key="NSNextKeyView" ref="1045978454"/>
 											<string key="NSReuseIdentifierKey">_NS:9</string>
 											<int key="NSsFlags">133138</int>
 											<reference key="NSVScroller" ref="187455086"/>
@@ -323,7 +323,6 @@
 											<string key="NSFrame">{{2, 1}, {80, 32}}</string>
 											<reference key="NSSuperview" ref="544893320"/>
 											<reference key="NSWindow"/>
-											<reference key="NSNextKeyView"/>
 											<string key="NSReuseIdentifierKey">_NS:9</string>
 											<bool key="NSEnabled">YES</bool>
 											<object class="NSButtonCell" key="NSCell" id="504572999">
@@ -334,9 +333,9 @@
 												<string key="NSCellIdentifier">_NS:9</string>
 												<reference key="NSControlView" ref="943664867"/>
 												<int key="NSButtonFlags">-2038284288</int>
-												<int key="NSButtonFlags2">268435586</int>
+												<int key="NSButtonFlags2">130</int>
 												<string key="NSAlternateContents"/>
-												<string key="NSKeyEquivalent">s</string>
+												<string key="NSKeyEquivalent"/>
 												<int key="NSPeriodicDelay">200</int>
 												<int key="NSPeriodicInterval">25</int>
 											</object>
@@ -456,13 +455,13 @@
 																<string key="NSCellIdentifier">_NS:9</string>
 																<reference key="NSControlView" ref="681972978"/>
 																<int key="NSButtonFlags">-2033434624</int>
-																<int key="NSButtonFlags2">268435590</int>
+																<int key="NSButtonFlags2">134</int>
 																<object class="NSCustomResource" key="NSNormalImage">
 																	<string key="NSClassName">NSImage</string>
 																	<string key="NSResourceName">NSAddTemplate</string>
 																</object>
 																<string key="NSAlternateContents"/>
-																<string key="NSKeyEquivalent">+</string>
+																<string key="NSKeyEquivalent"/>
 																<int key="NSPeriodicDelay">200</int>
 																<int key="NSPeriodicInterval">25</int>
 															</object>
@@ -485,13 +484,13 @@
 																<string key="NSCellIdentifier">_NS:9</string>
 																<reference key="NSControlView" ref="1037650193"/>
 																<int key="NSButtonFlags">-2033958912</int>
-																<int key="NSButtonFlags2">268435590</int>
+																<int key="NSButtonFlags2">134</int>
 																<object class="NSCustomResource" key="NSNormalImage">
 																	<string key="NSClassName">NSImage</string>
 																	<string key="NSResourceName">NSRemoveTemplate</string>
 																</object>
 																<string key="NSAlternateContents"/>
-																<string key="NSKeyEquivalent">-</string>
+																<string key="NSKeyEquivalent"/>
 																<int key="NSPeriodicDelay">200</int>
 																<int key="NSPeriodicInterval">25</int>
 															</object>
@@ -734,14 +733,6 @@
 					<int key="connectionID">466</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">save:</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="943664867"/>
-					</object>
-					<int key="connectionID">124</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">attachmentsCollectionView</string>
 						<reference key="source" ref="1001"/>
@@ -764,6 +755,14 @@
 						<reference key="destination" ref="1037650193"/>
 					</object>
 					<int key="connectionID">498</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">saveAndClose:</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="943664867"/>
+					</object>
+					<int key="connectionID">808</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -2512,7 +2511,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">806</int>
+			<int key="maxID">808</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -2530,7 +2529,8 @@
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="addAttachment:">id</string>
 						<string key="deleteAttachment:">id</string>
-						<string key="save:">id</string>
+						<string key="saveAndClose:">id</string>
+						<string key="saveAndContinue:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="addAttachment:">
@@ -2541,8 +2541,12 @@
 							<string key="name">deleteAttachment:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-						<object class="IBActionInfo" key="save:">
-							<string key="name">save:</string>
+						<object class="IBActionInfo" key="saveAndClose:">
+							<string key="name">saveAndClose:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="saveAndContinue:">
+							<string key="name">saveAndContinue:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 					</dictionary>

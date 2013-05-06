@@ -26,4 +26,9 @@
 @property NSArray *attachmentsArray;
 @property NSFont *editorFont;
 
+- (IBAction)saveAndContinue:(id)sender;
+- (IBAction)saveAndClose:(id)sender;
+- (IBAction)addAttachment:(id)sender;
+- (IBAction)deleteAttachment:(id)sender;
+
 @end

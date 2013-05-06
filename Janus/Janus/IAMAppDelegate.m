@@ -8,13 +8,11 @@
 
 #import "IAMAppDelegate.h"
 
-#import "IAMTableUIWindowController.h"
 #import "IAMFilesystemSyncController.h"
 #import "IAMPrefsWindowController.h"
 
 @interface IAMAppDelegate ()
 
-@property (strong, nonatomic) IAMTableUIWindowController *collectionController;
 @property (strong) IAMPrefsWindowController *prefsController;
 
 @end
@@ -113,6 +111,26 @@
 
 - (IBAction)refreshNotesAction:(id)sender {
     [self.collectionController refresh:sender];
+}
+
+- (IBAction)saveNoteAndContinueAction:(id)sender {
+    [self.collectionController saveNoteAndContinueAction:sender];
+}
+
+- (IBAction)saveNoteAndCloseAction:(id)sender {
+    [self.collectionController saveNoteAndCloseAction:sender];
+}
+
+- (IBAction)closeNote:(id)sender {
+    [self.collectionController closeNote:sender];
+}
+
+- (IBAction)addAttachmentToNoteAction:(id)sender {
+    [self.collectionController addAttachmentToNoteAction:sender];
+}
+
+- (IBAction)removeAttachmentFromNoteAction:(id)sender {
+    [self.collectionController removeAttachmentFromNoteAction:sender];
 }
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender

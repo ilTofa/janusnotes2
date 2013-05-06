@@ -240,7 +240,7 @@
 									<reference key="NSOnImage" ref="35465992"/>
 									<reference key="NSMixedImage" ref="502551668"/>
 								</object>
-								<object class="NSMenuItem" id="370670233">
+								<object class="NSMenuItem" id="268720382">
 									<reference key="NSMenu" ref="720053764"/>
 									<string key="NSTitle">Refresh Notes List</string>
 									<string key="NSKeyEquiv">r</string>
@@ -641,6 +641,74 @@
 											</object>
 										</array>
 									</object>
+								</object>
+							</array>
+						</object>
+					</object>
+					<object class="NSMenuItem" id="135850960">
+						<reference key="NSMenu" ref="649796088"/>
+						<string key="NSTitle">Note</string>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<reference key="NSOnImage" ref="35465992"/>
+						<reference key="NSMixedImage" ref="502551668"/>
+						<string key="NSAction">submenuAction:</string>
+						<object class="NSMenu" key="NSSubmenu" id="736713518">
+							<string key="NSTitle">Note</string>
+							<array class="NSMutableArray" key="NSMenuItems">
+								<object class="NSMenuItem" id="648973020">
+									<reference key="NSMenu" ref="736713518"/>
+									<string key="NSTitle">Save and Continue</string>
+									<string key="NSKeyEquiv">s</string>
+									<int key="NSKeyEquivModMask">1048576</int>
+									<int key="NSMnemonicLoc">2147483647</int>
+									<reference key="NSOnImage" ref="35465992"/>
+									<reference key="NSMixedImage" ref="502551668"/>
+								</object>
+								<object class="NSMenuItem" id="74843304">
+									<reference key="NSMenu" ref="736713518"/>
+									<string key="NSTitle">Save and Close</string>
+									<string key="NSKeyEquiv">S</string>
+									<int key="NSKeyEquivModMask">1048576</int>
+									<int key="NSMnemonicLoc">2147483647</int>
+									<reference key="NSOnImage" ref="35465992"/>
+									<reference key="NSMixedImage" ref="502551668"/>
+								</object>
+								<object class="NSMenuItem" id="642180380">
+									<reference key="NSMenu" ref="736713518"/>
+									<string key="NSTitle">Close Without Save</string>
+									<string key="NSKeyEquiv"/>
+									<int key="NSMnemonicLoc">2147483647</int>
+									<reference key="NSOnImage" ref="35465992"/>
+									<reference key="NSMixedImage" ref="502551668"/>
+								</object>
+								<object class="NSMenuItem" id="879069780">
+									<reference key="NSMenu" ref="736713518"/>
+									<bool key="NSIsDisabled">YES</bool>
+									<bool key="NSIsSeparator">YES</bool>
+									<string key="NSTitle"/>
+									<string key="NSKeyEquiv"/>
+									<int key="NSMnemonicLoc">2147483647</int>
+									<reference key="NSOnImage" ref="35465992"/>
+									<reference key="NSMixedImage" ref="502551668"/>
+								</object>
+								<object class="NSMenuItem" id="1072247850">
+									<reference key="NSMenu" ref="736713518"/>
+									<string key="NSTitle">Add Attachment</string>
+									<string key="NSKeyEquiv">+</string>
+									<int key="NSKeyEquivModMask">1048576</int>
+									<int key="NSMnemonicLoc">2147483647</int>
+									<reference key="NSOnImage" ref="35465992"/>
+									<reference key="NSMixedImage" ref="502551668"/>
+								</object>
+								<object class="NSMenuItem" id="1017932272">
+									<reference key="NSMenu" ref="736713518"/>
+									<string key="NSTitle">Remove Attachment</string>
+									<string key="NSKeyEquiv">-</string>
+									<int key="NSKeyEquivModMask">1048576</int>
+									<int key="NSMnemonicLoc">2147483647</int>
+									<reference key="NSOnImage" ref="35465992"/>
+									<reference key="NSMixedImage" ref="502551668"/>
 								</object>
 							</array>
 						</object>
@@ -1121,9 +1189,65 @@
 					<object class="IBActionConnection" key="connection">
 						<string key="label">refreshNotesAction:</string>
 						<reference key="source" ref="976324537"/>
-						<reference key="destination" ref="370670233"/>
+						<reference key="destination" ref="268720382"/>
 					</object>
 					<int key="connectionID">797</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">saveNoteAndContinueAction:</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="648973020"/>
+					</object>
+					<int key="connectionID">808</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">saveNoteAndCloseAction:</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="74843304"/>
+					</object>
+					<int key="connectionID">809</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">closeNote:</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="642180380"/>
+					</object>
+					<int key="connectionID">810</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">addAttachmentToNoteAction:</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="1072247850"/>
+					</object>
+					<int key="connectionID">812</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">removeAttachmentFromNoteAction:</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="1017932272"/>
+					</object>
+					<int key="connectionID">813</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: self.collectionController.noteEditorIsShown</string>
+						<reference key="source" ref="135850960"/>
+						<reference key="destination" ref="976324537"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="135850960"/>
+							<reference key="NSDestination" ref="976324537"/>
+							<string key="NSLabel">enabled: self.collectionController.noteEditorIsShown</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">self.collectionController.noteEditorIsShown</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">830</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1161,6 +1285,7 @@
 							<reference ref="952259628"/>
 							<reference ref="379814623"/>
 							<reference ref="448692316"/>
+							<reference ref="135850960"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -1206,7 +1331,7 @@
 							<reference ref="776162233"/>
 							<reference ref="425164168"/>
 							<reference ref="1010469920"/>
-							<reference ref="370670233"/>
+							<reference ref="268720382"/>
 						</array>
 						<reference key="parent" ref="379814623"/>
 					</object>
@@ -1687,8 +1812,59 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">791</int>
-						<reference key="object" ref="370670233"/>
+						<reference key="object" ref="268720382"/>
 						<reference key="parent" ref="720053764"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">799</int>
+						<reference key="object" ref="135850960"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="736713518"/>
+						</array>
+						<reference key="parent" ref="649796088"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">800</int>
+						<reference key="object" ref="736713518"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="648973020"/>
+							<reference ref="74843304"/>
+							<reference ref="642180380"/>
+							<reference ref="879069780"/>
+							<reference ref="1072247850"/>
+							<reference ref="1017932272"/>
+						</array>
+						<reference key="parent" ref="135850960"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">801</int>
+						<reference key="object" ref="648973020"/>
+						<reference key="parent" ref="736713518"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">802</int>
+						<reference key="object" ref="74843304"/>
+						<reference key="parent" ref="736713518"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">803</int>
+						<reference key="object" ref="642180380"/>
+						<reference key="parent" ref="736713518"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">804</int>
+						<reference key="object" ref="879069780"/>
+						<reference key="parent" ref="736713518"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">806</int>
+						<reference key="object" ref="1072247850"/>
+						<reference key="parent" ref="736713518"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">807</int>
+						<reference key="object" ref="1017932272"/>
+						<reference key="parent" ref="736713518"/>
 					</object>
 				</array>
 			</object>
@@ -1775,6 +1951,14 @@
 				<string key="79.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="790.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="791.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="799.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="800.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="801.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="802.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="803.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="804.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="806.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="807.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="81.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="82.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="83.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -1784,7 +1968,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">797</int>
+			<int key="maxID">830</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1792,6 +1976,8 @@
 					<string key="className">IAMAppDelegate</string>
 					<string key="superclassName">NSObject</string>
 					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="addAttachmentToNoteAction:">id</string>
+						<string key="closeNote:">id</string>
 						<string key="closeNoteAction:">id</string>
 						<string key="deleteNoteAction:">id</string>
 						<string key="editNoteAction:">id</string>
@@ -1799,9 +1985,20 @@
 						<string key="notesWindowAction:">id</string>
 						<string key="preferencesAction:">id</string>
 						<string key="refreshNotesAction:">id</string>
+						<string key="removeAttachmentFromNoteAction:">id</string>
 						<string key="saveAction:">id</string>
+						<string key="saveNoteAndCloseAction:">id</string>
+						<string key="saveNoteAndContinueAction:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="addAttachmentToNoteAction:">
+							<string key="name">addAttachmentToNoteAction:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="closeNote:">
+							<string key="name">closeNote:</string>
+							<string key="candidateClassName">id</string>
+						</object>
 						<object class="IBActionInfo" key="closeNoteAction:">
 							<string key="name">closeNoteAction:</string>
 							<string key="candidateClassName">id</string>
@@ -1830,8 +2027,20 @@
 							<string key="name">refreshNotesAction:</string>
 							<string key="candidateClassName">id</string>
 						</object>
+						<object class="IBActionInfo" key="removeAttachmentFromNoteAction:">
+							<string key="name">removeAttachmentFromNoteAction:</string>
+							<string key="candidateClassName">id</string>
+						</object>
 						<object class="IBActionInfo" key="saveAction:">
 							<string key="name">saveAction:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="saveNoteAndCloseAction:">
+							<string key="name">saveNoteAndCloseAction:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="saveNoteAndContinueAction:">
+							<string key="name">saveNoteAndContinueAction:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 					</dictionary>

@@ -10,6 +10,7 @@
 #import <CoreLocation/CoreLocation.h>
 
 #import "CoreDataController.h"
+#import "IAMTableUIWindowController.h"
 
 @interface IAMAppDelegate : NSObject <NSApplicationDelegate>
 
@@ -17,6 +18,8 @@
 
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+
+@property (strong, nonatomic) IAMTableUIWindowController *collectionController;
 
 // CoreData helper
 @property (nonatomic, strong, readonly) CoreDataController *coreDataController;
@@ -29,5 +32,11 @@
 - (IBAction)closeNoteAction:(id)sender;
 - (IBAction)deleteNoteAction:(id)sender;
 - (IBAction)refreshNotesAction:(id)sender;
+
+- (IBAction)saveNoteAndContinueAction:(id)sender;
+- (IBAction)saveNoteAndCloseAction:(id)sender;
+- (IBAction)closeNote:(id)sender;
+- (IBAction)addAttachmentToNoteAction:(id)sender;
+- (IBAction)removeAttachmentFromNoteAction:(id)sender;
 
 @end

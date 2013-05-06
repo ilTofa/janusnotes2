@@ -23,10 +23,6 @@
 
 @property NSMutableArray *openedFiles;
 
-- (IBAction)save:(id)sender;
-- (IBAction)addAttachment:(id)sender;
-- (IBAction)deleteAttachment:(id)sender;
-
 @end
 
 @implementation IAMNoteEditorWC
@@ -66,7 +62,7 @@
     }
 }
 
-- (IBAction)save:(id)sender
+- (IBAction)saveAndContinue:(id)sender
 {
     DLog(@"This is IAMNoteWindowController's save.");
     // save (if useful) and pop back
@@ -86,9 +82,12 @@
         if(![[IAMFilesystemSyncController sharedInstance].dataSyncThreadContext save:&localError])
             ALog(@"Unresolved error saving parent context %@, %@", error, [error userInfo]);
     }];
-    // If called via action
-    if(sender)
-        [self.window performClose:sender];
+}
+
+- (IBAction)saveAndClose:(id)sender
+{
+    [self saveAndContinue:sender];
+    [self.window performClose:sender];
 }
 
 -(void)dealloc {
@@ -199,7 +198,7 @@
     newAttachment.note = self.editedNote;
     DLog(@"Adding attachment: %@", newAttachment);
     [self.editedNote addAttachmentObject:newAttachment];
-    [self save:nil];
+    [self saveAndContinue:nil];
     [self refreshAttachments];
 }
 
@@ -209,7 +208,7 @@
         Attachment *toBeDeleted = [self.arrayController selectedObjects][0][@"attachment"];
         [self.arrayController removeSelectedObjects:[self.arrayController selectedObjects]];
         [self.editedNote removeAttachmentObject:toBeDeleted];
-        [self save:nil];
+        [self saveAndContinue:nil];
         [self refreshAttachments];
     }
 }

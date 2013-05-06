@@ -17,7 +17,6 @@
 
 @interface IAMTableUIWindowController () <IAMNoteEditorWCDelegate, NSWindowDelegate>
 
-@property (strong, nonatomic) NSMutableArray *noteWindowControllers;
 @property (weak) IBOutlet NSSearchFieldCell *searchField;
 @property (copy) NSArray *sortDescriptors;
 
@@ -44,6 +43,7 @@
     [self.notesWindowMenuItem setState:NSOnState];
     [self.theTable setTarget:self];
     [self.theTable setDoubleAction:@selector(tableItemDoubleClick:)];
+    self.noteEditorIsShown = @(NO);
     self.sharedManagedObjectContext = ((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).coreDataController.mainThreadContext;
     // If db is still to be loaded, register to be notified else go directly
     if(!((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).coreDataController.coreDataIsReady)
@@ -110,6 +110,7 @@
     [noteEditor setDelegate:self];
     // Preserve a reference to the controller to keep ARC happy
     [self.noteWindowControllers addObject:noteEditor];
+    self.noteEditorIsShown = @(YES);
     [noteEditor showWindow:self];
 }
 
@@ -120,6 +121,7 @@
     [noteEditor setEditedNote:[self.arrayController selectedObjects][0]];
     // Preserve a reference to the controller to keep ARC happy
     [self.noteWindowControllers addObject:noteEditor];
+    self.noteEditorIsShown = @(YES);
     [noteEditor showWindow:self];
 }
 
@@ -196,6 +198,43 @@
             [self.noteWindowControllers removeObject:storedController];
         }
     }
+    if([self.noteWindowControllers count])
+        self.noteEditorIsShown = @(YES);
+    else
+        self.noteEditorIsShown = @(NO);
+}
+
+// Note editor actions
+
+- (IAMNoteEditorWC *)keyNoteEditor {
+    IAMNoteEditorWC *foundController = nil;
+    for (IAMNoteEditorWC *noteEditorController in self.noteWindowControllers) {
+        if([noteEditorController.window isKeyWindow]) {
+            foundController = noteEditorController;
+            break;
+        }
+    }
+    return foundController;
+}
+
+- (IBAction)saveNoteAndContinueAction:(id)sender {
+    [[self keyNoteEditor] saveAndContinue:sender];
+}
+
+- (IBAction)saveNoteAndCloseAction:(id)sender {
+    [[self keyNoteEditor] saveAndClose:sender];
+}
+
+- (IBAction)closeNote:(id)sender {
+    [[self keyNoteEditor].window performClose:sender];
+}
+
+- (IBAction)addAttachmentToNoteAction:(id)sender {
+    [[self keyNoteEditor] addAttachment:sender];
+}
+
+- (IBAction)removeAttachmentFromNoteAction:(id)sender {
+    [[self keyNoteEditor] deleteAttachment:sender];
 }
 
 @end

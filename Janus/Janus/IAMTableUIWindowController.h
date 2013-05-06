@@ -17,11 +17,21 @@
 - (IBAction)showUIWindow:(id)sender;
 @property (weak) IBOutlet NSMenuItem *notesWindowMenuItem;
 
+@property (strong, nonatomic) NSMutableArray *noteWindowControllers;
+@property IBOutlet NSNumber *noteEditorIsShown;
+
 - (IBAction)addNote:(id)sender;
 - (IBAction)editNote:(id)sender;
 - (IBAction)searched:(id)sender;
 - (IBAction)deleteNote:(id)sender;
 - (IBAction)actionPreferences:(id)sender;
 - (IBAction)refresh:(id)sender;
+
+// Note editor actions from main menu
+- (IBAction)saveNoteAndContinueAction:(id)sender;
+- (IBAction)saveNoteAndCloseAction:(id)sender;
+- (IBAction)closeNote:(id)sender;
+- (IBAction)addAttachmentToNoteAction:(id)sender;
+- (IBAction)removeAttachmentFromNoteAction:(id)sender;
 
 @end
