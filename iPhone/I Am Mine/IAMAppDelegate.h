@@ -10,6 +10,7 @@
 #import <MapKit/MapKit.h>
 
 #import "CoreDataController.h"
+#import "PiwikTracker.h"
 
 #define kGotLocation @"gotLocation"
 
@@ -25,5 +26,7 @@
 
 // CoreData helper
 @property (nonatomic, strong, readonly) CoreDataController *coreDataController;
+
+@property (nonatomic, strong) PiwikTracker *tracker;
 
 @end
