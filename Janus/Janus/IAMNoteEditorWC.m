@@ -14,10 +14,14 @@
 
 #import "IAMFilesystemSyncController.h"
 
-@interface IAMNoteEditorWC () <NSWindowDelegate, NSCollectionViewDelegate>
+@interface IAMNoteEditorWC () <NSWindowDelegate, NSCollectionViewDelegate> {
+    BOOL _userConsentedToClose;
+}
 
 @property (strong) IBOutlet NSArrayController *arrayController;
 @property (strong) IBOutlet NSCollectionView *attachmentsCollectionView;
+
+@property NSMutableArray *openedFiles;
 
 - (IBAction)save:(id)sender;
 - (IBAction)addAttachment:(id)sender;
@@ -39,6 +43,7 @@
 - (void)windowDidLoad
 {
     [super windowDidLoad];
+    _userConsentedToClose = NO;
     NSString *fontName = [[NSUserDefaults standardUserDefaults] stringForKey:@"fontName"];
     NSAssert(fontName, @"Default font not set in user defaults");
     double fontSize = [[NSUserDefaults standardUserDefaults] doubleForKey:@"fontSize"];
@@ -66,9 +71,11 @@
     DLog(@"This is IAMNoteWindowController's save.");
     // save (if useful) and pop back
     if([self.editedNote.title isEqualToString:@""] || [self.editedNote.text isEqualToString:@""]) {
-        DLog(@"Save refused because no title ('%@') or no text ('%@')", self.editedNote.title, self.editedNote.text);
+        DLog(@"Save refused because no title ('%@')", self.editedNote.title);
         return;
     }
+    // Save modified attachments (if any)
+    [self saveModifiedAttachments];
     self.editedNote.timeStamp = [NSDate date];
     NSError *error;
     if(![self.noteEditorMOC save:&error])
@@ -91,7 +98,6 @@
 -(void)refreshAttachments {
     NSMutableArray *tempArray = [[NSMutableArray alloc] initWithCapacity:[self.editedNote.attachment count]];
     for (Attachment *attach in self.editedNote.attachment) {
-        
         NSImage *icon = [[NSWorkspace sharedWorkspace] iconForFileType:attach.extension];
         NSDictionary *attachmentDictionary = @{@"attachment": attach, @"icon": icon};
         DLog(@"Added attachment to the collection: %@", attach.filename);
@@ -101,7 +107,53 @@
     [self.arrayController fetch:nil];
 }
 
--(void) attachAttachment:(NSURL *)url {
+- (BOOL) isAttachmentModified:(NSMutableDictionary *)openedFilesEntry {
+    NSString *fullPath = [openedFilesEntry[@"fileURL"] path];
+    NSDictionary *fileAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath:fullPath error:NULL];
+    NSDate *fileModDate = [fileAttributes objectForKey:NSFileModificationDate];
+    // Returns YES of the file has been modified after the creation
+    return ([fileModDate compare:openedFilesEntry[@"timestamp"]] == NSOrderedDescending);
+}
+
+- (BOOL) isAnyAttachmentModified {
+    BOOL retValue = NO;
+    for (NSMutableDictionary *openedAttachEntry in self.openedFiles) {
+        if([self isAttachmentModified:openedAttachEntry]) {
+            retValue = YES;
+            break;
+        }
+    }
+    return retValue;
+}
+
+- (void)saveModifiedAttachments {
+    for (NSMutableDictionary *openedAttachEntry in self.openedFiles) {
+        if([self isAttachmentModified:openedAttachEntry]) {
+            [self modifyAttachment:openedAttachEntry];
+        }
+    }
+}
+
+- (void)modifyAttachment:(NSMutableDictionary *)openedFilesEntry {
+    // find the modified attachment
+    NSURL *url = openedFilesEntry[@"fileURL"];
+    BOOL found = NO;
+    NSString *attachmentName = [[url path] lastPathComponent];
+    for (Attachment *attach in self.editedNote.attachment) {
+        if([attach.filename isEqualToString:attachmentName]) {
+            // Found! Now modify the attachment values.
+            attach.data = [NSData dataWithContentsOfURL:url];
+            attach.timeStamp = openedFilesEntry[@"timestamp"] = [NSDate date];
+            found = YES;
+            break;
+        }
+    }
+    if(!found) {
+        ALog(@"Attachment to be modified %@ not found in attachment list. This can happen only if it has been deleted from the attachments.", url);
+    }
+}
+
+- (void)attachAttachment:(NSURL *)url {
     // Check if it is a normal file
     NSError *err;
     NSFileWrapper *fw = [[NSFileWrapper alloc] initWithURL:url options:NSFileWrapperReadingImmediate error:&err];
@@ -143,7 +195,6 @@
     newAttachment.extension = [url pathExtension];
     newAttachment.filename = [url lastPathComponent];
     newAttachment.data = [fw regularFileContents];
-//    newAttachment.data = [NSData dataWithContentsOfURL:url];
     // Now link attachment to the note
     newAttachment.note = self.editedNote;
     DLog(@"Adding attachment: %@", newAttachment);
@@ -192,7 +243,14 @@
             [alert setMessageText:NSLocalizedString(@"Warning", @"")];
             [alert addButtonWithTitle:@"OK"];
             [alert beginSheetModalForWindow:self.window modalDelegate:nil didEndSelector:nil contextInfo:nil];
-        }            
+        }  else {
+            // Map the opened file to check for modifications after
+            if(!self.openedFiles) {
+                self.openedFiles = [[NSMutableArray alloc] initWithCapacity:1];
+            }
+            NSMutableDictionary *newOpenedFileEntry = [[NSMutableDictionary alloc] initWithDictionary:@{@"fileURL": file, @"timestamp": [NSDate date]}];
+            [self.openedFiles addObject:newOpenedFileEntry];
+        }
     } else {
         NSLog(@"Double click detected in collection view, but no collection item is selected. This should not happen");
     }
@@ -209,6 +267,54 @@
     DLog(@"Notifying delegate.");
     if(self.delegate)
         [self.delegate IAMNoteEditorWCDidCloseWindow:self];
+}
+
+- (BOOL)windowShouldClose:(id)window {
+    if (_userConsentedToClose) {
+        // User has already gone through save sheet and choosen to close the window
+        _userConsentedToClose = NO; // Reset value just in case
+        return YES;
+    }
+    if ([self.noteEditorMOC hasChanges] || [self isAnyAttachmentModified]) {
+        NSAlert *saveAlert = [[NSAlert alloc] init];
+        [saveAlert addButtonWithTitle:@"Save"];
+        [saveAlert addButtonWithTitle:@"Cancel"];
+        [saveAlert addButtonWithTitle:@"Don't Save"];
+        [saveAlert setMessageText:@"Save changes to note?"];
+        [saveAlert setInformativeText:@"If you don't save the changes, they will be lost"];
+        [saveAlert beginSheetModalForWindow:window
+                              modalDelegate:self
+                             didEndSelector:@selector(alertDidEnd:returnCode:contextInfo:)
+                                contextInfo:nil];
+        return NO;
+    }
+    // note haven't been changed.
+    return YES;
+}
+
+// This is the method that gets called when a user selected a choice from the
+// do you want to save preferences sheet.
+- (void)alertDidEnd:(NSAlert *)alert returnCode:(int)returnCode contextInfo:(void *)contextInfo {
+    [[alert window] orderOut:self];
+    switch (returnCode) {
+        case NSAlertFirstButtonReturn:
+            // Save button
+            _userConsentedToClose = YES;
+            [[self window] performClose:self];
+            break;
+        case NSAlertSecondButtonReturn:
+            // Cancel button
+            // Do nothing
+            break;
+        case NSAlertThirdButtonReturn:
+            // Don't Save button
+            _userConsentedToClose = YES;
+            [[self window] performClose:self];
+            break;
+        default:
+            NSAssert1(NO, @"Unknown button return: %i", returnCode);
+            break;
+    }
 }
 
 #pragma mark - NSCollectionViewDelegate
@@ -276,27 +382,6 @@
         return [pasteboard writeObjects:@[file]];
     }
     return NO;
-}
-
-#pragma mark - Bold and Italic management
-
-- (IBAction) toggleBold:(id)sender
-{
-    // Should be CGEventCreateKeyboardEvent
-    // Send Cmd-B Event
-//    CGPostKeyboardEvent((CGCharCode)0,(CGKeyCode)55,true );
-//    CGPostKeyboardEvent((CGCharCode)'B',(CGKeyCode)11,true );
-//    CGPostKeyboardEvent((CGCharCode)'B',(CGKeyCode)11,false );
-//    CGPostKeyboardEvent((CGCharCode)0,(CGKeyCode)55,false );
-}
-
-- (IBAction) toggleItalic:(id)sender
-{
-    // Send Cmd-I Event
-//    CGPostKeyboardEvent((CGCharCode)0,(CGKeyCode)55,true );
-//    CGPostKeyboardEvent((CGCharCode)'I',(CGKeyCode)34,true );
-//    CGPostKeyboardEvent((CGCharCode)'I',(CGKeyCode)34,false );
-//    CGPostKeyboardEvent((CGCharCode)0,(CGKeyCode)55,false );
 }
 
 @end
