@@ -11,6 +11,7 @@
 #import "IAMAppDelegate.h"
 #import "Attachment.h"
 #import "NSManagedObjectContext+FetchedObjectFromURI.h"
+#import "GTPiwikAddOn.h"
 
 #import "IAMFilesystemSyncController.h"
 
@@ -56,9 +57,11 @@
         // It seems that we're created without a note, that will mean that we're required to create a new one.
         Note *newNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:self.noteEditorMOC];
         self.editedNote = newNote;
+        [GTPiwikAddOn trackEvent:@"newNote"];
     } else { // Get a copy of edited note into the local context.
         NSURL *uri = [[self.editedNote objectID] URIRepresentation];
         self.editedNote = (Note *)[self.noteEditorMOC objectWithURI:uri];
+        [GTPiwikAddOn trackEvent:@"editNote"];
     }
 }
 
@@ -197,6 +200,7 @@
     // Now link attachment to the note
     newAttachment.note = self.editedNote;
     DLog(@"Adding attachment: %@", newAttachment);
+    [GTPiwikAddOn trackEvent:@"addAttachment"];
     [self.editedNote addAttachmentObject:newAttachment];
     [self saveAndContinue:nil];
     [self refreshAttachments];
@@ -210,6 +214,7 @@
         [self.editedNote removeAttachmentObject:toBeDeleted];
         [self saveAndContinue:nil];
         [self refreshAttachments];
+        [GTPiwikAddOn trackEvent:@"deleteAttachment"];
     }
 }
 
@@ -347,6 +352,7 @@
         for (NSString *fileName in files) {
             NSURL *url = [[NSURL alloc] initFileURLWithPath:fileName];
             DLog(@"User dropped URL %@, now saving.", url);
+            [GTPiwikAddOn trackEvent:@"droppedAttachment"];
             [self attachAttachment:url];
         }
     }

@@ -33,6 +33,7 @@
 		64CB19261738E7FD0014F35F /* PTUserAgentReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 64CB191E1738E7FD0014F35F /* PTUserAgentReader.m */; };
 		64CB19281738EEE90014F35F /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CB19271738EEE90014F35F /* WebKit.framework */; };
 		64CB192A1738EFF20014F35F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CB19291738EFF20014F35F /* SystemConfiguration.framework */; };
+		64CB192D173905AC0014F35F /* GTPiwikAddOn.m in Sources */ = {isa = PBXBuildFile; fileRef = 64CB192C173905AC0014F35F /* GTPiwikAddOn.m */; };
 		64DE6C291727EDF70031183A /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 64DE6C271727EDF70031183A /* refresh.png */; };
 		64DE6C2A1727EDF70031183A /* refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64DE6C281727EDF70031183A /* refresh@2x.png */; };
 		64EA621016F7110300F4838E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64EA620F16F7110300F4838E /* Cocoa.framework */; };
@@ -109,6 +110,8 @@
 		64CB191E1738E7FD0014F35F /* PTUserAgentReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTUserAgentReader.m; sourceTree = "<group>"; };
 		64CB19271738EEE90014F35F /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		64CB19291738EFF20014F35F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		64CB192B173905AC0014F35F /* GTPiwikAddOn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTPiwikAddOn.h; path = ../common/Utilitites/GTPiwikAddOn.h; sourceTree = "<group>"; };
+		64CB192C173905AC0014F35F /* GTPiwikAddOn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTPiwikAddOn.m; path = ../common/Utilitites/GTPiwikAddOn.m; sourceTree = "<group>"; };
 		64DE6C271727EDF70031183A /* refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = refresh.png; path = Buttons/refresh.png; sourceTree = "<group>"; };
 		64DE6C281727EDF70031183A /* refresh@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "refresh@2x.png"; path = "Buttons/refresh@2x.png"; sourceTree = "<group>"; };
 		64EA620C16F7110300F4838E /* Janus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Janus.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -375,6 +378,8 @@
 			isa = PBXGroup;
 			children = (
 				64CB190E1738E7FD0014F35F /* PiwikTracker */,
+				64CB192B173905AC0014F35F /* GTPiwikAddOn.h */,
+				64CB192C173905AC0014F35F /* GTPiwikAddOn.m */,
 				6429F2C21716EB3C0030E932 /* NSString+UUID.h */,
 				6429F2C31716EB3C0030E932 /* NSString+UUID.m */,
 				64EA627916F71E8A00F4838E /* NSDate+PassedTime.h */,
@@ -511,6 +516,7 @@
 				64CB19231738E7FD0014F35F /* PTRetryDispatchStrategy.m in Sources */,
 				64CB19241738E7FD0014F35F /* PTTimerDispatchStrategy.m in Sources */,
 				64CB19261738E7FD0014F35F /* PTUserAgentReader.m in Sources */,
+				64CB192D173905AC0014F35F /* GTPiwikAddOn.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
