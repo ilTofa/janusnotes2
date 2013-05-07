@@ -18,6 +18,7 @@
 #import "MBProgressHUD.h"
 #import "IAMPreferencesController.h"
 #import "NSManagedObjectContext+FetchedObjectFromURI.h"
+#import "GTPiwikAddOn.h"
 
 @interface IAMViewController () <UISearchBarDelegate, NSFetchedResultsControllerDelegate>
 
@@ -43,6 +44,7 @@
     [super viewDidLoad];
     self.dropboxSyncronizedSomething = YES;
     [self loadPreviousSearchKeys];
+    [GTPiwikAddOn trackEvent:@"mainUILoaded"];
     // Set some sane defaults
     self.appDelegate = (IAMAppDelegate *)[[UIApplication sharedApplication] delegate];
     self.managedObjectContext = self.appDelegate.coreDataController.mainThreadContext;
