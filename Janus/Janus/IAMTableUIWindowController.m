@@ -14,7 +14,6 @@
 #import "IAMFilesystemSyncController.h"
 #import "NSManagedObjectContext+FetchedObjectFromURI.h"
 #import "Attachment.h"
-#import "GTPiwikAddOn.h"
 
 @interface IAMTableUIWindowController () <IAMNoteEditorWCDelegate, NSWindowDelegate>
 
@@ -51,7 +50,6 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(coreDataIsReady:) name:GTCoreDataReady object:nil];
     else
         [self coreDataIsReady:nil];
-    [GTPiwikAddOn trackEvent:@"mainUILoaded"];
 }
 
 - (IBAction)showUIWindow:(id)sender {

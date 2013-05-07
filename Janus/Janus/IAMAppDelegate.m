@@ -11,16 +11,9 @@
 #import "IAMFilesystemSyncController.h"
 #import "IAMPrefsWindowController.h"
 
-#import "PTTimerDispatchStrategy.h"
-
-#define PIWIK_URL @"http://piwik.iltofa.com/"
-#define SITE_ID_TEST @"5"
-
 @interface IAMAppDelegate ()
 
 @property (strong) IAMPrefsWindowController *prefsController;
-
-@property (nonatomic, strong) PTTimerDispatchStrategy *timerStrategy;
 
 @end
 
@@ -35,10 +28,6 @@
     _coreDataController = [[CoreDataController alloc] init];
     // [_coreDataController nukeAndPave];
     [_coreDataController loadPersistentStores];
-    // Get the shared tracker and init it.
-    self.tracker = [PiwikTracker sharedTracker];
-    [self startTracker:self];
-    // Set base font if not set
     NSString *fontName = [[NSUserDefaults standardUserDefaults] stringForKey:@"fontName"];
     if(!fontName) {
         [[NSUserDefaults standardUserDefaults] setObject:@"Lucida Grande" forKey:@"fontName"];
@@ -73,34 +62,6 @@
 - (NSUndoManager *)windowWillReturnUndoManager:(NSWindow *)window
 {
     return [[self managedObjectContext] undoManager];
-}
-
-#pragma mark - piwik tracker
-
-- (IBAction)startTracker:(id)sender {
-    DLog(@"Start the Tracker");
-    // Start the tracker. This also creates a new session.
-    NSError *error = nil;
-    [self.tracker startTrackerWithPiwikURL:PIWIK_URL
-                                    siteID:SITE_ID_TEST
-                       authenticationToken:nil
-                                 withError:&error];
-    self.tracker.dryRun = NO;
-    // Start the timer dispatch strategy
-    self.timerStrategy = [PTTimerDispatchStrategy strategyWithErrorBlock:^(NSError *error) {
-        NSLog(@"The timer strategy failed to initated dispatch of analytic events");
-    }];
-    self.timerStrategy.timeInteraval = 20; // Set the time interval to 20s, default value is 3 minutes
-    [self.timerStrategy startDispatchTimer];
-}
-
-
-- (IBAction)stopTracker:(id)sender {
-    DLog(@"Stop the Tracker");
-    // Stop the Tracker from accepting new events
-    [self.tracker stopTracker];
-    // Stop the time strategy
-    [self.timerStrategy stopDispatchTimer];
 }
 
 // Performs the save action for the application, which is to send the save: message to the application's managed object context. Any encountered errors are presented to the user.
@@ -213,7 +174,6 @@
             return NSTerminateCancel;
         }
     }
-    [self.tracker stopTracker];
     return NSTerminateNow;
 }
 

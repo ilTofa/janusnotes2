@@ -8,8 +8,6 @@
 
 #import "GTAdViewFactory.h"
 
-#import "GTPiwikAddOn.h"
-
 @interface GTAdViewFactory () <ADBannerViewDelegate, GADBannerViewDelegate>
 
 @property (nonatomic) BOOL delegateIsNotifiedOfSuccess;
@@ -162,7 +160,6 @@
 - (IBAction)houseAdClicked:(id)sender
 {
     DLog(@"*** House Ad clicked! ***");
-    [GTPiwikAddOn trackEvent:@"houseAdClicked"];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://itunes.apple.com/app/id305922458"]];
 }
 
@@ -279,7 +276,6 @@
 - (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave
 {
     // disable AdMob and HouseAds banners just in case.
-    [GTPiwikAddOn trackEvent:@"iADClicked"];
     [self hideHouseAd:nil];
     [self killGoogleAdView];
     return YES;
@@ -338,7 +334,6 @@
 - (void)adViewWillPresentScreen:(GADBannerView *)bannerView
 {
     // disable iAd and HouseAds banners just in case.
-    [GTPiwikAddOn trackEvent:@"googleAdClicked"];
     [self hideHouseAd:nil];
     [self killiAdView];
 }
