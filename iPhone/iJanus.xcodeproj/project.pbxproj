@@ -80,15 +80,6 @@
 		64BB69F01715BB5700875601 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64BB69EF1715BB5700875601 /* Security.framework */; };
 		64BB69F21715BB5F00875601 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64BB69F11715BB5F00875601 /* SystemConfiguration.framework */; };
 		64BB69F41715BB6600875601 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64BB69F31715BB6600875601 /* QuartzCore.framework */; };
-		64CB193E173929840014F35F /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CB1939173929840014F35F /* libGoogleAdMobAds.a */; };
-		64CB193F173929840014F35F /* GTAdViewFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 64CB193B173929840014F35F /* GTAdViewFactory.m */; };
-		64CB1940173929840014F35F /* HouseAd.png in Resources */ = {isa = PBXBuildFile; fileRef = 64CB193C173929840014F35F /* HouseAd.png */; };
-		64CB1941173929840014F35F /* HouseAd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64CB193D173929840014F35F /* HouseAd@2x.png */; };
-		64CB194317392B530014F35F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CB194217392B520014F35F /* AudioToolbox.framework */; };
-		64CB194517392B710014F35F /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CB194417392B710014F35F /* StoreKit.framework */; };
-		64CB194717392B7C0014F35F /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CB194617392B7C0014F35F /* MessageUI.framework */; };
-		64CB194917392B860014F35F /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CB194817392B860014F35F /* AdSupport.framework */; };
-		64CB194B17392BAD0014F35F /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CB194A17392BAD0014F35F /* iAd.framework */; };
 		64CC812F1717F1B800C129B0 /* IAMDataSyncController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64CC812E1717F1B800C129B0 /* IAMDataSyncController.m */; };
 		64DE6C261727E5320031183A /* NSManagedObjectContext+FetchedObjectFromURI.m in Sources */ = {isa = PBXBuildFile; fileRef = 64DE6C251727E5320031183A /* NSManagedObjectContext+FetchedObjectFromURI.m */; };
 		64F31CC416E4AF9000A80BE0 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F31CC316E4AF9000A80BE0 /* Note.m */; };
@@ -192,20 +183,6 @@
 		64BB69EF1715BB5700875601 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		64BB69F11715BB5F00875601 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		64BB69F31715BB6600875601 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		64CB1930173929840014F35F /* GADAdMobExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdMobExtras.h; sourceTree = "<group>"; };
-		64CB1931173929840014F35F /* GADAdNetworkExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdNetworkExtras.h; sourceTree = "<group>"; };
-		64CB1932173929840014F35F /* GADAdSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdSize.h; sourceTree = "<group>"; };
-		64CB1933173929840014F35F /* GADBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADBannerView.h; sourceTree = "<group>"; };
-		64CB1934173929840014F35F /* GADBannerViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADBannerViewDelegate.h; sourceTree = "<group>"; };
-		64CB1935173929840014F35F /* GADInterstitial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInterstitial.h; sourceTree = "<group>"; };
-		64CB1936173929840014F35F /* GADInterstitialDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInterstitialDelegate.h; sourceTree = "<group>"; };
-		64CB1937173929840014F35F /* GADRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADRequest.h; sourceTree = "<group>"; };
-		64CB1938173929840014F35F /* GADRequestError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADRequestError.h; sourceTree = "<group>"; };
-		64CB1939173929840014F35F /* libGoogleAdMobAds.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAdMobAds.a; sourceTree = "<group>"; };
-		64CB193A173929840014F35F /* GTAdViewFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTAdViewFactory.h; sourceTree = "<group>"; };
-		64CB193B173929840014F35F /* GTAdViewFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTAdViewFactory.m; sourceTree = "<group>"; };
-		64CB193C173929840014F35F /* HouseAd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HouseAd.png; sourceTree = "<group>"; };
-		64CB193D173929840014F35F /* HouseAd@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HouseAd@2x.png"; sourceTree = "<group>"; };
 		64CB194217392B520014F35F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		64CB194417392B710014F35F /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		64CB194617392B7C0014F35F /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
@@ -228,11 +205,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64CB194B17392BAD0014F35F /* iAd.framework in Frameworks */,
-				64CB194917392B860014F35F /* AdSupport.framework in Frameworks */,
-				64CB194717392B7C0014F35F /* MessageUI.framework in Frameworks */,
-				64CB194517392B710014F35F /* StoreKit.framework in Frameworks */,
-				64CB194317392B530014F35F /* AudioToolbox.framework in Frameworks */,
 				64BB69F41715BB6600875601 /* QuartzCore.framework in Frameworks */,
 				64BB69F21715BB5F00875601 /* SystemConfiguration.framework in Frameworks */,
 				64BB69F01715BB5700875601 /* Security.framework in Frameworks */,
@@ -245,7 +217,6 @@
 				64A0507216D28CCA0025E179 /* Foundation.framework in Frameworks */,
 				64A0507416D28CCA0025E179 /* CoreGraphics.framework in Frameworks */,
 				64BB69EC1715BB2C00875601 /* Dropbox.framework in Frameworks */,
-				64CB193E173929840014F35F /* libGoogleAdMobAds.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,7 +340,6 @@
 		64A0506316D28CCA0025E179 = {
 			isa = PBXGroup;
 			children = (
-				64CB192E173929840014F35F /* GTAdViewFactory */,
 				64845FE316E019F20046BE9C /* Utilities (common) */,
 				649DCE9A16D28D30003F5A83 /* CoreData (common) */,
 				64A0507516D28CCA0025E179 /* I Am Mine */,
@@ -473,35 +443,6 @@
 			path = AudioRecord;
 			sourceTree = "<group>";
 		};
-		64CB192E173929840014F35F /* GTAdViewFactory */ = {
-			isa = PBXGroup;
-			children = (
-				64CB192F173929840014F35F /* AdMob */,
-				64CB193A173929840014F35F /* GTAdViewFactory.h */,
-				64CB193B173929840014F35F /* GTAdViewFactory.m */,
-				64CB193C173929840014F35F /* HouseAd.png */,
-				64CB193D173929840014F35F /* HouseAd@2x.png */,
-			);
-			path = GTAdViewFactory;
-			sourceTree = "<group>";
-		};
-		64CB192F173929840014F35F /* AdMob */ = {
-			isa = PBXGroup;
-			children = (
-				64CB1930173929840014F35F /* GADAdMobExtras.h */,
-				64CB1931173929840014F35F /* GADAdNetworkExtras.h */,
-				64CB1932173929840014F35F /* GADAdSize.h */,
-				64CB1933173929840014F35F /* GADBannerView.h */,
-				64CB1934173929840014F35F /* GADBannerViewDelegate.h */,
-				64CB1935173929840014F35F /* GADInterstitial.h */,
-				64CB1936173929840014F35F /* GADInterstitialDelegate.h */,
-				64CB1937173929840014F35F /* GADRequest.h */,
-				64CB1938173929840014F35F /* GADRequestError.h */,
-				64CB1939173929840014F35F /* libGoogleAdMobAds.a */,
-			);
-			path = AdMob;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -600,8 +541,6 @@
 				64A7558A1702137A0085933D /* three@2x.png in Resources */,
 				64A7558B1702137A0085933D /* two.png in Resources */,
 				64A7558C1702137A0085933D /* two@2x.png in Resources */,
-				64CB1940173929840014F35F /* HouseAd.png in Resources */,
-				64CB1941173929840014F35F /* HouseAd@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -635,7 +574,6 @@
 				64CC812F1717F1B800C129B0 /* IAMDataSyncController.m in Sources */,
 				648A2773171D875000338218 /* MBProgressHUD.m in Sources */,
 				64DE6C261727E5320031183A /* NSManagedObjectContext+FetchedObjectFromURI.m in Sources */,
-				64CB193F173929840014F35F /* GTAdViewFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -739,10 +677,7 @@
 				GCC_PREFIX_HEADER = "I Am Mine/iJanus-Prefix.pch";
 				INFOPLIST_FILE = "I Am Mine/iJanus-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/GTAdViewFactory/AdMob\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = iJanus;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -763,10 +698,7 @@
 				GCC_PREFIX_HEADER = "I Am Mine/iJanus-Prefix.pch";
 				INFOPLIST_FILE = "I Am Mine/iJanus-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/GTAdViewFactory/AdMob\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = iJanus;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
