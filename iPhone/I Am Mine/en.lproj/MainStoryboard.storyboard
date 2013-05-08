@@ -246,25 +246,25 @@ Label riga 3</string>
                             </tableViewSection>
                             <tableViewSection headerTitle="Colors" id="914-js-wTr">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="PQO-bD-Shl">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="uS7-2w-A4r">
                                         <rect key="frame" x="0.0" y="454" width="320" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="10" y="1" width="300" height="43"/>
+                                            <rect key="frame" x="10" y="0.0" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Text and background color" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ico-WR-fc1">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Text and background color" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Xr5-tl-p65">
                                                     <rect key="frame" x="20" y="10" width="260" height="24"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" white="0.84999999999999998" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="1" green="0.98823535442352295" blue="0.92156869173049927" alpha="1" colorSpace="deviceRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" red="0.11764705882352941" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.21568629145622253" green="0.21176472306251526" blue="0.19215688109397888" alpha="1" colorSpace="deviceRGB"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <color key="backgroundColor" white="0.84999999999999998" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="1" green="0.98823535439999999" blue="0.9215686917" alpha="1" colorSpace="deviceRGB"/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="4Ed-Bx-XSW">
                                         <rect key="frame" x="0.0" y="499" width="320" height="44"/>
@@ -305,25 +305,25 @@ Label riga 3</string>
                                         </view>
                                         <color key="backgroundColor" red="0.0" green="0.18823531269999999" blue="0.31764706970000001" alpha="1" colorSpace="deviceRGB"/>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="uS7-2w-A4r">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="PQO-bD-Shl">
                                         <rect key="frame" x="0.0" y="587" width="320" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="10" y="0.0" width="300" height="43"/>
+                                            <rect key="frame" x="10" y="1" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Text and background color" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Xr5-tl-p65">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Text and background color" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ico-WR-fc1">
                                                     <rect key="frame" x="20" y="10" width="260" height="24"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" red="1" green="0.98823535442352295" blue="0.92156869173049927" alpha="1" colorSpace="deviceRGB"/>
+                                                    <color key="backgroundColor" white="0.84999999999999998" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" red="0.21568629145622253" green="0.21176472306251526" blue="0.19215688109397888" alpha="1" colorSpace="deviceRGB"/>
+                                                    <color key="textColor" red="0.11764705882352941" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <color key="backgroundColor" red="1" green="0.98823535439999999" blue="0.9215686917" alpha="1" colorSpace="deviceRGB"/>
+                                        <color key="backgroundColor" white="0.84999999999999998" alpha="1" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -690,10 +690,8 @@ Label riga 3</string>
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IAMNoteEdit.h"/>
             <relationships>
                 <relationship kind="action" name="addImageToNote:"/>
-                <relationship kind="action" name="done:"/>
                 <relationship kind="action" name="recordAudio:"/>
                 <relationship kind="action" name="save:"/>
-                <relationship kind="action" name="shareAction:"/>
                 <relationship kind="outlet" name="addImageButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="attachmentQuantityLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="attachmentsGreyRow" candidateClass="UIImageView"/>

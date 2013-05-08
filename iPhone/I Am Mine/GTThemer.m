@@ -34,9 +34,9 @@
         sharedInstance = [[GTThemer alloc] init];
         sharedInstance.colorsConfigs = @[
                                          @{
-                                             @"textColor" : [UIColor colorWithRed:0.118 green:0.000 blue:0.000 alpha:1.000],
-                                             @"backgroundColor" : [UIColor colorWithWhite:0.850 alpha:1.000],
-                                             @"tintColor" : [UIColor colorWithWhite:0.655 alpha:1.000]},
+                                             @"textColor" : [UIColor colorWithRed:0.216 green:0.212 blue:0.192 alpha:1.000],
+                                             @"backgroundColor" : [UIColor colorWithRed:1.000 green:0.988 blue:0.922 alpha:1.000],
+                                             @"tintColor" : [UIColor colorWithHue:0.083 saturation:1.000 brightness:0.502 alpha:1.000]},
                                          @{
                                              @"textColor" : [UIColor blackColor],
                                              @"backgroundColor" : [UIColor whiteColor],
@@ -46,9 +46,9 @@
                                              @"backgroundColor" : [UIColor colorWithRed:0.000 green:0.188 blue:0.318 alpha:1.000],
                                              @"tintColor" : [UIColor colorWithRed:0.169 green:0.318 blue:0.420 alpha:1.000]},
                                          @{
-                                             @"textColor" : [UIColor colorWithRed:0.216 green:0.212 blue:0.192 alpha:1.000],
-                                             @"backgroundColor" : [UIColor colorWithRed:1.000 green:0.988 blue:0.922 alpha:1.000],
-                                             @"tintColor" : [UIColor colorWithHue:0.083 saturation:1.000 brightness:0.502 alpha:1.000]},
+                                             @"textColor" : [UIColor colorWithRed:0.118 green:0.000 blue:0.000 alpha:1.000],
+                                             @"backgroundColor" : [UIColor colorWithWhite:0.850 alpha:1.000],
+                                             @"tintColor" : [UIColor colorWithWhite:0.655 alpha:1.000]},
                                          ];
         sharedInstance.fontsConfigs = @[@"Cochin", @"Georgia", @"Helvetica", @"Marker Felt"];
         sharedInstance.backgroundImagesNames = @[@"1_CellBackground", @"2_CellBackground", @"3_CellBackground", @"4_CellBackground"];
