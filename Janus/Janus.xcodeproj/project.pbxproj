@@ -10,6 +10,7 @@
 		6429F2C41716EB3C0030E932 /* NSString+UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 6429F2C31716EB3C0030E932 /* NSString+UUID.m */; };
 		6429F2C51716EB3C0030E932 /* NSString+UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 6429F2C31716EB3C0030E932 /* NSString+UUID.m */; };
 		642D29CF1721470400006FC1 /* IAMFilesystemSyncController.m in Sources */ = {isa = PBXBuildFile; fileRef = 642D29CE1721470400006FC1 /* IAMFilesystemSyncController.m */; };
+		643BA048173BFA4600A6C437 /* IAmMine.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 64EA627016F71E1400F4838E /* IAmMine.xcdatamodeld */; };
 		644AC25B17257FE4007B51FF /* IAMTableUIWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 644AC25917257FE4007B51FF /* IAMTableUIWindowController.m */; };
 		644AC25C17257FE4007B51FF /* IAMTableUIWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 644AC25A17257FE4007B51FF /* IAMTableUIWindowController.xib */; };
 		644AC26117258273007B51FF /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 644AC25F17258273007B51FF /* plus.png */; };
@@ -473,6 +474,7 @@
 				64EA624316F7110300F4838E /* GetMetadataForFile.m in Sources */,
 				64EA624616F7110300F4838E /* MySpotlightImporter.m in Sources */,
 				6429F2C51716EB3C0030E932 /* NSString+UUID.m in Sources */,
+				643BA048173BFA4600A6C437 /* IAmMine.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -617,14 +619,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Janus/Janus.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Mac Developer: Giacomo Tufano (68RHGP4K2S)";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Janus/Janus-Prefix.pch";
 				INFOPLIST_FILE = "Janus/Janus-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "48DA2D01-8AB8-44A3-8BB3-106E62CEAD21";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -633,14 +635,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Janus/Janus.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Mac Developer: Giacomo Tufano (68RHGP4K2S)";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Janus/Janus-Prefix.pch";
 				INFOPLIST_FILE = "Janus/Janus-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "48DA2D01-8AB8-44A3-8BB3-106E62CEAD21";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

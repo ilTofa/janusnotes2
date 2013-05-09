@@ -33,9 +33,34 @@
         [[NSUserDefaults standardUserDefaults] setObject:@"Lucida Grande" forKey:@"fontName"];
         [[NSUserDefaults standardUserDefaults] setDouble:13.0 forKey:@"fontSize"];
     }
-    self.collectionController = [[IAMTableUIWindowController alloc] initWithWindowNibName:@"IAMTableUIWindowController"];
-    [self.collectionController showWindow:self];
+    if(!self.collectionController) {
+        self.collectionController = [[IAMTableUIWindowController alloc] initWithWindowNibName:@"IAMTableUIWindowController"];
+        [self.collectionController showWindow:self];
+    }
     [self deleteCache];
+}
+
+- (void)application:(NSApplication *)theApplication openFiles:(NSArray *)files {
+    
+    NSString *aPath = [files lastObject]; // Just an example to get at one of the paths.
+    
+    if (aPath && [aPath hasSuffix:@"janus"]) {
+        // Decode URI from path.
+        NSURL *objectURI = [[NSPersistentStoreCoordinator elementsDerivedFromExternalRecordURL:[NSURL fileURLWithPath:aPath]] objectForKey:NSObjectURIKey];
+        if (objectURI) {
+            NSManagedObjectID *moid = [[self persistentStoreCoordinator] managedObjectIDForURIRepresentation:objectURI];
+            if (moid) {
+                NSManagedObject *mo = [[self managedObjectContext] objectWithID:moid];
+                if(!self.collectionController) {
+                    DLog(@"Should open main UI window");
+                    self.collectionController = [[IAMTableUIWindowController alloc] initWithWindowNibName:@"IAMTableUIWindowController"];
+                    [self.collectionController showWindow:self];
+                }
+                DLog(@"Should send information to the main UI for processing: %@", mo);
+                // Your code to select the object in your application's UI.
+            }
+        }
+    }
 }
 
 // Returns the directory the application uses to store the Core Data store file. This code uses a directory named "it.iltofa.Janus" in the user's Application Support directory.

@@ -8,7 +8,7 @@
 
 #import "MySpotlightImporter.h"
 
-#define YOUR_STORE_TYPE NSXMLStoreType
+#define JANUS_STORE_TYPE NSXMLStoreType
 
 @interface MySpotlightImporter ()
 @property (nonatomic, strong) NSURL *modelURL;
@@ -23,12 +23,10 @@
 
 - (BOOL)importFileAtPath:(NSString *)filePath attributes:(NSMutableDictionary *)spotlightData error:(NSError **)error
 {
-        
     NSDictionary *pathInfo = [NSPersistentStoreCoordinator elementsDerivedFromExternalRecordURL:[NSURL fileURLWithPath:filePath]];
             
     self.modelURL = [NSURL fileURLWithPath:[pathInfo valueForKey:NSModelPathKey]];
     self.storeURL = [NSURL fileURLWithPath:[pathInfo valueForKey:NSStorePathKey]];
-
 
     NSURL *objectURI = [pathInfo valueForKey:NSObjectURIKey];
     NSManagedObjectID *oid = [[self persistentStoreCoordinator] managedObjectIDForURIRepresentation:objectURI];
@@ -41,13 +39,15 @@
     NSManagedObject *instance = [[self managedObjectContext] objectWithID:oid];
 
     // how you process each instance will depend on the entity that the instance belongs to
+    NSLog(@"requested import of an %@", [[instance entity] name]);
 
-    if ([[[instance entity] name] isEqualToString:@"YOUR_ENTITY_NAME"]) {
+    if ([[[instance entity] name] isEqualToString:@"Note"]) {
 
         // set the display name for Spotlight search result
-
-        NSString *yourDisplayString =  [NSString stringWithFormat:@"YOUR_DISPLAY_STRING %@", [instance valueForKey:@"SOME_KEY"]];
-        spotlightData[(NSString *)kMDItemDisplayName] = yourDisplayString;
+        spotlightData[(NSString *)kMDItemDisplayName] = [instance valueForKey:@"title"];
+        // Set the text content from the note text
+        spotlightData[(NSString *)kMDItemTextContent] = [instance valueForKey:@"text"];
+        [spotlightData removeObjectForKey:@"kMDItemSupportFileType"];
         
          /*
             Determine how you want to store the instance information in 'spotlightData' dictionary.
@@ -116,8 +116,9 @@ static NSDate				*cachedModelModificationDate =nil;
     NSError *error = nil;
         
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    if (![_persistentStoreCoordinator addPersistentStoreWithType:YOUR_STORE_TYPE configuration:nil URL:self.storeURL options:nil error:&error]) {
-        NSLog(@"%@:%@ unable to add persistent store coordinator - %@", [self class], NSStringFromSelector(_cmd), error);
+    NSDictionary *options = @{NSReadOnlyPersistentStoreOption: @YES};
+    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:@"LocalConfig" URL:self.storeURL options:options error:&error]) {
+        NSLog(@"%@:%@ unable to add persistent store coordinator @%@ - %@", [self class], NSStringFromSelector(_cmd), self.storeURL, error);
     }    
 
     return _persistentStoreCoordinator;

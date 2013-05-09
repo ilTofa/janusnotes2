@@ -35,7 +35,7 @@ Boolean GetMetadataForFile(void *thisInterface, CFMutableDictionaryRef attribute
     @autoreleasepool {
         NSError *error = nil;
         
-        if ([(__bridge NSString *)contentTypeUTI isEqualToString:@"YOUR_STORE_FILE_UTI"]) {
+        if ([(__bridge NSString *)contentTypeUTI isEqualToString:@"store_uti"]) {
             // import from store file metadata
             
             // Create the URL, then attempt to get the meta-data from the store
@@ -55,11 +55,10 @@ Boolean GetMetadataForFile(void *thisInterface, CFMutableDictionaryRef attribute
                 }
             }
             
-        } else if ([(__bridge NSString *)contentTypeUTI isEqualToString:@"YOUR_EXTERNAL_RECORD_UTI"]) {
+        } else if ([(__bridge NSString *)contentTypeUTI isEqualToString:@"it.iltofa.janus"]) {
             // import from an external record file
             
             MySpotlightImporter *importer = [[MySpotlightImporter alloc] init];
-            
             ok = [importer importFileAtPath:(__bridge NSString *)pathToFile attributes:(__bridge NSMutableDictionary *)attributes error:&error];
         }
     }
