@@ -41,7 +41,6 @@
 }
 
 - (void)application:(NSApplication *)theApplication openFiles:(NSArray *)files {
-    
     NSString *aPath = [files lastObject]; // Just an example to get at one of the paths.
     
     if (aPath && [aPath hasSuffix:@"janus"]) {
@@ -52,13 +51,16 @@
             if (moid) {
                 NSManagedObject *mo = [[self managedObjectContext] objectWithID:moid];
                 if(!self.collectionController) {
-                    DLog(@"Should open main UI window");
-                    self.collectionController = [[IAMTableUIWindowController alloc] initWithWindowNibName:@"IAMTableUIWindowController"];
-                    [self.collectionController showWindow:self];
+                    DLog(@"Should init, doing it!");
+                    [self applicationDidFinishLaunching:nil];
                 }
-                DLog(@"Should send information to the main UI for processing: %@", mo);
-                // Your code to select the object in your application's UI.
+                NSURL *uri = [[mo objectID] URIRepresentation];
+                DLog(@"Send note URL to the main UI for opening: %@", uri);
+                [[NSApplication sharedApplication] replyToOpenOrPrint:NSApplicationDelegateReplySuccess];
+                [self.collectionController openNoteAtURI:uri];
             }
+        } else {
+            [[NSApplication sharedApplication] replyToOpenOrPrint:NSApplicationDelegateReplyFailure];
         }
     }
 }

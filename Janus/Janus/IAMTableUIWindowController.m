@@ -94,6 +94,21 @@
 
 #pragma mark - Notes Editing management
 
+- (void)openNoteAtURI:(NSURL *)uri {
+    Note *aprenda = (Note *)[self.sharedManagedObjectContext objectWithURI:uri];
+    if(!aprenda) {
+        ALog(@"*** Note is nil while trying to open it!");
+        return;
+    }
+    IAMNoteEditorWC *noteEditor = [[IAMNoteEditorWC alloc] initWithWindowNibName:@"IAMNoteEditorWC"];
+    [noteEditor setDelegate:self];
+    [noteEditor setEditedNote:aprenda];
+    // Preserve a reference to the controller to keep ARC happy
+    [self.noteWindowControllers addObject:noteEditor];
+    self.noteEditorIsShown = @(YES);
+    [noteEditor showWindow:self];
+}
+
 // This event comes from the collection item view subclass
 - (IBAction)tableItemDoubleClick:(id)sender {
     if([[self.arrayController selectedObjects] count] != 0) {

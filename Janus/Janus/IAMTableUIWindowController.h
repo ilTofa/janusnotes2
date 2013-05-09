@@ -34,4 +34,7 @@
 - (IBAction)addAttachmentToNoteAction:(id)sender;
 - (IBAction)removeAttachmentFromNoteAction:(id)sender;
 
+// called from openFile in apdelegate
+- (void)openNoteAtURI:(NSURL *)uri;
+
 @end
