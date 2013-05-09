@@ -11,6 +11,7 @@
 		6429F2C51716EB3C0030E932 /* NSString+UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 6429F2C31716EB3C0030E932 /* NSString+UUID.m */; };
 		642D29CF1721470400006FC1 /* IAMFilesystemSyncController.m in Sources */ = {isa = PBXBuildFile; fileRef = 642D29CE1721470400006FC1 /* IAMFilesystemSyncController.m */; };
 		643BA048173BFA4600A6C437 /* IAmMine.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 64EA627016F71E1400F4838E /* IAmMine.xcdatamodeld */; };
+		643BA04C173C52C100A6C437 /* document-icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 643BA04B173C52C100A6C437 /* document-icon.icns */; };
 		644AC25B17257FE4007B51FF /* IAMTableUIWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 644AC25917257FE4007B51FF /* IAMTableUIWindowController.m */; };
 		644AC25C17257FE4007B51FF /* IAMTableUIWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 644AC25A17257FE4007B51FF /* IAMTableUIWindowController.xib */; };
 		644AC26117258273007B51FF /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 644AC25F17258273007B51FF /* plus.png */; };
@@ -69,6 +70,7 @@
 		6429F2C31716EB3C0030E932 /* NSString+UUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+UUID.m"; path = "../common/Utilitites/NSString+UUID.m"; sourceTree = "<group>"; };
 		642D29CD1721470400006FC1 /* IAMFilesystemSyncController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMFilesystemSyncController.h; sourceTree = "<group>"; };
 		642D29CE1721470400006FC1 /* IAMFilesystemSyncController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMFilesystemSyncController.m; sourceTree = "<group>"; };
+		643BA04B173C52C100A6C437 /* document-icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "document-icon.icns"; sourceTree = "<group>"; };
 		644AC25817257FE4007B51FF /* IAMTableUIWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMTableUIWindowController.h; sourceTree = "<group>"; };
 		644AC25917257FE4007B51FF /* IAMTableUIWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMTableUIWindowController.m; sourceTree = "<group>"; };
 		644AC25A17257FE4007B51FF /* IAMTableUIWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IAMTableUIWindowController.xib; sourceTree = "<group>"; };
@@ -281,6 +283,7 @@
 		64EA621616F7110300F4838E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				643BA04B173C52C100A6C437 /* document-icon.icns */,
 				64A1D4EC16FC9F7C00E50CC1 /* Janus.entitlements */,
 				64EA625116F7166700F4838E /* icon.icns */,
 				64EA621716F7110300F4838E /* Janus-Info.plist */,
@@ -431,6 +434,7 @@
 				644AC2791726CFAC007B51FF /* IAMPrefsWindowController.xib in Resources */,
 				64DE6C291727EDF70031183A /* refresh.png in Resources */,
 				64DE6C2A1727EDF70031183A /* refresh@2x.png in Resources */,
+				643BA04C173C52C100A6C437 /* document-icon.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

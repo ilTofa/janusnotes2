@@ -46,6 +46,8 @@
 			<string>it.iltofa.janus</string>
 			<key>UTTypeReferenceURL</key>
 			<string>http://www.iltofa.com/janus</string>
+			<key>UTTypeIconFile</key>
+			<string>document-icon.icns</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>com.apple.ostype</key>
