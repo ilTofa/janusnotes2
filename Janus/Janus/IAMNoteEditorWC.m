@@ -18,6 +18,8 @@
     BOOL _userConsentedToClose;
 }
 
+@property Note *editedNote;
+
 @property (strong) IBOutlet NSArrayController *arrayController;
 @property (strong) IBOutlet NSCollectionView *attachmentsCollectionView;
 
@@ -52,13 +54,16 @@
     [self.attachmentsCollectionView registerForDraggedTypes:@[NSFilenamesPboardType]];
     [self.attachmentsCollectionView setDraggingSourceOperationMask:NSDragOperationCopy forLocal:NO];
     [self refreshAttachments];
-    if(!self.editedNote) {
+    if(!self.idForTheNoteToBeEdited) {
         // It seems that we're created without a note, that will mean that we're required to create a new one.
         Note *newNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:self.noteEditorMOC];
         self.editedNote = newNote;
     } else { // Get a copy of edited note into the local context.
-        NSURL *uri = [[self.editedNote objectID] URIRepresentation];
-        self.editedNote = (Note *)[self.noteEditorMOC objectWithURI:uri];
+//        NSURL *uri = [[self.editedNote objectID] URIRepresentation];
+//        self.editedNote = (Note *)[self.noteEditorMOC objectWithURI:uri];
+        NSError *error;
+        self.editedNote = (Note *)[self.noteEditorMOC existingObjectWithID:self.idForTheNoteToBeEdited error:&error];
+        NSAssert1(self.editedNote, @"Shit! Invalid ObjectID, there. Error: %@", [error description]);
     }
 }
 

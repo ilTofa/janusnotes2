@@ -20,7 +20,7 @@
 
 @interface IAMNoteEditorWC : NSWindowController
 
-@property Note *editedNote;
+@property NSManagedObjectID *idForTheNoteToBeEdited;
 @property (assign, nonatomic) id<IAMNoteEditorWCDelegate> delegate;
 @property (strong, atomic) IBOutlet NSManagedObjectContext *noteEditorMOC;
 @property NSArray *attachmentsArray;

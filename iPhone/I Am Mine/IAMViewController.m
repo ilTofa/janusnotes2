@@ -406,7 +406,7 @@
         IAMNoteEdit *noteEditor = [segue destinationViewController];
         Note *selectedNote =  [[self fetchedResultsController] objectAtIndexPath:self.tableView.indexPathForSelectedRow];
         selectedNote.timeStamp = [NSDate date];
-        noteEditor.editedNote = selectedNote;
+        noteEditor.idForTheNoteToBeEdited = [selectedNote objectID];
     }
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && [[segue identifier] isEqualToString:@"Preferences"])
         self.popSegue = (UIStoryboardPopoverSegue *)segue;

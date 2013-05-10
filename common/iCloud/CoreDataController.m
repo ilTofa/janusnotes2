@@ -270,15 +270,19 @@ static NSOperationQueue *_presentedItemOperationQueue;
         ALog(@"Error creating %@: %@", cacheDirectory, [localError description]);
         assert(NO);
     }
+#if TARGET_OS_IPHONE
+    NSDictionary *options = @{NSMigratePersistentStoresAutomaticallyOption: @YES,
+                              NSInferMappingModelAutomaticallyOption: @YES,
+                              };
+#else
     NSString *externalRecordsSupportFolder = [cacheDirectory path];
-//    NSString *externalRecordsSupportFolder = @"~/Library/Caches/Metadata/CoreData/LocalConfig/";
-//    [[NSFileManager defaultManager] createDirectoryAtPath:externalRecordsSupportFolder withIntermediateDirectories:YES attributes:nil error:&localError];
     NSDictionary *options = @{NSMigratePersistentStoresAutomaticallyOption: @YES,
                               NSInferMappingModelAutomaticallyOption: @YES,
                               NSExternalRecordExtensionOption: @"janus",
                               NSExternalRecordsDirectoryOption: externalRecordsSupportFolder,
                               NSExternalRecordsFileFormatOption: NSXMLExternalRecordType
                               };
+#endif
     _localStore = [_psc addPersistentStoreWithType:NSSQLiteStoreType
                                      configuration:@"LocalConfig"
                                                URL:storeURL

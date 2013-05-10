@@ -178,8 +178,12 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
             DLog(@"changed objects");
             // If attachment get the corresponding note to insert
             if([obj.entity.name isEqualToString:@"Attachment"]) {
-                DLog(@"C - An attachment %@ for note %@", ((Attachment *)obj).filename, ((Attachment *)obj).note.title);
-                [self attachAttachment:(Attachment *)obj toNoteInDropbox:((Attachment *)obj).note];
+                if(!((Attachment *)obj).note.title) {
+                    DLog(@"* - An attachment (%@) with nil note", ((Attachment *)obj).filename);
+                } else {
+                    DLog(@"C - An attachment %@ for note %@", ((Attachment *)obj).filename, ((Attachment *)obj).note.title);
+                    [self attachAttachment:(Attachment *)obj toNoteInDropbox:((Attachment *)obj).note];
+                }
             } else {
                 DLog(@"C - A note %@", ((Note *)obj).title);
                 [self saveNoteToDropbox:(Note *)obj];
@@ -187,7 +191,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
         }
     }
     // In any case, merge back to mainview moc
-    DLog(@"propagating save to main UI moc");
+//    DLog(@"propagating save to main UI moc");
     [self.coreDataController.mainThreadContext performBlock:^{
         [self.coreDataController.mainThreadContext mergeChangesFromContextDidSaveNotification:notification];
     }];
@@ -241,7 +245,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
 
 // Save the passed note to dropbox
 - (void)saveNoteToDropbox:(Note *)note {
-    DLog(@"Copying note %@ (%d attachments) to dropbox.", note.title, [note.attachment count]);
+//    DLog(@"Copying note %@ (%d attachments) to dropbox.", note.title, [note.attachment count]);
     DBError *error;
     // Create folder (named after uuid)
     DBPath *notePath = [[DBPath root] childPath:note.uuid];
@@ -417,7 +421,6 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
     for (DBFileInfo *fileInfo in filesInNoteDir) {
         if(!fileInfo.isFolder) {
             // This is the note
-            DLog(@"Copying note at path %@ to CoreData", fileInfo.path.name);
             newNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:self.dataSyncThreadContext];
             newNote.uuid = pathToNoteDir.name;
             NSString *titolo = convertFromValidDropboxFilenames(fileInfo.path.name);

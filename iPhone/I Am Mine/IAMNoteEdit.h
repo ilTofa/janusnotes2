@@ -22,8 +22,7 @@
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *recordingButton;
 @property (weak, nonatomic) IBOutlet UILabel *attachmentQuantityLabel;
 
-// The edited note and the corresponding moc
-@property Note *editedNote;
+@property NSManagedObjectID *idForTheNoteToBeEdited;
 
 - (IBAction)save:(id)sender;
 - (IBAction)addImageToNote:(id)sender;

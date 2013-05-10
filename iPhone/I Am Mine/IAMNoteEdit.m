@@ -19,7 +19,7 @@
 #import "GTThemer.h"
 #import "UIImage+FixOrientation.h"
 #import "IAMDataSyncController.h"
-#import "NSManagedObjectContext+FetchedObjectFromURI.h"
+// #import "NSManagedObjectContext+FetchedObjectFromURI.h"
 
 @interface IAMNoteEdit () <UITextViewDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, IAMAddLinkViewControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, AttachmentDeleter, MicrophoneWindowDelegate>
 
@@ -32,6 +32,8 @@
 @property (strong, nonatomic) MicrophoneWindow *recordView;
 @property BOOL attachmensAreHidden;
 @property UIPopoverController *popover;
+// The note to be edited
+@property Note *editedNote;
 
 @property NSManagedObjectContext *noteEditorMOC;
 
@@ -53,15 +55,18 @@
     [super viewDidLoad];
     // The NSManagedObjectContext instance should change for a local (to the controller instance) one.
     // We need to migrate the passed object to the new moc.
-    self.noteEditorMOC = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSConfinementConcurrencyType];
+    self.noteEditorMOC = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
     [self.noteEditorMOC setParentContext:[IAMDataSyncController sharedInstance].dataSyncThreadContext];
-    if(!self.editedNote) {
+    if(!self.idForTheNoteToBeEdited) {
         // It seems that we're created without a note, that will mean that we're required to create a new one.
         Note *newNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:self.noteEditorMOC];
         self.editedNote = newNote;
     } else { // Get a copy of edited note into the local context.
-        NSURL *uri = [[self.editedNote objectID] URIRepresentation];
-        self.editedNote = (Note *)[self.noteEditorMOC objectWithURI:uri];
+//        NSURL *uri = [[self.editedNote objectID] URIRepresentation];
+//        self.editedNote = (Note *)[self.noteEditorMOC objectWithURI:uri];
+        NSError *error;
+        self.editedNote = (Note *)[self.noteEditorMOC existingObjectWithID:self.idForTheNoteToBeEdited error:&error];
+        NSAssert1(self.editedNote, @"Shit! Invalid ObjectID, there. Error: %@", [error description]);
     }
     // Keyboard notifications
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];

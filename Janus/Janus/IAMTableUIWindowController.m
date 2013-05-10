@@ -102,7 +102,7 @@
     }
     IAMNoteEditorWC *noteEditor = [[IAMNoteEditorWC alloc] initWithWindowNibName:@"IAMNoteEditorWC"];
     [noteEditor setDelegate:self];
-    [noteEditor setEditedNote:aprenda];
+    [noteEditor setIdForTheNoteToBeEdited:[aprenda objectID]];
     // Preserve a reference to the controller to keep ARC happy
     [self.noteWindowControllers addObject:noteEditor];
     self.noteEditorIsShown = @(YES);
@@ -133,7 +133,7 @@
     DLog(@"Selected note for editing is: %@", [self.arrayController selectedObjects][0]);
     IAMNoteEditorWC *noteEditor = [[IAMNoteEditorWC alloc] initWithWindowNibName:@"IAMNoteEditorWC"];
     [noteEditor setDelegate:self];
-    [noteEditor setEditedNote:[self.arrayController selectedObjects][0]];
+    [noteEditor setIdForTheNoteToBeEdited:[[self.arrayController selectedObjects][0] objectID]];
     // Preserve a reference to the controller to keep ARC happy
     [self.noteWindowControllers addObject:noteEditor];
     self.noteEditorIsShown = @(YES);
