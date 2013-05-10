@@ -31,4 +31,6 @@
 - (IBAction)addAttachment:(id)sender;
 - (IBAction)deleteAttachment:(id)sender;
 
+- (IBAction)showAttachmentInFinder:(id)sender;
+
 @end

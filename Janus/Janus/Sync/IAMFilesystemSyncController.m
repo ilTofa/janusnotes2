@@ -11,7 +11,6 @@
 #import "IAMAppDelegate.h"
 #import "CoreDataController.h"
 #import "Note.h"
-#import "Attachment.h"
 
 #define kNotesExtension @"txt"
 #define kAttachmentDirectory @"Attachments"
@@ -355,10 +354,18 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
 - (void)deleteAttachmentInDropbox:(Attachment *)attachment {
     NSError *error;
     NSURL *notePath = [self.syncDirectory URLByAppendingPathComponent:attachment.note.uuid isDirectory:YES];
-    NSURL *attachmentPath = [notePath URLByAppendingPathComponent:attachment.filename isDirectory:NO];
+    NSURL *attachmentPath = [notePath URLByAppendingPathComponent:kAttachmentDirectory isDirectory:YES];
+    attachmentPath = [attachmentPath URLByAppendingPathComponent:attachment.filename isDirectory:NO];
     if(![[NSFileManager defaultManager] removeItemAtURL:attachmentPath error:&error]) {
         ALog(@"*** Error deleting attachment at %@: %@",attachmentPath, [error description]);
     }
+}
+
+- (NSURL *)urlForAttachment:(Attachment *)attachment {
+    NSURL *notePath = [self.syncDirectory URLByAppendingPathComponent:attachment.note.uuid isDirectory:YES];
+    NSURL *attachmentPath = [notePath URLByAppendingPathComponent:kAttachmentDirectory isDirectory:YES];
+    attachmentPath = [attachmentPath URLByAppendingPathComponent:attachment.filename isDirectory:NO];
+    return attachmentPath;
 }
 
 #pragma mark - from dropbox to core data

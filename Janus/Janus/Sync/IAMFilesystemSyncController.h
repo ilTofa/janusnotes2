@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "Attachment.h"
 
 #define kIAMDataSyncControllerReady @"IAMDataSyncControllerReady"
 #define kIAMDataSyncControllerStopped @"IAMDataSyncControllerStopped"
@@ -24,5 +25,6 @@
 - (BOOL)modifySyncDirectory:(NSURL *)newSyncDirectory;
 - (void)refreshContentFromRemote;
 - (void)deleteNoteTextWithUUID:(NSString *)uuid afterFilenameChangeFrom:(NSString *)oldFilename;
+- (NSURL *)urlForAttachment:(Attachment *)attachment;
 
 @end

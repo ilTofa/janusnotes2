@@ -152,6 +152,33 @@
     }
 }
 
+// This would be for an openWith menu. not implemented
+- (IBAction)openAttachmentWith:(id)sender {
+    if([[self.arrayController selectedObjects] count] != 0) {
+        Attachment *toBeShown = [self.arrayController selectedObjects][0][@"attachment"];
+        NSURL *pathToBeShown = [[IAMFilesystemSyncController sharedInstance] urlForAttachment:toBeShown];
+        DLog(@"open with apps requested for attachment: %@", pathToBeShown);
+        CFArrayRef openUrl = LSCopyApplicationURLsForURL((__bridge CFURLRef)(pathToBeShown), kLSRolesAll);
+        DLog(@"Retrieved URLs:\n%@", openUrl);
+        for (NSURL *url in (__bridge NSArray *)openUrl) {
+            CFStringRef appName;
+            LSCopyDisplayNameForURL((__bridge CFURLRef)(url), &appName);
+            DLog(@"Application: %@", appName);
+            CFRelease(appName);
+        }
+        CFRelease(openUrl);
+    }
+}
+
+- (IBAction)showAttachmentInFinder:(id)sender {
+    if([[self.arrayController selectedObjects] count] != 0) {
+        Attachment *toBeShown = [self.arrayController selectedObjects][0][@"attachment"];
+        NSURL *pathToBeShown = [[IAMFilesystemSyncController sharedInstance] urlForAttachment:toBeShown];
+        DLog(@"Show in finder requested for attachment: %@", pathToBeShown);
+        [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[pathToBeShown]];
+    }
+}
+
 - (void)attachAttachment:(NSURL *)url {
     // Check if it is a normal file
     NSError *err;
