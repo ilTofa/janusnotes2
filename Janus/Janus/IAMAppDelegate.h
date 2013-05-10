@@ -11,6 +11,7 @@
 
 #import "CoreDataController.h"
 #import "IAMTableUIWindowController.h"
+#import "PiwikTracker.h"
 
 @interface IAMAppDelegate : NSObject <NSApplicationDelegate>
 
@@ -20,6 +21,8 @@
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @property (strong, nonatomic) IAMTableUIWindowController *collectionController;
+
+@property (nonatomic, strong) PiwikTracker *tracker;
 
 // CoreData helper
 @property (nonatomic, strong, readonly) CoreDataController *coreDataController;

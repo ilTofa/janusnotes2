@@ -19,6 +19,7 @@
 #import "GTThemer.h"
 #import "UIImage+FixOrientation.h"
 #import "IAMDataSyncController.h"
+#import "GTPiwikAddOn.h"
 // #import "NSManagedObjectContext+FetchedObjectFromURI.h"
 
 @interface IAMNoteEdit () <UITextViewDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, IAMAddLinkViewControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, AttachmentDeleter, MicrophoneWindowDelegate>
@@ -58,12 +59,14 @@
     self.noteEditorMOC = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
     [self.noteEditorMOC setParentContext:[IAMDataSyncController sharedInstance].dataSyncThreadContext];
     if(!self.idForTheNoteToBeEdited) {
+        [GTPiwikAddOn trackEvent:@"newNote"];
         // It seems that we're created without a note, that will mean that we're required to create a new one.
         Note *newNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:self.noteEditorMOC];
         self.editedNote = newNote;
     } else { // Get a copy of edited note into the local context.
 //        NSURL *uri = [[self.editedNote objectID] URIRepresentation];
 //        self.editedNote = (Note *)[self.noteEditorMOC objectWithURI:uri];
+        [GTPiwikAddOn trackEvent:@"editNote"];
         NSError *error;
         self.editedNote = (Note *)[self.noteEditorMOC existingObjectWithID:self.idForTheNoteToBeEdited error:&error];
         NSAssert1(self.editedNote, @"Shit! Invalid ObjectID, there. Error: %@", [error description]);
@@ -311,6 +314,7 @@
         [self.editedNote addAttachmentObject:newAttachment];
         [self save:nil];
         [self refreshAttachments];
+        [GTPiwikAddOn trackEvent:@"imageAdded"];
     }
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
         [picker dismissViewControllerAnimated:YES completion:^{}];
@@ -366,6 +370,7 @@
     [self.editedNote addAttachmentObject:newAttachment];
     [self save:nil];
     [self refreshAttachments];
+    [GTPiwikAddOn trackEvent:@"linkAdded"];
 }
 
 - (void)addLinkViewControllerDidCancelAction:(IAMAddLinkViewController *)addLinkViewController {
@@ -459,6 +464,7 @@
     [self.editedNote addAttachmentObject:newAttachment];
     [self save:nil];
     [self refreshAttachments];
+    [GTPiwikAddOn trackEvent:@"audioAdded"];
 }
 
 - (void)recordingCancelled

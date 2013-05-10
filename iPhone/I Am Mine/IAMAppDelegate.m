@@ -12,7 +12,14 @@
 #import <Dropbox/Dropbox.h>
 #import "IAMDataSyncController.h"
 
+#import "PTTimerDispatchStrategy.h"
+
+#define PIWIK_URL @"http://piwik.iltofa.com/"
+#define SITE_ID_TEST @"3"
+
 @interface IAMAppDelegate()
+
+@property (nonatomic, strong) PTTimerDispatchStrategy *timerStrategy;
 
 @end
 
@@ -20,6 +27,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    self.tracker = [PiwikTracker sharedTracker];
     // init colorizer...
     [[GTThemer sharedInstance] saveStandardColors:[[GTThemer sharedInstance] getStandardColorsID]];
     // Core Location init: get number of times user denied location use in app lifetime...
@@ -63,14 +71,41 @@
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
 
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-    DLog(@"called");
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+    [self startTracker:self];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-    DLog(@"called");
+    [self.tracker stopTracker];
+}
+
+#pragma mark - piwik tracker
+
+- (IBAction)startTracker:(id)sender {
+    DLog(@"Start the Tracker");
+    // Start the tracker. This also creates a new session.
+    NSError *error = nil;
+    [self.tracker startTrackerWithPiwikURL:PIWIK_URL
+                                    siteID:SITE_ID_TEST
+                       authenticationToken:nil
+                                 withError:&error];
+    self.tracker.dryRun = NO;
+    // Start the timer dispatch strategy
+    self.timerStrategy = [PTTimerDispatchStrategy strategyWithErrorBlock:^(NSError *error) {
+        NSLog(@"The timer strategy failed to initated dispatch of analytic events");
+    }];
+    self.timerStrategy.timeInteraval = 30; // Set the time interval to 20s, default value is 3 minutes
+    [self.timerStrategy startDispatchTimer];
+}
+
+
+- (IBAction)stopTracker:(id)sender {
+    DLog(@"Stop the Tracker");
+    // Stop the Tracker from accepting new events
+    [self.tracker stopTracker];
+    // Stop the time strategy
+    [self.timerStrategy stopDispatchTimer];
 }
 
 #pragma mark - cache management
