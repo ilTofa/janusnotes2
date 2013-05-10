@@ -26,5 +26,6 @@
 - (void)refreshContentFromRemote;
 - (void)deleteNoteTextWithUUID:(NSString *)uuid afterFilenameChangeFrom:(NSString *)oldFilename;
 - (NSURL *)urlForAttachment:(Attachment *)attachment;
+- (NSURL *)urlForNote:(Note *)note;
 
 @end

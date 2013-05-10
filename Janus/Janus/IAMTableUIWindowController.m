@@ -140,6 +140,13 @@
     [noteEditor showWindow:self];
 }
 
+- (IBAction)showInFinder:(id)sender {
+    Note *toBeShown = [self.arrayController selectedObjects][0];
+    NSURL *pathToBeShown = [[IAMFilesystemSyncController sharedInstance] urlForNote:toBeShown];
+    DLog(@"Show in finder requested for note: %@", pathToBeShown);
+    [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[pathToBeShown]];
+}
+
 - (IBAction)deleteNote:(id)sender {
     DLog(@"Selected note for deleting is: %@", [self.arrayController selectedObjects][0]);
     NSAlert *alert = [[NSAlert alloc] init];

@@ -351,6 +351,15 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
     }
 }
 
+- (NSURL *)urlForNote:(Note *)note {
+    NSURL *notePath = [self.syncDirectory URLByAppendingPathComponent:note.uuid isDirectory:YES];
+    NSString *encodedTitle = convertToValidDropboxFilenames(note.title);
+    if(![[encodedTitle pathExtension] isEqualToString:kNotesExtension])
+        encodedTitle = [encodedTitle stringByAppendingFormat:@".%@", kNotesExtension];
+    NSURL *noteTextPath = [notePath URLByAppendingPathComponent:encodedTitle isDirectory:NO];
+    return noteTextPath;
+}
+
 - (void)deleteAttachmentInDropbox:(Attachment *)attachment {
     NSError *error;
     NSURL *notePath = [self.syncDirectory URLByAppendingPathComponent:attachment.note.uuid isDirectory:YES];

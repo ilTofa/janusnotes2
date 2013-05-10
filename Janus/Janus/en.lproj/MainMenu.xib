@@ -200,6 +200,14 @@
 									<reference key="NSOnImage" ref="35465992"/>
 									<reference key="NSMixedImage" ref="502551668"/>
 								</object>
+								<object class="NSMenuItem" id="974425980">
+									<reference key="NSMenu" ref="720053764"/>
+									<string key="NSTitle">Show in Finder</string>
+									<string key="NSKeyEquiv"/>
+									<int key="NSMnemonicLoc">2147483647</int>
+									<reference key="NSOnImage" ref="35465992"/>
+									<reference key="NSMixedImage" ref="502551668"/>
+								</object>
 								<object class="NSMenuItem" id="425164168">
 									<reference key="NSMenu" ref="720053764"/>
 									<bool key="NSIsDisabled">YES</bool>
@@ -1234,6 +1242,14 @@
 					<int key="connectionID">813</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">showInFinderAction:</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="974425980"/>
+					</object>
+					<int key="connectionID">833</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">enabled: self.collectionController.noteEditorIsShown</string>
 						<reference key="source" ref="135850960"/>
@@ -1332,6 +1348,7 @@
 							<reference ref="425164168"/>
 							<reference ref="1010469920"/>
 							<reference ref="268720382"/>
+							<reference ref="974425980"/>
 						</array>
 						<reference key="parent" ref="379814623"/>
 					</object>
@@ -1866,6 +1883,11 @@
 						<reference key="object" ref="1017932272"/>
 						<reference key="parent" ref="736713518"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">832</int>
+						<reference key="object" ref="974425980"/>
+						<reference key="parent" ref="720053764"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -1962,13 +1984,14 @@
 				<string key="81.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="82.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="83.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="832.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="92.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">830</int>
+			<int key="maxID">833</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1989,6 +2012,7 @@
 						<string key="saveAction:">id</string>
 						<string key="saveNoteAndCloseAction:">id</string>
 						<string key="saveNoteAndContinueAction:">id</string>
+						<string key="showInFinderAction:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="addAttachmentToNoteAction:">
@@ -2041,6 +2065,10 @@
 						</object>
 						<object class="IBActionInfo" key="saveNoteAndContinueAction:">
 							<string key="name">saveNoteAndContinueAction:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="showInFinderAction:">
+							<string key="name">showInFinderAction:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 					</dictionary>
