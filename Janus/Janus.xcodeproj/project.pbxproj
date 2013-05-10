@@ -12,6 +12,8 @@
 		642D29CF1721470400006FC1 /* IAMFilesystemSyncController.m in Sources */ = {isa = PBXBuildFile; fileRef = 642D29CE1721470400006FC1 /* IAMFilesystemSyncController.m */; };
 		643BA048173BFA4600A6C437 /* IAmMine.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 64EA627016F71E1400F4838E /* IAmMine.xcdatamodeld */; };
 		643BA04C173C52C100A6C437 /* document-icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 643BA04B173C52C100A6C437 /* document-icon.icns */; };
+		643BA050173D26E300A6C437 /* IAMOpenWithWC.m in Sources */ = {isa = PBXBuildFile; fileRef = 643BA04E173D26E300A6C437 /* IAMOpenWithWC.m */; };
+		643BA051173D26E300A6C437 /* IAMOpenWithWC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 643BA04F173D26E300A6C437 /* IAMOpenWithWC.xib */; };
 		644AC25B17257FE4007B51FF /* IAMTableUIWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 644AC25917257FE4007B51FF /* IAMTableUIWindowController.m */; };
 		644AC25C17257FE4007B51FF /* IAMTableUIWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 644AC25A17257FE4007B51FF /* IAMTableUIWindowController.xib */; };
 		644AC26117258273007B51FF /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 644AC25F17258273007B51FF /* plus.png */; };
@@ -71,6 +73,9 @@
 		642D29CD1721470400006FC1 /* IAMFilesystemSyncController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMFilesystemSyncController.h; sourceTree = "<group>"; };
 		642D29CE1721470400006FC1 /* IAMFilesystemSyncController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMFilesystemSyncController.m; sourceTree = "<group>"; };
 		643BA04B173C52C100A6C437 /* document-icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "document-icon.icns"; sourceTree = "<group>"; };
+		643BA04D173D26E300A6C437 /* IAMOpenWithWC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMOpenWithWC.h; sourceTree = "<group>"; };
+		643BA04E173D26E300A6C437 /* IAMOpenWithWC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMOpenWithWC.m; sourceTree = "<group>"; };
+		643BA04F173D26E300A6C437 /* IAMOpenWithWC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IAMOpenWithWC.xib; sourceTree = "<group>"; };
 		644AC25817257FE4007B51FF /* IAMTableUIWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMTableUIWindowController.h; sourceTree = "<group>"; };
 		644AC25917257FE4007B51FF /* IAMTableUIWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMTableUIWindowController.m; sourceTree = "<group>"; };
 		644AC25A17257FE4007B51FF /* IAMTableUIWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IAMTableUIWindowController.xib; sourceTree = "<group>"; };
@@ -214,6 +219,9 @@
 				64EA628216F75E0000F4838E /* IAMNoteEditorWC.h */,
 				64EA628316F75E0000F4838E /* IAMNoteEditorWC.m */,
 				64EA628416F75E0000F4838E /* IAMNoteEditorWC.xib */,
+				643BA04D173D26E300A6C437 /* IAMOpenWithWC.h */,
+				643BA04E173D26E300A6C437 /* IAMOpenWithWC.m */,
+				643BA04F173D26E300A6C437 /* IAMOpenWithWC.xib */,
 			);
 			name = "Note Edit";
 			sourceTree = "<group>";
@@ -435,6 +443,7 @@
 				64DE6C291727EDF70031183A /* refresh.png in Resources */,
 				64DE6C2A1727EDF70031183A /* refresh@2x.png in Resources */,
 				643BA04C173C52C100A6C437 /* document-icon.icns in Resources */,
+				643BA051173D26E300A6C437 /* IAMOpenWithWC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,6 +476,7 @@
 				644AC25B17257FE4007B51FF /* IAMTableUIWindowController.m in Sources */,
 				644AC2741726C343007B51FF /* IAMCollectionItemView.m in Sources */,
 				644AC2781726CFAC007B51FF /* IAMPrefsWindowController.m in Sources */,
+				643BA050173D26E300A6C437 /* IAMOpenWithWC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

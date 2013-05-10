@@ -10,7 +10,8 @@
 
 #import "IAMAppDelegate.h"
 #import "Attachment.h"
-#import "NSManagedObjectContext+FetchedObjectFromURI.h"
+// #import "NSManagedObjectContext+FetchedObjectFromURI.h"
+#import "IAMOpenWithWC.h"
 
 #import "IAMFilesystemSyncController.h"
 
@@ -19,6 +20,9 @@
 }
 
 @property Note *editedNote;
+
+@property IAMOpenWithWC *openWithController;
+@property NSMutableArray *appsInfo;
 
 @property (strong) IBOutlet NSArrayController *arrayController;
 @property (strong) IBOutlet NSCollectionView *attachmentsCollectionView;
@@ -53,7 +57,6 @@
     // Prepare to receive drag & drops into CollectionView
     [self.attachmentsCollectionView registerForDraggedTypes:@[NSFilenamesPboardType]];
     [self.attachmentsCollectionView setDraggingSourceOperationMask:NSDragOperationCopy forLocal:NO];
-    [self refreshAttachments];
     if(!self.idForTheNoteToBeEdited) {
         // It seems that we're created without a note, that will mean that we're required to create a new one.
         Note *newNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:self.noteEditorMOC];
@@ -65,6 +68,7 @@
         self.editedNote = (Note *)[self.noteEditorMOC existingObjectWithID:self.idForTheNoteToBeEdited error:&error];
         NSAssert1(self.editedNote, @"Shit! Invalid ObjectID, there. Error: %@", [error description]);
     }
+    [self refreshAttachments];
 }
 
 - (IBAction)saveAndContinue:(id)sender
@@ -162,18 +166,59 @@
     if([[self.arrayController selectedObjects] count] != 0) {
         Attachment *toBeShown = [self.arrayController selectedObjects][0][@"attachment"];
         NSURL *pathToBeShown = [[IAMFilesystemSyncController sharedInstance] urlForAttachment:toBeShown];
-        DLog(@"open with apps requested for attachment: %@", pathToBeShown);
-        CFArrayRef openUrl = LSCopyApplicationURLsForURL((__bridge CFURLRef)(pathToBeShown), kLSRolesAll);
-        DLog(@"Retrieved URLs:\n%@", openUrl);
-        for (NSURL *url in (__bridge NSArray *)openUrl) {
+        DLog(@"Open with apps requested for attachment: %@", pathToBeShown);
+        CFURLRef defaultHandler;
+        LSGetApplicationForURL((__bridge CFURLRef)(pathToBeShown), kLSRolesAll, NULL, &defaultHandler);
+        CFArrayRef availableAppsUrls = LSCopyApplicationURLsForURL((__bridge CFURLRef)(pathToBeShown), kLSRolesAll);
+        DLog(@"Retrieved URLs:\n%@", availableAppsUrls);
+        self.appsInfo = [[NSMutableArray alloc] initWithCapacity:[(__bridge NSArray *) availableAppsUrls count]];
+        for (NSURL *url in (__bridge NSArray *)availableAppsUrls) {
             CFStringRef appName;
             LSCopyDisplayNameForURL((__bridge CFURLRef)(url), &appName);
-            DLog(@"Application: %@", appName);
+            NSImage *appIcon = [[NSWorkspace sharedWorkspace] iconForFile:[url path]];
+            [self.appsInfo addObject:@{@"appName":(__bridge NSString *)appName, @"appIcon":appIcon, @"appURL":url}];
             CFRelease(appName);
         }
-        CFRelease(openUrl);
+        CFRelease(availableAppsUrls);
+        // Now set the default app at position 0
+        for (int i = 1; i < [self.appsInfo count]; i++) {
+            if([(__bridge NSURL *)defaultHandler isEqualTo:self.appsInfo[i][@"appURL"]]) {
+                [self.appsInfo exchangeObjectAtIndex:0 withObjectAtIndex:i];
+                break;
+            }
+        }
+        CFRelease(defaultHandler);
+        if(!self.openWithController) {
+            self.openWithController = [[IAMOpenWithWC alloc] initWithWindowNibName:@"IAMOpenWithWC"];
+        }
+        self.openWithController.appArray = self.appsInfo;
+        [[NSApplication sharedApplication] beginSheet:self.openWithController.window modalForWindow:self.window modalDelegate:self didEndSelector:@selector(didEndSheet:returnCode:contextInfo:) contextInfo:nil];
     }
 }
+
+- (void)didEndSheet:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo {
+    DLog(@"Deleting sheet");
+    [self.openWithController.window orderOut:self];
+    if (self.openWithController.selectedAppId == NSNotFound) {
+        DLog(@"User cancelled open with action");
+    } else {
+        DLog(@"Open attachment with %@ (@ %@)", self.appsInfo[self.openWithController.selectedAppId][@"appName"], self.appsInfo[self.openWithController.selectedAppId][@"appURL"]);
+        Attachment *toBeOpened = [self.arrayController selectedObjects][0][@"attachment"];
+        NSURL *file = [toBeOpened generateFile];
+        if(![[NSWorkspace sharedWorkspace] openFile:[file path] withApplication:[self.appsInfo[self.openWithController.selectedAppId][@"appURL"] path]]) {
+            NSAlert *alert = [[NSAlert alloc] init];
+            NSString *message = [NSString stringWithFormat:@"No application is able to open the file \"%@\"", toBeOpened.filename];
+            [alert setInformativeText:message];
+            [alert setMessageText:NSLocalizedString(@"Warning", @"")];
+            [alert addButtonWithTitle:@"OK"];
+            [alert beginSheetModalForWindow:self.window modalDelegate:nil didEndSelector:nil contextInfo:nil];
+        }  else {
+            [self mapOpenedAttachment:file];
+        }
+    }
+    self.openWithController = nil;
+}
+
 
 - (IBAction)showAttachmentInFinder:(id)sender {
     if([[self.arrayController selectedObjects] count] != 0) {
@@ -192,7 +237,6 @@
         NSLog(@"Error creating file wrapper for %@: %@", url, [err description]);
         return;
     }
-    // TODO: show a box to the user explaining the problem.
     if(![fw isRegularFile]) {
         NSAlert *alert = [[NSAlert alloc] init];
         NSString *message = [NSString stringWithFormat:@"The file at \"%@\" is not a \"regular\" file and cannot currently be attached to a note. Sorry for that. You can try to compress it and attach the compresssed file to the note", [url path]];
@@ -260,6 +304,15 @@
     }];
 }
 
+- (void)mapOpenedAttachment:(NSURL *)file {
+    // Map the opened file to check for modifications after
+    if(!self.openedFiles) {
+        self.openedFiles = [[NSMutableArray alloc] initWithCapacity:1];
+    }
+    NSMutableDictionary *newOpenedFileEntry = [[NSMutableDictionary alloc] initWithDictionary:@{@"fileURL": file, @"timestamp": [NSDate date]}];
+    [self.openedFiles addObject:newOpenedFileEntry];
+}
+
 // This event comes from the collection item view subclass
 - (IBAction)collectionItemViewDoubleClick:(id)sender {
     if([[self.arrayController selectedObjects] count] != 0) {
@@ -275,12 +328,7 @@
             [alert addButtonWithTitle:@"OK"];
             [alert beginSheetModalForWindow:self.window modalDelegate:nil didEndSelector:nil contextInfo:nil];
         }  else {
-            // Map the opened file to check for modifications after
-            if(!self.openedFiles) {
-                self.openedFiles = [[NSMutableArray alloc] initWithCapacity:1];
-            }
-            NSMutableDictionary *newOpenedFileEntry = [[NSMutableDictionary alloc] initWithDictionary:@{@"fileURL": file, @"timestamp": [NSDate date]}];
-            [self.openedFiles addObject:newOpenedFileEntry];
+            [self mapOpenedAttachment:file];
         }
     } else {
         NSLog(@"Double click detected in collection view, but no collection item is selected. This should not happen");

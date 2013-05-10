@@ -406,7 +406,6 @@
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     NSInteger retValue = [self.editedNote.attachment count];
-    DLog(@"This is collectionView:numberOfItemsInSection: called for section %d, returning %d", section, retValue);
     return retValue;
 }
 

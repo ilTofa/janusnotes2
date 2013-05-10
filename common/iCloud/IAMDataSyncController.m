@@ -316,7 +316,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
     DBPath *attachmentDataPath = [attachmentPath childPath:encodedAttachmentName];
     DBFile *attachmentDataFile = [[DBFilesystem sharedFilesystem] openFile:attachmentDataPath error:&error];
     if(!attachmentDataFile) {
-        [[DBFilesystem sharedFilesystem] createFile:attachmentDataPath error:&error];
+        attachmentDataFile = [[DBFilesystem sharedFilesystem] createFile:attachmentDataPath error:&error];
         if(!attachmentDataFile) {
             DLog(@"Error %d saving attachment file at %@ for note %@.", [error code], [attachmentDataPath stringValue], note.title);
         }
@@ -459,7 +459,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
             return YES;
         }
         for (DBFileInfo *attachmentInfo in filesInAttachmentDir) {
-            DLog(@"Copying attachment: %@ to CoreData note %@", attachmentInfo.path.name, newNote.title);
+//            DLog(@"Copying attachment: %@ to CoreData note %@", attachmentInfo.path.name, newNote.title);
             DBFile *attachmentOnDropbox = [[DBFilesystem sharedFilesystem] openFile:attachmentInfo.path error:&error];
             if(!attachmentOnDropbox) {
                 ALog(@"Aborting attachment copy to coredata. Error %d opening attachment %@", [error code], attachmentInfo.path.stringValue);
