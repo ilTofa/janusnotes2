@@ -132,7 +132,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
 }
 
 - (void)firstAccessToData {
-    [self copyAllFromDropbox];
+    [self syncAllFromDropbox];
     DLog(@"IAMDataSyncController is ready.");
     self.syncControllerReady = YES;
     [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kIAMDataSyncControllerReady object:self]];
@@ -141,7 +141,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
 #pragma mark - RefreshContent from dropbox
 
 - (void)refreshContentFromRemote {
-    [self copyAllFromDropbox];
+    [self syncAllFromDropbox];
 }
 
 #pragma mark - handler propagating new (and updated) notes from coredata to dropbox
@@ -379,17 +379,52 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
 
 #pragma mark - from dropbox to core data
 
-- (void)copyAllFromDropbox {
+- (BOOL)isNoteExistingOnFile:(NSString *)uuid {
+    NSError *error;
+    NSArray *filesAtRoot = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:self.syncDirectory
+                                                         includingPropertiesForKeys:@[NSURLIsDirectoryKey, NSURLNameKey]
+                                                                            options:NSDirectoryEnumerationSkipsHiddenFiles error:&error];
+    if(!filesAtRoot) {
+        ALog(@"Aborting. Error reading notes: %@", [error description]);
+        // Returning NO will delete the note on coredata (and then hopefully reload from dropbox)
+        return NO;
+    }
+    BOOL retValue = NO;
+    for (NSURL *fileInfo in filesAtRoot) {
+        NSNumber *isDirectory;
+        NSString *name;
+        if (![fileInfo getResourceValue:&name forKey:NSURLNameKey error:&error]) {
+            ALog(@"error looking for filename: %@", [error localizedDescription]);
+            error = nil;
+        }
+        if (![fileInfo getResourceValue:&isDirectory forKey:NSURLIsDirectoryKey error:&error]) {
+            ALog(@"Error looking for directory type: %@", [error localizedDescription]);
+            error = nil;
+        }
+        if(isDirectory) {
+            if([name isEqualToString:uuid]) {
+                retValue = YES;
+                break;
+            }
+        }
+    }
+    return retValue;
+}
+
+- (void)syncAllFromDropbox {
     dispatch_async(_syncQueue, ^{
         _isResettingDataFromDropbox = YES;
         DLog(@"Deleting current coreData db init");
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"Note" inManagedObjectContext:self.dataSyncThreadContext];
         [fetchRequest setEntity:entity];
+        [fetchRequest setSortDescriptors:@[[[NSSortDescriptor alloc] initWithKey:@"timeStamp" ascending:NO]]];
         NSError *error;
         NSArray *notes = [self.dataSyncThreadContext executeFetchRequest:fetchRequest error:&error];
         for (Note *note in notes) {
-            [self.dataSyncThreadContext deleteObject:note];
+            if(![self isNoteExistingOnFile:note.uuid]) {
+                [self.dataSyncThreadContext deleteObject:note];
+            }
         }
         // Save deleting
         if (![self.dataSyncThreadContext save:&error]) {
@@ -420,11 +455,26 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
                 error = nil;
             }
             if(isDirectory) {
-                if([self saveDropboxNoteToCoreData:fileInfo]) {
-                    if (![self.dataSyncThreadContext save:&error]) {
-                        ALog(@"Error copying note %@ from dropbox to core data, error: %@", name, [error description]);
+                BOOL found = NO;
+                for (Note *note in notes) {
+                    if([name isEqualToString:note.uuid]) {
+                        found = YES;
+                        if([self saveDropboxNoteAt:fileInfo toExistingCoreDataNote:note]) {
+                            if (![self.dataSyncThreadContext save:&error]) {
+                                ALog(@"Error copying note %@ from dropbox to core data, error: %@", name, [error description]);
+                            }
+                        }
+                        break;
                     }
                 }
+                if(!found) {
+                    if([self saveDropboxNoteAt:fileInfo toExistingCoreDataNote:nil]) {
+                        if (![self.dataSyncThreadContext save:&error]) {
+                            ALog(@"Error copying note %@ from dropbox to core data, error: %@", name, [error description]);
+                        }
+                    }                    
+                }
+                
             } else {
                 DLog(@"Deleting spurious file at notes root: %@.", name);
                 [[NSFileManager defaultManager] removeItemAtURL:fileInfo error:&error];
@@ -439,7 +489,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
 }
 
 // Save the note from dropbox folder to CoreData
-- (BOOL)saveDropboxNoteToCoreData:(NSURL *)pathToNoteDir {
+- (BOOL)saveDropboxNoteAt:(NSURL *)pathToNoteDir toExistingCoreDataNote:(Note *)note {
     // BEWARE that this code needs to be called in the _syncqueue dispatch_queue beacuse it's using dataSyncThreadContext
     Note *newNote = nil;
     NSError *error;
@@ -469,7 +519,12 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
         if(![isDirectory boolValue]) {
             // This is the note
             DLog(@"Copying note %@ to CoreData", name);
-            newNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:self.dataSyncThreadContext];
+            // if note is nil
+            if(!note) {
+                newNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:self.dataSyncThreadContext];
+            } else {
+                newNote = note;
+            }
             newNote.uuid = [[pathToNoteDir path] lastPathComponent];
             NSString *titolo = convertFromValidDropboxFilenames([[fileInfo path] lastPathComponent]);
             if([titolo hasSuffix:kNotesExtension]) {
