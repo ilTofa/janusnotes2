@@ -43,6 +43,7 @@
 		64D8C9B11740F7B0005D87DC /* RNDecryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D8C9A61740F7B0005D87DC /* RNDecryptor.m */; };
 		64D8C9B21740F7B0005D87DC /* RNEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D8C9A81740F7B0005D87DC /* RNEncryptor.m */; };
 		64D8C9B71740F7F1005D87DC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64D8C9B61740F7F1005D87DC /* Security.framework */; };
+		64D8C9BA1740F985005D87DC /* STKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D8C9B91740F985005D87DC /* STKeychain.m */; };
 		64DE6C291727EDF70031183A /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 64DE6C271727EDF70031183A /* refresh.png */; };
 		64DE6C2A1727EDF70031183A /* refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64DE6C281727EDF70031183A /* refresh@2x.png */; };
 		64EA621016F7110300F4838E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64EA620F16F7110300F4838E /* Cocoa.framework */; };
@@ -136,6 +137,8 @@
 		64D8C9A71740F7B0005D87DC /* RNEncryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNEncryptor.h; sourceTree = "<group>"; };
 		64D8C9A81740F7B0005D87DC /* RNEncryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNEncryptor.m; sourceTree = "<group>"; };
 		64D8C9B61740F7F1005D87DC /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		64D8C9B81740F985005D87DC /* STKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STKeychain.h; path = ../common/Utilitites/STKeychain.h; sourceTree = "<group>"; };
+		64D8C9B91740F985005D87DC /* STKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STKeychain.m; path = ../common/Utilitites/STKeychain.m; sourceTree = "<group>"; };
 		64DE6C271727EDF70031183A /* refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = refresh.png; path = Buttons/refresh.png; sourceTree = "<group>"; };
 		64DE6C281727EDF70031183A /* refresh@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "refresh@2x.png"; path = "Buttons/refresh@2x.png"; sourceTree = "<group>"; };
 		64EA620C16F7110300F4838E /* Janus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Janus.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -425,6 +428,8 @@
 		64EA627816F71E7600F4838E /* Utilities (common) */ = {
 			isa = PBXGroup;
 			children = (
+				64D8C9B81740F985005D87DC /* STKeychain.h */,
+				64D8C9B91740F985005D87DC /* STKeychain.m */,
 				64D8C99E1740F7B0005D87DC /* RNCryptor */,
 				6499CA27173D51EB004230E7 /* PiwikTracker */,
 				6499CA24173D51E2004230E7 /* GTPiwikAddOn.h */,
@@ -573,6 +578,7 @@
 				64D8C9B01740F7B0005D87DC /* RNCryptorEngine.m in Sources */,
 				64D8C9B11740F7B0005D87DC /* RNDecryptor.m in Sources */,
 				64D8C9B21740F7B0005D87DC /* RNEncryptor.m in Sources */,
+				64D8C9BA1740F985005D87DC /* STKeychain.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
