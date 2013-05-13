@@ -6,5 +6,7 @@
 	<array>
 		<string>$(AppIdentifierPrefix)it.iltofa.Janus</string>
 	</array>
+	<key>com.apple.developer.default-data-protection</key>
+	<string>NSFileProtectionComplete</string>
 </dict>
 </plist>
