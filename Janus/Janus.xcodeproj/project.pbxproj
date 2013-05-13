@@ -38,6 +38,11 @@
 		64A75591170358BC0085933D /* NSManagedObjectContext+FetchedObjectFromURI.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A75590170358BC0085933D /* NSManagedObjectContext+FetchedObjectFromURI.m */; };
 		64CB19281738EEE90014F35F /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CB19271738EEE90014F35F /* WebKit.framework */; };
 		64CB192A1738EFF20014F35F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CB19291738EFF20014F35F /* SystemConfiguration.framework */; };
+		64D8C9AF1740F7B0005D87DC /* RNCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D8C9A21740F7B0005D87DC /* RNCryptor.m */; };
+		64D8C9B01740F7B0005D87DC /* RNCryptorEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D8C9A41740F7B0005D87DC /* RNCryptorEngine.m */; };
+		64D8C9B11740F7B0005D87DC /* RNDecryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D8C9A61740F7B0005D87DC /* RNDecryptor.m */; };
+		64D8C9B21740F7B0005D87DC /* RNEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D8C9A81740F7B0005D87DC /* RNEncryptor.m */; };
+		64D8C9B71740F7F1005D87DC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64D8C9B61740F7F1005D87DC /* Security.framework */; };
 		64DE6C291727EDF70031183A /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 64DE6C271727EDF70031183A /* refresh.png */; };
 		64DE6C2A1727EDF70031183A /* refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64DE6C281727EDF70031183A /* refresh@2x.png */; };
 		64EA621016F7110300F4838E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64EA620F16F7110300F4838E /* Cocoa.framework */; };
@@ -120,6 +125,17 @@
 		64A75590170358BC0085933D /* NSManagedObjectContext+FetchedObjectFromURI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSManagedObjectContext+FetchedObjectFromURI.m"; path = "../common/iCloud/NSManagedObjectContext+FetchedObjectFromURI.m"; sourceTree = "<group>"; };
 		64CB19271738EEE90014F35F /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		64CB19291738EFF20014F35F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		64D8C99F1740F7B0005D87DC /* RNCryptor+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor+Private.h"; sourceTree = "<group>"; };
+		64D8C9A01740F7B0005D87DC /* RNCryptor-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor-Prefix.pch"; sourceTree = "<group>"; };
+		64D8C9A11740F7B0005D87DC /* RNCryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCryptor.h; sourceTree = "<group>"; };
+		64D8C9A21740F7B0005D87DC /* RNCryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCryptor.m; sourceTree = "<group>"; };
+		64D8C9A31740F7B0005D87DC /* RNCryptorEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCryptorEngine.h; sourceTree = "<group>"; };
+		64D8C9A41740F7B0005D87DC /* RNCryptorEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCryptorEngine.m; sourceTree = "<group>"; };
+		64D8C9A51740F7B0005D87DC /* RNDecryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNDecryptor.h; sourceTree = "<group>"; };
+		64D8C9A61740F7B0005D87DC /* RNDecryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNDecryptor.m; sourceTree = "<group>"; };
+		64D8C9A71740F7B0005D87DC /* RNEncryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNEncryptor.h; sourceTree = "<group>"; };
+		64D8C9A81740F7B0005D87DC /* RNEncryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNEncryptor.m; sourceTree = "<group>"; };
+		64D8C9B61740F7F1005D87DC /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		64DE6C271727EDF70031183A /* refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = refresh.png; path = Buttons/refresh.png; sourceTree = "<group>"; };
 		64DE6C281727EDF70031183A /* refresh@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "refresh@2x.png"; path = "Buttons/refresh@2x.png"; sourceTree = "<group>"; };
 		64EA620C16F7110300F4838E /* Janus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Janus.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -168,6 +184,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64D8C9B71740F7F1005D87DC /* Security.framework in Frameworks */,
 				64CB192A1738EFF20014F35F /* SystemConfiguration.framework in Frameworks */,
 				64CB19281738EEE90014F35F /* WebKit.framework in Frameworks */,
 				64EA621016F7110300F4838E /* Cocoa.framework in Frameworks */,
@@ -270,6 +287,24 @@
 			name = "Note Edit";
 			sourceTree = "<group>";
 		};
+		64D8C99E1740F7B0005D87DC /* RNCryptor */ = {
+			isa = PBXGroup;
+			children = (
+				64D8C99F1740F7B0005D87DC /* RNCryptor+Private.h */,
+				64D8C9A01740F7B0005D87DC /* RNCryptor-Prefix.pch */,
+				64D8C9A11740F7B0005D87DC /* RNCryptor.h */,
+				64D8C9A21740F7B0005D87DC /* RNCryptor.m */,
+				64D8C9A31740F7B0005D87DC /* RNCryptorEngine.h */,
+				64D8C9A41740F7B0005D87DC /* RNCryptorEngine.m */,
+				64D8C9A51740F7B0005D87DC /* RNDecryptor.h */,
+				64D8C9A61740F7B0005D87DC /* RNDecryptor.m */,
+				64D8C9A71740F7B0005D87DC /* RNEncryptor.h */,
+				64D8C9A81740F7B0005D87DC /* RNEncryptor.m */,
+			);
+			name = RNCryptor;
+			path = ../common/RNCryptor;
+			sourceTree = "<group>";
+		};
 		64EA620316F7110300F4838E = {
 			isa = PBXGroup;
 			children = (
@@ -294,6 +329,7 @@
 		64EA620E16F7110300F4838E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				64D8C9B61740F7F1005D87DC /* Security.framework */,
 				64CB19291738EFF20014F35F /* SystemConfiguration.framework */,
 				64CB19271738EEE90014F35F /* WebKit.framework */,
 				64EA620F16F7110300F4838E /* Cocoa.framework */,
@@ -389,6 +425,7 @@
 		64EA627816F71E7600F4838E /* Utilities (common) */ = {
 			isa = PBXGroup;
 			children = (
+				64D8C99E1740F7B0005D87DC /* RNCryptor */,
 				6499CA27173D51EB004230E7 /* PiwikTracker */,
 				6499CA24173D51E2004230E7 /* GTPiwikAddOn.h */,
 				6499CA25173D51E2004230E7 /* GTPiwikAddOn.m */,
@@ -532,6 +569,10 @@
 				6499CA3C173D51EB004230E7 /* PTRetryDispatchStrategy.m in Sources */,
 				6499CA3D173D51EB004230E7 /* PTTimerDispatchStrategy.m in Sources */,
 				6499CA3F173D51EB004230E7 /* PTUserAgentReader.m in Sources */,
+				64D8C9AF1740F7B0005D87DC /* RNCryptor.m in Sources */,
+				64D8C9B01740F7B0005D87DC /* RNCryptorEngine.m in Sources */,
+				64D8C9B11740F7B0005D87DC /* RNDecryptor.m in Sources */,
+				64D8C9B21740F7B0005D87DC /* RNEncryptor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -690,6 +731,7 @@
 				CODE_SIGN_ENTITLEMENTS = Janus/Janus.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer: Giacomo Tufano (68RHGP4K2S)";
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Janus/Janus-Prefix.pch";
 				INFOPLIST_FILE = "Janus/Janus-Info.plist";
@@ -706,6 +748,7 @@
 				CODE_SIGN_ENTITLEMENTS = Janus/Janus.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer: Giacomo Tufano (68RHGP4K2S)";
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Janus/Janus-Prefix.pch";
 				INFOPLIST_FILE = "Janus/Janus-Info.plist";
