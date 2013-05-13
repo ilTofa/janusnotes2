@@ -767,7 +767,7 @@
 								<float key="scoringTypeFloat">29</float>
 								<int key="contentType">3</int>
 							</object>
-							<object class="IBNSLayoutConstraint" id="696763605">
+							<object class="IBNSLayoutConstraint" id="704720856">
 								<reference key="firstItem" ref="827819161"/>
 								<int key="firstAttribute">5</int>
 								<int key="relation">0</int>
@@ -1213,7 +1213,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">184</int>
-						<reference key="object" ref="696763605"/>
+						<reference key="object" ref="704720856"/>
 						<reference key="parent" ref="326637129"/>
 					</object>
 				</array>
@@ -1314,7 +1314,7 @@
 				<array key="84.IBNSViewMetadataConstraints">
 					<reference ref="637377963"/>
 					<reference ref="871917187"/>
-					<reference ref="696763605"/>
+					<reference ref="704720856"/>
 					<reference ref="486528130"/>
 					<reference ref="111637559"/>
 					<reference ref="311251565"/>
