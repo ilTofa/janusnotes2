@@ -14,9 +14,9 @@
     <entity name="Note" representedClassName="Note" syncable="YES">
         <attribute name="creationDate" attributeType="Date" indexed="YES" syncable="YES"/>
         <attribute name="sectionIdentifier" optional="YES" transient="YES" attributeType="String" syncable="YES"/>
-        <attribute name="text" optional="YES" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="text" optional="YES" attributeType="String" spotlightIndexingEnabled="YES" storedInTruthFile="YES" syncable="YES"/>
         <attribute name="timeStamp" attributeType="Date" indexed="YES" syncable="YES"/>
-        <attribute name="title" attributeType="String" defaultValueString="Title" indexed="YES" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="title" attributeType="String" defaultValueString="Title" indexed="YES" spotlightIndexingEnabled="YES" storedInTruthFile="YES" syncable="YES"/>
         <attribute name="uuid" attributeType="String" indexed="YES" syncable="YES"/>
         <relationship name="attachment" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Attachment" inverseName="note" inverseEntity="Attachment" syncable="YES"/>
     </entity>

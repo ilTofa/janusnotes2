@@ -35,6 +35,7 @@
 		6499CA3C173D51EB004230E7 /* PTRetryDispatchStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6499CA31173D51EB004230E7 /* PTRetryDispatchStrategy.m */; };
 		6499CA3D173D51EB004230E7 /* PTTimerDispatchStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6499CA33173D51EB004230E7 /* PTTimerDispatchStrategy.m */; };
 		6499CA3F173D51EB004230E7 /* PTUserAgentReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6499CA37173D51EB004230E7 /* PTUserAgentReader.m */; };
+		64A4E9B51742659A00BC49FE /* JanusImporter.mdimporter in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64EA622E16F7110300F4838E /* JanusImporter.mdimporter */; };
 		64A75591170358BC0085933D /* NSManagedObjectContext+FetchedObjectFromURI.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A75590170358BC0085933D /* NSManagedObjectContext+FetchedObjectFromURI.m */; };
 		64CB19281738EEE90014F35F /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CB19271738EEE90014F35F /* WebKit.framework */; };
 		64CB192A1738EFF20014F35F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CB19291738EFF20014F35F /* SystemConfiguration.framework */; };
@@ -52,7 +53,6 @@
 		64EA622016F7110300F4838E /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 64EA621E16F7110300F4838E /* Credits.rtf */; };
 		64EA622316F7110300F4838E /* IAMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 64EA622216F7110300F4838E /* IAMAppDelegate.m */; };
 		64EA622616F7110300F4838E /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64EA622416F7110300F4838E /* MainMenu.xib */; };
-		64EA623116F7110300F4838E /* JanusImporter.mdimporter in Resources */ = {isa = PBXBuildFile; fileRef = 64EA622E16F7110300F4838E /* JanusImporter.mdimporter */; };
 		64EA623316F7110300F4838E /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64EA623216F7110300F4838E /* CoreServices.framework */; };
 		64EA623516F7110300F4838E /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64EA623416F7110300F4838E /* CoreFoundation.framework */; };
 		64EA623716F7110300F4838E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64EA623616F7110300F4838E /* CoreData.framework */; };
@@ -80,6 +80,19 @@
 			remoteInfo = JanusImporter;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		64A4E9B41742656900BC49FE /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/Spotlight;
+			dstSubfolderSpec = 1;
+			files = (
+				64A4E9B51742659A00BC49FE /* JanusImporter.mdimporter in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		6429F2C21716EB3C0030E932 /* NSString+UUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+UUID.h"; path = "../common/Utilitites/NSString+UUID.h"; sourceTree = "<group>"; };
@@ -452,6 +465,7 @@
 				64EA620816F7110300F4838E /* Sources */,
 				64EA620916F7110300F4838E /* Frameworks */,
 				64EA620A16F7110300F4838E /* Resources */,
+				64A4E9B41742656900BC49FE /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -516,7 +530,6 @@
 				64EA621A16F7110300F4838E /* InfoPlist.strings in Resources */,
 				64EA622016F7110300F4838E /* Credits.rtf in Resources */,
 				64EA622616F7110300F4838E /* MainMenu.xib in Resources */,
-				64EA623116F7110300F4838E /* JanusImporter.mdimporter in Resources */,
 				64EA625216F7166700F4838E /* icon.icns in Resources */,
 				64EA628616F75E0000F4838E /* IAMNoteEditorWC.xib in Resources */,
 				644AC25C17257FE4007B51FF /* IAMTableUIWindowController.xib in Resources */,
