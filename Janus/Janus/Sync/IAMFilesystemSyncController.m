@@ -11,9 +11,13 @@
 #import "IAMAppDelegate.h"
 #import "CoreDataController.h"
 #import "Note.h"
+#import "RNDecryptor.h"
+#import "STKeychain.h"
 
 #define kNotesExtension @"txt"
 #define kAttachmentDirectory @"Attachments"
+#define kMagicCryptFilename @".crypted"
+#define kMagicString @"This is definitely a rncrypted string. Whatever that means."
 
 #pragma mark - filename helpers
 
@@ -91,16 +95,17 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
         _isResettingDataFromDropbox = NO;
         // Init security bookmark
         NSError *error;
-        self.secureBookmarkToData = [[NSUserDefaults standardUserDefaults] dataForKey:@"syncDirectory"];
-        if(!self.secureBookmarkToData) {
+        _secureBookmarkToData = [[NSUserDefaults standardUserDefaults] dataForKey:@"syncDirectory"];
+        if(!_secureBookmarkToData) {
+            _notesAreEncrypted = NO;
             NSURL *cacheDirectory = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:&error];
-            self.syncDirectory = [cacheDirectory URLByAppendingPathComponent:@"Janus-Notes" isDirectory:YES];
-            [[NSFileManager defaultManager] createDirectoryAtURL:self.syncDirectory withIntermediateDirectories:YES attributes:nil error:&error];
-            [self modifySyncDirectory:self.syncDirectory];
+            _syncDirectory = [cacheDirectory URLByAppendingPathComponent:@"Janus-Notes" isDirectory:YES];
+            [[NSFileManager defaultManager] createDirectoryAtURL:_syncDirectory withIntermediateDirectories:YES attributes:nil error:&error];
+            [self modifySyncDirectory:_syncDirectory];
         } else {
             BOOL staleData;
-            self.syncDirectory = [NSURL URLByResolvingBookmarkData:self.secureBookmarkToData options:NSURLBookmarkResolutionWithSecurityScope  relativeToURL:nil bookmarkDataIsStale:&staleData error:&error];
-            [self.syncDirectory startAccessingSecurityScopedResource];
+            _syncDirectory = [NSURL URLByResolvingBookmarkData:_secureBookmarkToData options:NSURLBookmarkResolutionWithSecurityScope  relativeToURL:nil bookmarkDataIsStale:&staleData error:&error];
+            [_syncDirectory startAccessingSecurityScopedResource];
             [self firstAccessToData];
         }
         // Listen to ourself, so to sync changes
@@ -132,6 +137,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
 }
 
 - (void)firstAccessToData {
+    
     [self syncAllFromDropbox];
     DLog(@"IAMDataSyncController is ready.");
     self.syncControllerReady = YES;
@@ -142,6 +148,33 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
 
 - (void)refreshContentFromRemote {
     [self syncAllFromDropbox];
+}
+
+#pragma mark - Crypt support
+
+- (BOOL)isCryptingOK {
+    NSError *error;
+    NSURL *magicFile = [self.syncDirectory URLByAppendingPathComponent:kMagicCryptFilename isDirectory:NO];
+    NSData *magicContent = [NSData dataWithContentsOfURL:magicFile options:NSDataReadingMappedIfSafe error:&error];
+    if(!magicContent) {
+        DLog(@"No data in magic file (%@) or no magic file. No crypt. (%@)", magicFile, [error description]);
+        return NO;
+    }
+    NSString *cryptKey = [STKeychain getPasswordForUsername:@"crypt" andServiceName:@"it.iltofa.janus" error:&error];
+    if(!cryptKey) {
+        ALog(@"Error reading crypt key on cryptd note directory: %@", [error description]);
+        return NO;
+    }
+    NSData *decryptedData = [RNDecryptor decryptData:magicContent withPassword:cryptKey error:&error];
+    if(!decryptedData) {
+        ALog(@"Error decrypting magic file on cryptd note directory: %@", [error description]);
+        return NO;        
+    }
+    NSString *magicString = [[NSString alloc] initWithData:decryptedData encoding:NSUTF8StringEncoding];
+    if([magicString isEqualToString:kMagicString]) {
+        return YES;
+    }
+    return NO;
 }
 
 #pragma mark - handler propagating new (and updated) notes from coredata to dropbox

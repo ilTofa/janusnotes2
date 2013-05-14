@@ -20,6 +20,9 @@
 @property BOOL syncControllerInited;
 @property (nonatomic, readonly) NSManagedObjectContext *dataSyncThreadContext;
 
+@property BOOL notesAreEncrypted;
+@property NSString *cryptPassword;
+
 + (IAMFilesystemSyncController *)sharedInstance;
 
 - (BOOL)modifySyncDirectory:(NSURL *)newSyncDirectory;
