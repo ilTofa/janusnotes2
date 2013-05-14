@@ -717,7 +717,6 @@ Label riga 3</string>
         <class className="IAMViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IAMViewController.h"/>
             <relationships>
-                <relationship kind="action" name="launchPreferences:"/>
                 <relationship kind="outlet" name="preferencesButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
             </relationships>

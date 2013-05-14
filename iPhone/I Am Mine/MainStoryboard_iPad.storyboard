@@ -130,7 +130,7 @@ Label riga 3</string>
                             <nil key="highlightedColor"/>
                         </label>
                         <sections>
-                            <tableViewSection headerTitle="Colors" id="tyQ-Qs-orq">
+                            <tableViewSection headerTitle="Dropbox" id="tyQ-Qs-orq">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="N7S-ey-UGQ">
                                         <rect key="frame" x="0.0" y="78" width="400" height="46"/>
@@ -263,7 +263,7 @@ Label riga 3</string>
                                         <rect key="frame" x="0.0" y="480" width="400" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="10" y="0.0" width="380" height="43"/>
+                                            <rect key="frame" x="10" y="1" width="380" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Text and background color" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6IC-Hb-K7K">
@@ -322,7 +322,7 @@ Label riga 3</string>
                                         <rect key="frame" x="0.0" y="613" width="400" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="10" y="1" width="380" height="43"/>
+                                            <rect key="frame" x="10" y="0.0" width="380" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Text and background color" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Vgi-sy-EAM">
@@ -731,7 +731,6 @@ Label riga 3</string>
         <class className="IAMViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IAMViewController.h"/>
             <relationships>
-                <relationship kind="action" name="launchPreferences:"/>
                 <relationship kind="outlet" name="preferencesButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
             </relationships>
