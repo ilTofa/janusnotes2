@@ -518,8 +518,20 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
                 [self.dataSyncThreadContext rollback];
                 return NO;
             }
-
-            Attachment *newAttachment = [NSEntityDescription insertNewObjectForEntityForName:@"Attachment" inManagedObjectContext:self.dataSyncThreadContext];
+            // Look if the attachment already exists and if existing reload in place
+            Attachment *newAttachment = nil;
+            for (Attachment *attach in newNote.attachment) {
+                if([attach.filename isEqualToString:attachmentInfo.path.name]) {
+                    newAttachment = attach;
+                    break;
+                }
+            }
+            if (!newAttachment) {
+                DLog(@"Copying (new) attachment: %@ to CoreData note %@", attachmentInfo.path.name, newNote.title);
+                newAttachment = [NSEntityDescription insertNewObjectForEntityForName:@"Attachment" inManagedObjectContext:self.dataSyncThreadContext];
+            } else {
+                DLog(@"Reloading attachment: %@ to CoreData note %@", attachmentInfo.path.name, newNote.title);
+            }
             newAttachment.filename = attachmentInfo.path.name;
             newAttachment.extension = [attachmentInfo.path.stringValue pathExtension];
             newAttachment.data = [attachmentOnDropbox readData:&error];
