@@ -560,8 +560,20 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
                 ALog(@"Error looking for directory type: %@", [error localizedDescription]);
                 error = nil;
             }
-            DLog(@"Copying attachment: %@ to CoreData note %@", name, newNote.title);
-            Attachment *newAttachment = [NSEntityDescription insertNewObjectForEntityForName:@"Attachment" inManagedObjectContext:self.dataSyncThreadContext];
+            // Look if the attachment already exists and if existing reload in place
+            Attachment *newAttachment = nil;
+            for (Attachment *attach in newNote.attachment) {
+                if([attach.filename isEqualToString:name]) {
+                    newAttachment = attach;
+                    break;
+                }
+            }
+            if (!newAttachment) {
+                DLog(@"Copying (new) attachment: %@ to CoreData note %@", name, newNote.title);
+                newAttachment = [NSEntityDescription insertNewObjectForEntityForName:@"Attachment" inManagedObjectContext:self.dataSyncThreadContext];
+            } else {
+                DLog(@"Reloading attachment: %@ to CoreData note %@", name, newNote.title);
+            }
             newAttachment.filename = [[attachmentInfo path] lastPathComponent];
             newAttachment.extension = attachmentInfo.path.pathExtension;
             newAttachment.data = [NSData dataWithContentsOfURL:attachmentInfo options:NSDataReadingMappedIfSafe error:&error];
