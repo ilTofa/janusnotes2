@@ -152,28 +152,52 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
 
 #pragma mark - Crypt support
 
-- (BOOL)isCryptingOK {
+- (NSString *)cryptPassword {
+    NSError *error;
+    return [STKeychain getPasswordForUsername:@"crypt" andServiceName:@"it.iltofa.janus" error:&error];
+}
+
+- (void)setCryptPassword:(NSString *)cryptPassword {
+    NSError *error;
+    [STKeychain storeUsername:@"crypt" andPassword:cryptPassword forServiceName:@"it.iltofa.janus" updateExisting:YES error:&error];
+}
+
+- (BOOL)filesystemIsCrypted {
     NSError *error;
     NSURL *magicFile = [self.syncDirectory URLByAppendingPathComponent:kMagicCryptFilename isDirectory:NO];
     NSData *magicContent = [NSData dataWithContentsOfURL:magicFile options:NSDataReadingMappedIfSafe error:&error];
     if(!magicContent) {
-        DLog(@"No data in magic file (%@) or no magic file. No crypt. (%@)", magicFile, [error description]);
         return NO;
     }
-    NSString *cryptKey = [STKeychain getPasswordForUsername:@"crypt" andServiceName:@"it.iltofa.janus" error:&error];
+    return YES;
+}
+
+- (BOOL)isCryptOKWithError:(NSError **)errorPtr {
+    NSString *cryptKey = [STKeychain getPasswordForUsername:@"crypt" andServiceName:@"it.iltofa.janus" error:errorPtr];
     if(!cryptKey) {
-        ALog(@"Error reading crypt key on cryptd note directory: %@", [error description]);
+        ALog(@"Error reading crypt key on cryptd note directory: %@", [*errorPtr description]);
         return NO;
     }
-    NSData *decryptedData = [RNDecryptor decryptData:magicContent withPassword:cryptKey error:&error];
+    return [self checkCryptPassword:cryptKey error:errorPtr];
+}
+
+- (BOOL)checkCryptPassword:(NSString *)password error:(NSError **)errorPtr {
+    NSURL *magicFile = [self.syncDirectory URLByAppendingPathComponent:kMagicCryptFilename isDirectory:NO];
+    NSData *magicContent = [NSData dataWithContentsOfURL:magicFile options:NSDataReadingMappedIfSafe error:errorPtr];
+    if(!magicContent) {
+        DLog(@"No data in magic file (%@) or no magic file. No crypt. (%@)", magicFile, [*errorPtr description]);
+        return NO;
+    }
+    NSData *decryptedData = [RNDecryptor decryptData:magicContent withPassword:password error:errorPtr];
     if(!decryptedData) {
-        ALog(@"Error decrypting magic file on cryptd note directory: %@", [error description]);
-        return NO;        
+        ALog(@"Error decrypting magic file on cryptd note directory: %@", [*errorPtr description]);
+        return NO;
     }
     NSString *magicString = [[NSString alloc] initWithData:decryptedData encoding:NSUTF8StringEncoding];
     if([magicString isEqualToString:kMagicString]) {
         return YES;
     }
+    *errorPtr = [NSError errorWithDomain:@"it.iltofa.janus" code:1 userInfo:nil];
     return NO;
 }
 
@@ -446,13 +470,24 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
 
 - (void)syncAllFromDropbox {
     dispatch_async(_syncQueue, ^{
+        // Check crypt status.
+        NSError *error;
+        if(![self filesystemIsCrypted]) {
+            self.notesAreEncrypted = NO;
+        } else {
+            if([self isCryptOKWithError:&error]) {
+                self.notesAreEncrypted = YES;
+            } else {
+                NSAssert(NO, @"Notes are crypted, password is wrong. This should be handled somewhere.");
+                return;
+            }
+        }
         _isResettingDataFromDropbox = YES;
-        DLog(@"Deleting current coreData db init");
+        DLog(@"Massaging current coreData db init");
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"Note" inManagedObjectContext:self.dataSyncThreadContext];
         [fetchRequest setEntity:entity];
         [fetchRequest setSortDescriptors:@[[[NSSortDescriptor alloc] initWithKey:@"timeStamp" ascending:NO]]];
-        NSError *error;
         NSArray *notes = [self.dataSyncThreadContext executeFetchRequest:fetchRequest error:&error];
         for (Note *note in notes) {
             if(![self isNoteExistingOnFile:note.uuid]) {

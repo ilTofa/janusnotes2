@@ -10,10 +10,12 @@
 #import "IAMFilesystemSyncController.h"
 
 #import "GTPiwikAddOn.h"
+#import "IAMCryptPasswordWC.h"
 
 @interface IAMPrefsWindowController ()
 
 @property (copy) NSString *currentURL;
+@property IAMCryptPasswordWC *cryptPasswordController;
 
 @end
 
@@ -39,6 +41,7 @@
     NSAssert(fontName, @"Default font not set in user defaults");
     double fontSize = [[NSUserDefaults standardUserDefaults] doubleForKey:@"fontSize"];
     self.currentFont = [NSFont fontWithName:fontName size:fontSize];
+    self.encryptStatusButton = @([[IAMFilesystemSyncController sharedInstance] notesAreEncrypted]);
     BOOL staleData;
     NSError *error;
     NSURL *originalSyncDirectory = [NSURL URLByResolvingBookmarkData:originalDataPath options:NSURLBookmarkResolutionWithSecurityScope relativeToURL:nil bookmarkDataIsStale:&staleData error:&error];
@@ -70,6 +73,40 @@
     [fontManager setSelectedFont:self.currentFont isMultiple:NO];
     [fontManager orderFrontFontPanel:self];
 }
+
+- (IBAction)encryptButtonAction:(id)sender {
+    DLog(@"Button status: %@", self.encryptStatusButton);
+    if ([self.encryptStatusButton boolValue]) {
+        DLog(@"Notes were not crypted, now set the password to crypt");
+        [self changePasswordAction:self];
+    } else {
+        DLog(@"Remove crypt now.");
+    }
+}
+
+- (IBAction)changePasswordAction:(id)sender {
+    if(!self.cryptPasswordController) {
+        self.cryptPasswordController = [[IAMCryptPasswordWC alloc] initWithWindowNibName:@"IAMCryptPasswordWC"];
+    }
+    [[NSApplication sharedApplication] beginSheet:self.cryptPasswordController.window modalForWindow:self.window modalDelegate:self didEndSelector:@selector(didEndSheet:returnCode:contextInfo:) contextInfo:nil];
+}
+
+- (void)didEndSheet:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo {
+    [self.cryptPasswordController.window orderOut:self];
+    if(self.cryptPasswordController.validPassword) {
+        NSAssert([self.encryptStatusButton boolValue], @"Crypt password set, but no encryption set or requested.");
+        if([[IAMFilesystemSyncController sharedInstance] notesAreEncrypted]) {
+            DLog(@"Notes are already encrypted. Re-Crypt with new password: %@", self.cryptPasswordController.validPassword);
+        } else {
+            DLog(@"Crypt now the notes with key: %@", self.cryptPasswordController.validPassword);
+        }
+    } else {
+        DLog(@"No valid password, reset the buttno to the \"actual\" status");
+        self.encryptStatusButton = @([[IAMFilesystemSyncController sharedInstance] notesAreEncrypted]);
+    }
+    self.cryptPasswordController = nil;
+}
+
 
 - (void)changeFont:(id)sender {
     NSFont *newFont = [sender convertFont:self.currentFont];

@@ -13,7 +13,11 @@
 @property (weak) IBOutlet NSTextField *pathToLabel;
 @property NSFont *currentFont;
 
+@property IBOutlet NSNumber *encryptStatusButton;
+
 - (IBAction)changePath:(id)sender;
 - (IBAction)actionChangeFont:(id)sender;
+- (IBAction)encryptButtonAction:(id)sender;
+- (IBAction)changePasswordAction:(id)sender;
 
 @end

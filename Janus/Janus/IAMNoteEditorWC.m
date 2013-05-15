@@ -198,7 +198,6 @@
 }
 
 - (void)didEndSheet:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo {
-    DLog(@"Deleting sheet");
     [self.openWithController.window orderOut:self];
     if (self.openWithController.selectedAppId == NSNotFound) {
         DLog(@"User cancelled open with action");
