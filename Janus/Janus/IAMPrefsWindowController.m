@@ -11,11 +11,14 @@
 
 #import "GTPiwikAddOn.h"
 #import "IAMCryptPasswordWC.h"
+#import "IAMWaitingWindowController.h"
 
 @interface IAMPrefsWindowController ()
 
 @property (copy) NSString *currentURL;
 @property IAMCryptPasswordWC *cryptPasswordController;
+@property IAMWaitingWindowController *waitingWindowController;
+@property NSArray *nibTopElements;
 
 @end
 
@@ -81,6 +84,10 @@
         [self changePasswordAction:self];
     } else {
         DLog(@"Remove crypt now.");
+        [self showWaitingControllerWithString:@"Please wait while we decrypt the notes..."];
+        [[IAMFilesystemSyncController sharedInstance] decryptNotesWithCompletionBlock:^{
+            [[NSApplication sharedApplication] endSheet:self.waitingWindowController.window];
+        }];
     }
 }
 
@@ -92,21 +99,41 @@
 }
 
 - (void)didEndSheet:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo {
-    [self.cryptPasswordController.window orderOut:self];
-    if(self.cryptPasswordController.validPassword) {
-        NSAssert([self.encryptStatusButton boolValue], @"Crypt password set, but no encryption set or requested.");
-        if([[IAMFilesystemSyncController sharedInstance] notesAreEncrypted]) {
-            DLog(@"Notes are already encrypted. Re-Crypt with new password: %@", self.cryptPasswordController.validPassword);
+    if(sheet == self.cryptPasswordController.window) {
+        [self.cryptPasswordController.window orderOut:self];
+        if(self.cryptPasswordController.validPassword) {
+            NSAssert([self.encryptStatusButton boolValue], @"Crypt password set, but no encryption set or requested.");
+            if([[IAMFilesystemSyncController sharedInstance] notesAreEncrypted]) {
+                DLog(@"Notes are already encrypted. Re-Crypt with new password: %@", self.cryptPasswordController.validPassword);
+                [self showWaitingControllerWithString:@"Please wait while we crypt the notes..."];
+                [[IAMFilesystemSyncController sharedInstance] cryptNotesWithPassword:self.cryptPasswordController.validPassword andCompletionBlock:^{
+                    [[NSApplication sharedApplication] endSheet:self.waitingWindowController.window];
+                }];
+            } else {
+                DLog(@"Crypt now the notes with key: %@", self.cryptPasswordController.validPassword);
+                [self showWaitingControllerWithString:@"Please wait while we re-encrypt the notes..."];
+                [[IAMFilesystemSyncController sharedInstance] cryptNotesWithPassword:self.cryptPasswordController.validPassword andCompletionBlock:^{
+                    [[NSApplication sharedApplication] endSheet:self.waitingWindowController.window];
+                }];
+            }
         } else {
-            DLog(@"Crypt now the notes with key: %@", self.cryptPasswordController.validPassword);
+            DLog(@"No valid password, reset the buttno to the \"actual\" status");
+            self.encryptStatusButton = @([[IAMFilesystemSyncController sharedInstance] notesAreEncrypted]);
         }
+        self.cryptPasswordController = nil;
     } else {
-        DLog(@"No valid password, reset the buttno to the \"actual\" status");
-        self.encryptStatusButton = @([[IAMFilesystemSyncController sharedInstance] notesAreEncrypted]);
+        // This is a windowWaiting controller
+        [self.waitingWindowController.window orderOut:self];
     }
-    self.cryptPasswordController = nil;
 }
 
+- (void)showWaitingControllerWithString:(NSString *)waitingString {
+    if (!self.waitingWindowController) {
+        self.waitingWindowController = [[IAMWaitingWindowController alloc] initWithWindowNibName:@"IAMWaitingWindowController"];
+    }
+    self.waitingWindowController.waitString = waitingString;
+    [[NSApplication sharedApplication] beginSheet:self.waitingWindowController.window modalForWindow:self.window modalDelegate:self didEndSelector:@selector(didEndSheet:returnCode:contextInfo:) contextInfo:nil];
+}
 
 - (void)changeFont:(id)sender {
     NSFont *newFont = [sender convertFont:self.currentFont];

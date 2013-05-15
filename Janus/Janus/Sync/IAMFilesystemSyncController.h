@@ -21,7 +21,6 @@
 @property (nonatomic, readonly) NSManagedObjectContext *dataSyncThreadContext;
 
 @property BOOL notesAreEncrypted;
-@property (nonatomic) NSString *cryptPassword;
 
 + (IAMFilesystemSyncController *)sharedInstance;
 
@@ -30,5 +29,9 @@
 - (void)deleteNoteTextWithUUID:(NSString *)uuid afterFilenameChangeFrom:(NSString *)oldFilename;
 - (NSURL *)urlForAttachment:(Attachment *)attachment;
 - (NSURL *)urlForNote:(Note *)note;
+
+- (void)cryptNotesWithPassword:(NSString *)password andCompletionBlock:(void (^)(void))block;
+- (void)decryptNotesWithCompletionBlock:(void (^)(void))block;
+- (NSString *)cryptPassword;
 
 @end

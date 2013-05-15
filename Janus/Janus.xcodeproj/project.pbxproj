@@ -29,6 +29,8 @@
 		644AC2791726CFAC007B51FF /* IAMPrefsWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 644AC2771726CFAB007B51FF /* IAMPrefsWindowController.xib */; };
 		6476CFA0174382D500A6195C /* IAMCryptPasswordWC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6476CF9E174382D500A6195C /* IAMCryptPasswordWC.m */; };
 		6476CFA1174382D500A6195C /* IAMCryptPasswordWC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6476CF9F174382D500A6195C /* IAMCryptPasswordWC.xib */; };
+		6476CFA71743BABE00A6195C /* IAMWaitingWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6476CFA51743BABE00A6195C /* IAMWaitingWindowController.m */; };
+		6476CFA81743BABE00A6195C /* IAMWaitingWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6476CFA61743BABE00A6195C /* IAMWaitingWindowController.xib */; };
 		6499CA26173D51E2004230E7 /* GTPiwikAddOn.m in Sources */ = {isa = PBXBuildFile; fileRef = 6499CA25173D51E2004230E7 /* GTPiwikAddOn.m */; };
 		6499CA38173D51EB004230E7 /* PiwikTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 6499CA29173D51EB004230E7 /* PiwikTracker.m */; };
 		6499CA39173D51EB004230E7 /* PiwikTracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6499CA2A173D51EB004230E7 /* PiwikTracker.xcdatamodeld */; };
@@ -124,6 +126,9 @@
 		6476CF9D174382D500A6195C /* IAMCryptPasswordWC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMCryptPasswordWC.h; sourceTree = "<group>"; };
 		6476CF9E174382D500A6195C /* IAMCryptPasswordWC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMCryptPasswordWC.m; sourceTree = "<group>"; };
 		6476CF9F174382D500A6195C /* IAMCryptPasswordWC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IAMCryptPasswordWC.xib; sourceTree = "<group>"; };
+		6476CFA41743BABE00A6195C /* IAMWaitingWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMWaitingWindowController.h; sourceTree = "<group>"; };
+		6476CFA51743BABE00A6195C /* IAMWaitingWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMWaitingWindowController.m; sourceTree = "<group>"; };
+		6476CFA61743BABE00A6195C /* IAMWaitingWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IAMWaitingWindowController.xib; sourceTree = "<group>"; };
 		6499CA24173D51E2004230E7 /* GTPiwikAddOn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTPiwikAddOn.h; path = ../common/Utilitites/GTPiwikAddOn.h; sourceTree = "<group>"; };
 		6499CA25173D51E2004230E7 /* GTPiwikAddOn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTPiwikAddOn.m; path = ../common/Utilitites/GTPiwikAddOn.m; sourceTree = "<group>"; };
 		6499CA28173D51EB004230E7 /* PiwikTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PiwikTracker.h; sourceTree = "<group>"; };
@@ -271,6 +276,9 @@
 				6476CF9D174382D500A6195C /* IAMCryptPasswordWC.h */,
 				6476CF9E174382D500A6195C /* IAMCryptPasswordWC.m */,
 				6476CF9F174382D500A6195C /* IAMCryptPasswordWC.xib */,
+				6476CFA41743BABE00A6195C /* IAMWaitingWindowController.h */,
+				6476CFA51743BABE00A6195C /* IAMWaitingWindowController.m */,
+				6476CFA61743BABE00A6195C /* IAMWaitingWindowController.xib */,
 			);
 			name = Preferences;
 			sourceTree = "<group>";
@@ -555,6 +563,7 @@
 				643BA04C173C52C100A6C437 /* document-icon.icns in Resources */,
 				643BA051173D26E300A6C437 /* IAMOpenWithWC.xib in Resources */,
 				6476CFA1174382D500A6195C /* IAMCryptPasswordWC.xib in Resources */,
+				6476CFA81743BABE00A6195C /* IAMWaitingWindowController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -602,6 +611,7 @@
 				64D8C9B21740F7B0005D87DC /* RNEncryptor.m in Sources */,
 				64D8C9BA1740F985005D87DC /* STKeychain.m in Sources */,
 				6476CFA0174382D500A6195C /* IAMCryptPasswordWC.m in Sources */,
+				6476CFA71743BABE00A6195C /* IAMWaitingWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

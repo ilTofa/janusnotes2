@@ -11,6 +11,7 @@
 #import "IAMAppDelegate.h"
 #import "CoreDataController.h"
 #import "Note.h"
+#import "RNEncryptor.h"
 #import "RNDecryptor.h"
 #import "STKeychain.h"
 
@@ -62,6 +63,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
 
 @property NSData *secureBookmarkToData;
 @property NSURL *syncDirectory;
+@property (nonatomic) NSString *cryptPassword;
 
 @end
 
@@ -131,17 +133,19 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
     BOOL staleData;
     self.syncDirectory = [NSURL URLByResolvingBookmarkData:self.secureBookmarkToData options:NSURLBookmarkResolutionWithSecurityScope  relativeToURL:nil bookmarkDataIsStale:&staleData error:&error];
     [self.syncDirectory startAccessingSecurityScopedResource];
-    [self copyCurrentDataToDropbox];
-    [self firstAccessToData];
+    [self copyCurrentDataToDropboxWithCompletionBlock:^{
+        [self firstAccessToData];        
+    }];
     return YES;
 }
 
 - (void)firstAccessToData {
-    
-    [self syncAllFromDropbox];
-    DLog(@"IAMDataSyncController is ready.");
-    self.syncControllerReady = YES;
-    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kIAMDataSyncControllerReady object:self]];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self syncAllFromDropbox];
+        DLog(@"IAMDataSyncController is ready.");
+        self.syncControllerReady = YES;
+        [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kIAMDataSyncControllerReady object:self]];
+    });
 }
 
 #pragma mark - RefreshContent from dropbox
@@ -152,14 +156,30 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
 
 #pragma mark - Crypt support
 
-- (NSString *)cryptPassword {
+- (void)setCryptPassword:(NSString *)password {
     NSError *error;
-    return [STKeychain getPasswordForUsername:@"crypt" andServiceName:@"it.iltofa.janus" error:&error];
+    NSURL *magicFile = [self.syncDirectory URLByAppendingPathComponent:kMagicCryptFilename isDirectory:NO];
+    if(password) {
+        [STKeychain storeUsername:@"crypt" andPassword:password forServiceName:@"it.iltofa.janus" updateExisting:YES error:&error];
+        NSData *magicContent = [kMagicString dataUsingEncoding:NSUTF8StringEncoding];
+        NSData *encryptedData = [RNEncryptor encryptData:magicContent withSettings:kRNCryptorAES256Settings password:password error:&error];
+        [encryptedData writeToURL:magicFile atomically:YES];
+    } else {
+        [STKeychain deleteItemForUsername:@"crypt" andServiceName:@"it.iltofa.janus" error:&error];
+        [[NSFileManager defaultManager] removeItemAtURL:magicFile error:&error];
+    }
 }
 
-- (void)setCryptPassword:(NSString *)cryptPassword {
-    NSError *error;
-    [STKeychain storeUsername:@"crypt" andPassword:cryptPassword forServiceName:@"it.iltofa.janus" updateExisting:YES error:&error];
+- (void)cryptNotesWithPassword:(NSString *)password andCompletionBlock:(void (^)(void))block {
+    [self setCryptPassword:password];
+    self.notesAreEncrypted = YES;
+    [self copyCurrentDataToDropboxWithCompletionBlock:block];
+}
+
+- (void)decryptNotesWithCompletionBlock:(void (^)(void))block {
+    [self setCryptPassword:nil];
+    self.notesAreEncrypted = NO;
+    [self copyCurrentDataToDropboxWithCompletionBlock:block];
 }
 
 - (BOOL)filesystemIsCrypted {
@@ -170,6 +190,11 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
         return NO;
     }
     return YES;
+}
+
+- (NSString *)cryptPassword {
+    NSError *error;
+    return [STKeychain getPasswordForUsername:@"crypt" andServiceName:@"it.iltofa.janus" error:&error];
 }
 
 - (BOOL)isCryptOKWithError:(NSError **)errorPtr {
@@ -199,6 +224,32 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
     }
     *errorPtr = [NSError errorWithDomain:@"it.iltofa.janus" code:1 userInfo:nil];
     return NO;
+}
+
+- (BOOL)writeString:(NSString *)text cryptedToURL:(NSURL *)url withError:(NSError **)errorPtr {
+    if (self.notesAreEncrypted) {
+        return [[RNEncryptor encryptData:[text dataUsingEncoding:NSUTF8StringEncoding]
+                            withSettings:kRNCryptorAES256Settings
+                                password:self.cryptPassword
+                                   error:errorPtr] writeToURL:url atomically:YES];
+
+    } else {
+        return [[text dataUsingEncoding:NSUTF8StringEncoding] writeToURL:url atomically:YES];
+    }
+}
+
+- (NSString *)newStringDecryptedFromURL:(NSURL *)url withError:(NSError **)errorPtr {
+    if (self.notesAreEncrypted) {
+    NSData *decryptedData = [RNDecryptor decryptData:[NSData dataWithContentsOfURL:url options:NSDataReadingMappedIfSafe error:errorPtr]
+                                        withPassword:self.cryptPassword
+                                               error:errorPtr];
+    if(!decryptedData) {
+        return nil;
+    }
+    return [[NSString alloc] initWithData:decryptedData encoding:NSUTF8StringEncoding];
+    } else {
+        return [[NSString alloc] initWithContentsOfURL:url encoding:NSUTF8StringEncoding error:errorPtr];
+    }
 }
 
 #pragma mark - handler propagating new (and updated) notes from coredata to dropbox
@@ -246,65 +297,26 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
 
 #pragma mark - from CoreData to Dropbox (first sync AND user changes to data)
 
-// Copy all coredata db to dropbox (this is only if we move to a new directory for syncing)
-- (void)copyCurrentDataToDropbox {
+// Copy all coredata db to dropbox (this is when we move to a new directory for syncing or when we change sync password)
+- (void)copyCurrentDataToDropboxWithCompletionBlock:(void (^)(void))block; {
     dispatch_async(_syncQueue, ^{
         DLog(@"Started copy of coredata db to dropbox (new directory here).");
-        // Get notes ids
+        // Loop on the data set and dump to dropbox
         NSError *error;
-        NSArray *filesAtRoot = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:self.syncDirectory
-                                                             includingPropertiesForKeys:@[NSURLIsDirectoryKey, NSURLNameKey]
-                                                                                options:NSDirectoryEnumerationSkipsHiddenFiles error:&error];
-        if(!filesAtRoot) {
-            ALog(@"Aborting. Error reading notes: %@", [error description]);
-            [self.dataSyncThreadContext rollback];
-            return;
-        }
-        NSMutableArray *notesOnFS = [[NSMutableArray alloc] initWithCapacity:5];
-        for (NSURL *fileInfo in filesAtRoot) {
-            NSNumber *isDirectory;
-            NSString *name;
-            if (![fileInfo getResourceValue:&name forKey:NSURLNameKey error:&error]) {
-                ALog(@"error looking for filename: %@", [error localizedDescription]);
-                error = nil;
-            }
-            if (![fileInfo getResourceValue:&isDirectory forKey:NSURLIsDirectoryKey error:&error]) {
-                ALog(@"Error looking for directory type: %@", [error localizedDescription]);
-                error = nil;
-            }
-            if(isDirectory) {
-                [notesOnFS addObject:fileInfo];
-                DLog(@"Fuond note: %@", fileInfo);
-            } else {
-                DLog(@"Spurious file at notes root: %@.", name);
-            }
-        }
-        filesAtRoot = nil;
-        // Loop on the data set and write anything not already present
-        // This will not include new attachments to existing (on dropbox) notes. This is by design.
         NSFetchRequest *fr = [[NSFetchRequest alloc] initWithEntityName:@"Note"];
         [fr setIncludesPendingChanges:NO];
         NSSortDescriptor *sortKey = [NSSortDescriptor sortDescriptorWithKey:@"uuid" ascending:YES];
         [fr setSortDescriptors:@[sortKey]];
         NSArray *notes = [self.dataSyncThreadContext executeFetchRequest:fr error:&error];
         for (Note *note in notes) {
-            BOOL found = NO;
-            for (NSURL *fileinfo in notesOnFS) {
-                NSString *name;
-                if (![fileinfo getResourceValue:&name forKey:NSURLNameKey error:&error]) {
-                    ALog(@"error looking for filename: %@", [error localizedDescription]);
-                    error = nil;
-                }
-                if([[[fileinfo path] lastPathComponent] caseInsensitiveCompare:note.uuid] == NSOrderedSame) {
-                    found = YES;
-                }
-            }
-            if(!found)
-                [self saveNoteToDropbox:note];
+            [self saveNoteToDropbox:note];
         }
         self.syncControllerReady = YES;
         [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kIAMDataSyncControllerReady object:self]];
-        DLog(@"End copy of coredata db to dropbox.");
+        DLog(@"End copy of coredata db to dropbox. Executing block");
+        if (block) {
+            block();
+        }
     });
 }
 
@@ -322,7 +334,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
     if(![[encodedTitle pathExtension] isEqualToString:kNotesExtension])
         encodedTitle = [encodedTitle stringByAppendingFormat:@".%@", kNotesExtension];
     NSURL *noteTextPath = [notePath URLByAppendingPathComponent:encodedTitle isDirectory:NO];
-    if(![note.text writeToURL:noteTextPath atomically:YES encoding:NSUTF8StringEncoding error:&error]) {
+    if(![self writeString:note.text cryptedToURL:noteTextPath withError:&error]) {
         DLog(@"Error writing note text saving to dropbox at %@: %@.", noteTextPath, [error description]);
     }
     // Now write all the attachments
@@ -600,7 +612,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
             }
             newNote.title = titolo;
             newNote.creationDate = newNote.timeStamp = modificationDate;
-            newNote.text = [[NSString alloc] initWithContentsOfURL:fileInfo encoding:NSUTF8StringEncoding error:&error];
+            newNote.text = [self newStringDecryptedFromURL:fileInfo withError:&error];
             if(!newNote.text) {
                 ALog(@"Serious error reading note %@: %@", fileInfo, [error description]);
             }
