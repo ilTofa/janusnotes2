@@ -20,9 +20,15 @@
 @property BOOL syncControllerInited;
 @property (nonatomic, readonly) NSManagedObjectContext *dataSyncThreadContext;
 
+@property BOOL notesAreEncrypted;
+
 + (IAMDataSyncController *)sharedInstance;
 
 - (void)refreshContentFromRemote;
 - (void)deleteNoteTextWithUUID:(NSString *)uuid afterFilenameChangeFrom:(NSString *)oldFilename;
+
+- (void)cryptNotesWithPassword:(NSString *)password andCompletionBlock:(void (^)(void))block;
+- (void)decryptNotesWithCompletionBlock:(void (^)(void))block;
+- (NSString *)cryptPassword;
 
 @end

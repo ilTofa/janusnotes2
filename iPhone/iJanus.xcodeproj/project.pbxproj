@@ -95,6 +95,11 @@
 		64BB69F41715BB6600875601 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64BB69F31715BB6600875601 /* QuartzCore.framework */; };
 		64CC812F1717F1B800C129B0 /* IAMDataSyncController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64CC812E1717F1B800C129B0 /* IAMDataSyncController.m */; };
 		64DE6C261727E5320031183A /* NSManagedObjectContext+FetchedObjectFromURI.m in Sources */ = {isa = PBXBuildFile; fileRef = 64DE6C251727E5320031183A /* NSManagedObjectContext+FetchedObjectFromURI.m */; };
+		64ED90FA1743E46E00203969 /* STKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 64ED90F91743E46E00203969 /* STKeychain.m */; };
+		64ED91061743E48900203969 /* RNCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 64ED90FF1743E48900203969 /* RNCryptor.m */; };
+		64ED91071743E48900203969 /* RNCryptorEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 64ED91011743E48900203969 /* RNCryptorEngine.m */; };
+		64ED91081743E48900203969 /* RNDecryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 64ED91031743E48900203969 /* RNDecryptor.m */; };
+		64ED91091743E48900203969 /* RNEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 64ED91051743E48900203969 /* RNEncryptor.m */; };
 		64F31CC416E4AF9000A80BE0 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F31CC316E4AF9000A80BE0 /* Note.m */; };
 		64F31CCA16E5009B00A80BE0 /* Attachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F31CC916E5009B00A80BE0 /* Attachment.m */; };
 		64F9AC4D1704544800299C1B /* UIImage+FixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F9AC4C1704544800299C1B /* UIImage+FixOrientation.m */; };
@@ -226,6 +231,18 @@
 		64CC812E1717F1B800C129B0 /* IAMDataSyncController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IAMDataSyncController.m; path = ../common/iCloud/IAMDataSyncController.m; sourceTree = "<group>"; };
 		64DE6C241727E5320031183A /* NSManagedObjectContext+FetchedObjectFromURI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSManagedObjectContext+FetchedObjectFromURI.h"; path = "../common/iCloud/NSManagedObjectContext+FetchedObjectFromURI.h"; sourceTree = "<group>"; };
 		64DE6C251727E5320031183A /* NSManagedObjectContext+FetchedObjectFromURI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSManagedObjectContext+FetchedObjectFromURI.m"; path = "../common/iCloud/NSManagedObjectContext+FetchedObjectFromURI.m"; sourceTree = "<group>"; };
+		64ED90F81743E46E00203969 /* STKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STKeychain.h; path = ../common/Utilitites/STKeychain.h; sourceTree = "<group>"; };
+		64ED90F91743E46E00203969 /* STKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STKeychain.m; path = ../common/Utilitites/STKeychain.m; sourceTree = "<group>"; };
+		64ED90FC1743E48900203969 /* RNCryptor+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor+Private.h"; sourceTree = "<group>"; };
+		64ED90FD1743E48900203969 /* RNCryptor-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor-Prefix.pch"; sourceTree = "<group>"; };
+		64ED90FE1743E48900203969 /* RNCryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCryptor.h; sourceTree = "<group>"; };
+		64ED90FF1743E48900203969 /* RNCryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCryptor.m; sourceTree = "<group>"; };
+		64ED91001743E48900203969 /* RNCryptorEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCryptorEngine.h; sourceTree = "<group>"; };
+		64ED91011743E48900203969 /* RNCryptorEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCryptorEngine.m; sourceTree = "<group>"; };
+		64ED91021743E48900203969 /* RNDecryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNDecryptor.h; sourceTree = "<group>"; };
+		64ED91031743E48900203969 /* RNDecryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNDecryptor.m; sourceTree = "<group>"; };
+		64ED91041743E48900203969 /* RNEncryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNEncryptor.h; sourceTree = "<group>"; };
+		64ED91051743E48900203969 /* RNEncryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNEncryptor.m; sourceTree = "<group>"; };
 		64F31CC216E4AF9000A80BE0 /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Note.h; path = ../common/iCloud/Note.h; sourceTree = "<group>"; };
 		64F31CC316E4AF9000A80BE0 /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Note.m; path = ../common/iCloud/Note.m; sourceTree = "<group>"; };
 		64F31CC816E5009B00A80BE0 /* Attachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Attachment.h; path = ../common/iCloud/Attachment.h; sourceTree = "<group>"; };
@@ -345,6 +362,9 @@
 		64845FE316E019F20046BE9C /* Utilities (common) */ = {
 			isa = PBXGroup;
 			children = (
+				64ED90FB1743E48900203969 /* RNCryptor */,
+				64ED90F81743E46E00203969 /* STKeychain.h */,
+				64ED90F91743E46E00203969 /* STKeychain.m */,
 				6499CA0B173D4EA5004230E7 /* PiwikTracker */,
 				6429F2C61716FBD60030E932 /* NSString+UUID.h */,
 				6429F2C71716FBD60030E932 /* NSString+UUID.m */,
@@ -507,6 +527,24 @@
 			path = AudioRecord;
 			sourceTree = "<group>";
 		};
+		64ED90FB1743E48900203969 /* RNCryptor */ = {
+			isa = PBXGroup;
+			children = (
+				64ED90FC1743E48900203969 /* RNCryptor+Private.h */,
+				64ED90FD1743E48900203969 /* RNCryptor-Prefix.pch */,
+				64ED90FE1743E48900203969 /* RNCryptor.h */,
+				64ED90FF1743E48900203969 /* RNCryptor.m */,
+				64ED91001743E48900203969 /* RNCryptorEngine.h */,
+				64ED91011743E48900203969 /* RNCryptorEngine.m */,
+				64ED91021743E48900203969 /* RNDecryptor.h */,
+				64ED91031743E48900203969 /* RNDecryptor.m */,
+				64ED91041743E48900203969 /* RNEncryptor.h */,
+				64ED91051743E48900203969 /* RNEncryptor.m */,
+			);
+			name = RNCryptor;
+			path = ../common/RNCryptor;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -651,6 +689,11 @@
 				6499CA21173D4EA5004230E7 /* PTTimerDispatchStrategy.m in Sources */,
 				6499CA22173D4EA5004230E7 /* PTTrackedViewController.m in Sources */,
 				6499CA23173D4EA5004230E7 /* PTUserAgentReader.m in Sources */,
+				64ED90FA1743E46E00203969 /* STKeychain.m in Sources */,
+				64ED91061743E48900203969 /* RNCryptor.m in Sources */,
+				64ED91071743E48900203969 /* RNCryptorEngine.m in Sources */,
+				64ED91081743E48900203969 /* RNDecryptor.m in Sources */,
+				64ED91091743E48900203969 /* RNEncryptor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

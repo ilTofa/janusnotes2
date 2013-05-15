@@ -12,9 +12,14 @@
 #import "CoreDataController.h"
 #import "Note.h"
 #import "Attachment.h"
+#import "RNEncryptor.h"
+#import "RNDecryptor.h"
+#import "STKeychain.h"
 
 #define kNotesExtension @"txt"
 #define kAttachmentDirectory @"Attachments"
+#define kMagicCryptFilename @".crypted"
+#define kMagicString @"This is definitely a rncrypted string. Whatever that means."
 
 #pragma mark - filename helpers
 
@@ -131,7 +136,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
     if([DBFilesystem sharedFilesystem].completedFirstSync) {
         // Copy current notes (if new account) to dropbox and notify
         if(![[[NSUserDefaults standardUserDefaults] stringForKey:@"currentDropboxAccount"] isEqualToString:[DBAccountManager sharedManager].linkedAccount.info.email])
-            [self copyDataToDropbox];
+            [self copyCurrentDataToDropboxWithCompletionBlock:nil];
         // Notify interested parties that the sync engine is ready to be used (and set the flag)
         dispatch_async(dispatch_get_main_queue(), ^{
             [self refreshContentFromRemote];
@@ -145,6 +150,116 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
             [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(checkFirstSync:) userInfo:nil repeats:NO];
         });
     }
+}
+
+#pragma mark - Crypt support
+
+- (void)setCryptPassword:(NSString *)password {
+    // In case of error, the password is not changed.
+    NSError *error;
+    DBPath *magicFile = [[DBPath root] childPath:kMagicCryptFilename];
+    if(password) {
+        NSData *magicContent = [kMagicString dataUsingEncoding:NSUTF8StringEncoding];
+        NSData *encryptedData = [RNEncryptor encryptData:magicContent withSettings:kRNCryptorAES256Settings password:password error:&error];
+        DBFile *magicTextFile = [[DBFilesystem sharedFilesystem] openFile:magicFile error:&error];
+        if(!magicTextFile) {
+            // tring to create it.
+            magicTextFile = [[DBFilesystem sharedFilesystem] createFile:magicFile error:&error];
+            if(!magicTextFile) {
+                ALog(@"Error creating magic file: %d.", [error code]);
+                return;
+            }
+        }
+        if(![magicTextFile writeData:encryptedData error:&error]) {
+            ALog(@"Error writing to magic file: %d.", [error code]);
+            return;
+        }
+        [STKeychain storeUsername:@"crypt" andPassword:password forServiceName:@"it.iltofa.janus" updateExisting:YES error:&error];
+    } else {
+        [STKeychain deleteItemForUsername:@"crypt" andServiceName:@"it.iltofa.janus" error:&error];
+        [[DBFilesystem sharedFilesystem] deletePath:magicFile error:&error];
+    }
+}
+
+- (void)cryptNotesWithPassword:(NSString *)password andCompletionBlock:(void (^)(void))block {
+    [self setCryptPassword:password];
+    self.notesAreEncrypted = YES;
+    [self copyCurrentDataToDropboxWithCompletionBlock:block];
+}
+
+- (void)decryptNotesWithCompletionBlock:(void (^)(void))block {
+    [self setCryptPassword:nil];
+    self.notesAreEncrypted = NO;
+    [self copyCurrentDataToDropboxWithCompletionBlock:block];
+}
+
+- (BOOL)filesystemIsCrypted {
+    NSError *error;
+    DBPath *magicFile = [[DBPath root] childPath:kMagicCryptFilename];
+    DBFile *magicTextFile = [[DBFilesystem sharedFilesystem] openFile:magicFile error:&error];
+    if(!magicTextFile) {
+        return NO;
+    }
+    return YES;
+}
+
+- (NSString *)cryptPassword {
+    NSError *error;
+    return [STKeychain getPasswordForUsername:@"crypt" andServiceName:@"it.iltofa.janus" error:&error];
+}
+
+- (BOOL)isCryptOKWithError:(DBError **)errorPtr {
+    NSString *cryptKey = [STKeychain getPasswordForUsername:@"crypt" andServiceName:@"it.iltofa.janus" error:errorPtr];
+    if(!cryptKey) {
+        ALog(@"Error reading crypt key on cryptd note directory: %@", [*errorPtr description]);
+        return NO;
+    }
+    return [self checkCryptPassword:cryptKey error:errorPtr];
+}
+
+- (BOOL)checkCryptPassword:(NSString *)password error:(DBError **)errorPtr {
+    DBPath *magicFile = [[DBPath root] childPath:kMagicCryptFilename];
+    DBFile *magicTextFile = [[DBFilesystem sharedFilesystem] openFile:magicFile error:errorPtr];
+    if(!magicTextFile) {
+        DLog(@"No magic file (%@). No crypt. (%@)", magicFile, [*errorPtr description]);
+        return NO;
+    }
+    NSData *magicContent = [magicTextFile readData:errorPtr];
+    if(!magicContent) {
+        DLog(@"No data in magic file (%@). No crypt. (%@)", magicFile, [*errorPtr description]);
+        return NO;
+    }
+    NSData *decryptedData = [RNDecryptor decryptData:magicContent withPassword:password error:errorPtr];
+    if(!decryptedData) {
+        ALog(@"Error decrypting magic file on cryptd note directory: %@", [*errorPtr description]);
+        return NO;
+    }
+    NSString *magicString = [[NSString alloc] initWithData:decryptedData encoding:NSUTF8StringEncoding];
+    if([magicString isEqualToString:kMagicString]) {
+        return YES;
+    }
+    *errorPtr = [NSError errorWithDomain:@"it.iltofa.janus" code:1 userInfo:nil];
+    return NO;
+}
+
+- (BOOL)writeString:(NSString *)text cryptedToDBFile:(DBFile *)file withError:(DBError **)errorPtr {
+    if (self.notesAreEncrypted) {
+        return [file writeData:[RNEncryptor encryptData:[text dataUsingEncoding:NSUTF8StringEncoding]
+                                           withSettings:kRNCryptorAES256Settings
+                                               password:self.cryptPassword
+                                                  error:errorPtr] error:errorPtr];
+        
+    } else {
+        return [file writeData:[text dataUsingEncoding:NSUTF8StringEncoding] error:errorPtr];
+    }
+}
+
+- (NSString *)newStringDecryptedFromDBFile:(DBFile *)file withError:(DBError **)errorPtr {
+    NSData *decryptedData = [file readData:errorPtr];
+    if (self.notesAreEncrypted) {
+        decryptedData = [RNDecryptor decryptData:decryptedData withPassword:self.cryptPassword error:errorPtr];
+    }
+    return [[NSString alloc] initWithData:decryptedData encoding:NSUTF8StringEncoding];
 }
 
 #pragma mark - RefreshContent from dropbox
@@ -200,43 +315,18 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
 #pragma mark - from CoreData to Dropbox (first sync AND user changes to data)
 
 // Copy all coredata db to dropbox (this is only if we have a new account)
-- (void)copyDataToDropbox {
+- (void)copyCurrentDataToDropboxWithCompletionBlock:(void (^)(void))block; {
     dispatch_async(_syncQueue, ^{
         DLog(@"Started copy of coredata db to dropbox (new user here).");
-        // Get notes ids
         NSError *error;
-        NSArray *filesAtRoot = [[DBFilesystem sharedFilesystem] listFolder:[DBPath root] error:&error];
-        if(!filesAtRoot) {
-            DLog(@"Aborting. Error reading notes: %d (%@)", [error code], [error description]);
-            NSLog(@"Aborting. Error reading notes: %d (%@)", [error code], [error description]);
-            return;
-        }
-        NSMutableArray *notesOnFS = [[NSMutableArray alloc] initWithCapacity:5];
-        for (DBFileInfo *fileInfo in filesAtRoot) {
-            if(fileInfo.isFolder) {
-                [notesOnFS addObject:fileInfo];
-                DLog(@"Note: %@ (%@)", fileInfo.path.name, fileInfo.modifiedTime);
-            } else {
-                DLog(@"Spurious file: %@ (%@)", fileInfo.path.name, fileInfo.modifiedTime);
-            }
-        }
-        filesAtRoot = nil;
-        // Loop on the data set and write anything not already present
-        // This will not include new attachments to existing (on dropbox) notes. This is by design.
+        // Loop on the data set and dump to dropbox
         NSFetchRequest *fr = [[NSFetchRequest alloc] initWithEntityName:@"Note"];
         [fr setIncludesPendingChanges:NO];
         NSSortDescriptor *sortKey = [NSSortDescriptor sortDescriptorWithKey:@"uuid" ascending:YES];
         [fr setSortDescriptors:@[sortKey]];
         NSArray *notes = [self.dataSyncThreadContext executeFetchRequest:fr error:&error];
         for (Note *note in notes) {
-            BOOL found = NO;
-            for (DBFileInfo *fileinfo in notesOnFS) {
-                if([fileinfo.path.name caseInsensitiveCompare:note.uuid] == NSOrderedSame) {
-                    found = YES;
-                }
-            }
-            if(!found)
-                [self saveNoteToDropbox:note];
+            [self saveNoteToDropbox:note];
         }
         [[NSUserDefaults standardUserDefaults] setValue:[DBAccountManager sharedManager].linkedAccount.info.email forKey:@"currentDropboxAccount"];
         DLog(@"End copy of coredata db to dropbox-");
@@ -265,7 +355,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
             DLog(@"Creating file to save a new note to dropbox. Error %d creating file at %@.", [error code], [noteTextPath stringValue]);
         }
     }
-    if(![noteTextFile writeString:note.text error:&error]) {
+    if(![self writeString:note.text cryptedToDBFile:noteTextFile withError:&error]) {
         DLog(@"Error %d writing note text saving to dropbox at %@.", [error code], [noteTextPath stringValue]);
     }
     // Now write all the attachments
@@ -383,13 +473,25 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
 - (void)syncAllFromDropbox {
     // Loop on the coredata existing data and delete whatever is not present on filesystem
     dispatch_async(_syncQueue, ^{
+        // Check crypt status.
+        NSError *error;
+        if(![self filesystemIsCrypted]) {
+            self.notesAreEncrypted = NO;
+        } else {
+            if([self isCryptOKWithError:&error]) {
+                self.notesAreEncrypted = YES;
+            } else {
+                // TODO: Call preferences
+                NSAssert(NO, @"Notes are crypted, password is wrong. This should be handled somewhere.");
+                return;
+            }
+        }
         _isResettingDataFromDropbox = YES;
         DLog(@"lookinf for deleted notes in current coredata db");
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"Note" inManagedObjectContext:self.dataSyncThreadContext];
         [fetchRequest setEntity:entity];
         [fetchRequest setSortDescriptors:@[[[NSSortDescriptor alloc] initWithKey:@"timeStamp" ascending:NO]]];
-        NSError *error;
         NSArray *notes = [self.dataSyncThreadContext executeFetchRequest:fetchRequest error:&error];
         for (Note *note in notes) {
             if(![self isNoteExistingOnFile:note.uuid]) {
@@ -489,7 +591,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
                 [self.dataSyncThreadContext rollback];
                 return NO;
             }
-            newNote.text = [noteOnDropbox readString:&error];
+            newNote.text = [self newStringDecryptedFromDBFile:noteOnDropbox withError:&error];
             if(!newNote.text) {
                 DLog(@"Serious error reading note %@: %d (%@)", fileInfo.path.stringValue, [error code], [error description]);
             }
