@@ -486,6 +486,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
         NSError *error;
         if(![self filesystemIsCrypted]) {
             self.notesAreEncrypted = NO;
+            [self setCryptPassword:nil];
         } else {
             if([self isCryptOKWithError:&error]) {
                 self.notesAreEncrypted = YES;
