@@ -64,6 +64,9 @@ typedef enum {
     UITableViewCell * tableCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:self.colorSet inSection:3]];
     tableCell.accessoryType = UITableViewCellAccessoryCheckmark;
     [self updateDropboxUI];
+    if([[IAMDataSyncController sharedInstance] needsSyncPassword]) {
+        [self changePasswordASAP];
+    }
 }
 
 -(void)updateDropboxUI {
@@ -115,6 +118,7 @@ typedef enum {
             }
             [self updateDropboxUI];
             [tableView deselectRowAtIndexPath:indexPath animated:YES];
+            [self done:self];
         }
         // Change password (only if already encrypted)
         if(indexPath.row == 2) {
@@ -205,36 +209,68 @@ typedef enum {
     [alertView show];
 }
 
+- (void)changePasswordASAP {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Set Crypt Password", nil)
+                                                        message:NSLocalizedString(@"Please insert remote crypt password.", nil)
+                                                       delegate:self
+                                              cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                                              otherButtonTitles:NSLocalizedString(@"Save", nil), nil];
+    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    if ([[IAMDataSyncController sharedInstance] notesAreEncrypted]) {
+        [alertView textFieldAtIndex:0].text = [[IAMDataSyncController sharedInstance] cryptPassword];
+    }
+    [alertView show];
+}
+
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    NSLog(@"Button %d clicked, text is: \'%@\'", buttonIndex, [alertView textFieldAtIndex:0].text);
-    if(buttonIndex == 1 && ![[alertView textFieldAtIndex:0].text isEqualToString:@""]) {
-        self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        self.hud.labelText = NSLocalizedString(@"Encrypting Notes", nil);
-        if([[IAMDataSyncController sharedInstance] notesAreEncrypted]) {
-            DLog(@"Notes are already encrypted. Re-Crypt with new password: %@", [alertView textFieldAtIndex:0].text);
-            self.hud.detailsLabelText = NSLocalizedString(@"Please wait while we crypt the notes...", nil);
-            [[IAMDataSyncController sharedInstance] cryptNotesWithPassword:[alertView textFieldAtIndex:0].text andCompletionBlock:^{
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    if(self.hud) {
-                        [self.hud hide:YES];
-                        self.hud = nil;
-                    }
-                });
-            }];
-        } else {
-            DLog(@"Crypt now the notes with key: \'%@\'", [alertView textFieldAtIndex:0].text);
-            self.hud.detailsLabelText = NSLocalizedString(@"Please wait while we re-encrypt the notes...", nil);
-            [[IAMDataSyncController sharedInstance] cryptNotesWithPassword:[alertView textFieldAtIndex:0].text andCompletionBlock:^{
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    if(self.hud) {
-                        [self.hud hide:YES];
-                        self.hud = nil;
-                    }
-                });
-            }];
+    if ([[IAMDataSyncController sharedInstance] needsSyncPassword]) {   // This is the handler for changed password on remote
+        [[IAMDataSyncController sharedInstance] setNeedsSyncPassword:NO];
+        NSError *error;
+        if(buttonIndex == 1 && ![[alertView textFieldAtIndex:0].text isEqualToString:@""]) {
+            if([[IAMDataSyncController sharedInstance] checkCryptPassword:[alertView textFieldAtIndex:0].text error:&error]) {
+                [[IAMDataSyncController sharedInstance] setCryptPassword:[alertView textFieldAtIndex:0].text];
+            }
         }
+        // in any case... if password is not OK, the refresh will fail and this one recalled. :)
+        if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+            [[NSNotificationCenter defaultCenter] postNotificationName:kPreferencesPopoverCanBeDismissed object:self];
+        else
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        // Give UI a second to stabilize (the call could reload this frame)
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            [[IAMDataSyncController sharedInstance] refreshContentFromRemote];
+        });
     } else {
-        self.encryptionSwitch.on = [[IAMDataSyncController sharedInstance] notesAreEncrypted];
+        NSLog(@"Button %d clicked, text is: \'%@\'", buttonIndex, [alertView textFieldAtIndex:0].text);
+        if(buttonIndex == 1 && ![[alertView textFieldAtIndex:0].text isEqualToString:@""]) {
+            self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            self.hud.labelText = NSLocalizedString(@"Encrypting Notes", nil);
+            if([[IAMDataSyncController sharedInstance] notesAreEncrypted]) {
+                DLog(@"Notes are already encrypted. Re-Crypt with new password: %@", [alertView textFieldAtIndex:0].text);
+                self.hud.detailsLabelText = NSLocalizedString(@"Please wait while we crypt the notes...", nil);
+                [[IAMDataSyncController sharedInstance] cryptNotesWithPassword:[alertView textFieldAtIndex:0].text andCompletionBlock:^{
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        if(self.hud) {
+                            [self.hud hide:YES];
+                            self.hud = nil;
+                        }
+                    });
+                }];
+            } else {
+                DLog(@"Crypt now the notes with key: \'%@\'", [alertView textFieldAtIndex:0].text);
+                self.hud.detailsLabelText = NSLocalizedString(@"Please wait while we re-encrypt the notes...", nil);
+                [[IAMDataSyncController sharedInstance] cryptNotesWithPassword:[alertView textFieldAtIndex:0].text andCompletionBlock:^{
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        if(self.hud) {
+                            [self.hud hide:YES];
+                            self.hud = nil;
+                        }
+                    });
+                }];
+            }
+        } else {
+            self.encryptionSwitch.on = [[IAMDataSyncController sharedInstance] notesAreEncrypted];
+        }
     }
 }
 

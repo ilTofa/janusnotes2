@@ -490,8 +490,12 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
             if([self isCryptOKWithError:&error]) {
                 self.notesAreEncrypted = YES;
             } else {
-                // TODO: Call preferences
-                NSAssert(NO, @"Notes are crypted, password is wrong. This should be handled somewhere.");
+                self.notesAreEncrypted = YES;
+                self.needsSyncPassword = YES;
+                DLog(@"Notes are crypted, password is wrong. Sending a notification now.");
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kIAMDataSyncNeedsAPasswordNow object:self]];
+                });
                 return;
             }
         }
@@ -550,8 +554,10 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
                     }
                 }
             } else {
-                DLog(@"Deleting spurious file at notes dropbox root: %@ (%@)", fileInfo.path.name, fileInfo.modifiedTime);
-                [[DBFilesystem sharedFilesystem] deletePath:fileInfo.path error:&error];
+                if(![fileInfo.path.name isEqualToString:kMagicCryptFilename]) {
+                    DLog(@"Deleting spurious file at notes dropbox root: %@ (%@)", fileInfo.path.name, fileInfo.modifiedTime);
+                    [[DBFilesystem sharedFilesystem] deletePath:fileInfo.path error:&error];
+                }
             }
         }
         DLog(@"Syncronization end");

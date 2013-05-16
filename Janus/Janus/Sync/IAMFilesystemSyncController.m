@@ -288,7 +288,6 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
         }
     }
     // In any case, merge back to mainview moc
-    DLog(@"propagating save to main UI moc");
     [self.coreDataController.mainThreadContext performBlock:^{
         [self.coreDataController.mainThreadContext mergeChangesFromContextDidSaveNotification:notification];
     }];
@@ -559,8 +558,10 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
                 }
                 
             } else {
-                DLog(@"Deleting spurious file at notes root: %@.", name);
-                [[NSFileManager defaultManager] removeItemAtURL:fileInfo error:&error];
+                if(![name isEqualToString:kMagicCryptFilename]) {
+                    DLog(@"Deleting spurious file at notes root: %@.", name);
+                    [[NSFileManager defaultManager] removeItemAtURL:fileInfo error:&error];
+                }
             }
         }
         DLog(@"Syncronization end");

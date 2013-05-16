@@ -45,7 +45,6 @@
     [self.theTable setDoubleAction:@selector(tableItemDoubleClick:)];
     self.noteEditorIsShown = @(NO);
     self.sharedManagedObjectContext = ((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).coreDataController.mainThreadContext;
-    DLog(@"Start listening to password needs");
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataSyncNeedsThePassword:) name:kIAMDataSyncNeedsAPasswordNow object:nil];
     // If db is still to be loaded, register to be notified else go directly
     if(!((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).coreDataController.coreDataIsReady)

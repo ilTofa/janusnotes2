@@ -121,8 +121,7 @@
             // in any case... if password is not OK, the refresh will fail and this one recalled. :)
             self.cryptPasswordController = nil;
             [self.window performClose:self];
-            [[IAMFilesystemSyncController sharedInstance] refreshContentFromRemote];
-            
+            [[IAMFilesystemSyncController sharedInstance] refreshContentFromRemote];            
         } else {
             if(self.cryptPasswordController.validPassword) {
                 NSAssert([self.encryptStatusButton boolValue], @"Crypt password set, but no encryption set or requested.");

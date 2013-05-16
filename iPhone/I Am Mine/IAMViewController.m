@@ -46,6 +46,7 @@
     // Set some sane defaults
     self.appDelegate = (IAMAppDelegate *)[[UIApplication sharedApplication] delegate];
     self.managedObjectContext = self.appDelegate.coreDataController.mainThreadContext;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataSyncNeedsThePassword:) name:kIAMDataSyncNeedsAPasswordNow object:nil];
     self.dateFormatter = [[NSDateFormatter alloc] init];
 	[self.dateFormatter setLocale:[NSLocale currentLocale]];
 	[self.dateFormatter setDateStyle:NSDateFormatterMediumStyle];
@@ -154,6 +155,11 @@
 - (void)endSyncNotificationHandler:(NSNotification *)note {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kIAMDataSyncRefreshTerminated object:nil];
     [self.refreshControl endRefreshing];
+}
+
+- (void)dataSyncNeedsThePassword:(NSNotification *)notification {
+    DLog(@"Notification caught for password need");
+    [self performSegueWithIdentifier:@"Preferences" sender:self];
 }
 
 #pragma mark -
