@@ -9,7 +9,6 @@
 #import "IAMPrefsWindowController.h"
 #import "IAMFilesystemSyncController.h"
 
-#import "GTPiwikAddOn.h"
 #import "IAMCryptPasswordWC.h"
 #import "IAMWaitingWindowController.h"
 
@@ -37,7 +36,6 @@
 - (void)windowDidLoad
 {
     [super windowDidLoad];
-    [GTPiwikAddOn trackEvent:@"preferencesControllerLoaded"];
     NSData *originalDataPath = [[NSUserDefaults standardUserDefaults] dataForKey:@"syncDirectory"];
     NSAssert(originalDataPath, @"syncDirectory userdefault is not set!");
     NSString *fontName = [[NSUserDefaults standardUserDefaults] stringForKey:@"fontName"];
@@ -68,7 +66,6 @@
             DLog(@"User selected URL %@", openPanel.URL);
             self.currentURL = [openPanel.URL path];
             [[IAMFilesystemSyncController sharedInstance] modifySyncDirectory:openPanel.URL];
-            [GTPiwikAddOn trackEvent:@"notesPathChanged"];
         }
     }];
 }
