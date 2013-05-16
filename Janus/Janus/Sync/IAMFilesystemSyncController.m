@@ -15,7 +15,7 @@
 #import "RNDecryptor.h"
 #import "STKeychain.h"
 
-#define kNotesExtension @"janusnotes"
+#define kNotesExtension @"jnote"
 #define kAttachmentDirectory @"Attachments"
 #define kMagicCryptFilename @".crypted"
 #define kMagicString @"This is definitely a rncrypted string. Whatever that means."
@@ -613,7 +613,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
             newNote.uuid = [[pathToNoteDir path] lastPathComponent];
             NSString *titolo = convertFromValidDropboxFilenames([[fileInfo path] lastPathComponent]);
             if([titolo hasSuffix:kNotesExtension]) {
-                titolo = [titolo substringToIndex:([titolo length] - 4)];
+                titolo = [titolo substringToIndex:([titolo length] - ([kNotesExtension length] + 1))];
             }
             newNote.title = titolo;
             newNote.creationDate = newNote.timeStamp = modificationDate;
