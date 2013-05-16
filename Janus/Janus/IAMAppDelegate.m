@@ -145,6 +145,10 @@
     if(!self.prefsController) {
         self.prefsController = [[IAMPrefsWindowController alloc] initWithWindowNibName:@"IAMPrefsWindowController"];
     }
+    // sender is nil, this is called because we need a password now...
+    if(!sender) {
+        self.prefsController.aPasswordIsNeededASAP = YES;
+    }
     [self.prefsController showWindow:self];
 }
 

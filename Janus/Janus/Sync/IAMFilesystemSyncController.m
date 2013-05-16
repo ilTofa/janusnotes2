@@ -63,7 +63,6 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
 
 @property NSData *secureBookmarkToData;
 @property NSURL *syncDirectory;
-@property (nonatomic) NSString *cryptPassword;
 
 @end
 
@@ -490,8 +489,11 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
             if([self isCryptOKWithError:&error]) {
                 self.notesAreEncrypted = YES;
             } else {
-                // TODO: call preferences!
-                NSAssert(NO, @"Notes are crypted, password is wrong. This should be handled somewhere.");
+                self.notesAreEncrypted = YES;
+                DLog(@"Notes are crypted, password is wrong. Sending a notification now.");
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kIAMDataSyncNeedsAPasswordNow object:self]];
+                });
                 return;
             }
         }

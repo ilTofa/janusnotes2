@@ -12,6 +12,7 @@
 
 @property (weak) IBOutlet NSTextField *pathToLabel;
 @property NSFont *currentFont;
+@property BOOL aPasswordIsNeededASAP;
 
 @property IBOutlet NSNumber *encryptStatusButton;
 

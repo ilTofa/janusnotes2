@@ -13,6 +13,7 @@
 #define kIAMDataSyncControllerReady @"IAMDataSyncControllerReady"
 #define kIAMDataSyncControllerStopped @"IAMDataSyncControllerStopped"
 #define kIAMDataSyncRefreshTerminated @"IAMDataSyncRefreshTerminated"
+#define kIAMDataSyncNeedsAPasswordNow @"kIAMDataSyncNeedsAPasswordNow"
 
 @interface IAMFilesystemSyncController : NSObject
 
@@ -21,6 +22,8 @@
 @property (nonatomic, readonly) NSManagedObjectContext *dataSyncThreadContext;
 
 @property BOOL notesAreEncrypted;
+
+@property (nonatomic) NSString *cryptPassword;
 
 + (IAMFilesystemSyncController *)sharedInstance;
 
@@ -32,6 +35,6 @@
 
 - (void)cryptNotesWithPassword:(NSString *)password andCompletionBlock:(void (^)(void))block;
 - (void)decryptNotesWithCompletionBlock:(void (^)(void))block;
-- (NSString *)cryptPassword;
+- (BOOL)checkCryptPassword:(NSString *)password error:(NSError **)errorPtr;
 
 @end

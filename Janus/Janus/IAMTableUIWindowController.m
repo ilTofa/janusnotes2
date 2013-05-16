@@ -46,6 +46,8 @@
     [self.theTable setDoubleAction:@selector(tableItemDoubleClick:)];
     self.noteEditorIsShown = @(NO);
     self.sharedManagedObjectContext = ((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).coreDataController.mainThreadContext;
+    DLog(@"Start listening to password needs");
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataSyncNeedsThePassword:) name:kIAMDataSyncNeedsAPasswordNow object:nil];
     // If db is still to be loaded, register to be notified else go directly
     if(!((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).coreDataController.coreDataIsReady)
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(coreDataIsReady:) name:GTCoreDataReady object:nil];
@@ -72,12 +74,17 @@
     [self.notesWindowMenuItem setState:NSOffState];
 }
 
+- (void)dataSyncNeedsThePassword:(NSNotification *)notification {
+    DLog(@"Notification caught for password need");
+    [(IAMAppDelegate *)[[NSApplication sharedApplication] delegate] preferencesAction:nil];
+}
+
 - (void)coreDataIsReady:(NSNotification *)notification {
     if(notification)
         DLog(@"called with notification %@", notification);
     else
         DLog(@"called directly from init");
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:GTCoreDataReady object:nil];
     // Init sync mamagement
     [IAMFilesystemSyncController sharedInstance];
     NSSortDescriptor *dateAddedSortDesc = [[NSSortDescriptor alloc] initWithKey:@"creationDate" ascending:NO];

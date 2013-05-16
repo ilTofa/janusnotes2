@@ -190,7 +190,7 @@ typedef enum {
 - (void)pleaseNotNow {
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil)
                                                         message:NSLocalizedString(@"Please wait for the dropbox sync to finish before starting re-encrytion", nil)
-                                                       delegate:nil cancelButtonTitle:NSLocalizedString(@"Cancel", nil) otherButtonTitles:nil];
+                                                       delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
     [alertView show];
     self.encryptionSwitch.on = [[IAMDataSyncController sharedInstance] notesAreEncrypted];
 }
@@ -203,7 +203,7 @@ typedef enum {
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Set Crypt Password", nil)
                                                         message:NSLocalizedString(@"This password will crypt and decrypt your notes.\nPlease choose a strong password and note it somewhere. Your notes will *not* be readable anymore without the password! Don't lose or forget it!", nil)
                                                        delegate:self
-                                              cancelButtonTitle:@"OK"
+                                              cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
                                               otherButtonTitles:NSLocalizedString(@"OK. Crypt!", nil), nil];
     alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
     if ([[IAMDataSyncController sharedInstance] notesAreEncrypted]) {

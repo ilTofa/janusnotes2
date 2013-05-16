@@ -50,6 +50,9 @@
     NSURL *originalSyncDirectory = [NSURL URLByResolvingBookmarkData:originalDataPath options:NSURLBookmarkResolutionWithSecurityScope relativeToURL:nil bookmarkDataIsStale:&staleData error:&error];
     self.currentURL = [originalSyncDirectory path];
     [self.pathToLabel setStringValue:[NSString stringWithFormat:NSLocalizedString(@"Path to Notes: %@", nil), [originalSyncDirectory path]]];
+    if(self.aPasswordIsNeededASAP) {
+        [self changePasswordASAP:self];
+    }
 }
 
 - (IBAction)changePath:(id)sender {
@@ -91,6 +94,13 @@
     }
 }
 
+- (IBAction)changePasswordASAP:(id)sender {
+    if(!self.cryptPasswordController) {
+        self.cryptPasswordController = [[IAMCryptPasswordWC alloc] initWithWindowNibName:@"IAMCryptPasswordWC"];
+    }
+    [[NSApplication sharedApplication] beginSheet:self.cryptPasswordController.window modalForWindow:self.window modalDelegate:self didEndSelector:@selector(didEndSheet:returnCode:contextInfo:) contextInfo:(__bridge void *)(self)];
+}
+
 - (IBAction)changePasswordAction:(id)sender {
     if(!self.cryptPasswordController) {
         self.cryptPasswordController = [[IAMCryptPasswordWC alloc] initWithWindowNibName:@"IAMCryptPasswordWC"];
@@ -101,26 +111,38 @@
 - (void)didEndSheet:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo {
     if(sheet == self.cryptPasswordController.window) {
         [self.cryptPasswordController.window orderOut:self];
-        if(self.cryptPasswordController.validPassword) {
-            NSAssert([self.encryptStatusButton boolValue], @"Crypt password set, but no encryption set or requested.");
-            if([[IAMFilesystemSyncController sharedInstance] notesAreEncrypted]) {
-                DLog(@"Notes are already encrypted. Re-Crypt with new password: %@", self.cryptPasswordController.validPassword);
-                [self showWaitingControllerWithString:@"Please wait while we crypt the notes..."];
-                [[IAMFilesystemSyncController sharedInstance] cryptNotesWithPassword:self.cryptPasswordController.validPassword andCompletionBlock:^{
-                    [[NSApplication sharedApplication] endSheet:self.waitingWindowController.window];
-                }];
-            } else {
-                DLog(@"Crypt now the notes with key: %@", self.cryptPasswordController.validPassword);
-                [self showWaitingControllerWithString:@"Please wait while we re-encrypt the notes..."];
-                [[IAMFilesystemSyncController sharedInstance] cryptNotesWithPassword:self.cryptPasswordController.validPassword andCompletionBlock:^{
-                    [[NSApplication sharedApplication] endSheet:self.waitingWindowController.window];
-                }];
+        if(contextInfo) {
+            NSError *error;
+            if([[IAMFilesystemSyncController sharedInstance] checkCryptPassword:self.cryptPasswordController.validPassword error:&error]) {
+                [[IAMFilesystemSyncController sharedInstance] setCryptPassword:self.cryptPasswordController.validPassword];
             }
+            // in any case... if password is not OK, the refresh will fail and this one recalled. :)
+            self.cryptPasswordController = nil;
+            [self.window performClose:self];
+            [[IAMFilesystemSyncController sharedInstance] refreshContentFromRemote];
+            
         } else {
-            DLog(@"No valid password, reset the buttno to the \"actual\" status");
-            self.encryptStatusButton = @([[IAMFilesystemSyncController sharedInstance] notesAreEncrypted]);
+            if(self.cryptPasswordController.validPassword) {
+                NSAssert([self.encryptStatusButton boolValue], @"Crypt password set, but no encryption set or requested.");
+                if([[IAMFilesystemSyncController sharedInstance] notesAreEncrypted]) {
+                    DLog(@"Notes are already encrypted. Re-Crypt with new password: %@", self.cryptPasswordController.validPassword);
+                    [self showWaitingControllerWithString:@"Please wait while we crypt the notes..."];
+                    [[IAMFilesystemSyncController sharedInstance] cryptNotesWithPassword:self.cryptPasswordController.validPassword andCompletionBlock:^{
+                        [[NSApplication sharedApplication] endSheet:self.waitingWindowController.window];
+                    }];
+                } else {
+                    DLog(@"Crypt now the notes with key: %@", self.cryptPasswordController.validPassword);
+                    [self showWaitingControllerWithString:@"Please wait while we re-encrypt the notes..."];
+                    [[IAMFilesystemSyncController sharedInstance] cryptNotesWithPassword:self.cryptPasswordController.validPassword andCompletionBlock:^{
+                        [[NSApplication sharedApplication] endSheet:self.waitingWindowController.window];
+                    }];
+                }
+            } else {
+                DLog(@"No valid password, reset the buttno to the \"actual\" status");
+                self.encryptStatusButton = @([[IAMFilesystemSyncController sharedInstance] notesAreEncrypted]);
+            }
+            self.cryptPasswordController = nil;
         }
-        self.cryptPasswordController = nil;
     } else {
         // This is a windowWaiting controller
         [self.waitingWindowController.window orderOut:self];
