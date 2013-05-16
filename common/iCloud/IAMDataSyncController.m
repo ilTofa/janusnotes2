@@ -16,7 +16,7 @@
 #import "RNDecryptor.h"
 #import "STKeychain.h"
 
-#define kNotesExtension @"txt"
+#define kNotesExtension @"janusnotes"
 #define kAttachmentDirectory @"Attachments"
 #define kMagicCryptFilename @".crypted"
 #define kMagicString @"This is definitely a rncrypted string. Whatever that means."
