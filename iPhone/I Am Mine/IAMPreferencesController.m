@@ -9,7 +9,6 @@
 #import "IAMPreferencesController.h"
 
 #import "GTThemer.h"
-#import "GTPiwikAddOn.h"
 #import <Dropbox/Dropbox.h>
 #import "IAMDataSyncController.h"
 #import "MBProgressHUD.h"
@@ -45,7 +44,6 @@ typedef enum {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [GTPiwikAddOn trackEvent:@"preferencesControllerLoaded"];
     self.versionLabel.text = [NSString stringWithFormat:@"This I Am Mine version %@ (%@)\n©2013 Giacomo Tufano - All rights reserved.", [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"], [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"]];
     // Load base values
     self.encryptionSwitch.on = [[IAMDataSyncController sharedInstance] notesAreEncrypted];
@@ -107,11 +105,9 @@ typedef enum {
             if(self.dropboxLinked) {
                 DLog(@"Logout from dropbox");
                 [[[DBAccountManager sharedManager] linkedAccount] unlink];
-                [GTPiwikAddOn trackEvent:@"dropboxUnlinked"];
             } else {
                 DLog(@"Login into dropbox");
                 [[DBAccountManager sharedManager] linkFromController:self];
-                [GTPiwikAddOn trackEvent:@"dropboxLinkfired"];
                 // Wait a while for app syncing.
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^(void){
                     [self updateDropboxUI];
@@ -131,7 +127,6 @@ typedef enum {
     if(indexPath.section == fontSelector) {
         NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:self.fontFace inSection:fontSelector];
         DLog(@"Changing font from %d to %d.", self.fontFace, indexPath.row);
-        [GTPiwikAddOn trackEvent:[NSString stringWithFormat:@"changeFontTo?%d", indexPath.row]];
         [tableView deselectRowAtIndexPath:oldIndexPath animated:YES];
         self.fontFace = indexPath.row;
     }
@@ -139,7 +134,6 @@ typedef enum {
     if(indexPath.section == colorSelector) {
         NSInteger oldColorsSet = [[GTThemer sharedInstance] getStandardColorsID];
         DLog(@"Changing colors set from %d to %d.", oldColorsSet, indexPath.row);
-        [GTPiwikAddOn trackEvent:[NSString stringWithFormat:@"changeColorSetTo?%d", indexPath.row]];
         UITableViewCell * tableCell = [self.tableView cellForRowAtIndexPath:indexPath];
         tableCell.accessoryType = UITableViewCellAccessoryCheckmark;
         NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:oldColorsSet inSection:colorSelector];
@@ -169,7 +163,6 @@ typedef enum {
     DLog(@"This is sizePressed: called for a value of: %.0f", self.sizeStepper.value);
     self.fontSize = self.sizeStepper.value;
     self.sizeLabel.text = [NSString stringWithFormat:@"Text Size is %d", self.fontSize];
-    [GTPiwikAddOn trackEvent:[NSString stringWithFormat:@"fontSizeTo?%d", self.fontSize]];
     [[GTThemer sharedInstance] applyColorsToLabel:self.sizeLabel withFontSize:self.fontSize];
     [[GTThemer sharedInstance] saveStandardColors:self.colorSet];
     

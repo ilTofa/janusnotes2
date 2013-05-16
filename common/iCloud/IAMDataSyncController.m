@@ -159,6 +159,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
     NSError *error;
     DBPath *magicFile = [[DBPath root] childPath:kMagicCryptFilename];
     if(password) {
+        DLog(@"Setting crypt password to %@", password);
         NSData *magicContent = [kMagicString dataUsingEncoding:NSUTF8StringEncoding];
         NSData *encryptedData = [RNEncryptor encryptData:magicContent withSettings:kRNCryptorAES256Settings password:password error:&error];
         DBFile *magicTextFile = [[DBFilesystem sharedFilesystem] openFile:magicFile error:&error];
@@ -177,6 +178,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
         [magicTextFile close];
         [STKeychain storeUsername:@"crypt" andPassword:password forServiceName:@"it.iltofa.janus" updateExisting:YES error:&error];
     } else {
+        DLog(@"Deleting crypt password (setting to nil)");
         [STKeychain deleteItemForUsername:@"crypt" andServiceName:@"it.iltofa.janus" error:&error];
         [[DBFilesystem sharedFilesystem] deletePath:magicFile error:&error];
     }
