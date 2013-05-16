@@ -48,7 +48,12 @@
     NSURL *originalSyncDirectory = [NSURL URLByResolvingBookmarkData:originalDataPath options:NSURLBookmarkResolutionWithSecurityScope relativeToURL:nil bookmarkDataIsStale:&staleData error:&error];
     self.currentURL = [originalSyncDirectory path];
     [self.pathToLabel setStringValue:[NSString stringWithFormat:NSLocalizedString(@"Path to Notes: %@", nil), [originalSyncDirectory path]]];
+}
+
+- (void)windowDidBecomeKey:(NSNotification *)notification {
+    DLog(@"called.");
     if(self.aPasswordIsNeededASAP) {
+        self.aPasswordIsNeededASAP = NO;
         [self changePasswordASAP:self];
     }
 }
