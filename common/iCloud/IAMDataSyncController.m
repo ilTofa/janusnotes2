@@ -174,6 +174,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
             ALog(@"Error writing to magic file: %d.", [error code]);
             return;
         }
+        [magicTextFile close];
         [STKeychain storeUsername:@"crypt" andPassword:password forServiceName:@"it.iltofa.janus" updateExisting:YES error:&error];
     } else {
         [STKeychain deleteItemForUsername:@"crypt" andServiceName:@"it.iltofa.janus" error:&error];
@@ -197,10 +198,12 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
     NSError *error;
     DBPath *magicFile = [[DBPath root] childPath:kMagicCryptFilename];
     DBFile *magicTextFile = [[DBFilesystem sharedFilesystem] openFile:magicFile error:&error];
+    BOOL retValue = YES;
     if(!magicTextFile) {
-        return NO;
+        retValue = NO;
     }
-    return YES;
+    [magicTextFile close];
+    return retValue;
 }
 
 - (NSString *)cryptPassword {
@@ -225,6 +228,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
         return NO;
     }
     NSData *magicContent = [magicTextFile readData:errorPtr];
+    [magicTextFile close];
     if(!magicContent) {
         DLog(@"No data in magic file (%@). No crypt. (%@)", magicFile, [*errorPtr description]);
         return NO;
@@ -329,7 +333,10 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
             [self saveNoteToDropbox:note];
         }
         [[NSUserDefaults standardUserDefaults] setValue:[DBAccountManager sharedManager].linkedAccount.info.email forKey:@"currentDropboxAccount"];
-        DLog(@"End copy of coredata db to dropbox-");
+        DLog(@"End copy of coredata db to dropbox. Executing block");
+        if (block) {
+            block();
+        }
     });
 }
 

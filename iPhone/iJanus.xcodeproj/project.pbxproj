@@ -95,7 +95,7 @@
 		64BB69F41715BB6600875601 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64BB69F31715BB6600875601 /* QuartzCore.framework */; };
 		64CC812F1717F1B800C129B0 /* IAMDataSyncController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64CC812E1717F1B800C129B0 /* IAMDataSyncController.m */; };
 		64DE6C261727E5320031183A /* NSManagedObjectContext+FetchedObjectFromURI.m in Sources */ = {isa = PBXBuildFile; fileRef = 64DE6C251727E5320031183A /* NSManagedObjectContext+FetchedObjectFromURI.m */; };
-		64ED90FA1743E46E00203969 /* STKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 64ED90F91743E46E00203969 /* STKeychain.m */; };
+		64ED90FA1743E46E00203969 /* STKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 64ED90F91743E46E00203969 /* STKeychain.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		64ED91061743E48900203969 /* RNCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 64ED90FF1743E48900203969 /* RNCryptor.m */; };
 		64ED91071743E48900203969 /* RNCryptorEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 64ED91011743E48900203969 /* RNCryptorEngine.m */; };
 		64ED91081743E48900203969 /* RNDecryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 64ED91031743E48900203969 /* RNDecryptor.m */; };
@@ -359,6 +359,16 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
+		6476CFA91744FCA800A6195C /* Sync */ = {
+			isa = PBXGroup;
+			children = (
+				64CC812D1717F1B800C129B0 /* IAMDataSyncController.h */,
+				64CC812E1717F1B800C129B0 /* IAMDataSyncController.m */,
+			);
+			name = Sync;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		64845FE316E019F20046BE9C /* Utilities (common) */ = {
 			isa = PBXGroup;
 			children = (
@@ -411,8 +421,6 @@
 				64F31CC916E5009B00A80BE0 /* Attachment.m */,
 				64F31CC216E4AF9000A80BE0 /* Note.h */,
 				64F31CC316E4AF9000A80BE0 /* Note.m */,
-				64CC812D1717F1B800C129B0 /* IAMDataSyncController.h */,
-				64CC812E1717F1B800C129B0 /* IAMDataSyncController.m */,
 			);
 			name = "CoreData (common)";
 			sourceTree = "<group>";
@@ -463,6 +471,7 @@
 		64A0507516D28CCA0025E179 /* I Am Mine */ = {
 			isa = PBXGroup;
 			children = (
+				6476CFA91744FCA800A6195C /* Sync */,
 				64A755681702137A0085933D /* AudioRecord */,
 				6433103F16E0A8950064EC5C /* Utilities (iOS) */,
 				646602A216DBD373007622FC /* Images */,

@@ -11,6 +11,8 @@
 #import "GTThemer.h"
 #import "GTPiwikAddOn.h"
 #import <Dropbox/Dropbox.h>
+#import "IAMDataSyncController.h"
+#import "MBProgressHUD.h"
 
 typedef enum {
     syncManagement = 0,
@@ -22,6 +24,8 @@ typedef enum {
 @interface IAMPreferencesController ()
 
 @property NSInteger fontFace, fontSize, colorSet;
+
+@property MBProgressHUD *hud;
 
 @property BOOL dropboxLinked;
 
@@ -44,6 +48,7 @@ typedef enum {
     [GTPiwikAddOn trackEvent:@"preferencesControllerLoaded"];
     self.versionLabel.text = [NSString stringWithFormat:@"This I Am Mine version %@ (%@)\n©2013 Giacomo Tufano - All rights reserved.", [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"], [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"]];
     // Load base values
+    self.encryptionSwitch.on = [[IAMDataSyncController sharedInstance] notesAreEncrypted];
     self.fontSize = [[GTThemer sharedInstance] getStandardFontSize];
     [self.sizeStepper setValue:self.fontSize];
     self.colorSet = [[GTThemer sharedInstance] getStandardColorsID];
@@ -69,11 +74,19 @@ typedef enum {
     if(!dropboxAccount) {
         self.dropboxLinked = NO;
         self.dropboxLabel.text = NSLocalizedString(@"Syncronize Notes with Dropbox", nil);
+        self.encryptionSwitch.enabled = NO;
+        self.encryptionLabel.text = @"";
     }
     else {
         self.dropboxLinked = YES;
         self.dropboxLabel.text = NSLocalizedString(@"Stop Notes Sync with Dropbox", nil);
-    }    
+        self.encryptionSwitch.enabled = YES;
+        if(self.encryptionSwitch.isOn) {
+            self.encryptionLabel.text = NSLocalizedString(@"Change Encryption Password", nil);
+        } else {
+            self.encryptionLabel.text = @"";
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -89,21 +102,30 @@ typedef enum {
     DLog(@"This is tableView didSelectRowAtIndexPath:%@", indexPath);
     // Dropbox
     if(indexPath.section == syncManagement) {
-        if(self.dropboxLinked) {
-            DLog(@"Logout from dropbox");
-            [[[DBAccountManager sharedManager] linkedAccount] unlink];
-            [GTPiwikAddOn trackEvent:@"dropboxUnlinked"];
-        } else {
-            DLog(@"Login into dropbox");
-            [[DBAccountManager sharedManager] linkFromController:self];
-            [GTPiwikAddOn trackEvent:@"dropboxLinkfired"];
-            // Wait a while for app syncing.
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^(void){
-                [self updateDropboxUI];
-            });
+        // Dropbox link
+        if(indexPath.row == 0) {
+            if(self.dropboxLinked) {
+                DLog(@"Logout from dropbox");
+                [[[DBAccountManager sharedManager] linkedAccount] unlink];
+                [GTPiwikAddOn trackEvent:@"dropboxUnlinked"];
+            } else {
+                DLog(@"Login into dropbox");
+                [[DBAccountManager sharedManager] linkFromController:self];
+                [GTPiwikAddOn trackEvent:@"dropboxLinkfired"];
+                // Wait a while for app syncing.
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^(void){
+                    [self updateDropboxUI];
+                });
+            }
+            [self updateDropboxUI];
+            [tableView deselectRowAtIndexPath:indexPath animated:YES];
         }
-        [self updateDropboxUI];
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        // Change password (only if already encrypted)
+        if(indexPath.row == 2) {
+            if ([[IAMDataSyncController sharedInstance] notesAreEncrypted]) {
+                [self changePassword];
+            }
+        }
     }
     // Change font
     if(indexPath.section == fontSelector) {
@@ -163,6 +185,87 @@ typedef enum {
         [[NSNotificationCenter defaultCenter] postNotificationName:kPreferencesPopoverCanBeDismissed object:self];
     else
         [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+- (void)pleaseNotNow {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil)
+                                                        message:NSLocalizedString(@"Please wait for the dropbox sync to finish before starting re-encrytion", nil)
+                                                       delegate:nil cancelButtonTitle:NSLocalizedString(@"Cancel", nil) otherButtonTitles:nil];
+    [alertView show];
+    self.encryptionSwitch.on = [[IAMDataSyncController sharedInstance] notesAreEncrypted];
+}
+
+- (void)changePassword {
+    if ([[DBFilesystem sharedFilesystem] status]) {
+        [self pleaseNotNow];
+        return;
+    }
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Set Crypt Password", nil)
+                                                        message:NSLocalizedString(@"This password will crypt and decrypt your notes.\nPlease choose a strong password and note it somewhere. Your notes will *not* be readable anymore without the password! Don't lose or forget it!", nil)
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:NSLocalizedString(@"OK. Crypt!", nil), nil];
+    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    if ([[IAMDataSyncController sharedInstance] notesAreEncrypted]) {
+        [alertView textFieldAtIndex:0].text = [[IAMDataSyncController sharedInstance] cryptPassword];
+    }
+    [alertView show];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    NSLog(@"Button %d clicked, text is: \'%@\'", buttonIndex, [alertView textFieldAtIndex:0].text);
+    if(buttonIndex == 1 && ![[alertView textFieldAtIndex:0].text isEqualToString:@""]) {
+        self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        self.hud.labelText = NSLocalizedString(@"Encrypting Notes", nil);
+        if([[IAMDataSyncController sharedInstance] notesAreEncrypted]) {
+            DLog(@"Notes are already encrypted. Re-Crypt with new password: %@", [alertView textFieldAtIndex:0].text);
+            self.hud.detailsLabelText = NSLocalizedString(@"Please wait while we crypt the notes...", nil);
+            [[IAMDataSyncController sharedInstance] cryptNotesWithPassword:[alertView textFieldAtIndex:0].text andCompletionBlock:^{
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if(self.hud) {
+                        [self.hud hide:YES];
+                        self.hud = nil;
+                    }
+                });
+            }];
+        } else {
+            DLog(@"Crypt now the notes with key: \'%@\'", [alertView textFieldAtIndex:0].text);
+            self.hud.detailsLabelText = NSLocalizedString(@"Please wait while we re-encrypt the notes...", nil);
+            [[IAMDataSyncController sharedInstance] cryptNotesWithPassword:[alertView textFieldAtIndex:0].text andCompletionBlock:^{
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if(self.hud) {
+                        [self.hud hide:YES];
+                        self.hud = nil;
+                    }
+                });
+            }];
+        }
+    } else {
+        self.encryptionSwitch.on = [[IAMDataSyncController sharedInstance] notesAreEncrypted];
+    }
+}
+
+- (IBAction)encryptionAction:(id)sender {
+    if (self.encryptionSwitch.isOn) {
+        [self changePassword];
+    } else {
+        if ([[DBFilesystem sharedFilesystem] status]) {
+            [self pleaseNotNow];
+            return;
+        }
+        DLog(@"Remove crypt now.");
+        self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        self.hud.labelText = NSLocalizedString(@"Decrypting Notes", nil);
+        self.hud.detailsLabelText = NSLocalizedString(@"Please wait while we decrypt the notes...", nil);
+        [[IAMDataSyncController sharedInstance] decryptNotesWithCompletionBlock:^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if(self.hud) {
+                    [self.hud hide:YES];
+                    self.hud = nil;
+                }
+            });
+        }];
+    }
 }
 
 @end

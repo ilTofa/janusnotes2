@@ -16,7 +16,11 @@
 @property (weak, nonatomic) IBOutlet UIStepper *sizeStepper;
 @property (weak, nonatomic) IBOutlet UILabel *versionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dropboxLabel;
+@property (weak, nonatomic) IBOutlet UISwitch *encryptionSwitch;
+@property (weak, nonatomic) IBOutlet UILabel *encryptionLabel;
 
 - (IBAction)sizePressed:(id)sender;
 - (IBAction)done:(id)sender;
+- (IBAction)encryptionAction:(id)sender;
+
 @end
