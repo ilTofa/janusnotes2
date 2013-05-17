@@ -101,8 +101,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
         [accountMgr addObserver:self block:^(DBAccount *account) {
             [self gotNewDropboxUser:account];
         }];
-        // Listen to ourself, so to sync changes
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(localContextSaved:) name:NSManagedObjectContextDidSaveNotification object:_dataSyncThreadContext];
+        [self addReadmeIfNeeded];
     }
     return self;
 }
@@ -112,6 +111,8 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
     DBAccount *currentAccount = [DBAccountManager sharedManager].linkedAccount;
     if(currentAccount) {
         self.syncControllerInited = YES;
+        // Listen to ourself, so to sync changes
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(localContextSaved:) name:NSManagedObjectContextDidSaveNotification object:_dataSyncThreadContext];
         DBFilesystem *filesystem = [[DBFilesystem alloc] initWithAccount:currentAccount];
         [DBFilesystem setSharedFilesystem:filesystem];
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
@@ -121,9 +122,9 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
         dispatch_async(dispatch_get_main_queue(), ^{
             self.syncControllerInited = NO;
             [[NSUserDefaults standardUserDefaults] setValue:nil forKey:@"currentDropboxAccount"];
-            // TODO: we should probably kill the private queue and reset our moc
             [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kIAMDataSyncControllerStopped object:self]];
             self.syncControllerReady = NO;
+            [[NSNotificationCenter defaultCenter] removeObserver:self name:NSManagedObjectContextDidSaveNotification object:_dataSyncThreadContext];
             DLog(@"IAMDataSyncController is stopped.");
         });
     }
@@ -588,7 +589,6 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
         DLog(@"Syncronization end");
         _isResettingDataFromDropbox = NO;
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self addReadmeIfNeeded];
             [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kIAMDataSyncRefreshTerminated object:self]];
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         });
