@@ -34,6 +34,7 @@
 @property UIPopoverController *popover;
 // The note to be edited
 @property Note *editedNote;
+@property (strong) NSString *originalText;
 
 @property NSManagedObjectContext *noteEditorMOC;
 
@@ -62,8 +63,6 @@
         Note *newNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:self.noteEditorMOC];
         self.editedNote = newNote;
     } else { // Get a copy of edited note into the local context.
-//        NSURL *uri = [[self.editedNote objectID] URIRepresentation];
-//        self.editedNote = (Note *)[self.noteEditorMOC objectWithURI:uri];
         NSError *error;
         self.editedNote = (Note *)[self.noteEditorMOC existingObjectWithID:self.idForTheNoteToBeEdited error:&error];
         NSAssert1(self.editedNote, @"Shit! Invalid ObjectID, there. Error: %@", [error description]);
@@ -78,7 +77,7 @@
     // Preset the note
     [[GTThemer sharedInstance] applyColorsToView:self.titleEdit];
     self.originalTitle = self.titleEdit.text = self.editedNote.title;
-    self.textEdit.text = self.editedNote.text;
+    self.originalText = self.textEdit.text = self.editedNote.text;
     [[GTThemer sharedInstance] applyColorsToView:self.textEdit];
     [[GTThemer sharedInstance] applyColorsToView:self.view];
     [[GTThemer sharedInstance] applyColorsToView:self.collectionView];
@@ -88,6 +87,14 @@
     // If this is a new note, set the cursor on title field
     if([self.titleEdit.text isEqualToString:@""])
         [self.titleEdit becomeFirstResponder];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    if (![self.originalText isEqualToString:self.textEdit.text] || ![self.originalTitle isEqualToString:self.titleEdit.text]) {
+        DLog(@"Note is changed, save it in any case.");
+        [self save:nil];
+    }
+    [super viewWillDisappear:animated];
 }
 
 -(void)dealloc
@@ -219,6 +226,7 @@
         [[IAMDataSyncController sharedInstance] deleteNoteTextWithUUID:self.editedNote.uuid afterFilenameChangeFrom:self.originalTitle];
         self.originalTitle = self.editedNote.title;
     }
+    self.originalText = self.editedNote.text;
     // If called via action
     if(sender)
         [self.navigationController popToRootViewControllerAnimated:YES];
@@ -467,7 +475,6 @@
 		[self.recordView.view removeFromSuperview];
 	else
 		[self.popover dismissPopoverAnimated:YES];
-	self.recordView = nil;
 	self.recordView = nil;
 }
 
