@@ -136,7 +136,7 @@
 }
 
 - (IBAction)editNote:(id)sender {
-    DLog(@"Selected note for editing is: %@", [self.arrayController selectedObjects][0]);
+//    DLog(@"Selected note for editing is: %@", [self.arrayController selectedObjects][0]);
     IAMNoteEditorWC *noteEditor = [[IAMNoteEditorWC alloc] initWithWindowNibName:@"IAMNoteEditorWC"];
     [noteEditor setDelegate:self];
     [noteEditor setIdForTheNoteToBeEdited:[[self.arrayController selectedObjects][0] objectID]];
@@ -154,7 +154,7 @@
 }
 
 - (IBAction)deleteNote:(id)sender {
-    DLog(@"Selected note for deleting is: %@", [self.arrayController selectedObjects][0]);
+//    DLog(@"Selected note for deleting is: %@", [self.arrayController selectedObjects][0]);
     NSAlert *alert = [[NSAlert alloc] init];
     [alert setInformativeText:NSLocalizedString(@"Are you sure you want to delete the note?", nil)];
     [alert setMessageText:NSLocalizedString(@"Warning", @"")];

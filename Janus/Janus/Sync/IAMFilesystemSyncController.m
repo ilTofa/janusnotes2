@@ -257,12 +257,12 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
     // Any change to our context will be reflected here.
     // Propagate them also to the dropbox store UNLESS we're init loading from it
     if(!_isResettingDataFromDropbox) {
-        DLog(@"Propagating moc changes to dropbox");
+//        DLog(@"Propagating moc changes to dropbox");
         NSSet *deletedObjects = [notification.userInfo objectForKey:NSDeletedObjectsKey];
         NSMutableSet *changedObjects = [[NSMutableSet alloc] initWithSet:[notification.userInfo objectForKey:NSInsertedObjectsKey]];
         [changedObjects unionSet:[notification.userInfo objectForKey:NSUpdatedObjectsKey]];
         for(NSManagedObject *obj in deletedObjects){
-            DLog(@"Deleted objects");
+//            DLog(@"Deleted objects");
             if([obj.entity.name isEqualToString:@"Attachment"]) {
                 if(!((Attachment *)obj).note) {
                     ALog(@"Deleted attachment belongs to a nil note, don't delete!");
@@ -276,7 +276,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
             }
         }
         for(NSManagedObject *obj in changedObjects){
-            DLog(@"changed objects");
+//            DLog(@"changed objects");
             // If attachment get the corresponding note to insert
             if([obj.entity.name isEqualToString:@"Attachment"]) {
                 DLog(@"C - An attachment %@ for note %@", ((Attachment *)obj).filename, ((Attachment *)obj).note.title);
@@ -320,7 +320,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
 
 // Save the passed note to dropbox
 - (void)saveNoteToDropbox:(Note *)note {
-    DLog(@"Copying note %@ (%ld attachments) to dropbox.", note.title, (unsigned long)[note.attachment count]);
+//    DLog(@"Copying note %@ (%ld attachments) to dropbox.", note.title, (unsigned long)[note.attachment count]);
     NSError *error;
     // Create folder (named after uuid)
     NSURL *notePath = [self.syncDirectory URLByAppendingPathComponent:note.uuid isDirectory:YES];
