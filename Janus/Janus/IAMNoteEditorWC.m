@@ -372,6 +372,7 @@
     switch (returnCode) {
         case NSAlertFirstButtonReturn:
             // Save button
+            [self saveAndContinue:self];
             _userConsentedToClose = YES;
             [[self window] performClose:self];
             break;
