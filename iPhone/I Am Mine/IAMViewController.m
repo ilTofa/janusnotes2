@@ -238,7 +238,7 @@
     }
     else
         queryString = @"text  like[c] \"*\"";
-    DLog(@"Fetching again. Query string is: '%@'", queryString);
+//    DLog(@"Fetching again. Query string is: '%@'", queryString);
     NSPredicate *predicate = [NSPredicate predicateWithFormat:queryString];
     [fetchRequest setPredicate:predicate];
     

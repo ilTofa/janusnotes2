@@ -501,7 +501,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
             }
         }
         _isResettingDataFromDropbox = YES;
-        DLog(@"lookinf for deleted notes in current coredata db");
+//        DLog(@"lookinf for deleted notes in current coredata db");
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"Note" inManagedObjectContext:self.dataSyncThreadContext];
         [fetchRequest setEntity:entity];
@@ -624,7 +624,6 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
             return YES;
         }
         for (DBFileInfo *attachmentInfo in filesInAttachmentDir) {
-//            DLog(@"Copying attachment: %@ to CoreData note %@", attachmentInfo.path.name, newNote.title);
             DBFile *attachmentOnDropbox = [[DBFilesystem sharedFilesystem] openFile:attachmentInfo.path error:&error];
             if(!attachmentOnDropbox) {
                 ALog(@"Aborting attachment copy to coredata. Error %d opening attachment %@", [error code], attachmentInfo.path.stringValue);
@@ -638,7 +637,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
             }
             // Kill existing attachments and reload.
             [note removeAttachment:note.attachment];
-            DLog(@"Copying attachment: %@ to CoreData note %@", attachmentInfo.path.name, newNote.title);
+//            DLog(@"Copying attachment: %@ to CoreData note %@", attachmentInfo.path.name, newNote.title);
             Attachment *newAttachment = [NSEntityDescription insertNewObjectForEntityForName:@"Attachment" inManagedObjectContext:self.dataSyncThreadContext];
             newAttachment.filename = attachmentInfo.path.name;
             newAttachment.extension = [attachmentInfo.path.stringValue pathExtension];

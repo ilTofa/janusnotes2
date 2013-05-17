@@ -121,7 +121,7 @@ Label riga 3</string>
                             </items>
                         </toolbar>
                         <label key="tableFooterView" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KBa-5A-T2n">
-                            <rect key="frame" x="0.0" y="668" width="400" height="44"/>
+                            <rect key="frame" x="0.0" y="756" width="400" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <string key="text">This I Am Mine version 1.0 (137)
 ©2013 Giacomo Tufano</string>
@@ -133,7 +133,7 @@ Label riga 3</string>
                             <tableViewSection headerTitle="Dropbox" id="tyQ-Qs-orq">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="N7S-ey-UGQ">
-                                        <rect key="frame" x="0.0" y="78" width="400" height="46"/>
+                                        <rect key="frame" x="0.0" y="78" width="400" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="1" width="380" height="43"/>
@@ -150,12 +150,55 @@ Label riga 3</string>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="VSR-wG-ySi">
+                                        <rect key="frame" x="0.0" y="123" width="400" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="10" y="0.0" width="380" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="Sr9-qY-JA1">
+                                                    <rect key="frame" x="88" y="8" width="79" height="27"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <connections>
+                                                        <action selector="encryptionAction:" destination="qUU-3D-CI1" eventType="valueChanged" id="Pj7-Js-gHn"/>
+                                                    </connections>
+                                                </switch>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Notes Encryption" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cGy-pr-WFM">
+                                                    <rect key="frame" x="173" y="11" width="120" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="z1H-bB-J0J">
+                                        <rect key="frame" x="0.0" y="167" width="400" height="45"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="10" y="0.0" width="380" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Change Encryption Password" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Dg5-7w-ZvP">
+                                                    <rect key="frame" x="40" y="11" width="300" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="Font" id="0uZ-Py-hQw">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="C3e-7P-8rL">
-                                        <rect key="frame" x="0.0" y="168" width="400" height="45"/>
+                                        <rect key="frame" x="0.0" y="256" width="400" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="1" width="380" height="43"/>
@@ -173,7 +216,7 @@ Label riga 3</string>
                                         </view>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="lTn-nT-JGX">
-                                        <rect key="frame" x="0.0" y="213" width="400" height="44"/>
+                                        <rect key="frame" x="0.0" y="301" width="400" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="0.0" width="380" height="43"/>
@@ -191,7 +234,7 @@ Label riga 3</string>
                                         </view>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="dCV-9e-e9n">
-                                        <rect key="frame" x="0.0" y="257" width="400" height="44"/>
+                                        <rect key="frame" x="0.0" y="345" width="400" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="0.0" width="380" height="43"/>
@@ -209,7 +252,7 @@ Label riga 3</string>
                                         </view>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="cfs-EP-NB2">
-                                        <rect key="frame" x="0.0" y="301" width="400" height="45"/>
+                                        <rect key="frame" x="0.0" y="389" width="400" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="0.0" width="380" height="43"/>
@@ -231,7 +274,7 @@ Label riga 3</string>
                             <tableViewSection headerTitle="Size" id="bGf-4y-R4b">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="9ng-1f-ajm">
-                                        <rect key="frame" x="0.0" y="390" width="400" height="46"/>
+                                        <rect key="frame" x="0.0" y="478" width="400" height="46"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="1" width="380" height="43"/>
@@ -260,7 +303,7 @@ Label riga 3</string>
                             <tableViewSection headerTitle="Colors" id="J5Z-4T-B5W">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="zvY-qW-Fef">
-                                        <rect key="frame" x="0.0" y="480" width="400" height="45"/>
+                                        <rect key="frame" x="0.0" y="568" width="400" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="1" width="380" height="43"/>
@@ -280,7 +323,7 @@ Label riga 3</string>
                                         <color key="backgroundColor" red="1" green="0.98823535439999999" blue="0.9215686917" alpha="1" colorSpace="deviceRGB"/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="sS6-rl-6St">
-                                        <rect key="frame" x="0.0" y="525" width="400" height="44"/>
+                                        <rect key="frame" x="0.0" y="613" width="400" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="0.0" width="380" height="43"/>
@@ -299,7 +342,7 @@ Label riga 3</string>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="yXC-M3-rjO">
-                                        <rect key="frame" x="0.0" y="569" width="400" height="44"/>
+                                        <rect key="frame" x="0.0" y="657" width="400" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="0.0" width="380" height="43"/>
@@ -319,7 +362,7 @@ Label riga 3</string>
                                         <color key="backgroundColor" red="0.0" green="0.18823531269999999" blue="0.31764706970000001" alpha="1" colorSpace="deviceRGB"/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="dXu-mm-aCa">
-                                        <rect key="frame" x="0.0" y="613" width="400" height="45"/>
+                                        <rect key="frame" x="0.0" y="701" width="400" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="0.0" width="380" height="43"/>
@@ -352,6 +395,8 @@ Label riga 3</string>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="dropboxLabel" destination="IZu-uw-e5n" id="iQA-6h-M2G"/>
+                        <outlet property="encryptionLabel" destination="Dg5-7w-ZvP" id="kqm-gM-r45"/>
+                        <outlet property="encryptionSwitch" destination="Sr9-qY-JA1" id="en1-59-C1D"/>
                         <outlet property="sizeLabel" destination="MKg-gq-wve" id="uv2-TF-0JB"/>
                         <outlet property="sizeStepper" destination="lAa-kv-wSV" id="SkK-GC-Krt"/>
                         <outlet property="versionLabel" destination="KBa-5A-T2n" id="O3V-6j-r6F"/>
@@ -721,8 +766,11 @@ Label riga 3</string>
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IAMPreferencesController.h"/>
             <relationships>
                 <relationship kind="action" name="done:"/>
+                <relationship kind="action" name="encryptionAction:"/>
                 <relationship kind="action" name="sizePressed:"/>
                 <relationship kind="outlet" name="dropboxLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="encryptionLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="encryptionSwitch" candidateClass="UISwitch"/>
                 <relationship kind="outlet" name="sizeLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="sizeStepper" candidateClass="UIStepper"/>
                 <relationship kind="outlet" name="versionLabel" candidateClass="UILabel"/>

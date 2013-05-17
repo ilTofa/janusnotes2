@@ -100,7 +100,6 @@ typedef enum {
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    DLog(@"This is tableView didSelectRowAtIndexPath:%@", indexPath);
     // Dropbox
     if(indexPath.section == syncManagement) {
         // Dropbox link
