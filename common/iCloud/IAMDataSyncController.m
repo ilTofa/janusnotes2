@@ -96,6 +96,8 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
         DBAccountManager* accountMgr = [[DBAccountManager alloc] initWithAppKey:@"8mwm9fif4s1fju2" secret:@"pvafyx258qkx2fm"];
         [DBAccountManager setSharedManager:accountMgr];
         DBAccount *account = accountMgr.linkedAccount;
+        // Listen to ourself, so to sync changes
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(localContextSaved:) name:NSManagedObjectContextDidSaveNotification object:_dataSyncThreadContext];
         [self gotNewDropboxUser:account];
         // Observe account changes and reset the shared filesystem just in case.
         [accountMgr addObserver:self block:^(DBAccount *account) {
@@ -111,8 +113,6 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
     DBAccount *currentAccount = [DBAccountManager sharedManager].linkedAccount;
     if(currentAccount) {
         self.syncControllerInited = YES;
-        // Listen to ourself, so to sync changes
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(localContextSaved:) name:NSManagedObjectContextDidSaveNotification object:_dataSyncThreadContext];
         DBFilesystem *filesystem = [[DBFilesystem alloc] initWithAccount:currentAccount];
         [DBFilesystem setSharedFilesystem:filesystem];
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
@@ -124,7 +124,6 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
             [[NSUserDefaults standardUserDefaults] setValue:nil forKey:@"currentDropboxAccount"];
             [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kIAMDataSyncControllerStopped object:self]];
             self.syncControllerReady = NO;
-            [[NSNotificationCenter defaultCenter] removeObserver:self name:NSManagedObjectContextDidSaveNotification object:_dataSyncThreadContext];
             DLog(@"IAMDataSyncController is stopped.");
         });
     }
@@ -304,8 +303,8 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
 
 - (void)localContextSaved:(NSNotification *)notification {
     // Any change to our context will be reflected here.
-    // Reflect them to the dropbox store UNLESS we're init loading from it
-    if(!_isResettingDataFromDropbox) {
+    // Reflect them to the dropbox store UNLESS we're init loading from it (or we're not using dropbox)
+    if(!_isResettingDataFromDropbox && self.syncControllerInited) {
         DLog(@"Propagating moc changes to dropbox");
         NSSet *deletedObjects = [notification.userInfo objectForKey:NSDeletedObjectsKey];
         NSMutableSet *changedObjects = [[NSMutableSet alloc] initWithSet:[notification.userInfo objectForKey:NSInsertedObjectsKey]];
