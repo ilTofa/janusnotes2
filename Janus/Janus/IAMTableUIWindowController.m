@@ -196,7 +196,6 @@
 }
 
 - (IBAction)searched:(id)sender {
-    DLog(@"Search string is %@", [self.searchField stringValue]);
     NSString *queryString = nil;
     if(![[self.searchField stringValue] isEqualToString:@""])
     {
@@ -214,7 +213,7 @@
     }
     else
         queryString = @"text  like[c] \"*\"";
-    DLog(@"Filtering on: '%@'", queryString);
+//    DLog(@"Filtering on: '%@'", queryString);
     [self.arrayController setFilterPredicate:[NSPredicate predicateWithFormat:queryString]];
 }
 
