@@ -117,7 +117,9 @@ typedef enum {
             }
             [self updateDropboxUI];
             [tableView deselectRowAtIndexPath:indexPath animated:YES];
-            [self done:self];
+            if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+                [self done:self];
+            }
         }
         // Change password (only if already encrypted)
         if(indexPath.row == 2) {
