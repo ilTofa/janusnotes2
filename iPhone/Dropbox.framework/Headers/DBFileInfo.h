@@ -5,7 +5,7 @@
 
 /** The file info class contains basic information about a file or folder. */
 
-@interface DBFileInfo : NSObject
+@interface DBFileInfo : NSObject <NSCopying>
 
 /** The path of the file or folder. */
 @property (nonatomic, readonly) DBPath *path;
