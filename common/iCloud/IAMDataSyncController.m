@@ -275,6 +275,30 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
     [self syncAllFromDropbox];
 }
 
+#pragma mark - Readme file
+
+-(void)addReadmeIfNeeded {
+    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"readmeAdded"]) {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"readmeAdded"];
+        dispatch_async(_syncQueue, ^{
+            DLog(@"Adding readme note.");
+            NSError *error;
+            NSString *filePath = [[NSBundle mainBundle] pathForResource:@"readme" ofType:@"txt"];
+            NSString *readmeText = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
+            if (readmeText) {
+                Note *readmeNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:self.dataSyncThreadContext];
+                readmeNote.title = @"Read me!";
+                readmeNote.text = readmeText;
+                if(![self.dataSyncThreadContext save:&error]) {
+                    ALog(@"Error saving readme note: %@,", [error description]);
+                }
+            } else {
+                ALog(@"Error reading readme text from bundle: %@", [error description]);
+            }
+        });
+    }
+}
+
 #pragma mark - handler propagating new (and updated) notes from coredata to dropbox
 
 - (void)localContextSaved:(NSNotification *)notification {
@@ -564,6 +588,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
         DLog(@"Syncronization end");
         _isResettingDataFromDropbox = NO;
         dispatch_async(dispatch_get_main_queue(), ^{
+            [self addReadmeIfNeeded];
             [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kIAMDataSyncRefreshTerminated object:self]];
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         });

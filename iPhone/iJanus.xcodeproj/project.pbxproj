@@ -77,6 +77,7 @@
 		64A8A7EA16E7B6010013AFFF /* link-icon-big@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64A8A7E816E7B6010013AFFF /* link-icon-big@2x.png */; };
 		64A8A7ED16E7BCF90013AFFF /* link-unknown-big.png in Resources */ = {isa = PBXBuildFile; fileRef = 64A8A7EB16E7BCF90013AFFF /* link-unknown-big.png */; };
 		64A8A7EE16E7BCF90013AFFF /* link-unknown-big@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64A8A7EC16E7BCF90013AFFF /* link-unknown-big@2x.png */; };
+		64B56853174658B3006D04C4 /* readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 64B56852174658B3006D04C4 /* readme.txt */; };
 		64B9B4A516D7801100607F39 /* IAMNoteEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 64B9B4A416D7801100607F39 /* IAMNoteEdit.m */; };
 		64BB200F16EA000E00FE6C77 /* GTThemer.m in Sources */ = {isa = PBXBuildFile; fileRef = 64BB200E16EA000E00FE6C77 /* GTThemer.m */; };
 		64BB69EC1715BB2C00875601 /* Dropbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64BB69EB1715BB2C00875601 /* Dropbox.framework */; };
@@ -187,6 +188,7 @@
 		64A8A7E816E7B6010013AFFF /* link-icon-big@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "link-icon-big@2x.png"; path = "Images/link-icon-big@2x.png"; sourceTree = "<group>"; };
 		64A8A7EB16E7BCF90013AFFF /* link-unknown-big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "link-unknown-big.png"; path = "Images/link-unknown-big.png"; sourceTree = "<group>"; };
 		64A8A7EC16E7BCF90013AFFF /* link-unknown-big@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "link-unknown-big@2x.png"; path = "Images/link-unknown-big@2x.png"; sourceTree = "<group>"; };
+		64B56852174658B3006D04C4 /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = readme.txt; path = ../../common/Utilitites/readme.txt; sourceTree = "<group>"; };
 		64B9B4A316D7801100607F39 /* IAMNoteEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMNoteEdit.h; sourceTree = "<group>"; };
 		64B9B4A416D7801100607F39 /* IAMNoteEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMNoteEdit.m; sourceTree = "<group>"; };
 		64BB200D16EA000E00FE6C77 /* GTThemer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTThemer.h; sourceTree = "<group>"; };
@@ -440,6 +442,7 @@
 		64A0507616D28CCA0025E179 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				64B56852174658B3006D04C4 /* readme.txt */,
 				640EE115173A476F0006A9A2 /* Default.png */,
 				640EE113173A47690006A9A2 /* Default@2x.png */,
 				640EE111173A475F0006A9A2 /* Default-568h@2x.png */,
@@ -604,6 +607,7 @@
 				640EE112173A475F0006A9A2 /* Default-568h@2x.png in Resources */,
 				640EE114173A47690006A9A2 /* Default@2x.png in Resources */,
 				640EE116173A476F0006A9A2 /* Default.png in Resources */,
+				64B56853174658B3006D04C4 /* readme.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
