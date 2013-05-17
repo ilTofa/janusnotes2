@@ -603,7 +603,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
         }
         if(![isDirectory boolValue]) {
             // This is the note
-            DLog(@"Copying note %@ to CoreData", name);
+//            DLog(@"Copying note %@ to CoreData", name);
             // if note is nil
             if(!note) {
                 newNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:self.dataSyncThreadContext];
@@ -647,7 +647,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
             }
             // Kill existing attachments and reload.
             [newNote removeAttachment:newNote.attachment];
-            DLog(@"Copying attachment %@ to CoreData note %@", name, newNote.title);
+//            DLog(@"Copying attachment %@ to CoreData note %@", name, newNote.title);
             Attachment *newAttachment = [NSEntityDescription insertNewObjectForEntityForName:@"Attachment" inManagedObjectContext:self.dataSyncThreadContext];
             newAttachment.filename = [[attachmentInfo path] lastPathComponent];
             newAttachment.extension = attachmentInfo.path.pathExtension;

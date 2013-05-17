@@ -166,7 +166,7 @@ static NSOperationQueue *_presentedItemOperationQueue;
     [_mainThreadContext setPersistentStoreCoordinator:_psc];
     if([NSFileManager instancesRespondToSelector:@selector(ubiquityIdentityToken)])
     {
-        DLog(@"iCloud on iOS6+/OSX10.8+ present");
+        DLog(@"iOS6+/OSX10.8+");
         _currentUbiquityToken = [[NSFileManager defaultManager] ubiquityIdentityToken];
         //subscribe to the account change notification
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -179,12 +179,12 @@ static NSOperationQueue *_presentedItemOperationQueue;
         NSURL *iCloudContainer = [[NSFileManager defaultManager] URLForUbiquityContainerIdentifier:nil];
         if(iCloudContainer)
         {
-            DLog(@"iCloud on iOS5+/OSX10.7+ present");
+            DLog(@"iOS5+/OSX10.7+");
             _currentUbiquityToken = iCloudContainer;
         }
         else // iCloud not available
         {
-            DLog(@"iCloud *NOT* present");
+            DLog(@"Legacy OS");
             _currentUbiquityToken = nil;
         }
     }
@@ -358,11 +358,7 @@ static NSOperationQueue *_presentedItemOperationQueue;
 - (void)asyncLoadPersistentStores {
     NSError *error = nil;
 
-    if ([self loadLocalPersistentStore:&error])
-    {
-        DLog(@"Added local store");
-    }
-    else
+    if (![self loadLocalPersistentStore:&error])
     {
         NSLog(@"Unable to add local persistent store: %@", error);
     }
@@ -419,7 +415,7 @@ static NSOperationQueue *_presentedItemOperationQueue;
     
     if (useFallbackStore) {
         if ([self loadFallbackStore:&error]) {
-            DLog(@"Added fallback store: (%@) at %@", self.fallbackStore, [self.fallbackStoreURL absoluteString]);
+//            DLog(@"Added fallback store: (%@) at %@", self.fallbackStore, [self.fallbackStoreURL absoluteString]);
             
             //you can seed the fallback store if you want to examine seeding performance without iCloud enabled
             //check to see if we need to seed data from the seed store
@@ -457,7 +453,7 @@ static NSOperationQueue *_presentedItemOperationQueue;
         [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:GTCoreDataReady object:self]];
     });
     self.coreDataIsReady = YES;
-    DLog(@"Core Data Store are ready");
+    DLog(@"Core Data is ready");
     // DEBUG: nukeAndPave
 //    [self nukeAndPave];
 }
