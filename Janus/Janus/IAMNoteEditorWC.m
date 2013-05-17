@@ -168,7 +168,7 @@
         CFURLRef defaultHandler;
         LSGetApplicationForURL((__bridge CFURLRef)(pathToBeShown), kLSRolesAll, NULL, &defaultHandler);
         CFArrayRef availableAppsUrls = LSCopyApplicationURLsForURL((__bridge CFURLRef)(pathToBeShown), kLSRolesAll);
-        DLog(@"Retrieved URLs:\n%@", availableAppsUrls);
+//        DLog(@"Retrieved URLs:\n%@", availableAppsUrls);
         self.appsInfo = [[NSMutableArray alloc] initWithCapacity:[(__bridge NSArray *) availableAppsUrls count]];
         for (NSURL *url in (__bridge NSArray *)availableAppsUrls) {
             CFStringRef appName;
