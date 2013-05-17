@@ -28,11 +28,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.6.4</string>
+	<string>0.6.5</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>261</string>
+	<string>262</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.productivity</string>
 	<key>LSMinimumSystemVersion</key>
@@ -54,7 +54,7 @@
 			<key>UTTypeDescription</key>
 			<string>Janus Note</string>
 			<key>UTTypeIconFile</key>
-			<string>document-icon.icns</string>
+			<string>it.iltofa.janus.icns</string>
 			<key>UTTypeIdentifier</key>
 			<string>it.iltofa.janus</string>
 			<key>UTTypeReferenceURL</key>

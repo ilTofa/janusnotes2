@@ -27,6 +27,7 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    DLog(@"Starting application init");
     // Init core data (and iCloud)
     _coreDataController = [[CoreDataController alloc] init];
     // [_coreDataController nukeAndPave];
@@ -43,28 +44,36 @@
     [self deleteCache];
 }
 
-- (void)application:(NSApplication *)theApplication openFiles:(NSArray *)files {
-    NSString *aPath = [files lastObject]; // Just an example to get at one of the paths.
-    
-    if (aPath && [aPath hasSuffix:@"janus"]) {
-        // Decode URI from path.
-        NSURL *objectURI = [[NSPersistentStoreCoordinator elementsDerivedFromExternalRecordURL:[NSURL fileURLWithPath:aPath]] objectForKey:NSObjectURIKey];
-        if (objectURI) {
-            NSManagedObjectID *moid = [[self persistentStoreCoordinator] managedObjectIDForURIRepresentation:objectURI];
-            if (moid) {
-                NSManagedObject *mo = [[self managedObjectContext] objectWithID:moid];
-                if(!self.collectionController) {
-                    DLog(@"Should init, doing it!");
-                    [self applicationDidFinishLaunching:nil];
-                }
-                NSURL *uri = [[mo objectID] URIRepresentation];
-                DLog(@"Send note URL to the main UI for opening: %@", uri);
-                [[NSApplication sharedApplication] replyToOpenOrPrint:NSApplicationDelegateReplySuccess];
-                [self.collectionController openNoteAtURI:uri];
+- (BOOL)application:(NSApplication *)theApplication openFile:(NSString *)filename {
+    DLog(@"App called to open %@", filename);
+    BOOL retValue = NO;
+    if (filename && [filename hasSuffix:@"janus"]) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^(void){
+            [self openFile:filename];
+        });
+    }
+    return retValue;
+}
+
+- (void)openFile:(NSString *)filename {
+    // Decode URI from path.
+    NSURL *objectURI = [[NSPersistentStoreCoordinator elementsDerivedFromExternalRecordURL:[NSURL fileURLWithPath:filename]] objectForKey:NSObjectURIKey];
+    if (objectURI) {
+        NSManagedObjectID *moid = [[self persistentStoreCoordinator] managedObjectIDForURIRepresentation:objectURI];
+        if (moid) {
+            NSManagedObject *mo = [[self managedObjectContext] objectWithID:moid];
+            if(!self.collectionController) {
+                ALog(@"Bad news. Init is *really* slow today, aborting open");
+                return;
             }
+            NSURL *uri = [[mo objectID] URIRepresentation];
+            DLog(@"Send note URL to the main UI for opening: %@", uri);
+            [self.collectionController openNoteAtURI:uri];
         } else {
-            [[NSApplication sharedApplication] replyToOpenOrPrint:NSApplicationDelegateReplyFailure];
+            ALog(@"Error: no NSManagedObjectID for %@", objectURI);
         }
+    } else {
+        ALog(@"Error: no objectURI for %@", filename);
     }
 }
 

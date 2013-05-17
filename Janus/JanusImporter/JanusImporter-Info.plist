@@ -59,6 +59,8 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>Janus Note</string>
+			<key>UTTypeIconFile</key>
+			<string>it.iltofa.janus.icns</string>
 			<key>UTTypeIdentifier</key>
 			<string>it.iltofa.janus</string>
 			<key>UTTypeReferenceURL</key>
