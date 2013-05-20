@@ -301,10 +301,14 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
         }
         for(NSManagedObject *obj in changedObjects){
 //            DLog(@"changed objects");
-            // If attachment get the corresponding note to insert
+            // If attachment get the corresponding note to insert            
             if([obj.entity.name isEqualToString:@"Attachment"]) {
-                DLog(@"C - An attachment %@ for note %@", ((Attachment *)obj).filename, ((Attachment *)obj).note.title);
-                [self attachAttachment:(Attachment *)obj toNoteInDropbox:((Attachment *)obj).note];
+                if(!((Attachment *)obj).note.title) {
+                    DLog(@"* - An attachment (%@) with nil note", ((Attachment *)obj).filename);
+                } else {
+                    DLog(@"C - An attachment %@ for note %@", ((Attachment *)obj).filename, ((Attachment *)obj).note.title);
+                    [self attachAttachment:(Attachment *)obj toNoteInDropbox:((Attachment *)obj).note];
+                }
             } else {
                 DLog(@"C - A note %@", ((Note *)obj).title);
                 [self saveNoteToDropbox:(Note *)obj];
