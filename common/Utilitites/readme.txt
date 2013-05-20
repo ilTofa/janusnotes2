@@ -18,6 +18,7 @@ Your notes can be encrypted on your dropbox so to avoid the eavesdroppers.
 To encrypt your notes select "Encrypt Notes" from the preferences and enter a password. Please choose a strong password and note it somewhere. Remember that your notes will *not* be readable anymore without the password! Don't lose or forget it! You've been warned. :)
 When you start the encryption process, be sure that only one Janus is running and, after initing the process, please wait for the sync termination before opening other Janus on other devices.
 When the notes are encrypted, the other devices will ask you for the same password. Please be patient because, especially on iOS, you could be asked twice (or thrice) for the password. This happens because the sync is still running and the notes are in a "mixed" state. Simply wait a little before re-entering the password again. If you enter the wrong password, you will be simply asked again for it.
+The encryption password is available in clear in the software and can be freely changed. It is saved in the System Keychain and, therefore, it is sure when the device is locked (as it should always be when not in use). The cloud storage (the real target of encryption) is always encrypted without any copy of the password. We feel this is the right balance between usability and security. This could be changed in the next versions.
 Please note that attachments are not encrypted in any case.
 
 * Privacy *
