@@ -28,6 +28,8 @@
 @property (strong) IBOutlet NSCollectionView *attachmentsCollectionView;
 
 @property NSMutableArray *openedFiles;
+@property (weak) IBOutlet NSLayoutConstraint *attacmentContainerViewHeightConstraint;
+@property (weak) IBOutlet NSView *attachmentContainerView;
 
 @end
 
@@ -110,6 +112,14 @@
         [tempArray addObject:attachmentDictionary];
     }
     self.attachmentsArray = tempArray;
+    CGFloat attachmentWindowHeight = 101.0;
+    if([self.attachmentsArray count] == 0) {
+        attachmentWindowHeight = 45.0;
+    }
+    self.attacmentContainerViewHeightConstraint.constant = attachmentWindowHeight;
+    NSRect windowFrame = [self.attachmentContainerView frame];
+    windowFrame.size.height = attachmentWindowHeight;
+    [self.attachmentContainerView setFrame:windowFrame];
     [self.arrayController fetch:nil];
 }
 
