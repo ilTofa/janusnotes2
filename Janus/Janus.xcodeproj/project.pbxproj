@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6414383A174A8D4000D5DAD6 /* Appirater.m in Sources */ = {isa = PBXBuildFile; fileRef = 6414382E174A8D4000D5DAD6 /* Appirater.m */; };
+		6414383C174A8D4000D5DAD6 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 64143838174A8D4000D5DAD6 /* README.md */; };
+		6414383F174A8DDA00D5DAD6 /* AppiraterLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6414383D174A8DDA00D5DAD6 /* AppiraterLocalizable.strings */; };
 		6429F2C41716EB3C0030E932 /* NSString+UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 6429F2C31716EB3C0030E932 /* NSString+UUID.m */; };
 		6429F2C51716EB3C0030E932 /* NSString+UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 6429F2C31716EB3C0030E932 /* NSString+UUID.m */; };
 		642D29CF1721470400006FC1 /* IAMFilesystemSyncController.m in Sources */ = {isa = PBXBuildFile; fileRef = 642D29CE1721470400006FC1 /* IAMFilesystemSyncController.m */; };
@@ -85,8 +88,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		6429F2C21716EB3C0030E932 /* NSString+UUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+UUID.h"; path = "../../common/Utilitites/NSString+UUID.h"; sourceTree = "<group>"; };
-		6429F2C31716EB3C0030E932 /* NSString+UUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+UUID.m"; path = "../../common/Utilitites/NSString+UUID.m"; sourceTree = "<group>"; };
+		6414382D174A8D4000D5DAD6 /* Appirater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Appirater.h; sourceTree = "<group>"; };
+		6414382E174A8D4000D5DAD6 /* Appirater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Appirater.m; sourceTree = "<group>"; };
+		64143838174A8D4000D5DAD6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		6414383E174A8DDA00D5DAD6 /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/AppiraterLocalizable.strings; sourceTree = "<group>"; };
+		64143840174A8DF200D5DAD6 /* de */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/AppiraterLocalizable.strings; sourceTree = "<group>"; };
+		64143841174A8E0A00D5DAD6 /* it */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/AppiraterLocalizable.strings; sourceTree = "<group>"; };
+		64143842174A8E8900D5DAD6 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/AppiraterLocalizable.strings; sourceTree = "<group>"; };
+		64143843174A8E9500D5DAD6 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/AppiraterLocalizable.strings; sourceTree = "<group>"; };
+		6429F2C21716EB3C0030E932 /* NSString+UUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+UUID.h"; path = "../common/Utilitites/NSString+UUID.h"; sourceTree = "<group>"; };
+		6429F2C31716EB3C0030E932 /* NSString+UUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+UUID.m"; path = "../common/Utilitites/NSString+UUID.m"; sourceTree = "<group>"; };
 		642D29CD1721470400006FC1 /* IAMFilesystemSyncController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMFilesystemSyncController.h; sourceTree = "<group>"; };
 		642D29CE1721470400006FC1 /* IAMFilesystemSyncController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMFilesystemSyncController.m; sourceTree = "<group>"; };
 		6433F23E174A1D260083F50C /* floppy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = floppy.png; path = Buttons/floppy.png; sourceTree = "<group>"; };
@@ -126,8 +137,8 @@
 		64D8C9A71740F7B0005D87DC /* RNEncryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNEncryptor.h; sourceTree = "<group>"; };
 		64D8C9A81740F7B0005D87DC /* RNEncryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNEncryptor.m; sourceTree = "<group>"; };
 		64D8C9B61740F7F1005D87DC /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		64D8C9B81740F985005D87DC /* STKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STKeychain.h; path = ../../common/Utilitites/STKeychain.h; sourceTree = "<group>"; };
-		64D8C9B91740F985005D87DC /* STKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STKeychain.m; path = ../../common/Utilitites/STKeychain.m; sourceTree = "<group>"; };
+		64D8C9B81740F985005D87DC /* STKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STKeychain.h; path = ../common/Utilitites/STKeychain.h; sourceTree = "<group>"; };
+		64D8C9B91740F985005D87DC /* STKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STKeychain.m; path = ../common/Utilitites/STKeychain.m; sourceTree = "<group>"; };
 		64EA620C16F7110300F4838E /* Janus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Janus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64EA620F16F7110300F4838E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		64EA621216F7110300F4838E /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -162,8 +173,8 @@
 		64EA627116F71E1400F4838E /* IAmMine.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = IAmMine.xcdatamodel; sourceTree = "<group>"; };
 		64EA627216F71E1400F4838E /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Note.h; path = ../common/iCloud/Note.h; sourceTree = "<group>"; };
 		64EA627316F71E1400F4838E /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Note.m; path = ../common/iCloud/Note.m; sourceTree = "<group>"; };
-		64EA627916F71E8A00F4838E /* NSDate+PassedTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+PassedTime.h"; path = "../../common/Utilitites/NSDate+PassedTime.h"; sourceTree = "<group>"; };
-		64EA627A16F71E8A00F4838E /* NSDate+PassedTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+PassedTime.m"; path = "../../common/Utilitites/NSDate+PassedTime.m"; sourceTree = "<group>"; };
+		64EA627916F71E8A00F4838E /* NSDate+PassedTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+PassedTime.h"; path = "../common/Utilitites/NSDate+PassedTime.h"; sourceTree = "<group>"; };
+		64EA627A16F71E8A00F4838E /* NSDate+PassedTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+PassedTime.m"; path = "../common/Utilitites/NSDate+PassedTime.m"; sourceTree = "<group>"; };
 		64EA628216F75E0000F4838E /* IAMNoteEditorWC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMNoteEditorWC.h; sourceTree = "<group>"; };
 		64EA628316F75E0000F4838E /* IAMNoteEditorWC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMNoteEditorWC.m; sourceTree = "<group>"; };
 		64EA628416F75E0000F4838E /* IAMNoteEditorWC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IAMNoteEditorWC.xib; sourceTree = "<group>"; };
@@ -195,6 +206,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6414382C174A8D4000D5DAD6 /* appirater */ = {
+			isa = PBXGroup;
+			children = (
+				6414382D174A8D4000D5DAD6 /* Appirater.h */,
+				6414382E174A8D4000D5DAD6 /* Appirater.m */,
+				6414383D174A8DDA00D5DAD6 /* AppiraterLocalizable.strings */,
+				64143838174A8D4000D5DAD6 /* README.md */,
+			);
+			name = appirater;
+			path = ../../common/appirater;
+			sourceTree = "<group>";
+		};
 		642D29CC172146E400006FC1 /* Sync */ = {
 			isa = PBXGroup;
 			children = (
@@ -269,7 +292,7 @@
 				64D8C9A81740F7B0005D87DC /* RNEncryptor.m */,
 			);
 			name = RNCryptor;
-			path = ../../common/RNCryptor;
+			path = ../common/RNCryptor;
 			sourceTree = "<group>";
 		};
 		64EA620316F7110300F4838E = {
@@ -320,14 +343,8 @@
 		64EA621516F7110300F4838E /* Janus */ = {
 			isa = PBXGroup;
 			children = (
+				6414382C174A8D4000D5DAD6 /* appirater */,
 				64EA627816F71E7600F4838E /* Utilities (common) */,
-				64D8C9B81740F985005D87DC /* STKeychain.h */,
-				64D8C9B91740F985005D87DC /* STKeychain.m */,
-				64D8C99E1740F7B0005D87DC /* RNCryptor */,
-				6429F2C21716EB3C0030E932 /* NSString+UUID.h */,
-				6429F2C31716EB3C0030E932 /* NSString+UUID.m */,
-				64EA627916F71E8A00F4838E /* NSDate+PassedTime.h */,
-				64EA627A16F71E8A00F4838E /* NSDate+PassedTime.m */,
 				64EA626B16F71DF500F4838E /* CoreData (common) */,
 				642D29CC172146E400006FC1 /* Sync */,
 				644AC25E17258213007B51FF /* Buttons */,
@@ -401,6 +418,13 @@
 		64EA627816F71E7600F4838E /* Utilities (common) */ = {
 			isa = PBXGroup;
 			children = (
+				64D8C9B81740F985005D87DC /* STKeychain.h */,
+				64D8C9B91740F985005D87DC /* STKeychain.m */,
+				64D8C99E1740F7B0005D87DC /* RNCryptor */,
+				6429F2C21716EB3C0030E932 /* NSString+UUID.h */,
+				6429F2C31716EB3C0030E932 /* NSString+UUID.m */,
+				64EA627916F71E8A00F4838E /* NSDate+PassedTime.h */,
+				64EA627A16F71E8A00F4838E /* NSDate+PassedTime.m */,
 			);
 			name = "Utilities (common)";
 			path = ..;
@@ -461,6 +485,14 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				de,
+				es,
+				fr,
+				it,
+				ja,
+				ko,
+				pl,
+				ru,
 			);
 			mainGroup = 64EA620316F7110300F4838E;
 			productRefGroup = 64EA620D16F7110300F4838E /* Products */;
@@ -492,6 +524,8 @@
 				64B56855174658ED006D04C4 /* readme.txt in Resources */,
 				6433F240174A1D260083F50C /* floppy.png in Resources */,
 				6433F241174A1D260083F50C /* floppy@2x.png in Resources */,
+				6414383C174A8D4000D5DAD6 /* README.md in Resources */,
+				6414383F174A8DDA00D5DAD6 /* AppiraterLocalizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -533,6 +567,7 @@
 				64D8C9BA1740F985005D87DC /* STKeychain.m in Sources */,
 				6476CFA0174382D500A6195C /* IAMCryptPasswordWC.m in Sources */,
 				6476CFA71743BABE00A6195C /* IAMWaitingWindowController.m in Sources */,
+				6414383A174A8D4000D5DAD6 /* Appirater.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -559,6 +594,18 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		6414383D174A8DDA00D5DAD6 /* AppiraterLocalizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6414383E174A8DDA00D5DAD6 /* en */,
+				64143840174A8DF200D5DAD6 /* de */,
+				64143841174A8E0A00D5DAD6 /* it */,
+				64143842174A8E8900D5DAD6 /* es */,
+				64143843174A8E9500D5DAD6 /* fr */,
+			);
+			name = AppiraterLocalizable.strings;
+			sourceTree = "<group>";
+		};
 		64EA621816F7110300F4838E /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

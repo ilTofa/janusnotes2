@@ -10,9 +10,7 @@
 
 #import "IAMFilesystemSyncController.h"
 #import "IAMPrefsWindowController.h"
-
-#define PIWIK_URL @"http://piwik.iltofa.com/"
-#define SITE_ID_TEST @"5"
+#import "Appirater.h"
 
 @interface IAMAppDelegate ()
 
@@ -28,6 +26,14 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     DLog(@"Starting application init");
+    // Init appirater
+    [Appirater setAppId:@"600424716"]; // TODO: change app number...
+    [Appirater setDaysUntilPrompt:5];
+    [Appirater setUsesUntilPrompt:8];
+    [Appirater setSignificantEventsUntilPrompt:-1];
+    [Appirater setTimeBeforeReminding:2];
+    [Appirater setDebug:NO];
+    [Appirater appLaunched:YES];
     // Init core data (and iCloud)
     _coreDataController = [[CoreDataController alloc] init];
     // [_coreDataController nukeAndPave];
