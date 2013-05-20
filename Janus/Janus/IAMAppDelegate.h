@@ -40,4 +40,6 @@
 - (IBAction)addAttachmentToNoteAction:(id)sender;
 - (IBAction)removeAttachmentFromNoteAction:(id)sender;
 
+- (IBAction)getIOSApp:(id)sender;
+
 @end

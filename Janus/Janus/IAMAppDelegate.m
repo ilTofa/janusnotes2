@@ -185,6 +185,10 @@
     [self.collectionController removeAttachmentFromNoteAction:sender];
 }
 
+- (IBAction)getIOSApp:(id)sender {
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://itunes.apple.com/app/id651150600"]];
+}
+
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender
 {
     // Save changes in the application's managed object context before the application terminates.
