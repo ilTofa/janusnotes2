@@ -10,6 +10,8 @@
 		6429F2C41716EB3C0030E932 /* NSString+UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 6429F2C31716EB3C0030E932 /* NSString+UUID.m */; };
 		6429F2C51716EB3C0030E932 /* NSString+UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 6429F2C31716EB3C0030E932 /* NSString+UUID.m */; };
 		642D29CF1721470400006FC1 /* IAMFilesystemSyncController.m in Sources */ = {isa = PBXBuildFile; fileRef = 642D29CE1721470400006FC1 /* IAMFilesystemSyncController.m */; };
+		6433F240174A1D260083F50C /* floppy.png in Resources */ = {isa = PBXBuildFile; fileRef = 6433F23E174A1D260083F50C /* floppy.png */; };
+		6433F241174A1D260083F50C /* floppy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6433F23F174A1D260083F50C /* floppy@2x.png */; };
 		643BA048173BFA4600A6C437 /* IAmMine.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 64EA627016F71E1400F4838E /* IAmMine.xcdatamodeld */; };
 		643BA050173D26E300A6C437 /* IAMOpenWithWC.m in Sources */ = {isa = PBXBuildFile; fileRef = 643BA04E173D26E300A6C437 /* IAMOpenWithWC.m */; };
 		643BA051173D26E300A6C437 /* IAMOpenWithWC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 643BA04F173D26E300A6C437 /* IAMOpenWithWC.xib */; };
@@ -97,6 +99,8 @@
 		6429F2C31716EB3C0030E932 /* NSString+UUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+UUID.m"; path = "../../common/Utilitites/NSString+UUID.m"; sourceTree = "<group>"; };
 		642D29CD1721470400006FC1 /* IAMFilesystemSyncController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMFilesystemSyncController.h; sourceTree = "<group>"; };
 		642D29CE1721470400006FC1 /* IAMFilesystemSyncController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMFilesystemSyncController.m; sourceTree = "<group>"; };
+		6433F23E174A1D260083F50C /* floppy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = floppy.png; path = Buttons/floppy.png; sourceTree = "<group>"; };
+		6433F23F174A1D260083F50C /* floppy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "floppy@2x.png"; path = "Buttons/floppy@2x.png"; sourceTree = "<group>"; };
 		643BA04D173D26E300A6C437 /* IAMOpenWithWC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMOpenWithWC.h; sourceTree = "<group>"; };
 		643BA04E173D26E300A6C437 /* IAMOpenWithWC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMOpenWithWC.m; sourceTree = "<group>"; };
 		643BA04F173D26E300A6C437 /* IAMOpenWithWC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IAMOpenWithWC.xib; sourceTree = "<group>"; };
@@ -233,6 +237,8 @@
 		644AC25E17258213007B51FF /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				6433F23E174A1D260083F50C /* floppy.png */,
+				6433F23F174A1D260083F50C /* floppy@2x.png */,
 				64DE6C271727EDF70031183A /* refresh.png */,
 				64DE6C281727EDF70031183A /* refresh@2x.png */,
 				644AC26B17258645007B51FF /* prefs.png */,
@@ -524,6 +530,8 @@
 				6476CFA81743BABE00A6195C /* IAMWaitingWindowController.xib in Resources */,
 				6476CFAB1746223900A6195C /* it.iltofa.janus.icns in Resources */,
 				64B56855174658ED006D04C4 /* readme.txt in Resources */,
+				6433F240174A1D260083F50C /* floppy.png in Resources */,
+				6433F241174A1D260083F50C /* floppy@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
