@@ -7,7 +7,7 @@ To start simply add a note and begin writing. We're supporting only plain text o
 You can add attachments to the notes and they will live side by side with your notes. On Macintosh press '+' (or drag and drop a file) to attach it. On iOS you can attach a picture (from library or camera), a link or taking a voice note. Tap the attachment to see it on iOS. Double click or right click the icon on Mac to open or edit it.
 
 * Notes Sharing *
-You can share the notes among different Macs and to your iDevices using dropbox.
+You can share the notes among different Macs and to your iDevices using Dropbox.
 If you want to share also with your iPhone and/or iPad, start from the iDevice: start tapping the Prefs button and then tap the "Start notes Sync With Dropbox" button. Simply provide your account information and you're done. Make the same on the other iDevices you have and your data will be seamlessly synchronized through dropbox. Keep in mind that before starting attaching other devices is always preferable to wait until the first sync is terminated completely. On iOS the header in the note list will show "Notes ✔", on Macintosh simply check the dropbox menu.
 To share notes with your Macintosh, after initing the Dropbox sync on your iPhone/iPad, simply go (on the Mac) to "Prefs" and then go to your dropbox folder, then to the folder "Apps" and then to the folder "Janus-Notes". Select it and you're done.
 If you are sharing only among Macs, you can simply create a folder under your dropbox folder and select it from the preferences from all the Macintoshes involved.

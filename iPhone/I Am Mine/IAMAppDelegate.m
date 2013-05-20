@@ -21,7 +21,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [Appirater setAppId:@"305922458"];  // TODO: Change App-id
+    [Appirater setAppId:@"651150600"];
     [Appirater setDaysUntilPrompt:3];
     [Appirater setUsesUntilPrompt:7];
     [Appirater setSignificantEventsUntilPrompt:-1];

@@ -27,7 +27,7 @@
 {
     DLog(@"Starting application init");
     // Init appirater
-    [Appirater setAppId:@"600424716"]; // TODO: change app number...
+    [Appirater setAppId:@"651141191"];
     [Appirater setDaysUntilPrompt:5];
     [Appirater setUsesUntilPrompt:8];
     [Appirater setSignificantEventsUntilPrompt:-1];
