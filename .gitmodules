@@ -1,3 +1,6 @@
 [submodule "common/PiwikTracker"]
 	path = common/PiwikTracker
 	url = https://github.com/ilTofa/PiwikTracker
+[submodule "common/appirater"]
+	path = common/appirater
+	url = https://github.com/ilTofa/appirater
