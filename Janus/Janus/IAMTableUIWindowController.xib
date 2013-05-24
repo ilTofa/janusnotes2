@@ -53,7 +53,7 @@
 				<string key="NSClassName">NSApplication</string>
 			</object>
 			<object class="NSWindowTemplate" id="1005">
-				<int key="NSWindowStyleMask">271</int>
+				<int key="NSWindowStyleMask">15</int>
 				<int key="NSWindowBacking">2</int>
 				<string key="NSWindowRect">{{196, 180}, {503, 462}}</string>
 				<int key="NSWTFlags">1618477056</int>
@@ -69,7 +69,7 @@
 					<bool key="NSToolbarAllowsUserCustomization">YES</bool>
 					<bool key="NSToolbarAutosavesConfiguration">NO</bool>
 					<int key="NSToolbarDisplayMode">1</int>
-					<int key="NSToolbarSizeMode">2</int>
+					<int key="NSToolbarSizeMode">1</int>
 					<dictionary class="NSMutableDictionary" key="NSToolbarIBIdentifiedItems">
 						<object class="NSToolbarItem" key="00DBB6B8-13E1-4C91-ADE4-9D5043207B90" id="218973411">
 							<object class="NSMutableString" key="NSToolbarItemIdentifier">
@@ -81,7 +81,7 @@
 							<nil key="NSToolbarItemView"/>
 							<object class="NSCustomResource" key="NSToolbarItemImage">
 								<string key="NSClassName">NSImage</string>
-								<string key="NSResourceName">NSRemoveTemplate</string>
+								<string key="NSResourceName">delete</string>
 							</object>
 							<nil key="NSToolbarItemTarget"/>
 							<nil key="NSToolbarItemAction"/>
@@ -103,7 +103,7 @@
 							<nil key="NSToolbarItemView"/>
 							<object class="NSCustomResource" key="NSToolbarItemImage">
 								<string key="NSClassName">NSImage</string>
-								<string key="NSResourceName">NSAddTemplate</string>
+								<string key="NSResourceName">document</string>
 							</object>
 							<nil key="NSToolbarItemTarget"/>
 							<nil key="NSToolbarItemAction"/>
@@ -125,7 +125,7 @@
 							<nil key="NSToolbarItemView"/>
 							<object class="NSCustomResource" key="NSToolbarItemImage">
 								<string key="NSClassName">NSImage</string>
-								<string key="NSResourceName">NSFollowLinkFreestandingTemplate</string>
+								<string key="NSResourceName">edit</string>
 							</object>
 							<nil key="NSToolbarItemTarget"/>
 							<nil key="NSToolbarItemAction"/>
@@ -147,7 +147,7 @@
 							<nil key="NSToolbarItemView"/>
 							<object class="NSCustomResource" key="NSToolbarItemImage">
 								<string key="NSClassName">NSImage</string>
-								<string key="NSResourceName">NSRefreshTemplate</string>
+								<string key="NSResourceName">refresh</string>
 							</object>
 							<nil key="NSToolbarItemTarget"/>
 							<nil key="NSToolbarItemAction"/>
@@ -169,7 +169,7 @@
 							<nil key="NSToolbarItemView"/>
 							<object class="NSCustomResource" key="NSToolbarItemImage">
 								<string key="NSClassName">NSImage</string>
-								<string key="NSResourceName">NSSmartBadgeTemplate</string>
+								<string key="NSResourceName">settings</string>
 							</object>
 							<nil key="NSToolbarItemTarget"/>
 							<nil key="NSToolbarItemAction"/>
@@ -503,6 +503,7 @@
 									<string key="NSFrame">{{1, 411}, {347, 16}}</string>
 									<reference key="NSSuperview" ref="358973374"/>
 									<reference key="NSWindow"/>
+									<reference key="NSNextKeyView"/>
 									<string key="NSReuseIdentifierKey">_NS:60</string>
 									<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 									<int key="NSsFlags">1</int>
@@ -532,7 +533,7 @@
 					<reference key="NSNextKeyView" ref="607479590"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {2560, 1418}}</string>
-				<string key="NSMinSize">{350, 344}</string>
+				<string key="NSMinSize">{350, 353}</string>
 				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
 				<bool key="NSWindowIsRestorable">YES</bool>
 			</object>
@@ -2146,13 +2147,13 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NSAddTemplate">{8, 8}</string>
-			<string key="NSFollowLinkFreestandingTemplate">{10, 10}</string>
 			<string key="NSMenuCheckmark">{11, 11}</string>
 			<string key="NSMenuMixedState">{10, 3}</string>
-			<string key="NSRefreshTemplate">{10, 12}</string>
-			<string key="NSRemoveTemplate">{8, 8}</string>
-			<string key="NSSmartBadgeTemplate">{15, 15}</string>
+			<string key="delete">{35, 35}</string>
+			<string key="document">{35, 35}</string>
+			<string key="edit">{35, 35}</string>
+			<string key="refresh">{35, 35}</string>
+			<string key="settings">{35, 35}</string>
 		</dictionary>
 		<bool key="IBDocument.UseAutolayout">YES</bool>
 	</data>
