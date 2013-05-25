@@ -7,6 +7,10 @@
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>janus</string>
+			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string>it.iltofa.janus.icns</string>
 			<key>CFBundleTypeName</key>
