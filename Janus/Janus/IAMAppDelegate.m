@@ -11,6 +11,7 @@
 #import "IAMFilesystemSyncController.h"
 #import "IAMPrefsWindowController.h"
 #import "Appirater.h"
+#import "STKeychain.h"
 
 @interface IAMAppDelegate ()
 
@@ -26,6 +27,9 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     DLog(@"Starting application init");
+#if DEMO
+    [self lifeSaver];
+#endif
     // Init appirater
     [Appirater setAppId:@"651141191"];
     [Appirater setDaysUntilPrompt:5];
@@ -250,8 +254,62 @@
     });
 }
 
-//- (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)theApplication {
-//    return YES;
-//}
+#if DEMO
+
+#pragma mark - demo management
+
+- (void)lifeSaver {
+    NSError *error;
+    NSString *whatever = [STKeychain getPasswordForUsername:@"decrypt" andServiceName:@"it.iltofa.janus" error:&error];
+    NSInteger uno = [whatever integerValue];
+    NSInteger due = [[NSUserDefaults standardUserDefaults] integerForKey:@"time"];
+    NSString *lastS = [STKeychain getPasswordForUsername:@"last" andServiceName:@"it.iltofa.janus" error:&error];
+    NSDate *last1 = [NSDate dateWithTimeIntervalSinceReferenceDate:[lastS doubleValue]];
+    NSDate *last2 = [NSDate dateWithTimeIntervalSinceReferenceDate:[[NSUserDefaults standardUserDefaults] doubleForKey:@"last"]];
+    // Validate
+    self.tampered = YES;
+    if(whatever == nil && due == 0) {
+        ALog(@"1");
+        self.tampered = NO;
+    }
+    if(uno != due) {
+        ALog(@"2");
+        self.tampered = NO;
+    }
+    if(lastS == nil && due == 0) {
+        ALog(@"3");
+        self.tampered = NO;
+    }
+    if(![last1 isEqualToDate:last2]) {
+        ALog(@"4");
+        self.tampered = NO;
+    }
+    // now...
+    // uno & due are the numbers of days remaining to test
+    // last1 & last2 are the time of the last login.
+    if(whatever == nil && due == 0) {
+        // This is the first init
+        _lifeline = 15;
+        NSTimeInterval last = [[NSDate date] timeIntervalSinceReferenceDate];
+        [STKeychain storeUsername:@"last" andPassword:[NSString stringWithFormat:@"%.0f", last] forServiceName:@"it.iltofa.janus" updateExisting:YES error:&error];
+        [[NSUserDefaults standardUserDefaults] setDouble:last forKey:@"last"];
+    } else {
+        // Restore the other value if tampered with
+        _lifeline = (uno < due) ? uno : due;
+        NSDate *useThisDate = [last1 earlierDate:last2];
+        NSTimeInterval timePassedFromLastStart = -[useThisDate timeIntervalSinceNow];
+        if(timePassedFromLastStart > (60 * 60 * 24)) {
+            // A day is passed, reduce remaining time...
+            _lifeline--;
+            NSTimeInterval last = [[NSDate date] timeIntervalSinceReferenceDate];
+            [STKeychain storeUsername:@"last" andPassword:[NSString stringWithFormat:@"%.0f", last] forServiceName:@"it.iltofa.janus" updateExisting:YES error:&error];
+            [[NSUserDefaults standardUserDefaults] setDouble:last forKey:@"last"];
+        }
+    }
+    [STKeychain storeUsername:@"decrypt" andPassword:[NSString stringWithFormat:@"%ld", _lifeline] forServiceName:@"it.iltofa.janus" updateExisting:YES error:&error];
+    [[NSUserDefaults standardUserDefaults] setInteger:_lifeline forKey:@"time"];
+}
+
+#endif
 
 @end

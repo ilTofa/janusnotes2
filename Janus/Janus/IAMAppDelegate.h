@@ -21,6 +21,11 @@
 
 @property (strong, nonatomic) IAMTableUIWindowController *collectionController;
 
+#if DEMO
+@property (readonly, nonatomic) NSInteger lifeline;
+@property (nonatomic, getter = isTampered) BOOL tampered;
+#endif
+
 // CoreData helper
 @property (nonatomic, strong, readonly) CoreDataController *coreDataController;
 

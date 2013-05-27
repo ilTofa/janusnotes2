@@ -41,4 +41,5 @@
     self.selectedAppId = self.arrayController.selectionIndex;
     [[NSApplication sharedApplication] endSheet:self.window];
 }
+
 @end

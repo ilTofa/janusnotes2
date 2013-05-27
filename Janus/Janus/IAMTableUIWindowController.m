@@ -14,6 +14,9 @@
 #import "IAMFilesystemSyncController.h"
 #import "NSManagedObjectContext+FetchedObjectFromURI.h"
 #import "Attachment.h"
+#if DEMO
+#import "IAMCountdownWindowController.h"
+#endif
 
 @interface IAMTableUIWindowController () <IAMNoteEditorWCDelegate, NSWindowDelegate>
 
@@ -21,6 +24,10 @@
 @property (copy) NSArray *sortDescriptors;
 
 @property NSTimer *syncStatusTimer;
+
+#if DEMO
+@property IAMCountdownWindowController *countdownController;
+#endif
 
 @end
 
@@ -87,6 +94,9 @@
     NSSortDescriptor *dateAddedSortDesc = [[NSSortDescriptor alloc] initWithKey:@"creationDate" ascending:NO];
     NSArray *sortDescriptors = @[dateAddedSortDesc];
     [self.arrayController setSortDescriptors:sortDescriptors];
+#if DEMO
+    [self showRemainingDaysBox];
+#endif
 }
 
 - (IBAction)refresh:(id)sender {
@@ -263,5 +273,23 @@
 - (IBAction)removeAttachmentFromNoteAction:(id)sender {
     [[self keyNoteEditor] deleteAttachment:sender];
 }
+
+#if DEMO
+
+#pragma mark - Demo Management
+
+- (void)showRemainingDaysBox {
+    if(!self.countdownController) {
+        self.countdownController = [[IAMCountdownWindowController alloc] initWithWindowNibName:@"IAMCountdownWindowController"];
+    }
+    [[NSApplication sharedApplication] beginSheet:self.countdownController.window modalForWindow:self.window modalDelegate:self didEndSelector:@selector(didEndSheet:returnCode:contextInfo:) contextInfo:nil];
+}
+
+- (void)didEndSheet:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo {
+    [self.countdownController.window orderOut:self];
+    self.countdownController = nil;
+}
+
+#endif
 
 @end
