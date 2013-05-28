@@ -44,7 +44,7 @@ typedef enum {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.versionLabel.text = [NSString stringWithFormat:@"This I Am Mine version %@ (%@)\n©2013 Giacomo Tufano - All rights reserved.", [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"], [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"]];
+    self.versionLabel.text = [NSString stringWithFormat:@"This I Am Mine version %@ (%@)\n©2013 Giacomo Tufano - All rights reserved.\nIcons from icons8, licensed CC BY-ND 3.0", [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"], [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"]];
     // Load base values
     self.encryptionSwitch.on = [[IAMDataSyncController sharedInstance] notesAreEncrypted];
     self.fontSize = [[GTThemer sharedInstance] getStandardFontSize];
