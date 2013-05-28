@@ -10,7 +10,7 @@
 
 #import "IAMFilesystemSyncController.h"
 #import "IAMPrefsWindowController.h"
-#import "Appirater.h"
+#import "iRate.h"
 #import "STKeychain.h"
 
 @interface IAMAppDelegate ()
@@ -24,6 +24,17 @@
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 @synthesize managedObjectContext = _managedObjectContext;
 
+#ifndef DEMO
++ (void)initialize {
+    // Init iRate
+    [iRate sharedInstance].daysUntilPrompt = 5;
+    [iRate sharedInstance].usesUntilPrompt = 15;
+    [iRate sharedInstance].appStoreID = 651141191;
+    [iRate sharedInstance].appStoreGenreID = 0;
+    [iRate sharedInstance].onlyPromptIfMainWindowIsAvailable = NO;
+}
+#endif
+
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     DLog(@"Starting application init");
@@ -32,14 +43,6 @@
 #else
     [self.buyFullVersionMenu setHidden:YES];
 #endif
-    // Init appirater
-    [Appirater setAppId:@"651141191"];
-    [Appirater setDaysUntilPrompt:5];
-    [Appirater setUsesUntilPrompt:8];
-    [Appirater setSignificantEventsUntilPrompt:-1];
-    [Appirater setTimeBeforeReminding:2];
-    [Appirater setDebug:NO];
-    [Appirater appLaunched:YES];
     // Init core data (and iCloud)
     _coreDataController = [[CoreDataController alloc] init];
     // [_coreDataController nukeAndPave];

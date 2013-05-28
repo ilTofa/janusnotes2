@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6414383A174A8D4000D5DAD6 /* Appirater.m in Sources */ = {isa = PBXBuildFile; fileRef = 6414382E174A8D4000D5DAD6 /* Appirater.m */; };
-		6414383C174A8D4000D5DAD6 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 64143838174A8D4000D5DAD6 /* README.md */; };
-		6414383F174A8DDA00D5DAD6 /* AppiraterLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6414383D174A8DDA00D5DAD6 /* AppiraterLocalizable.strings */; };
 		6429F2C41716EB3C0030E932 /* NSString+UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 6429F2C31716EB3C0030E932 /* NSString+UUID.m */; };
 		6429F2C51716EB3C0030E932 /* NSString+UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 6429F2C31716EB3C0030E932 /* NSString+UUID.m */; };
 		642D29CF1721470400006FC1 /* IAMFilesystemSyncController.m in Sources */ = {isa = PBXBuildFile; fileRef = 642D29CE1721470400006FC1 /* IAMFilesystemSyncController.m */; };
@@ -21,6 +18,8 @@
 		644AC2741726C343007B51FF /* IAMCollectionItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 644AC2731726C343007B51FF /* IAMCollectionItemView.m */; };
 		644AC2781726CFAC007B51FF /* IAMPrefsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 644AC2761726CFAB007B51FF /* IAMPrefsWindowController.m */; };
 		644AC2791726CFAC007B51FF /* IAMPrefsWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 644AC2771726CFAB007B51FF /* IAMPrefsWindowController.xib */; };
+		645ED8A31754ED8A0070F83B /* iRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 645ED8A11754ED8A0070F83B /* iRate.m */; };
+		645ED8A51754EFCE0070F83B /* iRate.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 645ED8A41754EFCE0070F83B /* iRate.bundle */; };
 		6476CFA0174382D500A6195C /* IAMCryptPasswordWC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6476CF9E174382D500A6195C /* IAMCryptPasswordWC.m */; };
 		6476CFA1174382D500A6195C /* IAMCryptPasswordWC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6476CF9F174382D500A6195C /* IAMCryptPasswordWC.xib */; };
 		6476CFA71743BABE00A6195C /* IAMWaitingWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6476CFA51743BABE00A6195C /* IAMWaitingWindowController.m */; };
@@ -108,14 +107,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		6414382D174A8D4000D5DAD6 /* Appirater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Appirater.h; sourceTree = "<group>"; };
-		6414382E174A8D4000D5DAD6 /* Appirater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Appirater.m; sourceTree = "<group>"; };
-		64143838174A8D4000D5DAD6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		6414383E174A8DDA00D5DAD6 /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/AppiraterLocalizable.strings; sourceTree = "<group>"; };
-		64143840174A8DF200D5DAD6 /* de */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/AppiraterLocalizable.strings; sourceTree = "<group>"; };
-		64143841174A8E0A00D5DAD6 /* it */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/AppiraterLocalizable.strings; sourceTree = "<group>"; };
-		64143842174A8E8900D5DAD6 /* es */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/AppiraterLocalizable.strings; sourceTree = "<group>"; };
-		64143843174A8E9500D5DAD6 /* fr */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/AppiraterLocalizable.strings; sourceTree = "<group>"; };
 		6429F2C21716EB3C0030E932 /* NSString+UUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+UUID.h"; path = "../common/Utilitites/NSString+UUID.h"; sourceTree = "<group>"; };
 		6429F2C31716EB3C0030E932 /* NSString+UUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+UUID.m"; path = "../common/Utilitites/NSString+UUID.m"; sourceTree = "<group>"; };
 		642D29CD1721470400006FC1 /* IAMFilesystemSyncController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMFilesystemSyncController.h; sourceTree = "<group>"; };
@@ -131,6 +122,9 @@
 		644AC2751726CFAB007B51FF /* IAMPrefsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMPrefsWindowController.h; sourceTree = "<group>"; };
 		644AC2761726CFAB007B51FF /* IAMPrefsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMPrefsWindowController.m; sourceTree = "<group>"; };
 		644AC2771726CFAB007B51FF /* IAMPrefsWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IAMPrefsWindowController.xib; sourceTree = "<group>"; };
+		645ED8A01754ED8A0070F83B /* iRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iRate.h; sourceTree = "<group>"; };
+		645ED8A11754ED8A0070F83B /* iRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iRate.m; sourceTree = "<group>"; };
+		645ED8A41754EFCE0070F83B /* iRate.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = iRate.bundle; sourceTree = "<group>"; };
 		6476CF9D174382D500A6195C /* IAMCryptPasswordWC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMCryptPasswordWC.h; sourceTree = "<group>"; };
 		6476CF9E174382D500A6195C /* IAMCryptPasswordWC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMCryptPasswordWC.m; sourceTree = "<group>"; };
 		6476CF9F174382D500A6195C /* IAMCryptPasswordWC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IAMCryptPasswordWC.xib; sourceTree = "<group>"; };
@@ -247,18 +241,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		6414382C174A8D4000D5DAD6 /* appirater */ = {
-			isa = PBXGroup;
-			children = (
-				6414382D174A8D4000D5DAD6 /* Appirater.h */,
-				6414382E174A8D4000D5DAD6 /* Appirater.m */,
-				6414383D174A8DDA00D5DAD6 /* AppiraterLocalizable.strings */,
-				64143838174A8D4000D5DAD6 /* README.md */,
-			);
-			name = appirater;
-			path = ../../common/appirater;
-			sourceTree = "<group>";
-		};
 		642D29CC172146E400006FC1 /* Sync */ = {
 			isa = PBXGroup;
 			children = (
@@ -319,6 +301,17 @@
 				6476CFA61743BABE00A6195C /* IAMWaitingWindowController.xib */,
 			);
 			name = Preferences;
+			sourceTree = "<group>";
+		};
+		645ED89E1754ED8A0070F83B /* iRate */ = {
+			isa = PBXGroup;
+			children = (
+				645ED8A41754EFCE0070F83B /* iRate.bundle */,
+				645ED8A01754ED8A0070F83B /* iRate.h */,
+				645ED8A11754ED8A0070F83B /* iRate.m */,
+			);
+			name = iRate;
+			path = ../../common/iRate/iRate;
 			sourceTree = "<group>";
 		};
 		64A1D4ED16FCA12700E50CC1 /* Note Edit */ = {
@@ -412,7 +405,7 @@
 		64EA621516F7110300F4838E /* Janus */ = {
 			isa = PBXGroup;
 			children = (
-				6414382C174A8D4000D5DAD6 /* appirater */,
+				645ED89E1754ED8A0070F83B /* iRate */,
 				64EA627816F71E7600F4838E /* Utilities (common) */,
 				64EA626B16F71DF500F4838E /* CoreData (common) */,
 				642D29CC172146E400006FC1 /* Sync */,
@@ -592,8 +585,6 @@
 				6476CFA81743BABE00A6195C /* IAMWaitingWindowController.xib in Resources */,
 				6476CFAB1746223900A6195C /* it.iltofa.janus.icns in Resources */,
 				64B56855174658ED006D04C4 /* readme.txt in Resources */,
-				6414383C174A8D4000D5DAD6 /* README.md in Resources */,
-				6414383F174A8DDA00D5DAD6 /* AppiraterLocalizable.strings in Resources */,
 				64E6BDA7174FCB1A00B63D46 /* edit.png in Resources */,
 				64E6BDA8174FCB1A00B63D46 /* edit@2x.png in Resources */,
 				64E6BDBB175009C600B63D46 /* add_property.png in Resources */,
@@ -615,6 +606,7 @@
 				64E6BDCB175009C600B63D46 /* show_property.png in Resources */,
 				64E6BDCC175009C600B63D46 /* show_property@2x.png in Resources */,
 				64E0C37F1753FC5300C1F946 /* IAMCountdownWindowController.xib in Resources */,
+				645ED8A51754EFCE0070F83B /* iRate.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -656,8 +648,8 @@
 				64D8C9BA1740F985005D87DC /* STKeychain.m in Sources */,
 				6476CFA0174382D500A6195C /* IAMCryptPasswordWC.m in Sources */,
 				6476CFA71743BABE00A6195C /* IAMWaitingWindowController.m in Sources */,
-				6414383A174A8D4000D5DAD6 /* Appirater.m in Sources */,
 				64E0C37E1753FC5300C1F946 /* IAMCountdownWindowController.m in Sources */,
+				645ED8A31754ED8A0070F83B /* iRate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -684,18 +676,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		6414383D174A8DDA00D5DAD6 /* AppiraterLocalizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6414383E174A8DDA00D5DAD6 /* en */,
-				64143840174A8DF200D5DAD6 /* de */,
-				64143841174A8E0A00D5DAD6 /* it */,
-				64143842174A8E8900D5DAD6 /* es */,
-				64143843174A8E9500D5DAD6 /* fr */,
-			);
-			name = AppiraterLocalizable.strings;
-			sourceTree = "<group>";
-		};
 		64EA621816F7110300F4838E /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

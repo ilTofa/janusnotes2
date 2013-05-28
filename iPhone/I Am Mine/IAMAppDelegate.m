@@ -11,7 +11,7 @@
 #import "GTThemer.h"
 #import <Dropbox/Dropbox.h>
 #import "IAMDataSyncController.h"
-#import "Appirater.h"
+#import "iRate.h"
 
 @interface IAMAppDelegate()
 
@@ -19,14 +19,15 @@
 
 @implementation IAMAppDelegate
 
++ (void)initialize {
+    [iRate sharedInstance].daysUntilPrompt = 5;
+    [iRate sharedInstance].usesUntilPrompt = 15;
+    [iRate sharedInstance].appStoreID = 651150600;
+    [iRate sharedInstance].appStoreGenreID = 0;
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [Appirater setAppId:@"651150600"];
-    [Appirater setDaysUntilPrompt:3];
-    [Appirater setUsesUntilPrompt:7];
-    [Appirater setSignificantEventsUntilPrompt:-1];
-    [Appirater setTimeBeforeReminding:2];
-    [Appirater setDebug:NO];
     // init colorizer...
     [[GTThemer sharedInstance] saveStandardColors:[[GTThemer sharedInstance] getStandardColorsID]];
     // Core Location init: get number of times user denied location use in app lifetime...

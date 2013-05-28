@@ -38,6 +38,9 @@
 		6433103E16E0A85D0064EC5C /* UIViewController+GTFrames.m in Sources */ = {isa = PBXBuildFile; fileRef = 6433103D16E0A85D0064EC5C /* UIViewController+GTFrames.m */; };
 		6447056E16DD0FC4000A0262 /* SmallRow.png in Resources */ = {isa = PBXBuildFile; fileRef = 6447056C16DD0FC4000A0262 /* SmallRow.png */; };
 		6447056F16DD0FC4000A0262 /* SmallRow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6447056D16DD0FC4000A0262 /* SmallRow@2x.png */; };
+		645ED8AA1754F0A20070F83B /* iRate.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 645ED8A71754F0A20070F83B /* iRate.bundle */; };
+		645ED8AB1754F0A20070F83B /* iRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 645ED8A91754F0A20070F83B /* iRate.m */; };
+		645ED8AC1754F1640070F83B /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CB194417392B710014F35F /* StoreKit.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		6466029B16DBC987007622FC /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6466029A16DBC987007622FC /* Icon@2x.png */; };
 		6466029D16DBC98E007622FC /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6466029C16DBC98E007622FC /* Icon.png */; };
 		646602A016DBC999007622FC /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 6466029E16DBC999007622FC /* Icon-72.png */; };
@@ -145,6 +148,9 @@
 		6447056C16DD0FC4000A0262 /* SmallRow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SmallRow.png; path = Images/SmallRow.png; sourceTree = "<group>"; };
 		6447056D16DD0FC4000A0262 /* SmallRow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SmallRow@2x.png"; path = "Images/SmallRow@2x.png"; sourceTree = "<group>"; };
 		645A13A01701BFC800CCB4FB /* iJanus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = iJanus.entitlements; path = ../iJanus.entitlements; sourceTree = "<group>"; };
+		645ED8A71754F0A20070F83B /* iRate.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = iRate.bundle; sourceTree = "<group>"; };
+		645ED8A81754F0A20070F83B /* iRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iRate.h; sourceTree = "<group>"; };
+		645ED8A91754F0A20070F83B /* iRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iRate.m; sourceTree = "<group>"; };
 		6466029A16DBC987007622FC /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
 		6466029C16DBC98E007622FC /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
 		6466029E16DBC999007622FC /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = SOURCE_ROOT; };
@@ -244,6 +250,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				645ED8AC1754F1640070F83B /* StoreKit.framework in Frameworks */,
 				64BB69F41715BB6600875601 /* QuartzCore.framework in Frameworks */,
 				64BB69F21715BB5F00875601 /* SystemConfiguration.framework in Frameworks */,
 				64BB69F01715BB5700875601 /* Security.framework in Frameworks */,
@@ -343,6 +350,17 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		645ED8A61754F0A20070F83B /* iRate */ = {
+			isa = PBXGroup;
+			children = (
+				645ED8A71754F0A20070F83B /* iRate.bundle */,
+				645ED8A81754F0A20070F83B /* iRate.h */,
+				645ED8A91754F0A20070F83B /* iRate.m */,
+			);
+			name = iRate;
+			path = ../common/iRate/iRate;
+			sourceTree = "<group>";
+		};
 		646602A216DBD373007622FC /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -373,6 +391,7 @@
 		64845FE316E019F20046BE9C /* Utilities (common) */ = {
 			isa = PBXGroup;
 			children = (
+				645ED8A61754F0A20070F83B /* iRate */,
 				64143844174A901D00D5DAD6 /* appirater */,
 				64ED90FB1743E48900203969 /* RNCryptor */,
 				64ED90F81743E46E00203969 /* STKeychain.h */,
@@ -651,6 +670,7 @@
 				64B56853174658B3006D04C4 /* readme.txt in Resources */,
 				6414385B174A901D00D5DAD6 /* AppiraterLocalizable.strings in Resources */,
 				6414385C174A901D00D5DAD6 /* README.md in Resources */,
+				645ED8AA1754F0A20070F83B /* iRate.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -690,6 +710,7 @@
 				64ED91081743E48900203969 /* RNDecryptor.m in Sources */,
 				64ED91091743E48900203969 /* RNEncryptor.m in Sources */,
 				6414385A174A901D00D5DAD6 /* Appirater.m in Sources */,
+				645ED8AB1754F0A20070F83B /* iRate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
