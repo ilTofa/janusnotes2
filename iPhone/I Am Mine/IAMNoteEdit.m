@@ -423,6 +423,8 @@
     cell.cellLabelView.text = attachment.type;
     if([attachment.type isEqualToString:@"Link"]) {
         cell.cellImageView.image = [UIImage imageNamed:@"link-icon-big"];
+    } else if([attachment.type isEqualToString:@"Audio"]) {
+        cell.cellImageView.image = [UIImage imageNamed:@"link-microphone-big"];
     } else if([attachment.type isEqualToString:@"Image"]) {
         cell.cellImageView.image = [[UIImage alloc] initWithData:attachment.data];
     } else {
