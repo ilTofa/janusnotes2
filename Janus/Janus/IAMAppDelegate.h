@@ -25,6 +25,7 @@
 @property (readonly, nonatomic) NSInteger lifeline;
 @property (nonatomic, getter = isTampered) BOOL tampered;
 #endif
+@property (weak) IBOutlet NSMenuItem *buyFullVersionMenu;
 
 // CoreData helper
 @property (nonatomic, strong, readonly) CoreDataController *coreDataController;
@@ -46,5 +47,6 @@
 - (IBAction)removeAttachmentFromNoteAction:(id)sender;
 
 - (IBAction)getIOSApp:(id)sender;
+- (IBAction)getFullVersion:(id)sender;
 
 @end

@@ -101,6 +101,14 @@
 									<reference key="NSOnImage" ref="35465992"/>
 									<reference key="NSMixedImage" ref="502551668"/>
 								</object>
+								<object class="NSMenuItem" id="467321969">
+									<reference key="NSMenu" ref="110575045"/>
+									<string key="NSTitle">Buy Full Version on MAS...</string>
+									<string key="NSKeyEquiv"/>
+									<int key="NSMnemonicLoc">2147483647</int>
+									<reference key="NSOnImage" ref="35465992"/>
+									<reference key="NSMixedImage" ref="502551668"/>
+								</object>
 								<object class="NSMenuItem" id="472372028">
 									<reference key="NSMenu" ref="110575045"/>
 									<bool key="NSIsDisabled">YES</bool>
@@ -1259,6 +1267,22 @@
 					<int key="connectionID">836</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">buyFullVersionMenu</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="467321969"/>
+					</object>
+					<int key="connectionID">840</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">getFullVersion:</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="467321969"/>
+					</object>
+					<int key="connectionID">841</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">enabled: self.collectionController.noteEditorIsShown</string>
 						<reference key="source" ref="135850960"/>
@@ -1545,6 +1569,7 @@
 							<reference ref="342932134"/>
 							<reference ref="614456700"/>
 							<reference ref="472372028"/>
+							<reference ref="467321969"/>
 						</array>
 						<reference key="parent" ref="694149608"/>
 					</object>
@@ -1903,6 +1928,11 @@
 						<reference key="object" ref="472372028"/>
 						<reference key="parent" ref="110575045"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">837</int>
+						<reference key="object" ref="467321969"/>
+						<reference key="parent" ref="110575045"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -2001,13 +2031,14 @@
 				<string key="832.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="834.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="835.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="837.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="92.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">836</int>
+			<int key="maxID">841</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -2020,6 +2051,7 @@
 						<string key="closeNoteAction:">id</string>
 						<string key="deleteNoteAction:">id</string>
 						<string key="editNoteAction:">id</string>
+						<string key="getFullVersion:">id</string>
 						<string key="getIOSApp:">id</string>
 						<string key="newNoteAction:">id</string>
 						<string key="notesWindowAction:">id</string>
@@ -2050,6 +2082,10 @@
 						</object>
 						<object class="IBActionInfo" key="editNoteAction:">
 							<string key="name">editNoteAction:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="getFullVersion:">
+							<string key="name">getFullVersion:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="getIOSApp:">
@@ -2093,17 +2129,20 @@
 							<string key="candidateClassName">id</string>
 						</object>
 					</dictionary>
-					<object class="NSMutableDictionary" key="outlets">
-						<string key="NS.key.0">window</string>
-						<string key="NS.object.0">NSWindow</string>
-					</object>
-					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<string key="NS.key.0">window</string>
-						<object class="IBToOneOutletInfo" key="NS.object.0">
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="buyFullVersionMenu">NSMenuItem</string>
+						<string key="window">NSWindow</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="buyFullVersionMenu">
+							<string key="name">buyFullVersionMenu</string>
+							<string key="candidateClassName">NSMenuItem</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="window">
 							<string key="name">window</string>
 							<string key="candidateClassName">NSWindow</string>
 						</object>
-					</object>
+					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/IAMAppDelegate.h</string>

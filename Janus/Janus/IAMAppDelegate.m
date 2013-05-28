@@ -29,6 +29,8 @@
     DLog(@"Starting application init");
 #if DEMO
     [self lifeSaver];
+#else
+    [self.buyFullVersionMenu setHidden:YES];
 #endif
     // Init appirater
     [Appirater setAppId:@"651141191"];
@@ -191,6 +193,10 @@
 
 - (IBAction)getIOSApp:(id)sender {
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://itunes.apple.com/app/id651150600"]];
+}
+
+- (IBAction)getFullVersion:(id)sender {
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"macappstore://itunes.apple.com/app/id651141191?mt=12"]];
 }
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender
