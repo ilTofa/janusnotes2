@@ -26,9 +26,6 @@
 		64101E3716F087D80086AD5F /* 3_CellBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64101E2F16F087D80086AD5F /* 3_CellBackground@2x.png */; };
 		64101E3816F087D80086AD5F /* 4_CellBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 64101E3016F087D80086AD5F /* 4_CellBackground.png */; };
 		64101E3916F087D80086AD5F /* 4_CellBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64101E3116F087D80086AD5F /* 4_CellBackground@2x.png */; };
-		6414385A174A901D00D5DAD6 /* Appirater.m in Sources */ = {isa = PBXBuildFile; fileRef = 64143846174A901D00D5DAD6 /* Appirater.m */; };
-		6414385B174A901D00D5DAD6 /* AppiraterLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64143848174A901D00D5DAD6 /* AppiraterLocalizable.strings */; };
-		6414385C174A901D00D5DAD6 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 64143855174A901D00D5DAD6 /* README.md */; };
 		6416315716D7DB830004CB52 /* IAMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6416315616D7DB830004CB52 /* IAMViewController.m */; };
 		6416315916D831DB0004CB52 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6416315816D831DB0004CB52 /* MobileCoreServices.framework */; };
 		6416315D16D8345F0004CB52 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 6416315C16D8345F0004CB52 /* UIImage+RoundedCorner.m */; };
@@ -127,15 +124,6 @@
 		64101E2F16F087D80086AD5F /* 3_CellBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "3_CellBackground@2x.png"; sourceTree = "<group>"; };
 		64101E3016F087D80086AD5F /* 4_CellBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4_CellBackground.png; sourceTree = "<group>"; };
 		64101E3116F087D80086AD5F /* 4_CellBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "4_CellBackground@2x.png"; sourceTree = "<group>"; };
-		64143845174A901D00D5DAD6 /* Appirater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Appirater.h; sourceTree = "<group>"; };
-		64143846174A901D00D5DAD6 /* Appirater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Appirater.m; sourceTree = "<group>"; };
-		64143847174A901D00D5DAD6 /* AppiraterDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiraterDelegate.h; sourceTree = "<group>"; };
-		6414384B174A901D00D5DAD6 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/AppiraterLocalizable.strings; sourceTree = "<group>"; };
-		6414384C174A901D00D5DAD6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/AppiraterLocalizable.strings; sourceTree = "<group>"; };
-		6414384D174A901D00D5DAD6 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/AppiraterLocalizable.strings; sourceTree = "<group>"; };
-		6414384E174A901D00D5DAD6 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/AppiraterLocalizable.strings; sourceTree = "<group>"; };
-		6414384F174A901D00D5DAD6 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/AppiraterLocalizable.strings; sourceTree = "<group>"; };
-		64143855174A901D00D5DAD6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		6416315616D7DB830004CB52 /* IAMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMViewController.m; sourceTree = "<group>"; };
 		6416315816D831DB0004CB52 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		6416315B16D8345F0004CB52 /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
@@ -310,19 +298,6 @@
 			path = Images/CellBackgrounds;
 			sourceTree = "<group>";
 		};
-		64143844174A901D00D5DAD6 /* appirater */ = {
-			isa = PBXGroup;
-			children = (
-				64143845174A901D00D5DAD6 /* Appirater.h */,
-				64143846174A901D00D5DAD6 /* Appirater.m */,
-				64143847174A901D00D5DAD6 /* AppiraterDelegate.h */,
-				64143848174A901D00D5DAD6 /* AppiraterLocalizable.strings */,
-				64143855174A901D00D5DAD6 /* README.md */,
-			);
-			name = appirater;
-			path = ../common/appirater;
-			sourceTree = "<group>";
-		};
 		641D954116E8CD8200A253E3 /* Note Edit */ = {
 			isa = PBXGroup;
 			children = (
@@ -398,7 +373,6 @@
 			isa = PBXGroup;
 			children = (
 				645ED8A61754F0A20070F83B /* iRate */,
-				64143844174A901D00D5DAD6 /* appirater */,
 				64ED90FB1743E48900203969 /* RNCryptor */,
 				64ED90F81743E46E00203969 /* STKeychain.h */,
 				64ED90F91743E46E00203969 /* STKeychain.m */,
@@ -674,8 +648,6 @@
 				640EE114173A47690006A9A2 /* Default@2x.png in Resources */,
 				640EE116173A476F0006A9A2 /* Default.png in Resources */,
 				64B56853174658B3006D04C4 /* readme.txt in Resources */,
-				6414385B174A901D00D5DAD6 /* AppiraterLocalizable.strings in Resources */,
-				6414385C174A901D00D5DAD6 /* README.md in Resources */,
 				645ED8AA1754F0A20070F83B /* iRate.bundle in Resources */,
 				645ED8AF1754F7730070F83B /* link-microphone-big.png in Resources */,
 				645ED8B01754F7730070F83B /* link-microphone-big@2x.png in Resources */,
@@ -717,7 +689,6 @@
 				64ED91071743E48900203969 /* RNCryptorEngine.m in Sources */,
 				64ED91081743E48900203969 /* RNDecryptor.m in Sources */,
 				64ED91091743E48900203969 /* RNEncryptor.m in Sources */,
-				6414385A174A901D00D5DAD6 /* Appirater.m in Sources */,
 				645ED8AB1754F0A20070F83B /* iRate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -725,18 +696,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		64143848174A901D00D5DAD6 /* AppiraterLocalizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6414384B174A901D00D5DAD6 /* de */,
-				6414384C174A901D00D5DAD6 /* en */,
-				6414384D174A901D00D5DAD6 /* es */,
-				6414384E174A901D00D5DAD6 /* fr */,
-				6414384F174A901D00D5DAD6 /* it */,
-			);
-			name = AppiraterLocalizable.strings;
-			sourceTree = "<group>";
-		};
 		64A0507816D28CCA0025E179 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
