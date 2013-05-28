@@ -4,3 +4,6 @@
 [submodule "common/appirater"]
 	path = common/appirater
 	url = https://github.com/ilTofa/appirater
+[submodule "common/iRate"]
+	path = common/iRate
+	url = https://github.com/ilTofa/iRate
