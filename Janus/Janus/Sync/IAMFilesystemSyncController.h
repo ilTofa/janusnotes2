@@ -14,6 +14,7 @@
 #define kIAMDataSyncControllerStopped @"IAMDataSyncControllerStopped"
 #define kIAMDataSyncRefreshTerminated @"IAMDataSyncRefreshTerminated"
 #define kIAMDataSyncNeedsAPasswordNow @"kIAMDataSyncNeedsAPasswordNow"
+#define kIAMDataSyncSelectedDefaulDir @"kIAMDataSyncSelectedDefaulDir"
 
 @interface IAMFilesystemSyncController : NSObject
 

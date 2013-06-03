@@ -90,6 +90,7 @@
         DLog(@"called directly from init");
     [[NSNotificationCenter defaultCenter] removeObserver:self name:GTCoreDataReady object:nil];
     // Init sync mamagement
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(defaultDirectorySelected:) name:kIAMDataSyncSelectedDefaulDir object:nil];
     [IAMFilesystemSyncController sharedInstance];
     NSSortDescriptor *dateAddedSortDesc = [[NSSortDescriptor alloc] initWithKey:@"creationDate" ascending:NO];
     NSArray *sortDescriptors = @[dateAddedSortDesc];
@@ -97,6 +98,15 @@
 #if DEMO
     [self showRemainingDaysBox];
 #endif
+}
+
+- (void)defaultDirectorySelected:(NSNotification *)notification {
+    NSLog(@"OK, we're directory just selected the default directory");
+    NSAlert *alert = [[NSAlert alloc] init];
+    [alert setInformativeText:NSLocalizedString(@"Welcome to Janus Notes, press OK to open the preference panel and select the path to the Notes directory. The path can be changed later at any time using the preference panel. If you're unsure about what to do you can safely accept the default location by pressing cancel on the select path box.", nil)];
+    [alert setMessageText:NSLocalizedString(@"Notes Directory Selection", @"")];
+    [alert addButtonWithTitle:@"OK"];
+    [alert beginSheetModalForWindow:self.window modalDelegate:self didEndSelector:@selector(alertDidEnd:returnCode:contextInfo:) contextInfo:(__bridge void *)(self)];
 }
 
 - (IBAction)refresh:(id)sender {
@@ -199,29 +209,34 @@
 
 - (void) alertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
-    if(returnCode == NSAlertSecondButtonReturn)
-    {
-        // Create a local moc, children of the sync moc and delete there.
-        DLog(@"User confirmed delete, now really deleting note.");
-        NSManagedObjectContext *moc = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSConfinementConcurrencyType];
-        [moc setParentContext:[IAMFilesystemSyncController sharedInstance].dataSyncThreadContext];
-        NSURL *uri = [[[self.arrayController selectedObjects][0] objectID] URIRepresentation];
-        Note *delenda = (Note *)[moc objectWithURI:uri];
-        if(!delenda) {
-            ALog(@"*** Note is nil while deleting note!");
-            return;
+    // If called from firstdirectory selection contextInfo will be not nil
+    if (contextInfo) {
+        [(IAMAppDelegate *)[[NSApplication sharedApplication] delegate] preferencesForDirectory];
+    } else {
+        if(returnCode == NSAlertSecondButtonReturn)
+        {
+            // Create a local moc, children of the sync moc and delete there.
+            DLog(@"User confirmed delete, now really deleting note.");
+            NSManagedObjectContext *moc = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSConfinementConcurrencyType];
+            [moc setParentContext:[IAMFilesystemSyncController sharedInstance].dataSyncThreadContext];
+            NSURL *uri = [[[self.arrayController selectedObjects][0] objectID] URIRepresentation];
+            Note *delenda = (Note *)[moc objectWithURI:uri];
+            if(!delenda) {
+                ALog(@"*** Note is nil while deleting note!");
+                return;
+            }
+            DLog(@"About to delete note: %@", delenda);
+            [moc deleteObject:delenda];
+            NSError *error;
+            if(![moc save:&error])
+                ALog(@"Unresolved error %@, %@", error, [error userInfo]);
+            // Save on parent context
+            [[IAMFilesystemSyncController sharedInstance].dataSyncThreadContext performBlock:^{
+                NSError *localError;
+                if(![[IAMFilesystemSyncController sharedInstance].dataSyncThreadContext save:&localError])
+                    ALog(@"Unresolved error saving parent context %@, %@", error, [error userInfo]);
+            }];
         }
-        DLog(@"About to delete note: %@", delenda);
-        [moc deleteObject:delenda];
-        NSError *error;
-        if(![moc save:&error])
-            ALog(@"Unresolved error %@, %@", error, [error userInfo]);
-        // Save on parent context
-        [[IAMFilesystemSyncController sharedInstance].dataSyncThreadContext performBlock:^{
-            NSError *localError;
-            if(![[IAMFilesystemSyncController sharedInstance].dataSyncThreadContext save:&localError])
-                ALog(@"Unresolved error saving parent context %@, %@", error, [error userInfo]);
-        }];
     }
 }
 

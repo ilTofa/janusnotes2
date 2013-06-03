@@ -103,6 +103,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
             _syncDirectory = [cacheDirectory URLByAppendingPathComponent:@"Janus-Notes" isDirectory:YES];
             [[NSFileManager defaultManager] createDirectoryAtURL:_syncDirectory withIntermediateDirectories:YES attributes:nil error:&error];
             [self modifySyncDirectory:_syncDirectory];
+            [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kIAMDataSyncSelectedDefaulDir object:self]];
         } else {
             BOOL staleData;
             _syncDirectory = [NSURL URLByResolvingBookmarkData:_secureBookmarkToData options:NSURLBookmarkResolutionWithSecurityScope  relativeToURL:nil bookmarkDataIsStale:&staleData error:&error];

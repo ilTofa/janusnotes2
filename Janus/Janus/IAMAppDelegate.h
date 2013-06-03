@@ -32,6 +32,7 @@
 
 - (IBAction)saveAction:(id)sender;
 - (IBAction)preferencesAction:(id)sender;
+- (void)preferencesForDirectory;
 - (IBAction)notesWindowAction:(id)sender;
 - (IBAction)newNoteAction:(id)sender;
 - (IBAction)editNoteAction:(id)sender;

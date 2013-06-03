@@ -56,10 +56,13 @@
         self.aPasswordIsNeededASAP = NO;
         [self changePasswordASAP:self];
     }
+    if(self.directoryNeeded) {
+        self.directoryNeeded = NO;
+        [self changePath:self];
+    }
 }
 
 - (IBAction)changePath:(id)sender {
-    DLog(@"still to be implemented");
     NSOpenPanel *openPanel = [NSOpenPanel openPanel];
     openPanel.allowsMultipleSelection = NO;
     openPanel.canChooseDirectories = YES;

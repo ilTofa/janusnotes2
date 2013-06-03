@@ -132,6 +132,15 @@
     }
 }
 
+- (void)preferencesForDirectory {
+    if(!self.prefsController) {
+        self.prefsController = [[IAMPrefsWindowController alloc] initWithWindowNibName:@"IAMPrefsWindowController"];
+    }
+    // sender is nil, this is called because we need a password now...
+    self.prefsController.directoryNeeded = YES;
+    [self.prefsController showWindow:self];
+}
+
 - (IBAction)preferencesAction:(id)sender {
     if(!self.prefsController) {
         self.prefsController = [[IAMPrefsWindowController alloc] initWithWindowNibName:@"IAMPrefsWindowController"];
