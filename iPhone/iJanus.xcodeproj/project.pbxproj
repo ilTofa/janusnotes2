@@ -785,6 +785,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = iJanus.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Giacomo Tufano (68RHGP4K2S)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -795,6 +796,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = iJanus;
+				PROVISIONING_PROFILE = "8B61756A-32CE-41D5-B98E-F6D38DCFB1FD";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};

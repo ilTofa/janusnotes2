@@ -178,15 +178,15 @@
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
     [searchBar setShowsCancelButton:YES animated:YES];
-    self.tableView.allowsSelection = NO;
-    self.tableView.scrollEnabled = NO;
+//    self.tableView.allowsSelection = NO;
+//    self.tableView.scrollEnabled = NO;
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
     [searchBar setShowsCancelButton:NO animated:YES];
     [searchBar resignFirstResponder];
-    self.tableView.allowsSelection = YES;
-    self.tableView.scrollEnabled = YES;
+//    self.tableView.allowsSelection = YES;
+//    self.tableView.scrollEnabled = YES;
     searchBar.text = self.searchText = @"";
     [self setupFetchExecAndReload];
 }
@@ -199,8 +199,8 @@
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     [searchBar resignFirstResponder];
     self.searchText = searchBar.text;
-    self.tableView.allowsSelection = YES;
-    self.tableView.scrollEnabled = YES;
+//    self.tableView.allowsSelection = YES;
+//    self.tableView.scrollEnabled = YES;
     // Perform search... :)
     [self setupFetchExecAndReload];
 }
