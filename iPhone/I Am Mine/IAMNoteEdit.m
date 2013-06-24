@@ -24,8 +24,6 @@
 @interface IAMNoteEdit () <UITextViewDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, IAMAddLinkViewControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, AttachmentDeleter, MicrophoneWindowDelegate>
 
 @property CGRect oldFrame;
-@property UIBarButtonItem *doneButton;
-@property UIBarButtonItem *saveButton;
 @property (strong) NSString *originalTitle;
 @property NSArray *attachmentsArray;
 @property(nonatomic, weak) IBOutlet UICollectionView *collectionView;
@@ -70,10 +68,6 @@
     // Keyboard notifications
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
-    // Right button(s)
-    self.saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save:)];
-    self.doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];
-    self.navigationItem.rightBarButtonItem = self.saveButton;
     // Preset the note
     [[GTThemer sharedInstance] applyColorsToView:self.titleEdit];
     self.originalTitle = self.titleEdit.text = self.editedNote.title;
@@ -145,39 +139,6 @@
 }
 
 #pragma mark - UiTextViewDelegate
-
-- (void)textViewDidBeginEditing:(UITextView *)textView
-{
-    // Maximize edit view and change button.
-    if(textView == self.textEdit)
-    {
-        DLog(@"This is textViewDidBeginEditing: for the main text editor");
-        self.oldFrame = textView.frame;
-        [UIView animateWithDuration:0.2 animations:^{
-            [textView setFrame:[self gt_maximumUsableFrame]];
-            self.greyRowImage.alpha = self.titleEdit.alpha = 0.0;
-        }
-                         completion:^(BOOL finished){
-                             self.greyRowImage.hidden = self.titleEdit.hidden = YES;
-                         }];
-        self.navigationItem.rightBarButtonItem = self.doneButton;
-    }
-}
-
-- (void)textViewDidEndEditing:(UITextView *)textView
-{
-    // Resize back the view.
-    if(textView == self.textEdit)
-    {
-        DLog(@"This is textViewDidEndEditing: for the main text editor");
-        self.greyRowImage.hidden = self.titleEdit.hidden = NO;
-        [UIView animateWithDuration:0.2 animations:^{
-            [textView setFrame:self.oldFrame];
-            self.greyRowImage.alpha = self.titleEdit.alpha = 1.0;
-        }];
-        self.navigationItem.rightBarButtonItem = self.saveButton;
-    }
-}
 
 // Called when the UIKeyboardDidShowNotification is sent.
 - (void)keyboardWasShown:(NSNotification*)aNotification

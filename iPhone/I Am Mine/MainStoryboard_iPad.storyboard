@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="7ep-k0-Kpd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="7ep-k0-Kpd">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -531,7 +531,7 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                         <color key="backgroundColor" white="0.94999999999999996" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Note" id="Ug4-QN-uRX">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="0Kv-SI-Orp">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="0Kv-SI-Orp">
                             <connections>
                                 <action selector="save:" destination="Ucd-PA-4nx" id="las-Mb-s9v"/>
                             </connections>
@@ -782,6 +782,7 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
         <class className="IAMViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IAMViewController.h"/>
             <relationships>
+                <relationship kind="action" name="launchPreferences:"/>
                 <relationship kind="outlet" name="preferencesButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
             </relationships>
