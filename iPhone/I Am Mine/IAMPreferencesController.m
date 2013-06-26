@@ -12,9 +12,11 @@
 #import <Dropbox/Dropbox.h>
 #import "IAMDataSyncController.h"
 #import "MBProgressHUD.h"
+#import "STKeychain.h"
 
 typedef enum {
     syncManagement = 0,
+    lockSelector,
     fontSelector,
     sizeSelector,
     colorSelector
@@ -25,6 +27,9 @@ typedef enum {
 @property NSInteger fontFace, fontSize, colorSet;
 
 @property MBProgressHUD *hud;
+
+@property UIAlertView *passwordAlert;
+@property UIAlertView *lockCodeAlert;
 
 @property BOOL dropboxLinked;
 
@@ -46,6 +51,8 @@ typedef enum {
     [super viewDidLoad];
     self.versionLabel.text = [NSString stringWithFormat:@"This I Am Mine version %@ (%@)\n©2013 Giacomo Tufano - All rights reserved.\nIcons from icons8, licensed CC BY-ND 3.0", [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"], [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"]];
     // Load base values
+    NSError *error;
+    self.lockSwitch.on = ([STKeychain getPasswordForUsername:@"lockCode" andServiceName:@"it.iltofa.janus" error:&error] != nil);
     self.encryptionSwitch.on = [[IAMDataSyncController sharedInstance] notesAreEncrypted];
     self.fontSize = [[GTThemer sharedInstance] getStandardFontSize];
     [self.sizeStepper setValue:self.fontSize];
@@ -147,6 +154,10 @@ typedef enum {
         [tableView deselectRowAtIndexPath:oldIndexPath animated:YES];
         self.colorSet = indexPath.row;
     }
+    // Change lock status
+    if(indexPath.section == lockSelector) {
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
     [self sizePressed:nil];
 }
 
@@ -198,80 +209,98 @@ typedef enum {
         [self pleaseNotNow];
         return;
     }
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Set Crypt Password", nil)
-                                                        message:NSLocalizedString(@"This password will crypt and decrypt your notes.\nPlease choose a strong password and note it somewhere. Your notes will *not* be readable anymore without the password! Don't lose or forget it!", nil)
-                                                       delegate:self
-                                              cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
-                                              otherButtonTitles:NSLocalizedString(@"OK. Crypt!", nil), nil];
-    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    self.passwordAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Set Crypt Password", nil)
+                                                    message:NSLocalizedString(@"This password will crypt and decrypt your notes.\nPlease choose a strong password and note it somewhere. Your notes will *not* be readable anymore without the password! Don't lose or forget it!", nil)
+                                                   delegate:self
+                                          cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                                          otherButtonTitles:NSLocalizedString(@"OK. Crypt!", nil), nil];
+    self.passwordAlert.alertViewStyle = UIAlertViewStylePlainTextInput;
     if ([[IAMDataSyncController sharedInstance] notesAreEncrypted]) {
-        [alertView textFieldAtIndex:0].text = [[IAMDataSyncController sharedInstance] cryptPassword];
+        [self.passwordAlert textFieldAtIndex:0].text = [[IAMDataSyncController sharedInstance] cryptPassword];
     }
-    [alertView show];
+    [self.passwordAlert show];
 }
 
 - (void)changePasswordASAP {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Set Crypt Password", nil)
-                                                        message:NSLocalizedString(@"Please insert remote crypt password.", nil)
-                                                       delegate:self
-                                              cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
-                                              otherButtonTitles:NSLocalizedString(@"Save", nil), nil];
-    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    self.passwordAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Set Crypt Password", nil)
+                                                    message:NSLocalizedString(@"Please insert remote crypt password.", nil)
+                                                   delegate:self
+                                          cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                                          otherButtonTitles:NSLocalizedString(@"Save", nil), nil];
+    self.passwordAlert.alertViewStyle = UIAlertViewStylePlainTextInput;
     if ([[IAMDataSyncController sharedInstance] notesAreEncrypted]) {
-        [alertView textFieldAtIndex:0].text = [[IAMDataSyncController sharedInstance] cryptPassword];
+        [self.passwordAlert textFieldAtIndex:0].text = [[IAMDataSyncController sharedInstance] cryptPassword];
     }
-    [alertView show];
+    [self.passwordAlert show];
 }
 
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if ([[IAMDataSyncController sharedInstance] needsSyncPassword]) {   // This is the handler for changed password on remote
-        [[IAMDataSyncController sharedInstance] setNeedsSyncPassword:NO];
-        NSError *error;
-        if(buttonIndex == 1 && ![[alertView textFieldAtIndex:0].text isEqualToString:@""]) {
-            if([[IAMDataSyncController sharedInstance] checkCryptPassword:[alertView textFieldAtIndex:0].text error:&error]) {
-                [[IAMDataSyncController sharedInstance] setCryptPassword:[alertView textFieldAtIndex:0].text];
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    // Password setup for dropbox encryption
+    if(alertView == self.passwordAlert) {
+        if ([[IAMDataSyncController sharedInstance] needsSyncPassword]) {   // This is the handler for changed password on remote
+            [[IAMDataSyncController sharedInstance] setNeedsSyncPassword:NO];
+            NSError *error;
+            if(buttonIndex == 1 && ![[alertView textFieldAtIndex:0].text isEqualToString:@""]) {
+                if([[IAMDataSyncController sharedInstance] checkCryptPassword:[alertView textFieldAtIndex:0].text error:&error]) {
+                    [[IAMDataSyncController sharedInstance] setCryptPassword:[alertView textFieldAtIndex:0].text];
+                }
             }
-        }
-        // in any case... if password is not OK, the refresh will fail and this one recalled. :)
-        if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-            [[NSNotificationCenter defaultCenter] postNotificationName:kPreferencesPopoverCanBeDismissed object:self];
-        else
-            [self.navigationController popToRootViewControllerAnimated:YES];
-        // Give UI a second to stabilize (the call could reload this frame)
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-            [[IAMDataSyncController sharedInstance] refreshContentFromRemote];
-        });
-    } else {
-        NSLog(@"Button %d clicked, text is: \'%@\'", buttonIndex, [alertView textFieldAtIndex:0].text);
-        if(buttonIndex == 1 && ![[alertView textFieldAtIndex:0].text isEqualToString:@""]) {
-            self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-            self.hud.labelText = NSLocalizedString(@"Encrypting Notes", nil);
-            if([[IAMDataSyncController sharedInstance] notesAreEncrypted]) {
-                DLog(@"Notes are already encrypted. Re-Crypt with new password: %@", [alertView textFieldAtIndex:0].text);
-                self.hud.detailsLabelText = NSLocalizedString(@"Please wait while we crypt the notes...", nil);
-                [[IAMDataSyncController sharedInstance] cryptNotesWithPassword:[alertView textFieldAtIndex:0].text andCompletionBlock:^{
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        if(self.hud) {
-                            [self.hud hide:YES];
-                            self.hud = nil;
-                        }
-                    });
-                }];
-            } else {
-                DLog(@"Crypt now the notes with key: \'%@\'", [alertView textFieldAtIndex:0].text);
-                self.hud.detailsLabelText = NSLocalizedString(@"Please wait while we re-encrypt the notes...", nil);
-                [[IAMDataSyncController sharedInstance] cryptNotesWithPassword:[alertView textFieldAtIndex:0].text andCompletionBlock:^{
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        if(self.hud) {
-                            [self.hud hide:YES];
-                            self.hud = nil;
-                        }
-                    });
-                }];
-            }
+            // in any case... if password is not OK, the refresh will fail and this one recalled. :)
+            if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+                [[NSNotificationCenter defaultCenter] postNotificationName:kPreferencesPopoverCanBeDismissed object:self];
+            else
+                [self.navigationController popToRootViewControllerAnimated:YES];
+            // Give UI a second to stabilize (the call could reload this frame)
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                [[IAMDataSyncController sharedInstance] refreshContentFromRemote];
+            });
         } else {
-            self.encryptionSwitch.on = [[IAMDataSyncController sharedInstance] notesAreEncrypted];
+            NSLog(@"Button %d clicked, text is: \'%@\'", buttonIndex, [alertView textFieldAtIndex:0].text);
+            if(buttonIndex == 1 && ![[alertView textFieldAtIndex:0].text isEqualToString:@""]) {
+                self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+                self.hud.labelText = NSLocalizedString(@"Encrypting Notes", nil);
+                if([[IAMDataSyncController sharedInstance] notesAreEncrypted]) {
+                    DLog(@"Notes are already encrypted. Re-Crypt with new password: %@", [alertView textFieldAtIndex:0].text);
+                    self.hud.detailsLabelText = NSLocalizedString(@"Please wait while we crypt the notes...", nil);
+                    [[IAMDataSyncController sharedInstance] cryptNotesWithPassword:[alertView textFieldAtIndex:0].text andCompletionBlock:^{
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            if(self.hud) {
+                                [self.hud hide:YES];
+                                self.hud = nil;
+                            }
+                        });
+                    }];
+                } else {
+                    DLog(@"Crypt now the notes with key: \'%@\'", [alertView textFieldAtIndex:0].text);
+                    self.hud.detailsLabelText = NSLocalizedString(@"Please wait while we re-encrypt the notes...", nil);
+                    [[IAMDataSyncController sharedInstance] cryptNotesWithPassword:[alertView textFieldAtIndex:0].text andCompletionBlock:^{
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            if(self.hud) {
+                                [self.hud hide:YES];
+                                self.hud = nil;
+                            }
+                        });
+                    }];
+                }
+            } else {
+                self.encryptionSwitch.on = [[IAMDataSyncController sharedInstance] notesAreEncrypted];
+            }
         }
+        self.passwordAlert = nil;
+    }
+    // lock code setup
+    if(alertView == self.lockCodeAlert) {
+        if(buttonIndex != alertView.cancelButtonIndex) {
+            NSLog(@"Button %d clicked, text is: \'%@\'", buttonIndex, [alertView textFieldAtIndex:0].text);
+            NSError *error;
+            [STKeychain storeUsername:@"lockCode" andPassword:[alertView textFieldAtIndex:0].text forServiceName:@"it.iltofa.janus" updateExisting:YES error:&error];
+            UIAlertView *lastAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Lock Code Set", nil)
+                                                                message:[NSString stringWithFormat:NSLocalizedString(@"You just set the application lock code to %@.", nil), [alertView textFieldAtIndex:0].text]
+                                                               delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+            lastAlert.alertViewStyle = UIAlertViewStyleDefault;
+            [lastAlert show];
+        }
+        self.lockCodeAlert = nil;
     }
 }
 
@@ -295,6 +324,23 @@ typedef enum {
                 }
             });
         }];
+    }
+}
+
+- (IBAction)lockCodeAction:(id)sender {
+    if(self.lockSwitch.on) {
+        self.lockCodeAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Set Lock Code", nil)
+                                                        message:NSLocalizedString(@"This code will be asked at app startup.", nil)
+                                                       delegate:self
+                                              cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                                              otherButtonTitles:NSLocalizedString(@"Done", nil), nil];
+        self.lockCodeAlert.alertViewStyle = UIAlertViewStylePlainTextInput;
+        if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+            [[self.lockCodeAlert textFieldAtIndex:0] setKeyboardType:UIKeyboardTypeNumberPad];
+        [self.lockCodeAlert show];
+    } else {
+        NSError *error;
+        [STKeychain deleteItemForUsername:@"lockCode" andServiceName:@"it.iltofa.janus" error:&error];
     }
 }
 

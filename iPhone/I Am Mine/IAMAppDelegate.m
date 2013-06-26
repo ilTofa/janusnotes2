@@ -12,6 +12,7 @@
 #import <Dropbox/Dropbox.h>
 #import "IAMDataSyncController.h"
 #import "iRate.h"
+#import "STKeychain.h"
 
 @interface IAMAppDelegate()
 
@@ -72,6 +73,34 @@
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
+    NSError *error;
+    NSString *pin = [STKeychain getPasswordForUsername:@"lockCode" andServiceName:@"it.iltofa.janus" error:&error];
+    if(pin) {
+        DLog(@"PIN (%@) is required!", pin);
+        [self getPIN];
+    } else {
+        DLog(@"PIN is not required");
+    }
+}
+
+-(void)getPIN {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Enter Lock Code", nil)
+                                                        message:NSLocalizedString(@"Enter the lock code to access the application.", nil)
+                                                       delegate:self
+                                              cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+        [[alertView textFieldAtIndex:0] setKeyboardType:UIKeyboardTypeNumberPad];
+    [alertView show];    
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    NSLog(@"Button %d clicked, text is: \'%@\'", buttonIndex, [alertView textFieldAtIndex:0].text);
+    NSError *error;
+    NSString *pin = [STKeychain getPasswordForUsername:@"lockCode" andServiceName:@"it.iltofa.janus" error:&error];
+    if(!pin || ![pin isEqualToString:[alertView textFieldAtIndex:0].text]) {
+        [self getPIN];
+    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
