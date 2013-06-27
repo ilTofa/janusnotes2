@@ -90,7 +90,7 @@
         DLog(@"called directly from init");
     [[NSNotificationCenter defaultCenter] removeObserver:self name:GTCoreDataReady object:nil];
     // Init sync mamagement
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(defaultDirectorySelected:) name:kIAMDataSyncSelectedDefaulDir object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(defaultDirectorySelected:) name:kIAMDataSyncSelectedDefaulDir object:nil];
     [IAMFilesystemSyncController sharedInstance];
     [self.arrayController setSortDescriptors:@[[[NSSortDescriptor alloc] initWithKey:@"timeStamp" ascending:NO]]];
 #if DEMO
@@ -99,7 +99,6 @@
 }
 
 - (void)defaultDirectorySelected:(NSNotification *)notification {
-    NSLog(@"OK, we're directory just selected the default directory");
     NSAlert *alert = [[NSAlert alloc] init];
     [alert setInformativeText:NSLocalizedString(@"Welcome to Janus Notes, press OK to open the preference panel and select the path to the Notes directory. The path can be changed later at any time using the preference panel. If you're unsure about what to do you can safely accept the default location by pressing cancel on the select path box.", nil)];
     [alert setMessageText:NSLocalizedString(@"Notes Directory Selection", @"")];
