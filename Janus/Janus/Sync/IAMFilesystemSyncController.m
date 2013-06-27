@@ -14,6 +14,7 @@
 #import "RNEncryptor.h"
 #import "RNDecryptor.h"
 #import "STKeychain.h"
+#import "NSDate+GTStringsHelpers.h"
 
 #define kNotesExtension @"jnote"
 #define kAttachmentDirectory @"Attachments"
@@ -361,7 +362,9 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
     if(![[encodedTitle pathExtension] isEqualToString:kNotesExtension])
         encodedTitle = [encodedTitle stringByAppendingFormat:@".%@", kNotesExtension];
     NSURL *noteTextPath = [notePath URLByAppendingPathComponent:encodedTitle isDirectory:NO];
-    if(![self writeString:note.text cryptedToURL:noteTextPath withError:&error]) {
+    // Mark the date in text at the start of the note..
+    NSString *noteText = [NSString stringWithFormat:@"⏰%@\n%@", [note.timeStamp toRFC3339String], note.text];
+    if(![self writeString:noteText cryptedToURL:noteTextPath withError:&error]) {
         DLog(@"Error writing note text saving to dropbox at %@: %@.", noteTextPath, [error description]);
     }
     // Now write all the attachments
@@ -647,10 +650,18 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
             }
             newNote.title = titolo;
             newNote.creationDate = newNote.timeStamp = modificationDate;
-            newNote.text = [self newStringDecryptedFromURL:fileInfo withError:&error];
-            if(!newNote.text) {
+            NSString *noteText = [self newStringDecryptedFromURL:fileInfo withError:&error];
+            if(!noteText) {
                 ALog(@"Serious error reading note %@: %@", fileInfo, [error description]);
             }
+            // Now get "real" date from file (if any)
+            if([noteText length] > 22 && [noteText characterAtIndex:0] == 0x23f0) { // ⏰ ALARM CLOCK Unicode: U+23F0, UTF-8: E2 8F B0
+                // Date is embedded in the first row of text as '⏰2013-06-27T12:02:34Z\n'
+                NSString *dateString = [noteText substringWithRange:NSMakeRange(1, 20)];
+                newNote.timeStamp = [NSDate dateFromRFC3339String:dateString];
+                noteText = [noteText substringFromIndex:22];
+            }
+            newNote.text = noteText;
             break;
         }
     }

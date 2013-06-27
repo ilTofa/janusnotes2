@@ -92,9 +92,7 @@
     // Init sync mamagement
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(defaultDirectorySelected:) name:kIAMDataSyncSelectedDefaulDir object:nil];
     [IAMFilesystemSyncController sharedInstance];
-    NSSortDescriptor *dateAddedSortDesc = [[NSSortDescriptor alloc] initWithKey:@"creationDate" ascending:NO];
-    NSArray *sortDescriptors = @[dateAddedSortDesc];
-    [self.arrayController setSortDescriptors:sortDescriptors];
+    [self.arrayController setSortDescriptors:@[[[NSSortDescriptor alloc] initWithKey:@"timeStamp" ascending:NO]]];
 #if DEMO
     [self showRemainingDaysBox];
 #endif

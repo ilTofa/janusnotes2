@@ -15,6 +15,7 @@
 #import "RNEncryptor.h"
 #import "RNDecryptor.h"
 #import "STKeychain.h"
+#import "NSDate+GTStringsHelpers.h"
 
 #define kNotesExtension @"jnote"
 #define kAttachmentDirectory @"Attachments"
@@ -388,7 +389,9 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
             DLog(@"Creating file to save a new note to dropbox. Error %d creating file at %@.", [error code], [noteTextPath stringValue]);
         }
     }
-    if(![self writeString:note.text cryptedToDBFile:noteTextFile withError:&error]) {
+    // Mark the date in text at the start of the note..
+    NSString *noteText = [NSString stringWithFormat:@"⏰%@\n%@", [note.timeStamp toRFC3339String], note.text];
+    if(![self writeString:noteText cryptedToDBFile:noteTextFile withError:&error]) {
         DLog(@"Error %d writing note text saving to dropbox at %@.", [error code], [noteTextPath stringValue]);
     }
     // Now write all the attachments
@@ -631,10 +634,18 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
                 [self.dataSyncThreadContext rollback];
                 return NO;
             }
-            newNote.text = [self newStringDecryptedFromDBFile:noteOnDropbox withError:&error];
-            if(!newNote.text) {
+            NSString *noteText = [self newStringDecryptedFromDBFile:noteOnDropbox withError:&error];
+            if(!noteText) {
                 DLog(@"Serious error reading note %@: %d (%@)", fileInfo.path.stringValue, [error code], [error description]);
             }
+            // Now get "real" date from file (if any)
+            if([noteText length] > 22 && [noteText characterAtIndex:0] == 0x23f0) { // ⏰ ALARM CLOCK Unicode: U+23F0, UTF-8: E2 8F B0
+                // Date is embedded in the first row of text as '⏰2013-06-27T12:02:34Z\n'
+                NSString *dateString = [noteText substringWithRange:NSMakeRange(1, 20)];
+                newNote.timeStamp = [NSDate dateFromRFC3339String:dateString];
+                noteText = [noteText substringFromIndex:22];
+            }
+            newNote.text = noteText;
             break;
         }
     }

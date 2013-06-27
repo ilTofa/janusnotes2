@@ -12,7 +12,6 @@
 #import "IAMNoteCell.h"
 #import "Note.h"
 #import "IAMNoteEdit.h"
-#import "NSDate+PassedTime.h"
 #import "GTThemer.h"
 #import "IAMDataSyncController.h"
 #import "MBProgressHUD.h"
@@ -283,7 +282,7 @@
     [[GTThemer sharedInstance] applyColorsToLabel:cell.noteTextLabel withFontSize:12];
     cell.noteTextLabel.text = note.text;
     [[GTThemer sharedInstance] applyColorsToLabel:cell.dateLabel withFontSize:10];
-    cell.dateLabel.text = [self.dateFormatter stringFromDate:note.creationDate];
+    cell.dateLabel.text = [self.dateFormatter stringFromDate:note.timeStamp];
     [[GTThemer sharedInstance] applyColorsToLabel:cell.attachmentsQuantityLabel withFontSize:10];
     NSUInteger attachmentsQuantity = 0;
     if(note.attachment)

@@ -2,9 +2,9 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1080</int>
-		<string key="IBDocument.SystemVersion">12D78</string>
+		<string key="IBDocument.SystemVersion">12E55</string>
 		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
-		<string key="IBDocument.AppKitVersion">1187.37</string>
+		<string key="IBDocument.AppKitVersion">1187.39</string>
 		<string key="IBDocument.HIToolboxVersion">626.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -503,7 +503,6 @@
 									<string key="NSFrame">{{1, 411}, {347, 16}}</string>
 									<reference key="NSSuperview" ref="358973374"/>
 									<reference key="NSWindow"/>
-									<reference key="NSNextKeyView"/>
 									<string key="NSReuseIdentifierKey">_NS:60</string>
 									<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 									<int key="NSsFlags">1</int>
@@ -538,7 +537,6 @@
 				<bool key="NSWindowIsRestorable">YES</bool>
 			</object>
 			<object class="NSArrayController" id="296286107">
-				<bool key="NSEditable">YES</bool>
 				<bool key="NSAutomaticallyPreparesContent">YES</bool>
 				<object class="_NSManagedProxy" key="_NSManagedProxy">
 					<string key="NSEntityName">Note</string>
@@ -2043,6 +2041,7 @@
 						<string key="searched:">id</string>
 						<string key="showInFinder:">id</string>
 						<string key="showUIWindow:">id</string>
+						<string key="tableItemDoubleClick:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="actionPreferences:">
@@ -2097,6 +2096,10 @@
 							<string key="name">showUIWindow:</string>
 							<string key="candidateClassName">id</string>
 						</object>
+						<object class="IBActionInfo" key="tableItemDoubleClick:">
+							<string key="name">tableItemDoubleClick:</string>
+							<string key="candidateClassName">id</string>
+						</object>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="arrayController">NSArrayController</string>
@@ -2149,11 +2152,11 @@
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="NSMenuCheckmark">{11, 11}</string>
 			<string key="NSMenuMixedState">{10, 3}</string>
-			<string key="delete">{35, 35}</string>
-			<string key="document">{35, 35}</string>
-			<string key="edit">{35, 35}</string>
-			<string key="refresh">{35, 35}</string>
-			<string key="settings">{35, 35}</string>
+			<string key="delete">{20.800794589408184, 20.800794589408184}</string>
+			<string key="document">{20.800794589408184, 20.800794589408184}</string>
+			<string key="edit">{20.800794589408184, 20.800794589408184}</string>
+			<string key="refresh">{20.800794589408184, 20.800794589408184}</string>
+			<string key="settings">{20.800794589408184, 20.800794589408184}</string>
 		</dictionary>
 		<bool key="IBDocument.UseAutolayout">YES</bool>
 	</data>
