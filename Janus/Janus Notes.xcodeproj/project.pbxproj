@@ -27,7 +27,7 @@
 		6476CFA81743BABE00A6195C /* IAMWaitingWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6476CFA61743BABE00A6195C /* IAMWaitingWindowController.xib */; };
 		6476CFAB1746223900A6195C /* it.iltofa.janus.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6476CFAA1746223900A6195C /* it.iltofa.janus.icns */; };
 		6476CFAC1746228E00A6195C /* it.iltofa.janus.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6476CFAA1746223900A6195C /* it.iltofa.janus.icns */; };
-		64A4E9B51742659A00BC49FE /* JanusImporter.mdimporter in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64EA622E16F7110300F4838E /* JanusImporter.mdimporter */; };
+		64A4E9B51742659A00BC49FE /* Janus NotesImporter.mdimporter in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64EA622E16F7110300F4838E /* Janus NotesImporter.mdimporter */; };
 		64A75591170358BC0085933D /* NSManagedObjectContext+FetchedObjectFromURI.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A75590170358BC0085933D /* NSManagedObjectContext+FetchedObjectFromURI.m */; };
 		64B56855174658ED006D04C4 /* readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 64B56854174658ED006D04C4 /* readme.txt */; };
 		64CB19281738EEE90014F35F /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CB19271738EEE90014F35F /* WebKit.framework */; };
@@ -100,7 +100,7 @@
 			dstPath = Contents/Library/Spotlight;
 			dstSubfolderSpec = 1;
 			files = (
-				64A4E9B51742659A00BC49FE /* JanusImporter.mdimporter in CopyFiles */,
+				64A4E9B51742659A00BC49FE /* Janus NotesImporter.mdimporter in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,7 +176,7 @@
 		64E6BDB8175009C600B63D46 /* settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "settings@2x.png"; path = "Buttons/settings@2x.png"; sourceTree = "<group>"; };
 		64E6BDB9175009C600B63D46 /* show_property.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = show_property.png; path = Buttons/show_property.png; sourceTree = "<group>"; };
 		64E6BDBA175009C600B63D46 /* show_property@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "show_property@2x.png"; path = "Buttons/show_property@2x.png"; sourceTree = "<group>"; };
-		64EA620C16F7110300F4838E /* Janus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Janus.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		64EA620C16F7110300F4838E /* Janus Notes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Janus Notes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		64EA620F16F7110300F4838E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		64EA621216F7110300F4838E /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		64EA621316F7110300F4838E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -189,19 +189,19 @@
 		64EA622116F7110300F4838E /* IAMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IAMAppDelegate.h; sourceTree = "<group>"; };
 		64EA622216F7110300F4838E /* IAMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IAMAppDelegate.m; sourceTree = "<group>"; };
 		64EA622516F7110300F4838E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		64EA622E16F7110300F4838E /* JanusImporter.mdimporter */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JanusImporter.mdimporter; sourceTree = BUILT_PRODUCTS_DIR; };
+		64EA622E16F7110300F4838E /* Janus NotesImporter.mdimporter */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Janus NotesImporter.mdimporter"; sourceTree = BUILT_PRODUCTS_DIR; };
 		64EA623216F7110300F4838E /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		64EA623416F7110300F4838E /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		64EA623616F7110300F4838E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		64EA623816F7110300F4838E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		64EA623C16F7110300F4838E /* JanusImporter-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JanusImporter-Info.plist"; sourceTree = "<group>"; };
+		64EA623C16F7110300F4838E /* Janus NotesImporter-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Janus NotesImporter-Info.plist"; sourceTree = "<group>"; };
 		64EA623E16F7110300F4838E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		64EA624016F7110300F4838E /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		64EA624216F7110300F4838E /* GetMetadataForFile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetMetadataForFile.m; sourceTree = "<group>"; };
 		64EA624416F7110300F4838E /* MySpotlightImporter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MySpotlightImporter.h; sourceTree = "<group>"; };
 		64EA624516F7110300F4838E /* MySpotlightImporter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MySpotlightImporter.m; sourceTree = "<group>"; };
 		64EA624716F7110300F4838E /* Importer Read Me.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Importer Read Me.txt"; sourceTree = "<group>"; };
-		64EA624816F7110300F4838E /* JanusImporter-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JanusImporter-Prefix.pch"; sourceTree = "<group>"; };
+		64EA624816F7110300F4838E /* Janus NotesImporter-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Janus NotesImporter-Prefix.pch"; sourceTree = "<group>"; };
 		64EA625116F7166700F4838E /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = ../icon.icns; sourceTree = "<group>"; };
 		64EA626C16F71E1400F4838E /* Attachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Attachment.h; path = ../common/iCloud/Attachment.h; sourceTree = "<group>"; };
 		64EA626D16F71E1400F4838E /* Attachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Attachment.m; path = ../common/iCloud/Attachment.m; sourceTree = "<group>"; };
@@ -370,8 +370,8 @@
 		64EA620D16F7110300F4838E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				64EA620C16F7110300F4838E /* Janus.app */,
-				64EA622E16F7110300F4838E /* JanusImporter.mdimporter */,
+				64EA620C16F7110300F4838E /* Janus Notes.app */,
+				64EA622E16F7110300F4838E /* Janus NotesImporter.mdimporter */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -453,10 +453,10 @@
 		64EA623B16F7110300F4838E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				64EA623C16F7110300F4838E /* JanusImporter-Info.plist */,
+				64EA623C16F7110300F4838E /* Janus NotesImporter-Info.plist */,
 				64EA623D16F7110300F4838E /* InfoPlist.strings */,
 				64EA624016F7110300F4838E /* main.c */,
-				64EA624816F7110300F4838E /* JanusImporter-Prefix.pch */,
+				64EA624816F7110300F4838E /* Janus NotesImporter-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -496,9 +496,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		64EA620B16F7110300F4838E /* Janus */ = {
+		64EA620B16F7110300F4838E /* Janus Notes */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 64EA624E16F7110300F4838E /* Build configuration list for PBXNativeTarget "Janus" */;
+			buildConfigurationList = 64EA624E16F7110300F4838E /* Build configuration list for PBXNativeTarget "Janus Notes" */;
 			buildPhases = (
 				64EA620816F7110300F4838E /* Sources */,
 				64EA620916F7110300F4838E /* Frameworks */,
@@ -510,14 +510,14 @@
 			dependencies = (
 				64EA623016F7110300F4838E /* PBXTargetDependency */,
 			);
-			name = Janus;
+			name = "Janus Notes";
 			productName = Janus;
-			productReference = 64EA620C16F7110300F4838E /* Janus.app */;
+			productReference = 64EA620C16F7110300F4838E /* Janus Notes.app */;
 			productType = "com.apple.product-type.application";
 		};
-		64EA622D16F7110300F4838E /* JanusImporter */ = {
+		64EA622D16F7110300F4838E /* Janus NotesImporter */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 64EA624B16F7110300F4838E /* Build configuration list for PBXNativeTarget "JanusImporter" */;
+			buildConfigurationList = 64EA624B16F7110300F4838E /* Build configuration list for PBXNativeTarget "Janus NotesImporter" */;
 			buildPhases = (
 				64EA622A16F7110300F4838E /* Sources */,
 				64EA622B16F7110300F4838E /* Frameworks */,
@@ -527,9 +527,9 @@
 			);
 			dependencies = (
 			);
-			name = JanusImporter;
+			name = "Janus NotesImporter";
 			productName = JanusImporter;
-			productReference = 64EA622E16F7110300F4838E /* JanusImporter.mdimporter */;
+			productReference = 64EA622E16F7110300F4838E /* Janus NotesImporter.mdimporter */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -542,7 +542,7 @@
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Giacomo Tufano";
 			};
-			buildConfigurationList = 64EA620716F7110300F4838E /* Build configuration list for PBXProject "Janus" */;
+			buildConfigurationList = 64EA620716F7110300F4838E /* Build configuration list for PBXProject "Janus Notes" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -562,8 +562,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				64EA620B16F7110300F4838E /* Janus */,
-				64EA622D16F7110300F4838E /* JanusImporter */,
+				64EA620B16F7110300F4838E /* Janus Notes */,
+				64EA622D16F7110300F4838E /* Janus NotesImporter */,
 			);
 		};
 /* End PBXProject section */
@@ -670,7 +670,7 @@
 /* Begin PBXTargetDependency section */
 		64EA623016F7110300F4838E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 64EA622D16F7110300F4838E /* JanusImporter */;
+			target = 64EA622D16F7110300F4838E /* Janus NotesImporter */;
 			targetProxy = 64EA622F16F7110300F4838E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -749,7 +749,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "DEMO=1";
 				INFOPLIST_FILE = "Janus/Janus-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7.3;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Janus Notes";
 				PROVISIONING_PROFILE = "48DA2D01-8AB8-44A3-8BB3-106E62CEAD21";
 				WRAPPER_EXTENSION = app;
 			};
@@ -761,11 +761,11 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "JanusImporter/JanusImporter-Prefix.pch";
-				INFOPLIST_FILE = "JanusImporter/JanusImporter-Info.plist";
+				GCC_PREFIX_HEADER = "JanusImporter/Janus NotesImporter-Prefix.pch";
+				INFOPLIST_FILE = "JanusImporter/Janus NotesImporter-Info.plist";
 				INSTALL_PATH = "@executable_path/../Contents/Library/Spotlight";
 				LIBRARY_STYLE = BUNDLE;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Janus NotesImporter";
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = mdimporter;
 			};
@@ -819,7 +819,7 @@
 				);
 				INFOPLIST_FILE = "Janus/Janus-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7.3;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Janus Notes";
 				PROVISIONING_PROFILE = "48DA2D01-8AB8-44A3-8BB3-106E62CEAD21";
 				WRAPPER_EXTENSION = app;
 			};
@@ -831,11 +831,11 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "JanusImporter/JanusImporter-Prefix.pch";
-				INFOPLIST_FILE = "JanusImporter/JanusImporter-Info.plist";
+				GCC_PREFIX_HEADER = "JanusImporter/Janus NotesImporter-Prefix.pch";
+				INFOPLIST_FILE = "JanusImporter/Janus NotesImporter-Info.plist";
 				INSTALL_PATH = "@executable_path/../Contents/Library/Spotlight";
 				LIBRARY_STYLE = BUNDLE;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Janus NotesImporter";
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = mdimporter;
 			};
@@ -906,11 +906,11 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "JanusImporter/JanusImporter-Prefix.pch";
-				INFOPLIST_FILE = "JanusImporter/JanusImporter-Info.plist";
+				GCC_PREFIX_HEADER = "JanusImporter/Janus NotesImporter-Prefix.pch";
+				INFOPLIST_FILE = "JanusImporter/Janus NotesImporter-Info.plist";
 				INSTALL_PATH = "@executable_path/../Contents/Library/Spotlight";
 				LIBRARY_STYLE = BUNDLE;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Janus NotesImporter";
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = mdimporter;
 			};
@@ -922,11 +922,11 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "JanusImporter/JanusImporter-Prefix.pch";
-				INFOPLIST_FILE = "JanusImporter/JanusImporter-Info.plist";
+				GCC_PREFIX_HEADER = "JanusImporter/Janus NotesImporter-Prefix.pch";
+				INFOPLIST_FILE = "JanusImporter/Janus NotesImporter-Info.plist";
 				INSTALL_PATH = "@executable_path/../Contents/Library/Spotlight";
 				LIBRARY_STYLE = BUNDLE;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Janus NotesImporter";
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = mdimporter;
 			};
@@ -943,7 +943,7 @@
 				GCC_PREFIX_HEADER = "Janus/Janus-Prefix.pch";
 				INFOPLIST_FILE = "Janus/Janus-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7.3;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Janus Notes";
 				PROVISIONING_PROFILE = "48DA2D01-8AB8-44A3-8BB3-106E62CEAD21";
 				WRAPPER_EXTENSION = app;
 			};
@@ -960,7 +960,7 @@
 				GCC_PREFIX_HEADER = "Janus/Janus-Prefix.pch";
 				INFOPLIST_FILE = "Janus/Janus-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7.3;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Janus Notes";
 				PROVISIONING_PROFILE = "48DA2D01-8AB8-44A3-8BB3-106E62CEAD21";
 				WRAPPER_EXTENSION = app;
 			};
@@ -969,7 +969,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		64EA620716F7110300F4838E /* Build configuration list for PBXProject "Janus" */ = {
+		64EA620716F7110300F4838E /* Build configuration list for PBXProject "Janus Notes" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				64EA624916F7110300F4838E /* Debug */,
@@ -980,7 +980,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		64EA624B16F7110300F4838E /* Build configuration list for PBXNativeTarget "JanusImporter" */ = {
+		64EA624B16F7110300F4838E /* Build configuration list for PBXNativeTarget "Janus NotesImporter" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				64EA624C16F7110300F4838E /* Debug */,
@@ -991,7 +991,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		64EA624E16F7110300F4838E /* Build configuration list for PBXNativeTarget "Janus" */ = {
+		64EA624E16F7110300F4838E /* Build configuration list for PBXNativeTarget "Janus Notes" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				64EA624F16F7110300F4838E /* Debug */,

@@ -28,7 +28,7 @@
 	<key>CFBundleIconFile</key>
 	<string>icon</string>
 	<key>CFBundleIdentifier</key>
-	<string>it.iltofa.${PRODUCT_NAME:rfc1034identifier}</string>
+	<string>it.iltofa.Janus</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -40,7 +40,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>331</string>
+	<string>332</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.productivity</string>
 	<key>LSMinimumSystemVersion</key>
@@ -66,7 +66,7 @@
 			<key>UTTypeIdentifier</key>
 			<string>it.iltofa.janus</string>
 			<key>UTTypeReferenceURL</key>
-			<string>http://www.iltofa.com/janus</string>
+			<string>http://www.janusnotes.com/</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>com.apple.ostype</key>

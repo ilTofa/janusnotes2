@@ -9,7 +9,7 @@
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>MDImporter</string>
-            <key>CFBundleTypeIconFile</key>
+			<key>CFBundleTypeIconFile</key>
 			<string>it.iltofa.janus.icns</string>
 			<key>LSItemContentTypes</key>
 			<array>
@@ -66,7 +66,7 @@
 			<key>UTTypeIdentifier</key>
 			<string>it.iltofa.janus</string>
 			<key>UTTypeReferenceURL</key>
-			<string>http://www.iltofa.com/janus</string>
+			<string>http://www.janusnotes.com/</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>com.apple.ostype</key>
