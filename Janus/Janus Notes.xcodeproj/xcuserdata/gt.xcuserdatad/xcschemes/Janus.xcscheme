@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "64EA620B16F7110300F4838E"
-               BuildableName = "Janus.app"
+               BuildableName = "Janus Notes.app"
                BlueprintName = "Janus Notes"
                ReferencedContainer = "container:Janus Notes.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "64EA620B16F7110300F4838E"
-            BuildableName = "Janus.app"
+            BuildableName = "Janus Notes.app"
             BlueprintName = "Janus Notes"
             ReferencedContainer = "container:Janus Notes.xcodeproj">
          </BuildableReference>
@@ -52,7 +52,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "64EA620B16F7110300F4838E"
-            BuildableName = "Janus.app"
+            BuildableName = "Janus Notes.app"
             BlueprintName = "Janus Notes"
             ReferencedContainer = "container:Janus Notes.xcodeproj">
          </BuildableReference>
@@ -82,7 +82,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "64EA620B16F7110300F4838E"
-            BuildableName = "Janus.app"
+            BuildableName = "Janus Notes.app"
             BlueprintName = "Janus Notes"
             ReferencedContainer = "container:Janus Notes.xcodeproj">
          </BuildableReference>
