@@ -57,9 +57,9 @@ typedef enum {
     self.fontSize = [[GTThemer sharedInstance] getStandardFontSize];
     [self.sizeStepper setValue:self.fontSize];
     self.colorSet = [[GTThemer sharedInstance] getStandardColorsID];
-    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:self.colorSet inSection:3] animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:self.colorSet inSection:colorSelector] animated:YES scrollPosition:UITableViewScrollPositionMiddle];
     self.fontFace = [[GTThemer sharedInstance] getStandardFontFaceID];
-    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:self.fontFace inSection:1] animated:false scrollPosition:UITableViewScrollPositionTop];
+    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:self.fontFace inSection:fontSelector] animated:false scrollPosition:UITableViewScrollPositionTop];
     [self sizePressed:nil];
     [self.tableView setContentOffset:CGPointZero animated:YES];
 }

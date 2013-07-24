@@ -22,7 +22,7 @@
 
 + (void)initialize {
     [iRate sharedInstance].daysUntilPrompt = 5;
-    [iRate sharedInstance].usesUntilPrompt = 15;
+    [iRate sharedInstance].usesUntilPrompt = 5;
     [iRate sharedInstance].appStoreID = 651150600;
     [iRate sharedInstance].appStoreGenreID = 0;
 }
