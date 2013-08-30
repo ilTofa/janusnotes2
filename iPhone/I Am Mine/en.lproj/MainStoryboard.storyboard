@@ -13,7 +13,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.94999999999999996" alpha="1" colorSpace="calibratedWhite"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" showsCancelButton="YES" id="S1E-lU-tyc">
+                        <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="minimal" showsCancelButton="YES" id="S1E-lU-tyc">
                             <rect key="frame" x="0.0" y="64" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -36,21 +36,21 @@
                                             <string key="text">Label riga 1,
 Label riga 2,
 Label riga 3</string>
-                                            <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="12"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="0 attachment(s)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4P6-QU-rkB" userLabel="Attachments number">
-                                            <rect key="frame" x="10" y="79" width="74" height="17"/>
+                                            <rect key="frame" x="10" y="79" width="82" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="10"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ief-EF-hhP" userLabel="Date">
-                                            <rect key="frame" x="92" y="79" width="218" height="17"/>
+                                            <rect key="frame" x="100" y="79" width="210" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                            <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="10"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
@@ -58,7 +58,7 @@ Label riga 3</string>
                                             <rect key="frame" x="10" y="3" width="300" height="24"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <accessibility key="accessibilityConfiguration" label=""/>
-                                            <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="17"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
@@ -418,26 +418,29 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Add title" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="bFY-L8-a9Q">
-                                <rect key="frame" x="9" y="0.0" width="302" height="35"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Add title" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="bFY-L8-a9Q">
+                                <rect key="frame" x="4" y="65" width="312" height="35"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Cochin-Bold" family="Cochin" pointSize="17"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textField>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text=" " translatesAutoresizingMaskIntoConstraints="NO" id="TM1-dV-cxf">
-                                <rect key="frame" x="0.0" y="34" width="320" height="427"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text=" " translatesAutoresizingMaskIntoConstraints="NO" id="TM1-dV-cxf">
+                                <rect key="frame" x="0.0" y="99" width="320" height="362"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="14"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <connections>
                                     <outlet property="delegate" destination="aYD-Rr-6C9" id="Ybe-F2-cwS"/>
                                 </connections>
                             </textView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" image="SmallRow.png" translatesAutoresizingMaskIntoConstraints="NO" id="PZq-Ci-A7X" userLabel="Grey Row">
-                                <rect key="frame" x="0.0" y="34" width="320" height="2"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="SmallRow.png" translatesAutoresizingMaskIntoConstraints="NO" id="PZq-Ci-A7X" userLabel="Grey Row">
+                                <rect key="frame" x="0.0" y="99" width="320" height="1"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="mOG-l6-hae"/>
+                                </constraints>
                             </imageView>
-                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="JlD-hL-CQO">
+                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="JlD-hL-CQO">
                                 <rect key="frame" x="0.0" y="459" width="320" height="65"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="0.94999999999999996" alpha="1" colorSpace="calibratedWhite"/>
@@ -481,13 +484,16 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                     <outlet property="delegate" destination="aYD-Rr-6C9" id="dbA-Uk-QnA"/>
                                 </connections>
                             </collectionView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" image="SmallRow.png" translatesAutoresizingMaskIntoConstraints="NO" id="DSt-ZI-WmB" userLabel="Attachments Grey Row">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="SmallRow.png" translatesAutoresizingMaskIntoConstraints="NO" id="DSt-ZI-WmB" userLabel="Attachments Grey Row">
                                 <rect key="frame" x="2" y="459" width="320" height="2"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             </imageView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8XP-bN-WGI">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8XP-bN-WGI">
                                 <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="xAx-dt-X3b"/>
+                                </constraints>
                                 <items>
                                     <barButtonItem systemItem="action" id="NqX-jG-BAT">
                                         <connections>
@@ -503,10 +509,8 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Files: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pov-IN-gep">
                                                     <rect key="frame" x="0.0" y="6" width="80" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <nil key="highlightedColor"/>
-                                                    <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                             </subviews>
                                         </view>
@@ -532,6 +536,29 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                             </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="0.95000000000000007" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="8XP-bN-WGI" firstAttribute="top" secondItem="TM1-dV-cxf" secondAttribute="bottom" constant="63" id="0NZ-zG-KxI"/>
+                            <constraint firstAttribute="trailing" secondItem="JlD-hL-CQO" secondAttribute="trailing" id="0ln-01-UrC"/>
+                            <constraint firstAttribute="trailing" secondItem="DSt-ZI-WmB" secondAttribute="trailing" constant="-2" id="2ls-yI-JjP"/>
+                            <constraint firstItem="TM1-dV-cxf" firstAttribute="leading" secondItem="uxP-bS-Qfh" secondAttribute="leading" id="8Dv-B6-k6D"/>
+                            <constraint firstItem="DSt-ZI-WmB" firstAttribute="leading" secondItem="uxP-bS-Qfh" secondAttribute="leading" constant="2" id="9Kh-Ey-URs"/>
+                            <constraint firstItem="bFY-L8-a9Q" firstAttribute="leading" secondItem="uxP-bS-Qfh" secondAttribute="leading" constant="4" id="CI9-Fh-qs2"/>
+                            <constraint firstItem="8XP-bN-WGI" firstAttribute="top" secondItem="JlD-hL-CQO" secondAttribute="bottom" id="E69-uS-79h"/>
+                            <constraint firstItem="bFY-L8-a9Q" firstAttribute="bottom" secondItem="PZq-Ci-A7X" secondAttribute="bottom" id="IPk-Gb-Hc1"/>
+                            <constraint firstItem="bFY-L8-a9Q" firstAttribute="top" secondItem="e0D-Xz-c1Z" secondAttribute="bottom" constant="1" id="KqF-Wx-jKI"/>
+                            <constraint firstItem="8XP-bN-WGI" firstAttribute="trailing" secondItem="JlD-hL-CQO" secondAttribute="trailing" id="Qep-VK-Gx1"/>
+                            <constraint firstItem="TM1-dV-cxf" firstAttribute="top" secondItem="e0D-Xz-c1Z" secondAttribute="bottom" constant="35" id="Rnr-lj-d4e"/>
+                            <constraint firstItem="TM1-dV-cxf" firstAttribute="top" secondItem="PZq-Ci-A7X" secondAttribute="top" id="TBJ-uN-uaN"/>
+                            <constraint firstAttribute="bottom" secondItem="8XP-bN-WGI" secondAttribute="bottom" id="WSN-XL-RW4"/>
+                            <constraint firstItem="8XP-bN-WGI" firstAttribute="top" secondItem="DSt-ZI-WmB" secondAttribute="bottom" constant="63" id="cBC-O8-eJl"/>
+                            <constraint firstItem="TM1-dV-cxf" firstAttribute="leading" secondItem="PZq-Ci-A7X" secondAttribute="leading" id="e0g-8Q-cvo"/>
+                            <constraint firstItem="PZq-Ci-A7X" firstAttribute="leading" secondItem="JlD-hL-CQO" secondAttribute="leading" id="hpU-hn-geP"/>
+                            <constraint firstItem="DSt-ZI-WmB" firstAttribute="top" secondItem="JlD-hL-CQO" secondAttribute="top" id="mBZ-YE-O3a"/>
+                            <constraint firstItem="PZq-Ci-A7X" firstAttribute="trailing" secondItem="TM1-dV-cxf" secondAttribute="trailing" id="nXA-5o-F4h"/>
+                            <constraint firstItem="8XP-bN-WGI" firstAttribute="leading" secondItem="JlD-hL-CQO" secondAttribute="leading" id="oH2-Mq-9gU"/>
+                            <constraint firstItem="PZq-Ci-A7X" firstAttribute="centerX" secondItem="bFY-L8-a9Q" secondAttribute="centerX" id="s9I-A9-FSO"/>
+                            <constraint firstItem="JlD-hL-CQO" firstAttribute="trailing" secondItem="PZq-Ci-A7X" secondAttribute="trailing" id="so8-zF-9Yh"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Note" id="86x-W0-j7C">
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="arX-0v-vjH">
@@ -542,12 +569,14 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                     </navigationItem>
                     <connections>
                         <outlet property="addImageButton" destination="ZOI-qk-nyn" id="jSU-2F-5e9"/>
+                        <outlet property="attachmentGreyRowToToolbarConstraint" destination="cBC-O8-eJl" id="nF4-NJ-xd2"/>
                         <outlet property="attachmentQuantityLabel" destination="pov-IN-gep" id="j5i-RB-2tJ"/>
                         <outlet property="attachmentsGreyRow" destination="DSt-ZI-WmB" id="ied-uK-ZI3"/>
                         <outlet property="collectionView" destination="JlD-hL-CQO" id="tEa-Cz-838"/>
                         <outlet property="greyRowImage" destination="PZq-Ci-A7X" id="Kxb-Ij-gVN"/>
                         <outlet property="recordingButton" destination="ngK-vY-6zQ" id="0Hh-x9-2qM"/>
                         <outlet property="textEdit" destination="TM1-dV-cxf" id="gVR-9d-Pjg"/>
+                        <outlet property="textToToolbarConstraint" destination="0NZ-zG-KxI" id="rFG-yP-6UO"/>
                         <outlet property="theToolbar" destination="8XP-bN-WGI" id="ZnP-PN-B9M"/>
                         <outlet property="titleEdit" destination="bFY-L8-a9Q" id="LV9-EX-IV6"/>
                         <segue destination="3ss-f5-lsw" kind="modal" identifier="AttachmentDetail" modalTransitionStyle="crossDissolve" id="Rey-xr-E5h"/>
@@ -555,7 +584,7 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pfC-hY-1zX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="912" y="101"/>
+            <point key="canvasLocation" x="920" y="101"/>
         </scene>
         <!--Attachment Detail-->
         <scene sceneID="Yfa-sm-gLB">
@@ -686,7 +715,6 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="gXB-5x-jMZ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

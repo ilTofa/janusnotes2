@@ -36,6 +36,8 @@
 
 @property NSManagedObjectContext *noteEditorMOC;
 
+@property CGFloat currentAttachmentConstraintHeight;
+
 @end
 
 @implementation IAMNoteEdit
@@ -66,16 +68,18 @@
         NSAssert1(self.editedNote, @"Shit! Invalid ObjectID, there. Error: %@", [error description]);
     }
     // Keyboard notifications
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     // Preset the note
-    [[GTThemer sharedInstance] applyColorsToView:self.titleEdit];
     self.originalTitle = self.titleEdit.text = self.editedNote.title;
     self.originalText = self.textEdit.text = self.editedNote.text;
-    [[GTThemer sharedInstance] applyColorsToView:self.textEdit];
-    [[GTThemer sharedInstance] applyColorsToView:self.view];
-    [[GTThemer sharedInstance] applyColorsToView:self.collectionView];
-    [[GTThemer sharedInstance] applyColorsToView:self.theToolbar];
+    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
+        [[GTThemer sharedInstance] applyColorsToView:self.titleEdit];
+        [[GTThemer sharedInstance] applyColorsToView:self.textEdit];
+        [[GTThemer sharedInstance] applyColorsToView:self.view];
+        [[GTThemer sharedInstance] applyColorsToView:self.collectionView];
+        [[GTThemer sharedInstance] applyColorsToView:self.theToolbar];
+    }
     self.attachmensAreHidden = NO;
     [self refreshAttachments];
     // If this is a new note, set the cursor on title field
@@ -111,10 +115,9 @@
         DLog(@"No attachments. Hiding collection view");
         [UIView animateWithDuration:0.5
                          animations:^{
-                             CGRect textRect = self.textEdit.frame;
-                             textRect.size.height += self.collectionView.frame.size.height;
-                             self.textEdit.frame = textRect;
+                             self.currentAttachmentConstraintHeight = self.textToToolbarConstraint.constant = self.attachmentGreyRowToToolbarConstraint.constant = 0.0;
                              self.collectionView.alpha = self.attachmentsGreyRow.alpha = 0.0;
+                             [self.view layoutIfNeeded];
                          }
                          completion:^(BOOL finished){
                              self.collectionView.hidden = self.attachmentsGreyRow.hidden = YES;
@@ -126,10 +129,9 @@
         self.collectionView.hidden = self.attachmentsGreyRow.hidden = NO;
         [UIView animateWithDuration:0.5
                          animations:^{
-                             CGRect textRect = self.textEdit.frame;
-                             textRect.size.height -= self.collectionView.frame.size.height;
-                             self.textEdit.frame = textRect;
+                             self.currentAttachmentConstraintHeight = self.textToToolbarConstraint.constant = self.attachmentGreyRowToToolbarConstraint.constant = 63.0;
                              self.collectionView.alpha = self.attachmentsGreyRow.alpha = 1.0;
+                             [self.view layoutIfNeeded];
                          }
                          completion:^(BOOL finished){
                              self.attachmensAreHidden = NO;
@@ -138,26 +140,27 @@
     [self.collectionView reloadData];
 }
 
-#pragma mark - UiTextViewDelegate
+#pragma mark - UIKeyboardNotifications
 
-// Called when the UIKeyboardDidShowNotification is sent.
-- (void)keyboardWasShown:(NSNotification*)aNotification
-{
+- (void)keyboardWillShow:(NSNotification *)aNotification {
     NSDictionary* info = [aNotification userInfo];
-    CGRect kbRect = [info[UIKeyboardFrameBeginUserInfoKey] CGRectValue];
-    kbRect = [self.view convertRect:kbRect toView:nil];
-    CGSize kbSize = kbRect.size;
-    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height + 12.0 /* - self.titleEdit.bounds.size.height */, 0.0);
-    self.textEdit.contentInset = contentInsets;
-    self.textEdit.scrollIndicatorInsets = contentInsets;
+    CGSize kbSize = [info[UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    self.textToToolbarConstraint.constant = self.attachmentGreyRowToToolbarConstraint.constant = kbSize.height - self.theToolbar.frame.size.height;
+    NSTimeInterval animationDuration = [info[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    [UIView animateWithDuration:animationDuration animations:^{
+        DLog(@"Frame before: %@", NSStringFromCGRect(self.textEdit.frame));
+        [self.view layoutIfNeeded];
+        DLog(@"Frame after:  %@", NSStringFromCGRect(self.textEdit.frame));
+    }];
 }
 
-// Called when the UIKeyboardWillHideNotification is sent
-- (void)keyboardWillBeHidden:(NSNotification*)aNotification
-{
-    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
-    self.textEdit.contentInset = contentInsets;
-    self.textEdit.scrollIndicatorInsets = contentInsets;
+- (void)keyboardWillHide:(NSNotification *)notification {
+    NSDictionary *info = [notification userInfo];
+    NSTimeInterval animationDuration = [[info objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    self.textToToolbarConstraint.constant = self.attachmentGreyRowToToolbarConstraint.constant = self.currentAttachmentConstraintHeight;
+    [UIView animateWithDuration:animationDuration animations:^{
+        [self.view layoutIfNeeded];
+    }];
 }
 
 - (IBAction)done:(id)sender

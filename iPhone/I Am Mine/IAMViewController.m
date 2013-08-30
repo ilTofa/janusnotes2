@@ -72,7 +72,9 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self colorize];
+    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
+        [self colorize];
+    }
     // if the dropbox backend have an user, but is not ready (that means it's waiting on something)
     if([IAMDataSyncController sharedInstance].syncControllerInited && ![IAMDataSyncController sharedInstance].syncControllerReady) {
         self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -259,7 +261,9 @@
         }
         else {
             [self.tableView reloadData];
-            [self colorize];
+            if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
+                [self colorize];
+            }
         }
     }
     [self saveSearchKeys];
@@ -424,7 +428,9 @@
     {
         [self.popSegue.popoverController dismissPopoverAnimated:YES];
         self.popSegue = nil;
-        [self colorize];
+        if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
+            [self colorize];
+        }
     }
 }
 

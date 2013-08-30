@@ -22,6 +22,9 @@
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *recordingButton;
 @property (weak, nonatomic) IBOutlet UILabel *attachmentQuantityLabel;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *textToToolbarConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *attachmentGreyRowToToolbarConstraint;
+
 @property NSManagedObjectID *idForTheNoteToBeEdited;
 
 - (IBAction)save:(id)sender;
