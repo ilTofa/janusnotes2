@@ -509,7 +509,7 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Files: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pov-IN-gep">
                                                     <rect key="frame" x="0.0" y="6" width="80" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -532,7 +532,6 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                         </connections>
                                     </barButtonItem>
                                 </items>
-                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="0.95000000000000007" alpha="1" colorSpace="calibratedWhite"/>
@@ -598,17 +597,19 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i60-nT-jQg">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i60-nT-jQg">
                                 <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem systemItem="trash" id="ryE-CA-mBB">
+                                        <color key="tintColor" red="1" green="0.67141440910000005" blue="0.050752737229999997" alpha="1" colorSpace="deviceRGB"/>
                                         <connections>
                                             <action selector="deleteAttachment:" destination="3ss-f5-lsw" id="vVT-1z-awl"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="ePM-Iw-ZMM"/>
                                     <barButtonItem systemItem="action" id="aU4-mm-dfc">
+                                        <color key="tintColor" red="1" green="0.67141440910000005" blue="0.050752737229999997" alpha="1" colorSpace="deviceRGB"/>
                                         <connections>
                                             <action selector="openInSafari:" destination="3ss-f5-lsw" id="bpT-Qp-EvP"/>
                                         </connections>
@@ -621,18 +622,29 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <webView multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e2A-cg-zw7">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
+                            <webView multipleTouchEnabled="YES" contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e2A-cg-zw7">
+                                <rect key="frame" x="0.0" y="20" width="320" height="504"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.80000001192092896" green="0.80000001192092896" blue="0.80000001192092896" alpha="1" colorSpace="calibratedRGB"/>
                                 <dataDetectorType key="dataDetectorTypes"/>
                             </webView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="6Tw-qc-Vyb">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="6Tw-qc-Vyb">
                                 <rect key="frame" x="143" y="232" width="37" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.92941182850000004" green="0.92941182850000004" blue="0.92941182850000004" alpha="1" colorSpace="deviceRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="i60-nT-jQg" secondAttribute="trailing" id="3Fi-1Z-NV4"/>
+                            <constraint firstAttribute="bottom" secondItem="i60-nT-jQg" secondAttribute="bottom" id="B6n-T0-fnt"/>
+                            <constraint firstItem="i60-nT-jQg" firstAttribute="top" secondItem="e2A-cg-zw7" secondAttribute="bottom" id="Fy6-vv-n1b"/>
+                            <constraint firstItem="e2A-cg-zw7" firstAttribute="top" secondItem="5PS-Tb-738" secondAttribute="top" constant="20" symbolic="YES" id="fHH-Df-xmB"/>
+                            <constraint firstItem="e2A-cg-zw7" firstAttribute="leading" secondItem="5PS-Tb-738" secondAttribute="leading" id="gzC-wW-l2Y"/>
+                            <constraint firstItem="6Tw-qc-Vyb" firstAttribute="leading" secondItem="5PS-Tb-738" secondAttribute="leading" constant="143" id="hUD-wl-z0R"/>
+                            <constraint firstItem="6Tw-qc-Vyb" firstAttribute="top" secondItem="6gj-ll-LUO" secondAttribute="bottom" constant="212" id="nVj-sv-uIj"/>
+                            <constraint firstItem="e2A-cg-zw7" firstAttribute="trailing" secondItem="i60-nT-jQg" secondAttribute="trailing" id="qYP-Ec-Ghs"/>
+                            <constraint firstItem="e2A-cg-zw7" firstAttribute="leading" secondItem="i60-nT-jQg" secondAttribute="leading" id="uGd-zp-m4X"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="deleteButton" destination="ryE-CA-mBB" id="e8G-fl-wgI"/>
@@ -669,7 +681,7 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Add a link" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="y1q-CG-X9T">
                                 <rect key="frame" x="9" y="246" width="302" height="35"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <fontDescription key="fontDescription" name="Cochin-Bold" family="Cochin" pointSize="17"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits" keyboardType="URL" returnKeyType="done"/>
                                 <connections>
                                     <outlet property="delegate" destination="Vge-sM-MRZ" id="IMK-M2-tXb"/>
@@ -731,7 +743,7 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
         <image name="link-icon.png" width="25" height="25"/>
         <image name="link-microphone.png" width="25" height="25"/>
     </resources>
-    <color key="tintColor" red="1" green="0.82638023760000001" blue="0.49843179739999999" alpha="1" colorSpace="deviceRGB"/>
+    <color key="tintColor" red="1" green="0.67141440911265593" blue="0.050752737226277378" alpha="1" colorSpace="deviceRGB"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

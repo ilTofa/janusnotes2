@@ -342,6 +342,7 @@
 
 - (void)addLinkViewControllerDidCancelAction:(IAMAddLinkViewController *)addLinkViewController {
     DLog(@"This is addLinkViewControllerDidCancelAction:");
+    [self refreshAttachments];
 }
 
 #pragma mark - AttachmentDeleter
