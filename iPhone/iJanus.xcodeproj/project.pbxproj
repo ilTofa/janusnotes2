@@ -91,6 +91,7 @@
 		64BB69F21715BB5F00875601 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64BB69F11715BB5F00875601 /* SystemConfiguration.framework */; };
 		64BB69F41715BB6600875601 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64BB69F31715BB6600875601 /* QuartzCore.framework */; };
 		64CC812F1717F1B800C129B0 /* IAMDataSyncController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64CC812E1717F1B800C129B0 /* IAMDataSyncController.m */; };
+		64CEF2BC17D0E65900D3A58B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64CEF2BB17D0E65900D3A58B /* Images.xcassets */; };
 		64DE6C261727E5320031183A /* NSManagedObjectContext+FetchedObjectFromURI.m in Sources */ = {isa = PBXBuildFile; fileRef = 64DE6C251727E5320031183A /* NSManagedObjectContext+FetchedObjectFromURI.m */; };
 		64ED90FA1743E46E00203969 /* STKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 64ED90F91743E46E00203969 /* STKeychain.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		64ED91061743E48900203969 /* RNCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 64ED90FF1743E48900203969 /* RNCryptor.m */; };
@@ -215,6 +216,7 @@
 		64CB194A17392BAD0014F35F /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		64CC812D1717F1B800C129B0 /* IAMDataSyncController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IAMDataSyncController.h; path = ../common/iCloud/IAMDataSyncController.h; sourceTree = "<group>"; };
 		64CC812E1717F1B800C129B0 /* IAMDataSyncController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IAMDataSyncController.m; path = ../common/iCloud/IAMDataSyncController.m; sourceTree = "<group>"; };
+		64CEF2BB17D0E65900D3A58B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../iJanus/Images.xcassets; sourceTree = "<group>"; };
 		64DE6C241727E5320031183A /* NSManagedObjectContext+FetchedObjectFromURI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSManagedObjectContext+FetchedObjectFromURI.h"; path = "../common/iCloud/NSManagedObjectContext+FetchedObjectFromURI.h"; sourceTree = "<group>"; };
 		64DE6C251727E5320031183A /* NSManagedObjectContext+FetchedObjectFromURI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSManagedObjectContext+FetchedObjectFromURI.m"; path = "../common/iCloud/NSManagedObjectContext+FetchedObjectFromURI.m"; sourceTree = "<group>"; };
 		64ED90F81743E46E00203969 /* STKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STKeychain.h; path = ../common/Utilitites/STKeychain.h; sourceTree = "<group>"; };
@@ -467,6 +469,7 @@
 		64A0507616D28CCA0025E179 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				64CEF2BB17D0E65900D3A58B /* Images.xcassets */,
 				64B56852174658B3006D04C4 /* readme.txt */,
 				640EE115173A476F0006A9A2 /* Default.png */,
 				640EE113173A47690006A9A2 /* Default@2x.png */,
@@ -559,6 +562,11 @@
 				CLASSPREFIX = IAM;
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Giacomo Tufano";
+				TargetAttributes = {
+					64A0506B16D28CCA0025E179 = {
+						DevelopmentTeam = 6483W56522;
+					};
+				};
 			};
 			buildConfigurationList = 64A0506716D28CCA0025E179 /* Build configuration list for PBXProject "iJanus" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -629,6 +637,7 @@
 				64A7557E1702137A0085933D /* BigMic@2x.png in Resources */,
 				64A7557F1702137A0085933D /* MicrophoneStrings.strings in Resources */,
 				64A755801702137A0085933D /* FloatingWindow.textClipping in Resources */,
+				64CEF2BC17D0E65900D3A58B /* Images.xcassets in Resources */,
 				64A755811702137A0085933D /* MicrophoneBackground.png in Resources */,
 				64A755821702137A0085933D /* MicrophoneWindow-iPad.xib in Resources */,
 				64A755841702137A0085933D /* MicrophoneWindow.xib in Resources */,
@@ -750,7 +759,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -774,7 +783,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -784,8 +793,10 @@
 		64A0509016D28CCA0025E179 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = iJanus.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Giacomo Tufano (68RHGP4K2S)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -805,8 +816,10 @@
 		64A0509116D28CCA0025E179 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = iJanus.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Giacomo Tufano (6483W56522)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
