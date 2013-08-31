@@ -30,7 +30,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // init colorizer...
-    [[GTThemer sharedInstance] saveStandardColors:[[GTThemer sharedInstance] getStandardColorsID]];
+    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
+        [[GTThemer sharedInstance] saveStandardColors:[[GTThemer sharedInstance] getStandardColorsID]];
+    }
     // Core Location init: get number of times user denied location use in app lifetime...
 	self.nLocationUseDenies = [[NSUserDefaults standardUserDefaults] integerForKey:@"userDeny"];
 	self.isLocationDenied = NO;

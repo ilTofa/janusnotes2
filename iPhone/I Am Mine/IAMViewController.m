@@ -33,6 +33,8 @@
 
 @property UIStoryboardPopoverSegue* popSegue;
 
+- (IBAction)preferencesAction:(id)sender;
+
 @end
 
 @implementation IAMViewController
@@ -109,7 +111,6 @@
 }
 
 -(void)syncStatus:(NSTimer *)timer {
-    
     DBSyncStatus status = [[DBFilesystem sharedFilesystem] status];
     NSMutableString *title = [[NSMutableString alloc] initWithString:@"Sync "];
     if(!status) {
@@ -450,6 +451,14 @@
 - (IBAction)launchPreferences:(id)sender
 {
     [self performSegueWithIdentifier:@"Preferences" sender:self];
+}
+
+- (IBAction)preferencesAction:(id)sender {
+    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
+        [self performSegueWithIdentifier:@"Preferences" sender:self];
+    } else {
+        [self performSegueWithIdentifier:@"Preferences7" sender:self];
+    }
 }
 
 @end

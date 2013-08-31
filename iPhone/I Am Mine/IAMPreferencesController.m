@@ -54,13 +54,15 @@ typedef enum {
     NSError *error;
     self.lockSwitch.on = ([STKeychain getPasswordForUsername:@"lockCode" andServiceName:@"it.iltofa.janus" error:&error] != nil);
     self.encryptionSwitch.on = [[IAMDataSyncController sharedInstance] notesAreEncrypted];
-    self.fontSize = [[GTThemer sharedInstance] getStandardFontSize];
-    [self.sizeStepper setValue:self.fontSize];
-    self.colorSet = [[GTThemer sharedInstance] getStandardColorsID];
-    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:self.colorSet inSection:colorSelector] animated:YES scrollPosition:UITableViewScrollPositionMiddle];
-    self.fontFace = [[GTThemer sharedInstance] getStandardFontFaceID];
-    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:self.fontFace inSection:fontSelector] animated:false scrollPosition:UITableViewScrollPositionTop];
-    [self sizePressed:nil];
+    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
+        self.fontSize = [[GTThemer sharedInstance] getStandardFontSize];
+        [self.sizeStepper setValue:self.fontSize];
+        self.colorSet = [[GTThemer sharedInstance] getStandardColorsID];
+        [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:self.colorSet inSection:colorSelector] animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+        self.fontFace = [[GTThemer sharedInstance] getStandardFontFaceID];
+        [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:self.fontFace inSection:fontSelector] animated:false scrollPosition:UITableViewScrollPositionTop];
+        [self sizePressed:nil];
+    }
     [self.tableView setContentOffset:CGPointZero animated:YES];
 }
 
@@ -68,8 +70,10 @@ typedef enum {
 {
     [super viewDidAppear:animated];
     // Mark selected color...
-    UITableViewCell * tableCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:self.colorSet inSection:3]];
-    tableCell.accessoryType = UITableViewCellAccessoryCheckmark;
+    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
+        UITableViewCell * tableCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:self.colorSet inSection:3]];
+        tableCell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }
     [self updateDropboxUI];
     if([[IAMDataSyncController sharedInstance] needsSyncPassword]) {
         [self changePasswordASAP];
@@ -186,9 +190,11 @@ typedef enum {
 
 - (IBAction)done:(id)sender
 {
-    DLog(@"Saving. ColorSet n° %d, fontFace n° %d, fontSize %d", self.colorSet, self.fontFace, self.fontSize);
-    [[GTThemer sharedInstance] saveStandardColors:self.colorSet];
-    [[GTThemer sharedInstance] saveStandardFontsWithFaceID:self.fontFace andSize:self.fontSize];
+    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
+        DLog(@"Saving. ColorSet n° %d, fontFace n° %d, fontSize %d", self.colorSet, self.fontFace, self.fontSize);
+        [[GTThemer sharedInstance] saveStandardColors:self.colorSet];
+        [[GTThemer sharedInstance] saveStandardFontsWithFaceID:self.fontFace andSize:self.fontSize];
+    }
     // Dismiss (or ask for dismissing)
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
         [[NSNotificationCenter defaultCenter] postNotificationName:kPreferencesPopoverCanBeDismissed object:self];
