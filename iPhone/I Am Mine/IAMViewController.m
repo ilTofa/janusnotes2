@@ -31,7 +31,7 @@
 
 @property IAMAppDelegate *appDelegate;
 
-@property UIStoryboardPopoverSegue* popSegue;
+@property UIPopoverController* popSegue;
 
 - (IBAction)preferencesAction:(id)sender;
 
@@ -418,7 +418,7 @@
 -(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
     // If on iPad and we already have an active popover for preferences, don't perform segue
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && [identifier isEqualToString:@"Preferences"] && [self.popSegue.popoverController isPopoverVisible])
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && [identifier isEqualToString:@"Preferences"] && [self.popSegue isPopoverVisible])
         return NO;
     return YES;
 }
@@ -441,16 +441,14 @@
         selectedNote.timeStamp = [NSDate date];
         noteEditor.idForTheNoteToBeEdited = [selectedNote objectID];
     }
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && [[segue identifier] isEqualToString:@"Preferences"])
-        self.popSegue = (UIStoryboardPopoverSegue *)segue;
 }
 
 - (void)dismissPopoverRequested:(NSNotification *) notification
 {
     DLog(@"This is dismissPopoverRequested: called for %@", notification.object);
-    if ([self.popSegue.popoverController isPopoverVisible])
+    if ([self.popSegue isPopoverVisible])
     {
-        [self.popSegue.popoverController dismissPopoverAnimated:YES];
+        [self.popSegue dismissPopoverAnimated:YES];
         self.popSegue = nil;
         if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
             [self colorize];
@@ -458,16 +456,24 @@
     }
 }
 
-- (IBAction)launchPreferences:(id)sender
-{
-    [self performSegueWithIdentifier:@"Preferences" sender:self];
-}
-
 - (IBAction)preferencesAction:(id)sender {
-    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
-        [self performSegueWithIdentifier:@"Preferences" sender:self];
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
+            [self performSegueWithIdentifier:@"Preferences" sender:self];
+        } else {
+            [self performSegueWithIdentifier:@"Preferences7" sender:self];
+        }
     } else {
-        [self performSegueWithIdentifier:@"Preferences7" sender:self];
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPad" bundle:nil];
+        NSString *preferencesID;
+        if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
+            preferencesID = @"Preferences";
+        } else {
+            preferencesID = @"Preferences7";
+        }
+        IAMPreferencesController *pc = [storyboard instantiateViewControllerWithIdentifier:preferencesID];
+        self.popSegue = [[UIPopoverController alloc] initWithContentViewController:pc];
+        [self.popSegue presentPopoverFromBarButtonItem:self.preferencesButton permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
     }
 }
 

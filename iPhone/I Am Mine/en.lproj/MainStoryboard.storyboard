@@ -760,10 +760,10 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
             </objects>
             <point key="canvasLocation" x="56" y="101"/>
         </scene>
-        <!--Preferences-->
+        <!--Preferences for iOS7-->
         <scene sceneID="GVX-ME-q2S">
             <objects>
-                <tableViewController id="mV7-Kq-sdp" userLabel="Preferences" customClass="IAMPreferencesController" sceneMemberID="viewController">
+                <tableViewController id="mV7-Kq-sdp" userLabel="Preferences for iOS7" customClass="IAMPreferencesController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="N5X-D1-ygd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -888,9 +888,6 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
         </scene>
     </scenes>
     <resources>
-        <image name="SmallRow.png" width="2" height="2"/>
-        <image name="SmallRow.png" width="2" height="2"/>
-        <image name="SmallRow.png" width="2" height="2"/>
         <image name="SmallRow.png" width="2" height="2"/>
         <image name="link-icon.png" width="25" height="25"/>
         <image name="link-microphone.png" width="25" height="25"/>
