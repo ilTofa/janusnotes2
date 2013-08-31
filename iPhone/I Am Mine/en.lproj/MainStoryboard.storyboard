@@ -30,7 +30,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="Fe0-vp-SbE" userLabel="Text Extract">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="Fe0-vp-SbE" userLabel="Text Extract">
                                             <rect key="frame" x="10" y="26" width="300" height="48"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <string key="text">Label riga 1,
@@ -40,21 +40,25 @@ Label riga 3</string>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="0 attachment(s)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4P6-QU-rkB" userLabel="Attachments number">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0 attachment(s)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4P6-QU-rkB" userLabel="Attachments number">
                                             <rect key="frame" x="10" y="79" width="82" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="17" id="0tY-eg-U0W"/>
+                                                <constraint firstAttribute="width" constant="82" id="Cf6-pL-SBq"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ief-EF-hhP" userLabel="Date">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ief-EF-hhP" userLabel="Date">
                                             <rect key="frame" x="100" y="79" width="210" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DBM-WO-au6" userLabel="Title">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DBM-WO-au6" userLabel="Title">
                                             <rect key="frame" x="10" y="3" width="300" height="24"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <accessibility key="accessibilityConfiguration" label=""/>
@@ -63,6 +67,23 @@ Label riga 3</string>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="ief-EF-hhP" firstAttribute="top" secondItem="DBM-WO-au6" secondAttribute="bottom" constant="52" id="1ji-qv-8SC"/>
+                                        <constraint firstItem="Fe0-vp-SbE" firstAttribute="top" secondItem="6TX-kS-1gp" secondAttribute="top" constant="26" id="3Mo-hg-3R1"/>
+                                        <constraint firstAttribute="trailing" secondItem="Fe0-vp-SbE" secondAttribute="trailing" constant="10" id="3mP-5d-Gpa"/>
+                                        <constraint firstItem="4P6-QU-rkB" firstAttribute="leading" secondItem="6TX-kS-1gp" secondAttribute="leading" constant="10" id="8wk-wr-5n0"/>
+                                        <constraint firstItem="ief-EF-hhP" firstAttribute="leading" secondItem="4P6-QU-rkB" secondAttribute="trailing" constant="8" id="9FC-jB-HSq"/>
+                                        <constraint firstItem="4P6-QU-rkB" firstAttribute="top" secondItem="Fe0-vp-SbE" secondAttribute="bottom" constant="5" id="Ilq-r7-4OA"/>
+                                        <constraint firstItem="Fe0-vp-SbE" firstAttribute="leading" secondItem="6TX-kS-1gp" secondAttribute="leading" constant="10" id="OF7-yr-h5c"/>
+                                        <constraint firstItem="ief-EF-hhP" firstAttribute="leading" secondItem="4P6-QU-rkB" secondAttribute="trailing" constant="8" id="OQb-0F-hSe"/>
+                                        <constraint firstItem="ief-EF-hhP" firstAttribute="baseline" secondItem="4P6-QU-rkB" secondAttribute="baseline" id="Ol0-qn-jZN"/>
+                                        <constraint firstAttribute="trailing" secondItem="DBM-WO-au6" secondAttribute="trailing" constant="10" id="Oni-cc-tUY"/>
+                                        <constraint firstItem="4P6-QU-rkB" firstAttribute="top" secondItem="ief-EF-hhP" secondAttribute="top" id="Rt1-GS-bnz"/>
+                                        <constraint firstAttribute="bottom" secondItem="4P6-QU-rkB" secondAttribute="bottom" constant="3" id="XlT-Kb-JpI"/>
+                                        <constraint firstAttribute="trailing" secondItem="ief-EF-hhP" secondAttribute="trailing" constant="10" id="fBo-an-VCZ"/>
+                                        <constraint firstItem="DBM-WO-au6" firstAttribute="leading" secondItem="6TX-kS-1gp" secondAttribute="leading" constant="10" id="nUR-wC-0Rk"/>
+                                        <constraint firstItem="DBM-WO-au6" firstAttribute="top" secondItem="6TX-kS-1gp" secondAttribute="top" constant="3" id="ydd-2q-h18"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="attachmentsQuantityLabel" destination="4P6-QU-rkB" id="eiX-CX-ptf"/>
@@ -867,6 +888,9 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
         </scene>
     </scenes>
     <resources>
+        <image name="SmallRow.png" width="2" height="2"/>
+        <image name="SmallRow.png" width="2" height="2"/>
+        <image name="SmallRow.png" width="2" height="2"/>
         <image name="SmallRow.png" width="2" height="2"/>
         <image name="link-icon.png" width="25" height="25"/>
         <image name="link-microphone.png" width="25" height="25"/>
