@@ -145,7 +145,9 @@
 - (void)keyboardWillShow:(NSNotification *)aNotification {
     NSDictionary* info = [aNotification userInfo];
     CGSize kbSize = [info[UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-    self.textToToolbarConstraint.constant = self.attachmentGreyRowToToolbarConstraint.constant = kbSize.height - self.theToolbar.frame.size.height;
+    BOOL isPortrait = UIDeviceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation);
+    CGFloat height = isPortrait ? kbSize.height : kbSize.width;
+    self.textToToolbarConstraint.constant = height - self.theToolbar.frame.size.height;
     NSTimeInterval animationDuration = [info[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     [UIView animateWithDuration:animationDuration animations:^{
         DLog(@"Frame before: %@", NSStringFromCGRect(self.textEdit.frame));
@@ -157,7 +159,7 @@
 - (void)keyboardWillHide:(NSNotification *)notification {
     NSDictionary *info = [notification userInfo];
     NSTimeInterval animationDuration = [[info objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-    self.textToToolbarConstraint.constant = self.attachmentGreyRowToToolbarConstraint.constant = self.currentAttachmentConstraintHeight;
+    self.textToToolbarConstraint.constant = self.currentAttachmentConstraintHeight;
     [UIView animateWithDuration:animationDuration animations:^{
         [self.view layoutIfNeeded];
     }];
