@@ -3,7 +3,7 @@
 
 extern NSString *DBErrorDomain;
 
-typedef enum {
+typedef NS_ENUM(NSInteger, DBErrorCode) {
 	DBErrorUnknown = 0,
 
 	DBErrorCoreSystem = 1, // System error, out of memory, etc
@@ -16,9 +16,11 @@ typedef enum {
 	DBErrorParamsParent, // Parent does not exist or is not a folder
 	DBErrorParamsNotEmpty, // Directory is not empty
 	DBErrorParamsNotCached, // File was not yet in cache
+	DBErrorParamsDisallowed, // App is not allowed to perform this operation
+	DBErrorParamsNoThumb, // No thumbnail is available
 	
 	DBErrorSystem = 3000, // An error in the library occurred
-	DBErrorSystemDiskSpace, // An error happened due to insufficient disk space
+	DBErrorSystemDiskSpace, // An error happened due to insufficient local disk space
 
 	DBErrorNetwork = 4000, // An error occurred making a network request
 	DBErrorNetworkTimeout, // A connection timed out
@@ -26,10 +28,12 @@ typedef enum {
 	DBErrorNetworkSSL, // Unable to verify the server's SSL certificate. Often caused by an out-of-date clock
 	DBErrorNetworkServer, // Unexpected server error
 	
+	DBErrorNetworkQuota = 4006, // The user's Dropbox space is full
+	
 	DBErrorAuth = 5000, // An authentication related problem occurred
 	DBErrorAuthUnlinked, // The user is no longer linked
 	DBErrorAuthInvalidApp, // An invalid app key or secret was provided
-} DBErrorCode;
+};
 
 
 /** The DBError class is a subclass of NSError that always has `domain` set to `DBErrorDomain`.

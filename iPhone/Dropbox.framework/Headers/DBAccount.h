@@ -32,8 +32,8 @@
 
 /** @name Watching for changes */
 
-/** Add `block` as an observer of an account to get notified whenever it's <linked> or
- <info> properties change. */
+/** Add `block` as an observer of an account to get notified whenever the account's
+ <linked> or <info> properties change. */
 - (void)addObserver:(id)observer block:(DBObserver)block;
 
 /** Remove all blocks associated with `observer` by the <addObserver:block:> method. */

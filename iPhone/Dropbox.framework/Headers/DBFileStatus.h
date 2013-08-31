@@ -1,5 +1,6 @@
 /* Copyright (c) 2012 Dropbox, Inc. All rights reserved. */
 
+/** Possible values for [DBFileStatus state]. */
 typedef enum {
 	DBFileStateDownloading,
 	DBFileStateIdle,

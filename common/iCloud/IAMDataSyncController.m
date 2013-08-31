@@ -97,6 +97,11 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
         DBAccountManager* accountMgr = [[DBAccountManager alloc] initWithAppKey:@"8mwm9fif4s1fju2" secret:@"pvafyx258qkx2fm"];
         [DBAccountManager setSharedManager:accountMgr];
         DBAccount *account = accountMgr.linkedAccount;
+        // Migrate dropbox identifier if needed
+        if ([[NSUserDefaults standardUserDefaults] integerForKey:@"dropBoxMigratedTo1.1.12"] == 0) {
+            [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"dropBoxMigratedTo1.1.12"];
+            [self migrateToDropboxSyncV112];
+        }
         // Listen to ourself, so to sync changes
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(localContextSaved:) name:NSManagedObjectContextDidSaveNotification object:_dataSyncThreadContext];
         [self gotNewDropboxUser:account];
@@ -107,6 +112,14 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
         [self addReadmeIfNeeded];
     }
     return self;
+}
+
+- (void)migrateToDropboxSyncV112 {
+    // Change email with displayname
+    if([[NSUserDefaults standardUserDefaults] stringForKey:@"currentDropboxAccount"]) {
+        DLog(@"Migrating dropbox user from %@ to %@", [[NSUserDefaults standardUserDefaults] stringForKey:@"currentDropboxAccount"], [DBAccountManager sharedManager].linkedAccount.info.displayName);
+        [[NSUserDefaults standardUserDefaults] setValue:[DBAccountManager sharedManager].linkedAccount.info.displayName forKey:@"currentDropboxAccount"];
+    }
 }
 
 // This is called at startup and everytime a new account is linked (or unlinked). The real engine readiness is in checkFirstSync.
@@ -136,7 +149,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
 - (void)checkFirstSync:(NSTimer*)theTimer {
     if([DBFilesystem sharedFilesystem].completedFirstSync) {
         // Copy current notes (if new account) to dropbox and notify
-        if(![[[NSUserDefaults standardUserDefaults] stringForKey:@"currentDropboxAccount"] isEqualToString:[DBAccountManager sharedManager].linkedAccount.info.email])
+        if(![[[NSUserDefaults standardUserDefaults] stringForKey:@"currentDropboxAccount"] isEqualToString:[DBAccountManager sharedManager].linkedAccount.info.displayName])
             [self copyCurrentDataToDropboxWithCompletionBlock:nil];
         // Notify interested parties that the sync engine is ready to be used (and set the flag)
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -359,7 +372,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
         for (Note *note in notes) {
             [self saveNoteToDropbox:note];
         }
-        [[NSUserDefaults standardUserDefaults] setValue:[DBAccountManager sharedManager].linkedAccount.info.email forKey:@"currentDropboxAccount"];
+        [[NSUserDefaults standardUserDefaults] setValue:[DBAccountManager sharedManager].linkedAccount.info.displayName forKey:@"currentDropboxAccount"];
         DLog(@"End copy of coredata db to dropbox. Executing block");
         if (block) {
             block();

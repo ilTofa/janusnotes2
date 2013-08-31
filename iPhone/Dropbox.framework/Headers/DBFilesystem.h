@@ -5,17 +5,37 @@
 #import "DBFileInfo.h"
 #import "DBPath.h"
 
-
-/** A set of various fields indicating the current status of the filesystem's syncing. */
-
 enum DBSyncStatusFlags {
 	DBSyncStatusDownloading = (1 << 0),
 	DBSyncStatusUploading = (1 << 1),
 	DBSyncStatusSyncing = (1 << 2),
-	DBSyncStatusOnline = (1 << 3),
+	DBSyncStatusActive = (1 << 3),
 };
 
+/** A set of various fields indicating the current status of syncing. */
 typedef NSUInteger DBSyncStatus;
+
+/** Possible values for thumbnail size when opening a thumbnail.  Thumbnails are scaled
+ (not cropped) in a way which preserves the original images aspect ratio, to a
+ size which fits within a bounding box defined by the size parameter.
+ - XS: 32x32
+ - S: 64x64
+ - M: 128x128
+ - L: 640x480
+ - XL: 1024x768 */
+typedef enum {
+	DBThumbSizeXS,
+	DBThumbSizeS,
+	DBThumbSizeM,
+	DBThumbSizeL,
+	DBThumbSizeXL,
+} DBThumbSize;
+
+/** Possible values for thumbnail format when opening a thumbnail.*/
+typedef enum {
+	DBThumbFormatJPG,
+	DBThumbFormatPNG,
+} DBThumbFormat;
 
 /** The filesystem object provides a files and folder view of a user's Dropbox. The most basic
  operations are listing a folder and opening a file, but it also allows you to move, delete, and 
@@ -70,6 +90,35 @@ typedef NSUInteger DBSyncStatus;
  error occurred. */
 - (DBFile *)createFile:(DBPath *)path error:(DBError **)error;
 
+/** Opens a thumbnail for an existing file and returns a [file](DBFile) object
+ representing a thumbnail for the file at `path`.
+ 
+ Thumbnails are opened at the newest cached version if the thumbnail is cached.
+ Otherwise, the thumbnail will open at the latest version and start downloading.
+ Check the `status` property of the returned file object to determine whether
+ it's cached.
+ 
+ Thumbnails are generated on the server and cached separately.  When offline
+ a thumbnail might be unavailable even if the file contents are available. If
+ a file is modified locally, the thumbnail will not be available until its
+ upload completes. Check the `thumbExists` property of the file's info to
+ find out if a thumbnail is available for download.
+ 
+ The DBFile object representing a thumbnail is unrelated to any DBFile opened
+ on the file itself.  Thumbnails are read-only - any attempt to write will fail.
+ It is possible to open multiple thumbnails (for instance, of different sizes)
+ on the same path.
+ 
+ Thumbnails are scaled (not cropped) in a way which preserves the original
+ images aspect ratio, to a size which fits within a bounding box defined by the
+ size parameter.
+ 
+ @return The [file](DBFile) object if the thumbnail was opened successfully, or
+ `nil` if an error occurred.
+ */
+- (DBFile *)openThumbnail:(DBPath *)path ofSize:(DBThumbSize)size
+				 inFormat:(DBThumbFormat)format	error:(DBError **)error;
+
 /** Creates a new folder at `path`. 
  
  @return YES if the folder was created successfully, or NO if an error occurred. */
@@ -85,6 +134,19 @@ typedef NSUInteger DBSyncStatus;
  @return YES if the file or folder was moved successfully, or NO if an error occurred. */
 - (BOOL)movePath:(DBPath *)fromPath toPath:(DBPath *)toPath error:(DBError **)error;
 
+/** Returns a link to the file or folder at `path`, suitable for sharing. The link
+ will optionally be shortened using the Dropbox URL shortener.
+
+ If the file or folder was created locally but not yet uploaded, a link will be
+ created, and viewing it before the upload is complete will result in a status
+ page indicating the pending upload.
+ 
+ This requires a server request. It will fail if the app is offline. It
+ shouldn't be called on the main thread.
+ 
+ @return the link URL, or `nil` if an error occurred.
+ */
+- (NSString *)fetchShareLinkForPath:(DBPath *)path shorten:(BOOL)shorten error:(DBError **)error;
 
 /** @name Getting the current state */
 
