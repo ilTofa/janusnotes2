@@ -70,6 +70,7 @@
     // Keyboard notifications
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillChangeFrameNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    // UIContentSizeCategoryDidChangeNotification
     // Preset the note
     self.originalTitle = self.titleEdit.text = self.editedNote.title;
     self.originalText = self.textEdit.text = self.editedNote.text;
@@ -79,6 +80,9 @@
         [[GTThemer sharedInstance] applyColorsToView:self.view];
         [[GTThemer sharedInstance] applyColorsToView:self.collectionView];
         [[GTThemer sharedInstance] applyColorsToView:self.theToolbar];
+    } else {
+        [self dynamicFontChanged:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dynamicFontChanged:) name:UIContentSizeCategoryDidChangeNotification object:nil];
     }
     self.attachmensAreHidden = NO;
     [self refreshAttachments];
@@ -104,6 +108,12 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)dynamicFontChanged:(NSNotification *)notification {
+    self.textEdit.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    self.titleEdit.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
+    self.attachmentQuantityLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
 }
 
 -(void)refreshAttachments

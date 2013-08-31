@@ -60,6 +60,9 @@
         [self refreshControlSetup];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(syncStoreNotificationHandler:) name:kIAMDataSyncControllerReady object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(syncStoreNotificationHandler:) name:kIAMDataSyncControllerStopped object:nil];
+    if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dynamicFontChanged:) name:UIContentSizeCategoryDidChangeNotification object:nil];
+    }
     [self setupFetchExecAndReload];
 }
 
@@ -81,6 +84,10 @@
         self.hud.labelText = NSLocalizedString(@"Waiting for Dropbox", nil);
         self.hud.detailsLabelText = NSLocalizedString(@"First sync in progress, please wait.", nil);
     }
+}
+
+- (void)dynamicFontChanged:(NSNotification *)aNotification {
+    [self.tableView reloadData];
 }
 
 -(void)colorize
@@ -281,16 +288,22 @@
 - (void)configureCell:(IAMNoteCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     Note *note = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    [[GTThemer sharedInstance] applyColorsToLabel:cell.titleLabel withFontSize:17];
     cell.titleLabel.text = note.title;
-    [[GTThemer sharedInstance] applyColorsToLabel:cell.noteTextLabel withFontSize:12];
     cell.noteTextLabel.text = note.text;
-    [[GTThemer sharedInstance] applyColorsToLabel:cell.dateLabel withFontSize:10];
     cell.dateLabel.text = [self.dateFormatter stringFromDate:note.timeStamp];
-    [[GTThemer sharedInstance] applyColorsToLabel:cell.attachmentsQuantityLabel withFontSize:10];
+    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
+        [[GTThemer sharedInstance] applyColorsToLabel:cell.titleLabel withFontSize:17];
+        [[GTThemer sharedInstance] applyColorsToLabel:cell.noteTextLabel withFontSize:12];
+        [[GTThemer sharedInstance] applyColorsToLabel:cell.dateLabel withFontSize:10];
+        [[GTThemer sharedInstance] applyColorsToLabel:cell.attachmentsQuantityLabel withFontSize:10];
+    } else {
+        cell.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
+        cell.noteTextLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
+    }
     NSUInteger attachmentsQuantity = 0;
-    if(note.attachment)
+    if(note.attachment) {
         attachmentsQuantity = [note.attachment count];
+    }
     cell.attachmentsQuantityLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%lu attachment(s)", nil), attachmentsQuantity];
 }
 
