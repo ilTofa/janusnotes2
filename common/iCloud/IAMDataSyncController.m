@@ -645,6 +645,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
                 // If the file is not stable, abort copy
                 DLog(@"File for note %@ is still not ready to copy. State: %d. Cached: %d", fileInfo.path.stringValue, noteOnDropbox.status.state, noteOnDropbox.status.cached);
                 [self.dataSyncThreadContext rollback];
+                [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kIAMDataSyncStillPendingChanges object:self]];
                 return NO;
             }
             NSString *noteText = [self newStringDecryptedFromDBFile:noteOnDropbox withError:&error];
@@ -681,6 +682,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
                 // If the file is not stable, abort copy
                 DLog(@"Attachment file %@ is still not ready to copy. State: %d. Cached: %d", attachmentInfo.path.stringValue, attachmentOnDropbox.status.state, attachmentOnDropbox.status.cached);
                 [self.dataSyncThreadContext rollback];
+                [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kIAMDataSyncStillPendingChanges object:self]];
                 return NO;
             }
             // Kill existing attachments and reload.

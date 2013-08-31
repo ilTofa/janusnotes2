@@ -62,6 +62,7 @@
         [self refreshControlSetup];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(syncStoreNotificationHandler:) name:kIAMDataSyncControllerReady object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(syncStoreNotificationHandler:) name:kIAMDataSyncControllerStopped object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(syncStoreStillPendingChanges:) name:kIAMDataSyncStillPendingChanges object:nil];
     if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dynamicFontChanged:) name:UIContentSizeCategoryDidChangeNotification object:nil];
     }
@@ -116,10 +117,14 @@
     if(!status) {
         // If all is quiet and dropbox says it's fully synced (and it was not before), then reload (only if last reload were more than 45 seconds ago).
         title = [NSLocalizedString(@"Notes ", nil) mutableCopy];
-        [title appendString:@"✔"];
+        if (self.dropboxSyncronizedSomething) {
+            [title appendString:@"🕐"];
+        } else {
+            [title appendString:@"✔"];
+        }
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-        if(self.dropboxSyncronizedSomething && [self.lastDropboxSync timeIntervalSinceNow] < -45.0) {
-            DLog(@"Dropbox synced everything, time to reload! Last reload %.0f seconds ago", -[self.lastDropboxSync timeIntervalSinceNow]);
+        if(self.dropboxSyncronizedSomething && [self.lastDropboxSync timeIntervalSinceNow] < -30.0) {
+            DLog(@"Reload from dropbox! Last reload %.0f seconds ago", -[self.lastDropboxSync timeIntervalSinceNow]);
             self.dropboxSyncronizedSomething = NO;
             self.lastDropboxSync = [NSDate date];
             [[IAMDataSyncController sharedInstance] refreshContentFromRemote];
@@ -159,6 +164,11 @@
         [self.hud hide:YES];
         self.hud = nil;
     }
+}
+
+- (void)syncStoreStillPendingChanges:(NSNotification *)note {
+    DLog(@"Dropbox still pending changes, forcing a later refresh.");
+    self.dropboxSyncronizedSomething = YES;
 }
 
 - (void)endSyncNotificationHandler:(NSNotification *)note {
