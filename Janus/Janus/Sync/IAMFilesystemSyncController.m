@@ -265,13 +265,15 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
 
 - (NSString *)newStringDecryptedFromURL:(NSURL *)url withError:(NSError **)errorPtr {
     if (self.notesAreEncrypted) {
-    NSData *decryptedData = [RNDecryptor decryptData:[NSData dataWithContentsOfURL:url options:NSDataReadingMappedIfSafe error:errorPtr]
-                                        withPassword:self.cryptPassword
-                                               error:errorPtr];
-    if(!decryptedData) {
-        return nil;
-    }
-    return [[NSString alloc] initWithData:decryptedData encoding:NSUTF8StringEncoding];
+        NSData *decryptedData = [RNDecryptor decryptData:[NSData dataWithContentsOfURL:url options:NSDataReadingMappedIfSafe error:errorPtr]
+                                            withPassword:self.cryptPassword
+                                                   error:errorPtr];
+        if(!decryptedData) {
+            DLog(@"A file content is corrupted or not encrypted, retrying read without encryption and resave crypted.");
+            decryptedData = [NSData dataWithContentsOfURL:url options:NSDataReadingMappedIfSafe error:errorPtr];
+            [self writeString:[[NSString alloc] initWithData:decryptedData encoding:NSUTF8StringEncoding] cryptedToURL:url withError:errorPtr];
+        }
+        return [[NSString alloc] initWithData:decryptedData encoding:NSUTF8StringEncoding];
     } else {
         return [[NSString alloc] initWithContentsOfURL:url encoding:NSUTF8StringEncoding error:errorPtr];
     }
