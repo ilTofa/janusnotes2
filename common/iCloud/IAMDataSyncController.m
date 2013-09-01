@@ -97,11 +97,6 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
         DBAccountManager* accountMgr = [[DBAccountManager alloc] initWithAppKey:@"8mwm9fif4s1fju2" secret:@"pvafyx258qkx2fm"];
         [DBAccountManager setSharedManager:accountMgr];
         DBAccount *account = accountMgr.linkedAccount;
-        // Migrate dropbox identifier if needed
-        if ([[NSUserDefaults standardUserDefaults] integerForKey:@"dropBoxMigratedTo1.1.12"] == 0) {
-            [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"dropBoxMigratedTo1.1.12"];
-            [self migrateToDropboxSyncV112];
-        }
         // Listen to ourself, so to sync changes
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(localContextSaved:) name:NSManagedObjectContextDidSaveNotification object:_dataSyncThreadContext];
         [self gotNewDropboxUser:account];
@@ -117,8 +112,8 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
 - (void)migrateToDropboxSyncV112 {
     // Change email with displayname
     if([[NSUserDefaults standardUserDefaults] stringForKey:@"currentDropboxAccount"]) {
-        DLog(@"Migrating dropbox user from %@ to %@", [[NSUserDefaults standardUserDefaults] stringForKey:@"currentDropboxAccount"], [DBAccountManager sharedManager].linkedAccount.info.displayName);
-        [[NSUserDefaults standardUserDefaults] setValue:[DBAccountManager sharedManager].linkedAccount.info.displayName forKey:@"currentDropboxAccount"];
+        DLog(@"Migrating dropbox user from %@ to %@", [[NSUserDefaults standardUserDefaults] stringForKey:@"currentDropboxAccount"], [DBAccountManager sharedManager].linkedAccount.userId);
+        [[NSUserDefaults standardUserDefaults] setValue:[DBAccountManager sharedManager].linkedAccount.userId forKey:@"currentDropboxAccount"];
     }
 }
 
@@ -126,6 +121,11 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
 - (void)gotNewDropboxUser:(DBAccount *)account {
     DBAccount *currentAccount = [DBAccountManager sharedManager].linkedAccount;
     if(currentAccount) {
+        // Migrate dropbox identifier if needed
+        if ([[NSUserDefaults standardUserDefaults] integerForKey:@"dropBoxMigratedTo1.1.12"] == 0) {
+            [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"dropBoxMigratedTo1.1.12"];
+            [self migrateToDropboxSyncV112];
+        }
         self.syncControllerInited = YES;
         DBFilesystem *filesystem = [[DBFilesystem alloc] initWithAccount:currentAccount];
         [DBFilesystem setSharedFilesystem:filesystem];
@@ -149,7 +149,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
 - (void)checkFirstSync:(NSTimer*)theTimer {
     if([DBFilesystem sharedFilesystem].completedFirstSync) {
         // Copy current notes (if new account) to dropbox and notify
-        if(![[[NSUserDefaults standardUserDefaults] stringForKey:@"currentDropboxAccount"] isEqualToString:[DBAccountManager sharedManager].linkedAccount.info.displayName])
+        if(![[[NSUserDefaults standardUserDefaults] stringForKey:@"currentDropboxAccount"] isEqualToString:[DBAccountManager sharedManager].linkedAccount.userId])
             [self copyCurrentDataToDropboxWithCompletionBlock:nil];
         // Notify interested parties that the sync engine is ready to be used (and set the flag)
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -278,6 +278,11 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
     NSData *decryptedData = [file readData:errorPtr];
     if (self.notesAreEncrypted) {
         decryptedData = [RNDecryptor decryptData:decryptedData withPassword:self.cryptPassword error:errorPtr];
+        if(!decryptedData) {
+            DLog(@"A file content is corrupted or not encrypted, retrying read without encryption and resave crypted.");
+            decryptedData = [file readData:errorPtr];
+            [self writeString:[[NSString alloc] initWithData:decryptedData encoding:NSUTF8StringEncoding] cryptedToDBFile:file withError:errorPtr];
+        }
     }
     return [[NSString alloc] initWithData:decryptedData encoding:NSUTF8StringEncoding];
 }
@@ -372,7 +377,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
         for (Note *note in notes) {
             [self saveNoteToDropbox:note];
         }
-        [[NSUserDefaults standardUserDefaults] setValue:[DBAccountManager sharedManager].linkedAccount.info.displayName forKey:@"currentDropboxAccount"];
+        [[NSUserDefaults standardUserDefaults] setValue:[DBAccountManager sharedManager].linkedAccount.userId forKey:@"currentDropboxAccount"];
         DLog(@"End copy of coredata db to dropbox. Executing block");
         if (block) {
             block();
@@ -382,7 +387,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
 
 // Save the passed note to dropbox
 - (void)saveNoteToDropbox:(Note *)note {
-//    DLog(@"Copying note %@ (%d attachments) to dropbox.", note.title, [note.attachment count]);
+    DLog(@"Copying note %@ (%d attachments) to dropbox.", note.title, [note.attachment count]);
     DBError *error;
     // Create folder (named after uuid)
     DBPath *notePath = [[DBPath root] childPath:note.uuid];
@@ -407,6 +412,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
     if(![self writeString:noteText cryptedToDBFile:noteTextFile withError:&error]) {
         DLog(@"Error %d writing note text saving to dropbox at %@.", [error code], [noteTextPath stringValue]);
     }
+    [noteTextFile close];
     // Now write all the attachments
     DBPath *attachmentPath = [notePath childPath:kAttachmentDirectory];
     for (Attachment *attachment in note.attachment) {
@@ -424,6 +430,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
         if(![attachmentDataFile writeData:attachment.data error:&error]) {
             DLog(@"Error %d writing attachment data at %@ for note %@.", [error code], [attachmentDataPath stringValue], note.title);
         }
+        [attachmentDataFile close];
     }
     // Now ensure that no stale attachments are still in the dropbox
     NSArray *attachmentFiles = [[DBFilesystem sharedFilesystem] listFolder:attachmentPath error:&error];
@@ -464,6 +471,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
     if(![attachmentDataFile writeData:attachment.data error:&error]) {
         DLog(@"Error %d writing attachment data at %@ for note %@.", [error code], [attachmentDataPath stringValue], note.title);
     }
+    [attachmentDataFile close];
 }
 
 - (void)deleteNoteTextWithUUID:(NSString *)uuid afterFilenameChangeFrom:(NSString *)oldFilename {
@@ -660,6 +668,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
                 noteText = [noteText substringFromIndex:22];
             }
             newNote.text = noteText;
+            [noteOnDropbox close];
             break;
         }
     }
@@ -683,6 +692,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
                 DLog(@"Attachment file %@ is still not ready to copy. State: %d. Cached: %d", attachmentInfo.path.stringValue, attachmentOnDropbox.status.state, attachmentOnDropbox.status.cached);
                 [self.dataSyncThreadContext rollback];
                 [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kIAMDataSyncStillPendingChanges object:self]];
+                [attachmentOnDropbox close];
                 return NO;
             }
             // Kill existing attachments and reload.
@@ -698,7 +708,8 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
             // Now link attachment to the note
             newAttachment.note = newNote;
             [newNote addAttachmentObject:newAttachment];
-        }        
+            [attachmentOnDropbox close];
+        }
     }
     filesInNoteDir = nil;
     return YES;
