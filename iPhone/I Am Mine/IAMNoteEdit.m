@@ -160,9 +160,7 @@
     self.textToToolbarConstraint.constant = height - self.theToolbar.frame.size.height;
     NSTimeInterval animationDuration = [info[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     [UIView animateWithDuration:animationDuration animations:^{
-        DLog(@"Frame before: %@", NSStringFromCGRect(self.textEdit.frame));
         [self.view layoutIfNeeded];
-        DLog(@"Frame after:  %@", NSStringFromCGRect(self.textEdit.frame));
     }];
 }
 
