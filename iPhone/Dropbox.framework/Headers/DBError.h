@@ -1,7 +1,11 @@
 /* Copyright (c) 2012 Dropbox, Inc. All rights reserved. */
 
 
-extern NSString *DBErrorDomain;
+extern NSString * const DBErrorDomain;
+
+#ifndef NS_ENUM
+#define NS_ENUM(_type, _name) _type _name; enum
+#endif
 
 typedef NS_ENUM(NSInteger, DBErrorCode) {
 	DBErrorUnknown = 0,

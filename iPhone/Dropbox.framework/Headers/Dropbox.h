@@ -9,3 +9,5 @@
 #import <Dropbox/DBFileStatus.h>
 #import <Dropbox/DBFilesystem.h>
 #import <Dropbox/DBPath.h>
+
+extern NSString * const kDBSDKVersion;
