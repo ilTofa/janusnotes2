@@ -167,7 +167,6 @@
 }
 
 - (void)syncStoreStillPendingChanges:(NSNotification *)note {
-    DLog(@"Dropbox still pending changes, forcing a later refresh.");
     self.dropboxSyncronizedSomething = YES;
 }
 

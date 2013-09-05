@@ -196,7 +196,7 @@
             ALog(@"Unresolved error saving parent context %@, %@", error, [error userInfo]);
     }];
     // If title is changed, delete old note (with wrong name)
-    if(![self.editedNote.title isEqualToString:self.originalTitle]) {
+    if(![self.editedNote.title isEqualToString:self.originalTitle] && self.originalTitle && ![self.originalTitle isEqualToString:@""]) {
         [[IAMDataSyncController sharedInstance] deleteNoteTextWithUUID:self.editedNote.uuid afterFilenameChangeFrom:self.originalTitle];
         self.originalTitle = self.editedNote.title;
     }
