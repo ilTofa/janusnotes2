@@ -157,12 +157,6 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
             DLog(@"IAMDataSyncController is ready.");
             self.syncControllerReady = YES;
             [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kIAMDataSyncControllerReady object:self]];
-            [[DBFilesystem sharedFilesystem] addObserver:self block:^{
-                DLog(@"*** The Dropbox filesystem changed status");
-            }];
-            [[DBFilesystem sharedFilesystem] addObserver:self forPathAndDescendants:[DBPath root] block:^{
-                DLog(@"*** Files have changed in the dropbox filesystem");
-            }];
         });
     } else {
         DLog(@"Still waiting for first sync completion");
@@ -700,6 +694,9 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
         if(![[DBFilesystem sharedFilesystem] fileInfoForPath:attachmentsPath error:&error]) {
             // No attachments directory -> No attachments
             DLog(@"Attachment directory for note %@ not existing.", newNote.title);
+            if(![[DBFilesystem sharedFilesystem] createFolder:attachmentsPath error:&error]) {
+                DLog(@"Error creating attachment folder. Error %d creating folder at %@.", [error code], [attachmentsPath stringValue]);
+            }
             return YES;
         }
         NSArray *filesInAttachmentDir = [[DBFilesystem sharedFilesystem] listFolder:attachmentsPath error:&error];

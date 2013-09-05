@@ -23,7 +23,7 @@
 @property (nonatomic) NSDateFormatter *dateFormatter;
 @property MBProgressHUD *hud;
 
-@property (atomic) BOOL dropboxSyncronizedSomething;
+@property BOOL dropboxSyncronizedSomething;
 @property (atomic) NSDate *lastDropboxSync;
 @property NSTimer *syncStatusTimer;
 
@@ -108,43 +108,76 @@
     [refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
     self.refreshControl = refreshControl;
     // Here we are sure there is an active dropbox link
-    self.syncStatusTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(syncStatus:) userInfo:nil repeats:YES];
+//    self.syncStatusTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(syncStatus:) userInfo:nil repeats:YES];
+    IAMViewController __weak *weakSelf = self;
+    [[DBFilesystem sharedFilesystem] addObserver:self forPathAndDescendants:[DBPath root] block:^{
+        DLog(@"*** Files have changed in the dropbox filesystem, reloading");
+        [weakSelf refreshDropboxContent];
+    }];
+    [[DBFilesystem sharedFilesystem] addObserver:self block:^{
+        DLog(@"*** Status changed");
+        [weakSelf syncStatus:nil];
+        // Let's schedule a call to syncStatus for a later check for changes
+        if(self.syncStatusTimer) {
+            [self.syncStatusTimer invalidate];
+            self.syncStatusTimer = nil;
+        }
+        self.syncStatusTimer = [NSTimer scheduledTimerWithTimeInterval:31.0 target:self selector:@selector(syncStatus:) userInfo:nil repeats:NO];
+    }];
+}
+
+- (void)refreshDropboxContentIfNeeded {
+    DLog(@"Checking if a refresh of Dropbox content is needed.");
+    if(self.dropboxSyncronizedSomething && [self.lastDropboxSync timeIntervalSinceNow] < -30.0) {
+        [self refreshDropboxContent];
+    }
+}
+
+- (void)refreshDropboxContent {
+    DLog(@"Reload from dropbox! Last reload %.0f seconds ago", -[self.lastDropboxSync timeIntervalSinceNow]);
+    self.dropboxSyncronizedSomething = NO;
+    self.lastDropboxSync = [NSDate date];
+    [self syncStatus:nil];
+    [[IAMDataSyncController sharedInstance] refreshContentFromRemote];
 }
 
 -(void)syncStatus:(NSTimer *)timer {
-    DBSyncStatus status = [[DBFilesystem sharedFilesystem] status];
-    NSMutableString *title = [[NSMutableString alloc] initWithString:@"Sync "];
-    if(!status) {
-        // If all is quiet and dropbox says it's fully synced (and it was not before), then reload (only if last reload were more than 45 seconds ago).
-        title = [NSLocalizedString(@"Notes ", nil) mutableCopy];
-        if (self.dropboxSyncronizedSomething) {
-            [title appendString:@"🕐"];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        DBSyncStatus status = [[DBFilesystem sharedFilesystem] status];
+        DLog(@"Checking status%@: %d", (timer) ? @" from timer call" : @"", status);
+        // DBSyncStatusActive is the default
+        NSMutableString *title = [[NSMutableString alloc] initWithString:@"Sync "];
+        if(!status || (status == DBSyncStatusActive)) {
+            title = [NSLocalizedString(@"Notes ", nil) mutableCopy];
+            if (self.dropboxSyncronizedSomething) {
+                [title appendString:@"🕐"];
+            } else {
+                [title appendString:@"✔"];
+            }
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+            [self refreshDropboxContentIfNeeded];
         } else {
-            [title appendString:@"✔"];
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
         }
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-        if(self.dropboxSyncronizedSomething && [self.lastDropboxSync timeIntervalSinceNow] < -30.0) {
-            DLog(@"Reload from dropbox! Last reload %.0f seconds ago", -[self.lastDropboxSync timeIntervalSinceNow]);
-            self.dropboxSyncronizedSomething = NO;
-            self.lastDropboxSync = [NSDate date];
-            [[IAMDataSyncController sharedInstance] refreshContentFromRemote];
+        if (status & DBSyncStatusSyncing) {
+            [title appendString:@"⇅"];
         }
-    } else {
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-    }
-    if(status & DBSyncStatusDownloading) {
-        [title appendString:@"↓"];
-        self.dropboxSyncronizedSomething = YES;
-    }
-    if(status & DBSyncStatusUploading)
-        [title appendString:@"↑"];
-    self.title = title;
+        if(status & DBSyncStatusDownloading) {
+            [title appendString:@"↓"];
+            self.dropboxSyncronizedSomething = YES;
+            [self refreshDropboxContentIfNeeded];
+        }
+        if(status & DBSyncStatusUploading)
+            [title appendString:@"↑"];
+        self.title = title;
+    });
 }
 
 -(void)refresh {
     [self.refreshControl beginRefreshing];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(endSyncNotificationHandler:) name:kIAMDataSyncRefreshTerminated object:nil];
-    [[IAMDataSyncController sharedInstance] refreshContentFromRemote];
+    [self refreshDropboxContent];
+    [self syncStatus:nil];
 }
 
 - (void)syncStoreNotificationHandler:(NSNotification *)note {
@@ -167,11 +200,13 @@
 }
 
 - (void)syncStoreStillPendingChanges:(NSNotification *)note {
+    DLog(@"Sync store is still pending syncronization.");
     self.dropboxSyncronizedSomething = YES;
 }
 
 - (void)endSyncNotificationHandler:(NSNotification *)note {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kIAMDataSyncRefreshTerminated object:nil];
+    [self syncStatus:nil];
     [self.refreshControl endRefreshing];
 }
 
