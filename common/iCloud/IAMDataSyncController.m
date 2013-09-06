@@ -443,23 +443,18 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
         }
         [attachmentDataFile close];
     }
-    // Now ensure that no stale attachments are still in the dropbox
-    if(![[DBFilesystem sharedFilesystem] fileInfoForPath:attachmentPath error:&error]) {
-        DLog(@"note %@ copied to dropbox, no attachments folder.", note.title);
-        return;
-    }
     NSArray *attachmentFiles = [[DBFilesystem sharedFilesystem] listFolder:attachmentPath error:&error];
-    if(!attachmentFiles) {
+    if(!attachmentFiles || [attachmentFiles count] == 0) {
         DLog(@"note %@ copied to dropbox, no attachments.", note.title);
         return;
     }
     for (DBFileInfo *fileInfo in attachmentFiles) {
         BOOL found = NO;
-        for (Attachment *attachments in note.attachment) {
-            if([attachments.filename isEqualToString:fileInfo.path.name]) {
-                found = YES;
+        [note.attachment enumerateObjectsUsingBlock:^(Attachment *attachment, BOOL *found) {
+            if([attachment.filename isEqualToString:fileInfo.path.name]) {
+                *found = YES;
             }
-        }
+        }];
         if(!found) {
             // Delete attachment file
             [[DBFilesystem sharedFilesystem] deletePath:fileInfo.path error:&error];
@@ -475,13 +470,14 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
     DBPath *attachmentPath = [notePath childPath:kAttachmentDirectory];
     NSString *encodedAttachmentName = convertToValidDropboxFilenames(attachment.filename);
     DBPath *attachmentDataPath = [attachmentPath childPath:encodedAttachmentName];
-    DBFile *attachmentDataFile = [[DBFilesystem sharedFilesystem] openFile:attachmentDataPath error:&error];
-    if(!attachmentDataFile) {
+    DBFile *attachmentDataFile;
+    if(![[DBFilesystem sharedFilesystem] fileInfoForPath:attachmentDataPath error:&error]) {
         attachmentDataFile = [[DBFilesystem sharedFilesystem] createFile:attachmentDataPath error:&error];
         if(!attachmentDataFile) {
             DLog(@"Error %d saving attachment file at %@ for note %@.", [error code], [attachmentDataPath stringValue], note.title);
         }
-        
+    } else {
+        attachmentDataFile = [[DBFilesystem sharedFilesystem] openFile:attachmentDataPath error:&error];
     }
     if(![attachmentDataFile writeData:attachment.data error:&error]) {
         DLog(@"Error %d writing attachment data at %@ for note %@.", [error code], [attachmentDataPath stringValue], note.title);
