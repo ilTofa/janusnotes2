@@ -387,51 +387,95 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
 
 // Save the passed note to dropbox
 - (void)saveNoteToDropbox:(Note *)note {
-    DLog(@"Copying note %@ (%d attachments) to dropbox.", note.title, [note.attachment count]);
-    DBError *error;
-    DBPath *notePath = [[DBPath root] childPath:note.uuid];
-    // Check if folder exists
-    if(![[DBFilesystem sharedFilesystem] fileInfoForPath:notePath error:&error]) {
-        // Create folder (named after uuid)
-        if(![[DBFilesystem sharedFilesystem] createFolder:notePath error:&error]) {
-            DLog(@"Creating folder to save note. Error %d creating folder at %@.", [error code], [notePath stringValue]);
+    dispatch_async(_syncQueue, ^{
+        DLog(@"Copying note %@ (%d attachments) to dropbox.", note.title, [note.attachment count]);
+        DBError *error;
+        DBPath *notePath = [[DBPath root] childPath:note.uuid];
+        // Check if folder exists
+        if(![[DBFilesystem sharedFilesystem] fileInfoForPath:notePath error:&error]) {
+            // Create folder (named after uuid)
+            if(![[DBFilesystem sharedFilesystem] createFolder:notePath error:&error]) {
+                DLog(@"Creating folder to save note. Error %d creating folder at %@.", [error code], [notePath stringValue]);
+            }
         }
-    }
-    // write note
-    NSString *encodedTitle = convertToValidDropboxFilenames(note.title);
-    if(![[encodedTitle pathExtension] isEqualToString:kNotesExtension])
-        encodedTitle = [encodedTitle stringByAppendingFormat:@".%@", kNotesExtension];
-    DBPath *noteTextPath = [notePath childPath:encodedTitle];
-    DBFile *noteTextFile;
-    if(![[DBFilesystem sharedFilesystem] fileInfoForPath:noteTextPath error:&error]) {
-        // tring to create it.
-        noteTextFile = [[DBFilesystem sharedFilesystem] createFile:noteTextPath error:&error];
-        if(!noteTextFile) {
-            DLog(@"Creating file to save a new note to dropbox. Error %d creating file at %@.", [error code], [noteTextPath stringValue]);
+        // write note
+        NSString *encodedTitle = convertToValidDropboxFilenames(note.title);
+        if(![[encodedTitle pathExtension] isEqualToString:kNotesExtension])
+            encodedTitle = [encodedTitle stringByAppendingFormat:@".%@", kNotesExtension];
+        DBPath *noteTextPath = [notePath childPath:encodedTitle];
+        DBFile *noteTextFile;
+        if(![[DBFilesystem sharedFilesystem] fileInfoForPath:noteTextPath error:&error]) {
+            // tring to create it.
+            noteTextFile = [[DBFilesystem sharedFilesystem] createFile:noteTextPath error:&error];
+            if(!noteTextFile) {
+                DLog(@"Creating file to save a new note to dropbox. Error %d creating file at %@.", [error code], [noteTextPath stringValue]);
+            }
+        } else {
+            noteTextFile = [[DBFilesystem sharedFilesystem] openFile:noteTextPath error:&error];
         }
-    } else {
-        noteTextFile = [[DBFilesystem sharedFilesystem] openFile:noteTextPath error:&error];
-    }
-    // Mark the date in text at the start of the note..
-    NSString *noteText = [NSString stringWithFormat:@"⏰%@\n%@", [note.timeStamp toRFC3339String], note.text];
-    if(![self writeString:noteText cryptedToDBFile:noteTextFile withError:&error]) {
-        DLog(@"Error %d writing note text saving to dropbox at %@.", [error code], [noteTextPath stringValue]);
-    }
-    [noteTextFile close];
-    // Now write all the attachments
-    DBPath *attachmentPath = [notePath childPath:kAttachmentDirectory];
-    if(![[DBFilesystem sharedFilesystem] fileInfoForPath:attachmentPath error:&error]) {
-        if(![[DBFilesystem sharedFilesystem] createFolder:attachmentPath error:&error]) {
-            DLog(@"Error creating attachment folder. Error %d creating folder at %@.", [error code], [attachmentPath stringValue]);
+        // Mark the date in text at the start of the note..
+        NSString *noteText = [NSString stringWithFormat:@"⏰%@\n%@", [note.timeStamp toRFC3339String], note.text];
+        if(![self writeString:noteText cryptedToDBFile:noteTextFile withError:&error]) {
+            DLog(@"Error %d writing note text saving to dropbox at %@.", [error code], [noteTextPath stringValue]);
         }
-    }
-    for (Attachment *attachment in note.attachment) {
-        // write attachment
+        [noteTextFile close];
+        // Now write all the attachments
+        DBPath *attachmentPath = [notePath childPath:kAttachmentDirectory];
+        if(![[DBFilesystem sharedFilesystem] fileInfoForPath:attachmentPath error:&error]) {
+            if(![[DBFilesystem sharedFilesystem] createFolder:attachmentPath error:&error]) {
+                DLog(@"Error creating attachment folder. Error %d creating folder at %@.", [error code], [attachmentPath stringValue]);
+            }
+        }
+        for (Attachment *attachment in note.attachment) {
+            // write attachment
+            NSString *encodedAttachmentName = convertToValidDropboxFilenames(attachment.filename);
+            DBPath *attachmentDataPath = [attachmentPath childPath:encodedAttachmentName];
+            DBFile *attachmentDataFile;
+            if(![[DBFilesystem sharedFilesystem] fileInfoForPath:attachmentDataPath error:&error]) {
+                [[DBFilesystem sharedFilesystem] createFile:attachmentDataPath error:&error];
+                if(!attachmentDataFile) {
+                    DLog(@"Error %d saving attachment file at %@ for note %@.", [error code], [attachmentDataPath stringValue], note.title);
+                }
+            } else {
+                attachmentDataFile = [[DBFilesystem sharedFilesystem] openFile:attachmentDataPath error:&error];
+            }
+            if(![attachmentDataFile writeData:attachment.data error:&error]) {
+                DLog(@"Error %d writing attachment data at %@ for note %@.", [error code], [attachmentDataPath stringValue], note.title);
+            }
+            [attachmentDataFile close];
+        }
+        NSArray *attachmentFiles = [[DBFilesystem sharedFilesystem] listFolder:attachmentPath error:&error];
+        if(!attachmentFiles || [attachmentFiles count] == 0) {
+            DLog(@"note %@ copied to dropbox, no attachments.", note.title);
+            return;
+        }
+        for (DBFileInfo *fileInfo in attachmentFiles) {
+            BOOL found = NO;
+            for (Attachment *attachments in note.attachment) {
+                if([attachments.filename isEqualToString:fileInfo.path.name]) {
+                    found = YES;
+                }
+            }
+            if(!found) {
+                // Delete attachment file
+                [[DBFilesystem sharedFilesystem] deletePath:fileInfo.path error:&error];
+            }
+        }
+        DLog(@"note %@ copied to dropbox. %d attachments.", note.title, [attachmentFiles count]);
+    });
+}
+
+- (void)attachAttachment:(Attachment *)attachment toNoteInDropbox:(Note *)note {
+    dispatch_async(_syncQueue, ^{
+        DLog(@"Attach attachment %@ to note %@.", attachment.filename, note.title);
+        NSError *error;
+        DBPath *notePath = [[DBPath root] childPath:note.uuid];
+        DBPath *attachmentPath = [notePath childPath:kAttachmentDirectory];
         NSString *encodedAttachmentName = convertToValidDropboxFilenames(attachment.filename);
         DBPath *attachmentDataPath = [attachmentPath childPath:encodedAttachmentName];
         DBFile *attachmentDataFile;
         if(![[DBFilesystem sharedFilesystem] fileInfoForPath:attachmentDataPath error:&error]) {
-            [[DBFilesystem sharedFilesystem] createFile:attachmentDataPath error:&error];
+            attachmentDataFile = [[DBFilesystem sharedFilesystem] createFile:attachmentDataPath error:&error];
             if(!attachmentDataFile) {
                 DLog(@"Error %d saving attachment file at %@ for note %@.", [error code], [attachmentDataPath stringValue], note.title);
             }
@@ -442,47 +486,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
             DLog(@"Error %d writing attachment data at %@ for note %@.", [error code], [attachmentDataPath stringValue], note.title);
         }
         [attachmentDataFile close];
-    }
-    NSArray *attachmentFiles = [[DBFilesystem sharedFilesystem] listFolder:attachmentPath error:&error];
-    if(!attachmentFiles || [attachmentFiles count] == 0) {
-        DLog(@"note %@ copied to dropbox, no attachments.", note.title);
-        return;
-    }
-    for (DBFileInfo *fileInfo in attachmentFiles) {
-        BOOL found = NO;
-        [note.attachment enumerateObjectsUsingBlock:^(Attachment *attachment, BOOL *found) {
-            if([attachment.filename isEqualToString:fileInfo.path.name]) {
-                *found = YES;
-            }
-        }];
-        if(!found) {
-            // Delete attachment file
-            [[DBFilesystem sharedFilesystem] deletePath:fileInfo.path error:&error];
-        }
-    }
-    DLog(@"note %@ copied to dropbox. %d attachments.", note.title, [attachmentFiles count]);
-}
-
-- (void)attachAttachment:(Attachment *)attachment toNoteInDropbox:(Note *)note {
-    DLog(@"Attach attachment %@ to note %@.", attachment.filename, note.title);
-    NSError *error;
-    DBPath *notePath = [[DBPath root] childPath:note.uuid];
-    DBPath *attachmentPath = [notePath childPath:kAttachmentDirectory];
-    NSString *encodedAttachmentName = convertToValidDropboxFilenames(attachment.filename);
-    DBPath *attachmentDataPath = [attachmentPath childPath:encodedAttachmentName];
-    DBFile *attachmentDataFile;
-    if(![[DBFilesystem sharedFilesystem] fileInfoForPath:attachmentDataPath error:&error]) {
-        attachmentDataFile = [[DBFilesystem sharedFilesystem] createFile:attachmentDataPath error:&error];
-        if(!attachmentDataFile) {
-            DLog(@"Error %d saving attachment file at %@ for note %@.", [error code], [attachmentDataPath stringValue], note.title);
-        }
-    } else {
-        attachmentDataFile = [[DBFilesystem sharedFilesystem] openFile:attachmentDataPath error:&error];
-    }
-    if(![attachmentDataFile writeData:attachment.data error:&error]) {
-        DLog(@"Error %d writing attachment data at %@ for note %@.", [error code], [attachmentDataPath stringValue], note.title);
-    }
-    [attachmentDataFile close];
+    });
 }
 
 - (void)deleteNoteTextWithUUID:(NSString *)uuid afterFilenameChangeFrom:(NSString *)oldFilename {
@@ -541,6 +545,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
 - (void)syncAllFromDropbox {
     // Loop on the coredata existing data and delete whatever is not present on filesystem
     dispatch_async(_syncQueue, ^{
+        DLog(@"Full sync start.");
         // Check crypt status.
         NSError *error;
         if(![self filesystemIsCrypted]) {
@@ -560,7 +565,6 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
             }
         }
         _isResettingDataFromDropbox = YES;
-//        DLog(@"lookinf for deleted notes in current coredata db");
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"Note" inManagedObjectContext:self.dataSyncThreadContext];
         [fetchRequest setEntity:entity];
@@ -593,10 +597,6 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
                 for (Note *note in notes) {
                     if([fileInfo.path.name isEqualToString:note.uuid]) {
                         found = YES;
-                        // Refresh it in any case fileInfo.modifiedTime is not stable
-//                        if ([note.timeStamp compare:fileInfo.modifiedTime] == NSOrderedDescending) {
-//                            DLog(@"Re-loading: '%@' ('%@') -> %@ < %@", note.title, note.uuid, note.timeStamp, fileInfo.modifiedTime);
-//                        }
                         if([self saveDropboxNoteAt:fileInfo.path toExistingCoreDataNote:note]) {
                             if (![self.dataSyncThreadContext save:&error]) {
                                 ALog(@"Error copying note %@ from dropbox to core data, error: %@", fileInfo.path.stringValue, [error description]);
@@ -620,7 +620,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
                 }
             }
         }
-        DLog(@"Syncronization end");
+        DLog(@"Full sync end.");
         _isResettingDataFromDropbox = NO;
         dispatch_async(dispatch_get_main_queue(), ^{
             [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kIAMDataSyncRefreshTerminated object:self]];
@@ -645,6 +645,8 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
             if(!note) {
                 newNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:self.dataSyncThreadContext];
             } else {
+                // Kill existing attachments (eventually reloaded later)
+                [note removeAttachment:note.attachment];
                 newNote = note;
             }
             newNote.uuid = pathToNoteDir.name;
@@ -715,9 +717,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
                 [attachmentOnDropbox close];
                 return NO;
             }
-            // Kill existing attachments and reload.
-            [note removeAttachment:note.attachment];
-//            DLog(@"Copying attachment: %@ to CoreData note %@", attachmentInfo.path.name, newNote.title);
+            DLog(@"Copying attachment: %@ to CoreData note %@", attachmentInfo.path.name, newNote.title);
             Attachment *newAttachment = [NSEntityDescription insertNewObjectForEntityForName:@"Attachment" inManagedObjectContext:self.dataSyncThreadContext];
             newAttachment.filename = attachmentInfo.path.name;
             newAttachment.extension = [attachmentInfo.path.stringValue pathExtension];
