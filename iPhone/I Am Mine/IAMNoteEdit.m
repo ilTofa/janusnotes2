@@ -173,6 +173,18 @@
     }];
 }
 
+#pragma mark UITextViewDelegate
+
+- (void)textViewDidBeginEditing:(UITextView *)textView {
+    [textView scrollRangeToVisible:textView.selectedRange];
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    // Keep the caret always visible
+    [textView scrollRangeToVisible:range];
+    return YES;
+}
+
 - (IBAction)done:(id)sender
 {
     [self.textEdit resignFirstResponder];
