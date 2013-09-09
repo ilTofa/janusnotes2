@@ -414,7 +414,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
             noteTextFile = [[DBFilesystem sharedFilesystem] openFile:noteTextPath error:&error];
         }
         // Mark the date in text at the start of the note..
-        NSString *noteText = [NSString stringWithFormat:@"⏰%@\n%@", [note.timeStamp toRFC3339String], note.text];
+        NSString *noteText = [NSString stringWithFormat:@"⏰%@\n☃%@\n%@", [note.timeStamp toRFC3339String], [note.creationDate toRFC3339String], note.text];
         if(![self writeString:noteText cryptedToDBFile:noteTextFile withError:&error]) {
             DLog(@"Error %d writing note text saving to dropbox at %@.", [error code], [noteTextPath stringValue]);
         }
@@ -680,6 +680,12 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
                 NSString *dateString = [noteText substringWithRange:NSMakeRange(1, 20)];
                 newNote.timeStamp = [NSDate dateFromRFC3339String:dateString];
                 noteText = [noteText substringFromIndex:22];
+                if([noteText length] > 22 && [noteText characterAtIndex:0] == 0x2603) { // ☃ SNOWMAN Unicode: U+2603, UTF-8: e2 98 83
+                    // Creation date is embedded in the second row of text as '☃2013-06-27T12:02:34Z\n'
+                    NSString *dateString = [noteText substringWithRange:NSMakeRange(1, 20)];
+                    newNote.creationDate = [NSDate dateFromRFC3339String:dateString];
+                    noteText = [noteText substringFromIndex:22];
+                }
             }
             newNote.text = noteText;
             [noteOnDropbox close];
