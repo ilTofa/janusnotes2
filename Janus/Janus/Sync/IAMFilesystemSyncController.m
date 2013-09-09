@@ -644,6 +644,8 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
                 newNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:self.dataSyncThreadContext];
             } else {
                 newNote = note;
+                // Kill existing attachments and reload.
+                [newNote removeAttachment:newNote.attachment];
             }
             newNote.uuid = [[pathToNoteDir path] lastPathComponent];
             NSString *titolo = convertFromValidDropboxFilenames([[fileInfo path] lastPathComponent]);
@@ -688,9 +690,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
                 ALog(@"Error looking for directory type: %@", [error localizedDescription]);
                 error = nil;
             }
-            // Kill existing attachments and reload.
-            [newNote removeAttachment:newNote.attachment];
-//            DLog(@"Copying attachment %@ to CoreData note %@", name, newNote.title);
+            DLog(@"Copying attachment %@ to CoreData note %@", name, newNote.title);
             Attachment *newAttachment = [NSEntityDescription insertNewObjectForEntityForName:@"Attachment" inManagedObjectContext:self.dataSyncThreadContext];
             newAttachment.filename = [[attachmentInfo path] lastPathComponent];
             newAttachment.extension = attachmentInfo.path.pathExtension;
