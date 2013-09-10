@@ -17,6 +17,7 @@
 typedef enum {
     syncManagement = 0,
     lockSelector,
+    sortSelector,
     fontSelector,
     sizeSelector,
     colorSelector
@@ -54,6 +55,8 @@ typedef enum {
     NSError *error;
     self.lockSwitch.on = ([STKeychain getPasswordForUsername:@"lockCode" andServiceName:@"it.iltofa.janus" error:&error] != nil);
     self.encryptionSwitch.on = [[IAMDataSyncController sharedInstance] notesAreEncrypted];
+    self.sortSelector.selectedSegmentIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"sortBy"];
+    self.dateSelector.selectedSegmentIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"dateShown"];
     if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
         self.fontSize = [[GTThemer sharedInstance] getStandardFontSize];
         [self.sizeStepper setValue:self.fontSize];
@@ -348,6 +351,14 @@ typedef enum {
         NSError *error;
         [STKeychain deleteItemForUsername:@"lockCode" andServiceName:@"it.iltofa.janus" error:&error];
     }
+}
+
+- (IBAction)sortSelectorAction:(id)sender {
+    [[NSUserDefaults standardUserDefaults] setInteger:self.sortSelector.selectedSegmentIndex forKey:@"sortBy"];
+}
+
+- (IBAction)dateSelectorAction:(id)sender {
+    [[NSUserDefaults standardUserDefaults] setInteger:self.dateSelector.selectedSegmentIndex forKey:@"dateShown"];
 }
 
 @end

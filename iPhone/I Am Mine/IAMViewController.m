@@ -33,6 +33,9 @@
 
 @property UIPopoverController* popSegue;
 
+@property SortKey sortKey;
+@property DateShownKey dateShownKey;
+
 - (IBAction)preferencesAction:(id)sender;
 
 @end
@@ -44,7 +47,7 @@
     [super viewDidLoad];
     self.dropboxSyncStillPending = NO;
     [self loadPreviousSearchKeys];
-    // Set some sane defaults
+    // Load & set some sane defaults
     self.appDelegate = (IAMAppDelegate *)[[UIApplication sharedApplication] delegate];
     self.managedObjectContext = self.appDelegate.coreDataController.mainThreadContext;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataSyncNeedsThePassword:) name:kIAMDataSyncNeedsAPasswordNow object:nil];
@@ -81,6 +84,7 @@
     if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
         [self colorize];
     }
+    [self sortAgain];
     // if the dropbox backend have an user, but is not ready (that means it's waiting on something)
     if([IAMDataSyncController sharedInstance].syncControllerInited && ![IAMDataSyncController sharedInstance].syncControllerReady) {
         self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -100,6 +104,13 @@
     [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
     [[GTThemer sharedInstance] applyColorsToView:self.searchBar];
     [self.tableView reloadData];
+}
+
+- (void)sortAgain {
+    self.sortKey = [[NSUserDefaults standardUserDefaults] integerForKey:@"sortBy"];
+    self.dateShownKey = [[NSUserDefaults standardUserDefaults] integerForKey:@"dateShown"];
+    DLog(@"Sort: %d, date: %d", self.sortKey, self.dateShownKey);
+    [self setupFetchExecAndReload];
 }
 
 #define SECONDS_TO_WAIT_FOR_DROPBOX 15.0
@@ -287,7 +298,17 @@
     [fetchRequest setFetchBatchSize:25];
     
     // Edit the sort key as appropriate.
-    NSSortDescriptor *dateAddedSortDesc = [[NSSortDescriptor alloc] initWithKey:@"timeStamp" ascending:NO];
+    NSString *sortField = @"timeStamp";
+    BOOL sortDirectionAscending = NO;
+    if (self.sortKey == sortModification) {
+        sortField = @"timeStamp";
+    } else if (self.sortKey == sortCreation) {
+        sortField = @"creationDate";
+    } else if (self.sortKey == sortTitle) {
+        sortField = @"title";
+        sortDirectionAscending = YES;
+    }
+    NSSortDescriptor *dateAddedSortDesc = [[NSSortDescriptor alloc] initWithKey:sortField ascending:sortDirectionAscending];
     NSArray *sortDescriptors = @[dateAddedSortDesc];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
@@ -313,9 +334,13 @@
     NSPredicate *predicate = [NSPredicate predicateWithFormat:queryString];
     [fetchRequest setPredicate:predicate];
     
+    NSString *sectionNameKeyPath = @"sectionIdentifier";
+    if (self.sortKey == sortTitle) {
+        sectionNameKeyPath = nil;
+    }
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
                                                                         managedObjectContext:self.managedObjectContext
-                                                                          sectionNameKeyPath:@"sectionIdentifier"
+                                                                          sectionNameKeyPath:sectionNameKeyPath
                                                                                    cacheName:nil];
     self.fetchedResultsController.delegate = self;
     NSError *error = nil;
@@ -353,7 +378,11 @@
     Note *note = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.titleLabel.text = note.title;
     cell.noteTextLabel.text = note.text;
-    cell.dateLabel.text = [self.dateFormatter stringFromDate:note.timeStamp];
+    if (self.dateShownKey == modificationDateShown) {
+        cell.dateLabel.text = [self.dateFormatter stringFromDate:note.timeStamp];
+    } else {
+        cell.dateLabel.text = [self.dateFormatter stringFromDate:note.creationDate];
+    }
     if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
         [[GTThemer sharedInstance] applyColorsToLabel:cell.titleLabel withFontSize:17];
         [[GTThemer sharedInstance] applyColorsToLabel:cell.noteTextLabel withFontSize:12];
@@ -427,9 +456,11 @@
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-	
+    // No sections (and section title) if sort by title
+    if (self.sortKey == sortTitle) {
+        return nil;
+    }
 	id <NSFetchedResultsSectionInfo> theSection = [[self.fetchedResultsController sections] objectAtIndex:section];
-    
     /*
      Section information derives from an event's sectionIdentifier, which is a string representing the number (year * 1000) + month.
      To display the section title, convert the year and month components to a string representation.
@@ -441,14 +472,10 @@
         [formatter setCalendar:[NSCalendar currentCalendar]];
         monthSymbols = [formatter monthSymbols];
     }
-    
     NSInteger numericSection = [[theSection name] integerValue];
-    
 	NSInteger year = numericSection / 1000;
 	NSInteger month = numericSection - (year * 1000);
-	
 	NSString *titleString = [NSString stringWithFormat:@"%@ %d", [monthSymbols objectAtIndex:month-1], year];
-	
 	return titleString;
 }
 
@@ -505,6 +532,7 @@
         if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
             [self colorize];
         }
+        [self sortAgain];
     }
 }
 
