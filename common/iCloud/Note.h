@@ -13,8 +13,11 @@
 @interface Note : NSManagedObject
 
 @property (nonatomic, retain) NSDate * creationDate;
+@property (nonatomic, retain) NSDate * primitiveCreationDate;
 @property (nonatomic, retain) NSString * sectionIdentifier;
 @property (nonatomic, retain) NSString *primitiveSectionIdentifier;
+@property (nonatomic, retain) NSString *creationIdentifier;
+@property (nonatomic, retain) NSString *primitiveCreationIdentifier;
 @property (nonatomic, retain) NSString * text;
 @property (nonatomic, retain) NSDate * timeStamp;
 @property (nonatomic, retain) NSDate *primitiveTimeStamp;

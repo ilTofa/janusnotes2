@@ -337,6 +337,8 @@
     NSString *sectionNameKeyPath = @"sectionIdentifier";
     if (self.sortKey == sortTitle) {
         sectionNameKeyPath = nil;
+    } else if (self.sortKey == sortCreation) {
+        sectionNameKeyPath = @"creationIdentifier";
     }
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
                                                                         managedObjectContext:self.managedObjectContext
@@ -497,7 +499,7 @@
 -(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
     // If on iPad and we already have an active popover for preferences, don't perform segue
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && [identifier isEqualToString:@"Preferences"] && [self.popSegue isPopoverVisible])
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && ([identifier isEqualToString:@"Preferences"] || [identifier isEqualToString:@"Preferences7"]) && [self.popSegue isPopoverVisible])
         return NO;
     return YES;
 }
