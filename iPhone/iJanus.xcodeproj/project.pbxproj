@@ -37,6 +37,7 @@
 		6466029D16DBC98E007622FC /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6466029C16DBC98E007622FC /* Icon.png */; };
 		646602A016DBC999007622FC /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 6466029E16DBC999007622FC /* Icon-72.png */; };
 		646602A116DBC999007622FC /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6466029F16DBC999007622FC /* Icon-72@2x.png */; };
+		6476C11017E0CE270094C4AB /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CB194A17392BAD0014F35F /* iAd.framework */; };
 		648A2773171D875000338218 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 648A2772171D875000338218 /* MBProgressHUD.m */; };
 		649DCEA016D28DB8003F5A83 /* IAmMine.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 649DCE9E16D28DB7003F5A83 /* IAmMine.xcdatamodeld */; };
 		649DCEA316D29B0A003F5A83 /* CoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 649DCEA216D29AAD003F5A83 /* CoreDataController.m */; };
@@ -230,6 +231,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6476C11017E0CE270094C4AB /* iAd.framework in Frameworks */,
 				64CEF2BE17D1F70900D3A58B /* libc++.dylib in Frameworks */,
 				645ED8AC1754F1640070F83B /* StoreKit.framework in Frameworks */,
 				64BB69F41715BB6600875601 /* QuartzCore.framework in Frameworks */,

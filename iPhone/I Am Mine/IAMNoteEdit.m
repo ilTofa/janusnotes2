@@ -9,6 +9,7 @@
 #import "IAMNoteEdit.h"
 
 #import <MobileCoreServices/MobileCoreServices.h>
+#import <iAd/iAd.h>
 
 #import "UIViewController+GTFrames.h"
 #import "Attachment.h"
@@ -86,6 +87,9 @@
     }
     self.attachmensAreHidden = NO;
     [self refreshAttachments];
+    if ([self respondsToSelector:@selector(setInterstitialPresentationPolicy:)]) {
+        self.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
+    }
     // If this is a new note, set the cursor on title field
     if([self.titleEdit.text isEqualToString:@""])
         [self.titleEdit becomeFirstResponder];

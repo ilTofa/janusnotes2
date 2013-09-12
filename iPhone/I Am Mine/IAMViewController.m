@@ -8,6 +8,8 @@
 
 #import "IAMViewController.h"
 
+#import <iAd/iAd.h>
+
 #import "IAMAppDelegate.h"
 #import "IAMNoteCell.h"
 #import "Note.h"
@@ -63,6 +65,10 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismissPopoverRequested:) name:kPreferencesPopoverCanBeDismissed object:nil];
     if([IAMDataSyncController sharedInstance].syncControllerReady)
         [self refreshControlSetup];
+    if ([self respondsToSelector:@selector(setCanDisplayBannerAds:)]) {
+        self.canDisplayBannerAds = YES;
+        self.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
+    }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(syncStoreNotificationHandler:) name:kIAMDataSyncControllerReady object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(syncStoreNotificationHandler:) name:kIAMDataSyncControllerStopped object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(syncStoreStillPendingChanges:) name:kIAMDataSyncStillPendingChanges object:nil];
