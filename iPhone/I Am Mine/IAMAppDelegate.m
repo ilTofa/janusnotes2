@@ -109,6 +109,16 @@
 {
 }
 
+#pragma mark iAD
+
+- (void)setSkipAds:(BOOL)skipAds {
+    [[NSUserDefaults standardUserDefaults] setBool:skipAds forKey:@"skipAds"];
+}
+
+- (BOOL)skipAds {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"skipAds"];
+}
+
 #pragma mark - cache management
 
 -(void)deleteCache {

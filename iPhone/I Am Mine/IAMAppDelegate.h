@@ -26,4 +26,7 @@
 // CoreData helper
 @property (nonatomic, strong, readonly) CoreDataController *coreDataController;
 
+// Ads
+@property (nonatomic) BOOL skipAds;
+
 @end

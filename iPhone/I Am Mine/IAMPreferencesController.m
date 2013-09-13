@@ -15,7 +15,8 @@
 #import "STKeychain.h"
 
 typedef enum {
-    syncManagement = 0,
+    supportJanus = 0,
+    syncManagement,
     lockSelector,
     sortSelector,
     fontSelector,
@@ -165,7 +166,15 @@ typedef enum {
     if(indexPath.section == lockSelector) {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
-    [self sizePressed:nil];
+    // Change size
+    if (indexPath.section == sizeSelector) {
+        [self sizePressed:nil];
+    }
+    // Support
+    if (indexPath.section == supportJanus) {
+        DLog(@"Support section clicked, row %d", indexPath.row);
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willDeselectRowAtIndexPath:(NSIndexPath *)indexPath
