@@ -3,4 +3,4 @@
 	url = https://github.com/ilTofa/PiwikTracker
 [submodule "common/iRate"]
 	path = common/iRate
-	url = https://github.com/ilTofa/iRate
+	url = https://github.com/nicklockwood/iRate
