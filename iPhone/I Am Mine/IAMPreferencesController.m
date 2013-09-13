@@ -24,6 +24,14 @@ typedef enum {
     colorSelector
 } sectionIdentifiers;
 
+typedef enum {
+    supportHelp = 0,
+    supportUnsatisfied,
+    supportSatisfied,
+    supportCoffee,
+    supportBeer
+} supportOptions;
+
 @interface IAMPreferencesController ()
 
 @property NSInteger fontFace, fontSize, colorSet;
@@ -172,7 +180,17 @@ typedef enum {
     }
     // Support
     if (indexPath.section == supportJanus) {
-        DLog(@"Support section clicked, row %d", indexPath.row);
+        if (indexPath.row == supportHelp) {
+            DLog(@"Call help site.");
+        } else if (indexPath.row == supportUnsatisfied) {
+            DLog(@"Prepare email to support");
+        } else if (indexPath.row == supportSatisfied) {
+            DLog(@"Call iRate for rating");
+        } else if (indexPath.row == supportCoffee) {
+            DLog(@"Buy Ads Removal");
+        } else if (indexPath.row == supportBeer) {
+            DLog(@"Buy Premium for Ads Removal");
+        }
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
 }
