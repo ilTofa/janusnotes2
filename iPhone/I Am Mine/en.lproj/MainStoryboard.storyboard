@@ -1193,9 +1193,6 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
     </scenes>
     <resources>
         <image name="SmallRow.png" width="2" height="2"/>
-        <image name="SmallRow.png" width="2" height="2"/>
-        <image name="SmallRow.png" width="2" height="2"/>
-        <image name="SmallRow.png" width="2" height="2"/>
         <image name="link-icon.png" width="25" height="25"/>
         <image name="link-microphone.png" width="25" height="25"/>
     </resources>
