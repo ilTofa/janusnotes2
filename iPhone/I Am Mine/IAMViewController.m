@@ -66,8 +66,13 @@
     if([IAMDataSyncController sharedInstance].syncControllerReady)
         [self refreshControlSetup];
     if ([self respondsToSelector:@selector(setCanDisplayBannerAds:)]) {
-        self.canDisplayBannerAds = YES;
-        self.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
+        if (!((IAMAppDelegate *)[[UIApplication sharedApplication] delegate]).skipAds) {
+            DLog(@"Preparing Ads");
+            self.canDisplayBannerAds = YES;
+            self.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
+        } else {
+            DLog(@"Skipping ads");
+        }
     }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(syncStoreNotificationHandler:) name:kIAMDataSyncControllerReady object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(syncStoreNotificationHandler:) name:kIAMDataSyncControllerStopped object:nil];

@@ -11,6 +11,7 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <iAd/iAd.h>
 
+#import "IAMAppDelegate.h"
 #import "UIViewController+GTFrames.h"
 #import "Attachment.h"
 #import "IAMAddLinkViewController.h"
@@ -88,7 +89,12 @@
     self.attachmensAreHidden = NO;
     [self refreshAttachments];
     if ([self respondsToSelector:@selector(setInterstitialPresentationPolicy:)]) {
-        self.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
+        if (!((IAMAppDelegate *)[[UIApplication sharedApplication] delegate]).skipAds) {
+            DLog(@"Preparing Ads");
+            self.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
+        } else {
+            DLog(@"Skipping ads");
+        }
     }
     // If this is a new note, set the cursor on title field
     if([self.titleEdit.text isEqualToString:@""])
