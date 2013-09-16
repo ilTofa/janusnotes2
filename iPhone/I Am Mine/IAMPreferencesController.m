@@ -10,6 +10,8 @@
 
 #import "GTThemer.h"
 #import <Dropbox/Dropbox.h>
+#import <MessageUI/MessageUI.h>
+#import "iRate.h"
 #import "IAMDataSyncController.h"
 #import "MBProgressHUD.h"
 #import "STKeychain.h"
@@ -32,7 +34,7 @@ typedef enum {
     supportBeer
 } supportOptions;
 
-@interface IAMPreferencesController ()
+@interface IAMPreferencesController () <MFMailComposeViewControllerDelegate>
 
 @property NSInteger fontFace, fontSize, colorSet;
 
@@ -182,10 +184,13 @@ typedef enum {
     if (indexPath.section == supportJanus) {
         if (indexPath.row == supportHelp) {
             DLog(@"Call help site.");
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.janusnotes.com/help/"]];
         } else if (indexPath.row == supportUnsatisfied) {
             DLog(@"Prepare email to support");
+            [self sendCommentAction:self];
         } else if (indexPath.row == supportSatisfied) {
             DLog(@"Call iRate for rating");
+            [[iRate sharedInstance] openRatingsPageInAppStore];
         } else if (indexPath.row == supportCoffee) {
             DLog(@"Buy Ads Removal");
         } else if (indexPath.row == supportBeer) {
@@ -204,6 +209,41 @@ typedef enum {
     if(indexPath.section == colorSelector && indexPath.row == self.colorSet)
         return nil;
     return indexPath;
+}
+
+#pragma mark - Comment by email
+
+- (IBAction)sendCommentAction:(id)sender {
+    MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
+    controller.mailComposeDelegate = self;
+    [controller setToRecipients:@[@"support@janusnotes.com"]];
+    [controller setSubject:[NSString stringWithFormat:@"Feedback on Janus Notes iOS app version %@ (%@)", [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"], [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"]]];
+    [controller setMessageBody:@"" isHTML:NO];
+    if (controller)
+        [self presentViewController:controller animated:YES completion:nil];
+}
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
+    NSString *title;
+    NSString *text;
+    BOOL dismiss = NO;
+    if (result == MFMailComposeResultSent) {
+        title = @"Information";
+        text = @"E-mail successfully sent. Thank you for the feedbak!";
+        dismiss = YES;
+    } else if (result == MFMailComposeResultFailed) {
+        title = @"Warning";
+        text = @"Could not send email, please try again later.";
+    } else {
+        dismiss = YES;
+    }
+    if (text) {
+        UIAlertView *alertBox = [[UIAlertView alloc] initWithTitle:title message:text delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alertBox show];
+    }
+    if(dismiss) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 #pragma mark - Actions
