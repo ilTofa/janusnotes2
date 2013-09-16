@@ -11,6 +11,8 @@
 #import "GTThemer.h"
 #import <Dropbox/Dropbox.h>
 #import <MessageUI/MessageUI.h>
+#import <StoreKit/StoreKit.h>
+#import "IAMAppDelegate.h"
 #import "iRate.h"
 #import "IAMDataSyncController.h"
 #import "MBProgressHUD.h"
@@ -31,10 +33,11 @@ typedef enum {
     supportUnsatisfied,
     supportSatisfied,
     supportCoffee,
-    supportBeer
+    supportBeer,
+    supportRestore
 } supportOptions;
 
-@interface IAMPreferencesController () <MFMailComposeViewControllerDelegate>
+@interface IAMPreferencesController () <MFMailComposeViewControllerDelegate, SKProductsRequestDelegate>
 
 @property NSInteger fontFace, fontSize, colorSet;
 
@@ -44,6 +47,8 @@ typedef enum {
 @property UIAlertView *lockCodeAlert;
 
 @property BOOL dropboxLinked;
+
+@property NSArray *products;
 
 @end
 
@@ -89,9 +94,63 @@ typedef enum {
         tableCell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
     [self updateDropboxUI];
+    [self updateStoreUI];
     if([[IAMDataSyncController sharedInstance] needsSyncPassword]) {
         [self changePasswordASAP];
     }
+}
+
+- (void)updateStoreUI {
+    // Disable store while we look for the products
+    self.productBeerCell.userInteractionEnabled = self.productCoffeeCell.userInteractionEnabled = self.restoreCell.userInteractionEnabled = NO;
+    self.productCoffeeLabel.enabled = self.productBeerLabel.enabled = self.restoreCellLabel.enabled = NO;
+    self.productCoffeePriceLabel.enabled = self.productBeerPriceLabel.enabled = NO;
+    self.productCoffeePriceLabel.text = self.productBeerPriceLabel.text = @"-";
+    // If user already paid, leave disabled
+    if (((IAMAppDelegate *)[[UIApplication sharedApplication] delegate]).skipAds) {
+        return;
+    }
+    NSURL *url = [[NSBundle mainBundle] URLForResource:@"In-App-Products" withExtension:@"plist"];
+    NSArray *productIdentifiers = [NSArray arrayWithContentsOfURL:url];
+    SKProductsRequest *productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithArray:productIdentifiers]];
+    productsRequest.delegate = self;
+    [productsRequest start];
+}
+
+// SKProductsRequestDelegate protocol method
+- (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response
+{
+    self.products = response.products;
+    for (NSString * invalidProductIdentifier in response.invalidProductIdentifiers) {
+        // Handle any invalid product identifiers.
+    }
+    DLog(@"%@", self.products);
+     // Custom method
+    if ([self.products count] == 0) {
+        DLog(@"Void or invalid product array, returning");
+        return;
+    }
+    SKProduct *product = self.products[0];
+    self.productCoffeeLabel.text = product.localizedTitle;
+    NSNumberFormatter * numberFormatter = [[NSNumberFormatter alloc] init];
+    [numberFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
+    [numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+    [numberFormatter setLocale:product.priceLocale];
+    NSString * formattedPrice = [numberFormatter stringFromNumber:product.price];
+    self.productCoffeePriceLabel.text = formattedPrice;
+    self.productCoffeeCell.userInteractionEnabled = self.productCoffeeLabel.enabled = self.productCoffeePriceLabel.enabled = YES;
+    self.restoreCell.userInteractionEnabled = self.restoreCellLabel.enabled = YES;
+    if ([self.products count] > 1) {
+        product = self.products[1];
+        self.productBeerLabel.text = product.localizedTitle;
+        formattedPrice = [numberFormatter stringFromNumber:product.price];
+        self.productBeerPriceLabel.text = formattedPrice;
+        self.productBeerCell.userInteractionEnabled = self.productBeerLabel.enabled = self.productBeerPriceLabel.enabled = YES;
+    }
+}
+
+- (void)request:(SKRequest *)request didFailWithError:(NSError *)error {
+    DLog(@"request failed: %@,  %@", request, error);
 }
 
 -(void)updateDropboxUI {
@@ -195,6 +254,8 @@ typedef enum {
             DLog(@"Buy Ads Removal");
         } else if (indexPath.row == supportBeer) {
             DLog(@"Buy Premium for Ads Removal");
+        } else if (indexPath.row == supportRestore) {
+            DLog(@"Restore Ads Removal");
         }
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }

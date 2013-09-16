@@ -32,6 +32,14 @@ typedef enum {
 @property (weak, nonatomic) IBOutlet UISwitch *lockSwitch;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *sortSelector;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *dateSelector;
+@property (weak, nonatomic) IBOutlet UILabel *productCoffeeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *productBeerLabel;
+@property (weak, nonatomic) IBOutlet UITableViewCell *productBeerCell;
+@property (weak, nonatomic) IBOutlet UITableViewCell *productCoffeeCell;
+@property (weak, nonatomic) IBOutlet UILabel *productBeerPriceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *productCoffeePriceLabel;
+@property (weak, nonatomic) IBOutlet UITableViewCell *restoreCell;
+@property (weak, nonatomic) IBOutlet UILabel *restoreCellLabel;
 
 - (IBAction)sizePressed:(id)sender;
 - (IBAction)done:(id)sender;
