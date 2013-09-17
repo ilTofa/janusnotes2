@@ -74,6 +74,9 @@ typedef enum {
     self.sortSelector.selectedSegmentIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"sortBy"];
     self.dateSelector.selectedSegmentIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"dateShown"];
     if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
+        NSDictionary *fontAttributes = @{UITextAttributeFont: [UIFont boldSystemFontOfSize:13.0f]};
+        [self.sortSelector setTitleTextAttributes:fontAttributes forState:UIControlStateNormal];
+        [self.dateSelector setTitleTextAttributes:fontAttributes forState:UIControlStateNormal];
         self.fontSize = [[GTThemer sharedInstance] getStandardFontSize];
         [self.sizeStepper setValue:self.fontSize];
         self.colorSet = [[GTThemer sharedInstance] getStandardColorsID];

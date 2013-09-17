@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="13A584" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="jOx-mc-5rj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="jOx-mc-5rj">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
@@ -336,17 +336,17 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Qce-LI-nvE">
-                                                    <rect key="frame" x="136" y="7" width="51" height="31"/>
+                                                    <rect key="frame" x="136" y="29" width="51" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <connections>
                                                         <action selector="encryptionAction:" destination="h9Z-1e-A0P" eventType="valueChanged" id="3w8-Lm-O8u"/>
                                                     </connections>
                                                 </switch>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Notes Encryption" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YV8-30-wzj">
-                                                    <rect key="frame" x="20" y="39" width="280" height="21"/>
+                                                    <rect key="frame" x="20" y="7" width="280" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="DVw-4R-O3m"/>
+                                                        <constraint firstAttribute="height" constant="21" id="xa1-Bn-ZSR"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -354,11 +354,11 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Qce-LI-nvE" firstAttribute="top" secondItem="y3k-UC-nwA" secondAttribute="top" constant="7" id="T7p-aw-sJf"/>
-                                                <constraint firstAttribute="trailing" secondItem="YV8-30-wzj" secondAttribute="trailing" constant="20" symbolic="YES" id="dpF-Jo-tPQ"/>
-                                                <constraint firstItem="YV8-30-wzj" firstAttribute="leading" secondItem="y3k-UC-nwA" secondAttribute="leading" constant="20" symbolic="YES" id="g0N-pZ-ka7"/>
-                                                <constraint firstItem="Qce-LI-nvE" firstAttribute="centerX" secondItem="YV8-30-wzj" secondAttribute="centerX" id="jbQ-0A-Z95"/>
-                                                <constraint firstItem="YV8-30-wzj" firstAttribute="top" secondItem="Qce-LI-nvE" secondAttribute="bottom" constant="1" id="yfy-E0-p6v"/>
+                                                <constraint firstAttribute="trailing" secondItem="YV8-30-wzj" secondAttribute="trailing" constant="20" symbolic="YES" id="5t0-aE-4nN"/>
+                                                <constraint firstItem="Qce-LI-nvE" firstAttribute="top" secondItem="YV8-30-wzj" secondAttribute="bottom" constant="1" id="UHk-zK-bit"/>
+                                                <constraint firstItem="YV8-30-wzj" firstAttribute="leading" secondItem="y3k-UC-nwA" secondAttribute="leading" constant="20" symbolic="YES" id="UPU-bM-gEI"/>
+                                                <constraint firstItem="Qce-LI-nvE" firstAttribute="centerX" secondItem="YV8-30-wzj" secondAttribute="centerX" id="WOb-ch-Mv1"/>
+                                                <constraint firstItem="YV8-30-wzj" firstAttribute="top" secondItem="y3k-UC-nwA" secondAttribute="top" constant="7" id="XPn-Xc-IGH"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -1425,9 +1425,6 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
         </scene>
     </scenes>
     <resources>
-        <image name="SmallRow.png" width="2" height="2"/>
-        <image name="SmallRow.png" width="2" height="2"/>
-        <image name="SmallRow.png" width="2" height="2"/>
         <image name="SmallRow.png" width="2" height="2"/>
         <image name="link-icon.png" width="25" height="25"/>
         <image name="link-microphone.png" width="25" height="25"/>
