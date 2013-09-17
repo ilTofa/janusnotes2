@@ -29,8 +29,6 @@
 		643F0088177C3CB7005B1DB5 /* NSDate+GTStringsHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 643F0087177C3CB2005B1DB5 /* NSDate+GTStringsHelpers.m */; };
 		6447056E16DD0FC4000A0262 /* SmallRow.png in Resources */ = {isa = PBXBuildFile; fileRef = 6447056C16DD0FC4000A0262 /* SmallRow.png */; };
 		6447056F16DD0FC4000A0262 /* SmallRow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6447056D16DD0FC4000A0262 /* SmallRow@2x.png */; };
-		645ED8AA1754F0A20070F83B /* iRate.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 645ED8A71754F0A20070F83B /* iRate.bundle */; };
-		645ED8AB1754F0A20070F83B /* iRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 645ED8A91754F0A20070F83B /* iRate.m */; };
 		645ED8AC1754F1640070F83B /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CB194417392B710014F35F /* StoreKit.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		645ED8AF1754F7730070F83B /* link-microphone-big.png in Resources */ = {isa = PBXBuildFile; fileRef = 645ED8AD1754F7730070F83B /* link-microphone-big.png */; };
 		645ED8B01754F7730070F83B /* link-microphone-big@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 645ED8AE1754F7730070F83B /* link-microphone-big@2x.png */; };
@@ -90,6 +88,8 @@
 		64CEF2BE17D1F70900D3A58B /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CEF2BD17D1F70900D3A58B /* libc++.dylib */; };
 		64DE6C261727E5320031183A /* NSManagedObjectContext+FetchedObjectFromURI.m in Sources */ = {isa = PBXBuildFile; fileRef = 64DE6C251727E5320031183A /* NSManagedObjectContext+FetchedObjectFromURI.m */; };
 		64E0AA4317E70ED9008BF0E3 /* In-App-Products.plist in Resources */ = {isa = PBXBuildFile; fileRef = 64E0AA4217E70ED9008BF0E3 /* In-App-Products.plist */; };
+		64E0AA4517E9066E008BF0E3 /* iRate.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 64E0AA4417E9066E008BF0E3 /* iRate.bundle */; };
+		64E0AA4817E9067D008BF0E3 /* iRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 64E0AA4717E9067D008BF0E3 /* iRate.m */; };
 		64ED90FA1743E46E00203969 /* STKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 64ED90F91743E46E00203969 /* STKeychain.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		64ED91061743E48900203969 /* RNCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 64ED90FF1743E48900203969 /* RNCryptor.m */; };
 		64ED91071743E48900203969 /* RNCryptorEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 64ED91011743E48900203969 /* RNCryptorEngine.m */; };
@@ -132,9 +132,6 @@
 		6447056C16DD0FC4000A0262 /* SmallRow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SmallRow.png; path = Images/SmallRow.png; sourceTree = "<group>"; };
 		6447056D16DD0FC4000A0262 /* SmallRow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SmallRow@2x.png"; path = "Images/SmallRow@2x.png"; sourceTree = "<group>"; };
 		645A13A01701BFC800CCB4FB /* iJanus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = iJanus.entitlements; path = ../iJanus.entitlements; sourceTree = "<group>"; };
-		645ED8A71754F0A20070F83B /* iRate.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = iRate.bundle; sourceTree = "<group>"; };
-		645ED8A81754F0A20070F83B /* iRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iRate.h; sourceTree = "<group>"; };
-		645ED8A91754F0A20070F83B /* iRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iRate.m; sourceTree = "<group>"; };
 		645ED8AD1754F7730070F83B /* link-microphone-big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "link-microphone-big.png"; path = "Images/link-microphone-big.png"; sourceTree = "<group>"; };
 		645ED8AE1754F7730070F83B /* link-microphone-big@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "link-microphone-big@2x.png"; path = "Images/link-microphone-big@2x.png"; sourceTree = "<group>"; };
 		6466029A16DBC987007622FC /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
@@ -212,6 +209,9 @@
 		64DE6C241727E5320031183A /* NSManagedObjectContext+FetchedObjectFromURI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSManagedObjectContext+FetchedObjectFromURI.h"; path = "../common/iCloud/NSManagedObjectContext+FetchedObjectFromURI.h"; sourceTree = "<group>"; };
 		64DE6C251727E5320031183A /* NSManagedObjectContext+FetchedObjectFromURI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSManagedObjectContext+FetchedObjectFromURI.m"; path = "../common/iCloud/NSManagedObjectContext+FetchedObjectFromURI.m"; sourceTree = "<group>"; };
 		64E0AA4217E70ED9008BF0E3 /* In-App-Products.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "In-App-Products.plist"; sourceTree = "<group>"; };
+		64E0AA4417E9066E008BF0E3 /* iRate.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = iRate.bundle; path = iRate/iRate.bundle; sourceTree = "<group>"; };
+		64E0AA4617E9067D008BF0E3 /* iRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iRate.h; path = iRate/iRate.h; sourceTree = "<group>"; };
+		64E0AA4717E9067D008BF0E3 /* iRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iRate.m; path = iRate/iRate.m; sourceTree = "<group>"; };
 		64ED90F81743E46E00203969 /* STKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STKeychain.h; path = ../common/Utilitites/STKeychain.h; sourceTree = "<group>"; };
 		64ED90F91743E46E00203969 /* STKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STKeychain.m; path = ../common/Utilitites/STKeychain.m; sourceTree = "<group>"; };
 		64ED90FC1743E48900203969 /* RNCryptor+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor+Private.h"; sourceTree = "<group>"; };
@@ -315,12 +315,12 @@
 		645ED8A61754F0A20070F83B /* iRate */ = {
 			isa = PBXGroup;
 			children = (
-				645ED8A71754F0A20070F83B /* iRate.bundle */,
-				645ED8A81754F0A20070F83B /* iRate.h */,
-				645ED8A91754F0A20070F83B /* iRate.m */,
+				64E0AA4617E9067D008BF0E3 /* iRate.h */,
+				64E0AA4717E9067D008BF0E3 /* iRate.m */,
+				64E0AA4417E9066E008BF0E3 /* iRate.bundle */,
 			);
 			name = iRate;
-			path = ../common/iRate/iRate;
+			path = ../iRate;
 			sourceTree = "<group>";
 		};
 		646602A216DBD373007622FC /* Images */ = {
@@ -614,6 +614,7 @@
 				64A755801702137A0085933D /* FloatingWindow.textClipping in Resources */,
 				64CEF2BC17D0E65900D3A58B /* Images.xcassets in Resources */,
 				64A755811702137A0085933D /* MicrophoneBackground.png in Resources */,
+				64E0AA4517E9066E008BF0E3 /* iRate.bundle in Resources */,
 				64A755821702137A0085933D /* MicrophoneWindow-iPad.xib in Resources */,
 				64A755841702137A0085933D /* MicrophoneWindow.xib in Resources */,
 				64A755851702137A0085933D /* one.png in Resources */,
@@ -633,7 +634,6 @@
 				640EE116173A476F0006A9A2 /* Default.png in Resources */,
 				64B56853174658B3006D04C4 /* readme.txt in Resources */,
 				64E0AA4317E70ED9008BF0E3 /* In-App-Products.plist in Resources */,
-				645ED8AA1754F0A20070F83B /* iRate.bundle in Resources */,
 				645ED8AF1754F7730070F83B /* link-microphone-big.png in Resources */,
 				645ED8B01754F7730070F83B /* link-microphone-big@2x.png in Resources */,
 			);
@@ -655,6 +655,7 @@
 				6416315716D7DB830004CB52 /* IAMViewController.m in Sources */,
 				6416315D16D8345F0004CB52 /* UIImage+RoundedCorner.m in Sources */,
 				64027D7B16DD7CB800DEA647 /* IAMPreferencesController.m in Sources */,
+				64E0AA4817E9067D008BF0E3 /* iRate.m in Sources */,
 				6433103E16E0A85D0064EC5C /* UIViewController+GTFrames.m in Sources */,
 				64F31CC416E4AF9000A80BE0 /* Note.m in Sources */,
 				64F31CCA16E5009B00A80BE0 /* Attachment.m in Sources */,
@@ -674,7 +675,6 @@
 				64ED91071743E48900203969 /* RNCryptorEngine.m in Sources */,
 				64ED91081743E48900203969 /* RNDecryptor.m in Sources */,
 				64ED91091743E48900203969 /* RNEncryptor.m in Sources */,
-				645ED8AB1754F0A20070F83B /* iRate.m in Sources */,
 				643F0088177C3CB7005B1DB5 /* NSDate+GTStringsHelpers.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
