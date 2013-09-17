@@ -33,7 +33,6 @@ typedef enum {
     supportUnsatisfied,
     supportSatisfied,
     supportCoffee,
-    supportBeer,
     supportRestore
 } supportOptions;
 
@@ -115,10 +114,10 @@ typedef enum {
 }
 
 - (void)disableAllStoreUIOptions {
-    self.productBeerCell.userInteractionEnabled = self.productCoffeeCell.userInteractionEnabled = self.restoreCell.userInteractionEnabled = NO;
-    self.productCoffeeLabel.enabled = self.productBeerLabel.enabled = self.restoreCellLabel.enabled = NO;
-    self.productCoffeePriceLabel.enabled = self.productBeerPriceLabel.enabled = NO;
-    self.productCoffeePriceLabel.text = self.productBeerPriceLabel.text = @"-";
+    self.productCoffeeCell.userInteractionEnabled = self.restoreCell.userInteractionEnabled = NO;
+    self.productCoffeeLabel.enabled = self.restoreCellLabel.enabled = NO;
+    self.productCoffeePriceLabel.enabled = NO;
+    self.productCoffeePriceLabel.text = @"-";
 }
 
 - (void)updateStoreUI {
@@ -126,17 +125,17 @@ typedef enum {
     [self disableAllStoreUIOptions];
     // No money? No products!
     if (![SKPaymentQueue canMakePayments]) {
-        self.productCoffeePriceLabel.text = self.productBeerPriceLabel.text = @"Payments disabled.";
+        self.productCoffeePriceLabel.text = @"Payments disabled.";
         return;
     }
     // If user already paid, leave disabled
     if (((IAMAppDelegate *)[[UIApplication sharedApplication] delegate]).skipAds) {
-        self.productCoffeePriceLabel.text = self.productBeerPriceLabel.text = @"Already bought.";
+        self.productCoffeePriceLabel.text = @"Already bought.";
         return;
     }
     // If a transaction is already in progress, leave disabled
     if (((IAMAppDelegate *)[[UIApplication sharedApplication] delegate]).processingPurchase) {
-        self.productCoffeePriceLabel.text = self.productBeerPriceLabel.text = @"Transaction still in progress.";
+        self.productCoffeePriceLabel.text = @"Transaction still in progress.";
         return;
     }
     DLog(@"starting request for products.");
@@ -170,13 +169,6 @@ typedef enum {
     self.productCoffeePriceLabel.text = formattedPrice;
     self.productCoffeeCell.userInteractionEnabled = self.productCoffeeLabel.enabled = self.productCoffeePriceLabel.enabled = YES;
     self.restoreCell.userInteractionEnabled = self.restoreCellLabel.enabled = YES;
-    if ([self.products count] > 1) {
-        product = self.products[1];
-        self.productBeerLabel.text = product.localizedTitle;
-        formattedPrice = [numberFormatter stringFromNumber:product.price];
-        self.productBeerPriceLabel.text = formattedPrice;
-        self.productBeerCell.userInteractionEnabled = self.productBeerLabel.enabled = self.productBeerPriceLabel.enabled = YES;
-    }
 }
 
 - (void)request:(SKRequest *)request didFailWithError:(NSError *)error {
@@ -284,10 +276,6 @@ typedef enum {
             DLog(@"Buy Ads Removal");
             SKPayment *payment = [SKPayment paymentWithProduct:self.products[0]];
             [[SKPaymentQueue defaultQueue] addPayment:payment];
-        } else if (indexPath.row == supportBeer) {
-            DLog(@"Buy Premium for Ads Removal");
-            SKPayment *payment = [SKPayment paymentWithProduct:self.products[1]];
-            [[SKPaymentQueue defaultQueue] addPayment:payment];
         } else if (indexPath.row == supportRestore) {
             DLog(@"Restore Ads Removal");
             [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
@@ -326,7 +314,7 @@ typedef enum {
     BOOL dismiss = NO;
     if (result == MFMailComposeResultSent) {
         title = @"Information";
-        text = @"E-mail successfully sent. Thank you for the feedbak!";
+        text = @"E-mail successfully sent. Thank you for the feedback!";
         dismiss = YES;
     } else if (result == MFMailComposeResultFailed) {
         title = @"Warning";

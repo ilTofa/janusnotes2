@@ -131,7 +131,7 @@ Label riga 3</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <label key="tableFooterView" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="320" id="noy-zs-ldo">
-                            <rect key="frame" x="0.0" y="1363" width="320" height="66"/>
+                            <rect key="frame" x="0.0" y="1319" width="320" height="66"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <string key="text">This I Am Mine version 1.0 (137)
 ©2013 Giacomo Tufano - All rights Reserved
@@ -245,41 +245,8 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="naz-2O-TX4">
-                                        <rect key="frame" x="0.0" y="295" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="naz-2O-TX4" id="qa4-4d-nDz">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Very Happy? Pay also for a Beer!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y7z-5m-Eev">
-                                                    <rect key="frame" x="20" y="2" width="280" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.99$" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x1C-5e-f1N">
-                                                    <rect key="frame" x="20" y="23" width="280" height="15"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="y7z-5m-Eev" secondAttribute="bottom" constant="20" symbolic="YES" id="3zb-p7-63d"/>
-                                                <constraint firstItem="x1C-5e-f1N" firstAttribute="top" secondItem="y7z-5m-Eev" secondAttribute="bottom" id="AyH-QS-k0F"/>
-                                                <constraint firstItem="y7z-5m-Eev" firstAttribute="trailing" secondItem="x1C-5e-f1N" secondAttribute="trailing" id="dmT-8E-KWx"/>
-                                                <constraint firstItem="y7z-5m-Eev" firstAttribute="leading" secondItem="qa4-4d-nDz" secondAttribute="leading" constant="20" symbolic="YES" id="eYI-jq-XYh"/>
-                                                <constraint firstItem="y7z-5m-Eev" firstAttribute="top" secondItem="qa4-4d-nDz" secondAttribute="top" constant="2" id="iQc-NE-iWp"/>
-                                                <constraint firstAttribute="trailing" secondItem="y7z-5m-Eev" secondAttribute="trailing" constant="20" symbolic="YES" id="ucb-32-cm8"/>
-                                                <constraint firstItem="y7z-5m-Eev" firstAttribute="leading" secondItem="x1C-5e-f1N" secondAttribute="leading" id="xty-Or-ZJ5"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="1db-jT-JbS">
-                                        <rect key="frame" x="0.0" y="339" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="295" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1db-jT-JbS" id="ABg-fW-Mpw">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -306,7 +273,7 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                             <tableViewSection headerTitle="Dropbox" id="mSg-mC-OUL">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Vgt-2o-zV9">
-                                        <rect key="frame" x="0.0" y="431" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="387" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Vgt-2o-zV9" id="HiV-5w-aDT">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -329,7 +296,7 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="66" id="glf-Zo-R6N">
-                                        <rect key="frame" x="0.0" y="475" width="320" height="66"/>
+                                        <rect key="frame" x="0.0" y="431" width="320" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="glf-Zo-R6N" id="y3k-UC-nwA">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
@@ -363,7 +330,7 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="kHZ-1y-Nex">
-                                        <rect key="frame" x="0.0" y="541" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="497" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kHZ-1y-Nex" id="mJv-pM-C9H">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -390,7 +357,7 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                             <tableViewSection headerTitle="Keylock on app start" id="ywg-MN-YTW">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="H4l-Zf-mq4">
-                                        <rect key="frame" x="0.0" y="633" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="589" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="H4l-Zf-mq4" id="cdu-Hg-cKY">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -415,7 +382,7 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                             <tableViewSection headerTitle="Dates &amp; Sort" id="LK1-kS-0Eg">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="VWN-VR-A6F">
-                                        <rect key="frame" x="0.0" y="725" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="681" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VWN-VR-A6F" id="4KP-nc-i4S">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -458,7 +425,7 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="bNb-iH-8ny">
-                                        <rect key="frame" x="0.0" y="769" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="725" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bNb-iH-8ny" id="oQN-zm-3FH">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -504,7 +471,7 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                             <tableViewSection headerTitle="Font" id="Ybh-7J-6rO">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="ZUz-6p-snv">
-                                        <rect key="frame" x="0.0" y="861" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="817" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZUz-6p-snv" id="Q47-rg-zpK">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -527,7 +494,7 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="U1N-ua-gVM">
-                                        <rect key="frame" x="0.0" y="905" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="861" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="U1N-ua-gVM" id="5dx-4r-cxN">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -550,7 +517,7 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="qWN-18-b8A">
-                                        <rect key="frame" x="0.0" y="949" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="905" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qWN-18-b8A" id="Qmx-jm-NkG">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -573,7 +540,7 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="8TH-uZ-ufh">
-                                        <rect key="frame" x="0.0" y="993" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="949" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8TH-uZ-ufh" id="OPT-qq-Xqj">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -600,7 +567,7 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                             <tableViewSection headerTitle="Size" id="ioU-qa-XWg">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="VYy-fZ-zPH">
-                                        <rect key="frame" x="0.0" y="1085" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="1041" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VYy-fZ-zPH" id="WC5-26-XCe">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -639,7 +606,7 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                             <tableViewSection headerTitle="Colors" id="914-js-wTr">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="uS7-2w-A4r">
-                                        <rect key="frame" x="0.0" y="1177" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="1133" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uS7-2w-A4r" id="LEg-XX-Tt4">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -664,7 +631,7 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                         <color key="backgroundColor" red="1" green="0.98823535439999999" blue="0.9215686917" alpha="1" colorSpace="deviceRGB"/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="4Ed-Bx-XSW">
-                                        <rect key="frame" x="0.0" y="1221" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="1177" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4Ed-Bx-XSW" id="xQt-fd-Fyd">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -688,7 +655,7 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="dld-Pu-eaJ">
-                                        <rect key="frame" x="0.0" y="1265" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="1221" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dld-Pu-eaJ" id="KcT-cH-68L">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -713,7 +680,7 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                         <color key="backgroundColor" red="0.0" green="0.18823531269999999" blue="0.31764706970000001" alpha="1" colorSpace="deviceRGB"/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="PQO-bD-Shl">
-                                        <rect key="frame" x="0.0" y="1309" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="1265" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PQO-bD-Shl" id="aa8-W7-PG2">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -757,9 +724,6 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                         <outlet property="encryptionLabel" destination="IcP-2E-6PK" id="3QX-93-qeC"/>
                         <outlet property="encryptionSwitch" destination="Qce-LI-nvE" id="Jte-LO-n9B"/>
                         <outlet property="lockSwitch" destination="OZM-z5-cnY" id="kwL-UY-WAw"/>
-                        <outlet property="productBeerCell" destination="naz-2O-TX4" id="cK6-1t-W4Q"/>
-                        <outlet property="productBeerLabel" destination="y7z-5m-Eev" id="AC9-KX-j11"/>
-                        <outlet property="productBeerPriceLabel" destination="x1C-5e-f1N" id="9eW-rk-MrS"/>
                         <outlet property="productCoffeeCell" destination="URj-ag-BOn" id="ikf-G4-75A"/>
                         <outlet property="productCoffeeLabel" destination="VSS-tW-8Np" id="1Jm-KC-NcG"/>
                         <outlet property="productCoffeePriceLabel" destination="bzL-JN-MSx" id="xBg-Op-Ch2"/>
@@ -1115,7 +1079,7 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <label key="tableFooterView" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="320" id="fxz-Pf-qT7">
-                            <rect key="frame" x="0.0" y="801" width="320" height="66"/>
+                            <rect key="frame" x="0.0" y="757" width="320" height="66"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <string key="text">This I Am Mine version 1.0 (137)
 ©2013 Giacomo Tufano - All rights Reserved
@@ -1230,42 +1194,8 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Nag-57-hwz">
-                                        <rect key="frame" x="0.0" y="295" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Nag-57-hwz" id="f5y-lQ-Vqf">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Very Happy? Pay also for a Beer!" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SaZ-UY-7aI">
-                                                    <rect key="frame" x="20" y="2" width="280" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.99$" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dLi-te-npr">
-                                                    <rect key="frame" x="20" y="23" width="280" height="15"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="dLi-te-npr" firstAttribute="top" secondItem="SaZ-UY-7aI" secondAttribute="bottom" id="2rR-pc-F0Y"/>
-                                                <constraint firstItem="SaZ-UY-7aI" firstAttribute="top" secondItem="f5y-lQ-Vqf" secondAttribute="top" constant="2" id="8J3-C2-u3G"/>
-                                                <constraint firstAttribute="bottom" secondItem="dLi-te-npr" secondAttribute="bottom" constant="5" id="HOy-3r-3Qf"/>
-                                                <constraint firstAttribute="bottom" secondItem="SaZ-UY-7aI" secondAttribute="bottom" constant="20" symbolic="YES" id="WP8-0Q-Qpv"/>
-                                                <constraint firstAttribute="trailing" secondItem="SaZ-UY-7aI" secondAttribute="trailing" constant="20" symbolic="YES" id="dd1-f4-2fW"/>
-                                                <constraint firstItem="dLi-te-npr" firstAttribute="trailing" secondItem="SaZ-UY-7aI" secondAttribute="trailing" id="lKm-Tx-z18"/>
-                                                <constraint firstItem="SaZ-UY-7aI" firstAttribute="leading" secondItem="f5y-lQ-Vqf" secondAttribute="leading" constant="20" symbolic="YES" id="u7a-jn-5TA"/>
-                                                <constraint firstItem="SaZ-UY-7aI" firstAttribute="leading" secondItem="dLi-te-npr" secondAttribute="leading" id="xH5-K2-Bos"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="S7f-BI-Vog">
-                                        <rect key="frame" x="0.0" y="339" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="295" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="S7f-BI-Vog" id="Hy6-Ob-60o">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -1292,7 +1222,7 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                             <tableViewSection headerTitle="Dropbox" id="5eQ-vc-Jn1">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Ade-Oa-Fnx">
-                                        <rect key="frame" x="0.0" y="431" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="387" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ade-Oa-Fnx" id="Mxw-Bj-e1i">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -1315,7 +1245,7 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="l6r-Ga-ELo">
-                                        <rect key="frame" x="0.0" y="475" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="431" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="l6r-Ga-ELo" id="Gyi-cS-ULA">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -1350,7 +1280,7 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="88F-Ou-mTg">
-                                        <rect key="frame" x="0.0" y="519" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="475" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="88F-Ou-mTg" id="Zwa-i8-HRv">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -1377,7 +1307,7 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                             <tableViewSection headerTitle="Keylock on app start" id="ehL-ph-Sva">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Qfj-XN-QDF">
-                                        <rect key="frame" x="0.0" y="611" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="567" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Qfj-XN-QDF" id="1MO-KR-4eH">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -1402,7 +1332,7 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                             <tableViewSection headerTitle="Dates &amp; Sort" id="dPY-Wf-dRM">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Q3O-JR-0HJ">
-                                        <rect key="frame" x="0.0" y="703" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="659" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Q3O-JR-0HJ" id="5rE-yo-Ht7">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -1439,7 +1369,7 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="UxY-We-yj0">
-                                        <rect key="frame" x="0.0" y="747" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="703" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UxY-We-yj0" id="eVx-nP-nXg">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -1497,9 +1427,6 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                         <outlet property="encryptionLabel" destination="So4-2e-6Af" id="Z72-jb-ul5"/>
                         <outlet property="encryptionSwitch" destination="Ejo-P4-L9K" id="MKt-IJ-tdd"/>
                         <outlet property="lockSwitch" destination="nTy-af-nbq" id="Jlu-Vn-luc"/>
-                        <outlet property="productBeerCell" destination="Nag-57-hwz" id="MLm-pg-JBn"/>
-                        <outlet property="productBeerLabel" destination="SaZ-UY-7aI" id="joA-Dq-i7N"/>
-                        <outlet property="productBeerPriceLabel" destination="dLi-te-npr" id="11r-1Z-mGp"/>
                         <outlet property="productCoffeeCell" destination="kXH-vK-9DH" id="RCQ-PU-0Sr"/>
                         <outlet property="productCoffeeLabel" destination="Gq7-ZY-Ryv" id="EWz-ip-xNe"/>
                         <outlet property="productCoffeePriceLabel" destination="ad6-Gu-5XH" id="6zh-FM-dxE"/>
