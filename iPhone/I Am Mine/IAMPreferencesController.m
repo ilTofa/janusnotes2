@@ -92,7 +92,7 @@ typedef enum {
     [super viewDidAppear:animated];
     // Mark selected color...
     if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
-        UITableViewCell * tableCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:self.colorSet inSection:3]];
+        UITableViewCell * tableCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:self.colorSet inSection:colorSelector]];
         tableCell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(skipAdProcessed:) name:kSkipAdProcessingChanged object:nil];
@@ -255,6 +255,10 @@ typedef enum {
     }
     // Change lock status
     if(indexPath.section == lockSelector) {
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
+    // Sorting
+    if(indexPath.section == sortSelector) {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
     // Change size
