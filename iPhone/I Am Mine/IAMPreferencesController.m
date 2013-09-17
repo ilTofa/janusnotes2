@@ -283,8 +283,12 @@ typedef enum {
             [[iRate sharedInstance] openRatingsPageInAppStore];
         } else if (indexPath.row == supportCoffee) {
             DLog(@"Buy Ads Removal");
+            SKPayment *payment = [SKPayment paymentWithProduct:self.products[0]];
+            [[SKPaymentQueue defaultQueue] addPayment:payment];
         } else if (indexPath.row == supportBeer) {
             DLog(@"Buy Premium for Ads Removal");
+            SKPayment *payment = [SKPayment paymentWithProduct:self.products[1]];
+            [[SKPaymentQueue defaultQueue] addPayment:payment];
         } else if (indexPath.row == supportRestore) {
             DLog(@"Restore Ads Removal");
             [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
