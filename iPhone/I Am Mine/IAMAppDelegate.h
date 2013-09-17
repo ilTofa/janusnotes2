@@ -13,6 +13,7 @@
 #import "CoreDataController.h"
 
 #define kGotLocation @"gotLocation"
+#define kSkipAdProcessingChanged @"skipAdChanged"
 
 @interface IAMAppDelegate : UIResponder <UIApplicationDelegate, CLLocationManagerDelegate, SKPaymentTransactionObserver>
 
@@ -29,5 +30,6 @@
 
 // Ads
 @property (nonatomic) BOOL skipAds;
+@property (atomic) BOOL processingPurchase;
 
 @end

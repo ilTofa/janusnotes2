@@ -13,6 +13,7 @@
 #import "IAMDataSyncController.h"
 #import "iRate.h"
 #import "STKeychain.h"
+#import "GTTransientMessage.h"
 
 @interface IAMAppDelegate()
 
@@ -121,10 +122,62 @@
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"skipAds"];
 }
 
+#pragma mark SKPaymentTransactionObserver
+
+- (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions {
+    for (SKPaymentTransaction *transaction in transactions)
+    {
+        switch (transaction.transactionState)
+        {
+            case SKPaymentTransactionStatePurchased:
+                self.skipAds = YES;
+                self.processingPurchase = NO;
+                [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kSkipAdProcessingChanged object:self]];
+                [queue finishTransaction:transaction];
+                [GTTransientMessage showWithTitle:@"Thank you!" andSubTitle:@"No Ad will be shown anymore." forSeconds:1.0];
+                break;
+            case SKPaymentTransactionStateFailed: {
+                NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Error purchasing: %@.", nil), [transaction.error localizedDescription]];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Purchase Error" message:message delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+                [alert show];
+                self.processingPurchase = NO;
+                [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kSkipAdProcessingChanged object:self]];
+                [queue finishTransaction:transaction];
+            }
+                break;
+            case SKPaymentTransactionStateRestored:
+                self.skipAds = YES;
+                self.processingPurchase = NO;
+                [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kSkipAdProcessingChanged object:self]];
+                [queue finishTransaction:transaction];
+            case SKPaymentTransactionStatePurchasing:
+                self.processingPurchase = YES;
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+- (void)paymentQueue:(SKPaymentQueue *)queue restoreCompletedTransactionsFailedWithError:(NSError *)error {
+    NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Error restoring purchase: %@.", nil), [error localizedDescription]];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:message delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+    [alert show];
+}
+
+- (void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue {
+    [GTTransientMessage showWithTitle:@"Purchase Restored" andSubTitle:@"No Ad will be shown." forSeconds:2.0];
+}
+
+- (void)paymentQueue:(SKPaymentQueue *)queue updatedDownloads:(NSArray *)downloads {
+    DLog(@"Called with %@", downloads);
+}
+
+
 #pragma mark - cache management
 
 -(void)deleteCache {
-    // Async load, please (so don't use defaultManage, not thread safe)
+    // Async load so don't use defaultManage, not thread safe
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSFileManager *fileMgr = [[NSFileManager alloc] init];
         NSError *error;
@@ -139,8 +192,7 @@
 
 #pragma mark - CLLocationManagerDelegate and its delegate
 
-- (void)startLocation
-{
+- (void)startLocation {
     // if no location services, give up
     if(![CLLocationManager locationServicesEnabled])
         return;
@@ -151,8 +203,7 @@
 	if(self.nLocationUseDenies >= 3)
 		return;
     // Create the location manager (if needed)
-    if(self.locationManager == nil)
-    {
+    if(self.locationManager == nil) {
         self.locationManager = [[CLLocationManager alloc] init];
         self.locationManager.delegate = self;
         self.locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
@@ -167,8 +218,7 @@
 // Delegate method from the CLLocationManagerDelegate protocol.
 - (void)locationManager:(CLLocationManager *)manager
     didUpdateToLocation:(CLLocation *)newLocation
-		   fromLocation:(CLLocation *)oldLocation
-{
+		   fromLocation:(CLLocation *)oldLocation {
     // Got a location, good.
     DLog(@"Got a location, good. lat %+.4f, lon %+.4f \u00B1%.0fm\n", newLocation.coordinate.latitude, newLocation.coordinate.longitude, newLocation.horizontalAccuracy);
     self.locationString = [NSString stringWithFormat:@"lat %+.4f, lon %+.4f \u00B1%.0fm\n", newLocation.coordinate.latitude, newLocation.coordinate.longitude, newLocation.horizontalAccuracy];
@@ -177,35 +227,29 @@
     // Now look for reverse geolocation
     CLGeocoder *theNewReverseGeocoder = [[CLGeocoder alloc] init];
     [theNewReverseGeocoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray *placemarks, NSError *error) {
-        if(placemarks != nil)
-        {
+        if(placemarks != nil) {
             CLPlacemark * placemark = placemarks[0];
             self.locationString = [NSString stringWithFormat:@"%@, %@, %@", placemark.locality, placemark.administrativeArea, placemark.country];
             // Notify the world that we have found ourselves
             [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kGotLocation object:self]];
-        }
-        else
-        {
+        } else {
             NSLog(@"Reverse geolocation failed with error: '%@'", [error localizedDescription]);
         }
     }];
     // If it's a relatively recent event and accuracy is satisfactory, turn off updates to save power (only if we're using standard location)
     NSDate* eventDate = newLocation.timestamp;
     NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
-    if (abs(howRecent) < 5.0 && newLocation.horizontalAccuracy < 501)
-    {
+    if (abs(howRecent) < 5.0 && newLocation.horizontalAccuracy < 501) {
         DLog(@"It's a relatively recent event and accuracy is satisfactory, turning off GPS");
         [manager stopUpdatingLocation];
         manager = nil;
     }
 }
 
-- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
-{
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
     NSLog(@"Location Manager error: %@", [error localizedDescription]);
 	// if the user don't want to give us the rights, give up.
-	if(error.code == kCLErrorDenied)
-	{
+	if(error.code == kCLErrorDenied) {
 		[manager stopUpdatingLocation];
 		// mark that user already denied us for this session
 		self.isLocationDenied = YES;

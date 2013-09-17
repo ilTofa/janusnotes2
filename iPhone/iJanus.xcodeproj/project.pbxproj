@@ -18,6 +18,7 @@
 		640EE112173A475F0006A9A2 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 640EE111173A475F0006A9A2 /* Default-568h@2x.png */; };
 		640EE114173A47690006A9A2 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 640EE113173A47690006A9A2 /* Default@2x.png */; };
 		640EE116173A476F0006A9A2 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 640EE115173A476F0006A9A2 /* Default.png */; };
+		6410E1CB17E85D2000B568D0 /* GTTransientMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6410E1CA17E85D2000B568D0 /* GTTransientMessage.m */; };
 		6416315716D7DB830004CB52 /* IAMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6416315616D7DB830004CB52 /* IAMViewController.m */; };
 		6416315916D831DB0004CB52 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6416315816D831DB0004CB52 /* MobileCoreServices.framework */; };
 		6416315D16D8345F0004CB52 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 6416315C16D8345F0004CB52 /* UIImage+RoundedCorner.m */; };
@@ -113,6 +114,8 @@
 		640EE111173A475F0006A9A2 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		640EE113173A47690006A9A2 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
 		640EE115173A476F0006A9A2 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
+		6410E1C917E85D2000B568D0 /* GTTransientMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTTransientMessage.h; sourceTree = "<group>"; };
+		6410E1CA17E85D2000B568D0 /* GTTransientMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTTransientMessage.m; sourceTree = "<group>"; };
 		6416315616D7DB830004CB52 /* IAMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMViewController.m; sourceTree = "<group>"; };
 		6416315816D831DB0004CB52 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		6416315B16D8345F0004CB52 /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
@@ -294,6 +297,8 @@
 		6433103F16E0A8950064EC5C /* Utilities (iOS) */ = {
 			isa = PBXGroup;
 			children = (
+				6410E1C917E85D2000B568D0 /* GTTransientMessage.h */,
+				6410E1CA17E85D2000B568D0 /* GTTransientMessage.m */,
 				648A2771171D875000338218 /* MBProgressHUD.h */,
 				648A2772171D875000338218 /* MBProgressHUD.m */,
 				6416315B16D8345F0004CB52 /* UIImage+RoundedCorner.h */,
@@ -656,6 +661,7 @@
 				64A8A7E316E781EB0013AFFF /* IAMAddLinkViewController.m in Sources */,
 				64A8A7E616E7B4770013AFFF /* IAMAttachmentCell.m in Sources */,
 				641D954416E8CF6E00A253E3 /* IAMAttachmentDetailViewController.m in Sources */,
+				6410E1CB17E85D2000B568D0 /* GTTransientMessage.m in Sources */,
 				64BB200F16EA000E00FE6C77 /* GTThemer.m in Sources */,
 				64A755831702137A0085933D /* MicrophoneWindow.m in Sources */,
 				64F9AC4D1704544800299C1B /* UIImage+FixOrientation.m in Sources */,

@@ -65,18 +65,11 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismissPopoverRequested:) name:kPreferencesPopoverCanBeDismissed object:nil];
     if([IAMDataSyncController sharedInstance].syncControllerReady)
         [self refreshControlSetup];
-    if ([self respondsToSelector:@selector(setCanDisplayBannerAds:)]) {
-        if (!((IAMAppDelegate *)[[UIApplication sharedApplication] delegate]).skipAds) {
-            DLog(@"Preparing Ads");
-            self.canDisplayBannerAds = YES;
-            self.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
-        } else {
-            DLog(@"Skipping ads");
-        }
-    }
+    [self processAds:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(syncStoreNotificationHandler:) name:kIAMDataSyncControllerReady object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(syncStoreNotificationHandler:) name:kIAMDataSyncControllerStopped object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(syncStoreStillPendingChanges:) name:kIAMDataSyncStillPendingChanges object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(processAds:) name:kSkipAdProcessingChanged object:nil];
     if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dynamicFontChanged:) name:UIContentSizeCategoryDidChangeNotification object:nil];
     }
@@ -101,6 +94,27 @@
         self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         self.hud.labelText = NSLocalizedString(@"Waiting for Dropbox", nil);
         self.hud.detailsLabelText = NSLocalizedString(@"First sync in progress, please wait.", nil);
+    }
+}
+
+-(void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)processAds:(NSNotification *)note {
+    if (note) {
+        DLog(@"Called by notification...");
+    }
+    if ([self respondsToSelector:@selector(setCanDisplayBannerAds:)]) {
+        if (!((IAMAppDelegate *)[[UIApplication sharedApplication] delegate]).skipAds) {
+            DLog(@"Preparing Ads");
+            self.canDisplayBannerAds = YES;
+            self.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
+        } else {
+            DLog(@"Skipping ads");
+            self.canDisplayBannerAds = NO;
+            self.interstitialPresentationPolicy = ADInterstitialPresentationPolicyNone;
+        }
     }
 }
 

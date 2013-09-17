@@ -93,11 +93,22 @@ typedef enum {
         UITableViewCell * tableCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:self.colorSet inSection:3]];
         tableCell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(skipAdProcessed:) name:kSkipAdProcessingChanged object:nil];
     [self updateDropboxUI];
     [self updateStoreUI];
     if([[IAMDataSyncController sharedInstance] needsSyncPassword]) {
         [self changePasswordASAP];
     }
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [super viewDidDisappear:animated];
+}
+
+- (void)skipAdProcessed:(NSNotification *)aNotification {
+    DLog(@"Got a notifaction for store processing");
+    [self updateStoreUI];
 }
 
 - (void)updateStoreUI {
@@ -108,8 +119,14 @@ typedef enum {
     self.productCoffeePriceLabel.text = self.productBeerPriceLabel.text = @"-";
     // If user already paid, leave disabled
     if (((IAMAppDelegate *)[[UIApplication sharedApplication] delegate]).skipAds) {
+        self.productCoffeePriceLabel.text = self.productBeerPriceLabel.text = @"Already bought.";
         return;
     }
+    // If a transaction is already in progress, leave disabled
+    if (((IAMAppDelegate *)[[UIApplication sharedApplication] delegate]).processingPurchase) {
+        self.productCoffeePriceLabel.text = self.productBeerPriceLabel.text = @"Transaction still in progress.";
+        return;
+    }    
     NSURL *url = [[NSBundle mainBundle] URLForResource:@"In-App-Products" withExtension:@"plist"];
     NSArray *productIdentifiers = [NSArray arrayWithContentsOfURL:url];
     SKProductsRequest *productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithArray:productIdentifiers]];
@@ -150,6 +167,10 @@ typedef enum {
 }
 
 - (void)request:(SKRequest *)request didFailWithError:(NSError *)error {
+    NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Purchase request failed: %@.", nil), [error localizedDescription]];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Purchase Error" message:message delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+    [alert show];
+
     DLog(@"request failed: %@,  %@", request, error);
 }
 

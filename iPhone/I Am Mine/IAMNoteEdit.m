@@ -88,14 +88,7 @@
     }
     self.attachmensAreHidden = NO;
     [self refreshAttachments];
-    if ([self respondsToSelector:@selector(setInterstitialPresentationPolicy:)]) {
-        if (!((IAMAppDelegate *)[[UIApplication sharedApplication] delegate]).skipAds) {
-            DLog(@"Preparing Ads");
-            self.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
-        } else {
-            DLog(@"Skipping ads");
-        }
-    }
+    [self processAds:nil];
     // If this is a new note, set the cursor on title field
     if([self.titleEdit.text isEqualToString:@""])
         [self.titleEdit becomeFirstResponder];
@@ -118,6 +111,21 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)processAds:(NSNotification *)note {
+    if (note) {
+        DLog(@"Called by notification...");
+    }
+    if ([self respondsToSelector:@selector(setCanDisplayBannerAds:)]) {
+        if (!((IAMAppDelegate *)[[UIApplication sharedApplication] delegate]).skipAds) {
+            DLog(@"Preparing Ads");
+            self.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
+        } else {
+            DLog(@"Skipping ads");
+            self.interstitialPresentationPolicy = ADInterstitialPresentationPolicyNone;
+        }
+    }
 }
 
 - (void)dynamicFontChanged:(NSNotification *)notification {
