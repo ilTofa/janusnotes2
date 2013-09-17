@@ -43,6 +43,8 @@
     [_coreDataController loadPersistentStores];
     // Init datasync engine
     [IAMDataSyncController sharedInstance];
+    // Set itself as store observer
+    [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
     // Purge cache directory
     [self deleteCache];
     return YES;

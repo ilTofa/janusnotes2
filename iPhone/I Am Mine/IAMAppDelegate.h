@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import <StoreKit/StoreKit.h>
 
 #import "CoreDataController.h"
 
 #define kGotLocation @"gotLocation"
 
-@interface IAMAppDelegate : UIResponder <UIApplicationDelegate, CLLocationManagerDelegate>
+@interface IAMAppDelegate : UIResponder <UIApplicationDelegate, CLLocationManagerDelegate, SKPaymentTransactionObserver>
 
 @property (strong, nonatomic) UIWindow *window;
 
