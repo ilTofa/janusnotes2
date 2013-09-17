@@ -121,6 +121,11 @@ typedef enum {
 - (void)updateStoreUI {
     // Disable store while we look for the products
     [self disableAllStoreUIOptions];
+    // No money? No products!
+    if (![SKPaymentQueue canMakePayments]) {
+        self.productCoffeePriceLabel.text = self.productBeerPriceLabel.text = @"Payments disabled.";
+        return;
+    }
     // If user already paid, leave disabled
     if (((IAMAppDelegate *)[[UIApplication sharedApplication] delegate]).skipAds) {
         self.productCoffeePriceLabel.text = self.productBeerPriceLabel.text = @"Already bought.";
@@ -130,7 +135,8 @@ typedef enum {
     if (((IAMAppDelegate *)[[UIApplication sharedApplication] delegate]).processingPurchase) {
         self.productCoffeePriceLabel.text = self.productBeerPriceLabel.text = @"Transaction still in progress.";
         return;
-    }    
+    }
+    DLog(@"starting request for products.");
     NSURL *url = [[NSBundle mainBundle] URLForResource:@"In-App-Products" withExtension:@"plist"];
     NSArray *productIdentifiers = [NSArray arrayWithContentsOfURL:url];
     SKProductsRequest *productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithArray:productIdentifiers]];

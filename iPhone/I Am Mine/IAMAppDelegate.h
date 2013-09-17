@@ -31,5 +31,6 @@
 // Ads
 @property (nonatomic) BOOL skipAds;
 @property (atomic) BOOL processingPurchase;
+@property (atomic) BOOL userInitedShutdown;
 
 @end
