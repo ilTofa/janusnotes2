@@ -1134,7 +1134,7 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Janus Help Web Site." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="acd-2Y-Kdp">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Janus Help Web Site." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="acd-2Y-Kdp">
                                                     <rect key="frame" x="20" y="11" width="280" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -1142,6 +1142,12 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="acd-2Y-Kdp" secondAttribute="trailing" constant="20" symbolic="YES" id="8QO-hh-kC3"/>
+                                                <constraint firstItem="acd-2Y-Kdp" firstAttribute="centerY" secondItem="ja8-M8-mPz" secondAttribute="centerY" id="PoP-3Z-bdt"/>
+                                                <constraint firstItem="acd-2Y-Kdp" firstAttribute="top" secondItem="ja8-M8-mPz" secondAttribute="top" constant="11" id="cpe-PK-285"/>
+                                                <constraint firstItem="acd-2Y-Kdp" firstAttribute="leading" secondItem="ja8-M8-mPz" secondAttribute="leading" constant="20" symbolic="YES" id="epb-m0-ThQ"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="tnR-RH-GVA">
@@ -1151,7 +1157,7 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Unsatisfied? Tell us why!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3sV-uz-tGI">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unsatisfied? Tell us why!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3sV-uz-tGI">
                                                     <rect key="frame" x="20" y="11" width="280" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -1159,6 +1165,12 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="3sV-uz-tGI" firstAttribute="leading" secondItem="5qf-G4-UVP" secondAttribute="leading" constant="20" symbolic="YES" id="35G-ik-GUo"/>
+                                                <constraint firstItem="3sV-uz-tGI" firstAttribute="centerY" secondItem="5qf-G4-UVP" secondAttribute="centerY" id="5gS-RM-TUM"/>
+                                                <constraint firstAttribute="trailing" secondItem="3sV-uz-tGI" secondAttribute="trailing" constant="20" symbolic="YES" id="JaE-1t-UV0"/>
+                                                <constraint firstItem="3sV-uz-tGI" firstAttribute="top" secondItem="5qf-G4-UVP" secondAttribute="top" constant="11" id="ovd-Wk-8WO"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Bsa-XY-Exb">
@@ -1168,7 +1180,7 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Satisfied? Please Rate the App!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jce-3W-XeB">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Satisfied? Please Rate the App!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jce-3W-XeB">
                                                     <rect key="frame" x="20" y="11" width="280" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -1176,6 +1188,12 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Jce-3W-XeB" firstAttribute="leading" secondItem="9LG-Qu-uvc" secondAttribute="leading" constant="20" symbolic="YES" id="4L1-62-tR3"/>
+                                                <constraint firstItem="Jce-3W-XeB" firstAttribute="centerY" secondItem="9LG-Qu-uvc" secondAttribute="centerY" id="Grk-Dy-4MP"/>
+                                                <constraint firstItem="Jce-3W-XeB" firstAttribute="top" secondItem="9LG-Qu-uvc" secondAttribute="top" constant="11" id="Guh-x8-Fog"/>
+                                                <constraint firstAttribute="trailing" secondItem="Jce-3W-XeB" secondAttribute="trailing" constant="20" symbolic="YES" id="TPg-Zo-2cV"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="kXH-vK-9DH">
@@ -1185,14 +1203,14 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Happy? Pay to Remove Ads!" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gq7-ZY-Ryv">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Happy? Pay to Remove Ads!" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gq7-ZY-Ryv">
                                                     <rect key="frame" x="20" y="2" width="280" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1.99$" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ad6-Gu-5XH">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.99$" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ad6-Gu-5XH">
                                                     <rect key="frame" x="20" y="23" width="280" height="15"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
@@ -1200,6 +1218,16 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="ad6-Gu-5XH" firstAttribute="leading" secondItem="Gq7-ZY-Ryv" secondAttribute="leading" id="498-RW-jll"/>
+                                                <constraint firstItem="ad6-Gu-5XH" firstAttribute="trailing" secondItem="Gq7-ZY-Ryv" secondAttribute="trailing" id="7ep-lI-Ljj"/>
+                                                <constraint firstItem="ad6-Gu-5XH" firstAttribute="top" secondItem="Gq7-ZY-Ryv" secondAttribute="bottom" id="DMj-iP-swP"/>
+                                                <constraint firstAttribute="trailing" secondItem="Gq7-ZY-Ryv" secondAttribute="trailing" constant="20" symbolic="YES" id="Ewa-3t-wvm"/>
+                                                <constraint firstAttribute="bottom" secondItem="ad6-Gu-5XH" secondAttribute="bottom" constant="5" id="FTO-IJ-Ft6"/>
+                                                <constraint firstItem="Gq7-ZY-Ryv" firstAttribute="leading" secondItem="Iro-8m-oOc" secondAttribute="leading" constant="20" symbolic="YES" id="Nq1-bR-QzR"/>
+                                                <constraint firstItem="Gq7-ZY-Ryv" firstAttribute="top" secondItem="Iro-8m-oOc" secondAttribute="top" constant="2" id="ssZ-tZ-dDG"/>
+                                                <constraint firstAttribute="bottom" secondItem="Gq7-ZY-Ryv" secondAttribute="bottom" constant="20" symbolic="YES" id="yXc-RQ-lLe"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Nag-57-hwz">
@@ -1209,14 +1237,14 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Very Happy? Pay also for a Beer!" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SaZ-UY-7aI">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Very Happy? Pay also for a Beer!" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SaZ-UY-7aI">
                                                     <rect key="frame" x="20" y="2" width="280" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="4.99$" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dLi-te-npr">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.99$" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dLi-te-npr">
                                                     <rect key="frame" x="20" y="23" width="280" height="15"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
@@ -1224,6 +1252,16 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="dLi-te-npr" firstAttribute="top" secondItem="SaZ-UY-7aI" secondAttribute="bottom" id="2rR-pc-F0Y"/>
+                                                <constraint firstItem="SaZ-UY-7aI" firstAttribute="top" secondItem="f5y-lQ-Vqf" secondAttribute="top" constant="2" id="8J3-C2-u3G"/>
+                                                <constraint firstAttribute="bottom" secondItem="dLi-te-npr" secondAttribute="bottom" constant="5" id="HOy-3r-3Qf"/>
+                                                <constraint firstAttribute="bottom" secondItem="SaZ-UY-7aI" secondAttribute="bottom" constant="20" symbolic="YES" id="WP8-0Q-Qpv"/>
+                                                <constraint firstAttribute="trailing" secondItem="SaZ-UY-7aI" secondAttribute="trailing" constant="20" symbolic="YES" id="dd1-f4-2fW"/>
+                                                <constraint firstItem="dLi-te-npr" firstAttribute="trailing" secondItem="SaZ-UY-7aI" secondAttribute="trailing" id="lKm-Tx-z18"/>
+                                                <constraint firstItem="SaZ-UY-7aI" firstAttribute="leading" secondItem="f5y-lQ-Vqf" secondAttribute="leading" constant="20" symbolic="YES" id="u7a-jn-5TA"/>
+                                                <constraint firstItem="SaZ-UY-7aI" firstAttribute="leading" secondItem="dLi-te-npr" secondAttribute="leading" id="xH5-K2-Bos"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="S7f-BI-Vog">
@@ -1233,7 +1271,7 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Restore Purchase!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lXT-oi-Jlm">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restore Purchase!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lXT-oi-Jlm">
                                                     <rect key="frame" x="20" y="11" width="280" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -1241,6 +1279,12 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="lXT-oi-Jlm" firstAttribute="centerY" secondItem="Hy6-Ob-60o" secondAttribute="centerY" id="314-vH-c3S"/>
+                                                <constraint firstItem="lXT-oi-Jlm" firstAttribute="leading" secondItem="Hy6-Ob-60o" secondAttribute="leading" constant="20" symbolic="YES" id="MKa-Kz-ku1"/>
+                                                <constraint firstAttribute="trailing" secondItem="lXT-oi-Jlm" secondAttribute="trailing" constant="20" symbolic="YES" id="kNQ-Ot-v2D"/>
+                                                <constraint firstItem="lXT-oi-Jlm" firstAttribute="top" secondItem="Hy6-Ob-60o" secondAttribute="top" constant="11" id="zCY-Ac-rY0"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -1254,7 +1298,7 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Syncronize Notes With Dropbox" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iNN-ZR-1ID">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Syncronize Notes With Dropbox" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iNN-ZR-1ID">
                                                     <rect key="frame" x="20" y="11" width="280" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -1262,6 +1306,12 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="iNN-ZR-1ID" firstAttribute="top" secondItem="Mxw-Bj-e1i" secondAttribute="top" constant="11" id="EmC-hl-25E"/>
+                                                <constraint firstAttribute="trailing" secondItem="iNN-ZR-1ID" secondAttribute="trailing" constant="20" symbolic="YES" id="G9s-W8-9fx"/>
+                                                <constraint firstItem="iNN-ZR-1ID" firstAttribute="centerY" secondItem="Mxw-Bj-e1i" secondAttribute="centerY" id="Pho-rC-aGe"/>
+                                                <constraint firstItem="iNN-ZR-1ID" firstAttribute="leading" secondItem="Mxw-Bj-e1i" secondAttribute="leading" constant="20" symbolic="YES" id="eL6-OW-Qwf"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="l6r-Ga-ELo">
@@ -1271,14 +1321,17 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <switch opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Ejo-P4-L9K">
+                                                <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Ejo-P4-L9K">
                                                     <rect key="frame" x="48" y="8" width="51" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="49" id="VyJ-f3-FLQ"/>
+                                                    </constraints>
                                                     <connections>
                                                         <action selector="encryptionAction:" destination="mV7-Kq-sdp" eventType="valueChanged" id="CMI-VR-nO9"/>
                                                     </connections>
                                                 </switch>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Notes Encryption" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OB0-Tu-5J5">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Notes Encryption" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OB0-Tu-5J5">
                                                     <rect key="frame" x="133" y="11" width="167" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -1286,6 +1339,14 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="OB0-Tu-5J5" secondAttribute="trailing" constant="20" symbolic="YES" id="F3n-Sn-7LP"/>
+                                                <constraint firstItem="OB0-Tu-5J5" firstAttribute="centerY" secondItem="Gyi-cS-ULA" secondAttribute="centerY" id="RfG-ZX-nsl"/>
+                                                <constraint firstItem="Ejo-P4-L9K" firstAttribute="top" secondItem="Gyi-cS-ULA" secondAttribute="top" constant="8" id="j9G-Us-LV4"/>
+                                                <constraint firstItem="OB0-Tu-5J5" firstAttribute="leading" secondItem="Ejo-P4-L9K" secondAttribute="trailing" constant="36" id="kRb-Nt-Hjv"/>
+                                                <constraint firstItem="Ejo-P4-L9K" firstAttribute="leading" secondItem="Gyi-cS-ULA" secondAttribute="leading" constant="48" id="pkX-u3-b0g"/>
+                                                <constraint firstItem="OB0-Tu-5J5" firstAttribute="top" secondItem="Gyi-cS-ULA" secondAttribute="top" constant="11" id="q7B-t8-cjM"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="88F-Ou-mTg">
@@ -1295,7 +1356,7 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Change Encryption Password" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="So4-2e-6Af">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Change Encryption Password" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="So4-2e-6Af">
                                                     <rect key="frame" x="20" y="11" width="280" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -1303,6 +1364,12 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="So4-2e-6Af" secondAttribute="trailing" constant="20" symbolic="YES" id="BjP-mt-0ed"/>
+                                                <constraint firstItem="So4-2e-6Af" firstAttribute="centerY" secondItem="Zwa-i8-HRv" secondAttribute="centerY" id="bJl-Gs-bcv"/>
+                                                <constraint firstItem="So4-2e-6Af" firstAttribute="leading" secondItem="Zwa-i8-HRv" secondAttribute="leading" constant="20" symbolic="YES" id="vXO-hn-ThO"/>
+                                                <constraint firstItem="So4-2e-6Af" firstAttribute="top" secondItem="Zwa-i8-HRv" secondAttribute="top" constant="11" id="wvc-45-lXA"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -1316,14 +1383,18 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <switch opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="nTy-af-nbq">
-                                                    <rect key="frame" x="112" y="8" width="51" height="31"/>
+                                                <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="nTy-af-nbq">
+                                                    <rect key="frame" x="136" y="6" width="51" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <connections>
                                                         <action selector="lockCodeAction:" destination="mV7-Kq-sdp" eventType="valueChanged" id="zym-u2-mVw"/>
                                                     </connections>
                                                 </switch>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="nTy-af-nbq" firstAttribute="centerY" secondItem="1MO-KR-4eH" secondAttribute="centerY" id="3f5-oc-GXl"/>
+                                                <constraint firstItem="nTy-af-nbq" firstAttribute="centerX" secondItem="1MO-KR-4eH" secondAttribute="centerX" id="eLs-zn-U48"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -1337,7 +1408,7 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="qaD-zA-qFV">
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="qaD-zA-qFV">
                                                     <rect key="frame" x="90" y="8" width="210" height="29"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <segments>
@@ -1349,7 +1420,7 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                                         <action selector="sortSelectorAction:" destination="mV7-Kq-sdp" eventType="valueChanged" id="prc-IF-jIX"/>
                                                     </connections>
                                                 </segmentedControl>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sort by: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9pg-8P-bOo">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sort by: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9pg-8P-bOo">
                                                     <rect key="frame" x="20" y="11" width="62" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -1357,6 +1428,14 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="qaD-zA-qFV" firstAttribute="leading" secondItem="9pg-8P-bOo" secondAttribute="trailing" constant="8" symbolic="YES" id="6wb-vx-LTB"/>
+                                                <constraint firstItem="9pg-8P-bOo" firstAttribute="top" secondItem="5rE-yo-Ht7" secondAttribute="top" constant="11" id="AEl-2B-eLq"/>
+                                                <constraint firstItem="qaD-zA-qFV" firstAttribute="top" secondItem="5rE-yo-Ht7" secondAttribute="top" constant="8" id="OXj-zY-6i8"/>
+                                                <constraint firstItem="9pg-8P-bOo" firstAttribute="leading" secondItem="5rE-yo-Ht7" secondAttribute="leading" constant="20" symbolic="YES" id="Vgr-8b-8NV"/>
+                                                <constraint firstAttribute="trailing" secondItem="qaD-zA-qFV" secondAttribute="trailing" constant="20" symbolic="YES" id="YjZ-NX-1dU"/>
+                                                <constraint firstItem="9pg-8P-bOo" firstAttribute="centerY" secondItem="5rE-yo-Ht7" secondAttribute="centerY" id="eV0-6x-eZ3"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="UxY-We-yj0">
@@ -1366,7 +1445,7 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="S63-Cu-rTh">
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="S63-Cu-rTh">
                                                     <rect key="frame" x="120" y="8" width="180" height="29"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <segments>
@@ -1377,14 +1456,25 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                                         <action selector="dateSelectorAction:" destination="mV7-Kq-sdp" eventType="valueChanged" id="hBc-Qd-8dQ"/>
                                                     </connections>
                                                 </segmentedControl>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Show Date: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0LR-pk-cfP">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show Date: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0LR-pk-cfP">
                                                     <rect key="frame" x="20" y="11" width="92" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="92" id="L81-MH-Hbt"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="S63-Cu-rTh" firstAttribute="leading" secondItem="0LR-pk-cfP" secondAttribute="trailing" constant="8" symbolic="YES" id="3Xj-tT-JZA"/>
+                                                <constraint firstItem="0LR-pk-cfP" firstAttribute="centerY" secondItem="eVx-nP-nXg" secondAttribute="centerY" id="75Q-Il-9mH"/>
+                                                <constraint firstAttribute="trailing" secondItem="S63-Cu-rTh" secondAttribute="trailing" constant="20" symbolic="YES" id="Eah-qB-lei"/>
+                                                <constraint firstItem="0LR-pk-cfP" firstAttribute="leading" secondItem="eVx-nP-nXg" secondAttribute="leading" constant="20" symbolic="YES" id="ScY-HI-58Y"/>
+                                                <constraint firstItem="S63-Cu-rTh" firstAttribute="top" secondItem="eVx-nP-nXg" secondAttribute="top" constant="8" id="Tyk-3s-d5d"/>
+                                                <constraint firstItem="0LR-pk-cfP" firstAttribute="top" secondItem="eVx-nP-nXg" secondAttribute="top" constant="11" id="lYt-h3-3hZ"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>

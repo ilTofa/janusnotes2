@@ -180,10 +180,6 @@ typedef enum {
 }
 
 - (void)request:(SKRequest *)request didFailWithError:(NSError *)error {
-    NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Purchase request failed: %@.", nil), [error localizedDescription]];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Purchase Error" message:message delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
-    [alert show];
-
     DLog(@"request failed: %@,  %@", request, error);
 }
 
