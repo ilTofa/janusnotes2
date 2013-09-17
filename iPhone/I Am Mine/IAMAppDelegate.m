@@ -130,6 +130,7 @@
         switch (transaction.transactionState)
         {
             case SKPaymentTransactionStatePurchased:
+                DLog(@"SKPaymentTransactionStatePurchased");
                 self.skipAds = YES;
                 self.processingPurchase = NO;
                 [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kSkipAdProcessingChanged object:self]];
@@ -137,6 +138,7 @@
                 [GTTransientMessage showWithTitle:@"Thank you!" andSubTitle:@"No Ad will be shown anymore." forSeconds:1.0];
                 break;
             case SKPaymentTransactionStateFailed: {
+                DLog(@"SKPaymentTransactionStateFailed");
                 NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Error purchasing: %@.", nil), [transaction.error localizedDescription]];
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Purchase Error" message:message delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
                 [alert show];
@@ -146,12 +148,15 @@
             }
                 break;
             case SKPaymentTransactionStateRestored:
+                DLog(@"SKPaymentTransactionStateRestored");
                 self.skipAds = YES;
                 self.processingPurchase = NO;
                 [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kSkipAdProcessingChanged object:self]];
                 [queue finishTransaction:transaction];
             case SKPaymentTransactionStatePurchasing:
+                DLog(@"SKPaymentTransactionStatePurchasing");
                 self.processingPurchase = YES;
+                [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kSkipAdProcessingChanged object:self]];
                 break;
             default:
                 break;
@@ -163,10 +168,14 @@
     NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Error restoring purchase: %@.", nil), [error localizedDescription]];
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:message delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
     [alert show];
+    self.processingPurchase = NO;
+    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kSkipAdProcessingChanged object:self]];
 }
 
 - (void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue {
-    [GTTransientMessage showWithTitle:@"Purchase Restored" andSubTitle:@"No Ad will be shown." forSeconds:2.0];
+    DLog(@"Restore finished");
+    self.processingPurchase = NO;
+    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kSkipAdProcessingChanged object:self]];
 }
 
 - (void)paymentQueue:(SKPaymentQueue *)queue updatedDownloads:(NSArray *)downloads {

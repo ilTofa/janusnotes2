@@ -111,12 +111,16 @@ typedef enum {
     [self updateStoreUI];
 }
 
-- (void)updateStoreUI {
-    // Disable store while we look for the products
+- (void)disableAllStoreUIOptions {
     self.productBeerCell.userInteractionEnabled = self.productCoffeeCell.userInteractionEnabled = self.restoreCell.userInteractionEnabled = NO;
     self.productCoffeeLabel.enabled = self.productBeerLabel.enabled = self.restoreCellLabel.enabled = NO;
     self.productCoffeePriceLabel.enabled = self.productBeerPriceLabel.enabled = NO;
     self.productCoffeePriceLabel.text = self.productBeerPriceLabel.text = @"-";
+}
+
+- (void)updateStoreUI {
+    // Disable store while we look for the products
+    [self disableAllStoreUIOptions];
     // If user already paid, leave disabled
     if (((IAMAppDelegate *)[[UIApplication sharedApplication] delegate]).skipAds) {
         self.productCoffeePriceLabel.text = self.productBeerPriceLabel.text = @"Already bought.";
@@ -277,6 +281,8 @@ typedef enum {
             DLog(@"Buy Premium for Ads Removal");
         } else if (indexPath.row == supportRestore) {
             DLog(@"Restore Ads Removal");
+            [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
+            [self disableAllStoreUIOptions];
         }
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
