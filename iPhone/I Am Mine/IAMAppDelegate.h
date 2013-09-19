@@ -8,12 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import <StoreKit/StoreKit.h>
 
 #import "CoreDataController.h"
 
 #define kGotLocation @"gotLocation"
+#define kSkipAdProcessingChanged @"skipAdChanged"
 
-@interface IAMAppDelegate : UIResponder <UIApplicationDelegate, CLLocationManagerDelegate>
+@interface IAMAppDelegate : UIResponder <UIApplicationDelegate, CLLocationManagerDelegate, SKPaymentTransactionObserver>
 
 @property (strong, nonatomic) UIWindow *window;
 
@@ -25,5 +27,10 @@
 
 // CoreData helper
 @property (nonatomic, strong, readonly) CoreDataController *coreDataController;
+
+// Ads
+@property (nonatomic) BOOL skipAds;
+@property (atomic) BOOL processingPurchase;
+@property (atomic) BOOL userInitedShutdown;
 
 @end

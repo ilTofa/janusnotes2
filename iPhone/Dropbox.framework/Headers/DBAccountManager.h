@@ -20,8 +20,7 @@ typedef void (^DBAccountManagerObserver)(DBAccount *account);
 /** @name Creating an account manager */
 
 /** Create a new account manager with your app's app key and secret. You can register your app or
- find your key at the [apps](https://www.dropbox.com/developers/apps) page. Note that right now only
- apps with the App Folder permission can use the Sync API. */
+ find your key at the [apps](https://www.dropbox.com/developers/apps) page. */
 - (id)initWithAppKey:(NSString *)key secret:(NSString *)secret;
 
 /** A convenient place to store your app's account manager. */

@@ -265,13 +265,15 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
 
 - (NSString *)newStringDecryptedFromURL:(NSURL *)url withError:(NSError **)errorPtr {
     if (self.notesAreEncrypted) {
-    NSData *decryptedData = [RNDecryptor decryptData:[NSData dataWithContentsOfURL:url options:NSDataReadingMappedIfSafe error:errorPtr]
-                                        withPassword:self.cryptPassword
-                                               error:errorPtr];
-    if(!decryptedData) {
-        return nil;
-    }
-    return [[NSString alloc] initWithData:decryptedData encoding:NSUTF8StringEncoding];
+        NSData *decryptedData = [RNDecryptor decryptData:[NSData dataWithContentsOfURL:url options:NSDataReadingMappedIfSafe error:errorPtr]
+                                            withPassword:self.cryptPassword
+                                                   error:errorPtr];
+        if(!decryptedData) {
+            DLog(@"A file content is corrupted or not encrypted, retrying read without encryption and resave crypted.");
+            decryptedData = [NSData dataWithContentsOfURL:url options:NSDataReadingMappedIfSafe error:errorPtr];
+            [self writeString:[[NSString alloc] initWithData:decryptedData encoding:NSUTF8StringEncoding] cryptedToURL:url withError:errorPtr];
+        }
+        return [[NSString alloc] initWithData:decryptedData encoding:NSUTF8StringEncoding];
     } else {
         return [[NSString alloc] initWithContentsOfURL:url encoding:NSUTF8StringEncoding error:errorPtr];
     }
@@ -363,7 +365,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
         encodedTitle = [encodedTitle stringByAppendingFormat:@".%@", kNotesExtension];
     NSURL *noteTextPath = [notePath URLByAppendingPathComponent:encodedTitle isDirectory:NO];
     // Mark the date in text at the start of the note..
-    NSString *noteText = [NSString stringWithFormat:@"⏰%@\n%@", [note.timeStamp toRFC3339String], note.text];
+    NSString *noteText = [NSString stringWithFormat:@"⏰%@\n☃%@\n%@", [note.timeStamp toRFC3339String], [note.creationDate toRFC3339String], note.text];
     if(![self writeString:noteText cryptedToURL:noteTextPath withError:&error]) {
         DLog(@"Error writing note text saving to dropbox at %@: %@.", noteTextPath, [error description]);
     }
@@ -642,6 +644,8 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
                 newNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:self.dataSyncThreadContext];
             } else {
                 newNote = note;
+                // Kill existing attachments and reload.
+                [newNote removeAttachment:newNote.attachment];
             }
             newNote.uuid = [[pathToNoteDir path] lastPathComponent];
             NSString *titolo = convertFromValidDropboxFilenames([[fileInfo path] lastPathComponent]);
@@ -660,6 +664,12 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
                 NSString *dateString = [noteText substringWithRange:NSMakeRange(1, 20)];
                 newNote.timeStamp = [NSDate dateFromRFC3339String:dateString];
                 noteText = [noteText substringFromIndex:22];
+                if([noteText length] > 22 && [noteText characterAtIndex:0] == 0x2603) { // ☃ SNOWMAN Unicode: U+2603, UTF-8: e2 98 83
+                    // Creation date is embedded in the second row of text as '☃2013-06-27T12:02:34Z\n'
+                    NSString *dateString = [noteText substringWithRange:NSMakeRange(1, 20)];
+                    newNote.creationDate = [NSDate dateFromRFC3339String:dateString];
+                    noteText = [noteText substringFromIndex:22];
+                }
             }
             newNote.text = noteText;
             break;
@@ -686,9 +696,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
                 ALog(@"Error looking for directory type: %@", [error localizedDescription]);
                 error = nil;
             }
-            // Kill existing attachments and reload.
-            [newNote removeAttachment:newNote.attachment];
-//            DLog(@"Copying attachment %@ to CoreData note %@", name, newNote.title);
+            DLog(@"Copying attachment %@ to CoreData note %@", name, newNote.title);
             Attachment *newAttachment = [NSEntityDescription insertNewObjectForEntityForName:@"Attachment" inManagedObjectContext:self.dataSyncThreadContext];
             newAttachment.filename = [[attachmentInfo path] lastPathComponent];
             newAttachment.extension = attachmentInfo.path.pathExtension;

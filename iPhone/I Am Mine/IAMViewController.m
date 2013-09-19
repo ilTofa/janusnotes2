@@ -8,6 +8,8 @@
 
 #import "IAMViewController.h"
 
+#import <iAd/iAd.h>
+
 #import "IAMAppDelegate.h"
 #import "IAMNoteCell.h"
 #import "Note.h"
@@ -23,15 +25,20 @@
 @property (nonatomic) NSDateFormatter *dateFormatter;
 @property MBProgressHUD *hud;
 
-@property (atomic) BOOL dropboxSyncronizedSomething;
+@property BOOL dropboxSyncStillPending;
 @property (atomic) NSDate *lastDropboxSync;
-@property NSTimer *syncStatusTimer;
+@property NSTimer *pendingRefreshTimer;
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *preferencesButton;
 
 @property IAMAppDelegate *appDelegate;
 
-@property UIStoryboardPopoverSegue* popSegue;
+@property UIPopoverController* popSegue;
+
+@property SortKey sortKey;
+@property DateShownKey dateShownKey;
+
+- (IBAction)preferencesAction:(id)sender;
 
 @end
 
@@ -40,9 +47,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.dropboxSyncronizedSomething = YES;
+    self.dropboxSyncStillPending = NO;
     [self loadPreviousSearchKeys];
-    // Set some sane defaults
+    // Load & set some sane defaults
     self.appDelegate = (IAMAppDelegate *)[[UIApplication sharedApplication] delegate];
     self.managedObjectContext = self.appDelegate.coreDataController.mainThreadContext;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataSyncNeedsThePassword:) name:kIAMDataSyncNeedsAPasswordNow object:nil];
@@ -58,8 +65,13 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismissPopoverRequested:) name:kPreferencesPopoverCanBeDismissed object:nil];
     if([IAMDataSyncController sharedInstance].syncControllerReady)
         [self refreshControlSetup];
+    [self processAds:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(syncStoreNotificationHandler:) name:kIAMDataSyncControllerReady object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(syncStoreNotificationHandler:) name:kIAMDataSyncControllerStopped object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(syncStoreStillPendingChanges:) name:kIAMDataSyncStillPendingChanges object:nil];
+    if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dynamicFontChanged:) name:UIContentSizeCategoryDidChangeNotification object:nil];
+    }
     [self setupFetchExecAndReload];
 }
 
@@ -72,13 +84,46 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self colorize];
+    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
+        [self colorize];
+    }
+    [self sortAgain];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(processAds:) name:kSkipAdProcessingChanged object:nil];
     // if the dropbox backend have an user, but is not ready (that means it's waiting on something)
     if([IAMDataSyncController sharedInstance].syncControllerInited && ![IAMDataSyncController sharedInstance].syncControllerReady) {
         self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         self.hud.labelText = NSLocalizedString(@"Waiting for Dropbox", nil);
         self.hud.detailsLabelText = NSLocalizedString(@"First sync in progress, please wait.", nil);
     }
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kSkipAdProcessingChanged object:nil];
+}
+
+-(void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)processAds:(NSNotification *)note {
+    if (note) {
+        DLog(@"Called by notification...");
+    }
+    if ([self respondsToSelector:@selector(setCanDisplayBannerAds:)]) {
+        if (!((IAMAppDelegate *)[[UIApplication sharedApplication] delegate]).skipAds) {
+            DLog(@"Preparing Ads");
+            self.canDisplayBannerAds = YES;
+            self.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
+        } else {
+            DLog(@"Skipping ads");
+            self.canDisplayBannerAds = NO;
+            self.interstitialPresentationPolicy = ADInterstitialPresentationPolicyNone;
+        }
+    }
+}
+
+- (void)dynamicFontChanged:(NSNotification *)aNotification {
+    [self.tableView reloadData];
 }
 
 -(void)colorize
@@ -90,46 +135,107 @@
     [self.tableView reloadData];
 }
 
+- (void)sortAgain {
+    self.sortKey = [[NSUserDefaults standardUserDefaults] integerForKey:@"sortBy"];
+    self.dateShownKey = [[NSUserDefaults standardUserDefaults] integerForKey:@"dateShown"];
+    DLog(@"Sort: %d, date: %d", self.sortKey, self.dateShownKey);
+    [self setupFetchExecAndReload];
+}
+
+#define SECONDS_TO_WAIT_FOR_DROPBOX 15.0
+
+- (void)rescheduleRefreshTimer {
+    // Let's schedule a call to syncStatus for a later check for changes
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (!self.pendingRefreshTimer.isValid) {
+            DLog(@"Rescheduling refresh in %.0f seconds", SECONDS_TO_WAIT_FOR_DROPBOX + 1);
+            if(self.pendingRefreshTimer) {
+                [self.pendingRefreshTimer invalidate];
+                self.pendingRefreshTimer = nil;
+            }
+            self.pendingRefreshTimer = [NSTimer scheduledTimerWithTimeInterval:SECONDS_TO_WAIT_FOR_DROPBOX + 1 target:self selector:@selector(refreshDropboxContent:) userInfo:nil repeats:NO];
+        } else {
+            DLog(@"Refresh timer is already scheduled in %.0f", [[self.pendingRefreshTimer fireDate] timeIntervalSinceNow]);
+        }
+        self.dropboxSyncStillPending = YES;
+    });
+}
+
 - (void)refreshControlSetup {
-    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-    refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Dropbox refresh", nil)];
-    [refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
-    self.refreshControl = refreshControl;
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Dropbox refresh", nil)];
+    [self.refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
     // Here we are sure there is an active dropbox link
-    self.syncStatusTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(syncStatus:) userInfo:nil repeats:YES];
+//    self.syncStatusTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(syncStatus:) userInfo:nil repeats:YES];
+    IAMViewController __weak *weakSelf = self;
+    [[DBFilesystem sharedFilesystem] addObserver:self forPathAndDescendants:[DBPath root] block:^{
+        if([self.lastDropboxSync timeIntervalSinceNow] < -SECONDS_TO_WAIT_FOR_DROPBOX) {
+            DLog(@"*** Files have changed in the dropbox filesystem, reloading");
+            [weakSelf refreshDropboxContent:nil];
+        } else {
+            DLog(@"+++ Files have changed but not reloading, because not enough time has passed: %.0f secs from last reload.", -[self.lastDropboxSync timeIntervalSinceNow]);
+            [self rescheduleRefreshTimer];
+        }
+    }];
+    [[DBFilesystem sharedFilesystem] addObserver:self block:^{
+        DLog(@"*** Status changed");
+        [weakSelf syncStatus:nil];
+//        [weakSelf rescheduleRefreshTimer];
+    }];
+}
+
+- (void)checkForRefreshDropboxContentPending {
+    DLog(@"Checking if a refresh of Dropbox content is needed.");
+    if(self.dropboxSyncStillPending && [self.lastDropboxSync timeIntervalSinceNow] < -SECONDS_TO_WAIT_FOR_DROPBOX) {
+        [self refreshDropboxContent:nil];
+    }
+}
+
+- (void)refreshDropboxContent:(NSTimer *)timer {
+    DLog(@"Reloading data from dropbox! Last reload %.0f seconds ago", -[self.lastDropboxSync timeIntervalSinceNow]);
+    self.dropboxSyncStillPending = NO;
+    self.lastDropboxSync = [NSDate date];
+    [self syncStatus:nil];
+    [[IAMDataSyncController sharedInstance] refreshContentFromRemote];
 }
 
 -(void)syncStatus:(NSTimer *)timer {
-    
-    DBSyncStatus status = [[DBFilesystem sharedFilesystem] status];
-    NSMutableString *title = [[NSMutableString alloc] initWithString:@"Sync "];
-    if(!status) {
-        // If all is quiet and dropbox says it's fully synced (and it was not before), then reload (only if last reload were more than 45 seconds ago).
-        title = [NSLocalizedString(@"Notes ", nil) mutableCopy];
-        [title appendString:@"✔"];
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-        if(self.dropboxSyncronizedSomething && [self.lastDropboxSync timeIntervalSinceNow] < -45.0) {
-            DLog(@"Dropbox synced everything, time to reload! Last reload %.0f seconds ago", -[self.lastDropboxSync timeIntervalSinceNow]);
-            self.dropboxSyncronizedSomething = NO;
-            self.lastDropboxSync = [NSDate date];
-            [[IAMDataSyncController sharedInstance] refreshContentFromRemote];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        DBSyncStatus status = [[DBFilesystem sharedFilesystem] status];
+        DLog(@"Checking status%@: %d", (timer) ? @" from timer call" : @"", status);
+        // DBSyncStatusActive is the default
+        NSMutableString *title = [[NSMutableString alloc] initWithString:@"Sync "];
+        if(!status || (status == DBSyncStatusActive)) {
+            title = [NSLocalizedString(@"Notes ", nil) mutableCopy];
+            if (self.dropboxSyncStillPending) {
+                [title appendString:@"🕐"];
+            } else {
+                [title appendString:@"✔"];
+            }
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+            [self checkForRefreshDropboxContentPending];
+        } else {
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
         }
-    } else {
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-    }
-    if(status & DBSyncStatusDownloading) {
-        [title appendString:@"↓"];
-        self.dropboxSyncronizedSomething = YES;
-    }
-    if(status & DBSyncStatusUploading)
-        [title appendString:@"↑"];
-    self.title = title;
+        if (status & DBSyncStatusSyncing) {
+            [title appendString:@"⇅"];
+        }
+        if(status & DBSyncStatusDownloading) {
+            [title appendString:@"↓"];
+            self.dropboxSyncStillPending = YES;
+//            [self checkForRefreshDropboxContentPending];
+        }
+        if(status & DBSyncStatusUploading)
+            [title appendString:@"↑"];
+        self.title = title;
+    });
 }
 
 -(void)refresh {
     [self.refreshControl beginRefreshing];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(endSyncNotificationHandler:) name:kIAMDataSyncRefreshTerminated object:nil];
-    [[IAMDataSyncController sharedInstance] refreshContentFromRemote];
+    [self refreshDropboxContent:nil];
+    [self syncStatus:nil];
 }
 
 - (void)syncStoreNotificationHandler:(NSNotification *)note {
@@ -140,9 +246,9 @@
     }
     else {
         self.refreshControl = nil;
-        if(self.syncStatusTimer) {
-            [self.syncStatusTimer invalidate];
-            self.syncStatusTimer = nil;
+        if(self.pendingRefreshTimer) {
+            [self.pendingRefreshTimer invalidate];
+            self.pendingRefreshTimer = nil;
         }
     }
     if(self.hud) {
@@ -151,8 +257,14 @@
     }
 }
 
+- (void)syncStoreStillPendingChanges:(NSNotification *)note {
+    DLog(@"Sync store is still pending syncronization.");
+    [self rescheduleRefreshTimer];
+}
+
 - (void)endSyncNotificationHandler:(NSNotification *)note {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kIAMDataSyncRefreshTerminated object:nil];
+    [self syncStatus:nil];
     [self.refreshControl endRefreshing];
 }
 
@@ -215,7 +327,17 @@
     [fetchRequest setFetchBatchSize:25];
     
     // Edit the sort key as appropriate.
-    NSSortDescriptor *dateAddedSortDesc = [[NSSortDescriptor alloc] initWithKey:@"timeStamp" ascending:NO];
+    NSString *sortField = @"timeStamp";
+    BOOL sortDirectionAscending = NO;
+    if (self.sortKey == sortModification) {
+        sortField = @"timeStamp";
+    } else if (self.sortKey == sortCreation) {
+        sortField = @"creationDate";
+    } else if (self.sortKey == sortTitle) {
+        sortField = @"title";
+        sortDirectionAscending = YES;
+    }
+    NSSortDescriptor *dateAddedSortDesc = [[NSSortDescriptor alloc] initWithKey:sortField ascending:sortDirectionAscending];
     NSArray *sortDescriptors = @[dateAddedSortDesc];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
@@ -241,9 +363,15 @@
     NSPredicate *predicate = [NSPredicate predicateWithFormat:queryString];
     [fetchRequest setPredicate:predicate];
     
+    NSString *sectionNameKeyPath = @"sectionIdentifier";
+    if (self.sortKey == sortTitle) {
+        sectionNameKeyPath = nil;
+    } else if (self.sortKey == sortCreation) {
+        sectionNameKeyPath = @"creationIdentifier";
+    }
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
                                                                         managedObjectContext:self.managedObjectContext
-                                                                          sectionNameKeyPath:@"sectionIdentifier"
+                                                                          sectionNameKeyPath:sectionNameKeyPath
                                                                                    cacheName:nil];
     self.fetchedResultsController.delegate = self;
     NSError *error = nil;
@@ -259,7 +387,9 @@
         }
         else {
             [self.tableView reloadData];
-            [self colorize];
+            if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
+                [self colorize];
+            }
         }
     }
     [self saveSearchKeys];
@@ -277,16 +407,26 @@
 - (void)configureCell:(IAMNoteCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     Note *note = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    [[GTThemer sharedInstance] applyColorsToLabel:cell.titleLabel withFontSize:17];
     cell.titleLabel.text = note.title;
-    [[GTThemer sharedInstance] applyColorsToLabel:cell.noteTextLabel withFontSize:12];
     cell.noteTextLabel.text = note.text;
-    [[GTThemer sharedInstance] applyColorsToLabel:cell.dateLabel withFontSize:10];
-    cell.dateLabel.text = [self.dateFormatter stringFromDate:note.timeStamp];
-    [[GTThemer sharedInstance] applyColorsToLabel:cell.attachmentsQuantityLabel withFontSize:10];
+    if (self.dateShownKey == modificationDateShown) {
+        cell.dateLabel.text = [self.dateFormatter stringFromDate:note.timeStamp];
+    } else {
+        cell.dateLabel.text = [self.dateFormatter stringFromDate:note.creationDate];
+    }
+    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
+        [[GTThemer sharedInstance] applyColorsToLabel:cell.titleLabel withFontSize:17];
+        [[GTThemer sharedInstance] applyColorsToLabel:cell.noteTextLabel withFontSize:12];
+        [[GTThemer sharedInstance] applyColorsToLabel:cell.dateLabel withFontSize:10];
+        [[GTThemer sharedInstance] applyColorsToLabel:cell.attachmentsQuantityLabel withFontSize:10];
+    } else {
+        cell.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
+        cell.noteTextLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
+    }
     NSUInteger attachmentsQuantity = 0;
-    if(note.attachment)
+    if(note.attachment) {
         attachmentsQuantity = [note.attachment count];
+    }
     cell.attachmentsQuantityLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%lu attachment(s)", nil), attachmentsQuantity];
 }
 
@@ -347,9 +487,11 @@
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-	
+    // No sections (and section title) if sort by title
+    if (self.sortKey == sortTitle) {
+        return nil;
+    }
 	id <NSFetchedResultsSectionInfo> theSection = [[self.fetchedResultsController sections] objectAtIndex:section];
-    
     /*
      Section information derives from an event's sectionIdentifier, which is a string representing the number (year * 1000) + month.
      To display the section title, convert the year and month components to a string representation.
@@ -361,14 +503,10 @@
         [formatter setCalendar:[NSCalendar currentCalendar]];
         monthSymbols = [formatter monthSymbols];
     }
-    
     NSInteger numericSection = [[theSection name] integerValue];
-    
 	NSInteger year = numericSection / 1000;
 	NSInteger month = numericSection - (year * 1000);
-	
 	NSString *titleString = [NSString stringWithFormat:@"%@ %d", [monthSymbols objectAtIndex:month-1], year];
-	
 	return titleString;
 }
 
@@ -390,7 +528,7 @@
 -(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
     // If on iPad and we already have an active popover for preferences, don't perform segue
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && [identifier isEqualToString:@"Preferences"] && [self.popSegue.popoverController isPopoverVisible])
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && ([identifier isEqualToString:@"Preferences"] || [identifier isEqualToString:@"Preferences7"]) && [self.popSegue isPopoverVisible])
         return NO;
     return YES;
 }
@@ -413,24 +551,45 @@
         selectedNote.timeStamp = [NSDate date];
         noteEditor.idForTheNoteToBeEdited = [selectedNote objectID];
     }
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && [[segue identifier] isEqualToString:@"Preferences"])
-        self.popSegue = (UIStoryboardPopoverSegue *)segue;
 }
 
 - (void)dismissPopoverRequested:(NSNotification *) notification
 {
     DLog(@"This is dismissPopoverRequested: called for %@", notification.object);
-    if ([self.popSegue.popoverController isPopoverVisible])
+    if ([self.popSegue isPopoverVisible])
     {
-        [self.popSegue.popoverController dismissPopoverAnimated:YES];
+        [self.popSegue dismissPopoverAnimated:YES];
         self.popSegue = nil;
-        [self colorize];
+        if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
+            [self colorize];
+        }
+        [self sortAgain];
     }
 }
 
-- (IBAction)launchPreferences:(id)sender
-{
-    [self performSegueWithIdentifier:@"Preferences" sender:self];
+- (IBAction)preferencesAction:(id)sender {
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
+            [self performSegueWithIdentifier:@"Preferences" sender:self];
+        } else {
+            [self performSegueWithIdentifier:@"Preferences7" sender:self];
+        }
+    } else {
+        if ([self.popSegue isPopoverVisible]) {
+            // protect double instancing
+            return;
+        }
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPad" bundle:nil];
+        NSString *preferencesID;
+        if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
+            preferencesID = @"Preferences";
+        } else {
+            preferencesID = @"Preferences7";
+        }
+        IAMPreferencesController *pc = [storyboard instantiateViewControllerWithIdentifier:preferencesID];
+        self.popSegue = [[UIPopoverController alloc] initWithContentViewController:pc];
+        [self.popSegue presentPopoverFromBarButtonItem:self.preferencesButton permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    }
 }
 
 @end

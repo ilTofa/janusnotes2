@@ -1,9 +1,3 @@
-[submodule "common/PiwikTracker"]
-	path = common/PiwikTracker
-	url = https://github.com/ilTofa/PiwikTracker
-[submodule "common/appirater"]
-	path = common/appirater
-	url = https://github.com/ilTofa/appirater
-[submodule "common/iRate"]
-	path = common/iRate
-	url = https://github.com/ilTofa/iRate
+[submodule "iRate-new"]
+	path = iRate
+	url = https://github.com/nicklockwood/iRate

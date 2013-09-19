@@ -9,7 +9,9 @@
 #import "IAMNoteEdit.h"
 
 #import <MobileCoreServices/MobileCoreServices.h>
+#import <iAd/iAd.h>
 
+#import "IAMAppDelegate.h"
 #import "UIViewController+GTFrames.h"
 #import "Attachment.h"
 #import "IAMAddLinkViewController.h"
@@ -35,6 +37,8 @@
 @property (strong) NSString *originalText;
 
 @property NSManagedObjectContext *noteEditorMOC;
+
+@property CGFloat currentAttachmentConstraintHeight;
 
 @end
 
@@ -66,18 +70,25 @@
         NSAssert1(self.editedNote, @"Shit! Invalid ObjectID, there. Error: %@", [error description]);
     }
     // Keyboard notifications
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    // UIContentSizeCategoryDidChangeNotification
     // Preset the note
-    [[GTThemer sharedInstance] applyColorsToView:self.titleEdit];
     self.originalTitle = self.titleEdit.text = self.editedNote.title;
     self.originalText = self.textEdit.text = self.editedNote.text;
-    [[GTThemer sharedInstance] applyColorsToView:self.textEdit];
-    [[GTThemer sharedInstance] applyColorsToView:self.view];
-    [[GTThemer sharedInstance] applyColorsToView:self.collectionView];
-    [[GTThemer sharedInstance] applyColorsToView:self.theToolbar];
+    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
+        [[GTThemer sharedInstance] applyColorsToView:self.titleEdit];
+        [[GTThemer sharedInstance] applyColorsToView:self.textEdit];
+        [[GTThemer sharedInstance] applyColorsToView:self.view];
+        [[GTThemer sharedInstance] applyColorsToView:self.collectionView];
+        [[GTThemer sharedInstance] applyColorsToView:self.theToolbar];
+    } else {
+        [self dynamicFontChanged:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dynamicFontChanged:) name:UIContentSizeCategoryDidChangeNotification object:nil];
+    }
     self.attachmensAreHidden = NO;
     [self refreshAttachments];
+    [self processAds:nil];
     // If this is a new note, set the cursor on title field
     if([self.titleEdit.text isEqualToString:@""])
         [self.titleEdit becomeFirstResponder];
@@ -102,6 +113,27 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)processAds:(NSNotification *)note {
+    if (note) {
+        DLog(@"Called by notification...");
+    }
+    if ([self respondsToSelector:@selector(setCanDisplayBannerAds:)]) {
+        if (!((IAMAppDelegate *)[[UIApplication sharedApplication] delegate]).skipAds) {
+            DLog(@"Preparing Ads");
+            self.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
+        } else {
+            DLog(@"Skipping ads");
+            self.interstitialPresentationPolicy = ADInterstitialPresentationPolicyNone;
+        }
+    }
+}
+
+- (void)dynamicFontChanged:(NSNotification *)notification {
+    self.textEdit.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    self.titleEdit.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
+    self.attachmentQuantityLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
+}
+
 -(void)refreshAttachments
 {
     // Set attachment quantity
@@ -111,10 +143,9 @@
         DLog(@"No attachments. Hiding collection view");
         [UIView animateWithDuration:0.5
                          animations:^{
-                             CGRect textRect = self.textEdit.frame;
-                             textRect.size.height += self.collectionView.frame.size.height;
-                             self.textEdit.frame = textRect;
+                             self.currentAttachmentConstraintHeight = self.textToToolbarConstraint.constant = self.attachmentGreyRowToToolbarConstraint.constant = 0.0;
                              self.collectionView.alpha = self.attachmentsGreyRow.alpha = 0.0;
+                             [self.view layoutIfNeeded];
                          }
                          completion:^(BOOL finished){
                              self.collectionView.hidden = self.attachmentsGreyRow.hidden = YES;
@@ -126,10 +157,9 @@
         self.collectionView.hidden = self.attachmentsGreyRow.hidden = NO;
         [UIView animateWithDuration:0.5
                          animations:^{
-                             CGRect textRect = self.textEdit.frame;
-                             textRect.size.height -= self.collectionView.frame.size.height;
-                             self.textEdit.frame = textRect;
+                             self.currentAttachmentConstraintHeight = self.textToToolbarConstraint.constant = self.attachmentGreyRowToToolbarConstraint.constant = 63.0;
                              self.collectionView.alpha = self.attachmentsGreyRow.alpha = 1.0;
+                             [self.view layoutIfNeeded];
                          }
                          completion:^(BOOL finished){
                              self.attachmensAreHidden = NO;
@@ -138,26 +168,39 @@
     [self.collectionView reloadData];
 }
 
-#pragma mark - UiTextViewDelegate
+#pragma mark - UIKeyboardNotifications
 
-// Called when the UIKeyboardDidShowNotification is sent.
-- (void)keyboardWasShown:(NSNotification*)aNotification
-{
+- (void)keyboardWillShow:(NSNotification *)aNotification {
     NSDictionary* info = [aNotification userInfo];
-    CGRect kbRect = [info[UIKeyboardFrameBeginUserInfoKey] CGRectValue];
-    kbRect = [self.view convertRect:kbRect toView:nil];
-    CGSize kbSize = kbRect.size;
-    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height + 12.0 /* - self.titleEdit.bounds.size.height */, 0.0);
-    self.textEdit.contentInset = contentInsets;
-    self.textEdit.scrollIndicatorInsets = contentInsets;
+    CGSize kbSize = [info[UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    BOOL isPortrait = UIDeviceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation);
+    CGFloat height = isPortrait ? kbSize.height : kbSize.width;
+    self.textToToolbarConstraint.constant = height - self.theToolbar.frame.size.height;
+    NSTimeInterval animationDuration = [info[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    [UIView animateWithDuration:animationDuration animations:^{
+        [self.view layoutIfNeeded];
+    }];
 }
 
-// Called when the UIKeyboardWillHideNotification is sent
-- (void)keyboardWillBeHidden:(NSNotification*)aNotification
-{
-    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
-    self.textEdit.contentInset = contentInsets;
-    self.textEdit.scrollIndicatorInsets = contentInsets;
+- (void)keyboardWillHide:(NSNotification *)notification {
+    NSDictionary *info = [notification userInfo];
+    NSTimeInterval animationDuration = [[info objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    self.textToToolbarConstraint.constant = self.currentAttachmentConstraintHeight;
+    [UIView animateWithDuration:animationDuration animations:^{
+        [self.view layoutIfNeeded];
+    }];
+}
+
+#pragma mark UITextViewDelegate
+
+- (void)textViewDidBeginEditing:(UITextView *)textView {
+    [textView scrollRangeToVisible:textView.selectedRange];
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    // Keep the caret always visible
+    [textView scrollRangeToVisible:range];
+    return YES;
 }
 
 - (IBAction)done:(id)sender
@@ -183,7 +226,7 @@
             ALog(@"Unresolved error saving parent context %@, %@", error, [error userInfo]);
     }];
     // If title is changed, delete old note (with wrong name)
-    if(![self.editedNote.title isEqualToString:self.originalTitle]) {
+    if(![self.editedNote.title isEqualToString:self.originalTitle] && self.originalTitle && ![self.originalTitle isEqualToString:@""]) {
         [[IAMDataSyncController sharedInstance] deleteNoteTextWithUUID:self.editedNote.uuid afterFilenameChangeFrom:self.originalTitle];
         self.originalTitle = self.editedNote.title;
     }
@@ -339,6 +382,7 @@
 
 - (void)addLinkViewControllerDidCancelAction:(IAMAddLinkViewController *)addLinkViewController {
     DLog(@"This is addLinkViewControllerDidCancelAction:");
+    [self refreshAttachments];
 }
 
 #pragma mark - AttachmentDeleter

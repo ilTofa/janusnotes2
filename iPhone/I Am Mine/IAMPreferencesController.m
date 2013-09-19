@@ -10,19 +10,33 @@
 
 #import "GTThemer.h"
 #import <Dropbox/Dropbox.h>
+#import <MessageUI/MessageUI.h>
+#import <StoreKit/StoreKit.h>
+#import "IAMAppDelegate.h"
+#import "iRate.h"
 #import "IAMDataSyncController.h"
 #import "MBProgressHUD.h"
 #import "STKeychain.h"
 
 typedef enum {
-    syncManagement = 0,
+    supportJanus = 0,
+    syncManagement,
     lockSelector,
+    sortSelector,
     fontSelector,
     sizeSelector,
     colorSelector
 } sectionIdentifiers;
 
-@interface IAMPreferencesController ()
+typedef enum {
+    supportHelp = 0,
+    supportUnsatisfied,
+    supportSatisfied,
+    supportCoffee,
+    supportRestore
+} supportOptions;
+
+@interface IAMPreferencesController () <MFMailComposeViewControllerDelegate, SKProductsRequestDelegate>
 
 @property NSInteger fontFace, fontSize, colorSet;
 
@@ -32,6 +46,8 @@ typedef enum {
 @property UIAlertView *lockCodeAlert;
 
 @property BOOL dropboxLinked;
+
+@property NSArray *products;
 
 @end
 
@@ -54,13 +70,20 @@ typedef enum {
     NSError *error;
     self.lockSwitch.on = ([STKeychain getPasswordForUsername:@"lockCode" andServiceName:@"it.iltofa.janus" error:&error] != nil);
     self.encryptionSwitch.on = [[IAMDataSyncController sharedInstance] notesAreEncrypted];
-    self.fontSize = [[GTThemer sharedInstance] getStandardFontSize];
-    [self.sizeStepper setValue:self.fontSize];
-    self.colorSet = [[GTThemer sharedInstance] getStandardColorsID];
-    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:self.colorSet inSection:colorSelector] animated:YES scrollPosition:UITableViewScrollPositionMiddle];
-    self.fontFace = [[GTThemer sharedInstance] getStandardFontFaceID];
-    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:self.fontFace inSection:fontSelector] animated:false scrollPosition:UITableViewScrollPositionTop];
-    [self sizePressed:nil];
+    self.sortSelector.selectedSegmentIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"sortBy"];
+    self.dateSelector.selectedSegmentIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"dateShown"];
+    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
+        NSDictionary *fontAttributes = @{UITextAttributeFont: [UIFont boldSystemFontOfSize:13.0f]};
+        [self.sortSelector setTitleTextAttributes:fontAttributes forState:UIControlStateNormal];
+        [self.dateSelector setTitleTextAttributes:fontAttributes forState:UIControlStateNormal];
+        self.fontSize = [[GTThemer sharedInstance] getStandardFontSize];
+        [self.sizeStepper setValue:self.fontSize];
+        self.colorSet = [[GTThemer sharedInstance] getStandardColorsID];
+        [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:self.colorSet inSection:colorSelector] animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+        self.fontFace = [[GTThemer sharedInstance] getStandardFontFaceID];
+        [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:self.fontFace inSection:fontSelector] animated:false scrollPosition:UITableViewScrollPositionTop];
+        [self sizePressed:nil];
+    }
     [self.tableView setContentOffset:CGPointZero animated:YES];
 }
 
@@ -68,12 +91,88 @@ typedef enum {
 {
     [super viewDidAppear:animated];
     // Mark selected color...
-    UITableViewCell * tableCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:self.colorSet inSection:3]];
-    tableCell.accessoryType = UITableViewCellAccessoryCheckmark;
+    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
+        UITableViewCell * tableCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:self.colorSet inSection:colorSelector]];
+        tableCell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(skipAdProcessed:) name:kSkipAdProcessingChanged object:nil];
     [self updateDropboxUI];
+    [self updateStoreUI];
     if([[IAMDataSyncController sharedInstance] needsSyncPassword]) {
         [self changePasswordASAP];
     }
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [super viewDidDisappear:animated];
+}
+
+- (void)skipAdProcessed:(NSNotification *)aNotification {
+    DLog(@"Got a notifaction for store processing");
+    [self updateStoreUI];
+}
+
+- (void)disableAllStoreUIOptions {
+    self.productCoffeeCell.userInteractionEnabled = self.restoreCell.userInteractionEnabled = NO;
+    self.productCoffeeLabel.enabled = self.restoreCellLabel.enabled = NO;
+    self.productCoffeePriceLabel.enabled = NO;
+    self.productCoffeePriceLabel.text = @"-";
+}
+
+- (void)updateStoreUI {
+    // Disable store while we look for the products
+    [self disableAllStoreUIOptions];
+    // No money? No products!
+    if (![SKPaymentQueue canMakePayments]) {
+        self.productCoffeePriceLabel.text = @"Payments disabled.";
+        return;
+    }
+    // If user already paid, leave disabled
+    if (((IAMAppDelegate *)[[UIApplication sharedApplication] delegate]).skipAds) {
+        self.productCoffeePriceLabel.text = @"Already bought.";
+        return;
+    }
+    // If a transaction is already in progress, leave disabled
+    if (((IAMAppDelegate *)[[UIApplication sharedApplication] delegate]).processingPurchase) {
+        self.productCoffeePriceLabel.text = @"Transaction still in progress.";
+        return;
+    }
+    DLog(@"starting request for products.");
+    NSURL *url = [[NSBundle mainBundle] URLForResource:@"In-App-Products" withExtension:@"plist"];
+    NSArray *productIdentifiers = [NSArray arrayWithContentsOfURL:url];
+    SKProductsRequest *productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithArray:productIdentifiers]];
+    productsRequest.delegate = self;
+    [productsRequest start];
+}
+
+// SKProductsRequestDelegate protocol method
+- (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response
+{
+    self.products = response.products;
+    for (NSString * invalidProductIdentifier in response.invalidProductIdentifiers) {
+        // Handle any invalid product identifiers.
+    }
+    DLog(@"%@", self.products);
+     // Custom method
+    if ([self.products count] == 0) {
+        DLog(@"Void or invalid product array, returning");
+        return;
+    }
+    SKProduct *product = self.products[0];
+    self.productCoffeeLabel.text = product.localizedTitle;
+    NSNumberFormatter * numberFormatter = [[NSNumberFormatter alloc] init];
+    [numberFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
+    [numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+    [numberFormatter setLocale:product.priceLocale];
+    NSString * formattedPrice = [numberFormatter stringFromNumber:product.price];
+    self.productCoffeePriceLabel.text = formattedPrice;
+    self.productCoffeeCell.userInteractionEnabled = self.productCoffeeLabel.enabled = self.productCoffeePriceLabel.enabled = YES;
+    self.restoreCell.userInteractionEnabled = self.restoreCellLabel.enabled = YES;
+}
+
+- (void)request:(SKRequest *)request didFailWithError:(NSError *)error {
+    DLog(@"request failed: %@,  %@", request, error);
 }
 
 -(void)updateDropboxUI {
@@ -158,7 +257,36 @@ typedef enum {
     if(indexPath.section == lockSelector) {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
-    [self sizePressed:nil];
+    // Sorting
+    if(indexPath.section == sortSelector) {
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
+    // Change size
+    if (indexPath.section == sizeSelector) {
+        [self sizePressed:nil];
+    }
+    // Support
+    if (indexPath.section == supportJanus) {
+        if (indexPath.row == supportHelp) {
+            DLog(@"Call help site.");
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.janusnotes.com/help/"]];
+        } else if (indexPath.row == supportUnsatisfied) {
+            DLog(@"Prepare email to support");
+            [self sendCommentAction:self];
+        } else if (indexPath.row == supportSatisfied) {
+            DLog(@"Call iRate for rating");
+            [[iRate sharedInstance] openRatingsPageInAppStore];
+        } else if (indexPath.row == supportCoffee) {
+            DLog(@"Buy Ads Removal");
+            SKPayment *payment = [SKPayment paymentWithProduct:self.products[0]];
+            [[SKPaymentQueue defaultQueue] addPayment:payment];
+        } else if (indexPath.row == supportRestore) {
+            DLog(@"Restore Ads Removal");
+            [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
+            [self disableAllStoreUIOptions];
+        }
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willDeselectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -170,6 +298,41 @@ typedef enum {
     if(indexPath.section == colorSelector && indexPath.row == self.colorSet)
         return nil;
     return indexPath;
+}
+
+#pragma mark - Comment by email
+
+- (IBAction)sendCommentAction:(id)sender {
+    MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
+    controller.mailComposeDelegate = self;
+    [controller setToRecipients:@[@"support@janusnotes.com"]];
+    [controller setSubject:[NSString stringWithFormat:@"Feedback on Janus Notes iOS app version %@ (%@)", [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"], [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"]]];
+    [controller setMessageBody:@"" isHTML:NO];
+    if (controller)
+        [self presentViewController:controller animated:YES completion:nil];
+}
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
+    NSString *title;
+    NSString *text;
+    BOOL dismiss = NO;
+    if (result == MFMailComposeResultSent) {
+        title = @"Information";
+        text = @"E-mail successfully sent. Thank you for the feedback!";
+        dismiss = YES;
+    } else if (result == MFMailComposeResultFailed) {
+        title = @"Warning";
+        text = @"Could not send email, please try again later.";
+    } else {
+        dismiss = YES;
+    }
+    if (text) {
+        UIAlertView *alertBox = [[UIAlertView alloc] initWithTitle:title message:text delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alertBox show];
+    }
+    if(dismiss) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 #pragma mark - Actions
@@ -186,9 +349,11 @@ typedef enum {
 
 - (IBAction)done:(id)sender
 {
-    DLog(@"Saving. ColorSet n° %d, fontFace n° %d, fontSize %d", self.colorSet, self.fontFace, self.fontSize);
-    [[GTThemer sharedInstance] saveStandardColors:self.colorSet];
-    [[GTThemer sharedInstance] saveStandardFontsWithFaceID:self.fontFace andSize:self.fontSize];
+    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
+        DLog(@"Saving. ColorSet n° %d, fontFace n° %d, fontSize %d", self.colorSet, self.fontFace, self.fontSize);
+        [[GTThemer sharedInstance] saveStandardColors:self.colorSet];
+        [[GTThemer sharedInstance] saveStandardFontsWithFaceID:self.fontFace andSize:self.fontSize];
+    }
     // Dismiss (or ask for dismissing)
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
         [[NSNotificationCenter defaultCenter] postNotificationName:kPreferencesPopoverCanBeDismissed object:self];
@@ -342,6 +507,14 @@ typedef enum {
         NSError *error;
         [STKeychain deleteItemForUsername:@"lockCode" andServiceName:@"it.iltofa.janus" error:&error];
     }
+}
+
+- (IBAction)sortSelectorAction:(id)sender {
+    [[NSUserDefaults standardUserDefaults] setInteger:self.sortSelector.selectedSegmentIndex forKey:@"sortBy"];
+}
+
+- (IBAction)dateSelectorAction:(id)sender {
+    [[NSUserDefaults standardUserDefaults] setInteger:self.dateSelector.selectedSegmentIndex forKey:@"dateShown"];
 }
 
 @end

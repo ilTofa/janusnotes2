@@ -51,15 +51,11 @@
 }
 
 - (NSString *)toRFC3339String {
-    NSString *string = [[NSDate getFormatterForRFC339] stringFromDate:self];
-    DLog(@"RFC339 String for %@ is %@", self, string);
-    return string;
+    return [[NSDate getFormatterForRFC339] stringFromDate:self];
 }
 
 + (NSDate *)dateFromRFC3339String:(NSString *)rfc339String {
-    NSDate *date = [[NSDate getFormatterForRFC339] dateFromString:rfc339String];
-    DLog(@"Got %@ from %@", date, rfc339String);
-    return date;
+    return [[NSDate getFormatterForRFC339] dateFromString:rfc339String];
 }
 
 @end

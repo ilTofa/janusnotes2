@@ -231,12 +231,12 @@ int countDown;
 	self.view.alpha = 0.0;
 	[UIView beginAnimations:nil context:nil];
 	[UIView setAnimationDuration:0.5];
-	self.view.alpha = 0.85;
+    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
+        self.view.alpha = 0.85;
+    } else {
+        self.view.alpha = 0.95;
+    }
 	[UIView commitAnimations];
-}
-
--(void)viewWillAppear:(BOOL)animated
-{
 }
 
 /*

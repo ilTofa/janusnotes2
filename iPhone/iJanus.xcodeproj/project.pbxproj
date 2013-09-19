@@ -18,14 +18,7 @@
 		640EE112173A475F0006A9A2 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 640EE111173A475F0006A9A2 /* Default-568h@2x.png */; };
 		640EE114173A47690006A9A2 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 640EE113173A47690006A9A2 /* Default@2x.png */; };
 		640EE116173A476F0006A9A2 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 640EE115173A476F0006A9A2 /* Default.png */; };
-		64101E3216F087D80086AD5F /* 1_CellBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 64101E2A16F087D80086AD5F /* 1_CellBackground.png */; };
-		64101E3316F087D80086AD5F /* 1_CellBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64101E2B16F087D80086AD5F /* 1_CellBackground@2x.png */; };
-		64101E3416F087D80086AD5F /* 2_CellBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 64101E2C16F087D80086AD5F /* 2_CellBackground.png */; };
-		64101E3516F087D80086AD5F /* 2_CellBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64101E2D16F087D80086AD5F /* 2_CellBackground@2x.png */; };
-		64101E3616F087D80086AD5F /* 3_CellBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 64101E2E16F087D80086AD5F /* 3_CellBackground.png */; };
-		64101E3716F087D80086AD5F /* 3_CellBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64101E2F16F087D80086AD5F /* 3_CellBackground@2x.png */; };
-		64101E3816F087D80086AD5F /* 4_CellBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 64101E3016F087D80086AD5F /* 4_CellBackground.png */; };
-		64101E3916F087D80086AD5F /* 4_CellBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64101E3116F087D80086AD5F /* 4_CellBackground@2x.png */; };
+		6410E1CB17E85D2000B568D0 /* GTTransientMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6410E1CA17E85D2000B568D0 /* GTTransientMessage.m */; };
 		6416315716D7DB830004CB52 /* IAMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6416315616D7DB830004CB52 /* IAMViewController.m */; };
 		6416315916D831DB0004CB52 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6416315816D831DB0004CB52 /* MobileCoreServices.framework */; };
 		6416315D16D8345F0004CB52 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 6416315C16D8345F0004CB52 /* UIImage+RoundedCorner.m */; };
@@ -36,8 +29,6 @@
 		643F0088177C3CB7005B1DB5 /* NSDate+GTStringsHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 643F0087177C3CB2005B1DB5 /* NSDate+GTStringsHelpers.m */; };
 		6447056E16DD0FC4000A0262 /* SmallRow.png in Resources */ = {isa = PBXBuildFile; fileRef = 6447056C16DD0FC4000A0262 /* SmallRow.png */; };
 		6447056F16DD0FC4000A0262 /* SmallRow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6447056D16DD0FC4000A0262 /* SmallRow@2x.png */; };
-		645ED8AA1754F0A20070F83B /* iRate.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 645ED8A71754F0A20070F83B /* iRate.bundle */; };
-		645ED8AB1754F0A20070F83B /* iRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 645ED8A91754F0A20070F83B /* iRate.m */; };
 		645ED8AC1754F1640070F83B /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CB194417392B710014F35F /* StoreKit.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		645ED8AF1754F7730070F83B /* link-microphone-big.png in Resources */ = {isa = PBXBuildFile; fileRef = 645ED8AD1754F7730070F83B /* link-microphone-big.png */; };
 		645ED8B01754F7730070F83B /* link-microphone-big@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 645ED8AE1754F7730070F83B /* link-microphone-big@2x.png */; };
@@ -45,6 +36,8 @@
 		6466029D16DBC98E007622FC /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6466029C16DBC98E007622FC /* Icon.png */; };
 		646602A016DBC999007622FC /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 6466029E16DBC999007622FC /* Icon-72.png */; };
 		646602A116DBC999007622FC /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6466029F16DBC999007622FC /* Icon-72@2x.png */; };
+		6476C11017E0CE270094C4AB /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CB194A17392BAD0014F35F /* iAd.framework */; };
+		647DEAF417E701D900D3EE57 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CB194617392B7C0014F35F /* MessageUI.framework */; };
 		648A2773171D875000338218 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 648A2772171D875000338218 /* MBProgressHUD.m */; };
 		649DCEA016D28DB8003F5A83 /* IAmMine.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 649DCE9E16D28DB7003F5A83 /* IAmMine.xcdatamodeld */; };
 		649DCEA316D29B0A003F5A83 /* CoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 649DCEA216D29AAD003F5A83 /* CoreDataController.m */; };
@@ -91,7 +84,12 @@
 		64BB69F21715BB5F00875601 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64BB69F11715BB5F00875601 /* SystemConfiguration.framework */; };
 		64BB69F41715BB6600875601 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64BB69F31715BB6600875601 /* QuartzCore.framework */; };
 		64CC812F1717F1B800C129B0 /* IAMDataSyncController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64CC812E1717F1B800C129B0 /* IAMDataSyncController.m */; };
+		64CEF2BC17D0E65900D3A58B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64CEF2BB17D0E65900D3A58B /* Images.xcassets */; };
+		64CEF2BE17D1F70900D3A58B /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CEF2BD17D1F70900D3A58B /* libc++.dylib */; };
 		64DE6C261727E5320031183A /* NSManagedObjectContext+FetchedObjectFromURI.m in Sources */ = {isa = PBXBuildFile; fileRef = 64DE6C251727E5320031183A /* NSManagedObjectContext+FetchedObjectFromURI.m */; };
+		64E0AA4317E70ED9008BF0E3 /* In-App-Products.plist in Resources */ = {isa = PBXBuildFile; fileRef = 64E0AA4217E70ED9008BF0E3 /* In-App-Products.plist */; };
+		64E0AA4517E9066E008BF0E3 /* iRate.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 64E0AA4417E9066E008BF0E3 /* iRate.bundle */; };
+		64E0AA4817E9067D008BF0E3 /* iRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 64E0AA4717E9067D008BF0E3 /* iRate.m */; };
 		64ED90FA1743E46E00203969 /* STKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 64ED90F91743E46E00203969 /* STKeychain.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		64ED91061743E48900203969 /* RNCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 64ED90FF1743E48900203969 /* RNCryptor.m */; };
 		64ED91071743E48900203969 /* RNCryptorEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 64ED91011743E48900203969 /* RNCryptorEngine.m */; };
@@ -116,14 +114,8 @@
 		640EE111173A475F0006A9A2 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		640EE113173A47690006A9A2 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
 		640EE115173A476F0006A9A2 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
-		64101E2A16F087D80086AD5F /* 1_CellBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1_CellBackground.png; sourceTree = "<group>"; };
-		64101E2B16F087D80086AD5F /* 1_CellBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1_CellBackground@2x.png"; sourceTree = "<group>"; };
-		64101E2C16F087D80086AD5F /* 2_CellBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2_CellBackground.png; sourceTree = "<group>"; };
-		64101E2D16F087D80086AD5F /* 2_CellBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "2_CellBackground@2x.png"; sourceTree = "<group>"; };
-		64101E2E16F087D80086AD5F /* 3_CellBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3_CellBackground.png; sourceTree = "<group>"; };
-		64101E2F16F087D80086AD5F /* 3_CellBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "3_CellBackground@2x.png"; sourceTree = "<group>"; };
-		64101E3016F087D80086AD5F /* 4_CellBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4_CellBackground.png; sourceTree = "<group>"; };
-		64101E3116F087D80086AD5F /* 4_CellBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "4_CellBackground@2x.png"; sourceTree = "<group>"; };
+		6410E1C917E85D2000B568D0 /* GTTransientMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTTransientMessage.h; sourceTree = "<group>"; };
+		6410E1CA17E85D2000B568D0 /* GTTransientMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTTransientMessage.m; sourceTree = "<group>"; };
 		6416315616D7DB830004CB52 /* IAMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMViewController.m; sourceTree = "<group>"; };
 		6416315816D831DB0004CB52 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		6416315B16D8345F0004CB52 /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
@@ -140,9 +132,6 @@
 		6447056C16DD0FC4000A0262 /* SmallRow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SmallRow.png; path = Images/SmallRow.png; sourceTree = "<group>"; };
 		6447056D16DD0FC4000A0262 /* SmallRow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SmallRow@2x.png"; path = "Images/SmallRow@2x.png"; sourceTree = "<group>"; };
 		645A13A01701BFC800CCB4FB /* iJanus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = iJanus.entitlements; path = ../iJanus.entitlements; sourceTree = "<group>"; };
-		645ED8A71754F0A20070F83B /* iRate.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = iRate.bundle; sourceTree = "<group>"; };
-		645ED8A81754F0A20070F83B /* iRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iRate.h; sourceTree = "<group>"; };
-		645ED8A91754F0A20070F83B /* iRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iRate.m; sourceTree = "<group>"; };
 		645ED8AD1754F7730070F83B /* link-microphone-big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "link-microphone-big.png"; path = "Images/link-microphone-big.png"; sourceTree = "<group>"; };
 		645ED8AE1754F7730070F83B /* link-microphone-big@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "link-microphone-big@2x.png"; path = "Images/link-microphone-big@2x.png"; sourceTree = "<group>"; };
 		6466029A16DBC987007622FC /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
@@ -215,8 +204,14 @@
 		64CB194A17392BAD0014F35F /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		64CC812D1717F1B800C129B0 /* IAMDataSyncController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IAMDataSyncController.h; path = ../common/iCloud/IAMDataSyncController.h; sourceTree = "<group>"; };
 		64CC812E1717F1B800C129B0 /* IAMDataSyncController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IAMDataSyncController.m; path = ../common/iCloud/IAMDataSyncController.m; sourceTree = "<group>"; };
+		64CEF2BB17D0E65900D3A58B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../iJanus/Images.xcassets; sourceTree = "<group>"; };
+		64CEF2BD17D1F70900D3A58B /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		64DE6C241727E5320031183A /* NSManagedObjectContext+FetchedObjectFromURI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSManagedObjectContext+FetchedObjectFromURI.h"; path = "../common/iCloud/NSManagedObjectContext+FetchedObjectFromURI.h"; sourceTree = "<group>"; };
 		64DE6C251727E5320031183A /* NSManagedObjectContext+FetchedObjectFromURI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSManagedObjectContext+FetchedObjectFromURI.m"; path = "../common/iCloud/NSManagedObjectContext+FetchedObjectFromURI.m"; sourceTree = "<group>"; };
+		64E0AA4217E70ED9008BF0E3 /* In-App-Products.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "In-App-Products.plist"; sourceTree = "<group>"; };
+		64E0AA4417E9066E008BF0E3 /* iRate.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = iRate.bundle; path = iRate/iRate.bundle; sourceTree = "<group>"; };
+		64E0AA4617E9067D008BF0E3 /* iRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iRate.h; path = iRate/iRate.h; sourceTree = "<group>"; };
+		64E0AA4717E9067D008BF0E3 /* iRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iRate.m; path = iRate/iRate.m; sourceTree = "<group>"; };
 		64ED90F81743E46E00203969 /* STKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STKeychain.h; path = ../common/Utilitites/STKeychain.h; sourceTree = "<group>"; };
 		64ED90F91743E46E00203969 /* STKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STKeychain.m; path = ../common/Utilitites/STKeychain.m; sourceTree = "<group>"; };
 		64ED90FC1743E48900203969 /* RNCryptor+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor+Private.h"; sourceTree = "<group>"; };
@@ -242,6 +237,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				647DEAF417E701D900D3EE57 /* MessageUI.framework in Frameworks */,
+				6476C11017E0CE270094C4AB /* iAd.framework in Frameworks */,
+				64CEF2BE17D1F70900D3A58B /* libc++.dylib in Frameworks */,
 				645ED8AC1754F1640070F83B /* StoreKit.framework in Frameworks */,
 				64BB69F41715BB6600875601 /* QuartzCore.framework in Frameworks */,
 				64BB69F21715BB5F00875601 /* SystemConfiguration.framework in Frameworks */,
@@ -275,27 +273,10 @@
 		64101E2816F087CF0086AD5F /* Themes */ = {
 			isa = PBXGroup;
 			children = (
-				64101E2916F087D80086AD5F /* CellBackgrounds */,
 				64BB200D16EA000E00FE6C77 /* GTThemer.h */,
 				64BB200E16EA000E00FE6C77 /* GTThemer.m */,
 			);
 			name = Themes;
-			sourceTree = "<group>";
-		};
-		64101E2916F087D80086AD5F /* CellBackgrounds */ = {
-			isa = PBXGroup;
-			children = (
-				64101E2A16F087D80086AD5F /* 1_CellBackground.png */,
-				64101E2B16F087D80086AD5F /* 1_CellBackground@2x.png */,
-				64101E2C16F087D80086AD5F /* 2_CellBackground.png */,
-				64101E2D16F087D80086AD5F /* 2_CellBackground@2x.png */,
-				64101E2E16F087D80086AD5F /* 3_CellBackground.png */,
-				64101E2F16F087D80086AD5F /* 3_CellBackground@2x.png */,
-				64101E3016F087D80086AD5F /* 4_CellBackground.png */,
-				64101E3116F087D80086AD5F /* 4_CellBackground@2x.png */,
-			);
-			name = CellBackgrounds;
-			path = Images/CellBackgrounds;
 			sourceTree = "<group>";
 		};
 		641D954116E8CD8200A253E3 /* Note Edit */ = {
@@ -316,6 +297,8 @@
 		6433103F16E0A8950064EC5C /* Utilities (iOS) */ = {
 			isa = PBXGroup;
 			children = (
+				6410E1C917E85D2000B568D0 /* GTTransientMessage.h */,
+				6410E1CA17E85D2000B568D0 /* GTTransientMessage.m */,
 				648A2771171D875000338218 /* MBProgressHUD.h */,
 				648A2772171D875000338218 /* MBProgressHUD.m */,
 				6416315B16D8345F0004CB52 /* UIImage+RoundedCorner.h */,
@@ -332,12 +315,12 @@
 		645ED8A61754F0A20070F83B /* iRate */ = {
 			isa = PBXGroup;
 			children = (
-				645ED8A71754F0A20070F83B /* iRate.bundle */,
-				645ED8A81754F0A20070F83B /* iRate.h */,
-				645ED8A91754F0A20070F83B /* iRate.m */,
+				64E0AA4617E9067D008BF0E3 /* iRate.h */,
+				64E0AA4717E9067D008BF0E3 /* iRate.m */,
+				64E0AA4417E9066E008BF0E3 /* iRate.bundle */,
 			);
 			name = iRate;
-			path = ../common/iRate/iRate;
+			path = ../iRate;
 			sourceTree = "<group>";
 		};
 		646602A216DBD373007622FC /* Images */ = {
@@ -422,6 +405,7 @@
 		64A0506E16D28CCA0025E179 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				64CEF2BD17D1F70900D3A58B /* libc++.dylib */,
 				64CB194A17392BAD0014F35F /* iAd.framework */,
 				64CB194817392B860014F35F /* AdSupport.framework */,
 				64CB194617392B7C0014F35F /* MessageUI.framework */,
@@ -467,6 +451,7 @@
 		64A0507616D28CCA0025E179 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				64CEF2BB17D0E65900D3A58B /* Images.xcassets */,
 				64B56852174658B3006D04C4 /* readme.txt */,
 				640EE115173A476F0006A9A2 /* Default.png */,
 				640EE113173A47690006A9A2 /* Default@2x.png */,
@@ -484,6 +469,7 @@
 				64A0507816D28CCA0025E179 /* InfoPlist.strings */,
 				64A0507B16D28CCA0025E179 /* main.m */,
 				64A0507D16D28CCA0025E179 /* iJanus-Prefix.pch */,
+				64E0AA4217E70ED9008BF0E3 /* In-App-Products.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -559,6 +545,11 @@
 				CLASSPREFIX = IAM;
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Giacomo Tufano";
+				TargetAttributes = {
+					64A0506B16D28CCA0025E179 = {
+						DevelopmentTeam = 6483W56522;
+					};
+				};
 			};
 			buildConfigurationList = 64A0506716D28CCA0025E179 /* Build configuration list for PBXProject "iJanus" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -615,21 +606,15 @@
 				64A8A7ED16E7BCF90013AFFF /* link-unknown-big.png in Resources */,
 				64A8A7EE16E7BCF90013AFFF /* link-unknown-big@2x.png in Resources */,
 				641A5EFC16ED463B00D3440C /* MainStoryboard_iPad.storyboard in Resources */,
-				64101E3216F087D80086AD5F /* 1_CellBackground.png in Resources */,
-				64101E3316F087D80086AD5F /* 1_CellBackground@2x.png in Resources */,
-				64101E3416F087D80086AD5F /* 2_CellBackground.png in Resources */,
-				64101E3516F087D80086AD5F /* 2_CellBackground@2x.png in Resources */,
-				64101E3616F087D80086AD5F /* 3_CellBackground.png in Resources */,
-				64101E3716F087D80086AD5F /* 3_CellBackground@2x.png in Resources */,
-				64101E3816F087D80086AD5F /* 4_CellBackground.png in Resources */,
-				64101E3916F087D80086AD5F /* 4_CellBackground@2x.png in Resources */,
 				64A75566170212A40085933D /* link-microphone.png in Resources */,
 				64A75567170212A40085933D /* link-microphone@2x.png in Resources */,
 				64A7557D1702137A0085933D /* BigMic.png in Resources */,
 				64A7557E1702137A0085933D /* BigMic@2x.png in Resources */,
 				64A7557F1702137A0085933D /* MicrophoneStrings.strings in Resources */,
 				64A755801702137A0085933D /* FloatingWindow.textClipping in Resources */,
+				64CEF2BC17D0E65900D3A58B /* Images.xcassets in Resources */,
 				64A755811702137A0085933D /* MicrophoneBackground.png in Resources */,
+				64E0AA4517E9066E008BF0E3 /* iRate.bundle in Resources */,
 				64A755821702137A0085933D /* MicrophoneWindow-iPad.xib in Resources */,
 				64A755841702137A0085933D /* MicrophoneWindow.xib in Resources */,
 				64A755851702137A0085933D /* one.png in Resources */,
@@ -648,7 +633,7 @@
 				640EE114173A47690006A9A2 /* Default@2x.png in Resources */,
 				640EE116173A476F0006A9A2 /* Default.png in Resources */,
 				64B56853174658B3006D04C4 /* readme.txt in Resources */,
-				645ED8AA1754F0A20070F83B /* iRate.bundle in Resources */,
+				64E0AA4317E70ED9008BF0E3 /* In-App-Products.plist in Resources */,
 				645ED8AF1754F7730070F83B /* link-microphone-big.png in Resources */,
 				645ED8B01754F7730070F83B /* link-microphone-big@2x.png in Resources */,
 			);
@@ -670,12 +655,14 @@
 				6416315716D7DB830004CB52 /* IAMViewController.m in Sources */,
 				6416315D16D8345F0004CB52 /* UIImage+RoundedCorner.m in Sources */,
 				64027D7B16DD7CB800DEA647 /* IAMPreferencesController.m in Sources */,
+				64E0AA4817E9067D008BF0E3 /* iRate.m in Sources */,
 				6433103E16E0A85D0064EC5C /* UIViewController+GTFrames.m in Sources */,
 				64F31CC416E4AF9000A80BE0 /* Note.m in Sources */,
 				64F31CCA16E5009B00A80BE0 /* Attachment.m in Sources */,
 				64A8A7E316E781EB0013AFFF /* IAMAddLinkViewController.m in Sources */,
 				64A8A7E616E7B4770013AFFF /* IAMAttachmentCell.m in Sources */,
 				641D954416E8CF6E00A253E3 /* IAMAttachmentDetailViewController.m in Sources */,
+				6410E1CB17E85D2000B568D0 /* GTTransientMessage.m in Sources */,
 				64BB200F16EA000E00FE6C77 /* GTThemer.m in Sources */,
 				64A755831702137A0085933D /* MicrophoneWindow.m in Sources */,
 				64F9AC4D1704544800299C1B /* UIImage+FixOrientation.m in Sources */,
@@ -688,7 +675,6 @@
 				64ED91071743E48900203969 /* RNCryptorEngine.m in Sources */,
 				64ED91081743E48900203969 /* RNDecryptor.m in Sources */,
 				64ED91091743E48900203969 /* RNEncryptor.m in Sources */,
-				645ED8AB1754F0A20070F83B /* iRate.m in Sources */,
 				643F0088177C3CB7005B1DB5 /* NSDate+GTStringsHelpers.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -750,7 +736,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -774,7 +760,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -784,8 +770,10 @@
 		64A0509016D28CCA0025E179 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = iJanus.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Giacomo Tufano (68RHGP4K2S)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -805,6 +793,8 @@
 		64A0509116D28CCA0025E179 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = iJanus.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Giacomo Tufano (6483W56522)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
