@@ -270,7 +270,28 @@
 
 - (void)dataSyncNeedsThePassword:(NSNotification *)notification {
     DLog(@"Notification caught for password need");
-    [self performSegueWithIdentifier:@"Preferences" sender:self];
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
+            [self performSegueWithIdentifier:@"Preferences" sender:self];
+        } else {
+            [self performSegueWithIdentifier:@"Preferences7" sender:self];
+        }
+    } else {
+        if ([self.popSegue isPopoverVisible]) {
+            // protect double instancing
+            return;
+        }
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPad" bundle:nil];
+        NSString *preferencesID;
+        if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
+            preferencesID = @"Preferences";
+        } else {
+            preferencesID = @"Preferences7";
+        }
+        IAMPreferencesController *pc = [storyboard instantiateViewControllerWithIdentifier:preferencesID];
+        self.popSegue = [[UIPopoverController alloc] initWithContentViewController:pc];
+        [self.popSegue presentPopoverFromBarButtonItem:self.preferencesButton permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    }
 }
 
 #pragma mark -
