@@ -81,6 +81,10 @@
 		64EA627716F71E1400F4838E /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 64EA627316F71E1400F4838E /* Note.m */; };
 		64EA628516F75E0000F4838E /* IAMNoteEditorWC.m in Sources */ = {isa = PBXBuildFile; fileRef = 64EA628316F75E0000F4838E /* IAMNoteEditorWC.m */; };
 		64EA628616F75E0000F4838E /* IAMNoteEditorWC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64EA628416F75E0000F4838E /* IAMNoteEditorWC.xib */; };
+		64EE7C74180C54EC004B94E2 /* autolink.c in Sources */ = {isa = PBXBuildFile; fileRef = 64EE7C6B180C54EC004B94E2 /* autolink.c */; };
+		64EE7C75180C54EC004B94E2 /* buffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 64EE7C6D180C54EC004B94E2 /* buffer.c */; };
+		64EE7C76180C54EC004B94E2 /* markdown.c in Sources */ = {isa = PBXBuildFile; fileRef = 64EE7C70180C54EC004B94E2 /* markdown.c */; };
+		64EE7C77180C54EC004B94E2 /* stack.c in Sources */ = {isa = PBXBuildFile; fileRef = 64EE7C72180C54EC004B94E2 /* stack.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -213,6 +217,15 @@
 		64EA628216F75E0000F4838E /* IAMNoteEditorWC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMNoteEditorWC.h; sourceTree = "<group>"; };
 		64EA628316F75E0000F4838E /* IAMNoteEditorWC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMNoteEditorWC.m; sourceTree = "<group>"; };
 		64EA628416F75E0000F4838E /* IAMNoteEditorWC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IAMNoteEditorWC.xib; sourceTree = "<group>"; };
+		64EE7C6B180C54EC004B94E2 /* autolink.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = autolink.c; sourceTree = "<group>"; };
+		64EE7C6C180C54EC004B94E2 /* autolink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = autolink.h; sourceTree = "<group>"; };
+		64EE7C6D180C54EC004B94E2 /* buffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = buffer.c; sourceTree = "<group>"; };
+		64EE7C6E180C54EC004B94E2 /* buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = buffer.h; sourceTree = "<group>"; };
+		64EE7C6F180C54EC004B94E2 /* html_blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = html_blocks.h; sourceTree = "<group>"; };
+		64EE7C70180C54EC004B94E2 /* markdown.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = markdown.c; sourceTree = "<group>"; };
+		64EE7C71180C54EC004B94E2 /* markdown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = markdown.h; sourceTree = "<group>"; };
+		64EE7C72180C54EC004B94E2 /* stack.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = stack.c; sourceTree = "<group>"; };
+		64EE7C73180C54EC004B94E2 /* stack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stack.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -481,6 +494,7 @@
 		64EA627816F71E7600F4838E /* Utilities (common) */ = {
 			isa = PBXGroup;
 			children = (
+				64EE7C6A180C54EC004B94E2 /* sundown */,
 				643F0089177C7153005B1DB5 /* NSDate+GTStringsHelpers.h */,
 				643F008A177C7153005B1DB5 /* NSDate+GTStringsHelpers.m */,
 				64D8C9B81740F985005D87DC /* STKeychain.h */,
@@ -491,6 +505,23 @@
 			);
 			name = "Utilities (common)";
 			path = ..;
+			sourceTree = "<group>";
+		};
+		64EE7C6A180C54EC004B94E2 /* sundown */ = {
+			isa = PBXGroup;
+			children = (
+				64EE7C6B180C54EC004B94E2 /* autolink.c */,
+				64EE7C6C180C54EC004B94E2 /* autolink.h */,
+				64EE7C6D180C54EC004B94E2 /* buffer.c */,
+				64EE7C6E180C54EC004B94E2 /* buffer.h */,
+				64EE7C6F180C54EC004B94E2 /* html_blocks.h */,
+				64EE7C70180C54EC004B94E2 /* markdown.c */,
+				64EE7C71180C54EC004B94E2 /* markdown.h */,
+				64EE7C72180C54EC004B94E2 /* stack.c */,
+				64EE7C73180C54EC004B94E2 /* stack.h */,
+			);
+			name = sundown;
+			path = ../common/sundown;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -632,6 +663,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				64EA621C16F7110300F4838E /* main.m in Sources */,
+				64EE7C76180C54EC004B94E2 /* markdown.c in Sources */,
+				64EE7C74180C54EC004B94E2 /* autolink.c in Sources */,
 				64EA622316F7110300F4838E /* IAMAppDelegate.m in Sources */,
 				64EA627416F71E1400F4838E /* Attachment.m in Sources */,
 				64EA627516F71E1400F4838E /* CoreDataController.m in Sources */,
@@ -647,8 +680,10 @@
 				643BA050173D26E300A6C437 /* IAMOpenWithWC.m in Sources */,
 				64D8C9AF1740F7B0005D87DC /* RNCryptor.m in Sources */,
 				64D8C9B01740F7B0005D87DC /* RNCryptorEngine.m in Sources */,
+				64EE7C77180C54EC004B94E2 /* stack.c in Sources */,
 				64D8C9B11740F7B0005D87DC /* RNDecryptor.m in Sources */,
 				64D8C9B21740F7B0005D87DC /* RNEncryptor.m in Sources */,
+				64EE7C75180C54EC004B94E2 /* buffer.c in Sources */,
 				64D8C9BA1740F985005D87DC /* STKeychain.m in Sources */,
 				6476CFA0174382D500A6195C /* IAMCryptPasswordWC.m in Sources */,
 				6476CFA71743BABE00A6195C /* IAMWaitingWindowController.m in Sources */,
@@ -746,7 +781,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Janus/Janus.entitlements;
 				CODE_SIGN_IDENTITY = "Developer ID Application: Giacomo Tufano";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application: Giacomo Tufano";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -764,6 +799,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JanusImporter/Janus NotesImporter-Prefix.pch";
@@ -812,7 +848,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Janus/Janus.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Developer ID Application: Giacomo Tufano";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -834,6 +870,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JanusImporter/Janus NotesImporter-Prefix.pch";
@@ -907,6 +944,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JanusImporter/Janus NotesImporter-Prefix.pch";
@@ -923,6 +961,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JanusImporter/Janus NotesImporter-Prefix.pch";
@@ -939,7 +978,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Janus/Janus.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Mac Developer: Giacomo Tufano (68RHGP4K2S)";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -958,7 +997,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Janus/Janus.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer: Giacomo Tufano (68RHGP4K2S)";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer: Giacomo Tufano (68RHGP4K2S)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
