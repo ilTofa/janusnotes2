@@ -15,6 +15,9 @@
 
 #import "IAMFilesystemSyncController.h"
 
+#import "markdown.h"
+#import "html.h"
+
 @interface IAMNoteEditorWC () <NSWindowDelegate, NSCollectionViewDelegate> {
     BOOL _userConsentedToClose;
 }
@@ -340,6 +343,40 @@
     } else {
         NSLog(@"Double click detected in collection view, but no collection item is selected. This should not happen");
     }
+}
+
+#pragma mark - markdown generation
+- (NSString *)convertToHTML:(NSString *)rawMarkdown {
+    const char * prose = [rawMarkdown UTF8String];
+    struct buf *ib, *ob;
+    
+    unsigned long length = [rawMarkdown lengthOfBytesUsingEncoding:NSUTF8StringEncoding] + 1;
+    
+    ib = bufnew(length);
+    bufgrow(ib, length);
+    memcpy(ib->data, prose, length);
+    ib->size = length;
+    
+    ob = bufnew(64);
+    
+    struct sd_callbacks callbacks;
+    struct html_renderopt options;
+    struct sd_markdown *markdown;
+    
+    
+    sdhtml_renderer(&callbacks, &options, 0);
+    markdown = sd_markdown_new(0, 16, &callbacks, &options);
+    
+    sd_markdown_render(ob, ib->data, ib->size, markdown);
+    sd_markdown_free(markdown);
+    
+    
+    NSString *shinyNewHTML = [NSString stringWithUTF8String:(const char *)ob->data];
+    
+    bufrelease(ib);
+    bufrelease(ob);
+    NSLog(@"Html:\n%@\n***", shinyNewHTML);
+    return shinyNewHTML;
 }
 
 #pragma mark - NSWindowDelegate

@@ -85,6 +85,10 @@
 		64EE7C75180C54EC004B94E2 /* buffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 64EE7C6D180C54EC004B94E2 /* buffer.c */; };
 		64EE7C76180C54EC004B94E2 /* markdown.c in Sources */ = {isa = PBXBuildFile; fileRef = 64EE7C70180C54EC004B94E2 /* markdown.c */; };
 		64EE7C77180C54EC004B94E2 /* stack.c in Sources */ = {isa = PBXBuildFile; fileRef = 64EE7C72180C54EC004B94E2 /* stack.c */; };
+		64EE7C7D180C58B9004B94E2 /* houdini_href_e.c in Sources */ = {isa = PBXBuildFile; fileRef = 64EE7C78180C58B9004B94E2 /* houdini_href_e.c */; };
+		64EE7C7E180C58B9004B94E2 /* houdini_html_e.c in Sources */ = {isa = PBXBuildFile; fileRef = 64EE7C79180C58B9004B94E2 /* houdini_html_e.c */; };
+		64EE7C7F180C58B9004B94E2 /* html_smartypants.c in Sources */ = {isa = PBXBuildFile; fileRef = 64EE7C7A180C58B9004B94E2 /* html_smartypants.c */; };
+		64EE7C80180C58B9004B94E2 /* html.c in Sources */ = {isa = PBXBuildFile; fileRef = 64EE7C7B180C58B9004B94E2 /* html.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -226,6 +230,12 @@
 		64EE7C71180C54EC004B94E2 /* markdown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = markdown.h; sourceTree = "<group>"; };
 		64EE7C72180C54EC004B94E2 /* stack.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = stack.c; sourceTree = "<group>"; };
 		64EE7C73180C54EC004B94E2 /* stack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stack.h; sourceTree = "<group>"; };
+		64EE7C78180C58B9004B94E2 /* houdini_href_e.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = houdini_href_e.c; sourceTree = "<group>"; };
+		64EE7C79180C58B9004B94E2 /* houdini_html_e.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = houdini_html_e.c; sourceTree = "<group>"; };
+		64EE7C7A180C58B9004B94E2 /* html_smartypants.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = html_smartypants.c; sourceTree = "<group>"; };
+		64EE7C7B180C58B9004B94E2 /* html.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = html.c; sourceTree = "<group>"; };
+		64EE7C7C180C58B9004B94E2 /* html.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = html.h; sourceTree = "<group>"; };
+		64EE7C81180C5981004B94E2 /* houdini.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = houdini.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -510,6 +520,12 @@
 		64EE7C6A180C54EC004B94E2 /* sundown */ = {
 			isa = PBXGroup;
 			children = (
+				64EE7C81180C5981004B94E2 /* houdini.h */,
+				64EE7C78180C58B9004B94E2 /* houdini_href_e.c */,
+				64EE7C79180C58B9004B94E2 /* houdini_html_e.c */,
+				64EE7C7A180C58B9004B94E2 /* html_smartypants.c */,
+				64EE7C7B180C58B9004B94E2 /* html.c */,
+				64EE7C7C180C58B9004B94E2 /* html.h */,
 				64EE7C6B180C54EC004B94E2 /* autolink.c */,
 				64EE7C6C180C54EC004B94E2 /* autolink.h */,
 				64EE7C6D180C54EC004B94E2 /* buffer.c */,
@@ -662,6 +678,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64EE7C7F180C58B9004B94E2 /* html_smartypants.c in Sources */,
 				64EA621C16F7110300F4838E /* main.m in Sources */,
 				64EE7C76180C54EC004B94E2 /* markdown.c in Sources */,
 				64EE7C74180C54EC004B94E2 /* autolink.c in Sources */,
@@ -670,8 +687,11 @@
 				64EA627516F71E1400F4838E /* CoreDataController.m in Sources */,
 				64EA627616F71E1400F4838E /* IAmMine.xcdatamodeld in Sources */,
 				64EA627716F71E1400F4838E /* Note.m in Sources */,
+				64EE7C7D180C58B9004B94E2 /* houdini_href_e.c in Sources */,
 				64EA628516F75E0000F4838E /* IAMNoteEditorWC.m in Sources */,
 				64A75591170358BC0085933D /* NSManagedObjectContext+FetchedObjectFromURI.m in Sources */,
+				64EE7C80180C58B9004B94E2 /* html.c in Sources */,
+				64EE7C7E180C58B9004B94E2 /* houdini_html_e.c in Sources */,
 				6429F2C41716EB3C0030E932 /* NSString+UUID.m in Sources */,
 				642D29CF1721470400006FC1 /* IAMFilesystemSyncController.m in Sources */,
 				644AC25B17257FE4007B51FF /* IAMTableUIWindowController.m in Sources */,
