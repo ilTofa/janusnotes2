@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4511" systemVersion="13A598" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1070" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4511"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="IAMTableUIWindowController">
@@ -70,7 +70,7 @@
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="109">
-                                                            <rect key="frame" x="0.0" y="85" width="458" height="18"/>
+                                                            <rect key="frame" x="1" y="85" width="456" height="18"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="Title" usesSingleLineMode="YES" id="110">
                                                                 <font key="font" size="14" name="LucidaGrande"/>
@@ -82,7 +82,7 @@
                                                             </connections>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="132">
-                                                            <rect key="frame" x="0.0" y="22" width="458" height="61"/>
+                                                            <rect key="frame" x="1" y="22" width="456" height="61"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="61" id="424"/>
@@ -101,7 +101,7 @@ label riga 4</string>
                                                             </connections>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="143">
-                                                            <rect key="frame" x="0.0" y="3" width="320" height="13"/>
+                                                            <rect key="frame" x="1" y="3" width="318" height="13"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="13" id="397"/>
@@ -117,7 +117,7 @@ label riga 4</string>
                                                             </connections>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="274">
-                                                            <rect key="frame" x="13" y="3" width="320" height="13"/>
+                                                            <rect key="frame" x="14" y="3" width="318" height="13"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="314" id="486"/>
@@ -129,7 +129,7 @@ label riga 4</string>
                                                             </textFieldCell>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="202">
-                                                            <rect key="frame" x="114" y="2" width="344" height="13"/>
+                                                            <rect key="frame" x="115" y="2" width="342" height="13"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="13" id="394"/>
@@ -295,10 +295,10 @@ label riga 4</string>
         </menu>
     </objects>
     <resources>
-        <image name="delete" width="20.80079460144043" height="20.80079460144043"/>
-        <image name="document" width="20.80079460144043" height="20.80079460144043"/>
-        <image name="edit" width="20.80079460144043" height="20.80079460144043"/>
-        <image name="refresh" width="20.80079460144043" height="20.80079460144043"/>
-        <image name="settings" width="20.80079460144043" height="20.80079460144043"/>
+        <image name="delete" width="20.756755828857422" height="20.756755828857422"/>
+        <image name="document" width="20.756755828857422" height="20.756755828857422"/>
+        <image name="edit" width="20.756755828857422" height="20.756755828857422"/>
+        <image name="refresh" width="20.756755828857422" height="20.756755828857422"/>
+        <image name="settings" width="20.756755828857422" height="20.756755828857422"/>
     </resources>
 </document>
