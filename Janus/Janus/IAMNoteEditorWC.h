@@ -30,6 +30,7 @@
 - (IBAction)saveAndClose:(id)sender;
 - (IBAction)addAttachment:(id)sender;
 - (IBAction)deleteAttachment:(id)sender;
+- (IBAction)previewMarkdown:(id)sender;
 
 - (IBAction)showAttachmentInFinder:(id)sender;
 

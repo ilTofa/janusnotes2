@@ -8,6 +8,8 @@
 
 #import "IAMNoteEditorWC.h"
 
+#import <WebKit/WebKit.h>
+
 #import "IAMAppDelegate.h"
 #import "Attachment.h"
 // #import "NSManagedObjectContext+FetchedObjectFromURI.h"
@@ -34,6 +36,10 @@
 @property (weak) IBOutlet NSLayoutConstraint *attacmentContainerViewHeightConstraint;
 @property (weak) IBOutlet NSView *attachmentContainerView;
 
+@property (strong) IBOutlet NSWindow *previewWindow;
+@property (weak) IBOutlet WebView *previewWebView;
+@property (strong) NSString *previewStyleHTML;
+
 @end
 
 @implementation IAMNoteEditorWC
@@ -55,6 +61,10 @@
     NSAssert(fontName, @"Default font not set in user defaults");
     double fontSize = [[NSUserDefaults standardUserDefaults] doubleForKey:@"fontSize"];
     self.editorFont = [NSFont fontWithName:fontName size:fontSize];
+    // Load preview support files
+    NSError *error;
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"MarkdownPreview" ofType:@"html"];
+    self.previewStyleHTML = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
     // The NSManagedObjectContext instance should change for a local (to the controller instance) one.
     // We need to migrate the passed object to the new moc.
     self.noteEditorMOC = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSConfinementConcurrencyType];
@@ -299,6 +309,13 @@
     }
 }
 
+- (IBAction)previewMarkdown:(id)sender {
+    [self loadMarkdownPreview];
+    [self.previewWindow makeKeyAndOrderFront:self];
+    // DEBUG: Implement WebPolicyDelegate
+    [NSApp activateIgnoringOtherApps:YES];
+}
+
 - (IBAction)addAttachment:(id)sender {
     NSOpenPanel *openPanel = [NSOpenPanel openPanel];
     openPanel.allowsMultipleSelection = NO;
@@ -345,7 +362,24 @@
     }
 }
 
-#pragma mark - markdown generation
+#pragma mark - markdown support
+
+- (BOOL)textView:(NSTextView *)aTextView shouldChangeTextInRange:(NSRange)affectedCharRange replacementString:(NSString *)replacementString {
+    // Text is changed in textview, generate markdown and show it (only if preview windows is visible)
+    if ([self.previewWindow isVisible]) {
+        [self loadMarkdownPreview];
+    }
+    return YES;
+}
+
+- (void)loadMarkdownPreview {
+    [self.previewWindow setTitle:self.editedNote.title];
+    NSMutableString *htmlString = [self.previewStyleHTML mutableCopy];
+    [htmlString replaceOccurrencesOfString:@"this_is_where_the_title_goes" withString:self.editedNote.title options:NSLiteralSearch range:NSMakeRange(0, [htmlString length])];
+    [htmlString replaceOccurrencesOfString:@"this_is_where_the_text_goes" withString:[self convertToHTML:self.editedNote.text] options:NSLiteralSearch range:NSMakeRange(0, [htmlString length])];
+    [self.previewWebView.mainFrame loadHTMLString:htmlString baseURL:[NSURL URLWithString:@"file:///"]];
+}
+
 - (NSString *)convertToHTML:(NSString *)rawMarkdown {
     const char * prose = [rawMarkdown UTF8String];
     struct buf *ib, *ob;
@@ -375,7 +409,6 @@
     
     bufrelease(ib);
     bufrelease(ob);
-    NSLog(@"Html:\n%@\n***", shinyNewHTML);
     return shinyNewHTML;
 }
 
