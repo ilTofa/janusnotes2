@@ -90,6 +90,8 @@
 		64EE7C7E180C58B9004B94E2 /* houdini_html_e.c in Sources */ = {isa = PBXBuildFile; fileRef = 64EE7C79180C58B9004B94E2 /* houdini_html_e.c */; };
 		64EE7C7F180C58B9004B94E2 /* html_smartypants.c in Sources */ = {isa = PBXBuildFile; fileRef = 64EE7C7A180C58B9004B94E2 /* html_smartypants.c */; };
 		64EE7C80180C58B9004B94E2 /* html.c in Sources */ = {isa = PBXBuildFile; fileRef = 64EE7C7B180C58B9004B94E2 /* html.c */; };
+		64FB1CBC1812FA1E007B2DC5 /* preview.png in Resources */ = {isa = PBXBuildFile; fileRef = 64FB1CBA1812FA1E007B2DC5 /* preview.png */; };
+		64FB1CBD1812FA1E007B2DC5 /* preview@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64FB1CBB1812FA1E007B2DC5 /* preview@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -238,6 +240,8 @@
 		64EE7C7B180C58B9004B94E2 /* html.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = html.c; sourceTree = "<group>"; };
 		64EE7C7C180C58B9004B94E2 /* html.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = html.h; sourceTree = "<group>"; };
 		64EE7C81180C5981004B94E2 /* houdini.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = houdini.h; sourceTree = "<group>"; };
+		64FB1CBA1812FA1E007B2DC5 /* preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = preview.png; path = Buttons/preview.png; sourceTree = "<group>"; };
+		64FB1CBB1812FA1E007B2DC5 /* preview@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "preview@2x.png"; path = "Buttons/preview@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -288,6 +292,8 @@
 		644AC25E17258213007B51FF /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				64FB1CBA1812FA1E007B2DC5 /* preview.png */,
+				64FB1CBB1812FA1E007B2DC5 /* preview@2x.png */,
 				64E6BDA9175009C500B63D46 /* add_property.png */,
 				64E6BDAA175009C500B63D46 /* add_property@2x.png */,
 				64E6BDAB175009C500B63D46 /* close.png */,
@@ -636,6 +642,7 @@
 				64B4B7BC181140A700766D43 /* MarkdownPreview.html in Resources */,
 				644AC25C17257FE4007B51FF /* IAMTableUIWindowController.xib in Resources */,
 				644AC2791726CFAC007B51FF /* IAMPrefsWindowController.xib in Resources */,
+				64FB1CBC1812FA1E007B2DC5 /* preview.png in Resources */,
 				643BA051173D26E300A6C437 /* IAMOpenWithWC.xib in Resources */,
 				6476CFA1174382D500A6195C /* IAMCryptPasswordWC.xib in Resources */,
 				6476CFA81743BABE00A6195C /* IAMWaitingWindowController.xib in Resources */,
@@ -649,6 +656,7 @@
 				64E6BDBE175009C600B63D46 /* close@2x.png in Resources */,
 				64E6BDBF175009C600B63D46 /* delete_property.png in Resources */,
 				64E6BDC0175009C600B63D46 /* delete_property@2x.png in Resources */,
+				64FB1CBD1812FA1E007B2DC5 /* preview@2x.png in Resources */,
 				64E6BDC1175009C600B63D46 /* delete.png in Resources */,
 				64E6BDC2175009C600B63D46 /* delete@2x.png in Resources */,
 				64E6BDC3175009C600B63D46 /* document.png in Resources */,

@@ -180,7 +180,7 @@
                     <constraint firstAttribute="trailing" secondItem="642" secondAttribute="trailing" constant="20" symbolic="YES" id="980"/>
                 </constraints>
             </view>
-            <toolbar key="toolbar" implicitIdentifier="67C1842C-EA04-4065-BC76-90AC93A99629" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="small" id="886">
+            <toolbar key="toolbar" implicitIdentifier="67C1842C-EA04-4065-BC76-90AC93A99629" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="regular" id="886">
                 <allowedToolbarItems>
                     <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="887"/>
                     <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="890"/>
@@ -209,7 +209,7 @@
                             <action selector="openAttachmentWith:" target="-2" id="902"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="0A34F9EF-0583-4532-9A2F-E97CFB37F34F" label="Preview" paletteLabel="Preview" tag="-1" image="NSQuickLookTemplate" id="Sm7-qq-Ra0">
+                    <toolbarItem implicitItemIdentifier="0A34F9EF-0583-4532-9A2F-E97CFB37F34F" label="Preview" paletteLabel="Preview" tag="-1" image="preview" id="Sm7-qq-Ra0">
                         <connections>
                             <action selector="previewMarkdown:" target="-2" id="13V-LP-2X8"/>
                         </connections>
@@ -441,10 +441,10 @@
         </window>
     </objects>
     <resources>
-        <image name="NSQuickLookTemplate" width="21" height="16"/>
-        <image name="add_property" width="20.756755828857422" height="20.756755828857422"/>
-        <image name="close" width="20.756755828857422" height="20.756755828857422"/>
+        <image name="add_property" width="64" height="64"/>
+        <image name="close" width="64" height="64"/>
         <image name="delete_property" width="20.756755828857422" height="20.756755828857422"/>
+        <image name="preview" width="64" height="64"/>
         <image name="save" width="20.756755828857422" height="20.756755828857422"/>
         <image name="show_property" width="20.756755828857422" height="20.756755828857422"/>
     </resources>
