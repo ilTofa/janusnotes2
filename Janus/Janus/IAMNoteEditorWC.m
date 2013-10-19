@@ -412,6 +412,49 @@
     return shinyNewHTML;
 }
 
+#pragma mark - WebUIDelegate
+
+- (NSArray *)webView:(WebView *)sender contextMenuItemsForElement:(NSDictionary *)element defaultMenuItems:(NSArray *)defaultMenuItems {
+    // Allow only selected actions
+    NSMutableArray *returnedMenuItems = [[NSMutableArray alloc] initWithCapacity:[defaultMenuItems count]];
+    for (NSMenuItem *menuItem in defaultMenuItems) {
+        switch (menuItem.tag) {
+            case 2000: // This is openlink
+            case WebMenuItemTagCopyLinkToClipboard:
+            case WebMenuItemTagCopyImageToClipboard:
+            case WebMenuItemTagCopy:
+            case WebMenuItemTagSpellingGuess:
+            case WebMenuItemTagNoGuessesFound:
+            case WebMenuItemTagIgnoreSpelling:
+            case WebMenuItemTagLearnSpelling:
+            case WebMenuItemTagOther:
+            case WebMenuItemTagSearchInSpotlight:
+            case WebMenuItemTagSearchWeb:
+            case WebMenuItemTagLookUpInDictionary:
+            case WebMenuItemTagOpenWithDefaultApplication:
+                [returnedMenuItems addObject:menuItem];
+                break;
+            default:
+                break;
+        }
+    }
+    return returnedMenuItems;
+}
+
+#pragma mark - WebPolicyDelegate
+
+- (void)webView:(WebView *)webView decidePolicyForNavigationAction:(NSDictionary *)actionInformation request:(NSURLRequest *)request frame:(WebFrame *)frame decisionListener:(id < WebPolicyDecisionListener >)listener {
+    // Redirect links to external browser if is a link or "other" with a real (not "file:") url
+    if (([actionInformation[WebActionNavigationTypeKey] intValue] == WebNavigationTypeLinkClicked) ||
+        ([actionInformation[WebActionNavigationTypeKey] intValue] == WebNavigationTypeOther &&
+         ![actionInformation[WebActionOriginalURLKey] isFileURL])) {
+        [[NSWorkspace sharedWorkspace] openURL:actionInformation[WebActionOriginalURLKey]];
+        [listener ignore];
+    } else {
+        [listener use];
+    }
+}
+
 #pragma mark - NSWindowDelegate
 
 - (void)windowWillClose:(NSNotification *)notification
