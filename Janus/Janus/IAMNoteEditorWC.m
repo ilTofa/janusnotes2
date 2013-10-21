@@ -312,7 +312,6 @@
 - (IBAction)previewMarkdown:(id)sender {
     [self loadMarkdownPreview];
     [self.previewWindow makeKeyAndOrderFront:self];
-    // DEBUG: Implement WebPolicyDelegate
     [NSApp activateIgnoringOtherApps:YES];
 }
 
@@ -529,7 +528,7 @@
             // Set drop after the last element
         }
     }
-    DLog(@"Dragging entered %@ position %ld for %@\nReturn value: %ld", (*proposedDropOperation == 0) ? @"on" : @"before", (long)*proposedDropIndex , [pboard types], retValue);
+    DLog(@"Dragging entered %@ position %ld for %@ (retvalue: %ld)", (*proposedDropOperation == 0) ? @"on" : @"before", (long)*proposedDropIndex , [pboard types][0], retValue);
     return retValue;
 }
 
