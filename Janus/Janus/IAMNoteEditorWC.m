@@ -40,6 +40,9 @@
 @property (weak) IBOutlet WebView *previewWebView;
 @property (strong) NSString *previewStyleHTML;
 
+@property (strong) NSURL *cacheDirectory;
+@property (strong) NSURL *cacheFile;
+
 @end
 
 @implementation IAMNoteEditorWC
@@ -65,6 +68,8 @@
     NSError *error;
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"MarkdownPreview" ofType:@"html"];
     self.previewStyleHTML = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
+    self.cacheDirectory = [[NSFileManager defaultManager] URLForDirectory:NSCachesDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:&error];
+    self.cacheFile = [self.cacheDirectory URLByAppendingPathComponent:@"preview.html"];
     // The NSManagedObjectContext instance should change for a local (to the controller instance) one.
     // We need to migrate the passed object to the new moc.
     self.noteEditorMOC = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSConfinementConcurrencyType];
@@ -310,6 +315,7 @@
 }
 
 - (IBAction)previewMarkdown:(id)sender {
+    // TODO: save attachments
     [self loadMarkdownPreview];
     [self.previewWindow makeKeyAndOrderFront:self];
     [NSApp activateIgnoringOtherApps:YES];
@@ -371,12 +377,20 @@
     return YES;
 }
 
+- (NSURL *)cacheFileForHTML {
+    NSURL *cacheFile = [self.cacheDirectory URLByAppendingPathComponent:@"preview.html"];
+    return cacheFile;
+}
+
 - (void)loadMarkdownPreview {
     [self.previewWindow setTitle:self.editedNote.title];
     NSMutableString *htmlString = [self.previewStyleHTML mutableCopy];
     [htmlString replaceOccurrencesOfString:@"this_is_where_the_title_goes" withString:self.editedNote.title options:NSLiteralSearch range:NSMakeRange(0, [htmlString length])];
     [htmlString replaceOccurrencesOfString:@"this_is_where_the_text_goes" withString:[self convertToHTML:self.editedNote.text] options:NSLiteralSearch range:NSMakeRange(0, [htmlString length])];
-    [self.previewWebView.mainFrame loadHTMLString:htmlString baseURL:[NSURL URLWithString:@"file:///"]];
+    NSError *error;
+    [htmlString writeToURL:self.cacheFile atomically:NO encoding:NSUTF8StringEncoding error:&error];
+//    [self.previewWebView.mainFrame loadHTMLString:htmlString baseURL:self.cacheDirectory];
+    [self.previewWebView.mainFrame loadRequest:[NSURLRequest requestWithURL:self.cacheFile]];
 }
 
 - (NSString *)convertToHTML:(NSString *)rawMarkdown {
