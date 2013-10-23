@@ -315,7 +315,9 @@
 }
 
 - (IBAction)previewMarkdown:(id)sender {
-    // TODO: save attachments
+    for (Attachment *attachment in self.editedNote.attachment) {
+        [attachment generateFile];
+    }
     [self loadMarkdownPreview];
     [self.previewWindow makeKeyAndOrderFront:self];
     [NSApp activateIgnoringOtherApps:YES];
@@ -387,6 +389,7 @@
     NSMutableString *htmlString = [self.previewStyleHTML mutableCopy];
     [htmlString replaceOccurrencesOfString:@"this_is_where_the_title_goes" withString:self.editedNote.title options:NSLiteralSearch range:NSMakeRange(0, [htmlString length])];
     [htmlString replaceOccurrencesOfString:@"this_is_where_the_text_goes" withString:[self convertToHTML:self.editedNote.text] options:NSLiteralSearch range:NSMakeRange(0, [htmlString length])];
+    [htmlString replaceOccurrencesOfString:@"$attachment$!" withString:[self.cacheDirectory absoluteString] options:NSLiteralSearch range:NSMakeRange(0, [htmlString length])];
     NSError *error;
     [htmlString writeToURL:self.cacheFile atomically:NO encoding:NSUTF8StringEncoding error:&error];
 //    [self.previewWebView.mainFrame loadHTMLString:htmlString baseURL:self.cacheDirectory];
