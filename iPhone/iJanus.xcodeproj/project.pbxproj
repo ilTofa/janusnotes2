@@ -29,6 +29,10 @@
 		643F0088177C3CB7005B1DB5 /* NSDate+GTStringsHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 643F0087177C3CB2005B1DB5 /* NSDate+GTStringsHelpers.m */; };
 		6447056E16DD0FC4000A0262 /* SmallRow.png in Resources */ = {isa = PBXBuildFile; fileRef = 6447056C16DD0FC4000A0262 /* SmallRow.png */; };
 		6447056F16DD0FC4000A0262 /* SmallRow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6447056D16DD0FC4000A0262 /* SmallRow@2x.png */; };
+		645A7E6618183846003C9D5A /* link-browser-big.png in Resources */ = {isa = PBXBuildFile; fileRef = 645A7E6218183846003C9D5A /* link-browser-big.png */; };
+		645A7E6718183846003C9D5A /* link-browser-big@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 645A7E6318183846003C9D5A /* link-browser-big@2x.png */; };
+		645A7E6818183846003C9D5A /* link-browser.png in Resources */ = {isa = PBXBuildFile; fileRef = 645A7E6418183846003C9D5A /* link-browser.png */; };
+		645A7E6918183846003C9D5A /* link-browser@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 645A7E6518183846003C9D5A /* link-browser@2x.png */; };
 		645ED8AC1754F1640070F83B /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CB194417392B710014F35F /* StoreKit.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		645ED8AF1754F7730070F83B /* link-microphone-big.png in Resources */ = {isa = PBXBuildFile; fileRef = 645ED8AD1754F7730070F83B /* link-microphone-big.png */; };
 		645ED8B01754F7730070F83B /* link-microphone-big@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 645ED8AE1754F7730070F83B /* link-microphone-big@2x.png */; };
@@ -132,6 +136,10 @@
 		6447056C16DD0FC4000A0262 /* SmallRow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SmallRow.png; path = Images/SmallRow.png; sourceTree = "<group>"; };
 		6447056D16DD0FC4000A0262 /* SmallRow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SmallRow@2x.png"; path = "Images/SmallRow@2x.png"; sourceTree = "<group>"; };
 		645A13A01701BFC800CCB4FB /* iJanus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = iJanus.entitlements; path = ../iJanus.entitlements; sourceTree = "<group>"; };
+		645A7E6218183846003C9D5A /* link-browser-big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "link-browser-big.png"; path = "Images/link-browser-big.png"; sourceTree = "<group>"; };
+		645A7E6318183846003C9D5A /* link-browser-big@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "link-browser-big@2x.png"; path = "Images/link-browser-big@2x.png"; sourceTree = "<group>"; };
+		645A7E6418183846003C9D5A /* link-browser.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "link-browser.png"; path = "Images/link-browser.png"; sourceTree = "<group>"; };
+		645A7E6518183846003C9D5A /* link-browser@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "link-browser@2x.png"; path = "Images/link-browser@2x.png"; sourceTree = "<group>"; };
 		645ED8AD1754F7730070F83B /* link-microphone-big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "link-microphone-big.png"; path = "Images/link-microphone-big.png"; sourceTree = "<group>"; };
 		645ED8AE1754F7730070F83B /* link-microphone-big@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "link-microphone-big@2x.png"; path = "Images/link-microphone-big@2x.png"; sourceTree = "<group>"; };
 		6466029A16DBC987007622FC /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
@@ -326,6 +334,10 @@
 		646602A216DBD373007622FC /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				645A7E6218183846003C9D5A /* link-browser-big.png */,
+				645A7E6318183846003C9D5A /* link-browser-big@2x.png */,
+				645A7E6418183846003C9D5A /* link-browser.png */,
+				645A7E6518183846003C9D5A /* link-browser@2x.png */,
 				64A75564170212A40085933D /* link-microphone.png */,
 				64A75565170212A40085933D /* link-microphone@2x.png */,
 				645ED8AD1754F7730070F83B /* link-microphone-big.png */,
@@ -599,6 +611,7 @@
 				646602A116DBC999007622FC /* Icon-72@2x.png in Resources */,
 				6447056E16DD0FC4000A0262 /* SmallRow.png in Resources */,
 				6447056F16DD0FC4000A0262 /* SmallRow@2x.png in Resources */,
+				645A7E6918183846003C9D5A /* link-browser@2x.png in Resources */,
 				64A8A7DC16E738A30013AFFF /* link-icon.png in Resources */,
 				64A8A7DD16E738A30013AFFF /* link-icon@2x.png in Resources */,
 				64A8A7E916E7B6010013AFFF /* link-icon-big.png in Resources */,
@@ -609,7 +622,9 @@
 				64A75566170212A40085933D /* link-microphone.png in Resources */,
 				64A75567170212A40085933D /* link-microphone@2x.png in Resources */,
 				64A7557D1702137A0085933D /* BigMic.png in Resources */,
+				645A7E6818183846003C9D5A /* link-browser.png in Resources */,
 				64A7557E1702137A0085933D /* BigMic@2x.png in Resources */,
+				645A7E6718183846003C9D5A /* link-browser-big@2x.png in Resources */,
 				64A7557F1702137A0085933D /* MicrophoneStrings.strings in Resources */,
 				64A755801702137A0085933D /* FloatingWindow.textClipping in Resources */,
 				64CEF2BC17D0E65900D3A58B /* Images.xcassets in Resources */,
@@ -634,6 +649,7 @@
 				640EE116173A476F0006A9A2 /* Default.png in Resources */,
 				64B56853174658B3006D04C4 /* readme.txt in Resources */,
 				64E0AA4317E70ED9008BF0E3 /* In-App-Products.plist in Resources */,
+				645A7E6618183846003C9D5A /* link-browser-big.png in Resources */,
 				645ED8AF1754F7730070F83B /* link-microphone-big.png in Resources */,
 				645ED8B01754F7730070F83B /* link-microphone-big@2x.png in Resources */,
 			);

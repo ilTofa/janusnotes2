@@ -23,7 +23,7 @@
                             </connections>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell autoresizesSubviews="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TextCell" id="pRi-48-rCr" customClass="IAMNoteCell">
+                            <tableViewCell autoresizesSubviews="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TextCell" rowHeight="100" id="pRi-48-rCr" customClass="IAMNoteCell">
                                 <rect key="frame" x="0.0" y="130" width="320" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pRi-48-rCr" id="6TX-kS-1gp">
@@ -834,9 +834,10 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="gG8-NC-sNs"/>
+                                    <barButtonItem image="link-browser.png" id="TQp-Q2-0PM"/>
                                     <barButtonItem style="plain" id="g31-is-Azx">
                                         <view key="customView" contentMode="scaleToFill" id="qQm-Ou-cgo">
-                                            <rect key="frame" x="82" y="6" width="80" height="33"/>
+                                            <rect key="frame" x="100" y="6" width="80" height="33"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Files: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pov-IN-gep">
@@ -1443,6 +1444,7 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
     </scenes>
     <resources>
         <image name="SmallRow.png" width="2" height="2"/>
+        <image name="link-browser.png" width="25" height="25"/>
         <image name="link-icon.png" width="25" height="25"/>
         <image name="link-microphone.png" width="25" height="25"/>
     </resources>
