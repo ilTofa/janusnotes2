@@ -86,6 +86,9 @@
     [super viewDidAppear:animated];
     if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
         [self colorize];
+    } else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        // Workaround a modification on tableView content inset that happens on returning from note editor.
+        self.tableView.contentInset = UIEdgeInsetsMake(64.0, 0, 0, 0);
     }
     [self sortAgain];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(processAds:) name:kSkipAdProcessingChanged object:nil];
@@ -310,15 +313,11 @@
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
     [searchBar setShowsCancelButton:YES animated:YES];
-//    self.tableView.allowsSelection = NO;
-//    self.tableView.scrollEnabled = NO;
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
     [searchBar setShowsCancelButton:NO animated:YES];
     [searchBar resignFirstResponder];
-//    self.tableView.allowsSelection = YES;
-//    self.tableView.scrollEnabled = YES;
     searchBar.text = self.searchText = @"";
     [self setupFetchExecAndReload];
 }
@@ -331,8 +330,6 @@
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     [searchBar resignFirstResponder];
     self.searchText = searchBar.text;
-//    self.tableView.allowsSelection = YES;
-//    self.tableView.scrollEnabled = YES;
     // Perform search... :)
     [self setupFetchExecAndReload];
 }
