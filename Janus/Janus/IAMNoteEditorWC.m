@@ -371,12 +371,11 @@
 
 #pragma mark - markdown support
 
-- (BOOL)textView:(NSTextView *)aTextView shouldChangeTextInRange:(NSRange)affectedCharRange replacementString:(NSString *)replacementString {
+- (void)textDidChange:(NSNotification *)notification {
     // Text is changed in textview, generate markdown and show it (only if preview windows is visible)
     if ([self.previewWindow isVisible]) {
         [self loadMarkdownPreview];
     }
-    return YES;
 }
 
 - (NSURL *)cacheFileForHTML {
