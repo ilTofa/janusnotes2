@@ -21,6 +21,7 @@
 #import "GTThemer.h"
 #import "UIImage+FixOrientation.h"
 #import "IAMDataSyncController.h"
+#import "IAMMarkdownPreViewController.h"
 // #import "NSManagedObjectContext+FetchedObjectFromURI.h"
 
 @interface IAMNoteEdit () <UITextViewDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, IAMAddLinkViewControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, AttachmentDeleter, MicrophoneWindowDelegate>
@@ -191,7 +192,7 @@
     }];
 }
 
-#pragma mark UITextViewDelegate
+#pragma mark - UITextViewDelegate
 
 - (void)textViewDidBeginEditing:(UITextView *)textView {
     [textView scrollRangeToVisible:textView.selectedRange];
@@ -202,6 +203,8 @@
     [textView scrollRangeToVisible:range];
     return YES;
 }
+
+#pragma mark - Actions
 
 - (IBAction)done:(id)sender
 {
@@ -412,6 +415,15 @@
         segueController.theAttachment = attachment;
         segueController.deleterObject = self;
     }
+    if ([[segue identifier] isEqualToString:@"markdownPreview"]) {
+        IAMMarkdownPreViewController *segueController = [segue destinationViewController];
+        segueController.markdownTitle = self.editedNote.title;
+        segueController.markdownText = self.editedNote.text;
+        for (Attachment *attachment in self.editedNote.attachment) {
+            [attachment generateFile];
+        }
+    }
+
 }
 
 #pragma mark - UICollectionViewDataSource

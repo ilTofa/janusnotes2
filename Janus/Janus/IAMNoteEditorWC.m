@@ -378,11 +378,6 @@
     }
 }
 
-- (NSURL *)cacheFileForHTML {
-    NSURL *cacheFile = [self.cacheDirectory URLByAppendingPathComponent:@"preview.html"];
-    return cacheFile;
-}
-
 - (void)loadMarkdownPreview {
     [self.previewWindow setTitle:self.editedNote.title];
     NSMutableString *htmlString = [self.previewStyleHTML mutableCopy];

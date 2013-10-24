@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4511" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="jOx-mc-5rj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="jOx-mc-5rj">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3745"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
     </dependencies>
     <scenes>
         <!--Start-->
@@ -739,6 +739,75 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
             </objects>
             <point key="canvasLocation" x="989" y="869"/>
         </scene>
+        <!--Markdown Pre View Controller-->
+        <scene sceneID="DT7-jN-Qjx">
+            <objects>
+                <viewController id="IBG-Xh-hbM" customClass="IAMMarkdownPreViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fAx-BE-cFY"/>
+                        <viewControllerLayoutGuide type="bottom" id="UP0-s9-ZDr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jff-kZ-BGq">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y8x-WP-lYo">
+                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem style="plain" id="zy2-VH-dxK">
+                                        <view key="customView" contentMode="scaleToFill" id="BFq-Hc-XRk">
+                                            <rect key="frame" x="16" y="6" width="201" height="33"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tBa-Ab-YA4">
+                                                    <rect key="frame" x="15" y="6" width="186" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="33F-dm-9px"/>
+                                    <barButtonItem systemItem="done" id="zIP-2t-0Tw">
+                                        <connections>
+                                            <action selector="actionDone:" destination="IBG-Xh-hbM" id="blE-2l-ttp"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uEO-QB-LUX">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="delegate" destination="IBG-Xh-hbM" id="KQ9-Ii-vD8"/>
+                                </connections>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="y8x-WP-lYo" secondAttribute="bottom" id="3nk-qh-jTz"/>
+                            <constraint firstItem="y8x-WP-lYo" firstAttribute="top" secondItem="uEO-QB-LUX" secondAttribute="bottom" id="Ksa-3Y-62Z"/>
+                            <constraint firstItem="y8x-WP-lYo" firstAttribute="leading" secondItem="uEO-QB-LUX" secondAttribute="leading" id="QQW-km-ND1"/>
+                            <constraint firstItem="uEO-QB-LUX" firstAttribute="top" secondItem="jff-kZ-BGq" secondAttribute="top" id="evq-JR-D0J"/>
+                            <constraint firstItem="uEO-QB-LUX" firstAttribute="trailing" secondItem="y8x-WP-lYo" secondAttribute="trailing" id="kQ1-ZR-PpR"/>
+                            <constraint firstItem="y8x-WP-lYo" firstAttribute="leading" secondItem="jff-kZ-BGq" secondAttribute="leading" id="pbA-yM-gFV"/>
+                            <constraint firstAttribute="trailing" secondItem="uEO-QB-LUX" secondAttribute="trailing" id="y0U-aR-5S7"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="theWebView" destination="uEO-QB-LUX" id="arH-CI-Z5Z"/>
+                        <outlet property="titleLabel" destination="tBa-Ab-YA4" id="XLq-sW-1DB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="47N-Hc-SAI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1007" y="-640"/>
+        </scene>
         <!--Text Note Editor-->
         <scene sceneID="yJT-eO-p6A">
             <objects>
@@ -834,7 +903,11 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="gG8-NC-sNs"/>
-                                    <barButtonItem image="link-browser.png" id="TQp-Q2-0PM"/>
+                                    <barButtonItem image="link-browser.png" id="TQp-Q2-0PM" userLabel="Bar Button Item - MarkdownPreview">
+                                        <connections>
+                                            <segue destination="IBG-Xh-hbM" kind="modal" identifier="markdownPreview" id="04F-gC-bYf"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" id="g31-is-Azx">
                                         <view key="customView" contentMode="scaleToFill" id="qQm-Ou-cgo">
                                             <rect key="frame" x="100" y="6" width="80" height="33"/>
