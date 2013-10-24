@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="7ep-k0-Kpd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="7ep-k0-Kpd">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
     </dependencies>
     <scenes>
         <!--View Controller - Notes-->
@@ -764,6 +764,12 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                             <action selector="shareAction:" destination="Ucd-PA-4nx" id="9nb-PG-40l"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="AQ4-4t-tRh"/>
+                                    <barButtonItem image="link-browser.png" id="Xrj-OA-1R6" userLabel="Bar Button Item - MD Preview">
+                                        <connections>
+                                            <segue destination="Aie-p5-jJC" kind="modal" identifier="markdownPreview" modalPresentationStyle="pageSheet" id="kz2-mI-dPN"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="8pG-Fl-0yJ"/>
                                     <barButtonItem image="link-microphone.png" id="bMY-6y-ukZ" userLabel="Bar Button Item - Audio">
                                         <connections>
@@ -893,6 +899,80 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FLV-FF-t40" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5140" y="1950"/>
+        </scene>
+        <!--Markdown Pre View Controller-->
+        <scene sceneID="d8e-Qz-azg">
+            <objects>
+                <viewController id="Aie-p5-jJC" customClass="IAMMarkdownPreViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="plm-hL-Cs1"/>
+                        <viewControllerLayoutGuide type="bottom" id="jzU-Ev-JvI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xE5-zV-3A0">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ev7-mr-I9n">
+                                <rect key="frame" x="0.0" y="980" width="768" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem style="plain" id="uxe-FP-KBm">
+                                        <view key="customView" contentMode="scaleToFill" id="eXi-9c-McF">
+                                            <rect key="frame" x="16" y="6" width="537" height="33"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gwB-ZF-7sP">
+                                                    <rect key="frame" x="20" y="7" width="517" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="gwB-ZF-7sP" secondAttribute="trailing" id="2xV-O0-Xeo"/>
+                                                <constraint firstItem="gwB-ZF-7sP" firstAttribute="leading" secondItem="eXi-9c-McF" secondAttribute="leading" constant="20" symbolic="YES" id="5zE-eq-UON"/>
+                                                <constraint firstItem="gwB-ZF-7sP" firstAttribute="centerY" secondItem="eXi-9c-McF" secondAttribute="centerY" id="VZd-7X-nWV"/>
+                                            </constraints>
+                                        </view>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="of6-rB-v0v"/>
+                                    <barButtonItem systemItem="done" id="yw4-Yd-wUR">
+                                        <connections>
+                                            <action selector="actionDone:" destination="Aie-p5-jJC" id="4Zy-yv-WSa"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lhK-Rf-MMI">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="980"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Aie-p5-jJC" id="IV6-pZ-r0I"/>
+                                </connections>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="lhK-Rf-MMI" firstAttribute="top" secondItem="xE5-zV-3A0" secondAttribute="top" id="B6w-wa-rDe"/>
+                            <constraint firstItem="lhK-Rf-MMI" firstAttribute="leading" secondItem="xE5-zV-3A0" secondAttribute="leading" id="MfR-iU-u3W"/>
+                            <constraint firstItem="ev7-mr-I9n" firstAttribute="top" secondItem="lhK-Rf-MMI" secondAttribute="bottom" id="OKR-E6-5jQ"/>
+                            <constraint firstAttribute="trailing" secondItem="lhK-Rf-MMI" secondAttribute="trailing" id="b02-By-xuM"/>
+                            <constraint firstItem="ev7-mr-I9n" firstAttribute="leading" secondItem="lhK-Rf-MMI" secondAttribute="leading" id="eFl-dj-LCt"/>
+                            <constraint firstAttribute="bottom" secondItem="ev7-mr-I9n" secondAttribute="bottom" id="gb3-0R-Rlg"/>
+                            <constraint firstItem="ev7-mr-I9n" firstAttribute="trailing" secondItem="lhK-Rf-MMI" secondAttribute="trailing" id="pcg-K0-lVy"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="theWebView" destination="lhK-Rf-MMI" id="TJc-bP-ZvS"/>
+                        <outlet property="titleLabel" destination="gwB-ZF-7sP" id="UD2-qn-GEQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z3b-Xz-dtQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4052" y="-56"/>
         </scene>
         <!--Attachment Detail-->
         <scene sceneID="eJE-ZV-ke5">
@@ -1321,6 +1401,7 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
     </scenes>
     <resources>
         <image name="SmallRow.png" width="2" height="2"/>
+        <image name="link-browser.png" width="25" height="25"/>
         <image name="link-icon.png" width="25" height="25"/>
         <image name="link-microphone.png" width="25" height="25"/>
     </resources>
