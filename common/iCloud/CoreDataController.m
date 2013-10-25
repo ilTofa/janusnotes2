@@ -264,8 +264,9 @@ static NSOperationQueue *_presentedItemOperationQueue;
     
     NSURL *storeURL = [[self applicationSandboxStoresDirectory] URLByAppendingPathComponent:kLocalStoreFilename];
     //add the store, use the "LocalConfiguration" to make sure state entities all end up in this store and that no iCloud entities end up in it
+    // ~/Library/Caches/Metadata/CoreData or ~/Library/CoreData
     NSURL *cacheDirectory = [[NSFileManager defaultManager] URLForDirectory:NSLibraryDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:&localError];
-    cacheDirectory = [cacheDirectory URLByAppendingPathComponent:@"CoreData/LocalConfig/" isDirectory:YES];
+    cacheDirectory = [cacheDirectory URLByAppendingPathComponent:@"CoreData/ExternalRecords" isDirectory:YES];
     if(![[NSFileManager defaultManager] createDirectoryAtURL:cacheDirectory withIntermediateDirectories:YES attributes:nil error:&localError]) {
         ALog(@"Error creating %@: %@", cacheDirectory, [localError description]);
         assert(NO);
@@ -280,7 +281,7 @@ static NSOperationQueue *_presentedItemOperationQueue;
                               NSInferMappingModelAutomaticallyOption: @YES,
                               NSExternalRecordExtensionOption: @"janus",
                               NSExternalRecordsDirectoryOption: externalRecordsSupportFolder,
-                              NSExternalRecordsFileFormatOption: NSXMLExternalRecordType
+                              NSExternalRecordsFileFormatOption: NSBinaryExternalRecordType
                               };
 #endif
     _localStore = [_psc addPersistentStoreWithType:NSSQLiteStoreType
