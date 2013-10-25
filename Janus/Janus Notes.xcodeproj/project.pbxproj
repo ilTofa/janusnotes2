@@ -155,6 +155,7 @@
 		64B56854174658ED006D04C4 /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = readme.txt; path = ../../common/Utilitites/readme.txt; sourceTree = "<group>"; };
 		64CB19271738EEE90014F35F /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		64CB19291738EFF20014F35F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		64D32800181A828200D94B1A /* Janus NotesImporter-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Janus NotesImporter-Info.plist"; sourceTree = "<group>"; };
 		64D8C99F1740F7B0005D87DC /* RNCryptor+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor+Private.h"; sourceTree = "<group>"; };
 		64D8C9A01740F7B0005D87DC /* RNCryptor-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor-Prefix.pch"; sourceTree = "<group>"; };
 		64D8C9A11740F7B0005D87DC /* RNCryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCryptor.h; sourceTree = "<group>"; };
@@ -209,7 +210,6 @@
 		64EA623416F7110300F4838E /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		64EA623616F7110300F4838E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		64EA623816F7110300F4838E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		64EA623C16F7110300F4838E /* Janus NotesImporter-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Janus NotesImporter-Info.plist"; sourceTree = "<group>"; };
 		64EA623E16F7110300F4838E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		64EA624016F7110300F4838E /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		64EA624216F7110300F4838E /* GetMetadataForFile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetMetadataForFile.m; sourceTree = "<group>"; };
@@ -490,7 +490,7 @@
 		64EA623B16F7110300F4838E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				64EA623C16F7110300F4838E /* Janus NotesImporter-Info.plist */,
+				64D32800181A828200D94B1A /* Janus NotesImporter-Info.plist */,
 				64EA623D16F7110300F4838E /* InfoPlist.strings */,
 				64EA624016F7110300F4838E /* main.c */,
 				64EA624816F7110300F4838E /* Janus NotesImporter-Prefix.pch */,
@@ -818,15 +818,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Janus/Janus.entitlements;
-				CODE_SIGN_IDENTITY = "Developer ID Application: Giacomo Tufano";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Janus/Janus-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = "DEMO=1";
 				INFOPLIST_FILE = "Janus/Janus-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7.3;
+				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_NAME = "Janus Notes";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -837,7 +839,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JanusImporter/Janus NotesImporter-Prefix.pch";
@@ -886,7 +888,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Janus/Janus.entitlements;
-				CODE_SIGN_IDENTITY = "Developer ID Application: Giacomo Tufano";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -898,6 +900,7 @@
 				);
 				INFOPLIST_FILE = "Janus/Janus-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7.3;
+				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_NAME = "Janus Notes";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -908,7 +911,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JanusImporter/Janus NotesImporter-Prefix.pch";
@@ -982,7 +985,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JanusImporter/Janus NotesImporter-Prefix.pch";
@@ -999,7 +1002,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JanusImporter/Janus NotesImporter-Prefix.pch";
@@ -1016,7 +1019,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Janus/Janus.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer: Giacomo Tufano (68RHGP4K2S)";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -1024,6 +1027,7 @@
 				GCC_PREFIX_HEADER = "Janus/Janus-Prefix.pch";
 				INFOPLIST_FILE = "Janus/Janus-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7.3;
+				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_NAME = "Janus Notes";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -1034,14 +1038,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Janus/Janus.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer: Giacomo Tufano (68RHGP4K2S)";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Janus/Janus-Prefix.pch";
 				INFOPLIST_FILE = "Janus/Janus-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7.3;
+				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_NAME = "Janus Notes";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
