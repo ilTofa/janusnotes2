@@ -14,6 +14,7 @@
 #import "iRate.h"
 #import "STKeychain.h"
 #import "GTTransientMessage.h"
+#import "AHAlertView.h"
 
 @interface IAMAppDelegate()
 
@@ -96,14 +97,48 @@
 }
 
 -(void)getPIN {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Enter Lock Code", nil)
-                                                        message:NSLocalizedString(@"Enter the lock code to access the application.", nil)
-                                                       delegate:self
-                                              cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+    AHAlertView *alertView = [[AHAlertView alloc] initWithTitle:NSLocalizedString(@"Enter Lock Code", nil) message:NSLocalizedString(@"Enter the lock code to access the application.", nil)];
     alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
         [[alertView textFieldAtIndex:0] setKeyboardType:UIKeyboardTypeNumberPad];
-    [alertView show];    
+    if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1) {
+        [self applyCustomAlertAppearance];
+        [alertView setButtonBackgroundImage:[self imageWithColor:[UIColor colorWithWhite:0.882 alpha:1.0]] forState:UIControlStateNormal];
+    }
+    __weak AHAlertView *weakAlert = alertView;
+    [alertView addButtonWithTitle:NSLocalizedString(@"OK", nil) block:^ {
+        DLog(@"Button clicked, text is: \'%@\'", [weakAlert textFieldAtIndex:0].text);
+        NSError *error;
+        NSString *pin = [STKeychain getPasswordForUsername:@"lockCode" andServiceName:@"it.iltofa.janus" error:&error];
+        if(!pin || ![pin isEqualToString:[weakAlert textFieldAtIndex:0].text]) {
+            [self getPIN];
+        }
+    }];
+    [alertView show];
+}
+
+- (void)applyCustomAlertAppearance
+{
+	[[AHAlertView appearance] setContentInsets:UIEdgeInsetsMake(12, 18, 12, 18)];
+	[[AHAlertView appearance] setBackgroundImage:[self imageWithColor:[UIColor colorWithWhite:0.882 alpha:1.0]]];
+	[[AHAlertView appearance] setTitleTextAttributes:[AHAlertView textAttributesWithFont:[UIFont boldSystemFontOfSize:18] foregroundColor:[UIColor blackColor] shadowColor:[UIColor clearColor] shadowOffset:CGSizeMake(0, -1)]];
+	[[AHAlertView appearance] setMessageTextAttributes:[AHAlertView textAttributesWithFont:[UIFont systemFontOfSize:14] foregroundColor:[UIColor colorWithWhite:0.2 alpha:1.0] shadowColor:[UIColor clearColor] shadowOffset:CGSizeMake(0, -1)]];
+	[[AHAlertView appearance] setButtonTitleTextAttributes:[AHAlertView textAttributesWithFont:[UIFont boldSystemFontOfSize:18] foregroundColor:[UIColor colorWithRed:0.004 green:0.475 blue:0.988 alpha:1.000] shadowColor:[UIColor clearColor] shadowOffset:CGSizeMake(0, -1)]];
+}
+
+- (UIImage *)imageWithColor:(UIColor *)color
+{
+    CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {

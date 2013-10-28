@@ -37,6 +37,7 @@
 		645ED8AC1754F1640070F83B /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CB194417392B710014F35F /* StoreKit.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		645ED8AF1754F7730070F83B /* link-microphone-big.png in Resources */ = {isa = PBXBuildFile; fileRef = 645ED8AD1754F7730070F83B /* link-microphone-big.png */; };
 		645ED8B01754F7730070F83B /* link-microphone-big@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 645ED8AE1754F7730070F83B /* link-microphone-big@2x.png */; };
+		6460CD65181E7C0F002DF1EE /* AHAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6460CD64181E7C0F002DF1EE /* AHAlertView.m */; };
 		6466029B16DBC987007622FC /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6466029A16DBC987007622FC /* Icon@2x.png */; };
 		6466029D16DBC98E007622FC /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6466029C16DBC98E007622FC /* Icon.png */; };
 		646602A016DBC999007622FC /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 6466029E16DBC999007622FC /* Icon-72.png */; };
@@ -154,6 +155,8 @@
 		645A7E6518183846003C9D5A /* link-browser@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "link-browser@2x.png"; path = "Images/link-browser@2x.png"; sourceTree = "<group>"; };
 		645ED8AD1754F7730070F83B /* link-microphone-big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "link-microphone-big.png"; path = "Images/link-microphone-big.png"; sourceTree = "<group>"; };
 		645ED8AE1754F7730070F83B /* link-microphone-big@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "link-microphone-big@2x.png"; path = "Images/link-microphone-big@2x.png"; sourceTree = "<group>"; };
+		6460CD63181E7C0F002DF1EE /* AHAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AHAlertView.h; sourceTree = "<group>"; };
+		6460CD64181E7C0F002DF1EE /* AHAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AHAlertView.m; sourceTree = "<group>"; };
 		6466029A16DBC987007622FC /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
 		6466029C16DBC98E007622FC /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
 		6466029E16DBC999007622FC /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = SOURCE_ROOT; };
@@ -335,6 +338,7 @@
 		6433103F16E0A8950064EC5C /* Utilities (iOS) */ = {
 			isa = PBXGroup;
 			children = (
+				6460CD62181E7C0F002DF1EE /* AHAlertView */,
 				6410E1C917E85D2000B568D0 /* GTTransientMessage.h */,
 				6410E1CA17E85D2000B568D0 /* GTTransientMessage.m */,
 				648A2771171D875000338218 /* MBProgressHUD.h */,
@@ -359,6 +363,15 @@
 			);
 			name = iRate;
 			path = ../iRate;
+			sourceTree = "<group>";
+		};
+		6460CD62181E7C0F002DF1EE /* AHAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				6460CD63181E7C0F002DF1EE /* AHAlertView.h */,
+				6460CD64181E7C0F002DF1EE /* AHAlertView.m */,
+			);
+			path = AHAlertView;
 			sourceTree = "<group>";
 		};
 		646602A216DBD373007622FC /* Images */ = {
@@ -738,6 +751,7 @@
 				64EB0F081819144E00DD9924 /* houdini_href_e.c in Sources */,
 				64EB0F0D1819144E00DD9924 /* stack.c in Sources */,
 				64A8A7E616E7B4770013AFFF /* IAMAttachmentCell.m in Sources */,
+				6460CD65181E7C0F002DF1EE /* AHAlertView.m in Sources */,
 				641D954416E8CF6E00A253E3 /* IAMAttachmentDetailViewController.m in Sources */,
 				6410E1CB17E85D2000B568D0 /* GTTransientMessage.m in Sources */,
 				64EB0F0A1819144E00DD9924 /* html.c in Sources */,
@@ -878,8 +892,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = iJanus.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
