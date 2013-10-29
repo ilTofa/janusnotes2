@@ -396,12 +396,6 @@ CA
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Help" systemMenu="help" id="491">
                         <items>
-                            <menuItem title="Janus Notes Help" keyEquivalent="?" id="492">
-                                <connections>
-                                    <action selector="showHelp:" target="-1" id="493"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem isSeparatorItem="YES" id="R37-9d-Fe1"/>
                             <menuItem title="Janus Notes FAQs" id="bAx-6D-nby">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
@@ -412,6 +406,13 @@ CA
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="showMarkdownHelp:" target="494" id="rdE-fJ-Rei"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="SL8-L9-h8c"/>
+                            <menuItem title="Send a Comment" id="ZrZ-dY-k2n">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="sendAComment:" target="494" id="auR-Lm-QqB"/>
                                 </connections>
                             </menuItem>
                         </items>

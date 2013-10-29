@@ -8,6 +8,7 @@
 
 #import "IAMAppDelegate.h"
 
+#include <sys/sysctl.h>
 #import "IAMFilesystemSyncController.h"
 #import "IAMPrefsWindowController.h"
 #import "iRate.h"
@@ -19,6 +20,7 @@
 
 - (IBAction)showFAQs:(id)sender;
 - (IBAction)showMarkdownHelp:(id)sender;
+- (IBAction)sendAComment:(id)sender;
 
 @end
 
@@ -340,5 +342,22 @@
 
 - (IBAction)showMarkdownHelp:(id)sender {
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet"]];
+}
+
+- (IBAction)sendAComment:(id)sender {
+    NSString *model;
+    size_t length = 0;
+    sysctlbyname("hw.model", NULL, &length, NULL, 0);
+    if (length) {
+        char *m = malloc(length * sizeof(char));
+        sysctlbyname("hw.model", m, &length, NULL, 0);
+        model = [NSString stringWithUTF8String:m];
+        free(m);
+    } else {
+        model = @"Unknown";
+    }
+    NSString *subject = [NSString stringWithFormat:@"Feedback on Janus Notes OS X app version %@ (%@) on a %@/%@", [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"], [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"], model, [[NSProcessInfo processInfo] operatingSystemVersionString]];
+    NSString *urlString = [[NSString stringWithFormat:@"mailto:support@janusnotes.com?subject=%@", subject] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];;
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:urlString]];
 }
 @end
