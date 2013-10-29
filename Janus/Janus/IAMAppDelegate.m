@@ -17,6 +17,9 @@
 
 @property (strong) IAMPrefsWindowController *prefsController;
 
+- (IBAction)showFAQs:(id)sender;
+- (IBAction)showMarkdownHelp:(id)sender;
+
 @end
 
 @implementation IAMAppDelegate
@@ -331,4 +334,11 @@
 
 #endif
 
+- (IBAction)showFAQs:(id)sender {
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://www.janusnotes.com/faq.html"]];
+}
+
+- (IBAction)showMarkdownHelp:(id)sender {
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet"]];
+}
 @end
