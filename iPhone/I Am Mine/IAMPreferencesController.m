@@ -370,7 +370,8 @@ typedef enum {
 }
 
 - (void)changePassword {
-    if ([[DBFilesystem sharedFilesystem] status]) {
+    DBSyncStatus status = [[DBFilesystem sharedFilesystem] status];
+    if (status && (status != DBSyncStatusActive)) {
         [self pleaseNotNow];
         return;
     }
@@ -473,7 +474,8 @@ typedef enum {
     if (self.encryptionSwitch.isOn) {
         [self changePassword];
     } else {
-        if ([[DBFilesystem sharedFilesystem] status]) {
+        DBSyncStatus status = [[DBFilesystem sharedFilesystem] status];
+        if (status && (status != DBSyncStatusActive)) {
             [self pleaseNotNow];
             return;
         }
