@@ -17,6 +17,8 @@
 #import "STKeychain.h"
 #import "NSDate+GTStringsHelpers.h"
 
+#import "DropboxKeys.h"
+
 #define kNotesExtension @"jnote"
 #define kAttachmentDirectory @"Attachments"
 #define kMagicCryptFilename @".crypted"
@@ -94,7 +96,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
         });
         _isResettingDataFromDropbox = NO;
         // Init dropbox sync API
-        DBAccountManager* accountMgr = [[DBAccountManager alloc] initWithAppKey:@"8mwm9fif4s1fju2" secret:@"pvafyx258qkx2fm"];
+        DBAccountManager* accountMgr = [[DBAccountManager alloc] initWithAppKey:DROPBOX_APP_KEY secret:DROPBOX_SECRET];
         [DBAccountManager setSharedManager:accountMgr];
         DBAccount *account = accountMgr.linkedAccount;
         // Listen to ourself, so to sync changes
