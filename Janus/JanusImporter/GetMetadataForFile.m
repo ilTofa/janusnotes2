@@ -8,7 +8,7 @@
 
 #include <CoreFoundation/CoreFoundation.h>
 #import <CoreData/CoreData.h>
-#import "MySpotlightImporter.h"
+#import "TurmsSpotlightImporter.h"
 
 Boolean GetMetadataForFile(void *thisInterface, CFMutableDictionaryRef attributes, CFStringRef contentTypeUTI, CFStringRef pathToFile);
 
@@ -58,7 +58,7 @@ Boolean GetMetadataForFile(void *thisInterface, CFMutableDictionaryRef attribute
         } else if ([(__bridge NSString *)contentTypeUTI isEqualToString:@"it.iltofa.janus"]) {
             // import from an external record file
             
-            MySpotlightImporter *importer = [[MySpotlightImporter alloc] init];
+            TurmsSpotlightImporter *importer = [[TurmsSpotlightImporter alloc] init];
             ok = [importer importFileAtPath:(__bridge NSString *)pathToFile attributes:(__bridge NSMutableDictionary *)attributes error:&error];
         }
     }

@@ -279,7 +279,7 @@ static NSOperationQueue *_presentedItemOperationQueue;
     NSString *externalRecordsSupportFolder = [cacheDirectory path];
     NSDictionary *options = @{NSMigratePersistentStoresAutomaticallyOption: @YES,
                               NSInferMappingModelAutomaticallyOption: @YES,
-                              NSExternalRecordExtensionOption: @"janus",
+                              NSExternalRecordExtensionOption: @"turmsentry",
                               NSExternalRecordsDirectoryOption: externalRecordsSupportFolder,
                               NSExternalRecordsFileFormatOption: NSBinaryExternalRecordType
                               };

@@ -6,16 +6,14 @@
 //  Copyright (c) 2013 Giacomo Tufano. All rights reserved.
 //
 
-#import "MySpotlightImporter.h"
+#import "TurmsSpotlightImporter.h"
 
-#define JANUS_STORE_TYPE NSXMLStoreType
-
-@interface MySpotlightImporter ()
+@interface TurmsSpotlightImporter ()
 @property (nonatomic, strong) NSURL *modelURL;
 @property (nonatomic, strong) NSURL *storeURL;
 @end
 
-@implementation MySpotlightImporter
+@implementation TurmsSpotlightImporter
 
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 @synthesize managedObjectModel = _managedObjectModel;

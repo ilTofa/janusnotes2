@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "64EA620B16F7110300F4838E"
                BuildableName = "Janus Notes.app"
-               BlueprintName = "Janus Notes"
-               ReferencedContainer = "container:Janus Notes.xcodeproj">
+               BlueprintName = "Turms"
+               ReferencedContainer = "container:Turms.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -34,8 +34,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "64EA620B16F7110300F4838E"
             BuildableName = "Janus Notes.app"
-            BlueprintName = "Janus Notes"
-            ReferencedContainer = "container:Janus Notes.xcodeproj">
+            BlueprintName = "Turms"
+            ReferencedContainer = "container:Turms.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -53,8 +53,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "64EA620B16F7110300F4838E"
             BuildableName = "Janus Notes.app"
-            BlueprintName = "Janus Notes"
-            ReferencedContainer = "container:Janus Notes.xcodeproj">
+            BlueprintName = "Turms"
+            ReferencedContainer = "container:Turms.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <EnvironmentVariables>
@@ -83,8 +83,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "64EA620B16F7110300F4838E"
             BuildableName = "Janus Notes.app"
-            BlueprintName = "Janus Notes"
-            ReferencedContainer = "container:Janus Notes.xcodeproj">
+            BlueprintName = "Turms"
+            ReferencedContainer = "container:Turms.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

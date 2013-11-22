@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "64EA622D16F7110300F4838E"
                BuildableName = "Janus NotesImporter.mdimporter"
-               BlueprintName = "Janus NotesImporter"
-               ReferencedContainer = "container:Janus Notes.xcodeproj">
+               BlueprintName = "TurmsImporter"
+               ReferencedContainer = "container:Turms.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

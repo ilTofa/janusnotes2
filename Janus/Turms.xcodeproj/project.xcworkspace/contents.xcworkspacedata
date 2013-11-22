@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Janus Notes.xcodeproj">
+      location = "self:Turms.xcodeproj">
    </FileRef>
 </Workspace>
