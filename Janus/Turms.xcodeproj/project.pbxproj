@@ -22,12 +22,13 @@
 		645A7E611817C602003C9D5A /* IAMNoteEditTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 645A7E601817C602003C9D5A /* IAMNoteEditTextView.m */; };
 		645ED8A31754ED8A0070F83B /* iRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 645ED8A11754ED8A0070F83B /* iRate.m */; };
 		645ED8A51754EFCE0070F83B /* iRate.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 645ED8A41754EFCE0070F83B /* iRate.bundle */; };
+		64629F65183F79F300753313 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64629F64183F79F300753313 /* Images.xcassets */; };
 		6476CFA0174382D500A6195C /* IAMCryptPasswordWC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6476CF9E174382D500A6195C /* IAMCryptPasswordWC.m */; };
 		6476CFA1174382D500A6195C /* IAMCryptPasswordWC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6476CF9F174382D500A6195C /* IAMCryptPasswordWC.xib */; };
 		6476CFA71743BABE00A6195C /* IAMWaitingWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6476CFA51743BABE00A6195C /* IAMWaitingWindowController.m */; };
 		6476CFA81743BABE00A6195C /* IAMWaitingWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6476CFA61743BABE00A6195C /* IAMWaitingWindowController.xib */; };
-		6476CFAB1746223900A6195C /* it.iltofa.janus.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6476CFAA1746223900A6195C /* it.iltofa.janus.icns */; };
-		6476CFAC1746228E00A6195C /* it.iltofa.janus.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6476CFAA1746223900A6195C /* it.iltofa.janus.icns */; };
+		6476CFAB1746223900A6195C /* it.iltofa.turms.entry.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6476CFAA1746223900A6195C /* it.iltofa.turms.entry.icns */; };
+		6476CFAC1746228E00A6195C /* it.iltofa.turms.entry.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6476CFAA1746223900A6195C /* it.iltofa.turms.entry.icns */; };
 		64A4E9B51742659A00BC49FE /* Janus NotesImporter.mdimporter in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64EA622E16F7110300F4838E /* Janus NotesImporter.mdimporter */; };
 		64A75591170358BC0085933D /* NSManagedObjectContext+FetchedObjectFromURI.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A75590170358BC0085933D /* NSManagedObjectContext+FetchedObjectFromURI.m */; };
 		64B4B7BC181140A700766D43 /* MarkdownPreview.html in Resources */ = {isa = PBXBuildFile; fileRef = 64B4B7BB181140A700766D43 /* MarkdownPreview.html */; };
@@ -141,13 +142,14 @@
 		645ED8A01754ED8A0070F83B /* iRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iRate.h; sourceTree = "<group>"; };
 		645ED8A11754ED8A0070F83B /* iRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iRate.m; sourceTree = "<group>"; };
 		645ED8A41754EFCE0070F83B /* iRate.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = iRate.bundle; sourceTree = "<group>"; };
+		64629F64183F79F300753313 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../Turms/Images.xcassets; sourceTree = "<group>"; };
 		6476CF9D174382D500A6195C /* IAMCryptPasswordWC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMCryptPasswordWC.h; sourceTree = "<group>"; };
 		6476CF9E174382D500A6195C /* IAMCryptPasswordWC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMCryptPasswordWC.m; sourceTree = "<group>"; };
 		6476CF9F174382D500A6195C /* IAMCryptPasswordWC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IAMCryptPasswordWC.xib; sourceTree = "<group>"; };
 		6476CFA41743BABE00A6195C /* IAMWaitingWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMWaitingWindowController.h; sourceTree = "<group>"; };
 		6476CFA51743BABE00A6195C /* IAMWaitingWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMWaitingWindowController.m; sourceTree = "<group>"; };
 		6476CFA61743BABE00A6195C /* IAMWaitingWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IAMWaitingWindowController.xib; sourceTree = "<group>"; };
-		6476CFAA1746223900A6195C /* it.iltofa.janus.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = it.iltofa.janus.icns; sourceTree = "<group>"; };
+		6476CFAA1746223900A6195C /* it.iltofa.turms.entry.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = it.iltofa.turms.entry.icns; sourceTree = "<group>"; };
 		64A1D4EC16FC9F7C00E50CC1 /* Janus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Janus.entitlements; sourceTree = "<group>"; };
 		64A7558F170358BC0085933D /* NSManagedObjectContext+FetchedObjectFromURI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSManagedObjectContext+FetchedObjectFromURI.h"; path = "../common/iCloud/NSManagedObjectContext+FetchedObjectFromURI.h"; sourceTree = "<group>"; };
 		64A75590170358BC0085933D /* NSManagedObjectContext+FetchedObjectFromURI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSManagedObjectContext+FetchedObjectFromURI.m"; path = "../common/iCloud/NSManagedObjectContext+FetchedObjectFromURI.m"; sourceTree = "<group>"; };
@@ -396,7 +398,7 @@
 		64EA620316F7110300F4838E = {
 			isa = PBXGroup;
 			children = (
-				64EA621516F7110300F4838E /* Janus */,
+				64EA621516F7110300F4838E /* Turms */,
 				64EA623A16F7110300F4838E /* TurmsImporter */,
 				64EA620E16F7110300F4838E /* Frameworks */,
 				64EA620D16F7110300F4838E /* Products */,
@@ -438,9 +440,10 @@
 			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
-		64EA621516F7110300F4838E /* Janus */ = {
+		64EA621516F7110300F4838E /* Turms */ = {
 			isa = PBXGroup;
 			children = (
+				64629F64183F79F300753313 /* Images.xcassets */,
 				645ED89E1754ED8A0070F83B /* iRate */,
 				64EA627816F71E7600F4838E /* Utilities (common) */,
 				64EA626B16F71DF500F4838E /* CoreData (common) */,
@@ -455,6 +458,7 @@
 				644AC25D17257FEB007B51FF /* Main UI */,
 				644AC27A1726CFB1007B51FF /* Preferences */,
 			);
+			name = Turms;
 			path = Janus;
 			sourceTree = "<group>";
 		};
@@ -463,7 +467,7 @@
 			children = (
 				64B4B7BB181140A700766D43 /* MarkdownPreview.html */,
 				64B56854174658ED006D04C4 /* readme.txt */,
-				6476CFAA1746223900A6195C /* it.iltofa.janus.icns */,
+				6476CFAA1746223900A6195C /* it.iltofa.turms.entry.icns */,
 				64A1D4EC16FC9F7C00E50CC1 /* Janus.entitlements */,
 				64EA625116F7166700F4838E /* icon.icns */,
 				64EA621716F7110300F4838E /* Janus-Info.plist */,
@@ -652,9 +656,10 @@
 				643BA051173D26E300A6C437 /* IAMOpenWithWC.xib in Resources */,
 				6476CFA1174382D500A6195C /* IAMCryptPasswordWC.xib in Resources */,
 				6476CFA81743BABE00A6195C /* IAMWaitingWindowController.xib in Resources */,
-				6476CFAB1746223900A6195C /* it.iltofa.janus.icns in Resources */,
+				6476CFAB1746223900A6195C /* it.iltofa.turms.entry.icns in Resources */,
 				64B56855174658ED006D04C4 /* readme.txt in Resources */,
 				64E6BDA7174FCB1A00B63D46 /* edit.png in Resources */,
+				64629F65183F79F300753313 /* Images.xcassets in Resources */,
 				64E6BDA8174FCB1A00B63D46 /* edit@2x.png in Resources */,
 				64E6BDBB175009C600B63D46 /* add_property.png in Resources */,
 				64E6BDBC175009C600B63D46 /* add_property@2x.png in Resources */,
@@ -685,7 +690,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				64EA623F16F7110300F4838E /* InfoPlist.strings in Resources */,
-				6476CFAC1746228E00A6195C /* it.iltofa.janus.icns in Resources */,
+				6476CFAC1746228E00A6195C /* it.iltofa.turms.entry.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -818,6 +823,7 @@
 		64E0C373175358D100C1F946 /* Demo */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Janus/Janus.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
@@ -888,6 +894,7 @@
 		64E0C376175359D700C1F946 /* Debug Demo */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Janus/Janus.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
@@ -1019,6 +1026,7 @@
 		64EA624F16F7110300F4838E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Janus/Janus.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
@@ -1038,6 +1046,7 @@
 		64EA625016F7110300F4838E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Janus/Janus.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";

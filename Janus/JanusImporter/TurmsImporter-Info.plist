@@ -8,7 +8,7 @@
 	<array>
 		<dict>
 			<key>CFBundleTypeIconFile</key>
-			<string>it.iltofa.janus.icns</string>
+			<string>it.iltofa.turms.entry.icns</string>
 			<key>CFBundleTypeRole</key>
 			<string>MDImporter</string>
 			<key>LSItemContentTypes</key>
@@ -62,7 +62,7 @@
 			<key>UTTypeDescription</key>
 			<string>Turms Entry</string>
 			<key>UTTypeIconFile</key>
-			<string>it.iltofa.janus.icns</string>
+			<string>it.iltofa.turms.entry.icns</string>
 			<key>UTTypeIdentifier</key>
 			<string>it.iltofa.turms.entry</string>
 			<key>UTTypeReferenceURL</key>
