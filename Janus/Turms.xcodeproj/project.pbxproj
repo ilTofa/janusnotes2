@@ -29,7 +29,7 @@
 		6476CFA81743BABE00A6195C /* IAMWaitingWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6476CFA61743BABE00A6195C /* IAMWaitingWindowController.xib */; };
 		6476CFAB1746223900A6195C /* it.iltofa.turms.entry.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6476CFAA1746223900A6195C /* it.iltofa.turms.entry.icns */; };
 		6476CFAC1746228E00A6195C /* it.iltofa.turms.entry.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6476CFAA1746223900A6195C /* it.iltofa.turms.entry.icns */; };
-		64A4E9B51742659A00BC49FE /* Janus NotesImporter.mdimporter in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64EA622E16F7110300F4838E /* Janus NotesImporter.mdimporter */; };
+		64A4E9B51742659A00BC49FE /* TurmsImporter.mdimporter in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64EA622E16F7110300F4838E /* TurmsImporter.mdimporter */; };
 		64A75591170358BC0085933D /* NSManagedObjectContext+FetchedObjectFromURI.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A75590170358BC0085933D /* NSManagedObjectContext+FetchedObjectFromURI.m */; };
 		64B4B7BC181140A700766D43 /* MarkdownPreview.html in Resources */ = {isa = PBXBuildFile; fileRef = 64B4B7BB181140A700766D43 /* MarkdownPreview.html */; };
 		64B56855174658ED006D04C4 /* readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 64B56854174658ED006D04C4 /* readme.txt */; };
@@ -77,7 +77,6 @@
 		64EA624116F7110300F4838E /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 64EA624016F7110300F4838E /* main.c */; };
 		64EA624316F7110300F4838E /* GetMetadataForFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 64EA624216F7110300F4838E /* GetMetadataForFile.m */; };
 		64EA624616F7110300F4838E /* TurmsSpotlightImporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 64EA624516F7110300F4838E /* TurmsSpotlightImporter.m */; };
-		64EA625216F7166700F4838E /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 64EA625116F7166700F4838E /* icon.icns */; };
 		64EA627416F71E1400F4838E /* Attachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 64EA626D16F71E1400F4838E /* Attachment.m */; };
 		64EA627516F71E1400F4838E /* CoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64EA626F16F71E1400F4838E /* CoreDataController.m */; };
 		64EA627616F71E1400F4838E /* IAmMine.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 64EA627016F71E1400F4838E /* IAmMine.xcdatamodeld */; };
@@ -113,7 +112,7 @@
 			dstPath = Contents/Library/Spotlight;
 			dstSubfolderSpec = 1;
 			files = (
-				64A4E9B51742659A00BC49FE /* Janus NotesImporter.mdimporter in CopyFiles */,
+				64A4E9B51742659A00BC49FE /* TurmsImporter.mdimporter in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,7 +193,7 @@
 		64E6BDB8175009C600B63D46 /* settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "settings@2x.png"; path = "Buttons/settings@2x.png"; sourceTree = "<group>"; };
 		64E6BDB9175009C600B63D46 /* show_property.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = show_property.png; path = Buttons/show_property.png; sourceTree = "<group>"; };
 		64E6BDBA175009C600B63D46 /* show_property@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "show_property@2x.png"; path = "Buttons/show_property@2x.png"; sourceTree = "<group>"; };
-		64EA620C16F7110300F4838E /* Janus Notes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Janus Notes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		64EA620C16F7110300F4838E /* Janus Notes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "Janus Notes.app"; path = Turms.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64EA620F16F7110300F4838E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		64EA621216F7110300F4838E /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		64EA621316F7110300F4838E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -207,7 +206,7 @@
 		64EA622116F7110300F4838E /* IAMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IAMAppDelegate.h; sourceTree = "<group>"; };
 		64EA622216F7110300F4838E /* IAMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IAMAppDelegate.m; sourceTree = "<group>"; };
 		64EA622516F7110300F4838E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		64EA622E16F7110300F4838E /* Janus NotesImporter.mdimporter */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Janus NotesImporter.mdimporter"; sourceTree = BUILT_PRODUCTS_DIR; };
+		64EA622E16F7110300F4838E /* TurmsImporter.mdimporter */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TurmsImporter.mdimporter; sourceTree = BUILT_PRODUCTS_DIR; };
 		64EA623216F7110300F4838E /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		64EA623416F7110300F4838E /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		64EA623616F7110300F4838E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -219,7 +218,6 @@
 		64EA624516F7110300F4838E /* TurmsSpotlightImporter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TurmsSpotlightImporter.m; sourceTree = "<group>"; };
 		64EA624716F7110300F4838E /* Importer Read Me.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Importer Read Me.txt"; sourceTree = "<group>"; };
 		64EA624816F7110300F4838E /* TurmsImporter-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TurmsImporter-Prefix.pch"; sourceTree = "<group>"; };
-		64EA625116F7166700F4838E /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = ../icon.icns; sourceTree = "<group>"; };
 		64EA626C16F71E1400F4838E /* Attachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Attachment.h; path = ../common/iCloud/Attachment.h; sourceTree = "<group>"; };
 		64EA626D16F71E1400F4838E /* Attachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Attachment.m; path = ../common/iCloud/Attachment.m; sourceTree = "<group>"; };
 		64EA626E16F71E1400F4838E /* CoreDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoreDataController.h; path = ../common/iCloud/CoreDataController.h; sourceTree = "<group>"; };
@@ -409,7 +407,7 @@
 			isa = PBXGroup;
 			children = (
 				64EA620C16F7110300F4838E /* Janus Notes.app */,
-				64EA622E16F7110300F4838E /* Janus NotesImporter.mdimporter */,
+				64EA622E16F7110300F4838E /* TurmsImporter.mdimporter */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -469,7 +467,6 @@
 				64B56854174658ED006D04C4 /* readme.txt */,
 				6476CFAA1746223900A6195C /* it.iltofa.turms.entry.icns */,
 				64A1D4EC16FC9F7C00E50CC1 /* Janus.entitlements */,
-				64EA625116F7166700F4838E /* icon.icns */,
 				64EA621716F7110300F4838E /* Janus-Info.plist */,
 				64EA621816F7110300F4838E /* InfoPlist.strings */,
 				64EA621B16F7110300F4838E /* main.m */,
@@ -595,7 +592,7 @@
 			);
 			name = TurmsImporter;
 			productName = JanusImporter;
-			productReference = 64EA622E16F7110300F4838E /* Janus NotesImporter.mdimporter */;
+			productReference = 64EA622E16F7110300F4838E /* TurmsImporter.mdimporter */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -647,7 +644,6 @@
 				64EA621A16F7110300F4838E /* InfoPlist.strings in Resources */,
 				64EA622016F7110300F4838E /* Credits.rtf in Resources */,
 				64EA622616F7110300F4838E /* MainMenu.xib in Resources */,
-				64EA625216F7166700F4838E /* icon.icns in Resources */,
 				64EA628616F75E0000F4838E /* IAMNoteEditorWC.xib in Resources */,
 				64B4B7BC181140A700766D43 /* MarkdownPreview.html in Resources */,
 				644AC25C17257FE4007B51FF /* IAMTableUIWindowController.xib in Resources */,
@@ -815,7 +811,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.7.3;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				SDKROOT = macosx;
 			};
 			name = Demo;
@@ -885,7 +881,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.7.3;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -958,7 +954,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.7.3;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -984,7 +980,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.7.3;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				SDKROOT = macosx;
 			};
 			name = Release;
