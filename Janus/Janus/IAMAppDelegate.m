@@ -246,10 +246,6 @@
     [self.collectionController deleteNote:sender];
 }
 
-- (IBAction)refreshNotesAction:(id)sender {
-    [self.collectionController refresh:sender];
-}
-
 - (IBAction)showInFinderAction:(id)sender {
     [self.collectionController showInFinder:sender];
 }

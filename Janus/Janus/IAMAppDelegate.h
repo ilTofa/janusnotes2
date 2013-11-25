@@ -35,7 +35,6 @@
 - (IBAction)editNoteAction:(id)sender;
 - (IBAction)closeNoteAction:(id)sender;
 - (IBAction)deleteNoteAction:(id)sender;
-- (IBAction)refreshNotesAction:(id)sender;
 - (IBAction)showInFinderAction:(id)sender;
 
 - (IBAction)saveNoteAndContinueAction:(id)sender;
