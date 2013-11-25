@@ -17,8 +17,6 @@
 #import "STKeychain.h"
 #import "NSDate+GTStringsHelpers.h"
 
-#import "DropboxKeys.h"
-
 #define kNotesExtension @"jnote"
 #define kAttachmentDirectory @"Attachments"
 #define kMagicCryptFilename @".crypted"
@@ -87,7 +85,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
     self = [super init];
     if (self) {
         // check if the data controller is ready
-        self.coreDataController = ((IAMAppDelegate *)[[UIApplication sharedApplication] delegate]).coreDataController;
+        self.coreDataController = nil;// ((IAMAppDelegate *)[[UIApplication sharedApplication] delegate]).coreDataController;
         NSAssert(self.coreDataController.psc, @"DataSyncController inited when CoreDataController Persistent Storage is still invalid");
         _syncQueue = dispatch_queue_create("dataSyncControllerQueue", DISPATCH_QUEUE_SERIAL);
         dispatch_sync(_syncQueue, ^{
@@ -96,7 +94,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
         });
         _isResettingDataFromDropbox = NO;
         // Init dropbox sync API
-        DBAccountManager* accountMgr = [[DBAccountManager alloc] initWithAppKey:DROPBOX_APP_KEY secret:DROPBOX_SECRET];
+        DBAccountManager* accountMgr = [[DBAccountManager alloc] initWithAppKey:@"0" secret:@"0"];
         [DBAccountManager setSharedManager:accountMgr];
         DBAccount *account = accountMgr.linkedAccount;
         // Listen to ourself, so to sync changes
