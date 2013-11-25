@@ -23,13 +23,7 @@ typedef enum {
 
 @interface IAMPreferencesController : UITableViewController
 
-@property (weak, nonatomic) IBOutlet UILabel *sizeLabel;
-@property (weak, nonatomic) IBOutlet UIStepper *sizeStepper;
 @property (weak, nonatomic) IBOutlet UILabel *versionLabel;
-@property (weak, nonatomic) IBOutlet UILabel *dropboxLabel;
-@property (weak, nonatomic) IBOutlet UISwitch *encryptionSwitch;
-@property (weak, nonatomic) IBOutlet UILabel *encryptionLabel;
-@property (weak, nonatomic) IBOutlet UISwitch *lockSwitch;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *sortSelector;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *dateSelector;
 @property (weak, nonatomic) IBOutlet UILabel *productCoffeeLabel;
@@ -38,10 +32,7 @@ typedef enum {
 @property (weak, nonatomic) IBOutlet UITableViewCell *restoreCell;
 @property (weak, nonatomic) IBOutlet UILabel *restoreCellLabel;
 
-- (IBAction)sizePressed:(id)sender;
 - (IBAction)done:(id)sender;
-- (IBAction)encryptionAction:(id)sender;
-- (IBAction)lockCodeAction:(id)sender;
 - (IBAction)sortSelectorAction:(id)sender;
 - (IBAction)dateSelectorAction:(id)sender;
 

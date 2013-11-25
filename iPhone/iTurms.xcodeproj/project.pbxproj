@@ -35,7 +35,6 @@
 		647DEAF417E701D900D3EE57 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CB194617392B7C0014F35F /* MessageUI.framework */; };
 		648A2773171D875000338218 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 648A2772171D875000338218 /* MBProgressHUD.m */; };
 		649DCEA016D28DB8003F5A83 /* IAmMine.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 649DCE9E16D28DB7003F5A83 /* IAmMine.xcdatamodeld */; };
-		649DCEA316D29B0A003F5A83 /* CoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 649DCEA216D29AAD003F5A83 /* CoreDataController.m */; };
 		64A0507016D28CCA0025E179 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64A0506F16D28CCA0025E179 /* UIKit.framework */; };
 		64A0507216D28CCA0025E179 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64A0507116D28CCA0025E179 /* Foundation.framework */; };
 		64A0507416D28CCA0025E179 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64A0507316D28CCA0025E179 /* CoreGraphics.framework */; };
@@ -73,12 +72,10 @@
 		64B56853174658B3006D04C4 /* readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 64B56852174658B3006D04C4 /* readme.txt */; };
 		64B9B4A516D7801100607F39 /* IAMNoteEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 64B9B4A416D7801100607F39 /* IAMNoteEdit.m */; };
 		64BB200F16EA000E00FE6C77 /* GTThemer.m in Sources */ = {isa = PBXBuildFile; fileRef = 64BB200E16EA000E00FE6C77 /* GTThemer.m */; };
-		64BB69EC1715BB2C00875601 /* Dropbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64BB69EB1715BB2C00875601 /* Dropbox.framework */; };
 		64BB69EE1715BB4A00875601 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64BB69ED1715BB4A00875601 /* CFNetwork.framework */; };
 		64BB69F01715BB5700875601 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64BB69EF1715BB5700875601 /* Security.framework */; };
 		64BB69F21715BB5F00875601 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64BB69F11715BB5F00875601 /* SystemConfiguration.framework */; };
 		64BB69F41715BB6600875601 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64BB69F31715BB6600875601 /* QuartzCore.framework */; };
-		64CC812F1717F1B800C129B0 /* IAMDataSyncController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64CC812E1717F1B800C129B0 /* IAMDataSyncController.m */; };
 		64CEF2BC17D0E65900D3A58B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64CEF2BB17D0E65900D3A58B /* Images.xcassets */; };
 		64CEF2BE17D1F70900D3A58B /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CEF2BD17D1F70900D3A58B /* libc++.dylib */; };
 		64DE6C261727E5320031183A /* NSManagedObjectContext+FetchedObjectFromURI.m in Sources */ = {isa = PBXBuildFile; fileRef = 64DE6C251727E5320031183A /* NSManagedObjectContext+FetchedObjectFromURI.m */; };
@@ -142,8 +139,6 @@
 		648A2771171D875000338218 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		648A2772171D875000338218 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		649DCE9F16D28DB7003F5A83 /* IAmMine.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = IAmMine.xcdatamodel; sourceTree = "<group>"; };
-		649DCEA116D29AAD003F5A83 /* CoreDataController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CoreDataController.h; path = ../common/iCloud/CoreDataController.h; sourceTree = "<group>"; };
-		649DCEA216D29AAD003F5A83 /* CoreDataController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CoreDataController.m; path = ../common/iCloud/CoreDataController.m; sourceTree = "<group>"; };
 		64A0506C16D28CCA0025E179 /* iTurms.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTurms.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64A0506F16D28CCA0025E179 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		64A0507116D28CCA0025E179 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -193,7 +188,6 @@
 		64B9B4A416D7801100607F39 /* IAMNoteEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMNoteEdit.m; sourceTree = "<group>"; };
 		64BB200D16EA000E00FE6C77 /* GTThemer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTThemer.h; sourceTree = "<group>"; };
 		64BB200E16EA000E00FE6C77 /* GTThemer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTThemer.m; sourceTree = "<group>"; };
-		64BB69EB1715BB2C00875601 /* Dropbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Dropbox.framework; sourceTree = "<group>"; };
 		64BB69ED1715BB4A00875601 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		64BB69EF1715BB5700875601 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		64BB69F11715BB5F00875601 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -203,8 +197,6 @@
 		64CB194617392B7C0014F35F /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		64CB194817392B860014F35F /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		64CB194A17392BAD0014F35F /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
-		64CC812D1717F1B800C129B0 /* IAMDataSyncController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IAMDataSyncController.h; path = ../common/iCloud/IAMDataSyncController.h; sourceTree = "<group>"; };
-		64CC812E1717F1B800C129B0 /* IAMDataSyncController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IAMDataSyncController.m; path = ../common/iCloud/IAMDataSyncController.m; sourceTree = "<group>"; };
 		64CEF2BB17D0E65900D3A58B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../iJanus/Images.xcassets; sourceTree = "<group>"; };
 		64CEF2BD17D1F70900D3A58B /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		64DE6C241727E5320031183A /* NSManagedObjectContext+FetchedObjectFromURI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSManagedObjectContext+FetchedObjectFromURI.h"; path = "../common/iCloud/NSManagedObjectContext+FetchedObjectFromURI.h"; sourceTree = "<group>"; };
@@ -269,7 +261,6 @@
 				64A0507016D28CCA0025E179 /* UIKit.framework in Frameworks */,
 				64A0507216D28CCA0025E179 /* Foundation.framework in Frameworks */,
 				64A0507416D28CCA0025E179 /* CoreGraphics.framework in Frameworks */,
-				64BB69EC1715BB2C00875601 /* Dropbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,16 +366,6 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
-		6476CFA91744FCA800A6195C /* Sync */ = {
-			isa = PBXGroup;
-			children = (
-				64CC812D1717F1B800C129B0 /* IAMDataSyncController.h */,
-				64CC812E1717F1B800C129B0 /* IAMDataSyncController.m */,
-			);
-			name = Sync;
-			path = ..;
-			sourceTree = "<group>";
-		};
 		64845FE316E019F20046BE9C /* Utilities (common) */ = {
 			isa = PBXGroup;
 			children = (
@@ -406,8 +387,6 @@
 			children = (
 				64DE6C241727E5320031183A /* NSManagedObjectContext+FetchedObjectFromURI.h */,
 				64DE6C251727E5320031183A /* NSManagedObjectContext+FetchedObjectFromURI.m */,
-				649DCEA116D29AAD003F5A83 /* CoreDataController.h */,
-				649DCEA216D29AAD003F5A83 /* CoreDataController.m */,
 				649DCE9E16D28DB7003F5A83 /* IAmMine.xcdatamodeld */,
 				64F31CC816E5009B00A80BE0 /* Attachment.h */,
 				64F31CC916E5009B00A80BE0 /* Attachment.m */,
@@ -449,7 +428,6 @@
 				64BB69F11715BB5F00875601 /* SystemConfiguration.framework */,
 				64BB69EF1715BB5700875601 /* Security.framework */,
 				64BB69ED1715BB4A00875601 /* CFNetwork.framework */,
-				64BB69EB1715BB2C00875601 /* Dropbox.framework */,
 				64A7558D1702EFA70085933D /* AVFoundation.framework */,
 				6416315816D831DB0004CB52 /* MobileCoreServices.framework */,
 				640D40C116D6DFAF003034B3 /* CoreLocation.framework */,
@@ -464,7 +442,6 @@
 		64A0507516D28CCA0025E179 /* I Am Mine */ = {
 			isa = PBXGroup;
 			children = (
-				6476CFA91744FCA800A6195C /* Sync */,
 				64A755681702137A0085933D /* AudioRecord */,
 				6433103F16E0A8950064EC5C /* Utilities (iOS) */,
 				646602A216DBD373007622FC /* Images */,
@@ -698,7 +675,6 @@
 				64EB0F061819144E00DD9924 /* autolink.c in Sources */,
 				64EB0F0B1819144E00DD9924 /* html_smartypants.c in Sources */,
 				649DCEA016D28DB8003F5A83 /* IAmMine.xcdatamodeld in Sources */,
-				649DCEA316D29B0A003F5A83 /* CoreDataController.m in Sources */,
 				640D40BE16D5128B003034B3 /* IAMNoteCell.m in Sources */,
 				64B9B4A516D7801100607F39 /* IAMNoteEdit.m in Sources */,
 				6416315716D7DB830004CB52 /* IAMViewController.m in Sources */,
@@ -720,7 +696,6 @@
 				64A755831702137A0085933D /* MicrophoneWindow.m in Sources */,
 				64F9AC4D1704544800299C1B /* UIImage+FixOrientation.m in Sources */,
 				6429F2C81716FBD60030E932 /* NSString+UUID.m in Sources */,
-				64CC812F1717F1B800C129B0 /* IAMDataSyncController.m in Sources */,
 				648A2773171D875000338218 /* MBProgressHUD.m in Sources */,
 				64DE6C261727E5320031183A /* NSManagedObjectContext+FetchedObjectFromURI.m in Sources */,
 				64ED90FA1743E46E00203969 /* STKeychain.m in Sources */,

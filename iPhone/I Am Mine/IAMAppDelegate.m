@@ -10,9 +10,7 @@
 
 #import "GTThemer.h"
 #import "iRate.h"
-#import "STKeychain.h"
 #import "GTTransientMessage.h"
-#import "AHAlertView.h"
 
 @interface IAMAppDelegate()
 
@@ -33,8 +31,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Starting, so we want PIN request (if any) later
-    self.userInitedShutdown = YES;
     // Core Location init: get number of times user denied location use in app lifetime...
 	self.nLocationUseDenies = [[NSUserDefaults standardUserDefaults] integerForKey:@"userDeny"];
 	self.isLocationDenied = NO;
@@ -49,8 +45,6 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    DLog(@"Marking user inited app shutdown.");
-    self.userInitedShutdown = YES;
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -64,19 +58,6 @@
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    if (!self.userInitedShutdown) {
-        DLog(@"Active from external reason (no user inited), skipping PIN check");
-        return;
-    }
-    self.userInitedShutdown = NO;
-    NSError *error;
-    NSString *pin = [STKeychain getPasswordForUsername:@"lockCode" andServiceName:@"it.iltofa.janus" error:&error];
-    if(pin) {
-        DLog(@"PIN (%@) is required!", pin);
-        [self getPIN];
-    } else {
-        DLog(@"PIN is not required");
-    }
 }
 
 - (void)saveContext
@@ -172,61 +153,6 @@
 - (NSURL *)applicationDocumentsDirectory
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-}
-
-#pragma mark - PIN management
-
--(void)getPIN {
-    AHAlertView *alertView = [[AHAlertView alloc] initWithTitle:NSLocalizedString(@"Enter Lock Code", nil) message:NSLocalizedString(@"Enter the lock code to access the application.", nil)];
-    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
-    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-        [[alertView textFieldAtIndex:0] setKeyboardType:UIKeyboardTypeNumberPad];
-    }
-    [self applyCustomAlertAppearance];
-    [alertView setButtonBackgroundImage:[self imageWithColor:[UIColor colorWithWhite:0.882 alpha:1.0]] forState:UIControlStateNormal];
-    __weak AHAlertView *weakAlert = alertView;
-    [alertView addButtonWithTitle:NSLocalizedString(@"OK", nil) block:^ {
-        DLog(@"Button clicked, text is: \'%@\'", [weakAlert textFieldAtIndex:0].text);
-        NSError *error;
-        NSString *pin = [STKeychain getPasswordForUsername:@"lockCode" andServiceName:@"it.iltofa.janus" error:&error];
-        if(!pin || ![pin isEqualToString:[weakAlert textFieldAtIndex:0].text]) {
-            [self getPIN];
-        }
-    }];
-    [alertView show];
-}
-
-- (void)applyCustomAlertAppearance
-{
-	[[AHAlertView appearance] setContentInsets:UIEdgeInsetsMake(12, 18, 12, 18)];
-	[[AHAlertView appearance] setBackgroundImage:[self imageWithColor:[UIColor colorWithWhite:0.882 alpha:1.0]]];
-	[[AHAlertView appearance] setTitleTextAttributes:[AHAlertView textAttributesWithFont:[UIFont boldSystemFontOfSize:18] foregroundColor:[UIColor blackColor] shadowColor:[UIColor clearColor] shadowOffset:CGSizeMake(0, -1)]];
-	[[AHAlertView appearance] setMessageTextAttributes:[AHAlertView textAttributesWithFont:[UIFont systemFontOfSize:14] foregroundColor:[UIColor colorWithWhite:0.2 alpha:1.0] shadowColor:[UIColor clearColor] shadowOffset:CGSizeMake(0, -1)]];
-	[[AHAlertView appearance] setButtonTitleTextAttributes:[AHAlertView textAttributesWithFont:[UIFont boldSystemFontOfSize:18] foregroundColor:[UIColor colorWithRed:0.004 green:0.475 blue:0.988 alpha:1.000] shadowColor:[UIColor clearColor] shadowOffset:CGSizeMake(0, -1)]];
-}
-
-- (UIImage *)imageWithColor:(UIColor *)color
-{
-    CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
-    UIGraphicsBeginImageContext(rect.size);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    
-    CGContextSetFillColorWithColor(context, [color CGColor]);
-    CGContextFillRect(context, rect);
-    
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return image;
-}
-
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    NSLog(@"Button %d clicked, text is: \'%@\'", buttonIndex, [alertView textFieldAtIndex:0].text);
-    NSError *error;
-    NSString *pin = [STKeychain getPasswordForUsername:@"lockCode" andServiceName:@"it.iltofa.janus" error:&error];
-    if(!pin || ![pin isEqualToString:[alertView textFieldAtIndex:0].text]) {
-        [self getPIN];
-    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

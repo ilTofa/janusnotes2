@@ -9,8 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import <StoreKit/StoreKit.h>
-
-#import "CoreDataController.h"
+#import <CoreData/CoreData.h>
 
 #define kGotLocation @"gotLocation"
 #define kSkipAdProcessingChanged @"skipAdChanged"
@@ -35,6 +34,5 @@
 // Ads
 @property (nonatomic) BOOL skipAds;
 @property (atomic) BOOL processingPurchase;
-@property (atomic) BOOL userInitedShutdown;
 
 @end

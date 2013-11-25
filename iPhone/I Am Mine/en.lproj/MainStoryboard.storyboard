@@ -535,7 +535,7 @@ Label riga 3</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <label key="tableFooterView" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="320" id="fxz-Pf-qT7">
-                            <rect key="frame" x="0.0" y="757" width="320" height="66"/>
+                            <rect key="frame" x="0.0" y="485" width="320" height="66"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <string key="text">This I Am Mine version 1.0 (137)
 ©2013 Giacomo Tufano - All rights Reserved
@@ -675,120 +675,10 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Dropbox" id="5eQ-vc-Jn1">
-                                <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Ade-Oa-Fnx">
-                                        <rect key="frame" x="0.0" y="387" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ade-Oa-Fnx" id="Mxw-Bj-e1i">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Syncronize Notes With Dropbox" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iNN-ZR-1ID">
-                                                    <rect key="frame" x="20" y="11" width="280" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="iNN-ZR-1ID" firstAttribute="top" secondItem="Mxw-Bj-e1i" secondAttribute="top" constant="11" id="EmC-hl-25E"/>
-                                                <constraint firstAttribute="trailing" secondItem="iNN-ZR-1ID" secondAttribute="trailing" constant="20" symbolic="YES" id="G9s-W8-9fx"/>
-                                                <constraint firstItem="iNN-ZR-1ID" firstAttribute="centerY" secondItem="Mxw-Bj-e1i" secondAttribute="centerY" id="Pho-rC-aGe"/>
-                                                <constraint firstItem="iNN-ZR-1ID" firstAttribute="leading" secondItem="Mxw-Bj-e1i" secondAttribute="leading" constant="20" symbolic="YES" id="eL6-OW-Qwf"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="l6r-Ga-ELo">
-                                        <rect key="frame" x="0.0" y="431" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="l6r-Ga-ELo" id="Gyi-cS-ULA">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Ejo-P4-L9K">
-                                                    <rect key="frame" x="48" y="8" width="51" height="31"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="49" id="VyJ-f3-FLQ"/>
-                                                    </constraints>
-                                                    <connections>
-                                                        <action selector="encryptionAction:" destination="mV7-Kq-sdp" eventType="valueChanged" id="CMI-VR-nO9"/>
-                                                    </connections>
-                                                </switch>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Notes Encryption" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OB0-Tu-5J5">
-                                                    <rect key="frame" x="133" y="11" width="167" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="OB0-Tu-5J5" secondAttribute="trailing" constant="20" symbolic="YES" id="F3n-Sn-7LP"/>
-                                                <constraint firstItem="OB0-Tu-5J5" firstAttribute="centerY" secondItem="Gyi-cS-ULA" secondAttribute="centerY" id="RfG-ZX-nsl"/>
-                                                <constraint firstItem="Ejo-P4-L9K" firstAttribute="top" secondItem="Gyi-cS-ULA" secondAttribute="top" constant="8" id="j9G-Us-LV4"/>
-                                                <constraint firstItem="OB0-Tu-5J5" firstAttribute="leading" secondItem="Ejo-P4-L9K" secondAttribute="trailing" constant="36" id="kRb-Nt-Hjv"/>
-                                                <constraint firstItem="Ejo-P4-L9K" firstAttribute="leading" secondItem="Gyi-cS-ULA" secondAttribute="leading" constant="48" id="pkX-u3-b0g"/>
-                                                <constraint firstItem="OB0-Tu-5J5" firstAttribute="top" secondItem="Gyi-cS-ULA" secondAttribute="top" constant="11" id="q7B-t8-cjM"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="88F-Ou-mTg">
-                                        <rect key="frame" x="0.0" y="475" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="88F-Ou-mTg" id="Zwa-i8-HRv">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Change Encryption Password" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="So4-2e-6Af">
-                                                    <rect key="frame" x="20" y="11" width="280" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="So4-2e-6Af" secondAttribute="trailing" constant="20" symbolic="YES" id="BjP-mt-0ed"/>
-                                                <constraint firstItem="So4-2e-6Af" firstAttribute="centerY" secondItem="Zwa-i8-HRv" secondAttribute="centerY" id="bJl-Gs-bcv"/>
-                                                <constraint firstItem="So4-2e-6Af" firstAttribute="leading" secondItem="Zwa-i8-HRv" secondAttribute="leading" constant="20" symbolic="YES" id="vXO-hn-ThO"/>
-                                                <constraint firstItem="So4-2e-6Af" firstAttribute="top" secondItem="Zwa-i8-HRv" secondAttribute="top" constant="11" id="wvc-45-lXA"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                            <tableViewSection headerTitle="Keylock on app start" id="ehL-ph-Sva">
-                                <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Qfj-XN-QDF">
-                                        <rect key="frame" x="0.0" y="567" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Qfj-XN-QDF" id="1MO-KR-4eH">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="nTy-af-nbq">
-                                                    <rect key="frame" x="136" y="6" width="51" height="31"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <connections>
-                                                        <action selector="lockCodeAction:" destination="mV7-Kq-sdp" eventType="valueChanged" id="zym-u2-mVw"/>
-                                                    </connections>
-                                                </switch>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="nTy-af-nbq" firstAttribute="centerY" secondItem="1MO-KR-4eH" secondAttribute="centerY" id="3f5-oc-GXl"/>
-                                                <constraint firstItem="nTy-af-nbq" firstAttribute="centerX" secondItem="1MO-KR-4eH" secondAttribute="centerX" id="eLs-zn-U48"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
                             <tableViewSection headerTitle="Dates &amp; Sort" id="dPY-Wf-dRM">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Q3O-JR-0HJ">
-                                        <rect key="frame" x="0.0" y="659" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="387" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Q3O-JR-0HJ" id="5rE-yo-Ht7">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -825,7 +715,7 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="UxY-We-yj0">
-                                        <rect key="frame" x="0.0" y="703" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="431" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UxY-We-yj0" id="eVx-nP-nXg">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -879,10 +769,6 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                     </navigationItem>
                     <connections>
                         <outlet property="dateSelector" destination="S63-Cu-rTh" id="HN3-Ff-oOu"/>
-                        <outlet property="dropboxLabel" destination="iNN-ZR-1ID" id="GcE-NV-mnS"/>
-                        <outlet property="encryptionLabel" destination="So4-2e-6Af" id="Z72-jb-ul5"/>
-                        <outlet property="encryptionSwitch" destination="Ejo-P4-L9K" id="MKt-IJ-tdd"/>
-                        <outlet property="lockSwitch" destination="nTy-af-nbq" id="Jlu-Vn-luc"/>
                         <outlet property="productCoffeeCell" destination="kXH-vK-9DH" id="RCQ-PU-0Sr"/>
                         <outlet property="productCoffeeLabel" destination="Gq7-ZY-Ryv" id="EWz-ip-xNe"/>
                         <outlet property="productCoffeePriceLabel" destination="ad6-Gu-5XH" id="6zh-FM-dxE"/>
