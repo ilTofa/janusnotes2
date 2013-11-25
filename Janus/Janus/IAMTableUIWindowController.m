@@ -10,7 +10,6 @@
 
 #import "IAMNoteEditorWC.h"
 #import "IAMAppDelegate.h"
-#import "IAMFilesystemSyncController.h"
 #import "NSManagedObjectContext+FetchedObjectFromURI.h"
 #import "Attachment.h"
 @interface IAMTableUIWindowController () <IAMNoteEditorWCDelegate, NSWindowDelegate>
@@ -43,7 +42,6 @@
     [self.theTable setDoubleAction:@selector(tableItemDoubleClick:)];
     self.noteEditorIsShown = @(NO);
     self.sharedManagedObjectContext = ((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).managedObjectContext;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataSyncNeedsThePassword:) name:kIAMDataSyncNeedsAPasswordNow object:nil];
     [self.arrayController setSortDescriptors:@[[[NSSortDescriptor alloc] initWithKey:@"timeStamp" ascending:NO]]];
 }
 
@@ -63,11 +61,6 @@
 - (void)windowWillClose:(NSNotification *)notification {
     DLog(@"Main UI closing");
     [self.notesWindowMenuItem setState:NSOffState];
-}
-
-- (void)dataSyncNeedsThePassword:(NSNotification *)notification {
-    DLog(@"Notification caught for password need");
-    [(IAMAppDelegate *)[[NSApplication sharedApplication] delegate] preferencesAction:nil];
 }
 
 - (void)defaultDirectorySelected:(NSNotification *)notification {
@@ -127,10 +120,11 @@
 }
 
 - (IBAction)showInFinder:(id)sender {
-    Note *toBeShown = [self.arrayController selectedObjects][0];
-    NSURL *pathToBeShown = [[IAMFilesystemSyncController sharedInstance] urlForNote:toBeShown];
-    DLog(@"Show in finder requested for note: %@", pathToBeShown);
-    [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[pathToBeShown]];
+    // TODO: rewrite showInFinder
+//    Note *toBeShown = [self.arrayController selectedObjects][0];
+//    NSURL *pathToBeShown = [[IAMFilesystemSyncController sharedInstance] urlForNote:toBeShown];
+//    DLog(@"Show in finder requested for note: %@", pathToBeShown);
+//    [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[pathToBeShown]];
 }
 
 - (IBAction)deleteNote:(id)sender {
