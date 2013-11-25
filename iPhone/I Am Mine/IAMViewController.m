@@ -69,9 +69,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(syncStoreNotificationHandler:) name:kIAMDataSyncControllerReady object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(syncStoreNotificationHandler:) name:kIAMDataSyncControllerStopped object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(syncStoreStillPendingChanges:) name:kIAMDataSyncStillPendingChanges object:nil];
-    if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dynamicFontChanged:) name:UIContentSizeCategoryDidChangeNotification object:nil];
-    }
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dynamicFontChanged:) name:UIContentSizeCategoryDidChangeNotification object:nil];
     [self setupFetchExecAndReload];
 }
 
@@ -84,9 +82,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
-        [self colorize];
-    } else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
         // Workaround a modification on tableView content inset that happens on returning from note editor.
         self.tableView.contentInset = UIEdgeInsetsMake(64.0, 0, 0, 0);
     }
@@ -274,24 +270,14 @@
 - (void)dataSyncNeedsThePassword:(NSNotification *)notification {
     DLog(@"Notification caught for password need");
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-        if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
-            [self performSegueWithIdentifier:@"Preferences" sender:self];
-        } else {
-            [self performSegueWithIdentifier:@"Preferences7" sender:self];
-        }
+        [self performSegueWithIdentifier:@"Preferences7" sender:self];
     } else {
         if ([self.popSegue isPopoverVisible]) {
             // protect double instancing
             return;
         }
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPad" bundle:nil];
-        NSString *preferencesID;
-        if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
-            preferencesID = @"Preferences";
-        } else {
-            preferencesID = @"Preferences7";
-        }
-        IAMPreferencesController *pc = [storyboard instantiateViewControllerWithIdentifier:preferencesID];
+        IAMPreferencesController *pc = [storyboard instantiateViewControllerWithIdentifier:@"Preferences7"];
         self.popSegue = [[UIPopoverController alloc] initWithContentViewController:pc];
         [self.popSegue presentPopoverFromBarButtonItem:self.preferencesButton permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
     }
@@ -405,9 +391,6 @@
         }
         else {
             [self.tableView reloadData];
-            if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
-                [self colorize];
-            }
         }
     }
     [self saveSearchKeys];
@@ -432,15 +415,8 @@
     } else {
         cell.dateLabel.text = [self.dateFormatter stringFromDate:note.creationDate];
     }
-    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
-        [[GTThemer sharedInstance] applyColorsToLabel:cell.titleLabel withFontSize:17];
-        [[GTThemer sharedInstance] applyColorsToLabel:cell.noteTextLabel withFontSize:12];
-        [[GTThemer sharedInstance] applyColorsToLabel:cell.dateLabel withFontSize:10];
-        [[GTThemer sharedInstance] applyColorsToLabel:cell.attachmentsQuantityLabel withFontSize:10];
-    } else {
-        cell.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
-        cell.noteTextLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
-    }
+    cell.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
+    cell.noteTextLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
     NSUInteger attachmentsQuantity = 0;
     if(note.attachment) {
         attachmentsQuantity = [note.attachment count];
@@ -546,7 +522,7 @@
 -(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
     // If on iPad and we already have an active popover for preferences, don't perform segue
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && ([identifier isEqualToString:@"Preferences"] || [identifier isEqualToString:@"Preferences7"]) && [self.popSegue isPopoverVisible])
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && [identifier isEqualToString:@"Preferences7"] && [self.popSegue isPopoverVisible])
         return NO;
     return YES;
 }
@@ -578,33 +554,20 @@
     {
         [self.popSegue dismissPopoverAnimated:YES];
         self.popSegue = nil;
-        if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
-            [self colorize];
-        }
         [self sortAgain];
     }
 }
 
 - (IBAction)preferencesAction:(id)sender {
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-        if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
-            [self performSegueWithIdentifier:@"Preferences" sender:self];
-        } else {
-            [self performSegueWithIdentifier:@"Preferences7" sender:self];
-        }
+        [self performSegueWithIdentifier:@"Preferences7" sender:self];
     } else {
         if ([self.popSegue isPopoverVisible]) {
             // protect double instancing
             return;
         }
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPad" bundle:nil];
-        NSString *preferencesID;
-        if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
-            preferencesID = @"Preferences";
-        } else {
-            preferencesID = @"Preferences7";
-        }
-        IAMPreferencesController *pc = [storyboard instantiateViewControllerWithIdentifier:preferencesID];
+        IAMPreferencesController *pc = [storyboard instantiateViewControllerWithIdentifier:@"Preferences7"];
         self.popSegue = [[UIPopoverController alloc] initWithContentViewController:pc];
         [self.popSegue presentPopoverFromBarButtonItem:self.preferencesButton permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
     }

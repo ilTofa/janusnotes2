@@ -72,29 +72,12 @@ typedef enum {
     self.encryptionSwitch.on = [[IAMDataSyncController sharedInstance] notesAreEncrypted];
     self.sortSelector.selectedSegmentIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"sortBy"];
     self.dateSelector.selectedSegmentIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"dateShown"];
-    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
-        NSDictionary *fontAttributes = @{UITextAttributeFont: [UIFont boldSystemFontOfSize:13.0f]};
-        [self.sortSelector setTitleTextAttributes:fontAttributes forState:UIControlStateNormal];
-        [self.dateSelector setTitleTextAttributes:fontAttributes forState:UIControlStateNormal];
-        self.fontSize = [[GTThemer sharedInstance] getStandardFontSize];
-        [self.sizeStepper setValue:self.fontSize];
-        self.colorSet = [[GTThemer sharedInstance] getStandardColorsID];
-        [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:self.colorSet inSection:colorSelector] animated:YES scrollPosition:UITableViewScrollPositionMiddle];
-        self.fontFace = [[GTThemer sharedInstance] getStandardFontFaceID];
-        [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:self.fontFace inSection:fontSelector] animated:false scrollPosition:UITableViewScrollPositionTop];
-        [self sizePressed:nil];
-    }
     [self.tableView setContentOffset:CGPointZero animated:YES];
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    // Mark selected color...
-    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
-        UITableViewCell * tableCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:self.colorSet inSection:colorSelector]];
-        tableCell.accessoryType = UITableViewCellAccessoryCheckmark;
-    }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(skipAdProcessed:) name:kSkipAdProcessingChanged object:nil];
     [self updateDropboxUI];
     [self updateStoreUI];
@@ -349,11 +332,6 @@ typedef enum {
 
 - (IBAction)done:(id)sender
 {
-    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
-        DLog(@"Saving. ColorSet n° %d, fontFace n° %d, fontSize %d", self.colorSet, self.fontFace, self.fontSize);
-        [[GTThemer sharedInstance] saveStandardColors:self.colorSet];
-        [[GTThemer sharedInstance] saveStandardFontsWithFaceID:self.fontFace andSize:self.fontSize];
-    }
     // Dismiss (or ask for dismissing)
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
         [[NSNotificationCenter defaultCenter] postNotificationName:kPreferencesPopoverCanBeDismissed object:self];

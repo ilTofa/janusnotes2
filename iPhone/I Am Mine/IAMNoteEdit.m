@@ -77,16 +77,8 @@
     // Preset the note
     self.originalTitle = self.titleEdit.text = self.editedNote.title;
     self.originalText = self.textEdit.text = self.editedNote.text;
-    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
-        [[GTThemer sharedInstance] applyColorsToView:self.titleEdit];
-        [[GTThemer sharedInstance] applyColorsToView:self.textEdit];
-        [[GTThemer sharedInstance] applyColorsToView:self.view];
-        [[GTThemer sharedInstance] applyColorsToView:self.collectionView];
-        [[GTThemer sharedInstance] applyColorsToView:self.theToolbar];
-    } else {
-        [self dynamicFontChanged:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dynamicFontChanged:) name:UIContentSizeCategoryDidChangeNotification object:nil];
-    }
+    [self dynamicFontChanged:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dynamicFontChanged:) name:UIContentSizeCategoryDidChangeNotification object:nil];
     self.attachmensAreHidden = NO;
     [self refreshAttachments];
     [self processAds:nil];

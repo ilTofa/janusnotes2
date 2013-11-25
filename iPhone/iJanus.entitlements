@@ -4,9 +4,7 @@
 <dict>
 	<key>keychain-access-groups</key>
 	<array>
-		<string>$(AppIdentifierPrefix)it.iltofa.Janus</string>
+		<string>$(AppIdentifierPrefix)it.iltofa.Tumblr</string>
 	</array>
-	<key>com.apple.developer.default-data-protection</key>
-	<string>NSFileProtectionComplete</string>
 </dict>
 </plist>

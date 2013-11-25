@@ -499,11 +499,7 @@ fromTextAttributes:(NSDictionary *)attributes
 
 	// Create a new radial gradiant background image to do the screen dimming effect
 	self.dimView = [[UIImageView alloc] initWithFrame:self.alertWindow.bounds];
-    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
-        self.dimView.image = [self backgroundGradientImageWithSize:self.alertWindow.bounds.size];
-    } else {
-        self.dimView.image = [self imageWithColor:[UIColor colorWithWhite:0.882 alpha:1.0]];
-    }
+    self.dimView.image = [self imageWithColor:[UIColor colorWithWhite:0.882 alpha:1.0]];
 	self.dimView.userInteractionEnabled = YES;
 	
 	[self.alertWindow addSubview:self.dimView];

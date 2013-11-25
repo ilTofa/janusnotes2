@@ -507,7 +507,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 	indicatorF.size.width = MIN(indicatorF.size.width, maxWidth);
 	totalSize.width = MAX(totalSize.width, indicatorF.size.width);
 	totalSize.height += indicatorF.size.height;
-	
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 	CGSize labelSize = [label.text sizeWithFont:label.font];
 	labelSize.width = MIN(labelSize.width, maxWidth);
 	totalSize.width = MAX(totalSize.width, labelSize.width);
@@ -520,6 +520,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 	CGSize maxSize = CGSizeMake(maxWidth, remainingHeight);
 	CGSize detailsLabelSize = [detailsLabel.text sizeWithFont:detailsLabel.font 
 								constrainedToSize:maxSize lineBreakMode:detailsLabel.lineBreakMode];
+#pragma GCC diagnostic warning "-Wdeprecated-declarations"
 	totalSize.width = MAX(totalSize.width, detailsLabelSize.width);
 	totalSize.height += detailsLabelSize.height;
 	if (detailsLabelSize.height > 0.f && (indicatorF.size.height > 0.f || labelSize.height > 0.f)) {

@@ -23,20 +23,16 @@
 @implementation IAMAppDelegate
 
 + (void)initialize {
-    [iRate sharedInstance].daysUntilPrompt = 5;
-    [iRate sharedInstance].usesUntilPrompt = 5;
-    [iRate sharedInstance].appStoreID = 651150600;
-    [iRate sharedInstance].appStoreGenreID = 0;
+//    [iRate sharedInstance].daysUntilPrompt = 5;
+//    [iRate sharedInstance].usesUntilPrompt = 5;
+//    [iRate sharedInstance].appStoreID = 651150600;
+//    [iRate sharedInstance].appStoreGenreID = 0;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Starting, so we want PIN request (if any) later
     self.userInitedShutdown = YES;
-    // init colorizer...
-    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
-        [[GTThemer sharedInstance] saveStandardColors:[[GTThemer sharedInstance] getStandardColorsID]];
-    }
     // Core Location init: get number of times user denied location use in app lifetime...
 	self.nLocationUseDenies = [[NSUserDefaults standardUserDefaults] integerForKey:@"userDeny"];
 	self.isLocationDenied = NO;
@@ -99,12 +95,11 @@
 -(void)getPIN {
     AHAlertView *alertView = [[AHAlertView alloc] initWithTitle:NSLocalizedString(@"Enter Lock Code", nil) message:NSLocalizedString(@"Enter the lock code to access the application.", nil)];
     alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
-    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
         [[alertView textFieldAtIndex:0] setKeyboardType:UIKeyboardTypeNumberPad];
-    if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1) {
-        [self applyCustomAlertAppearance];
-        [alertView setButtonBackgroundImage:[self imageWithColor:[UIColor colorWithWhite:0.882 alpha:1.0]] forState:UIControlStateNormal];
     }
+    [self applyCustomAlertAppearance];
+    [alertView setButtonBackgroundImage:[self imageWithColor:[UIColor colorWithWhite:0.882 alpha:1.0]] forState:UIControlStateNormal];
     __weak AHAlertView *weakAlert = alertView;
     [alertView addButtonWithTitle:NSLocalizedString(@"OK", nil) block:^ {
         DLog(@"Button clicked, text is: \'%@\'", [weakAlert textFieldAtIndex:0].text);

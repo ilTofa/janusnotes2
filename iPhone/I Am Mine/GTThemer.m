@@ -67,35 +67,11 @@
 - (void)applyColorsToView:(UIView *)view
 {
     // Do something only on iOS 6.1 or earlier
-    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
-        // if is a text field, set font (bigger) and color
-        if([view isMemberOfClass:[UITextField class]]){
-            [(UITextField *)view setFont:[UIFont fontWithName:self.defaultFontFace size:self.defaultFontSize + 3]];
-            [(UITextField *)view setTextColor:self.defaultColors[@"textColor"]];
-        }
-        // If a text view, set font and color
-        if([view isMemberOfClass:[UITextView class]]){
-            [(UITextView *)view setFont:[UIFont fontWithName:self.defaultFontFace size:self.defaultFontSize]];
-            [(UITextView *)view setTextColor:self.defaultColors[@"textColor"]];
-        }
-        // if it is a "tintable" class: set tint.
-        else if([view isMemberOfClass:[UIToolbar class]] || [view isMemberOfClass:[UINavigationBar class]] || [view isMemberOfClass:[UISearchBar class]] || [view isMemberOfClass:[UIActivityIndicatorView class]]) {
-            [(UIToolbar *)view setTintColor:self.defaultColors[@"tintColor"]];
-        }
-        // All else failing, set background for the view (or the collection view)
-        else if([view isKindOfClass:[UIView class]]) {
-            [view setBackgroundColor:self.defaultColors[@"backgroundColor"]];
-        }
-    }
 }
 
 -(void)applyColorsToLabel:(UILabel *)label withFontSize:(int)fontSize
 {
     // Do something only on iOS 6.1 or earlier
-    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
-        [label setTextColor:self.defaultColors[@"textColor"]];
-        [label setFont:[UIFont fontWithName:self.defaultFontFace size:fontSize]];
-    }
 }
 
 -(NSInteger)getStandardColorsID

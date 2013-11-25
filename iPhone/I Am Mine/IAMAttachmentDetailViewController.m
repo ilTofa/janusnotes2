@@ -47,11 +47,6 @@
 {
     [super viewDidLoad];
     NSAssert(self.theAttachment, @"No valid Attachment object sent to IAMAttachmentDetailViewController.");
-    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
-        [[GTThemer sharedInstance] applyColorsToView:self.theToolbar];
-        [[GTThemer sharedInstance] applyColorsToView:self.theWebView];
-        [[GTThemer sharedInstance] applyColorsToView:self.view];
-    }
     self.theWebView.clipsToBounds = NO;
     if(!self.deleterObject)
         [self.deleteButton setEnabled:NO];
