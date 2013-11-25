@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		6429F2C41716EB3C0030E932 /* NSString+UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 6429F2C31716EB3C0030E932 /* NSString+UUID.m */; };
 		6429F2C51716EB3C0030E932 /* NSString+UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 6429F2C31716EB3C0030E932 /* NSString+UUID.m */; };
-		642D29CF1721470400006FC1 /* IAMFilesystemSyncController.m in Sources */ = {isa = PBXBuildFile; fileRef = 642D29CE1721470400006FC1 /* IAMFilesystemSyncController.m */; };
 		643BA048173BFA4600A6C437 /* IAmMine.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 64EA627016F71E1400F4838E /* IAmMine.xcdatamodeld */; };
 		643BA050173D26E300A6C437 /* IAMOpenWithWC.m in Sources */ = {isa = PBXBuildFile; fileRef = 643BA04E173D26E300A6C437 /* IAMOpenWithWC.m */; };
 		643BA051173D26E300A6C437 /* IAMOpenWithWC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 643BA04F173D26E300A6C437 /* IAMOpenWithWC.xib */; };
@@ -114,8 +113,6 @@
 /* Begin PBXFileReference section */
 		6429F2C21716EB3C0030E932 /* NSString+UUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+UUID.h"; path = "../common/Utilitites/NSString+UUID.h"; sourceTree = "<group>"; };
 		6429F2C31716EB3C0030E932 /* NSString+UUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+UUID.m"; path = "../common/Utilitites/NSString+UUID.m"; sourceTree = "<group>"; };
-		642D29CD1721470400006FC1 /* IAMFilesystemSyncController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMFilesystemSyncController.h; sourceTree = "<group>"; };
-		642D29CE1721470400006FC1 /* IAMFilesystemSyncController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMFilesystemSyncController.m; sourceTree = "<group>"; };
 		643BA04D173D26E300A6C437 /* IAMOpenWithWC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMOpenWithWC.h; sourceTree = "<group>"; };
 		643BA04E173D26E300A6C437 /* IAMOpenWithWC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMOpenWithWC.m; sourceTree = "<group>"; };
 		643BA04F173D26E300A6C437 /* IAMOpenWithWC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IAMOpenWithWC.xib; sourceTree = "<group>"; };
@@ -177,7 +174,7 @@
 		64E6BDB8175009C600B63D46 /* settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "settings@2x.png"; path = "Buttons/settings@2x.png"; sourceTree = "<group>"; };
 		64E6BDB9175009C600B63D46 /* show_property.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = show_property.png; path = Buttons/show_property.png; sourceTree = "<group>"; };
 		64E6BDBA175009C600B63D46 /* show_property@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "show_property@2x.png"; path = "Buttons/show_property@2x.png"; sourceTree = "<group>"; };
-		64EA620C16F7110300F4838E /* Janus Notes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "Janus Notes.app"; path = Turms.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		64EA620C16F7110300F4838E /* Turms.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Turms.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64EA620F16F7110300F4838E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		64EA621216F7110300F4838E /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		64EA621316F7110300F4838E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -258,8 +255,6 @@
 		642D29CC172146E400006FC1 /* Sync */ = {
 			isa = PBXGroup;
 			children = (
-				642D29CD1721470400006FC1 /* IAMFilesystemSyncController.h */,
-				642D29CE1721470400006FC1 /* IAMFilesystemSyncController.m */,
 			);
 			path = Sync;
 			sourceTree = "<group>";
@@ -372,7 +367,7 @@
 		64EA620D16F7110300F4838E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				64EA620C16F7110300F4838E /* Janus Notes.app */,
+				64EA620C16F7110300F4838E /* Turms.app */,
 				64EA622E16F7110300F4838E /* TurmsImporter.mdimporter */,
 			);
 			name = Products;
@@ -538,7 +533,7 @@
 			);
 			name = Turms;
 			productName = Janus;
-			productReference = 64EA620C16F7110300F4838E /* Janus Notes.app */;
+			productReference = 64EA620C16F7110300F4838E /* Turms.app */;
 			productType = "com.apple.product-type.application";
 		};
 		64EA622D16F7110300F4838E /* TurmsImporter */ = {
@@ -570,6 +565,11 @@
 				TargetAttributes = {
 					64EA620B16F7110300F4838E = {
 						DevelopmentTeam = 6483W56522;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -672,7 +672,6 @@
 				64EE7C80180C58B9004B94E2 /* html.c in Sources */,
 				64EE7C7E180C58B9004B94E2 /* houdini_html_e.c in Sources */,
 				6429F2C41716EB3C0030E932 /* NSString+UUID.m in Sources */,
-				642D29CF1721470400006FC1 /* IAMFilesystemSyncController.m in Sources */,
 				644AC25B17257FE4007B51FF /* IAMTableUIWindowController.m in Sources */,
 				644AC2741726C343007B51FF /* IAMCollectionItemView.m in Sources */,
 				644AC2781726CFAC007B51FF /* IAMPrefsWindowController.m in Sources */,

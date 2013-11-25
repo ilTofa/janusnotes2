@@ -7,7 +7,6 @@
 //
 
 #import "IAMPrefsWindowController.h"
-#import "IAMFilesystemSyncController.h"
 
 @interface IAMPrefsWindowController ()
 

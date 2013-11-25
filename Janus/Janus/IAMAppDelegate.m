@@ -9,7 +9,6 @@
 #import "IAMAppDelegate.h"
 
 #include <sys/sysctl.h>
-#import "IAMFilesystemSyncController.h"
 #import "IAMPrefsWindowController.h"
 #import "iRate.h"
 #import "STKeychain.h"
