@@ -1,6 +1,6 @@
 //
 //  GetMetadataForFile.m
-//  JanusImporter
+//  TurmsImporter
 //
 //  Created by Giacomo Tufano on 18/03/13.
 //  Copyright (c) 2013 Giacomo Tufano. All rights reserved.
@@ -55,7 +55,7 @@ Boolean GetMetadataForFile(void *thisInterface, CFMutableDictionaryRef attribute
                 }
             }
             
-        } else if ([(__bridge NSString *)contentTypeUTI isEqualToString:@"it.iltofa.janus"]) {
+        } else if ([(__bridge NSString *)contentTypeUTI isEqualToString:@"it.iltofa.turms.entry"]) {
             // import from an external record file
             
             TurmsSpotlightImporter *importer = [[TurmsSpotlightImporter alloc] init];

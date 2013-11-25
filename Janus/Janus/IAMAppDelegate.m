@@ -1,6 +1,6 @@
 //
 //  IAMAppDelegate.m
-//  Janus
+//  Turms
 //
 //  Created by Giacomo Tufano on 18/03/13.
 //  Copyright (c) 2013 Giacomo Tufano. All rights reserved.
@@ -30,14 +30,14 @@
 @synthesize managedObjectContext = _managedObjectContext;
 
 #ifndef DEMO
-+ (void)initialize {
-    // Init iRate
-    [iRate sharedInstance].daysUntilPrompt = 5;
-    [iRate sharedInstance].usesUntilPrompt = 15;
-    [iRate sharedInstance].appStoreID = 651141191;
-    [iRate sharedInstance].appStoreGenreID = 0;
-    [iRate sharedInstance].onlyPromptIfMainWindowIsAvailable = NO;
-}
+//+ (void)initialize {
+//    // Init iRate
+//    [iRate sharedInstance].daysUntilPrompt = 5;
+//    [iRate sharedInstance].usesUntilPrompt = 15;
+//    [iRate sharedInstance].appStoreID = 651141191;
+//    [iRate sharedInstance].appStoreGenreID = 0;
+//    [iRate sharedInstance].onlyPromptIfMainWindowIsAvailable = NO;
+//}
 #endif
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
@@ -67,7 +67,7 @@
 - (BOOL)application:(NSApplication *)theApplication openFile:(NSString *)filename {
     DLog(@"App called to open %@", filename);
     BOOL retValue = NO;
-    if (filename && [filename hasSuffix:@"janus"]) {
+    if (filename && [filename hasSuffix:@"turmsentry"]) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^(void){
             [self openFile:filename];
         });
@@ -98,12 +98,12 @@
     }
 }
 
-// Returns the directory the application uses to store the Core Data store file. This code uses a directory named "it.iltofa.Janus" in the user's Application Support directory.
+// Returns the directory the application uses to store the Core Data store file. This code uses a directory named as the bundle in the user's Application Support directory.
 - (NSURL *)applicationFilesDirectory
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSURL *appSupportURL = [[fileManager URLsForDirectory:NSApplicationSupportDirectory inDomains:NSUserDomainMask] lastObject];
-    return [appSupportURL URLByAppendingPathComponent:@"it.iltofa.Janus"];
+    return [appSupportURL URLByAppendingPathComponent:@"it.iltofa.Turms"];
 }
 
 // Returns the persistent store coordinator for the application. This implementation creates and return a coordinator, having added the store for the application to it. (The directory for the store is created, if necessary.)
@@ -284,10 +284,10 @@
 
 - (void)lifeSaver {
     NSError *error;
-    NSString *whatever = [STKeychain getPasswordForUsername:@"decrypt" andServiceName:@"it.iltofa.janus" error:&error];
+    NSString *whatever = [STKeychain getPasswordForUsername:@"decrypt" andServiceName:@"it.iltofa.turms" error:&error];
     NSInteger uno = [whatever integerValue];
     NSInteger due = [[NSUserDefaults standardUserDefaults] integerForKey:@"time"];
-    NSString *lastS = [STKeychain getPasswordForUsername:@"last" andServiceName:@"it.iltofa.janus" error:&error];
+    NSString *lastS = [STKeychain getPasswordForUsername:@"last" andServiceName:@"it.iltofa.turms" error:&error];
     NSDate *last1 = [NSDate dateWithTimeIntervalSinceReferenceDate:[lastS doubleValue]];
     NSDate *last2 = [NSDate dateWithTimeIntervalSinceReferenceDate:[[NSUserDefaults standardUserDefaults] doubleForKey:@"last"]];
     // Validate
@@ -315,7 +315,7 @@
         // This is the first init
         _lifeline = 15;
         NSTimeInterval last = [[NSDate date] timeIntervalSinceReferenceDate];
-        [STKeychain storeUsername:@"last" andPassword:[NSString stringWithFormat:@"%.0f", last] forServiceName:@"it.iltofa.janus" updateExisting:YES error:&error];
+        [STKeychain storeUsername:@"last" andPassword:[NSString stringWithFormat:@"%.0f", last] forServiceName:@"it.iltofa.turms" updateExisting:YES error:&error];
         [[NSUserDefaults standardUserDefaults] setDouble:last forKey:@"last"];
     } else {
         // Restore the other value if tampered with
@@ -326,15 +326,17 @@
             // A day is passed, reduce remaining time...
             _lifeline--;
             NSTimeInterval last = [[NSDate date] timeIntervalSinceReferenceDate];
-            [STKeychain storeUsername:@"last" andPassword:[NSString stringWithFormat:@"%.0f", last] forServiceName:@"it.iltofa.janus" updateExisting:YES error:&error];
+            [STKeychain storeUsername:@"last" andPassword:[NSString stringWithFormat:@"%.0f", last] forServiceName:@"it.iltofa.turms" updateExisting:YES error:&error];
             [[NSUserDefaults standardUserDefaults] setDouble:last forKey:@"last"];
         }
     }
-    [STKeychain storeUsername:@"decrypt" andPassword:[NSString stringWithFormat:@"%ld", _lifeline] forServiceName:@"it.iltofa.janus" updateExisting:YES error:&error];
+    [STKeychain storeUsername:@"decrypt" andPassword:[NSString stringWithFormat:@"%ld", _lifeline] forServiceName:@"it.iltofa.turms" updateExisting:YES error:&error];
     [[NSUserDefaults standardUserDefaults] setInteger:_lifeline forKey:@"time"];
 }
 
 #endif
+
+// TODO: fix url paths
 
 - (IBAction)showFAQs:(id)sender {
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://www.janusnotes.com/faq.html"]];
@@ -356,8 +358,8 @@
     } else {
         model = @"Unknown";
     }
-    NSString *subject = [NSString stringWithFormat:@"Feedback on Janus Notes OS X app version %@ (%@) on a %@/%@", [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"], [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"], model, [[NSProcessInfo processInfo] operatingSystemVersionString]];
-    NSString *urlString = [[NSString stringWithFormat:@"mailto:support@janusnotes.com?subject=%@", subject] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];;
+    NSString *subject = [NSString stringWithFormat:@"Feedback on Turms OS X app version %@ (%@) on a %@/%@", [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"], [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"], model, [[NSProcessInfo processInfo] operatingSystemVersionString]];
+    NSString *urlString = [[NSString stringWithFormat:@"mailto:gt+turmssupport@iltofa.com?subject=%@", subject] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];;
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:urlString]];
 }
 @end

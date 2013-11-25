@@ -1,6 +1,6 @@
 //
 //  IAMNoteWindowController.m
-//  Janus
+// Turms
 //
 //  Created by Giacomo Tufano on 18/03/13.
 //  Copyright (c) 2013 Giacomo Tufano. All rights reserved.

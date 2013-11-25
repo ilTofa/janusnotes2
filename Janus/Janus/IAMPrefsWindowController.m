@@ -1,6 +1,6 @@
 //
 //  IAMPrefsWindowController.m
-//  Janus
+// Turms
 //
 //  Created by Giacomo Tufano on 23/04/13.
 //  Copyright (c) 2013 Giacomo Tufano. All rights reserved.

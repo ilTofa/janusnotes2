@@ -1,6 +1,6 @@
 //
 //  IAMFilesystemSyncController.m
-//  Janus
+// Turms
 //
 //  Created by Giacomo Tufano on 12/04/13.
 //  Copyright (c) 2013 Giacomo Tufano. All rights reserved.
@@ -185,12 +185,12 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
     NSError *error;
     NSURL *magicFile = [self.syncDirectory URLByAppendingPathComponent:kMagicCryptFilename isDirectory:NO];
     if(password) {
-        [STKeychain storeUsername:@"crypt" andPassword:password forServiceName:@"it.iltofa.janus" updateExisting:YES error:&error];
+        [STKeychain storeUsername:@"crypt" andPassword:password forServiceName:@"it.iltofa.turms" updateExisting:YES error:&error];
         NSData *magicContent = [kMagicString dataUsingEncoding:NSUTF8StringEncoding];
         NSData *encryptedData = [RNEncryptor encryptData:magicContent withSettings:kRNCryptorAES256Settings password:password error:&error];
         [encryptedData writeToURL:magicFile atomically:YES];
     } else {
-        [STKeychain deleteItemForUsername:@"crypt" andServiceName:@"it.iltofa.janus" error:&error];
+        [STKeychain deleteItemForUsername:@"crypt" andServiceName:@"it.iltofa.turms" error:&error];
         [[NSFileManager defaultManager] removeItemAtURL:magicFile error:&error];
     }
 }
@@ -219,11 +219,11 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
 
 - (NSString *)cryptPassword {
     NSError *error;
-    return [STKeychain getPasswordForUsername:@"crypt" andServiceName:@"it.iltofa.janus" error:&error];
+    return [STKeychain getPasswordForUsername:@"crypt" andServiceName:@"it.iltofa.turms" error:&error];
 }
 
 - (BOOL)isCryptOKWithError:(NSError **)errorPtr {
-    NSString *cryptKey = [STKeychain getPasswordForUsername:@"crypt" andServiceName:@"it.iltofa.janus" error:errorPtr];
+    NSString *cryptKey = [STKeychain getPasswordForUsername:@"crypt" andServiceName:@"it.iltofa.turms" error:errorPtr];
     if(!cryptKey) {
         ALog(@"Error reading crypt key on cryptd note directory: %@", [*errorPtr description]);
         return NO;
@@ -247,7 +247,7 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
     if([magicString isEqualToString:kMagicString]) {
         return YES;
     }
-    *errorPtr = [NSError errorWithDomain:@"it.iltofa.janus" code:1 userInfo:nil];
+    *errorPtr = [NSError errorWithDomain:@"it.iltofa.turms" code:1 userInfo:nil];
     return NO;
 }
 
