@@ -142,19 +142,14 @@
 
 - (void) alertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
-    // If called from firstdirectory selection contextInfo will be not nil
-    if (contextInfo) {
-        [(IAMAppDelegate *)[[NSApplication sharedApplication] delegate] preferencesForDirectory];
-    } else {
-        if(returnCode == NSAlertSecondButtonReturn)
-        {
-            // Delete on main moc
-            NSError *error;
-            DLog(@"User confirmed delete, now really deleting note: %@", ((Note *)([self.arrayController selectedObjects][0])).title);
-            [self.sharedManagedObjectContext deleteObject:[self.arrayController selectedObjects][0]];
-            if(![self.sharedManagedObjectContext save:&error])
-                ALog(@"Unresolved error %@, %@", error, [error userInfo]);
-        }
+    if(returnCode == NSAlertSecondButtonReturn)
+    {
+        // Delete on main moc
+        NSError *error;
+        DLog(@"User confirmed delete, now really deleting note: %@", ((Note *)([self.arrayController selectedObjects][0])).title);
+        [self.sharedManagedObjectContext deleteObject:[self.arrayController selectedObjects][0]];
+        if(![self.sharedManagedObjectContext save:&error])
+            ALog(@"Unresolved error %@, %@", error, [error userInfo]);
     }
 }
 

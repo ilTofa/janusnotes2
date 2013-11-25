@@ -196,22 +196,11 @@
     }
 }
 
-- (void)preferencesForDirectory {
-    if(!self.prefsController) {
-        self.prefsController = [[IAMPrefsWindowController alloc] initWithWindowNibName:@"IAMPrefsWindowController"];
-    }
-    // sender is nil, this is called because we need a password now...
-    self.prefsController.directoryNeeded = YES;
-    [self.prefsController showWindow:self];
-}
+// TODO: delete two methods below
 
 - (IBAction)preferencesAction:(id)sender {
     if(!self.prefsController) {
         self.prefsController = [[IAMPrefsWindowController alloc] initWithWindowNibName:@"IAMPrefsWindowController"];
-    }
-    // sender is nil, this is called because we need a password now...
-    if(!sender) {
-        self.prefsController.aPasswordIsNeededASAP = YES;
     }
     [self.prefsController showWindow:self];
 }
@@ -265,10 +254,6 @@
 
 - (IBAction)getIOSApp:(id)sender {
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://itunes.apple.com/app/id651150600"]];
-}
-
-- (IBAction)getFullVersion:(id)sender {
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"macappstore://itunes.apple.com/app/id651141191?mt=12"]];
 }
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender
