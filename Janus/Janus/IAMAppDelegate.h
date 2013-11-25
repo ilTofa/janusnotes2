@@ -11,6 +11,8 @@
 
 #import "IAMTableUIWindowController.h"
 
+#define kCoreDataStoreExternallyChanged @"kCoreDataStoreExternallyChanged"
+
 @interface IAMAppDelegate : NSObject <NSApplicationDelegate>
 
 @property (assign) IBOutlet NSWindow *window;

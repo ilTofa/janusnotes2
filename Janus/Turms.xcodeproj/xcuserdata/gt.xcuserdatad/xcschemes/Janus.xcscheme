@@ -57,6 +57,12 @@
             ReferencedContainer = "container:Turms.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "-com.apple.coredata.ubiquity.logLevel 1"
+            isEnabled = "YES">
+         </CommandLineArgument>
+      </CommandLineArguments>
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "CA_DEBUG_TRANSACTIONS"

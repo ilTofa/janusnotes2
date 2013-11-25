@@ -167,14 +167,14 @@
 		649DCE9F16D28DB7003F5A83 /* IAmMine.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = IAmMine.xcdatamodel; sourceTree = "<group>"; };
 		649DCEA116D29AAD003F5A83 /* CoreDataController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CoreDataController.h; path = ../common/iCloud/CoreDataController.h; sourceTree = "<group>"; };
 		649DCEA216D29AAD003F5A83 /* CoreDataController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CoreDataController.m; path = ../common/iCloud/CoreDataController.m; sourceTree = "<group>"; };
-		64A0506C16D28CCA0025E179 /* iJanus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iJanus.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		64A0506C16D28CCA0025E179 /* iTurms.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTurms.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64A0506F16D28CCA0025E179 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		64A0507116D28CCA0025E179 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		64A0507316D28CCA0025E179 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		64A0507716D28CCA0025E179 /* iJanus-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iJanus-Info.plist"; sourceTree = "<group>"; };
+		64A0507716D28CCA0025E179 /* iTurms-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iTurms-Info.plist"; sourceTree = "<group>"; };
 		64A0507916D28CCA0025E179 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		64A0507B16D28CCA0025E179 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		64A0507D16D28CCA0025E179 /* iJanus-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iJanus-Prefix.pch"; sourceTree = "<group>"; };
+		64A0507D16D28CCA0025E179 /* iTurms-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iTurms-Prefix.pch"; sourceTree = "<group>"; };
 		64A0507E16D28CCA0025E179 /* IAMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IAMAppDelegate.h; sourceTree = "<group>"; };
 		64A0507F16D28CCA0025E179 /* IAMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IAMAppDelegate.m; sourceTree = "<group>"; };
 		64A0508816D28CCA0025E179 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
@@ -454,7 +454,7 @@
 		64A0506D16D28CCA0025E179 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				64A0506C16D28CCA0025E179 /* iJanus.app */,
+				64A0506C16D28CCA0025E179 /* iTurms.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -524,10 +524,10 @@
 				6466029A16DBC987007622FC /* Icon@2x.png */,
 				6466029E16DBC999007622FC /* Icon-72.png */,
 				6466029F16DBC999007622FC /* Icon-72@2x.png */,
-				64A0507716D28CCA0025E179 /* iJanus-Info.plist */,
+				64A0507716D28CCA0025E179 /* iTurms-Info.plist */,
 				64A0507816D28CCA0025E179 /* InfoPlist.strings */,
 				64A0507B16D28CCA0025E179 /* main.m */,
-				64A0507D16D28CCA0025E179 /* iJanus-Prefix.pch */,
+				64A0507D16D28CCA0025E179 /* iTurms-Prefix.pch */,
 				64E0AA4217E70ED9008BF0E3 /* In-App-Products.plist */,
 			);
 			name = "Supporting Files";
@@ -601,9 +601,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		64A0506B16D28CCA0025E179 /* iJanus */ = {
+		64A0506B16D28CCA0025E179 /* iTurms */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 64A0508F16D28CCA0025E179 /* Build configuration list for PBXNativeTarget "iJanus" */;
+			buildConfigurationList = 64A0508F16D28CCA0025E179 /* Build configuration list for PBXNativeTarget "iTurms" */;
 			buildPhases = (
 				64A0506816D28CCA0025E179 /* Sources */,
 				64A0506916D28CCA0025E179 /* Frameworks */,
@@ -613,9 +613,9 @@
 			);
 			dependencies = (
 			);
-			name = iJanus;
+			name = iTurms;
 			productName = "I Am Mine";
-			productReference = 64A0506C16D28CCA0025E179 /* iJanus.app */;
+			productReference = 64A0506C16D28CCA0025E179 /* iTurms.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -633,7 +633,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 64A0506716D28CCA0025E179 /* Build configuration list for PBXProject "iJanus" */;
+			buildConfigurationList = 64A0506716D28CCA0025E179 /* Build configuration list for PBXProject "iTurms" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -663,7 +663,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				64A0506B16D28CCA0025E179 /* iJanus */,
+				64A0506B16D28CCA0025E179 /* iTurms */,
 			);
 		};
 /* End PBXProject section */
@@ -833,7 +833,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -857,7 +857,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -877,11 +877,11 @@
 					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "I Am Mine/iJanus-Prefix.pch";
-				INFOPLIST_FILE = "I Am Mine/iJanus-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				GCC_PREFIX_HEADER = "I Am Mine/iTurms-Prefix.pch";
+				INFOPLIST_FILE = "I Am Mine/iTurms-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_NAME = iJanus;
+				PRODUCT_NAME = iTurms;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -901,11 +901,11 @@
 					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "I Am Mine/iJanus-Prefix.pch";
-				INFOPLIST_FILE = "I Am Mine/iJanus-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				GCC_PREFIX_HEADER = "I Am Mine/iTurms-Prefix.pch";
+				INFOPLIST_FILE = "I Am Mine/iTurms-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_NAME = iJanus;
+				PRODUCT_NAME = iTurms;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -916,7 +916,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		64A0506716D28CCA0025E179 /* Build configuration list for PBXProject "iJanus" */ = {
+		64A0506716D28CCA0025E179 /* Build configuration list for PBXProject "iTurms" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				64A0508D16D28CCA0025E179 /* Debug */,
@@ -925,7 +925,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		64A0508F16D28CCA0025E179 /* Build configuration list for PBXNativeTarget "iJanus" */ = {
+		64A0508F16D28CCA0025E179 /* Build configuration list for PBXNativeTarget "iTurms" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				64A0509016D28CCA0025E179 /* Debug */,

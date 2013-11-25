@@ -50,6 +50,11 @@
         self.collectionController = [[IAMTableUIWindowController alloc] initWithWindowNibName:@"IAMTableUIWindowController"];
         [self.collectionController showWindow:self];
     }
+    // Now set for the iCloud notification
+    NSNotificationCenter *dc = [NSNotificationCenter defaultCenter];
+    [dc addObserver:self selector:@selector(storesWillChange:) name:NSPersistentStoreCoordinatorStoresWillChangeNotification object:self.persistentStoreCoordinator];
+    [dc addObserver:self selector:@selector(storesDidChange:) name:NSPersistentStoreCoordinatorStoresDidChangeNotification object:self.persistentStoreCoordinator];
+    [dc addObserver:self selector:@selector(storeHaveNewData:) name:NSPersistentStoreDidImportUbiquitousContentChangesNotification object:self.persistentStoreCoordinator];
     [self deleteCache];
 }
 
@@ -87,11 +92,13 @@
     }
 }
 
+#pragma mark - Core Data
+
 - (NSURL *)applicationFilesDirectory
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSURL *appSupportURL = [[fileManager URLsForDirectory:NSApplicationSupportDirectory inDomains:NSUserDomainMask] lastObject];
-    return [appSupportURL URLByAppendingPathComponent:@"it.iltofa.Buttami"];
+    return [appSupportURL URLByAppendingPathComponent:@"it.iltofa.Turms"];
 }
 
 // Creates if necessary and returns the managed object model for the application.
@@ -141,16 +148,20 @@
             
             NSMutableDictionary *dict = [NSMutableDictionary dictionary];
             [dict setValue:failureDescription forKey:NSLocalizedDescriptionKey];
-            error = [NSError errorWithDomain:@"it.iltofa.turms" code:101 userInfo:dict];
+            error = [NSError errorWithDomain:@"it.iltofa.Turms" code:101 userInfo:dict];
             
             [[NSApplication sharedApplication] presentError:error];
             return nil;
         }
     }
     
-    NSURL *url = [applicationFilesDirectory URLByAppendingPathComponent:@"Turms.storedata"];
+    NSURL *url = [applicationFilesDirectory URLByAppendingPathComponent:@"store.sqlite"];
     NSPersistentStoreCoordinator *coordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:mom];
-    if (![coordinator addPersistentStoreWithType:NSXMLStoreType configuration:nil URL:url options:nil error:&error]) {
+    NSDictionary *options = @{NSPersistentStoreUbiquitousContainerIdentifierKey: @"6483W56522.it.iltofa.Turms",
+                              NSPersistentStoreUbiquitousContentNameKey: @"Turms",
+                              NSMigratePersistentStoresAutomaticallyOption: @YES,
+                              NSInferMappingModelAutomaticallyOption: @YES};
+    if (![coordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:url options:options error:&error]) {
         [[NSApplication sharedApplication] presentError:error];
         return nil;
     }
@@ -180,6 +191,31 @@
     
     return _managedObjectContext;
 }
+
+#pragma mark - iCloud
+
+- (void)storesWillChange:(NSNotification *)n {
+    NSError *error;
+    if ([self.managedObjectContext hasChanges]) {
+        [self.managedObjectContext save:&error];
+    }
+    [self.managedObjectContext reset];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kCoreDataStoreExternallyChanged object:self.persistentStoreCoordinator userInfo:@{@"reason": NSPersistentStoreCoordinatorStoresWillChangeNotification}];
+    //reset user interface
+}
+
+- (void)storesDidChange:(NSNotification *)n {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kCoreDataStoreExternallyChanged object:self.persistentStoreCoordinator userInfo:@{@"reason": NSPersistentStoreCoordinatorStoresDidChangeNotification}];
+}
+
+- (void)storeHaveNewData:(NSNotification *)n {
+    [self.managedObjectContext performBlock:^{
+        [self.managedObjectContext mergeChangesFromContextDidSaveNotification:n];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kCoreDataStoreExternallyChanged object:self.persistentStoreCoordinator userInfo:@{@"reason": NSPersistentStoreDidImportUbiquitousContentChangesNotification}];
+    }];
+}
+
+#pragma mark -
 
 // Performs the save action for the application, which is to send the save: message to the application's managed object context. Any encountered errors are presented to the user.
 - (IBAction)saveAction:(id)sender
