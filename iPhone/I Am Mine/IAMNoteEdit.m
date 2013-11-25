@@ -20,9 +20,7 @@
 #import "MicrophoneWindow.h"
 #import "GTThemer.h"
 #import "UIImage+FixOrientation.h"
-#import "IAMDataSyncController.h"
 #import "IAMMarkdownPreViewController.h"
-// #import "NSManagedObjectContext+FetchedObjectFromURI.h"
 
 @interface IAMNoteEdit () <UITextViewDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, IAMAddLinkViewControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, AttachmentDeleter, MicrophoneWindowDelegate>
 
@@ -38,6 +36,7 @@
 @property (strong) NSString *originalText;
 
 @property NSManagedObjectContext *noteEditorMOC;
+@property (weak) NSManagedObjectContext *parentMOC;
 
 @property CGFloat currentAttachmentConstraintHeight;
 
@@ -59,8 +58,9 @@
     [super viewDidLoad];
     // The NSManagedObjectContext instance should change for a local (to the controller instance) one.
     // We need to migrate the passed object to the new moc.
-    self.noteEditorMOC = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
-    [self.noteEditorMOC setParentContext:[IAMDataSyncController sharedInstance].dataSyncThreadContext];
+    self.noteEditorMOC = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSConfinementConcurrencyType];
+    self.parentMOC = ((IAMAppDelegate *)[[UIApplication sharedApplication] delegate]).managedObjectContext;
+    [self.noteEditorMOC setParentContext:self.parentMOC];
     if(!self.idForTheNoteToBeEdited) {
         // It seems that we're created without a note, that will mean that we're required to create a new one.
         Note *newNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:self.noteEditorMOC];
@@ -212,19 +212,16 @@
     self.editedNote.title = self.titleEdit.text;
     self.editedNote.text = self.textEdit.text;
     NSError *error;
-    if(![self.noteEditorMOC save:&error])
+    if(![self.noteEditorMOC save:&error]) {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+    }
     // Save on parent context
-    [[IAMDataSyncController sharedInstance].dataSyncThreadContext performBlock:^{
+    [self.parentMOC performBlock:^{
         NSError *localError;
-        if(![[IAMDataSyncController sharedInstance].dataSyncThreadContext save:&localError])
+        if(![self.parentMOC save:&localError])
             ALog(@"Unresolved error saving parent context %@, %@", error, [error userInfo]);
     }];
     // If title is changed, delete old note (with wrong name)
-    if(![self.editedNote.title isEqualToString:self.originalTitle] && self.originalTitle && ![self.originalTitle isEqualToString:@""]) {
-        [[IAMDataSyncController sharedInstance] deleteNoteTextWithUUID:self.editedNote.uuid afterFilenameChangeFrom:self.originalTitle];
-        self.originalTitle = self.editedNote.title;
-    }
     self.originalText = self.editedNote.text;
     // If called via action
     if(sender)
