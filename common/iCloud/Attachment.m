@@ -15,8 +15,6 @@
 #import <Cocoa/Cocoa.h>
 #endif
 
-#import "NSString+UUID.h"
-
 @implementation Attachment
 
 @dynamic type;
@@ -38,10 +36,7 @@
 - (void) awakeFromInsert
 {
     [super awakeFromInsert];
-    if([NSUUID class])
-        [self setUuid:[[NSUUID UUID] UUIDString]];
-    else
-        [self setUuid:[NSString uuid]];
+    [self setUuid:[[NSUUID UUID] UUIDString]];
     [self setCreationDate:[NSDate date]];
     [self setTimeStamp:[NSDate date]];
 }
@@ -122,11 +117,7 @@
     if(self.filename && ![self.filename isEqualToString:@""])
         cacheFile = [cacheDirectory URLByAppendingPathComponent:self.filename];
     else {
-        NSString *tempUuid;
-        if([NSUUID class])
-            tempUuid = [[NSUUID UUID] UUIDString];
-        else
-            tempUuid = [NSString uuid];
+        NSString *tempUuid = [[NSUUID UUID] UUIDString];
         NSString *temporaryFilename = [NSString stringWithFormat:@"%@.%@", tempUuid, self.extension];
         cacheFile = [cacheDirectory URLByAppendingPathComponent:temporaryFilename];
     }

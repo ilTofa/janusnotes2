@@ -8,8 +8,6 @@
 
 #import "Note.h"
 
-#import "NSString+UUID.h"
-
 @implementation Note
 
 @dynamic creationDate;
@@ -33,10 +31,7 @@
     [super awakeFromInsert];
     [self setText:@""];
     [self setTitle:@""];
-    if([NSUUID class])
-        [self setUuid:[[NSUUID UUID] UUIDString]];
-    else
-        [self setUuid:[NSString uuid]];
+    [self setUuid:[[NSUUID UUID] UUIDString]];
     [self setTimeStamp:[NSDate date]];
     [self setCreationDate:[NSDate date]];
     [self setAttachment:nil];

@@ -1,6 +1,6 @@
 //
 //  IAMMarkdownPreViewController.m
-//  iJanus
+//  iTurms
 //
 //  Created by Giacomo Tufano on 24/10/13.
 //  Copyright (c) 2013 Giacomo Tufano. All rights reserved.

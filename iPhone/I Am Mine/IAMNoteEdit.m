@@ -12,7 +12,6 @@
 #import <iAd/iAd.h>
 
 #import "IAMAppDelegate.h"
-#import "UIViewController+GTFrames.h"
 #import "Attachment.h"
 #import "IAMAddLinkViewController.h"
 #import "IAMAttachmentCell.h"

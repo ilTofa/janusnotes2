@@ -11,7 +11,6 @@
 #include <sys/sysctl.h>
 #import "IAMPrefsWindowController.h"
 #import "iRate.h"
-#import "STKeychain.h"
 
 @interface IAMAppDelegate ()
 

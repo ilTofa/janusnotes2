@@ -7,12 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6429F2C41716EB3C0030E932 /* NSString+UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 6429F2C31716EB3C0030E932 /* NSString+UUID.m */; };
-		6429F2C51716EB3C0030E932 /* NSString+UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 6429F2C31716EB3C0030E932 /* NSString+UUID.m */; };
+		641A9BC818440F5800C2EE74 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64EA621316F7110300F4838E /* CoreData.framework */; };
 		643BA048173BFA4600A6C437 /* IAmMine.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 64EA627016F71E1400F4838E /* IAmMine.xcdatamodeld */; };
 		643BA050173D26E300A6C437 /* IAMOpenWithWC.m in Sources */ = {isa = PBXBuildFile; fileRef = 643BA04E173D26E300A6C437 /* IAMOpenWithWC.m */; };
 		643BA051173D26E300A6C437 /* IAMOpenWithWC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 643BA04F173D26E300A6C437 /* IAMOpenWithWC.xib */; };
-		643F008B177C7153005B1DB5 /* NSDate+GTStringsHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 643F008A177C7153005B1DB5 /* NSDate+GTStringsHelpers.m */; };
 		644AC25B17257FE4007B51FF /* IAMTableUIWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 644AC25917257FE4007B51FF /* IAMTableUIWindowController.m */; };
 		644AC25C17257FE4007B51FF /* IAMTableUIWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 644AC25A17257FE4007B51FF /* IAMTableUIWindowController.xib */; };
 		644AC2741726C343007B51FF /* IAMCollectionItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 644AC2731726C343007B51FF /* IAMCollectionItemView.m */; };
@@ -30,12 +28,7 @@
 		64B56855174658ED006D04C4 /* readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 64B56854174658ED006D04C4 /* readme.txt */; };
 		64CB19281738EEE90014F35F /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CB19271738EEE90014F35F /* WebKit.framework */; };
 		64CB192A1738EFF20014F35F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CB19291738EFF20014F35F /* SystemConfiguration.framework */; };
-		64D8C9AF1740F7B0005D87DC /* RNCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D8C9A21740F7B0005D87DC /* RNCryptor.m */; };
-		64D8C9B01740F7B0005D87DC /* RNCryptorEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D8C9A41740F7B0005D87DC /* RNCryptorEngine.m */; };
-		64D8C9B11740F7B0005D87DC /* RNDecryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D8C9A61740F7B0005D87DC /* RNDecryptor.m */; };
-		64D8C9B21740F7B0005D87DC /* RNEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D8C9A81740F7B0005D87DC /* RNEncryptor.m */; };
 		64D8C9B71740F7F1005D87DC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64D8C9B61740F7F1005D87DC /* Security.framework */; };
-		64D8C9BA1740F985005D87DC /* STKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D8C9B91740F985005D87DC /* STKeychain.m */; };
 		64E6BDA7174FCB1A00B63D46 /* edit.png in Resources */ = {isa = PBXBuildFile; fileRef = 64E6BDA5174FCB1A00B63D46 /* edit.png */; };
 		64E6BDA8174FCB1A00B63D46 /* edit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64E6BDA6174FCB1A00B63D46 /* edit@2x.png */; };
 		64E6BDBB175009C600B63D46 /* add_property.png in Resources */ = {isa = PBXBuildFile; fileRef = 64E6BDA9175009C500B63D46 /* add_property.png */; };
@@ -111,13 +104,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		6429F2C21716EB3C0030E932 /* NSString+UUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+UUID.h"; path = "../common/Utilitites/NSString+UUID.h"; sourceTree = "<group>"; };
-		6429F2C31716EB3C0030E932 /* NSString+UUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+UUID.m"; path = "../common/Utilitites/NSString+UUID.m"; sourceTree = "<group>"; };
 		643BA04D173D26E300A6C437 /* IAMOpenWithWC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMOpenWithWC.h; sourceTree = "<group>"; };
 		643BA04E173D26E300A6C437 /* IAMOpenWithWC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMOpenWithWC.m; sourceTree = "<group>"; };
 		643BA04F173D26E300A6C437 /* IAMOpenWithWC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IAMOpenWithWC.xib; sourceTree = "<group>"; };
-		643F0089177C7153005B1DB5 /* NSDate+GTStringsHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+GTStringsHelpers.h"; path = "../common/Utilitites/NSDate+GTStringsHelpers.h"; sourceTree = "<group>"; };
-		643F008A177C7153005B1DB5 /* NSDate+GTStringsHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+GTStringsHelpers.m"; path = "../common/Utilitites/NSDate+GTStringsHelpers.m"; sourceTree = "<group>"; };
 		644AC25817257FE4007B51FF /* IAMTableUIWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMTableUIWindowController.h; sourceTree = "<group>"; };
 		644AC25917257FE4007B51FF /* IAMTableUIWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMTableUIWindowController.m; sourceTree = "<group>"; };
 		644AC25A17257FE4007B51FF /* IAMTableUIWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IAMTableUIWindowController.xib; sourceTree = "<group>"; };
@@ -141,19 +130,7 @@
 		64CB19271738EEE90014F35F /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		64CB19291738EFF20014F35F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		64D32800181A828200D94B1A /* TurmsImporter-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TurmsImporter-Info.plist"; sourceTree = "<group>"; };
-		64D8C99F1740F7B0005D87DC /* RNCryptor+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor+Private.h"; sourceTree = "<group>"; };
-		64D8C9A01740F7B0005D87DC /* RNCryptor-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor-Prefix.pch"; sourceTree = "<group>"; };
-		64D8C9A11740F7B0005D87DC /* RNCryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCryptor.h; sourceTree = "<group>"; };
-		64D8C9A21740F7B0005D87DC /* RNCryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCryptor.m; sourceTree = "<group>"; };
-		64D8C9A31740F7B0005D87DC /* RNCryptorEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCryptorEngine.h; sourceTree = "<group>"; };
-		64D8C9A41740F7B0005D87DC /* RNCryptorEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCryptorEngine.m; sourceTree = "<group>"; };
-		64D8C9A51740F7B0005D87DC /* RNDecryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNDecryptor.h; sourceTree = "<group>"; };
-		64D8C9A61740F7B0005D87DC /* RNDecryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNDecryptor.m; sourceTree = "<group>"; };
-		64D8C9A71740F7B0005D87DC /* RNEncryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNEncryptor.h; sourceTree = "<group>"; };
-		64D8C9A81740F7B0005D87DC /* RNEncryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNEncryptor.m; sourceTree = "<group>"; };
 		64D8C9B61740F7F1005D87DC /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		64D8C9B81740F985005D87DC /* STKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STKeychain.h; path = ../common/Utilitites/STKeychain.h; sourceTree = "<group>"; };
-		64D8C9B91740F985005D87DC /* STKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STKeychain.m; path = ../common/Utilitites/STKeychain.m; sourceTree = "<group>"; };
 		64E6BDA5174FCB1A00B63D46 /* edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = edit.png; path = Buttons/edit.png; sourceTree = "<group>"; };
 		64E6BDA6174FCB1A00B63D46 /* edit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "edit@2x.png"; path = "Buttons/edit@2x.png"; sourceTree = "<group>"; };
 		64E6BDA9175009C500B63D46 /* add_property.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = add_property.png; path = Buttons/add_property.png; sourceTree = "<group>"; };
@@ -231,6 +208,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				641A9BC818440F5800C2EE74 /* CoreData.framework in Frameworks */,
 				64D8C9B71740F7F1005D87DC /* Security.framework in Frameworks */,
 				64CB192A1738EFF20014F35F /* SystemConfiguration.framework in Frameworks */,
 				64CB19281738EEE90014F35F /* WebKit.framework in Frameworks */,
@@ -252,13 +230,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		642D29CC172146E400006FC1 /* Sync */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Sync;
-			sourceTree = "<group>";
-		};
 		644AC25D17257FEB007B51FF /* Main UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -316,7 +287,7 @@
 				645ED8A11754ED8A0070F83B /* iRate.m */,
 			);
 			name = iRate;
-			path = ../../iRate/iRate;
+			path = ../iRate/iRate;
 			sourceTree = "<group>";
 		};
 		64A1D4ED16FCA12700E50CC1 /* Note Edit */ = {
@@ -334,24 +305,6 @@
 				645A7E601817C602003C9D5A /* IAMNoteEditTextView.m */,
 			);
 			name = "Note Edit";
-			sourceTree = "<group>";
-		};
-		64D8C99E1740F7B0005D87DC /* RNCryptor */ = {
-			isa = PBXGroup;
-			children = (
-				64D8C99F1740F7B0005D87DC /* RNCryptor+Private.h */,
-				64D8C9A01740F7B0005D87DC /* RNCryptor-Prefix.pch */,
-				64D8C9A11740F7B0005D87DC /* RNCryptor.h */,
-				64D8C9A21740F7B0005D87DC /* RNCryptor.m */,
-				64D8C9A31740F7B0005D87DC /* RNCryptorEngine.h */,
-				64D8C9A41740F7B0005D87DC /* RNCryptorEngine.m */,
-				64D8C9A51740F7B0005D87DC /* RNDecryptor.h */,
-				64D8C9A61740F7B0005D87DC /* RNDecryptor.m */,
-				64D8C9A71740F7B0005D87DC /* RNEncryptor.h */,
-				64D8C9A81740F7B0005D87DC /* RNEncryptor.m */,
-			);
-			name = RNCryptor;
-			path = ../common/RNCryptor;
 			sourceTree = "<group>";
 		};
 		64EA620316F7110300F4838E = {
@@ -403,10 +356,8 @@
 			isa = PBXGroup;
 			children = (
 				64629F64183F79F300753313 /* Images.xcassets */,
-				645ED89E1754ED8A0070F83B /* iRate */,
 				64EA627816F71E7600F4838E /* Utilities (common) */,
 				64EA626B16F71DF500F4838E /* CoreData (common) */,
-				642D29CC172146E400006FC1 /* Sync */,
 				644AC25E17258213007B51FF /* Buttons */,
 				64EA622116F7110300F4838E /* IAMAppDelegate.h */,
 				64EA622216F7110300F4838E /* IAMAppDelegate.m */,
@@ -478,14 +429,8 @@
 		64EA627816F71E7600F4838E /* Utilities (common) */ = {
 			isa = PBXGroup;
 			children = (
+				645ED89E1754ED8A0070F83B /* iRate */,
 				64EE7C6A180C54EC004B94E2 /* sundown */,
-				643F0089177C7153005B1DB5 /* NSDate+GTStringsHelpers.h */,
-				643F008A177C7153005B1DB5 /* NSDate+GTStringsHelpers.m */,
-				64D8C9B81740F985005D87DC /* STKeychain.h */,
-				64D8C9B91740F985005D87DC /* STKeychain.m */,
-				64D8C99E1740F7B0005D87DC /* RNCryptor */,
-				6429F2C21716EB3C0030E932 /* NSString+UUID.h */,
-				6429F2C31716EB3C0030E932 /* NSString+UUID.m */,
 			);
 			name = "Utilities (common)";
 			path = ..;
@@ -671,20 +616,13 @@
 				64A75591170358BC0085933D /* NSManagedObjectContext+FetchedObjectFromURI.m in Sources */,
 				64EE7C80180C58B9004B94E2 /* html.c in Sources */,
 				64EE7C7E180C58B9004B94E2 /* houdini_html_e.c in Sources */,
-				6429F2C41716EB3C0030E932 /* NSString+UUID.m in Sources */,
 				644AC25B17257FE4007B51FF /* IAMTableUIWindowController.m in Sources */,
 				644AC2741726C343007B51FF /* IAMCollectionItemView.m in Sources */,
 				644AC2781726CFAC007B51FF /* IAMPrefsWindowController.m in Sources */,
 				643BA050173D26E300A6C437 /* IAMOpenWithWC.m in Sources */,
-				64D8C9AF1740F7B0005D87DC /* RNCryptor.m in Sources */,
-				64D8C9B01740F7B0005D87DC /* RNCryptorEngine.m in Sources */,
 				64EE7C77180C54EC004B94E2 /* stack.c in Sources */,
-				64D8C9B11740F7B0005D87DC /* RNDecryptor.m in Sources */,
-				64D8C9B21740F7B0005D87DC /* RNEncryptor.m in Sources */,
 				64EE7C75180C54EC004B94E2 /* buffer.c in Sources */,
-				64D8C9BA1740F985005D87DC /* STKeychain.m in Sources */,
 				645ED8A31754ED8A0070F83B /* iRate.m in Sources */,
-				643F008B177C7153005B1DB5 /* NSDate+GTStringsHelpers.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -695,7 +633,6 @@
 				64EA624116F7110300F4838E /* main.c in Sources */,
 				64EA624316F7110300F4838E /* GetMetadataForFile.m in Sources */,
 				64EA624616F7110300F4838E /* TurmsSpotlightImporter.m in Sources */,
-				6429F2C51716EB3C0030E932 /* NSString+UUID.m in Sources */,
 				643BA048173BFA4600A6C437 /* IAmMine.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -176,8 +176,8 @@ typedef enum {
 - (IBAction)sendCommentAction:(id)sender {
     MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
     controller.mailComposeDelegate = self;
-    [controller setToRecipients:@[@"support@janusnotes.com"]];
-    [controller setSubject:[NSString stringWithFormat:@"Feedback on Janus Notes iOS app version %@ (%@)", [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"], [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"]]];
+    [controller setToRecipients:@[@"gt+iTurmsSupport@ilTofa.com"]];
+    [controller setSubject:[NSString stringWithFormat:@"Feedback on Turms iOS app version %@ (%@)", [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"], [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"]]];
     [controller setMessageBody:@"" isHTML:NO];
     if (controller)
         [self presentViewController:controller animated:YES completion:nil];

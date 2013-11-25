@@ -18,9 +18,6 @@
 		6416315D16D8345F0004CB52 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 6416315C16D8345F0004CB52 /* UIImage+RoundedCorner.m */; };
 		641A5EFC16ED463B00D3440C /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 641A5EFB16ED463B00D3440C /* MainStoryboard_iPad.storyboard */; };
 		641D954416E8CF6E00A253E3 /* IAMAttachmentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 641D954316E8CF6E00A253E3 /* IAMAttachmentDetailViewController.m */; };
-		6429F2C81716FBD60030E932 /* NSString+UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 6429F2C71716FBD60030E932 /* NSString+UUID.m */; };
-		6433103E16E0A85D0064EC5C /* UIViewController+GTFrames.m in Sources */ = {isa = PBXBuildFile; fileRef = 6433103D16E0A85D0064EC5C /* UIViewController+GTFrames.m */; };
-		643F0088177C3CB7005B1DB5 /* NSDate+GTStringsHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 643F0087177C3CB2005B1DB5 /* NSDate+GTStringsHelpers.m */; };
 		6447056E16DD0FC4000A0262 /* SmallRow.png in Resources */ = {isa = PBXBuildFile; fileRef = 6447056C16DD0FC4000A0262 /* SmallRow.png */; };
 		6447056F16DD0FC4000A0262 /* SmallRow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6447056D16DD0FC4000A0262 /* SmallRow@2x.png */; };
 		645A7E6618183846003C9D5A /* link-browser-big.png in Resources */ = {isa = PBXBuildFile; fileRef = 645A7E6218183846003C9D5A /* link-browser-big.png */; };
@@ -30,7 +27,6 @@
 		645ED8AC1754F1640070F83B /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CB194417392B710014F35F /* StoreKit.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		645ED8AF1754F7730070F83B /* link-microphone-big.png in Resources */ = {isa = PBXBuildFile; fileRef = 645ED8AD1754F7730070F83B /* link-microphone-big.png */; };
 		645ED8B01754F7730070F83B /* link-microphone-big@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 645ED8AE1754F7730070F83B /* link-microphone-big@2x.png */; };
-		6460CD65181E7C0F002DF1EE /* AHAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6460CD64181E7C0F002DF1EE /* AHAlertView.m */; };
 		6476C11017E0CE270094C4AB /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CB194A17392BAD0014F35F /* iAd.framework */; };
 		647DEAF417E701D900D3EE57 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CB194617392B7C0014F35F /* MessageUI.framework */; };
 		648A2773171D875000338218 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 648A2772171D875000338218 /* MBProgressHUD.m */; };
@@ -91,11 +87,6 @@
 		64EB0F0C1819144E00DD9924 /* markdown.c in Sources */ = {isa = PBXBuildFile; fileRef = 64EB0F021819144E00DD9924 /* markdown.c */; };
 		64EB0F0D1819144E00DD9924 /* stack.c in Sources */ = {isa = PBXBuildFile; fileRef = 64EB0F041819144E00DD9924 /* stack.c */; };
 		64EB0F0F1819147100DD9924 /* MarkdownPreview.html in Resources */ = {isa = PBXBuildFile; fileRef = 64EB0F0E1819147100DD9924 /* MarkdownPreview.html */; };
-		64ED90FA1743E46E00203969 /* STKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 64ED90F91743E46E00203969 /* STKeychain.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		64ED91061743E48900203969 /* RNCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 64ED90FF1743E48900203969 /* RNCryptor.m */; };
-		64ED91071743E48900203969 /* RNCryptorEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 64ED91011743E48900203969 /* RNCryptorEngine.m */; };
-		64ED91081743E48900203969 /* RNDecryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 64ED91031743E48900203969 /* RNDecryptor.m */; };
-		64ED91091743E48900203969 /* RNEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 64ED91051743E48900203969 /* RNEncryptor.m */; };
 		64F31CC416E4AF9000A80BE0 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F31CC316E4AF9000A80BE0 /* Note.m */; };
 		64F31CCA16E5009B00A80BE0 /* Attachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F31CC916E5009B00A80BE0 /* Attachment.m */; };
 		64F9AC4D1704544800299C1B /* UIImage+FixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F9AC4C1704544800299C1B /* UIImage+FixOrientation.m */; };
@@ -119,12 +110,6 @@
 		641A5EFB16ED463B00D3440C /* MainStoryboard_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		641D954216E8CF6E00A253E3 /* IAMAttachmentDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMAttachmentDetailViewController.h; sourceTree = "<group>"; };
 		641D954316E8CF6E00A253E3 /* IAMAttachmentDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMAttachmentDetailViewController.m; sourceTree = "<group>"; };
-		6429F2C61716FBD60030E932 /* NSString+UUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+UUID.h"; path = "../common/Utilitites/NSString+UUID.h"; sourceTree = "<group>"; };
-		6429F2C71716FBD60030E932 /* NSString+UUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+UUID.m"; path = "../common/Utilitites/NSString+UUID.m"; sourceTree = "<group>"; };
-		6433103C16E0A85D0064EC5C /* UIViewController+GTFrames.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+GTFrames.h"; sourceTree = "<group>"; };
-		6433103D16E0A85D0064EC5C /* UIViewController+GTFrames.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+GTFrames.m"; sourceTree = "<group>"; };
-		643F0086177C3CB2005B1DB5 /* NSDate+GTStringsHelpers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NSDate+GTStringsHelpers.h"; path = "../common/Utilitites/NSDate+GTStringsHelpers.h"; sourceTree = "<group>"; };
-		643F0087177C3CB2005B1DB5 /* NSDate+GTStringsHelpers.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "NSDate+GTStringsHelpers.m"; path = "../common/Utilitites/NSDate+GTStringsHelpers.m"; sourceTree = "<group>"; };
 		6447056C16DD0FC4000A0262 /* SmallRow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SmallRow.png; path = Images/SmallRow.png; sourceTree = "<group>"; };
 		6447056D16DD0FC4000A0262 /* SmallRow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SmallRow@2x.png"; path = "Images/SmallRow@2x.png"; sourceTree = "<group>"; };
 		645A13A01701BFC800CCB4FB /* iJanus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = iJanus.entitlements; path = ../iJanus.entitlements; sourceTree = "<group>"; };
@@ -134,8 +119,6 @@
 		645A7E6518183846003C9D5A /* link-browser@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "link-browser@2x.png"; path = "Images/link-browser@2x.png"; sourceTree = "<group>"; };
 		645ED8AD1754F7730070F83B /* link-microphone-big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "link-microphone-big.png"; path = "Images/link-microphone-big.png"; sourceTree = "<group>"; };
 		645ED8AE1754F7730070F83B /* link-microphone-big@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "link-microphone-big@2x.png"; path = "Images/link-microphone-big@2x.png"; sourceTree = "<group>"; };
-		6460CD63181E7C0F002DF1EE /* AHAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AHAlertView.h; sourceTree = "<group>"; };
-		6460CD64181E7C0F002DF1EE /* AHAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AHAlertView.m; sourceTree = "<group>"; };
 		648A2771171D875000338218 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		648A2772171D875000338218 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		649DCE9F16D28DB7003F5A83 /* IAmMine.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = IAmMine.xcdatamodel; sourceTree = "<group>"; };
@@ -221,18 +204,6 @@
 		64EB0F041819144E00DD9924 /* stack.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = stack.c; sourceTree = "<group>"; };
 		64EB0F051819144E00DD9924 /* stack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stack.h; sourceTree = "<group>"; };
 		64EB0F0E1819147100DD9924 /* MarkdownPreview.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = MarkdownPreview.html; path = ../../common/MarkdownPreview.html; sourceTree = "<group>"; };
-		64ED90F81743E46E00203969 /* STKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STKeychain.h; path = ../common/Utilitites/STKeychain.h; sourceTree = "<group>"; };
-		64ED90F91743E46E00203969 /* STKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STKeychain.m; path = ../common/Utilitites/STKeychain.m; sourceTree = "<group>"; };
-		64ED90FC1743E48900203969 /* RNCryptor+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor+Private.h"; sourceTree = "<group>"; };
-		64ED90FD1743E48900203969 /* RNCryptor-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor-Prefix.pch"; sourceTree = "<group>"; };
-		64ED90FE1743E48900203969 /* RNCryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCryptor.h; sourceTree = "<group>"; };
-		64ED90FF1743E48900203969 /* RNCryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCryptor.m; sourceTree = "<group>"; };
-		64ED91001743E48900203969 /* RNCryptorEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCryptorEngine.h; sourceTree = "<group>"; };
-		64ED91011743E48900203969 /* RNCryptorEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCryptorEngine.m; sourceTree = "<group>"; };
-		64ED91021743E48900203969 /* RNDecryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNDecryptor.h; sourceTree = "<group>"; };
-		64ED91031743E48900203969 /* RNDecryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNDecryptor.m; sourceTree = "<group>"; };
-		64ED91041743E48900203969 /* RNEncryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNEncryptor.h; sourceTree = "<group>"; };
-		64ED91051743E48900203969 /* RNEncryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNEncryptor.m; sourceTree = "<group>"; };
 		64F31CC216E4AF9000A80BE0 /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Note.h; path = ../common/iCloud/Note.h; sourceTree = "<group>"; };
 		64F31CC316E4AF9000A80BE0 /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Note.m; path = ../common/iCloud/Note.m; sourceTree = "<group>"; };
 		64F31CC816E5009B00A80BE0 /* Attachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Attachment.h; path = ../common/iCloud/Attachment.h; sourceTree = "<group>"; };
@@ -307,15 +278,12 @@
 		6433103F16E0A8950064EC5C /* Utilities (iOS) */ = {
 			isa = PBXGroup;
 			children = (
-				6460CD62181E7C0F002DF1EE /* AHAlertView */,
 				6410E1C917E85D2000B568D0 /* GTTransientMessage.h */,
 				6410E1CA17E85D2000B568D0 /* GTTransientMessage.m */,
 				648A2771171D875000338218 /* MBProgressHUD.h */,
 				648A2772171D875000338218 /* MBProgressHUD.m */,
 				6416315B16D8345F0004CB52 /* UIImage+RoundedCorner.h */,
 				6416315C16D8345F0004CB52 /* UIImage+RoundedCorner.m */,
-				6433103C16E0A85D0064EC5C /* UIViewController+GTFrames.h */,
-				6433103D16E0A85D0064EC5C /* UIViewController+GTFrames.m */,
 				64F9AC4B1704544800299C1B /* UIImage+FixOrientation.h */,
 				64F9AC4C1704544800299C1B /* UIImage+FixOrientation.m */,
 			);
@@ -332,15 +300,6 @@
 			);
 			name = iRate;
 			path = ../iRate;
-			sourceTree = "<group>";
-		};
-		6460CD62181E7C0F002DF1EE /* AHAlertView */ = {
-			isa = PBXGroup;
-			children = (
-				6460CD63181E7C0F002DF1EE /* AHAlertView.h */,
-				6460CD64181E7C0F002DF1EE /* AHAlertView.m */,
-			);
-			path = AHAlertView;
 			sourceTree = "<group>";
 		};
 		646602A216DBD373007622FC /* Images */ = {
@@ -371,13 +330,6 @@
 			children = (
 				64EB0EF61819144E00DD9924 /* sundown */,
 				645ED8A61754F0A20070F83B /* iRate */,
-				64ED90FB1743E48900203969 /* RNCryptor */,
-				64ED90F81743E46E00203969 /* STKeychain.h */,
-				64ED90F91743E46E00203969 /* STKeychain.m */,
-				6429F2C61716FBD60030E932 /* NSString+UUID.h */,
-				6429F2C71716FBD60030E932 /* NSString+UUID.m */,
-				643F0086177C3CB2005B1DB5 /* NSDate+GTStringsHelpers.h */,
-				643F0087177C3CB2005B1DB5 /* NSDate+GTStringsHelpers.m */,
 			);
 			name = "Utilities (common)";
 			sourceTree = "<group>";
@@ -522,24 +474,6 @@
 			path = ../common/sundown;
 			sourceTree = "<group>";
 		};
-		64ED90FB1743E48900203969 /* RNCryptor */ = {
-			isa = PBXGroup;
-			children = (
-				64ED90FC1743E48900203969 /* RNCryptor+Private.h */,
-				64ED90FD1743E48900203969 /* RNCryptor-Prefix.pch */,
-				64ED90FE1743E48900203969 /* RNCryptor.h */,
-				64ED90FF1743E48900203969 /* RNCryptor.m */,
-				64ED91001743E48900203969 /* RNCryptorEngine.h */,
-				64ED91011743E48900203969 /* RNCryptorEngine.m */,
-				64ED91021743E48900203969 /* RNDecryptor.h */,
-				64ED91031743E48900203969 /* RNDecryptor.m */,
-				64ED91041743E48900203969 /* RNEncryptor.h */,
-				64ED91051743E48900203969 /* RNEncryptor.m */,
-			);
-			name = RNCryptor;
-			path = ../common/RNCryptor;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -681,32 +615,23 @@
 				6416315D16D8345F0004CB52 /* UIImage+RoundedCorner.m in Sources */,
 				64027D7B16DD7CB800DEA647 /* IAMPreferencesController.m in Sources */,
 				64E0AA4817E9067D008BF0E3 /* iRate.m in Sources */,
-				6433103E16E0A85D0064EC5C /* UIViewController+GTFrames.m in Sources */,
 				64F31CC416E4AF9000A80BE0 /* Note.m in Sources */,
 				64F31CCA16E5009B00A80BE0 /* Attachment.m in Sources */,
 				64A8A7E316E781EB0013AFFF /* IAMAddLinkViewController.m in Sources */,
 				64EB0F081819144E00DD9924 /* houdini_href_e.c in Sources */,
 				64EB0F0D1819144E00DD9924 /* stack.c in Sources */,
 				64A8A7E616E7B4770013AFFF /* IAMAttachmentCell.m in Sources */,
-				6460CD65181E7C0F002DF1EE /* AHAlertView.m in Sources */,
 				641D954416E8CF6E00A253E3 /* IAMAttachmentDetailViewController.m in Sources */,
 				6410E1CB17E85D2000B568D0 /* GTTransientMessage.m in Sources */,
 				64EB0F0A1819144E00DD9924 /* html.c in Sources */,
 				64BB200F16EA000E00FE6C77 /* GTThemer.m in Sources */,
 				64A755831702137A0085933D /* MicrophoneWindow.m in Sources */,
 				64F9AC4D1704544800299C1B /* UIImage+FixOrientation.m in Sources */,
-				6429F2C81716FBD60030E932 /* NSString+UUID.m in Sources */,
 				648A2773171D875000338218 /* MBProgressHUD.m in Sources */,
 				64DE6C261727E5320031183A /* NSManagedObjectContext+FetchedObjectFromURI.m in Sources */,
-				64ED90FA1743E46E00203969 /* STKeychain.m in Sources */,
 				64EB0F0C1819144E00DD9924 /* markdown.c in Sources */,
-				64ED91061743E48900203969 /* RNCryptor.m in Sources */,
-				64ED91071743E48900203969 /* RNCryptorEngine.m in Sources */,
-				64ED91081743E48900203969 /* RNDecryptor.m in Sources */,
-				64ED91091743E48900203969 /* RNEncryptor.m in Sources */,
 				640A176A18190D9500DB5788 /* IAMMarkdownPreViewController.m in Sources */,
 				64EB0F071819144E00DD9924 /* buffer.c in Sources */,
-				643F0088177C3CB7005B1DB5 /* NSDate+GTStringsHelpers.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

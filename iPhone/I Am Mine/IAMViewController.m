@@ -15,14 +15,12 @@
 #import "Note.h"
 #import "IAMNoteEdit.h"
 #import "GTThemer.h"
-#import "MBProgressHUD.h"
 #import "IAMPreferencesController.h"
 #import "NSManagedObjectContext+FetchedObjectFromURI.h"
 
 @interface IAMViewController () <UISearchBarDelegate, NSFetchedResultsControllerDelegate>
 
 @property (nonatomic) NSDateFormatter *dateFormatter;
-@property MBProgressHUD *hud;
 
 @property BOOL dropboxSyncStillPending;
 @property (atomic) NSDate *lastDropboxSync;

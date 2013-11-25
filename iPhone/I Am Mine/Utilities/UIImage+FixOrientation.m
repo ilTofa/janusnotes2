@@ -1,6 +1,6 @@
 //
 //  UIImage+FixOrientation.m
-//  iJanus
+//  iTurms
 //
 //  Created by Giacomo Tufano on 28/03/13.
 //  Copyright (c) 2013 Giacomo Tufano. All rights reserved.
