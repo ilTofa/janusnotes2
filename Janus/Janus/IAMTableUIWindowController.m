@@ -10,7 +10,6 @@
 
 #import "IAMNoteEditorWC.h"
 #import "IAMAppDelegate.h"
-#import "CoreDataController.h"
 #import "IAMFilesystemSyncController.h"
 #import "NSManagedObjectContext+FetchedObjectFromURI.h"
 #import "Attachment.h"
@@ -51,13 +50,9 @@
     [self.theTable setTarget:self];
     [self.theTable setDoubleAction:@selector(tableItemDoubleClick:)];
     self.noteEditorIsShown = @(NO);
-    self.sharedManagedObjectContext = ((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).coreDataController.mainThreadContext;
+    self.sharedManagedObjectContext = ((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).managedObjectContext;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataSyncNeedsThePassword:) name:kIAMDataSyncNeedsAPasswordNow object:nil];
-    // If db is still to be loaded, register to be notified else go directly
-    if(!((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).coreDataController.coreDataIsReady)
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(coreDataIsReady:) name:GTCoreDataReady object:nil];
-    else
-        [self coreDataIsReady:nil];
+    [self coreDataIsReady:nil];
 }
 
 - (IBAction)showUIWindow:(id)sender {
@@ -88,7 +83,6 @@
         DLog(@"called with notification %@", notification);
     else
         DLog(@"called directly from init");
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:GTCoreDataReady object:nil];
     // Init sync mamagement
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(defaultDirectorySelected:) name:kIAMDataSyncSelectedDefaulDir object:nil];
     [IAMFilesystemSyncController sharedInstance];

@@ -9,7 +9,6 @@
 #import "IAMFilesystemSyncController.h"
 
 #import "IAMAppDelegate.h"
-#import "CoreDataController.h"
 #import "Note.h"
 #import "RNEncryptor.h"
 #import "RNDecryptor.h"
@@ -60,8 +59,6 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
     BOOL _isResettingDataFromDropbox;
 }
 
-@property (weak) CoreDataController *coreDataController;
-
 @property NSData *secureBookmarkToData;
 @property NSURL *syncDirectory;
 
@@ -87,12 +84,12 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
     self = [super init];
     if (self) {
         // check if the data controller is ready
-        self.coreDataController = ((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).coreDataController;
-        NSAssert(self.coreDataController.psc, @"DataSyncController inited when CoreDataController Persistent Storage is still invalid");
+//        self.coreDataController = ((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).coreDataController;
+//        NSAssert(self.coreDataController.psc, @"DataSyncController inited when CoreDataController Persistent Storage is still invalid");
         _syncQueue = dispatch_queue_create("dataSyncControllerQueue", DISPATCH_QUEUE_SERIAL);
         dispatch_sync(_syncQueue, ^{
             _dataSyncThreadContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-            [_dataSyncThreadContext setPersistentStoreCoordinator:self.coreDataController.psc];
+            [_dataSyncThreadContext setPersistentStoreCoordinator:((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).persistentStoreCoordinator];
         });
         _isResettingDataFromDropbox = NO;
         // Init security bookmark
@@ -320,8 +317,8 @@ NSString * convertFromValidDropboxFilenames(NSString * originalString) {
         }
     }
     // In any case, merge back to mainview moc
-    [self.coreDataController.mainThreadContext performBlock:^{
-        [self.coreDataController.mainThreadContext mergeChangesFromContextDidSaveNotification:notification];
+    [((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).managedObjectContext performBlock:^{
+        [((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).managedObjectContext mergeChangesFromContextDidSaveNotification:notification];
     }];
 }
 

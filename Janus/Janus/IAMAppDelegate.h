@@ -9,7 +9,6 @@
 #import <Cocoa/Cocoa.h>
 #import <CoreLocation/CoreLocation.h>
 
-#import "CoreDataController.h"
 #import "IAMTableUIWindowController.h"
 
 @interface IAMAppDelegate : NSObject <NSApplicationDelegate>
@@ -18,6 +17,7 @@
 
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 
 @property (strong, nonatomic) IAMTableUIWindowController *collectionController;
 
@@ -26,9 +26,6 @@
 @property (nonatomic, getter = isTampered) BOOL tampered;
 #endif
 @property (weak) IBOutlet NSMenuItem *buyFullVersionMenu;
-
-// CoreData helper
-@property (nonatomic, strong, readonly) CoreDataController *coreDataController;
 
 - (IBAction)saveAction:(id)sender;
 - (IBAction)preferencesAction:(id)sender;
