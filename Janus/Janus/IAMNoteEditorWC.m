@@ -12,10 +12,7 @@
 
 #import "IAMAppDelegate.h"
 #import "Attachment.h"
-// #import "NSManagedObjectContext+FetchedObjectFromURI.h"
 #import "IAMOpenWithWC.h"
-
-#import "IAMFilesystemSyncController.h"
 
 #import "markdown.h"
 #import "html.h"
@@ -35,6 +32,8 @@
 @property NSMutableArray *openedFiles;
 @property (weak) IBOutlet NSLayoutConstraint *attacmentContainerViewHeightConstraint;
 @property (weak) IBOutlet NSView *attachmentContainerView;
+
+@property (weak) NSManagedObjectContext *parentMOC;
 
 @property (strong) IBOutlet NSWindow *previewWindow;
 @property (weak) IBOutlet WebView *previewWebView;
@@ -73,7 +72,8 @@
     // The NSManagedObjectContext instance should change for a local (to the controller instance) one.
     // We need to migrate the passed object to the new moc.
     self.noteEditorMOC = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSConfinementConcurrencyType];
-    [self.noteEditorMOC setParentContext:[IAMFilesystemSyncController sharedInstance].dataSyncThreadContext];
+    self.parentMOC = ((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).managedObjectContext;
+    [self.noteEditorMOC setParentContext:self.parentMOC];
     // Prepare to receive drag & drops into CollectionView
     [self.attachmentsCollectionView registerForDraggedTypes:@[NSFilenamesPboardType]];
     [self.attachmentsCollectionView setDraggingSourceOperationMask:NSDragOperationCopy forLocal:NO];
@@ -104,9 +104,9 @@
     if(![self.noteEditorMOC save:&error])
         ALog(@"Unresolved error %@, %@", error, [error userInfo]);
     // Save on parent context
-    [[IAMFilesystemSyncController sharedInstance].dataSyncThreadContext performBlock:^{
+    [self.parentMOC performBlock:^{
         NSError *localError;
-        if(![[IAMFilesystemSyncController sharedInstance].dataSyncThreadContext save:&localError])
+        if(![self.parentMOC save:&localError])
             ALog(@"Unresolved error saving parent context %@, %@", error, [error userInfo]);
     }];
 }
@@ -191,12 +191,11 @@
 - (IBAction)openAttachmentWith:(id)sender {
     if([[self.arrayController selectedObjects] count] != 0) {
         Attachment *toBeShown = [self.arrayController selectedObjects][0][@"attachment"];
-        NSURL *pathToBeShown = [[IAMFilesystemSyncController sharedInstance] urlForAttachment:toBeShown];
+        NSURL *pathToBeShown = [toBeShown generateFile];
         DLog(@"Open with apps requested for attachment: %@", pathToBeShown);
         CFURLRef defaultHandler;
         LSGetApplicationForURL((__bridge CFURLRef)(pathToBeShown), kLSRolesAll, NULL, &defaultHandler);
         CFArrayRef availableAppsUrls = LSCopyApplicationURLsForURL((__bridge CFURLRef)(pathToBeShown), kLSRolesAll);
-//        DLog(@"Retrieved URLs:\n%@", availableAppsUrls);
         self.appsInfo = [[NSMutableArray alloc] initWithCapacity:[(__bridge NSArray *) availableAppsUrls count]];
         for (NSURL *url in (__bridge NSArray *)availableAppsUrls) {
             CFStringRef appName;
@@ -244,11 +243,10 @@
     self.openWithController = nil;
 }
 
-
 - (IBAction)showAttachmentInFinder:(id)sender {
     if([[self.arrayController selectedObjects] count] != 0) {
         Attachment *toBeShown = [self.arrayController selectedObjects][0][@"attachment"];
-        NSURL *pathToBeShown = [[IAMFilesystemSyncController sharedInstance] urlForAttachment:toBeShown];
+        NSURL *pathToBeShown = [toBeShown generateFile];
         DLog(@"Show in finder requested for attachment: %@", pathToBeShown);
         [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[pathToBeShown]];
     }
@@ -386,7 +384,6 @@
     [htmlString replaceOccurrencesOfString:@"$attachment$!" withString:[self.cacheDirectory absoluteString] options:NSLiteralSearch range:NSMakeRange(0, [htmlString length])];
     NSError *error;
     [htmlString writeToURL:self.cacheFile atomically:NO encoding:NSUTF8StringEncoding error:&error];
-//    [self.previewWebView.mainFrame loadHTMLString:htmlString baseURL:self.cacheDirectory];
     [self.previewWebView.mainFrame loadRequest:[NSURLRequest requestWithURL:self.cacheFile]];
 }
 
