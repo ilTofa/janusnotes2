@@ -41,8 +41,6 @@
 		64D8C9B21740F7B0005D87DC /* RNEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D8C9A81740F7B0005D87DC /* RNEncryptor.m */; };
 		64D8C9B71740F7F1005D87DC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64D8C9B61740F7F1005D87DC /* Security.framework */; };
 		64D8C9BA1740F985005D87DC /* STKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D8C9B91740F985005D87DC /* STKeychain.m */; };
-		64E0C37E1753FC5300C1F946 /* IAMCountdownWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64E0C37C1753FC5300C1F946 /* IAMCountdownWindowController.m */; };
-		64E0C37F1753FC5300C1F946 /* IAMCountdownWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64E0C37D1753FC5300C1F946 /* IAMCountdownWindowController.xib */; };
 		64E6BDA7174FCB1A00B63D46 /* edit.png in Resources */ = {isa = PBXBuildFile; fileRef = 64E6BDA5174FCB1A00B63D46 /* edit.png */; };
 		64E6BDA8174FCB1A00B63D46 /* edit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64E6BDA6174FCB1A00B63D46 /* edit@2x.png */; };
 		64E6BDBB175009C600B63D46 /* add_property.png in Resources */ = {isa = PBXBuildFile; fileRef = 64E6BDA9175009C500B63D46 /* add_property.png */; };
@@ -169,9 +167,6 @@
 		64D8C9B61740F7F1005D87DC /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		64D8C9B81740F985005D87DC /* STKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STKeychain.h; path = ../common/Utilitites/STKeychain.h; sourceTree = "<group>"; };
 		64D8C9B91740F985005D87DC /* STKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STKeychain.m; path = ../common/Utilitites/STKeychain.m; sourceTree = "<group>"; };
-		64E0C37B1753FC5300C1F946 /* IAMCountdownWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMCountdownWindowController.h; sourceTree = "<group>"; };
-		64E0C37C1753FC5300C1F946 /* IAMCountdownWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMCountdownWindowController.m; sourceTree = "<group>"; };
-		64E0C37D1753FC5300C1F946 /* IAMCountdownWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IAMCountdownWindowController.xib; sourceTree = "<group>"; };
 		64E6BDA5174FCB1A00B63D46 /* edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = edit.png; path = Buttons/edit.png; sourceTree = "<group>"; };
 		64E6BDA6174FCB1A00B63D46 /* edit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "edit@2x.png"; path = "Buttons/edit@2x.png"; sourceTree = "<group>"; };
 		64E6BDA9175009C500B63D46 /* add_property.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = add_property.png; path = Buttons/add_property.png; sourceTree = "<group>"; };
@@ -380,16 +375,6 @@
 			path = ../common/RNCryptor;
 			sourceTree = "<group>";
 		};
-		64E0C3801753FC5C00C1F946 /* Countdown */ = {
-			isa = PBXGroup;
-			children = (
-				64E0C37B1753FC5300C1F946 /* IAMCountdownWindowController.h */,
-				64E0C37C1753FC5300C1F946 /* IAMCountdownWindowController.m */,
-				64E0C37D1753FC5300C1F946 /* IAMCountdownWindowController.xib */,
-			);
-			name = Countdown;
-			sourceTree = "<group>";
-		};
 		64EA620316F7110300F4838E = {
 			isa = PBXGroup;
 			children = (
@@ -447,7 +432,6 @@
 				64EA622116F7110300F4838E /* IAMAppDelegate.h */,
 				64EA622216F7110300F4838E /* IAMAppDelegate.m */,
 				64EA622416F7110300F4838E /* MainMenu.xib */,
-				64E0C3801753FC5C00C1F946 /* Countdown */,
 				64A1D4ED16FCA12700E50CC1 /* Note Edit */,
 				64EA621616F7110300F4838E /* Supporting Files */,
 				644AC25D17257FEB007B51FF /* Main UI */,
@@ -671,7 +655,6 @@
 				64E6BDCA175009C600B63D46 /* settings@2x.png in Resources */,
 				64E6BDCB175009C600B63D46 /* show_property.png in Resources */,
 				64E6BDCC175009C600B63D46 /* show_property@2x.png in Resources */,
-				64E0C37F1753FC5300C1F946 /* IAMCountdownWindowController.xib in Resources */,
 				645ED8A51754EFCE0070F83B /* iRate.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -721,7 +704,6 @@
 				64D8C9BA1740F985005D87DC /* STKeychain.m in Sources */,
 				6476CFA0174382D500A6195C /* IAMCryptPasswordWC.m in Sources */,
 				6476CFA71743BABE00A6195C /* IAMWaitingWindowController.m in Sources */,
-				64E0C37E1753FC5300C1F946 /* IAMCountdownWindowController.m in Sources */,
 				645ED8A31754ED8A0070F83B /* iRate.m in Sources */,
 				643F008B177C7153005B1DB5 /* NSDate+GTStringsHelpers.m in Sources */,
 			);

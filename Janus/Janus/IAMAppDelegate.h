@@ -21,12 +21,6 @@
 
 @property (strong, nonatomic) IAMTableUIWindowController *collectionController;
 
-#if DEMO
-@property (readonly, nonatomic) NSInteger lifeline;
-@property (nonatomic, getter = isTampered) BOOL tampered;
-#endif
-@property (weak) IBOutlet NSMenuItem *buyFullVersionMenu;
-
 - (IBAction)saveAction:(id)sender;
 - (IBAction)preferencesAction:(id)sender;
 - (void)preferencesForDirectory;

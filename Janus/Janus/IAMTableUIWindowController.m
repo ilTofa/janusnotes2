@@ -13,20 +13,12 @@
 #import "IAMFilesystemSyncController.h"
 #import "NSManagedObjectContext+FetchedObjectFromURI.h"
 #import "Attachment.h"
-#if DEMO
-#import "IAMCountdownWindowController.h"
-#endif
-
 @interface IAMTableUIWindowController () <IAMNoteEditorWCDelegate, NSWindowDelegate>
 
 @property (weak) IBOutlet NSSearchFieldCell *searchField;
 @property (copy) NSArray *sortDescriptors;
 
 @property NSTimer *syncStatusTimer;
-
-#if DEMO
-@property IAMCountdownWindowController *countdownController;
-#endif
 
 @end
 
@@ -53,9 +45,6 @@
     self.sharedManagedObjectContext = ((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).managedObjectContext;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataSyncNeedsThePassword:) name:kIAMDataSyncNeedsAPasswordNow object:nil];
     [self.arrayController setSortDescriptors:@[[[NSSortDescriptor alloc] initWithKey:@"timeStamp" ascending:NO]]];
-#if DEMO
-    [self showRemainingDaysBox];
-#endif
 }
 
 - (IBAction)showUIWindow:(id)sender {
@@ -117,11 +106,6 @@
 }
 
 - (IBAction)addNote:(id)sender {
-#if DEMO
-    if(((IAMAppDelegate *)[NSApplication sharedApplication].delegate).lifeline < 1 || ((IAMAppDelegate *)[NSApplication sharedApplication].delegate).isTampered) {
-        [self showRemainingDaysBox];
-    }
-#endif
     DLog(@"This is addNote handler in MainWindowController");
     IAMNoteEditorWC *noteEditor = [[IAMNoteEditorWC alloc] initWithWindowNibName:@"IAMNoteEditorWC"];
     [noteEditor setDelegate:self];
@@ -150,12 +134,6 @@
 }
 
 - (IBAction)deleteNote:(id)sender {
-#if DEMO
-    if(((IAMAppDelegate *)[NSApplication sharedApplication].delegate).lifeline < 1 || ((IAMAppDelegate *)[NSApplication sharedApplication].delegate).isTampered) {
-        [self showRemainingDaysBox];
-    }
-#endif
-//    DLog(@"Selected note for deleting is: %@", [self.arrayController selectedObjects][0]);
     NSAlert *alert = [[NSAlert alloc] init];
     [alert setInformativeText:NSLocalizedString(@"Are you sure you want to delete the note?", nil)];
     [alert setMessageText:NSLocalizedString(@"Warning", @"")];
@@ -165,11 +143,6 @@
 }
 
 - (IBAction)actionPreferences:(id)sender {
-#if DEMO
-    if(((IAMAppDelegate *)[NSApplication sharedApplication].delegate).lifeline < 1 || ((IAMAppDelegate *)[NSApplication sharedApplication].delegate).isTampered) {
-        [self showRemainingDaysBox];
-    }
-#endif
     [(IAMAppDelegate *)[[NSApplication sharedApplication] delegate] preferencesAction:sender];
 }
 
@@ -259,23 +232,5 @@
 - (IBAction)removeAttachmentFromNoteAction:(id)sender {
     [[self keyNoteEditor] deleteAttachment:sender];
 }
-
-#if DEMO
-
-#pragma mark - Demo Management
-
-- (void)showRemainingDaysBox {
-    if(!self.countdownController) {
-        self.countdownController = [[IAMCountdownWindowController alloc] initWithWindowNibName:@"IAMCountdownWindowController"];
-    }
-    [[NSApplication sharedApplication] beginSheet:self.countdownController.window modalForWindow:self.window modalDelegate:self didEndSelector:@selector(didEndSheet:returnCode:contextInfo:) contextInfo:nil];
-}
-
-- (void)didEndSheet:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo {
-    [self.countdownController.window orderOut:self];
-    self.countdownController = nil;
-}
-
-#endif
 
 @end
