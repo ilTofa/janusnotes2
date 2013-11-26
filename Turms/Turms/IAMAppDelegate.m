@@ -354,7 +354,7 @@
 // TODO: fix url paths
 
 - (IBAction)showFAQs:(id)sender {
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://www.janusnotes.com/faq.html"]];
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://www.ilTofa.com/"]];
 }
 
 - (IBAction)showMarkdownHelp:(id)sender {

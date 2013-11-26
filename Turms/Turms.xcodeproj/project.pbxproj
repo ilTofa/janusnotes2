@@ -122,7 +122,7 @@
 		645ED8A41754EFCE0070F83B /* iRate.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = iRate.bundle; sourceTree = "<group>"; };
 		64629F64183F79F300753313 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../Turms/Images.xcassets; sourceTree = "<group>"; };
 		6476CFAA1746223900A6195C /* it.iltofa.turms.entry.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = it.iltofa.turms.entry.icns; sourceTree = "<group>"; };
-		64A1D4EC16FC9F7C00E50CC1 /* Janus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Janus.entitlements; sourceTree = "<group>"; };
+		64A1D4EC16FC9F7C00E50CC1 /* Turms.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Turms.entitlements; sourceTree = "<group>"; };
 		64A7558F170358BC0085933D /* NSManagedObjectContext+FetchedObjectFromURI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSManagedObjectContext+FetchedObjectFromURI.h"; path = "../common/iCloud/NSManagedObjectContext+FetchedObjectFromURI.h"; sourceTree = "<group>"; };
 		64A75590170358BC0085933D /* NSManagedObjectContext+FetchedObjectFromURI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSManagedObjectContext+FetchedObjectFromURI.m"; path = "../common/iCloud/NSManagedObjectContext+FetchedObjectFromURI.m"; sourceTree = "<group>"; };
 		64B4B7BB181140A700766D43 /* MarkdownPreview.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = MarkdownPreview.html; path = ../../common/MarkdownPreview.html; sourceTree = "<group>"; };
@@ -156,10 +156,10 @@
 		64EA621216F7110300F4838E /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		64EA621316F7110300F4838E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		64EA621416F7110300F4838E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		64EA621716F7110300F4838E /* Janus-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Janus-Info.plist"; sourceTree = "<group>"; };
+		64EA621716F7110300F4838E /* Turms-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Turms-Info.plist"; sourceTree = "<group>"; };
 		64EA621916F7110300F4838E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		64EA621B16F7110300F4838E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		64EA621D16F7110300F4838E /* Janus-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Janus-Prefix.pch"; sourceTree = "<group>"; };
+		64EA621D16F7110300F4838E /* Turms-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Turms-Prefix.pch"; sourceTree = "<group>"; };
 		64EA621F16F7110300F4838E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		64EA622116F7110300F4838E /* IAMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IAMAppDelegate.h; sourceTree = "<group>"; };
 		64EA622216F7110300F4838E /* IAMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IAMAppDelegate.m; sourceTree = "<group>"; };
@@ -238,6 +238,7 @@
 				644AC25A17257FE4007B51FF /* IAMTableUIWindowController.xib */,
 			);
 			name = "Main UI";
+			path = ../Turms;
 			sourceTree = "<group>";
 		};
 		644AC25E17258213007B51FF /* Buttons */ = {
@@ -267,6 +268,7 @@
 				64E6BDA6174FCB1A00B63D46 /* edit@2x.png */,
 			);
 			name = Buttons;
+			path = ../Turms;
 			sourceTree = "<group>";
 		};
 		644AC27A1726CFB1007B51FF /* Preferences */ = {
@@ -277,6 +279,7 @@
 				644AC2771726CFAB007B51FF /* IAMPrefsWindowController.xib */,
 			);
 			name = Preferences;
+			path = ../Turms;
 			sourceTree = "<group>";
 		};
 		645ED89E1754ED8A0070F83B /* iRate */ = {
@@ -305,6 +308,7 @@
 				645A7E601817C602003C9D5A /* IAMNoteEditTextView.m */,
 			);
 			name = "Note Edit";
+			path = ../Turms;
 			sourceTree = "<group>";
 		};
 		64EA620316F7110300F4838E = {
@@ -367,8 +371,7 @@
 				644AC25D17257FEB007B51FF /* Main UI */,
 				644AC27A1726CFB1007B51FF /* Preferences */,
 			);
-			name = Turms;
-			path = Janus;
+			path = Turms;
 			sourceTree = "<group>";
 		};
 		64EA621616F7110300F4838E /* Supporting Files */ = {
@@ -377,14 +380,15 @@
 				64B4B7BB181140A700766D43 /* MarkdownPreview.html */,
 				64B56854174658ED006D04C4 /* readme.txt */,
 				6476CFAA1746223900A6195C /* it.iltofa.turms.entry.icns */,
-				64A1D4EC16FC9F7C00E50CC1 /* Janus.entitlements */,
-				64EA621716F7110300F4838E /* Janus-Info.plist */,
+				64A1D4EC16FC9F7C00E50CC1 /* Turms.entitlements */,
+				64EA621716F7110300F4838E /* Turms-Info.plist */,
 				64EA621816F7110300F4838E /* InfoPlist.strings */,
 				64EA621B16F7110300F4838E /* main.m */,
-				64EA621D16F7110300F4838E /* Janus-Prefix.pch */,
+				64EA621D16F7110300F4838E /* Turms-Prefix.pch */,
 				64EA621E16F7110300F4838E /* Credits.rtf */,
 			);
 			name = "Supporting Files";
+			path = ../Turms;
 			sourceTree = "<group>";
 		};
 		64EA623A16F7110300F4838E /* TurmsImporter */ = {
@@ -396,8 +400,7 @@
 				64EA624716F7110300F4838E /* Importer Read Me.txt */,
 				64EA623B16F7110300F4838E /* Supporting Files */,
 			);
-			name = TurmsImporter;
-			path = JanusImporter;
+			path = TurmsImporter;
 			sourceTree = "<group>";
 		};
 		64EA623B16F7110300F4838E /* Supporting Files */ = {
@@ -712,16 +715,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Janus/Janus.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Turms/Turms.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Janus/Janus-Prefix.pch";
+				GCC_PREFIX_HEADER = "Turms/Turms-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = "DEMO=1";
-				INFOPLIST_FILE = "Janus/Janus-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Turms/Turms-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_NAME = Turms;
@@ -737,8 +740,8 @@
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "JanusImporter/TurmsImporter-Prefix.pch";
-				INFOPLIST_FILE = "JanusImporter/TurmsImporter-Info.plist";
+				GCC_PREFIX_HEADER = "TurmsImporter/TurmsImporter-Prefix.pch";
+				INFOPLIST_FILE = "TurmsImporter/TurmsImporter-Info.plist";
 				INSTALL_PATH = "@executable_path/../Contents/Library/Spotlight";
 				LIBRARY_STYLE = BUNDLE;
 				PRODUCT_NAME = TurmsImporter;
@@ -783,18 +786,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Janus/Janus.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Turms/Turms.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Janus/Janus-Prefix.pch";
+				GCC_PREFIX_HEADER = "Turms/Turms-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"DEMO=1",
 				);
-				INFOPLIST_FILE = "Janus/Janus-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Turms/Turms-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_NAME = Turms;
@@ -810,8 +813,8 @@
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "JanusImporter/TurmsImporter-Prefix.pch";
-				INFOPLIST_FILE = "JanusImporter/TurmsImporter-Info.plist";
+				GCC_PREFIX_HEADER = "TurmsImporter/TurmsImporter-Prefix.pch";
+				INFOPLIST_FILE = "TurmsImporter/TurmsImporter-Info.plist";
 				INSTALL_PATH = "@executable_path/../Contents/Library/Spotlight";
 				LIBRARY_STYLE = BUNDLE;
 				PRODUCT_NAME = TurmsImporter;
@@ -884,8 +887,8 @@
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "JanusImporter/TurmsImporter-Prefix.pch";
-				INFOPLIST_FILE = "JanusImporter/TurmsImporter-Info.plist";
+				GCC_PREFIX_HEADER = "TurmsImporter/TurmsImporter-Prefix.pch";
+				INFOPLIST_FILE = "TurmsImporter/TurmsImporter-Info.plist";
 				INSTALL_PATH = "@executable_path/../Contents/Library/Spotlight";
 				LIBRARY_STYLE = BUNDLE;
 				PRODUCT_NAME = TurmsImporter;
@@ -901,8 +904,8 @@
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "JanusImporter/TurmsImporter-Prefix.pch";
-				INFOPLIST_FILE = "JanusImporter/TurmsImporter-Info.plist";
+				GCC_PREFIX_HEADER = "TurmsImporter/TurmsImporter-Prefix.pch";
+				INFOPLIST_FILE = "TurmsImporter/TurmsImporter-Info.plist";
 				INSTALL_PATH = "@executable_path/../Contents/Library/Spotlight";
 				LIBRARY_STYLE = BUNDLE;
 				PRODUCT_NAME = TurmsImporter;
@@ -915,14 +918,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Janus/Janus.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Turms/Turms.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Janus/Janus-Prefix.pch";
-				INFOPLIST_FILE = "Janus/Janus-Info.plist";
+				GCC_PREFIX_HEADER = "Turms/Turms-Prefix.pch";
+				INFOPLIST_FILE = "$(SRCROOT)/Turms/Turms-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_NAME = Turms;
@@ -935,15 +938,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Janus/Janus.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Turms/Turms.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Janus/Janus-Prefix.pch";
-				INFOPLIST_FILE = "Janus/Janus-Info.plist";
+				GCC_PREFIX_HEADER = "Turms/Turms-Prefix.pch";
+				INFOPLIST_FILE = "$(SRCROOT)/Turms/Turms-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_NAME = Turms;

@@ -58,7 +58,7 @@
 				<string>public.content</string>
 			</array>
 			<key>UTTypeDescription</key>
-			<string>Janus Note</string>
+			<string>Turms Entry</string>
 			<key>UTTypeIconFile</key>
 			<string>it.iltofa.turms.entry.icns</string>
 			<key>UTTypeIdentifier</key>

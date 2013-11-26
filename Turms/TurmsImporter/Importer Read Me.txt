@@ -57,7 +57,7 @@ Replace occurrences of the above strings in the following files
 
 GetMetadataForFile.c
 MySpotlightImporter.m
-JanusImporter-Info.plist
+TurmsImporter-Info.plist
 
   
 -----------------------------------------------------------------------------
