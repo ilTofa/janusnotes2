@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="jOx-mc-5rj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B35" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="jOx-mc-5rj">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
@@ -99,8 +99,8 @@ Label riga 3</string>
                             <outlet property="delegate" destination="2" id="G2z-i2-Ss2"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Notes" id="Qev-6j-uPA">
-                        <barButtonItem key="leftBarButtonItem" title="Prefs" id="iVc-Ij-d3T">
+                    <navigationItem key="navigationItem" title="Turms" id="Qev-6j-uPA">
+                        <barButtonItem key="leftBarButtonItem" title="Preferences" id="iVc-Ij-d3T">
                             <connections>
                                 <action selector="preferencesAction:" destination="2" id="KPg-es-yi6"/>
                             </connections>
@@ -348,7 +348,7 @@ Label riga 3</string>
                             <constraint firstItem="JlD-hL-CQO" firstAttribute="trailing" secondItem="PZq-Ci-A7X" secondAttribute="trailing" id="so8-zF-9Yh"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Note" id="86x-W0-j7C">
+                    <navigationItem key="navigationItem" title="Entry" id="86x-W0-j7C">
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="arX-0v-vjH">
                             <connections>
                                 <action selector="save:" destination="aYD-Rr-6C9" id="FwJ-iL-fyh"/>
@@ -537,7 +537,7 @@ Label riga 3</string>
                         <label key="tableFooterView" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="320" id="fxz-Pf-qT7">
                             <rect key="frame" x="0.0" y="485" width="320" height="66"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <string key="text">This I Am Mine version 1.0 (137)
+                            <string key="text">This is Turms version 1.0 (137)
 ©2013 Giacomo Tufano - All rights Reserved
 Icons from icons8, licensed CC BY-ND 3.0</string>
                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
@@ -545,7 +545,7 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                             <nil key="highlightedColor"/>
                         </label>
                         <sections>
-                            <tableViewSection headerTitle="Support Janus &amp; Janus Support" id="L17-VD-iGl">
+                            <tableViewSection headerTitle="Support Turms &amp; Turms Support" id="L17-VD-iGl">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="jvz-qB-1vl">
                                         <rect key="frame" x="0.0" y="119" width="320" height="44"/>
@@ -554,7 +554,7 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Janus Help Web Site." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="acd-2Y-Kdp">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Turms Help Web Site." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="acd-2Y-Kdp">
                                                     <rect key="frame" x="20" y="11" width="280" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>

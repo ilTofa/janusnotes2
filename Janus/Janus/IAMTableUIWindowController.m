@@ -63,14 +63,6 @@
     [self.notesWindowMenuItem setState:NSOffState];
 }
 
-- (void)defaultDirectorySelected:(NSNotification *)notification {
-    NSAlert *alert = [[NSAlert alloc] init];
-    [alert setInformativeText:NSLocalizedString(@"Welcome to Janus Notes, press OK to open the preference panel and select the path to the Notes directory. The path can be changed later at any time using the preference panel. If you're unsure about what to do you can safely accept the default location by pressing cancel on the select path box.", nil)];
-    [alert setMessageText:NSLocalizedString(@"Notes Directory Selection", @"")];
-    [alert addButtonWithTitle:@"OK"];
-    [alert beginSheetModalForWindow:self.window modalDelegate:self didEndSelector:@selector(alertDidEnd:returnCode:contextInfo:) contextInfo:(__bridge void *)(self)];
-}
-
 #pragma mark - Notes Editing management
 
 - (void)openNoteAtURI:(NSURL *)uri {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13B35" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1090" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
@@ -16,7 +16,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="494" height="158"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1418"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1366" height="768"/>
             <value key="minSize" type="size" width="480" height="160"/>
             <view key="contentView" id="2">
                 <rect key="frame" x="0.0" y="0.0" width="494" height="158"/>
@@ -36,7 +36,7 @@
                             <action selector="performClose:" target="1" id="59"/>
                         </connections>
                     </button>
-                    <box autoresizesSubviews="NO" title="Font for Note Editor" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="140">
+                    <box autoresizesSubviews="NO" title="Editor Font" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="140">
                         <rect key="frame" x="17" y="58" width="460" height="85"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView">
