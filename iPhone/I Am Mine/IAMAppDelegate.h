@@ -13,6 +13,7 @@
 
 #define kGotLocation @"gotLocation"
 #define kSkipAdProcessingChanged @"skipAdChanged"
+#define kCoreDataStoreExternallyChanged @"kCoreDataStoreExternallyChanged"
 
 @interface IAMAppDelegate : UIResponder <UIApplicationDelegate, CLLocationManagerDelegate, SKPaymentTransactionObserver>
 

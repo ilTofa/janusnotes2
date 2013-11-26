@@ -2,9 +2,9 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>keychain-access-groups</key>
+	<key>com.apple.developer.ubiquity-container-identifiers</key>
 	<array>
-		<string>$(AppIdentifierPrefix)it.iltofa.Tumblr</string>
+		<string>$(TeamIdentifierPrefix)it.iltofa.Turms</string>
 	</array>
 </dict>
 </plist>

@@ -37,6 +37,11 @@
     self.locationString = NSLocalizedString(@"Location unknown", @"");
     // Set itself as store observer
     [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
+    // Now set for the iCloud notification
+    NSNotificationCenter *dc = [NSNotificationCenter defaultCenter];
+    [dc addObserver:self selector:@selector(storesWillChange:) name:NSPersistentStoreCoordinatorStoresWillChangeNotification object:self.persistentStoreCoordinator];
+    [dc addObserver:self selector:@selector(storesDidChange:) name:NSPersistentStoreCoordinatorStoresDidChangeNotification object:self.persistentStoreCoordinator];
+    [dc addObserver:self selector:@selector(storeHaveNewData:) name:NSPersistentStoreDidImportUbiquitousContentChangesNotification object:self.persistentStoreCoordinator];
     // Purge cache directory
     [self deleteCache];
     return YES;
@@ -112,11 +117,15 @@
         return _persistentStoreCoordinator;
     }
     
-    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"iTurms.sqlite"];
+    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"store.sqlite"];
     
     NSError *error = nil;
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
+    NSDictionary *options = @{NSPersistentStoreUbiquitousContainerIdentifierKey: @"6483W56522.it.iltofa.Turms",
+                              NSPersistentStoreUbiquitousContentNameKey: @"Turms",
+                              NSMigratePersistentStoresAutomaticallyOption: @YES,
+                              NSInferMappingModelAutomaticallyOption: @YES};
+    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options error:&error]) {
         /*
          Replace this implementation with code to handle the error appropriately.
          
@@ -157,6 +166,29 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     DLog(@"Here we are");
+}
+
+#pragma mark - iCloud
+
+- (void)storesWillChange:(NSNotification *)n {
+    NSError *error;
+    if ([self.managedObjectContext hasChanges]) {
+        [self.managedObjectContext save:&error];
+    }
+    [self.managedObjectContext reset];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kCoreDataStoreExternallyChanged object:self.persistentStoreCoordinator userInfo:@{@"reason": NSPersistentStoreCoordinatorStoresWillChangeNotification}];
+    //reset user interface
+}
+
+- (void)storesDidChange:(NSNotification *)n {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kCoreDataStoreExternallyChanged object:self.persistentStoreCoordinator userInfo:@{@"reason": NSPersistentStoreCoordinatorStoresDidChangeNotification}];
+}
+
+- (void)storeHaveNewData:(NSNotification *)n {
+    [self.managedObjectContext performBlock:^{
+        [self.managedObjectContext mergeChangesFromContextDidSaveNotification:n];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kCoreDataStoreExternallyChanged object:self.persistentStoreCoordinator userInfo:@{@"reason": NSPersistentStoreDidImportUbiquitousContentChangesNotification}];
+    }];
 }
 
 #pragma mark iAD
