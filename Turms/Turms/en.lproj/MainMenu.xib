@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13B35" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1090" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
@@ -77,26 +77,20 @@
                 <menuItem title="File" id="83">
                     <menu key="submenu" title="File" id="81">
                         <items>
-                            <menuItem title="New Note" keyEquivalent="n" id="82">
+                            <menuItem title="New" keyEquivalent="n" id="82">
                                 <connections>
                                     <action selector="newNoteAction:" target="494" id="792"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Edit Note" keyEquivalent="o" id="72">
+                            <menuItem title="Edit" keyEquivalent="o" id="72">
                                 <connections>
                                     <action selector="editNoteAction:" target="494" id="794"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Show in Finder" id="832">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="showInFinderAction:" target="494" id="833"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="79">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Delete Note…" id="78">
+                            <menuItem title="Delete…" id="78">
                                 <string key="keyEquivalent" base64-UTF8="YES">
 CA
 </string>
@@ -308,9 +302,9 @@ CA
                         </items>
                     </menu>
                 </menuItem>
-                <menuItem title="Note" id="799">
+                <menuItem title="Entry" id="799">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="Note" id="800">
+                    <menu key="submenu" title="Entry" id="800">
                         <items>
                             <menuItem title="Save and Continue" keyEquivalent="s" id="801">
                                 <connections>
@@ -348,7 +342,7 @@ CA
                 <menuItem title="Window" id="19">
                     <menu key="submenu" title="Window" systemMenu="window" id="24">
                         <items>
-                            <menuItem title="Notes Window" id="780">
+                            <menuItem title="Main Window" id="780">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="notesWindowAction:" target="494" id="789"/>

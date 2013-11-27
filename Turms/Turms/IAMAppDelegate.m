@@ -262,10 +262,6 @@
     [self.collectionController deleteNote:sender];
 }
 
-- (IBAction)showInFinderAction:(id)sender {
-    [self.collectionController showInFinder:sender];
-}
-
 - (IBAction)saveNoteAndContinueAction:(id)sender {
     [self.collectionController saveNoteAndContinueAction:sender];
 }
