@@ -130,6 +130,7 @@
                               NSPersistentStoreUbiquitousContentNameKey: @"Turms",
                               NSMigratePersistentStoresAutomaticallyOption: @YES,
                               NSInferMappingModelAutomaticallyOption: @YES};
+//    if (![NSPersistentStoreCoordinator removeUbiquitousContentAndPersistentStoreAtURL:storeURL options:options error:&error]) {
     if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options error:&error]) {
         /*
          Replace this implementation with code to handle the error appropriately.
@@ -157,7 +158,6 @@
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
-    
     return _persistentStoreCoordinator;
 }
 

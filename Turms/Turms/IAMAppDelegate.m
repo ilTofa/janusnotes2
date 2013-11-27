@@ -160,6 +160,7 @@
                               NSPersistentStoreUbiquitousContentNameKey: @"Turms",
                               NSMigratePersistentStoresAutomaticallyOption: @YES,
                               NSInferMappingModelAutomaticallyOption: @YES};
+//    if (![NSPersistentStoreCoordinator removeUbiquitousContentAndPersistentStoreAtURL:storeURL options:options error:&error]) {
     if (![coordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:url options:options error:&error]) {
         [[NSApplication sharedApplication] presentError:error];
         return nil;
