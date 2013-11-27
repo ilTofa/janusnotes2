@@ -112,7 +112,7 @@
 		641D954316E8CF6E00A253E3 /* IAMAttachmentDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMAttachmentDetailViewController.m; sourceTree = "<group>"; };
 		6447056C16DD0FC4000A0262 /* SmallRow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SmallRow.png; path = Images/SmallRow.png; sourceTree = "<group>"; };
 		6447056D16DD0FC4000A0262 /* SmallRow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SmallRow@2x.png"; path = "Images/SmallRow@2x.png"; sourceTree = "<group>"; };
-		645A13A01701BFC800CCB4FB /* iJanus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = iJanus.entitlements; path = ../iJanus.entitlements; sourceTree = "<group>"; };
+		645A13A01701BFC800CCB4FB /* iTurms.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = iTurms.entitlements; path = ../iTurms.entitlements; sourceTree = "<group>"; };
 		645A7E6218183846003C9D5A /* link-browser-big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "link-browser-big.png"; path = "Images/link-browser-big.png"; sourceTree = "<group>"; };
 		645A7E6318183846003C9D5A /* link-browser-big@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "link-browser-big@2x.png"; path = "Images/link-browser-big@2x.png"; sourceTree = "<group>"; };
 		645A7E6418183846003C9D5A /* link-browser.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "link-browser.png"; path = "Images/link-browser.png"; sourceTree = "<group>"; };
@@ -180,7 +180,7 @@
 		64CB194617392B7C0014F35F /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		64CB194817392B860014F35F /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		64CB194A17392BAD0014F35F /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
-		64CEF2BB17D0E65900D3A58B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../iJanus/Images.xcassets; sourceTree = "<group>"; };
+		64CEF2BB17D0E65900D3A58B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		64CEF2BD17D1F70900D3A58B /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		64DE6C241727E5320031183A /* NSManagedObjectContext+FetchedObjectFromURI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSManagedObjectContext+FetchedObjectFromURI.h"; path = "../common/iCloud/NSManagedObjectContext+FetchedObjectFromURI.h"; sourceTree = "<group>"; };
 		64DE6C251727E5320031183A /* NSManagedObjectContext+FetchedObjectFromURI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSManagedObjectContext+FetchedObjectFromURI.m"; path = "../common/iCloud/NSManagedObjectContext+FetchedObjectFromURI.m"; sourceTree = "<group>"; };
@@ -353,7 +353,7 @@
 			children = (
 				64845FE316E019F20046BE9C /* Utilities (common) */,
 				649DCE9A16D28D30003F5A83 /* CoreData (common) */,
-				64A0507516D28CCA0025E179 /* I Am Mine */,
+				64A0507516D28CCA0025E179 /* iTurms */,
 				64A0506E16D28CCA0025E179 /* Frameworks */,
 				64A0506D16D28CCA0025E179 /* Products */,
 			);
@@ -391,7 +391,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		64A0507516D28CCA0025E179 /* I Am Mine */ = {
+		64A0507516D28CCA0025E179 /* iTurms */ = {
 			isa = PBXGroup;
 			children = (
 				64A755681702137A0085933D /* AudioRecord */,
@@ -408,7 +408,7 @@
 				64027D7A16DD7CB800DEA647 /* IAMPreferencesController.m */,
 				64A0507616D28CCA0025E179 /* Supporting Files */,
 			);
-			path = "I Am Mine";
+			path = iTurms;
 			sourceTree = "<group>";
 		};
 		64A0507616D28CCA0025E179 /* Supporting Files */ = {
@@ -417,7 +417,7 @@
 				64EB0F0E1819147100DD9924 /* MarkdownPreview.html */,
 				64CEF2BB17D0E65900D3A58B /* Images.xcassets */,
 				64B56852174658B3006D04C4 /* readme.txt */,
-				645A13A01701BFC800CCB4FB /* iJanus.entitlements */,
+				645A13A01701BFC800CCB4FB /* iTurms.entitlements */,
 				64A0507716D28CCA0025E179 /* iTurms-Info.plist */,
 				64A0507816D28CCA0025E179 /* InfoPlist.strings */,
 				64A0507B16D28CCA0025E179 /* main.m */,
@@ -734,7 +734,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_ENTITLEMENTS = iJanus.entitlements;
+				CODE_SIGN_ENTITLEMENTS = iTurms.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -742,8 +742,8 @@
 					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "I Am Mine/iTurms-Prefix.pch";
-				INFOPLIST_FILE = "I Am Mine/iTurms-Info.plist";
+				GCC_PREFIX_HEADER = "iTurms/iTurms-Prefix.pch";
+				INFOPLIST_FILE = "iTurms/iTurms-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = iTurms;
@@ -758,7 +758,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_ENTITLEMENTS = iJanus.entitlements;
+				CODE_SIGN_ENTITLEMENTS = iTurms.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -766,8 +766,8 @@
 					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "I Am Mine/iTurms-Prefix.pch";
-				INFOPLIST_FILE = "I Am Mine/iTurms-Info.plist";
+				GCC_PREFIX_HEADER = "iTurms/iTurms-Prefix.pch";
+				INFOPLIST_FILE = "iTurms/iTurms-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = iTurms;
