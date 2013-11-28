@@ -32,6 +32,18 @@
     DLog(@"Here");
     self.managedObjectContext = ((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).managedObjectContext;
     [self reloadBookArray];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mocChanged:) name:NSManagedObjectContextDidSaveNotification object:self.managedObjectContext];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(iCloudDataChanged:) name:kCoreDataStoreExternallyChanged object:nil];
+}
+
+- (void)iCloudDataChanged:(NSNotification *)n {
+    DLog(@"Triggering refresh of book array because new data came via iCloud refresh.");
+    [self reloadBookArray];
+}
+
+- (void)mocChanged:(NSNotification *)n {
+    DLog(@"Triggering refresh of book array because moc saved.");
+    [self reloadBookArray];
 }
 
 - (void)reloadBookArray {

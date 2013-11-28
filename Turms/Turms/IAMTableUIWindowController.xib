@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13B35" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1090" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="arrayController" destination="216" id="218"/>
                 <outlet property="searchField" destination="85" id="240"/>
+                <outlet property="theBookController" destination="o4J-zF-bjD" id="SGx-75-ms0"/>
                 <outlet property="theTable" destination="94" id="217"/>
                 <outlet property="window" destination="1" id="3"/>
             </connections>
@@ -19,7 +20,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="180" width="503" height="462"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1366" height="768"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1418"/>
             <value key="minSize" type="size" width="350" height="275"/>
             <view key="contentView" id="2">
                 <rect key="frame" x="0.0" y="0.0" width="503" height="462"/>
@@ -220,12 +221,19 @@ label riga 4</string>
                         </connections>
                     </toolbarItem>
                     <toolbarItem implicitItemIdentifier="NSToolbarSeparatorItem" id="518"/>
+                    <toolbarItem implicitItemIdentifier="253C5CB9-195B-4D75-AA2D-F3BE8F6FB7C8" label="Books" paletteLabel="Books" tag="-1" image="books" id="fzG-XB-Qpr">
+                        <connections>
+                            <action selector="showBooksAction:" target="-2" id="0DN-eD-nfy"/>
+                        </connections>
+                    </toolbarItem>
                 </allowedToolbarItems>
                 <defaultToolbarItems>
                     <toolbarItem reference="495"/>
                     <toolbarItem reference="496"/>
                     <toolbarItem reference="490"/>
                     <toolbarItem reference="497"/>
+                    <toolbarItem reference="493"/>
+                    <toolbarItem reference="fzG-XB-Qpr"/>
                     <toolbarItem reference="493"/>
                     <toolbarItem reference="499"/>
                 </defaultToolbarItems>
@@ -234,12 +242,22 @@ label riga 4</string>
                 <outlet property="delegate" destination="-2" id="4"/>
             </connections>
         </window>
-        <arrayController mode="entity" entityName="Note" editable="NO" automaticallyPreparesContent="YES" preservesSelection="NO" id="216">
+        <customObject id="o4J-zF-bjD" customClass="IAMBooksWindowController">
+            <connections>
+                <outlet property="window" destination="f90-qv-awV" id="WFQ-f9-XiP"/>
+            </connections>
+        </customObject>
+        <arrayController objectClassName="NSMutableArray" id="8XF-GB-eMM" userLabel="Array Controller for Books">
+            <connections>
+                <binding destination="o4J-zF-bjD" name="contentArray" keyPath="self.bookList" id="F4v-Cp-jh9"/>
+            </connections>
+        </arrayController>
+        <userDefaultsController representsSharedInstance="YES" id="219"/>
+        <arrayController mode="entity" entityName="Note" editable="NO" automaticallyPreparesContent="YES" preservesSelection="NO" id="216" userLabel="Array Controller for Main UI">
             <connections>
                 <binding destination="-2" name="managedObjectContext" keyPath="self.sharedManagedObjectContext" id="249"/>
             </connections>
         </arrayController>
-        <userDefaultsController representsSharedInstance="YES" id="219"/>
         <menu title="Note" id="433">
             <items>
                 <menuItem title="New Note" id="439">
@@ -286,8 +304,103 @@ label riga 4</string>
                 </menuItem>
             </items>
         </menu>
+        <window title="Books Selection" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="f90-qv-awV" customClass="NSPanel">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="272" y="172" width="200" height="170"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1418"/>
+            <view key="contentView" id="Pe3-0N-Gjn">
+                <rect key="frame" x="0.0" y="0.0" width="200" height="170"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="42" horizontalPageScroll="10" verticalLineScroll="42" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ytm-G3-kfs">
+                        <rect key="frame" x="0.0" y="0.0" width="202" height="169"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <clipView key="contentView" id="if4-O5-NpK">
+                            <rect key="frame" x="0.0" y="0.0" width="202" height="169"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="40" rowSizeStyle="automatic" viewBased="YES" id="PDi-1J-wOr">
+                                    <rect key="frame" x="0.0" y="0.0" width="202" height="169"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <size key="intercellSpacing" width="3" height="2"/>
+                                    <color key="backgroundColor" red="0.89411771299999998" green="0.89411771299999998" blue="0.89411771299999998" alpha="1" colorSpace="deviceRGB"/>
+                                    <tableViewGridLines key="gridStyleMask" horizontal="YES"/>
+                                    <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                    <tableColumns>
+                                        <tableColumn width="199" minWidth="40" maxWidth="1000" id="5qZ-V7-q8F">
+                                            <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
+                                            </tableHeaderCell>
+                                            <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="fcX-v1-HAG">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                            <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                            <prototypeCellViews>
+                                                <tableCellView id="Xcz-Qj-Eyi">
+                                                    <rect key="frame" x="1" y="1" width="199" height="40"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <subviews>
+                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="CmF-cu-fU9">
+                                                            <rect key="frame" x="1" y="11" width="198" height="19"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="Table View Cell" id="QZM-fp-IIz">
+                                                                <font key="font" metaFont="system" size="15"/>
+                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                            </textFieldCell>
+                                                            <connections>
+                                                                <binding destination="Xcz-Qj-Eyi" name="value" keyPath="objectValue" id="qRI-OK-hlA"/>
+                                                            </connections>
+                                                        </textField>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="CmF-cu-fU9" firstAttribute="centerX" secondItem="Xcz-Qj-Eyi" secondAttribute="centerX" id="KRG-Y5-xF5"/>
+                                                        <constraint firstItem="CmF-cu-fU9" firstAttribute="centerY" secondItem="Xcz-Qj-Eyi" secondAttribute="centerY" id="aVY-L3-oFo"/>
+                                                        <constraint firstItem="CmF-cu-fU9" firstAttribute="leading" secondItem="Xcz-Qj-Eyi" secondAttribute="leading" constant="3" id="cDT-yx-hUt"/>
+                                                    </constraints>
+                                                    <connections>
+                                                        <outlet property="textField" destination="CmF-cu-fU9" id="o0U-aQ-YaP"/>
+                                                    </connections>
+                                                </tableCellView>
+                                            </prototypeCellViews>
+                                        </tableColumn>
+                                    </tableColumns>
+                                    <connections>
+                                        <binding destination="8XF-GB-eMM" name="content" keyPath="arrangedObjects" id="Ech-nG-4xZ"/>
+                                    </connections>
+                                </tableView>
+                            </subviews>
+                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </clipView>
+                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="VyZ-Sc-Z3X">
+                            <rect key="frame" x="1" y="-15" width="0.0" height="16"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="nT6-ab-rAB">
+                            <rect key="frame" x="224" y="17" width="15" height="102"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                    </scrollView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Ytm-G3-kfs" firstAttribute="leading" secondItem="Pe3-0N-Gjn" secondAttribute="leading" id="TAV-QB-Jut"/>
+                    <constraint firstItem="Ytm-G3-kfs" firstAttribute="top" secondItem="Pe3-0N-Gjn" secondAttribute="top" constant="1" id="etu-bc-d6H"/>
+                    <constraint firstAttribute="bottom" secondItem="Ytm-G3-kfs" secondAttribute="bottom" id="wKu-cM-aeQ"/>
+                    <constraint firstAttribute="trailing" secondItem="Ytm-G3-kfs" secondAttribute="trailing" constant="-2" id="zcj-cP-kOb"/>
+                </constraints>
+            </view>
+            <connections>
+                <outlet property="delegate" destination="o4J-zF-bjD" id="O7j-jI-kXf"/>
+            </connections>
+        </window>
     </objects>
     <resources>
+        <image name="books" width="20.756755828857422" height="20.756755828857422"/>
         <image name="delete" width="20.756755828857422" height="20.756755828857422"/>
         <image name="document" width="20.756755828857422" height="20.756755828857422"/>
         <image name="edit" width="20.756755828857422" height="20.756755828857422"/>

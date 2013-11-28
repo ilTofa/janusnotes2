@@ -204,6 +204,8 @@
 		644AC25D17257FEB007B51FF /* Main UI */ = {
 			isa = PBXGroup;
 			children = (
+				64522F2418475AAD00D65289 /* IAMBooksWindowController.h */,
+				64522F2518475AAD00D65289 /* IAMBooksWindowController.m */,
 				644AC25817257FE4007B51FF /* IAMTableUIWindowController.h */,
 				644AC25917257FE4007B51FF /* IAMTableUIWindowController.m */,
 				644AC25A17257FE4007B51FF /* IAMTableUIWindowController.xib */,
@@ -306,8 +308,6 @@
 				64EA622116F7110300F4838E /* IAMAppDelegate.h */,
 				64EA622216F7110300F4838E /* IAMAppDelegate.m */,
 				64EA622416F7110300F4838E /* MainMenu.xib */,
-				64522F2418475AAD00D65289 /* IAMBooksWindowController.h */,
-				64522F2518475AAD00D65289 /* IAMBooksWindowController.m */,
 				64A1D4ED16FCA12700E50CC1 /* Note Edit */,
 				64EA621616F7110300F4838E /* Supporting Files */,
 				644AC25D17257FEB007B51FF /* Main UI */,

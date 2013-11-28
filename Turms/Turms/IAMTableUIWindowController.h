@@ -8,17 +8,22 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "IAMBooksWindowController.h"
+
 @interface IAMTableUIWindowController : NSWindowController
 
 @property (weak, atomic) NSManagedObjectContext *sharedManagedObjectContext;
 @property (assign) IBOutlet NSArrayController *arrayController;
 @property (assign) IBOutlet NSTableView *theTable;
 
+@property (strong) IBOutlet IAMBooksWindowController *theBookController;
+
 - (IBAction)showUIWindow:(id)sender;
 @property (weak) IBOutlet NSMenuItem *notesWindowMenuItem;
 
 @property (strong, nonatomic) NSMutableArray *noteWindowControllers;
-@property IBOutlet NSNumber *noteEditorIsShown;
+
+@property NSNumber *booksListIsShown;
 
 - (IBAction)addNote:(id)sender;
 - (IBAction)editNote:(id)sender;
@@ -26,6 +31,7 @@
 - (IBAction)deleteNote:(id)sender;
 - (IBAction)actionPreferences:(id)sender;
 - (IBAction)showInFinder:(id)sender;
+- (IBAction)showBooksAction:(id)sender;
 
 // Note editor actions from main menu
 - (IBAction)saveNoteAndContinueAction:(id)sender;

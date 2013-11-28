@@ -119,6 +119,10 @@
 //    [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[pathToBeShown]];
 }
 
+- (IBAction)showBooksAction:(id)sender {
+    [self.theBookController showWindow:self];
+}
+
 - (IBAction)deleteNote:(id)sender {
     NSAlert *alert = [[NSAlert alloc] init];
     [alert setInformativeText:NSLocalizedString(@"Are you sure you want to delete the note?", nil)];
