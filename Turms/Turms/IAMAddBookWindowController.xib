@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="IAMAddBookWindowController">
+            <connections>
+                <outlet property="bookNameField" destination="DH9-gF-1IX" id="DDd-yR-zer"/>
+                <outlet property="window" destination="1" id="3"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application"/>
+        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" wantsToBeColor="NO" visibleAtLaunch="NO" animationBehavior="default" id="1">
+            <windowStyleMask key="styleMask" titled="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="196" y="240" width="230" height="98"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1418"/>
+            <view key="contentView" id="2">
+                <rect key="frame" x="0.0" y="0.0" width="230" height="98"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Omk-fP-NTT">
+                        <rect key="frame" x="18" y="61" width="84" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="80" id="sfp-8o-8dh"/>
+                        </constraints>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Book Name: " id="QZd-QD-Rxf">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DH9-gF-1IX">
+                        <rect key="frame" x="108" y="59" width="102" height="22"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="oSW-90-xId">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NJY-w9-buM">
+                        <rect key="frame" x="134" y="13" width="82" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="70" id="bJx-x0-B5M"/>
+                        </constraints>
+                        <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="SgU-0F-96d">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                        </buttonCell>
+                        <connections>
+                            <action selector="OKAction:" target="-2" id="APg-BX-Bl2"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Z2o-C6-X9M">
+                        <rect key="frame" x="14" y="13" width="82" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="H53-vd-o7B">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                        </buttonCell>
+                        <connections>
+                            <action selector="cancelAction:" target="-2" id="hoJ-Ab-X1v"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Z2o-C6-X9M" firstAttribute="leading" secondItem="Omk-fP-NTT" secondAttribute="leading" id="AYi-GR-QiA"/>
+                    <constraint firstItem="Omk-fP-NTT" firstAttribute="top" secondItem="2" secondAttribute="top" constant="20" symbolic="YES" id="Bac-uV-uJ7"/>
+                    <constraint firstItem="DH9-gF-1IX" firstAttribute="baseline" secondItem="Omk-fP-NTT" secondAttribute="baseline" id="E6V-ZT-tx0"/>
+                    <constraint firstAttribute="trailing" secondItem="DH9-gF-1IX" secondAttribute="trailing" constant="20" symbolic="YES" id="I71-Ya-GUm"/>
+                    <constraint firstAttribute="bottom" secondItem="Z2o-C6-X9M" secondAttribute="bottom" constant="20" symbolic="YES" id="Qem-V8-fzK"/>
+                    <constraint firstItem="NJY-w9-buM" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Z2o-C6-X9M" secondAttribute="trailing" constant="50" id="RFA-5r-Sct"/>
+                    <constraint firstItem="NJY-w9-buM" firstAttribute="baseline" secondItem="Z2o-C6-X9M" secondAttribute="baseline" id="WAg-7m-7Yz"/>
+                    <constraint firstItem="Omk-fP-NTT" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="20" symbolic="YES" id="dxR-Y9-akD"/>
+                    <constraint firstItem="NJY-w9-buM" firstAttribute="trailing" secondItem="DH9-gF-1IX" secondAttribute="trailing" id="hxs-cT-jHY"/>
+                    <constraint firstItem="DH9-gF-1IX" firstAttribute="leading" secondItem="Omk-fP-NTT" secondAttribute="trailing" constant="8" symbolic="YES" id="jsF-Cf-9ge"/>
+                    <constraint firstItem="NJY-w9-buM" firstAttribute="top" relation="greaterThanOrEqual" secondItem="DH9-gF-1IX" secondAttribute="bottom" constant="18" id="wqI-fJ-REI"/>
+                </constraints>
+            </view>
+            <connections>
+                <outlet property="delegate" destination="-2" id="4"/>
+            </connections>
+        </window>
+        <userDefaultsController representsSharedInstance="YES" id="msz-jL-RcN"/>
+    </objects>
+</document>

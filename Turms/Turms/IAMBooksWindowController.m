@@ -9,10 +9,12 @@
 #import "IAMBooksWindowController.h"
 #import "IAMAppDelegate.h"
 #import "Books.h"
+#import "IAMAddBookWindowController.h"
 
 @interface IAMBooksWindowController ()
 
 @property (weak) NSManagedObjectContext *managedObjectContext;
+@property IAMAddBookWindowController *addBookCtr;
 
 @end
 
@@ -31,6 +33,7 @@
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
     DLog(@"Here");
     self.managedObjectContext = ((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).managedObjectContext;
+    [self.arrayController setAutomaticallyRearrangesObjects:YES];
     [self reloadBookArray];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mocChanged:) name:NSManagedObjectContextDidSaveNotification object:self.managedObjectContext];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(iCloudDataChanged:) name:kCoreDataStoreExternallyChanged object:nil];
@@ -80,9 +83,6 @@
     [alert beginSheetModalForWindow:self.window modalDelegate:self didEndSelector:@selector(alertDidEnd:returnCode:contextInfo:) contextInfo:nil];
 }
 
-- (IBAction)addBookAction:(id)sender {
-}
-
 - (void) alertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
     if(returnCode == NSAlertSecondButtonReturn)
@@ -108,6 +108,13 @@
         }
         [self.tableView reloadData];
     }
+}
+
+- (IBAction)addBookAction:(id)sender {
+    self.addBookCtr = [[IAMAddBookWindowController alloc] initWithWindowNibName:@"IAMAddBookWindowController"];
+    [self.window beginSheet:self.addBookCtr.window completionHandler:^(NSModalResponse returnCode) {
+        DLog(@"Returned %ld", (long)returnCode);
+    }];
 }
 
 @end

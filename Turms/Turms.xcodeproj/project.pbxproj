@@ -22,6 +22,8 @@
 		64522F2F18476C1A00D65289 /* Books.m in Sources */ = {isa = PBXBuildFile; fileRef = 64522F2E18476C1A00D65289 /* Books.m */; };
 		64522F3218476C1A00D65289 /* PublishedOn.m in Sources */ = {isa = PBXBuildFile; fileRef = 64522F3118476C1A00D65289 /* PublishedOn.m */; };
 		64522F3518476C4E00D65289 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 64522F3418476C4E00D65289 /* Note.m */; };
+		64522F451847F87800D65289 /* IAMAddBookWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64522F431847F87800D65289 /* IAMAddBookWindowController.m */; };
+		64522F461847F87800D65289 /* IAMAddBookWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64522F441847F87800D65289 /* IAMAddBookWindowController.xib */; };
 		645A7E611817C602003C9D5A /* IAMNoteEditTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 645A7E601817C602003C9D5A /* IAMNoteEditTextView.m */; };
 		645ED8A31754ED8A0070F83B /* iRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 645ED8A11754ED8A0070F83B /* iRate.m */; };
 		645ED8A51754EFCE0070F83B /* iRate.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 645ED8A41754EFCE0070F83B /* iRate.bundle */; };
@@ -110,6 +112,9 @@
 		64522F3118476C1A00D65289 /* PublishedOn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PublishedOn.m; path = ../common/iCloud/PublishedOn.m; sourceTree = "<group>"; };
 		64522F3318476C4E00D65289 /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Note.h; path = ../common/iCloud/Note.h; sourceTree = "<group>"; };
 		64522F3418476C4E00D65289 /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Note.m; path = ../common/iCloud/Note.m; sourceTree = "<group>"; };
+		64522F421847F87800D65289 /* IAMAddBookWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMAddBookWindowController.h; sourceTree = "<group>"; };
+		64522F431847F87800D65289 /* IAMAddBookWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMAddBookWindowController.m; sourceTree = "<group>"; };
+		64522F441847F87800D65289 /* IAMAddBookWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IAMAddBookWindowController.xib; sourceTree = "<group>"; };
 		645A7E5F1817C602003C9D5A /* IAMNoteEditTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMNoteEditTextView.h; sourceTree = "<group>"; };
 		645A7E601817C602003C9D5A /* IAMNoteEditTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMNoteEditTextView.m; sourceTree = "<group>"; };
 		645ED8A01754ED8A0070F83B /* iRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iRate.h; sourceTree = "<group>"; };
@@ -204,11 +209,14 @@
 		644AC25D17257FEB007B51FF /* Main UI */ = {
 			isa = PBXGroup;
 			children = (
-				64522F2418475AAD00D65289 /* IAMBooksWindowController.h */,
-				64522F2518475AAD00D65289 /* IAMBooksWindowController.m */,
 				644AC25817257FE4007B51FF /* IAMTableUIWindowController.h */,
 				644AC25917257FE4007B51FF /* IAMTableUIWindowController.m */,
 				644AC25A17257FE4007B51FF /* IAMTableUIWindowController.xib */,
+				64522F2418475AAD00D65289 /* IAMBooksWindowController.h */,
+				64522F2518475AAD00D65289 /* IAMBooksWindowController.m */,
+				64522F421847F87800D65289 /* IAMAddBookWindowController.h */,
+				64522F431847F87800D65289 /* IAMAddBookWindowController.m */,
+				64522F441847F87800D65289 /* IAMAddBookWindowController.xib */,
 			);
 			name = "Main UI";
 			path = ../Turms;
@@ -505,6 +513,7 @@
 				64EA621A16F7110300F4838E /* InfoPlist.strings in Resources */,
 				64EA622016F7110300F4838E /* Credits.rtf in Resources */,
 				64EA622616F7110300F4838E /* MainMenu.xib in Resources */,
+				64522F461847F87800D65289 /* IAMAddBookWindowController.xib in Resources */,
 				64EA628616F75E0000F4838E /* IAMNoteEditorWC.xib in Resources */,
 				64B4B7BC181140A700766D43 /* MarkdownPreview.html in Resources */,
 				644AC25C17257FE4007B51FF /* IAMTableUIWindowController.xib in Resources */,
@@ -541,6 +550,7 @@
 				64EE7C74180C54EC004B94E2 /* autolink.c in Sources */,
 				64EA622316F7110300F4838E /* IAMAppDelegate.m in Sources */,
 				64EA627416F71E1400F4838E /* Attachment.m in Sources */,
+				64522F451847F87800D65289 /* IAMAddBookWindowController.m in Sources */,
 				64EA627616F71E1400F4838E /* IAmMine.xcdatamodeld in Sources */,
 				64522F2C18476C1A00D65289 /* Tags.m in Sources */,
 				645A7E611817C602003C9D5A /* IAMNoteEditTextView.m in Sources */,

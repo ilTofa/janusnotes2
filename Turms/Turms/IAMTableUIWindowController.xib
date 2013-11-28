@@ -248,9 +248,9 @@ label riga 4</string>
                 <outlet property="window" destination="f90-qv-awV" id="WFQ-f9-XiP"/>
             </connections>
         </customObject>
-        <arrayController objectClassName="NSMutableArray" id="8XF-GB-eMM" userLabel="Array Controller for Books">
+        <arrayController objectClassName="NSMutableArray" automaticallyPreparesContent="YES" id="8XF-GB-eMM" userLabel="Array Controller for Books">
             <connections>
-                <binding destination="o4J-zF-bjD" name="contentArray" keyPath="self.bookList" id="F4v-Cp-jh9"/>
+                <binding destination="o4J-zF-bjD" name="contentArray" keyPath="self.bookList" id="pc8-mF-W23"/>
             </connections>
         </arrayController>
         <userDefaultsController representsSharedInstance="YES" id="219"/>
