@@ -11,7 +11,7 @@
         <attribute name="uuid" attributeType="String" indexed="YES" syncable="YES"/>
         <relationship name="note" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Note" inverseName="attachment" inverseEntity="Note" syncable="YES"/>
     </entity>
-    <entity name="Books" syncable="YES">
+    <entity name="Books" representedClassName="Books" syncable="YES">
         <attribute name="name" attributeType="String" indexed="YES" syncable="YES"/>
         <relationship name="note" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Note" inverseName="book" inverseEntity="Note" syncable="YES"/>
     </entity>
@@ -28,14 +28,14 @@
         <relationship name="publishedOn" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="PublishedOn" inverseName="note" inverseEntity="PublishedOn" syncable="YES"/>
         <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tags" inverseName="notes" inverseEntity="Tags" syncable="YES"/>
     </entity>
-    <entity name="PublishedOn" syncable="YES">
+    <entity name="PublishedOn" representedClassName="PublishedOn" syncable="YES">
         <attribute name="publishDate" attributeType="Date" indexed="YES" syncable="YES"/>
         <attribute name="publishedText" attributeType="String" syncable="YES"/>
         <attribute name="url" attributeType="String" syncable="YES"/>
         <relationship name="note" maxCount="1" deletionRule="Nullify" destinationEntity="Note" inverseName="publishedOn" inverseEntity="Note" syncable="YES"/>
         <relationship name="site" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Site" inverseName="publications" inverseEntity="Site" syncable="YES"/>
     </entity>
-    <entity name="Site" syncable="YES">
+    <entity name="Site" representedClassName="Site" syncable="YES">
         <attribute name="key" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
@@ -44,16 +44,16 @@
         <attribute name="username" attributeType="String" syncable="YES"/>
         <relationship name="publications" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PublishedOn" inverseName="site" inverseEntity="PublishedOn" syncable="YES"/>
     </entity>
-    <entity name="Tags" syncable="YES">
+    <entity name="Tags" representedClassName="Tags" syncable="YES">
         <attribute name="name" attributeType="String" indexed="YES" syncable="YES"/>
         <relationship name="notes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Note" inverseName="tags" inverseEntity="Note" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Attachment" positionX="-117" positionY="-99" width="128" height="180"/>
-        <element name="Note" positionX="144" positionY="-270" width="128" height="208"/>
-        <element name="Books" positionX="-92" positionY="96" width="128" height="75"/>
-        <element name="Tags" positionX="-74" positionY="213" width="128" height="75"/>
-        <element name="PublishedOn" positionX="385" positionY="23" width="128" height="118"/>
-        <element name="Site" positionX="196" positionY="167" width="128" height="148"/>
+        <element name="Attachment" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Books" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Note" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="PublishedOn" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Site" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Tags" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

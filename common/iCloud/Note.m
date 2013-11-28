@@ -1,28 +1,35 @@
 //
 //  Note.m
-//  I Am Mine
+//  Turms
 //
-//  Created by Giacomo Tufano on 04/03/13.
+//  Created by Giacomo Tufano on 28/11/13.
 //  Copyright (c) 2013 Giacomo Tufano. All rights reserved.
 //
 
 #import "Note.h"
+#import "Attachment.h"
+#import "Books.h"
+#import "PublishedOn.h"
+#import "Tags.h"
+
 
 @implementation Note
 
 @dynamic creationDate;
 @dynamic primitiveCreationDate;
-@dynamic sectionIdentifier;
-@dynamic primitiveSectionIdentifier;
 @dynamic creationIdentifier;
 @dynamic primitiveCreationIdentifier;
+@dynamic sectionIdentifier;
+@dynamic primitiveSectionIdentifier;
 @dynamic text;
 @dynamic timeStamp;
 @dynamic primitiveTimeStamp;
 @dynamic title;
 @dynamic uuid;
 @dynamic attachment;
-
+@dynamic book;
+@dynamic publishedOn;
+@dynamic tags;
 
 #pragma mark - awakeFromInsert: setup initial values
 

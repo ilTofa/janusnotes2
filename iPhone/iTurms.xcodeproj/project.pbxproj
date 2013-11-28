@@ -20,6 +20,10 @@
 		641D954416E8CF6E00A253E3 /* IAMAttachmentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 641D954316E8CF6E00A253E3 /* IAMAttachmentDetailViewController.m */; };
 		6447056E16DD0FC4000A0262 /* SmallRow.png in Resources */ = {isa = PBXBuildFile; fileRef = 6447056C16DD0FC4000A0262 /* SmallRow.png */; };
 		6447056F16DD0FC4000A0262 /* SmallRow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6447056D16DD0FC4000A0262 /* SmallRow@2x.png */; };
+		64522F3E18476D9900D65289 /* Books.m in Sources */ = {isa = PBXBuildFile; fileRef = 64522F3718476D9900D65289 /* Books.m */; };
+		64522F3F18476D9900D65289 /* PublishedOn.m in Sources */ = {isa = PBXBuildFile; fileRef = 64522F3918476D9900D65289 /* PublishedOn.m */; };
+		64522F4018476D9900D65289 /* Site.m in Sources */ = {isa = PBXBuildFile; fileRef = 64522F3B18476D9900D65289 /* Site.m */; };
+		64522F4118476D9900D65289 /* Tags.m in Sources */ = {isa = PBXBuildFile; fileRef = 64522F3D18476D9900D65289 /* Tags.m */; };
 		645A7E6618183846003C9D5A /* link-browser-big.png in Resources */ = {isa = PBXBuildFile; fileRef = 645A7E6218183846003C9D5A /* link-browser-big.png */; };
 		645A7E6718183846003C9D5A /* link-browser-big@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 645A7E6318183846003C9D5A /* link-browser-big@2x.png */; };
 		645A7E6818183846003C9D5A /* link-browser.png in Resources */ = {isa = PBXBuildFile; fileRef = 645A7E6418183846003C9D5A /* link-browser.png */; };
@@ -112,6 +116,14 @@
 		641D954316E8CF6E00A253E3 /* IAMAttachmentDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMAttachmentDetailViewController.m; sourceTree = "<group>"; };
 		6447056C16DD0FC4000A0262 /* SmallRow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SmallRow.png; path = Images/SmallRow.png; sourceTree = "<group>"; };
 		6447056D16DD0FC4000A0262 /* SmallRow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SmallRow@2x.png"; path = "Images/SmallRow@2x.png"; sourceTree = "<group>"; };
+		64522F3618476D9900D65289 /* Books.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Books.h; path = ../common/iCloud/Books.h; sourceTree = "<group>"; };
+		64522F3718476D9900D65289 /* Books.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Books.m; path = ../common/iCloud/Books.m; sourceTree = "<group>"; };
+		64522F3818476D9900D65289 /* PublishedOn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PublishedOn.h; path = ../common/iCloud/PublishedOn.h; sourceTree = "<group>"; };
+		64522F3918476D9900D65289 /* PublishedOn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PublishedOn.m; path = ../common/iCloud/PublishedOn.m; sourceTree = "<group>"; };
+		64522F3A18476D9900D65289 /* Site.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Site.h; path = ../common/iCloud/Site.h; sourceTree = "<group>"; };
+		64522F3B18476D9900D65289 /* Site.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Site.m; path = ../common/iCloud/Site.m; sourceTree = "<group>"; };
+		64522F3C18476D9900D65289 /* Tags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Tags.h; path = ../common/iCloud/Tags.h; sourceTree = "<group>"; };
+		64522F3D18476D9900D65289 /* Tags.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Tags.m; path = ../common/iCloud/Tags.m; sourceTree = "<group>"; };
 		645A13A01701BFC800CCB4FB /* iTurms.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = iTurms.entitlements; path = ../iTurms.entitlements; sourceTree = "<group>"; };
 		645A7E6218183846003C9D5A /* link-browser-big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "link-browser-big.png"; path = "Images/link-browser-big.png"; sourceTree = "<group>"; };
 		645A7E6318183846003C9D5A /* link-browser-big@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "link-browser-big@2x.png"; path = "Images/link-browser-big@2x.png"; sourceTree = "<group>"; };
@@ -337,6 +349,14 @@
 		649DCE9A16D28D30003F5A83 /* CoreData (common) */ = {
 			isa = PBXGroup;
 			children = (
+				64522F3618476D9900D65289 /* Books.h */,
+				64522F3718476D9900D65289 /* Books.m */,
+				64522F3818476D9900D65289 /* PublishedOn.h */,
+				64522F3918476D9900D65289 /* PublishedOn.m */,
+				64522F3A18476D9900D65289 /* Site.h */,
+				64522F3B18476D9900D65289 /* Site.m */,
+				64522F3C18476D9900D65289 /* Tags.h */,
+				64522F3D18476D9900D65289 /* Tags.m */,
 				64DE6C241727E5320031183A /* NSManagedObjectContext+FetchedObjectFromURI.h */,
 				64DE6C251727E5320031183A /* NSManagedObjectContext+FetchedObjectFromURI.m */,
 				649DCE9E16D28DB7003F5A83 /* IAmMine.xcdatamodeld */,
@@ -614,12 +634,15 @@
 				64A0508016D28CCA0025E179 /* IAMAppDelegate.m in Sources */,
 				64EB0F061819144E00DD9924 /* autolink.c in Sources */,
 				64EB0F0B1819144E00DD9924 /* html_smartypants.c in Sources */,
+				64522F4118476D9900D65289 /* Tags.m in Sources */,
 				649DCEA016D28DB8003F5A83 /* IAmMine.xcdatamodeld in Sources */,
+				64522F3E18476D9900D65289 /* Books.m in Sources */,
 				640D40BE16D5128B003034B3 /* IAMNoteCell.m in Sources */,
 				64B9B4A516D7801100607F39 /* IAMNoteEdit.m in Sources */,
 				6416315716D7DB830004CB52 /* IAMViewController.m in Sources */,
 				6416315D16D8345F0004CB52 /* UIImage+RoundedCorner.m in Sources */,
 				64027D7B16DD7CB800DEA647 /* IAMPreferencesController.m in Sources */,
+				64522F3F18476D9900D65289 /* PublishedOn.m in Sources */,
 				64E0AA4817E9067D008BF0E3 /* iRate.m in Sources */,
 				64F31CC416E4AF9000A80BE0 /* Note.m in Sources */,
 				64F31CCA16E5009B00A80BE0 /* Attachment.m in Sources */,
@@ -629,6 +652,7 @@
 				64A8A7E616E7B4770013AFFF /* IAMAttachmentCell.m in Sources */,
 				641D954416E8CF6E00A253E3 /* IAMAttachmentDetailViewController.m in Sources */,
 				6410E1CB17E85D2000B568D0 /* GTTransientMessage.m in Sources */,
+				64522F4018476D9900D65289 /* Site.m in Sources */,
 				64EB0F0A1819144E00DD9924 /* html.c in Sources */,
 				64BB200F16EA000E00FE6C77 /* GTThemer.m in Sources */,
 				64A755831702137A0085933D /* MicrophoneWindow.m in Sources */,

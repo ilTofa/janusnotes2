@@ -16,6 +16,12 @@
 		644AC2741726C343007B51FF /* IAMCollectionItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 644AC2731726C343007B51FF /* IAMCollectionItemView.m */; };
 		644AC2781726CFAC007B51FF /* IAMPrefsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 644AC2761726CFAB007B51FF /* IAMPrefsWindowController.m */; };
 		644AC2791726CFAC007B51FF /* IAMPrefsWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 644AC2771726CFAB007B51FF /* IAMPrefsWindowController.xib */; };
+		64522F2618475AAD00D65289 /* IAMBooksWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64522F2518475AAD00D65289 /* IAMBooksWindowController.m */; };
+		64522F2918476C1900D65289 /* Site.m in Sources */ = {isa = PBXBuildFile; fileRef = 64522F2818476C1900D65289 /* Site.m */; };
+		64522F2C18476C1A00D65289 /* Tags.m in Sources */ = {isa = PBXBuildFile; fileRef = 64522F2B18476C1A00D65289 /* Tags.m */; };
+		64522F2F18476C1A00D65289 /* Books.m in Sources */ = {isa = PBXBuildFile; fileRef = 64522F2E18476C1A00D65289 /* Books.m */; };
+		64522F3218476C1A00D65289 /* PublishedOn.m in Sources */ = {isa = PBXBuildFile; fileRef = 64522F3118476C1A00D65289 /* PublishedOn.m */; };
+		64522F3518476C4E00D65289 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 64522F3418476C4E00D65289 /* Note.m */; };
 		645A7E611817C602003C9D5A /* IAMNoteEditTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 645A7E601817C602003C9D5A /* IAMNoteEditTextView.m */; };
 		645ED8A31754ED8A0070F83B /* iRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 645ED8A11754ED8A0070F83B /* iRate.m */; };
 		645ED8A51754EFCE0070F83B /* iRate.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 645ED8A41754EFCE0070F83B /* iRate.bundle */; };
@@ -65,7 +71,6 @@
 		64EA624616F7110300F4838E /* TurmsSpotlightImporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 64EA624516F7110300F4838E /* TurmsSpotlightImporter.m */; };
 		64EA627416F71E1400F4838E /* Attachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 64EA626D16F71E1400F4838E /* Attachment.m */; };
 		64EA627616F71E1400F4838E /* IAmMine.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 64EA627016F71E1400F4838E /* IAmMine.xcdatamodeld */; };
-		64EA627716F71E1400F4838E /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 64EA627316F71E1400F4838E /* Note.m */; };
 		64EA628516F75E0000F4838E /* IAMNoteEditorWC.m in Sources */ = {isa = PBXBuildFile; fileRef = 64EA628316F75E0000F4838E /* IAMNoteEditorWC.m */; };
 		64EA628616F75E0000F4838E /* IAMNoteEditorWC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64EA628416F75E0000F4838E /* IAMNoteEditorWC.xib */; };
 		64EE7C74180C54EC004B94E2 /* autolink.c in Sources */ = {isa = PBXBuildFile; fileRef = 64EE7C6B180C54EC004B94E2 /* autolink.c */; };
@@ -76,8 +81,6 @@
 		64EE7C7E180C58B9004B94E2 /* houdini_html_e.c in Sources */ = {isa = PBXBuildFile; fileRef = 64EE7C79180C58B9004B94E2 /* houdini_html_e.c */; };
 		64EE7C7F180C58B9004B94E2 /* html_smartypants.c in Sources */ = {isa = PBXBuildFile; fileRef = 64EE7C7A180C58B9004B94E2 /* html_smartypants.c */; };
 		64EE7C80180C58B9004B94E2 /* html.c in Sources */ = {isa = PBXBuildFile; fileRef = 64EE7C7B180C58B9004B94E2 /* html.c */; };
-		64FB1CBC1812FA1E007B2DC5 /* preview.png in Resources */ = {isa = PBXBuildFile; fileRef = 64FB1CBA1812FA1E007B2DC5 /* preview.png */; };
-		64FB1CBD1812FA1E007B2DC5 /* preview@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64FB1CBB1812FA1E007B2DC5 /* preview@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +118,18 @@
 		644AC2751726CFAB007B51FF /* IAMPrefsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMPrefsWindowController.h; sourceTree = "<group>"; };
 		644AC2761726CFAB007B51FF /* IAMPrefsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMPrefsWindowController.m; sourceTree = "<group>"; };
 		644AC2771726CFAB007B51FF /* IAMPrefsWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IAMPrefsWindowController.xib; sourceTree = "<group>"; };
+		64522F2418475AAD00D65289 /* IAMBooksWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMBooksWindowController.h; sourceTree = "<group>"; };
+		64522F2518475AAD00D65289 /* IAMBooksWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMBooksWindowController.m; sourceTree = "<group>"; };
+		64522F2718476C1900D65289 /* Site.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Site.h; path = ../common/iCloud/Site.h; sourceTree = "<group>"; };
+		64522F2818476C1900D65289 /* Site.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Site.m; path = ../common/iCloud/Site.m; sourceTree = "<group>"; };
+		64522F2A18476C1A00D65289 /* Tags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Tags.h; path = ../common/iCloud/Tags.h; sourceTree = "<group>"; };
+		64522F2B18476C1A00D65289 /* Tags.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Tags.m; path = ../common/iCloud/Tags.m; sourceTree = "<group>"; };
+		64522F2D18476C1A00D65289 /* Books.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Books.h; path = ../common/iCloud/Books.h; sourceTree = "<group>"; };
+		64522F2E18476C1A00D65289 /* Books.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Books.m; path = ../common/iCloud/Books.m; sourceTree = "<group>"; };
+		64522F3018476C1A00D65289 /* PublishedOn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PublishedOn.h; path = ../common/iCloud/PublishedOn.h; sourceTree = "<group>"; };
+		64522F3118476C1A00D65289 /* PublishedOn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PublishedOn.m; path = ../common/iCloud/PublishedOn.m; sourceTree = "<group>"; };
+		64522F3318476C4E00D65289 /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Note.h; path = ../common/iCloud/Note.h; sourceTree = "<group>"; };
+		64522F3418476C4E00D65289 /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Note.m; path = ../common/iCloud/Note.m; sourceTree = "<group>"; };
 		645A7E5F1817C602003C9D5A /* IAMNoteEditTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMNoteEditTextView.h; sourceTree = "<group>"; };
 		645A7E601817C602003C9D5A /* IAMNoteEditTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMNoteEditTextView.m; sourceTree = "<group>"; };
 		645ED8A01754ED8A0070F83B /* iRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iRate.h; sourceTree = "<group>"; };
@@ -179,8 +194,6 @@
 		64EA626C16F71E1400F4838E /* Attachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Attachment.h; path = ../common/iCloud/Attachment.h; sourceTree = "<group>"; };
 		64EA626D16F71E1400F4838E /* Attachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Attachment.m; path = ../common/iCloud/Attachment.m; sourceTree = "<group>"; };
 		64EA627116F71E1400F4838E /* IAmMine.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = IAmMine.xcdatamodel; sourceTree = "<group>"; };
-		64EA627216F71E1400F4838E /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Note.h; path = ../common/iCloud/Note.h; sourceTree = "<group>"; };
-		64EA627316F71E1400F4838E /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Note.m; path = ../common/iCloud/Note.m; sourceTree = "<group>"; };
 		64EA628216F75E0000F4838E /* IAMNoteEditorWC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMNoteEditorWC.h; sourceTree = "<group>"; };
 		64EA628316F75E0000F4838E /* IAMNoteEditorWC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMNoteEditorWC.m; sourceTree = "<group>"; };
 		64EA628416F75E0000F4838E /* IAMNoteEditorWC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IAMNoteEditorWC.xib; sourceTree = "<group>"; };
@@ -199,8 +212,6 @@
 		64EE7C7B180C58B9004B94E2 /* html.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = html.c; sourceTree = "<group>"; };
 		64EE7C7C180C58B9004B94E2 /* html.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = html.h; sourceTree = "<group>"; };
 		64EE7C81180C5981004B94E2 /* houdini.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = houdini.h; sourceTree = "<group>"; };
-		64FB1CBA1812FA1E007B2DC5 /* preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = preview.png; path = Buttons/preview.png; sourceTree = "<group>"; };
-		64FB1CBB1812FA1E007B2DC5 /* preview@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "preview@2x.png"; path = "Buttons/preview@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,8 +255,6 @@
 		644AC25E17258213007B51FF /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
-				64FB1CBA1812FA1E007B2DC5 /* preview.png */,
-				64FB1CBB1812FA1E007B2DC5 /* preview@2x.png */,
 				64E6BDA9175009C500B63D46 /* add_property.png */,
 				64E6BDAA175009C500B63D46 /* add_property@2x.png */,
 				64E6BDAB175009C500B63D46 /* close.png */,
@@ -366,6 +375,8 @@
 				64EA622116F7110300F4838E /* IAMAppDelegate.h */,
 				64EA622216F7110300F4838E /* IAMAppDelegate.m */,
 				64EA622416F7110300F4838E /* MainMenu.xib */,
+				64522F2418475AAD00D65289 /* IAMBooksWindowController.h */,
+				64522F2518475AAD00D65289 /* IAMBooksWindowController.m */,
 				64A1D4ED16FCA12700E50CC1 /* Note Edit */,
 				64EA621616F7110300F4838E /* Supporting Files */,
 				644AC25D17257FEB007B51FF /* Main UI */,
@@ -420,8 +431,16 @@
 				64EA626C16F71E1400F4838E /* Attachment.h */,
 				64EA626D16F71E1400F4838E /* Attachment.m */,
 				64EA627016F71E1400F4838E /* IAmMine.xcdatamodeld */,
-				64EA627216F71E1400F4838E /* Note.h */,
-				64EA627316F71E1400F4838E /* Note.m */,
+				64522F3318476C4E00D65289 /* Note.h */,
+				64522F3418476C4E00D65289 /* Note.m */,
+				64522F3018476C1A00D65289 /* PublishedOn.h */,
+				64522F3118476C1A00D65289 /* PublishedOn.m */,
+				64522F2D18476C1A00D65289 /* Books.h */,
+				64522F2E18476C1A00D65289 /* Books.m */,
+				64522F2A18476C1A00D65289 /* Tags.h */,
+				64522F2B18476C1A00D65289 /* Tags.m */,
+				64522F2718476C1900D65289 /* Site.h */,
+				64522F2818476C1900D65289 /* Site.m */,
 				64A7558F170358BC0085933D /* NSManagedObjectContext+FetchedObjectFromURI.h */,
 				64A75590170358BC0085933D /* NSManagedObjectContext+FetchedObjectFromURI.m */,
 			);
@@ -559,7 +578,6 @@
 				64B4B7BC181140A700766D43 /* MarkdownPreview.html in Resources */,
 				644AC25C17257FE4007B51FF /* IAMTableUIWindowController.xib in Resources */,
 				644AC2791726CFAC007B51FF /* IAMPrefsWindowController.xib in Resources */,
-				64FB1CBC1812FA1E007B2DC5 /* preview.png in Resources */,
 				643BA051173D26E300A6C437 /* IAMOpenWithWC.xib in Resources */,
 				6476CFAB1746223900A6195C /* it.iltofa.turms.entry.icns in Resources */,
 				64B56855174658ED006D04C4 /* readme.txt in Resources */,
@@ -572,7 +590,6 @@
 				64E6BDBE175009C600B63D46 /* close@2x.png in Resources */,
 				64E6BDBF175009C600B63D46 /* delete_property.png in Resources */,
 				64E6BDC0175009C600B63D46 /* delete_property@2x.png in Resources */,
-				64FB1CBD1812FA1E007B2DC5 /* preview@2x.png in Resources */,
 				64E6BDC1175009C600B63D46 /* delete.png in Resources */,
 				64E6BDC2175009C600B63D46 /* delete@2x.png in Resources */,
 				64E6BDC3175009C600B63D46 /* document.png in Resources */,
@@ -606,17 +623,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				64EE7C7F180C58B9004B94E2 /* html_smartypants.c in Sources */,
+				64522F2F18476C1A00D65289 /* Books.m in Sources */,
 				64EA621C16F7110300F4838E /* main.m in Sources */,
 				64EE7C76180C54EC004B94E2 /* markdown.c in Sources */,
+				64522F2918476C1900D65289 /* Site.m in Sources */,
 				64EE7C74180C54EC004B94E2 /* autolink.c in Sources */,
 				64EA622316F7110300F4838E /* IAMAppDelegate.m in Sources */,
 				64EA627416F71E1400F4838E /* Attachment.m in Sources */,
 				64EA627616F71E1400F4838E /* IAmMine.xcdatamodeld in Sources */,
+				64522F2C18476C1A00D65289 /* Tags.m in Sources */,
 				645A7E611817C602003C9D5A /* IAMNoteEditTextView.m in Sources */,
-				64EA627716F71E1400F4838E /* Note.m in Sources */,
 				64EE7C7D180C58B9004B94E2 /* houdini_href_e.c in Sources */,
 				64EA628516F75E0000F4838E /* IAMNoteEditorWC.m in Sources */,
+				64522F3518476C4E00D65289 /* Note.m in Sources */,
 				64A75591170358BC0085933D /* NSManagedObjectContext+FetchedObjectFromURI.m in Sources */,
+				64522F3218476C1A00D65289 /* PublishedOn.m in Sources */,
+				64522F2618475AAD00D65289 /* IAMBooksWindowController.m in Sources */,
 				64EE7C80180C58B9004B94E2 /* html.c in Sources */,
 				64EE7C7E180C58B9004B94E2 /* houdini_html_e.c in Sources */,
 				644AC25B17257FE4007B51FF /* IAMTableUIWindowController.m in Sources */,
