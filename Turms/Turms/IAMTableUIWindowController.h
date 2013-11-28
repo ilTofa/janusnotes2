@@ -22,6 +22,7 @@
 @property (weak) IBOutlet NSMenuItem *notesWindowMenuItem;
 
 @property (strong, nonatomic) NSMutableArray *noteWindowControllers;
+@property IBOutlet NSNumber *noteEditorIsShown;
 
 @property NSNumber *booksListIsShown;
 

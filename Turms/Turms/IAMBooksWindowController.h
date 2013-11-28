@@ -12,5 +12,9 @@
 
 @property NSMutableArray *bookList;
 @property NSTableView *tableView;
+@property (assign) IBOutlet NSArrayController *arrayController;
+
+- (IBAction)deleteBookAction:(id)sender;
+- (IBAction)addBookAction:(id)sender;
 
 @end

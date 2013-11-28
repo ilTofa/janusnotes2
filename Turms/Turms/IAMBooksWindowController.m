@@ -67,4 +67,47 @@
     [self.tableView reloadData];
 }
 
+- (IBAction)deleteBookAction:(id)sender {
+    NSString *bookToBeDeleted = [self.arrayController selectedObjects][0];
+    if (!bookToBeDeleted || [bookToBeDeleted isEqualToString:@"Any"]) {
+        return;
+    }
+    NSAlert *alert = [[NSAlert alloc] init];
+    [alert setInformativeText:NSLocalizedString(@"Are you sure you want to delete the book?", nil)];
+    [alert setMessageText:NSLocalizedString(@"Warning", @"")];
+    [alert addButtonWithTitle:@"Cancel"];
+    [alert addButtonWithTitle:@"Delete"];
+    [alert beginSheetModalForWindow:self.window modalDelegate:self didEndSelector:@selector(alertDidEnd:returnCode:contextInfo:) contextInfo:nil];
+}
+
+- (IBAction)addBookAction:(id)sender {
+}
+
+- (void) alertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
+{
+    if(returnCode == NSAlertSecondButtonReturn)
+    {
+        // Delete on main moc
+        NSError *error;
+        NSString *bookToBeDeleted = [self.arrayController selectedObjects][0];
+        DLog(@"User confirmed delete, now really deleting note: %@", bookToBeDeleted);
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        // Edit the entity name as appropriate.
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Books" inManagedObjectContext:self.managedObjectContext];
+        [fetchRequest setEntity:entity];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name = %@", bookToBeDeleted];
+        [fetchRequest setPredicate:predicate];
+        NSArray *results = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+        if (!results) {
+            NSLog(@"Error fetching bookList: %@", [error description]);
+        } else {
+            [self.managedObjectContext deleteObject:results[0]];
+            if(![self.managedObjectContext save:&error]) {
+                ALog(@"Unresolved error deleting %@: %@", bookToBeDeleted, [error userInfo]);
+            }
+        }
+        [self.tableView reloadData];
+    }
+}
+
 @end
