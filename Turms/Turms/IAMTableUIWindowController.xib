@@ -248,9 +248,9 @@ label riga 4</string>
                 <outlet property="window" destination="f90-qv-awV" id="WFQ-f9-XiP"/>
             </connections>
         </customObject>
-        <arrayController objectClassName="NSMutableArray" automaticallyPreparesContent="YES" id="8XF-GB-eMM" userLabel="Array Controller for Books">
+        <arrayController mode="entity" entityName="Books" automaticallyPreparesContent="YES" id="8XF-GB-eMM" userLabel="Array Controller for Books">
             <connections>
-                <binding destination="o4J-zF-bjD" name="contentArray" keyPath="self.bookList" id="pc8-mF-W23"/>
+                <binding destination="o4J-zF-bjD" name="managedObjectContext" keyPath="self.managedObjectContext" id="vDb-b6-zLP"/>
             </connections>
         </arrayController>
         <userDefaultsController representsSharedInstance="YES" id="219"/>
@@ -321,7 +321,7 @@ label riga 4</string>
                             <rect key="frame" x="0.0" y="0.0" width="202" height="169"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" rowSizeStyle="automatic" viewBased="YES" id="PDi-1J-wOr">
+                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" columnResizing="NO" autosaveColumns="NO" typeSelect="NO" rowSizeStyle="automatic" viewBased="YES" id="PDi-1J-wOr">
                                     <rect key="frame" x="0.0" y="0.0" width="202" height="169"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
@@ -355,7 +355,7 @@ label riga 4</string>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                             <connections>
-                                                                <binding destination="Xcz-Qj-Eyi" name="value" keyPath="objectValue" id="qRI-OK-hlA"/>
+                                                                <binding destination="Xcz-Qj-Eyi" name="value" keyPath="objectValue.name" id="jh7-Uf-Efk"/>
                                                             </connections>
                                                         </textField>
                                                     </subviews>

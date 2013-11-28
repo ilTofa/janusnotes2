@@ -10,9 +10,8 @@
 
 @interface IAMBooksWindowController : NSWindowController <NSTableViewDelegate, NSTableViewDataSource>
 
-@property NSMutableArray *bookList;
-@property NSTableView *tableView;
 @property (assign) IBOutlet NSArrayController *arrayController;
+@property (weak) NSManagedObjectContext *managedObjectContext;
 
 - (IBAction)deleteBookAction:(id)sender;
 - (IBAction)addBookAction:(id)sender;

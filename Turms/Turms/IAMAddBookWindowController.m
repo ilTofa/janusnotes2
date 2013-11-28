@@ -46,8 +46,6 @@
         NSManagedObjectContext *moc = ((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).managedObjectContext;
         NSError *error;
         Books *newBook = [NSEntityDescription insertNewObjectForEntityForName:@"Books" inManagedObjectContext:moc];
-//        NSEntityDescription *bookEntity = [NSEntityDescription insertNewObjectForEntityForName:@"Books" inManagedObjectContext:moc];
-//        Books *newBook = (Books *)[[NSManagedObject alloc] initWithEntity:bookEntity insertIntoManagedObjectContext:moc];
         newBook.name = self.bookNameField.stringValue;
         if (![moc save:&error]) {
             ALog(@"Unresolved error saving book %@, %@", error, [error userInfo]);
