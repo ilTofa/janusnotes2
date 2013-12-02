@@ -24,6 +24,7 @@
 @property (assign, nonatomic) id<IAMNoteEditorWCDelegate> delegate;
 @property (strong, atomic) IBOutlet NSManagedObjectContext *noteEditorMOC;
 @property NSArray *attachmentsArray;
+@property NSArray *booksArray;
 @property NSFont *editorFont;
 
 - (IBAction)saveAndContinue:(id)sender;

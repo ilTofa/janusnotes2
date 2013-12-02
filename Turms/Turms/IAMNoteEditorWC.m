@@ -13,6 +13,7 @@
 #import "IAMAppDelegate.h"
 #import "Attachment.h"
 #import "IAMOpenWithWC.h"
+#import "Books.h"
 
 #import "markdown.h"
 #import "html.h"
@@ -34,6 +35,8 @@
 @property (weak) IBOutlet NSView *attachmentContainerView;
 
 @property (weak) NSManagedObjectContext *parentMOC;
+
+@property (strong) IBOutlet NSArrayController *booksArrayController;
 
 @property (strong) IBOutlet NSWindow *previewWindow;
 @property (weak) IBOutlet WebView *previewWebView;
@@ -87,6 +90,7 @@
         NSAssert1(self.editedNote, @"Shit! Invalid ObjectID, there. Error: %@", [error description]);
     }
     [self refreshAttachments];
+    [self refreshBooks];
 }
 
 - (IBAction)saveAndContinue:(id)sender
@@ -139,6 +143,29 @@
     windowFrame.size.height = attachmentWindowHeight;
     [self.attachmentContainerView setFrame:windowFrame];
     [self.arrayController fetch:nil];
+}
+
+- (void)refreshBooks {
+    NSDictionary *genericBook = @{@"name": @"No Book", @"objectID": [NSNull null]};
+    NSMutableArray *tempArray = [[NSMutableArray alloc] initWithObjects:genericBook, nil];;
+    // Set up the fetched results controller
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    // Edit the entity name as appropriate.
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Books" inManagedObjectContext:self.noteEditorMOC];
+    [fetchRequest setEntity:entity];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+    [fetchRequest setSortDescriptors:@[sortDescriptor]];
+    NSError *error;
+    NSArray *results = [self.noteEditorMOC executeFetchRequest:fetchRequest error:&error];
+    if (!results) {
+        NSLog(@"Error fetching bookList: %@", [error description]);
+    } else {
+        for (Books *book in results) {
+            NSDictionary *newBook = @{@"name": book.name, @"objectID": book.objectID};
+            [tempArray addObject:newBook];
+        }
+    }
+    self.booksArray = [NSArray arrayWithArray:tempArray];
 }
 
 - (BOOL) isAttachmentModified:(NSMutableDictionary *)openedFilesEntry {

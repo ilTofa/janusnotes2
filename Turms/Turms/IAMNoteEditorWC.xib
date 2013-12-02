@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13B35" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1090" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
@@ -24,7 +24,7 @@
             <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="513" height="413"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1366" height="768"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1418"/>
             <value key="minSize" type="size" width="250" height="200"/>
             <view key="contentView" id="2">
                 <rect key="frame" x="0.0" y="0.0" width="513" height="413"/>
@@ -77,7 +77,7 @@
                                         </scroller>
                                     </scrollView>
                                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="134">
-                                        <rect key="frame" x="0.0" y="249" width="473" height="22"/>
+                                        <rect key="frame" x="0.0" y="249" width="395" height="22"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Set a title for the note" usesSingleLineMode="YES" bezelStyle="round" id="135">
                                             <font key="font" metaFont="system"/>
@@ -94,15 +94,36 @@
                                             <binding destination="-2" name="font" keyPath="self.editorFont" id="799"/>
                                         </connections>
                                     </textField>
+                                    <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2W0-FB-tj1">
+                                        <rect key="frame" x="401" y="247" width="75" height="26"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="cAF-Ny-SJp" id="lIA-K2-ffH">
+                                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                            <menu key="menu" title="OtherViews" id="XTn-Hk-VeB">
+                                                <items>
+                                                    <menuItem title="Item 1" state="on" id="cAF-Ny-SJp"/>
+                                                    <menuItem title="Item 2" id="4F2-gd-MBN"/>
+                                                    <menuItem title="Item 3" id="K51-ZF-9oi"/>
+                                                </items>
+                                            </menu>
+                                        </popUpButtonCell>
+                                        <connections>
+                                            <binding destination="65i-uE-9d2" name="content" keyPath="arrangedObjects.name" id="sHB-FQ-Mk0"/>
+                                            <binding destination="65i-uE-9d2" name="contentValues" keyPath="arrangedObjects.name" previousBinding="sHB-FQ-Mk0" id="3xh-KC-nvr"/>
+                                        </connections>
+                                    </popUpButton>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="134" firstAttribute="leading" secondItem="643" secondAttribute="leading" id="769"/>
                                     <constraint firstItem="134" firstAttribute="top" secondItem="643" secondAttribute="top" id="770"/>
                                     <constraint firstItem="41" firstAttribute="leading" secondItem="643" secondAttribute="leading" id="775"/>
-                                    <constraint firstItem="134" firstAttribute="trailing" secondItem="643" secondAttribute="trailing" id="955"/>
                                     <constraint firstItem="41" firstAttribute="trailing" secondItem="643" secondAttribute="trailing" id="960"/>
                                     <constraint firstItem="41" firstAttribute="top" secondItem="134" secondAttribute="bottom" constant="8" symbolic="YES" id="978"/>
                                     <constraint firstItem="41" firstAttribute="bottom" secondItem="643" secondAttribute="bottom" id="979"/>
+                                    <constraint firstItem="2W0-FB-tj1" firstAttribute="trailing" secondItem="41" secondAttribute="trailing" id="EE7-9P-G1E"/>
+                                    <constraint firstItem="2W0-FB-tj1" firstAttribute="leading" secondItem="134" secondAttribute="trailing" constant="8" id="aKs-iQ-SaX"/>
+                                    <constraint firstItem="2W0-FB-tj1" firstAttribute="top" secondItem="134" secondAttribute="top" id="niK-ec-UhK"/>
                                 </constraints>
                             </customView>
                             <customView horizontalCompressionResistancePriority="30" id="644">
@@ -231,7 +252,16 @@
             </connections>
         </window>
         <userDefaultsController representsSharedInstance="YES" id="125"/>
-        <arrayController mode="entity" entityName="Attachment" editable="NO" automaticallyPreparesContent="YES" id="286">
+        <arrayController editable="NO" id="65i-uE-9d2" userLabel="Books Array Controller">
+            <declaredKeys>
+                <string>name</string>
+                <string>objectID</string>
+            </declaredKeys>
+            <connections>
+                <binding destination="-2" name="contentArray" keyPath="self.booksArray" id="9Cp-ou-mbg"/>
+            </connections>
+        </arrayController>
+        <arrayController mode="entity" entityName="Attachment" editable="NO" automaticallyPreparesContent="YES" id="286" userLabel="Attachments Array Controller">
             <connections>
                 <binding destination="-2" name="contentArray" keyPath="self.attachmentsArray" id="396"/>
             </connections>
@@ -414,7 +444,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="30" y="30" width="480" height="481"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1366" height="768"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1418"/>
             <view key="contentView" id="2Y1-sH-LpR">
                 <rect key="frame" x="0.0" y="0.0" width="480" height="481"/>
                 <autoresizingMask key="autoresizingMask"/>
