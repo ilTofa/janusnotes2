@@ -29,7 +29,7 @@
             <value key="minSize" type="size" width="250" height="200"/>
             <view key="contentView" id="2">
                 <rect key="frame" x="0.0" y="0.0" width="513" height="413"/>
-                <autoresizingMask key="autoresizingMask"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <splitView dividerStyle="thin" translatesAutoresizingMaskIntoConstraints="NO" id="642">
                         <rect key="frame" x="20" y="20" width="473" height="373"/>
@@ -100,7 +100,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="cAF-Ny-SJp" id="lIA-K2-ffH">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
+                                            <font key="font" metaFont="menu"/>
                                             <menu key="menu" title="OtherViews" id="XTn-Hk-VeB">
                                                 <items>
                                                     <menuItem title="Item 1" state="on" id="cAF-Ny-SJp"/>
@@ -110,8 +110,8 @@
                                             </menu>
                                         </popUpButtonCell>
                                         <connections>
-                                            <binding destination="65i-uE-9d2" name="content" keyPath="arrangedObjects.name" id="sHB-FQ-Mk0"/>
                                             <binding destination="65i-uE-9d2" name="contentValues" keyPath="arrangedObjects.name" previousBinding="sHB-FQ-Mk0" id="3xh-KC-nvr"/>
+                                            <binding destination="65i-uE-9d2" name="content" keyPath="arrangedObjects.name" id="sHB-FQ-Mk0"/>
                                             <binding destination="65i-uE-9d2" name="selectedIndex" keyPath="selectionIndex" previousBinding="3xh-KC-nvr" id="XjK-iO-nh3">
                                                 <dictionary key="options">
                                                     <integer key="NSNullPlaceholder" value="-1"/>

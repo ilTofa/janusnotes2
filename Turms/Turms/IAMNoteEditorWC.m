@@ -87,7 +87,7 @@
     } else { // Get a copy of edited note into the local context.
         NSError *error;
         self.editedNote = (Note *)[self.noteEditorMOC existingObjectWithID:self.idForTheNoteToBeEdited error:&error];
-        NSAssert1(self.editedNote, @"Shit! Invalid ObjectID, there. Error: %@", [error description]);
+        NSAssert1(self.editedNote, @"Tragedy! Invalid ObjectID. Error: %@", [error description]);
     }
     [self refreshAttachments];
     [self refreshBooks];
