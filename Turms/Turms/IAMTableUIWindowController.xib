@@ -8,6 +8,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="IAMTableUIWindowController">
             <connections>
                 <outlet property="arrayController" destination="216" id="218"/>
+                <outlet property="booksArrayController" destination="8XF-GB-eMM" id="OoN-1q-t7X"/>
                 <outlet property="searchField" destination="85" id="240"/>
                 <outlet property="theBookController" destination="o4J-zF-bjD" id="SGx-75-ms0"/>
                 <outlet property="theTable" destination="94" id="217"/>
@@ -256,6 +257,7 @@ label riga 4</string>
         <userDefaultsController representsSharedInstance="YES" id="219"/>
         <arrayController mode="entity" entityName="Note" editable="NO" automaticallyPreparesContent="YES" preservesSelection="NO" id="216" userLabel="Array Controller for Main UI">
             <connections>
+                <binding destination="-2" name="filterPredicate" keyPath="self.filterPredicate" id="EJm-T0-bVi"/>
                 <binding destination="-2" name="managedObjectContext" keyPath="self.sharedManagedObjectContext" id="249"/>
             </connections>
         </arrayController>
@@ -373,6 +375,7 @@ label riga 4</string>
                                     </tableColumns>
                                     <connections>
                                         <binding destination="8XF-GB-eMM" name="content" keyPath="arrangedObjects" id="Ech-nG-4xZ"/>
+                                        <outlet property="delegate" destination="-2" id="usV-JW-dRy"/>
                                     </connections>
                                 </tableView>
                             </subviews>

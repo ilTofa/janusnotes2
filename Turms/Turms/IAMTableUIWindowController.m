@@ -12,10 +12,15 @@
 #import "IAMAppDelegate.h"
 #import "NSManagedObjectContext+FetchedObjectFromURI.h"
 #import "Attachment.h"
+#import "Books.h"
+
 @interface IAMTableUIWindowController () <IAMNoteEditorWCDelegate, NSWindowDelegate>
 
 @property (weak) IBOutlet NSSearchFieldCell *searchField;
 @property (copy) NSArray *sortDescriptors;
+@property NSPredicate *filterPredicate;
+
+@property (strong) IBOutlet NSArrayController *booksArrayController;
 
 @property NSTimer *syncStatusTimer;
 
@@ -119,9 +124,39 @@
 //    [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[pathToBeShown]];
 }
 
+#pragma mark - Book Management
+
 - (IBAction)showBooksAction:(id)sender {
     [self.theBookController showWindow:self];
 }
+
+- (void)tableViewSelectionDidChange:(NSNotification *)aNotification {
+    DLog(@"Book table changed selection");
+    NSTableView *bookTable = aNotification.object;
+    DLog(@"Selected row indexes: %@", bookTable.selectedRowIndexes);
+    NSString __block *queryString = nil;
+    NSMutableString __block *windowTitle = nil;
+    [bookTable.selectedRowIndexes enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop){
+        Books *selectedBook = self.booksArrayController.arrangedObjects[idx];
+        DLog(@"Element %lu: %@", (unsigned long)idx, selectedBook);
+        if(queryString == nil) {
+            queryString = [NSString stringWithFormat:@"book.name = \"%@\"", selectedBook.name];
+            windowTitle = [[NSMutableString alloc] initWithString:[NSString stringWithFormat:@"Turms: entries in %@", selectedBook.name]];
+        } else {
+            queryString = [queryString stringByAppendingFormat:@" OR book.name = \"%@\"", selectedBook.name];
+            [windowTitle appendFormat:@" and %@", selectedBook.name];
+        }
+    }];
+    DLog(@"Book query string is: %@", queryString);
+    self.filterPredicate = [NSPredicate predicateWithFormat:queryString];
+    if (windowTitle) {
+        [self.window setTitle:windowTitle];
+    } else {
+        [self.window setTitle:@"Turms"];
+    }
+}
+
+#pragma mark - Actions
 
 - (IBAction)deleteNote:(id)sender {
     NSAlert *alert = [[NSAlert alloc] init];
