@@ -104,7 +104,18 @@
     // Save modified attachments (if any)
     [self saveModifiedAttachments];
     self.editedNote.timeStamp = [NSDate date];
+    // Save book assignment (if any)
+    NSUInteger selectedBookIndex = self.booksArrayController.selectionIndex;
     NSError *error;
+    if (selectedBookIndex != 0) {
+        Books *selectedBook = (Books *)[self.noteEditorMOC existingObjectWithID:self.booksArray[selectedBookIndex][@"objectID"] error:&error];
+        DLog(@"Saving: selected book is: %@ (%lu)", selectedBook.name, (unsigned long)selectedBookIndex);
+        if (selectedBook) {
+            self.editedNote.book = selectedBook;
+        } else {
+            ALog(@"Error getting back the selected book: %@", [error description]);
+        }
+    }
     if(![self.noteEditorMOC save:&error])
         ALog(@"Unresolved error %@, %@", error, [error userInfo]);
     // Save on parent context
@@ -146,6 +157,7 @@
 }
 
 - (void)refreshBooks {
+    NSUInteger currentBook = 0;
     NSDictionary *genericBook = @{@"name": @"No Book", @"objectID": [NSNull null]};
     NSMutableArray *tempArray = [[NSMutableArray alloc] initWithObjects:genericBook, nil];;
     // Set up the fetched results controller
@@ -160,12 +172,19 @@
     if (!results) {
         NSLog(@"Error fetching bookList: %@", [error description]);
     } else {
+        NSUInteger i = 1;
         for (Books *book in results) {
+            if ([self.editedNote.book isEqual:book]) {
+                currentBook = i;
+            }
+            i++;
             NSDictionary *newBook = @{@"name": book.name, @"objectID": book.objectID};
+            [self.booksArrayController fetch:nil];
             [tempArray addObject:newBook];
         }
     }
     self.booksArray = [NSArray arrayWithArray:tempArray];
+    self.booksArrayController.selectionIndex = currentBook;
 }
 
 - (BOOL) isAttachmentModified:(NSMutableDictionary *)openedFilesEntry {

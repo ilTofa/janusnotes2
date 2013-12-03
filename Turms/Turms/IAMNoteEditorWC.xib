@@ -12,6 +12,7 @@
                 <outlet property="attachmentContainerView" destination="644" id="982"/>
                 <outlet property="attachmentsCollectionView" destination="228" id="475"/>
                 <outlet property="attacmentContainerViewHeightConstraint" destination="976" id="983"/>
+                <outlet property="booksArrayController" destination="65i-uE-9d2" id="GY2-QC-cm7"/>
                 <outlet property="previewWebView" destination="7D9-MZ-Gjp" id="XHP-e9-vxn"/>
                 <outlet property="previewWindow" destination="Teg-d6-8hA" id="GC4-Pc-Fqr"/>
                 <outlet property="window" destination="1" id="3"/>
@@ -111,6 +112,12 @@
                                         <connections>
                                             <binding destination="65i-uE-9d2" name="content" keyPath="arrangedObjects.name" id="sHB-FQ-Mk0"/>
                                             <binding destination="65i-uE-9d2" name="contentValues" keyPath="arrangedObjects.name" previousBinding="sHB-FQ-Mk0" id="3xh-KC-nvr"/>
+                                            <binding destination="65i-uE-9d2" name="selectedIndex" keyPath="selectionIndex" previousBinding="3xh-KC-nvr" id="XjK-iO-nh3">
+                                                <dictionary key="options">
+                                                    <integer key="NSNullPlaceholder" value="-1"/>
+                                                    <bool key="NSValidatesImmediately" value="YES"/>
+                                                </dictionary>
+                                            </binding>
                                         </connections>
                                     </popUpButton>
                                 </subviews>
