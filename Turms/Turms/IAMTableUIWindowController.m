@@ -1,6 +1,6 @@
 //
 //  IAMTableUIWindowController.m
-// Turms
+//  Turms
 //
 //  Created by Giacomo Tufano on 22/04/13.
 //  Copyright (c) 2013 Giacomo Tufano. All rights reserved.
@@ -116,14 +116,6 @@
     [noteEditor showWindow:self];
 }
 
-- (IBAction)showInFinder:(id)sender {
-    // TODO: rewrite showInFinder
-//    Note *toBeShown = [self.arrayController selectedObjects][0];
-//    NSURL *pathToBeShown = [[IAMFilesystemSyncController sharedInstance] urlForNote:toBeShown];
-//    DLog(@"Show in finder requested for note: %@", pathToBeShown);
-//    [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[pathToBeShown]];
-}
-
 #pragma mark - Book Management
 
 - (IBAction)showBooksAction:(id)sender {
@@ -138,7 +130,6 @@
     NSMutableString __block *windowTitle = nil;
     [bookTable.selectedRowIndexes enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop){
         Books *selectedBook = self.booksArrayController.arrangedObjects[idx];
-        DLog(@"Element %lu: %@", (unsigned long)idx, selectedBook);
         if(queryString == nil) {
             queryString = [NSString stringWithFormat:@"book.name = \"%@\"", selectedBook.name];
             windowTitle = [[NSMutableString alloc] initWithString:[NSString stringWithFormat:@"Turms: entries in %@", selectedBook.name]];
@@ -147,8 +138,13 @@
             [windowTitle appendFormat:@" and %@", selectedBook.name];
         }
     }];
-    DLog(@"Book query string is: %@", queryString);
-    self.filterPredicate = [NSPredicate predicateWithFormat:queryString];
+    if (queryString) {
+        DLog(@"Book query string is: %@", queryString);
+        self.filterPredicate = [NSPredicate predicateWithFormat:queryString];
+    } else {
+        DLog(@"Book query string is void");
+        self.filterPredicate = nil;
+    }
     if (windowTitle) {
         [self.window setTitle:windowTitle];
     } else {

@@ -31,7 +31,6 @@
 - (IBAction)searched:(id)sender;
 - (IBAction)deleteNote:(id)sender;
 - (IBAction)actionPreferences:(id)sender;
-- (IBAction)showInFinder:(id)sender;
 - (IBAction)showBooksAction:(id)sender;
 
 // Note editor actions from main menu

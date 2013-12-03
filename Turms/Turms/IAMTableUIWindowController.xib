@@ -263,22 +263,16 @@ label riga 4</string>
         </arrayController>
         <menu title="Note" id="433">
             <items>
-                <menuItem title="New Note" id="439">
+                <menuItem title="New" id="439">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="addNote:" target="-2" id="443"/>
                     </connections>
                 </menuItem>
-                <menuItem title="Edit Note" id="440">
+                <menuItem title="Edit" id="440">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="editNote:" target="-2" id="444"/>
-                    </connections>
-                </menuItem>
-                <menuItem title="Show in Finder" id="434">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="showInFinder:" target="-2" id="445"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="437">
@@ -290,19 +284,10 @@ label riga 4</string>
                         <action selector="closeNote:" target="-2" id="446"/>
                     </connections>
                 </menuItem>
-                <menuItem title="Delete Note…" id="441">
+                <menuItem title="Delete…" id="441">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="deleteNote:" target="-2" id="447"/>
-                    </connections>
-                </menuItem>
-                <menuItem isSeparatorItem="YES" id="436">
-                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                </menuItem>
-                <menuItem title="Refresh Notes List" id="435">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="refresh:" target="-2" id="448"/>
                     </connections>
                 </menuItem>
             </items>
