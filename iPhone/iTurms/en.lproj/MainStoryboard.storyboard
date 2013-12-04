@@ -5,6 +5,49 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
+        <!--Books Selection View Controller-->
+        <scene sceneID="QMk-oY-EFU">
+            <objects>
+                <tableViewController id="FoL-Ok-bjW" customClass="IAMBooksSelectionViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Q66-xR-hLY">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Book" textLabel="sGX-Ev-PHT" style="IBUITableViewCellStyleDefault" id="d33-QV-mee">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="d33-QV-mee" id="tKu-04-a72">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sGX-Ev-PHT">
+                                            <rect key="frame" x="15" y="0.0" width="290" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="FoL-Ok-bjW" id="11u-cw-x9p"/>
+                            <outlet property="delegate" destination="FoL-Ok-bjW" id="shj-A9-0EH"/>
+                        </connections>
+                    </tableView>
+                    <toolbarItems>
+                        <barButtonItem systemItem="add" id="GTi-wo-BKh"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="Y4z-lQ-rg0"/>
+                        <barButtonItem systemItem="done" id="Emm-3D-liV"/>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" id="7Dm-aZ-fcg"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zdc-lt-dTO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="442" y="-640"/>
+        </scene>
         <!--Start-->
         <scene sceneID="5">
             <objects>
@@ -105,6 +148,12 @@ Label riga 3</string>
                                 <action selector="preferencesAction:" destination="2" id="KPg-es-yi6"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="DRf-RD-921"/>
+                        <barButtonItem title="Books: All" id="0CY-km-B1A">
+                            <connections>
+                                <segue destination="FoL-Ok-bjW" kind="push" identifier="BooksSelection" id="dqI-DI-Oq0"/>
+                            </connections>
+                        </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Turms" id="Qev-6j-uPA">
                         <barButtonItem key="leftBarButtonItem" systemItem="edit" id="ktx-cn-ppc"/>
@@ -115,6 +164,7 @@ Label riga 3</string>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="booksSelectionButton" destination="0CY-km-B1A" id="hGe-yu-J4M"/>
                         <outlet property="preferencesButton" destination="iVc-Ij-d3T" id="FbY-eO-oin"/>
                         <outlet property="searchBar" destination="S1E-lU-tyc" id="FDm-If-qSz"/>
                         <segue destination="mV7-Kq-sdp" kind="push" identifier="Preferences7" id="W4E-o2-feR"/>

@@ -33,6 +33,7 @@
 		645ED8B01754F7730070F83B /* link-microphone-big@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 645ED8AE1754F7730070F83B /* link-microphone-big@2x.png */; };
 		6476C11017E0CE270094C4AB /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CB194A17392BAD0014F35F /* iAd.framework */; };
 		647DEAF417E701D900D3EE57 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CB194617392B7C0014F35F /* MessageUI.framework */; };
+		64896D2D184F336800AE5EEF /* IAMBooksSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64896D2C184F336800AE5EEF /* IAMBooksSelectionViewController.m */; };
 		648A2773171D875000338218 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 648A2772171D875000338218 /* MBProgressHUD.m */; };
 		649DCEA016D28DB8003F5A83 /* IAmMine.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 649DCE9E16D28DB7003F5A83 /* IAmMine.xcdatamodeld */; };
 		64A0507016D28CCA0025E179 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64A0506F16D28CCA0025E179 /* UIKit.framework */; };
@@ -131,6 +132,8 @@
 		645A7E6518183846003C9D5A /* link-browser@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "link-browser@2x.png"; path = "Images/link-browser@2x.png"; sourceTree = "<group>"; };
 		645ED8AD1754F7730070F83B /* link-microphone-big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "link-microphone-big.png"; path = "Images/link-microphone-big.png"; sourceTree = "<group>"; };
 		645ED8AE1754F7730070F83B /* link-microphone-big@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "link-microphone-big@2x.png"; path = "Images/link-microphone-big@2x.png"; sourceTree = "<group>"; };
+		64896D2B184F336800AE5EEF /* IAMBooksSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMBooksSelectionViewController.h; sourceTree = "<group>"; };
+		64896D2C184F336800AE5EEF /* IAMBooksSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMBooksSelectionViewController.m; sourceTree = "<group>"; };
 		648A2771171D875000338218 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		648A2772171D875000338218 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		649DCE9F16D28DB7003F5A83 /* IAmMine.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = IAmMine.xcdatamodel; sourceTree = "<group>"; };
@@ -346,6 +349,24 @@
 			name = "Utilities (common)";
 			sourceTree = "<group>";
 		};
+		64896D2A184F334C00AE5EEF /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				64027D7916DD7CB800DEA647 /* IAMPreferencesController.h */,
+				64027D7A16DD7CB800DEA647 /* IAMPreferencesController.m */,
+			);
+			name = Preferences;
+			sourceTree = "<group>";
+		};
+		64896D2E184F336D00AE5EEF /* Books Selection */ = {
+			isa = PBXGroup;
+			children = (
+				64896D2B184F336800AE5EEF /* IAMBooksSelectionViewController.h */,
+				64896D2C184F336800AE5EEF /* IAMBooksSelectionViewController.m */,
+			);
+			name = "Books Selection";
+			sourceTree = "<group>";
+		};
 		649DCE9A16D28D30003F5A83 /* CoreData (common) */ = {
 			isa = PBXGroup;
 			children = (
@@ -417,6 +438,7 @@
 				64A755681702137A0085933D /* AudioRecord */,
 				6433103F16E0A8950064EC5C /* Utilities (iOS) */,
 				646602A216DBD373007622FC /* Images */,
+				64896D2E184F336D00AE5EEF /* Books Selection */,
 				640D40BB16D5123C003034B3 /* Main View */,
 				64A0507E16D28CCA0025E179 /* IAMAppDelegate.h */,
 				64A0507F16D28CCA0025E179 /* IAMAppDelegate.m */,
@@ -424,8 +446,7 @@
 				64A0508716D28CCA0025E179 /* MainStoryboard.storyboard */,
 				641A5EFB16ED463B00D3440C /* MainStoryboard_iPad.storyboard */,
 				641D954116E8CD8200A253E3 /* Note Edit */,
-				64027D7916DD7CB800DEA647 /* IAMPreferencesController.h */,
-				64027D7A16DD7CB800DEA647 /* IAMPreferencesController.m */,
+				64896D2A184F334C00AE5EEF /* Preferences */,
 				64A0507616D28CCA0025E179 /* Supporting Files */,
 			);
 			path = iTurms;
@@ -645,6 +666,7 @@
 				64522F3F18476D9900D65289 /* PublishedOn.m in Sources */,
 				64E0AA4817E9067D008BF0E3 /* iRate.m in Sources */,
 				64F31CC416E4AF9000A80BE0 /* Note.m in Sources */,
+				64896D2D184F336800AE5EEF /* IAMBooksSelectionViewController.m in Sources */,
 				64F31CCA16E5009B00A80BE0 /* Attachment.m in Sources */,
 				64A8A7E316E781EB0013AFFF /* IAMAddLinkViewController.m in Sources */,
 				64EB0F081819144E00DD9924 /* houdini_href_e.c in Sources */,

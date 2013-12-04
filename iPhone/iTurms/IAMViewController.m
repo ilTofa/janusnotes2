@@ -26,6 +26,7 @@
 @property (atomic) NSDate *lastDropboxSync;
 @property NSTimer *pendingRefreshTimer;
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *booksSelectionButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *preferencesButton;
 
 @property IAMAppDelegate *appDelegate;
@@ -334,8 +335,7 @@
  */
 
 
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
     return NO;
 }
 
