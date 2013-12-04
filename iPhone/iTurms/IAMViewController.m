@@ -13,12 +13,14 @@
 #import "IAMAppDelegate.h"
 #import "IAMNoteCell.h"
 #import "Note.h"
+#import "Books.h"
 #import "IAMNoteEdit.h"
 #import "GTThemer.h"
 #import "IAMPreferencesController.h"
+#import "IAMBooksSelectionViewController.h"
 #import "NSManagedObjectContext+FetchedObjectFromURI.h"
 
-@interface IAMViewController () <UISearchBarDelegate, NSFetchedResultsControllerDelegate>
+@interface IAMViewController () <UISearchBarDelegate, NSFetchedResultsControllerDelegate, IAMBooksSelectionViewControllerDelegate>
 
 @property (nonatomic) NSDateFormatter *dateFormatter;
 
@@ -28,6 +30,9 @@
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *booksSelectionButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *preferencesButton;
+
+@property NSString *booksQueryString;
+@property (strong) NSArray *selectedBooks;
 
 @property IAMAppDelegate *appDelegate;
 
@@ -201,7 +206,10 @@
     }
     else
         queryString = @"text  like[c] \"*\"";
-//    DLog(@"Fetching again. Query string is: '%@'", queryString);
+    if (self.booksQueryString) {
+        queryString = [queryString stringByAppendingString:self.booksQueryString];
+    }
+    DLog(@"Fetching again. Query string is: '%@'", queryString);
     NSPredicate *predicate = [NSPredicate predicateWithFormat:queryString];
     [fetchRequest setPredicate:predicate];
     
@@ -234,8 +242,27 @@
     [self saveSearchKeys];
 }
 
-#pragma mark -
-#pragma mark Fetched results controller delegate
+#pragma mark - Book Selection delegate
+
+- (void)booksSelectionController:(IAMBooksSelectionViewController *)controller didSelectBooks:(NSArray *)booksArray {
+    self.selectedBooks = booksArray;
+    self.booksQueryString = nil;
+    for (Books *selectedBook in booksArray) {
+        if(self.booksQueryString == nil) {
+            self.booksQueryString = [NSString stringWithFormat:@" AND (book.name = \"%@\"", selectedBook.name];
+        } else {
+            self.booksQueryString = [self.booksQueryString stringByAppendingFormat:@" OR book.name = \"%@\"", selectedBook.name];
+        }
+    }
+    if (self.booksQueryString) {
+        self.booksQueryString = [self.booksQueryString stringByAppendingFormat:@")"];
+        [self.booksSelectionButton setTitle:@"Books: Some"];
+    } else {
+        [self.booksSelectionButton setTitle:@"Books: All"];
+    }
+}
+
+#pragma mark - Fetched results controller delegate
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
     [self.tableView reloadData];
@@ -351,29 +378,23 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-/*    if ([[segue identifier] isEqualToString:@"AddTextNote"])
-    {
-        IAMNoteEdit *noteEditor = [segue destinationViewController];
-        // Create a new note
-        IAMAppDelegate *appDelegate = (IAMAppDelegate *)[[UIApplication sharedApplication] delegate];
-        Note *newNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:appDelegate.coreDataController.mainThreadContext];
-        noteEditor.editedNote = newNote;
-        noteEditor.moc = appDelegate.coreDataController.mainThreadContext;
-    }*/
-    if ([[segue identifier] isEqualToString:@"EditNote"])
-    {
+    if ([[segue identifier] isEqualToString:@"EditNote"]) {
         IAMNoteEdit *noteEditor = [segue destinationViewController];
         Note *selectedNote =  [[self fetchedResultsController] objectAtIndexPath:self.tableView.indexPathForSelectedRow];
         selectedNote.timeStamp = [NSDate date];
         noteEditor.idForTheNoteToBeEdited = [selectedNote objectID];
+    }
+    if ([[segue identifier] isEqualToString:@"BooksSelection"]) {
+        IAMBooksSelectionViewController *booksSelector = [segue destinationViewController];
+        booksSelector.delegate = self;
+        booksSelector.selectedBooks = self.selectedBooks;
     }
 }
 
 - (void)dismissPopoverRequested:(NSNotification *) notification
 {
     DLog(@"This is dismissPopoverRequested: called for %@", notification.object);
-    if ([self.popSegue isPopoverVisible])
-    {
+    if ([self.popSegue isPopoverVisible]) {
         [self.popSegue dismissPopoverAnimated:YES];
         self.popSegue = nil;
         [self sortAgain];

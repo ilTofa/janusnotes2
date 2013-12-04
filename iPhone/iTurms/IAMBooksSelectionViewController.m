@@ -19,6 +19,8 @@
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 
+- (IBAction)doneAction:(id)sender;
+
 @end
 
 @implementation IAMBooksSelectionViewController
@@ -33,6 +35,7 @@
 }
 
 - (void)viewDidLoad {
+    NSAssert(self.delegate, @"IAMBooksSelectionViewController instantiated without delegate");
     [super viewDidLoad];
     self.clearsSelectionOnViewWillAppear = NO;
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
@@ -85,10 +88,7 @@
     [fetchRequest setFetchBatchSize:25];
     NSArray *sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES]];
     [fetchRequest setSortDescriptors:sortDescriptors];
-    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
-                                                                        managedObjectContext:self.managedObjectContext
-                                                                          sectionNameKeyPath:nil
-                                                                                   cacheName:nil];
+    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
     self.fetchedResultsController.delegate = self;
     NSError *error = nil;
     if (self.fetchedResultsController != nil) {
@@ -114,6 +114,19 @@
     [self.tableView reloadData];
 }
 
+#pragma mark - Table view delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.accessoryType = UITableViewCellAccessoryCheckmark;
+}
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.accessoryType = UITableViewCellAccessoryNone;
+}
+
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -132,6 +145,17 @@
     static NSString *CellIdentifier = @"Book";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     Books *book = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    // Check if already selected before
+    for (Books *oldBooks in self.selectedBooks) {
+        if ([book isEqual:oldBooks]) {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^(void){
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            });
+            [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition: UITableViewScrollPositionNone];
+        } else {
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        }
+    }
     cell.textLabel.text = book.name;
     return cell;
 }
@@ -184,5 +208,26 @@
 }
 
  */
+
+- (IBAction)doneAction:(id)sender {
+    // Get selected books.
+    NSMutableArray *returnArray;
+    NSArray *selectedRows = [self.tableView indexPathsForSelectedRows];
+    if (!selectedRows) {
+        DLog(@"No books selected.");
+    } else {
+        returnArray = [[NSMutableArray alloc] initWithCapacity:[selectedRows count]];
+        DLog(@"%d books selected.", [selectedRows count]);
+        for (NSIndexPath *indexPath in selectedRows) {
+            Books *book = [self.fetchedResultsController objectAtIndexPath:indexPath];
+            [returnArray addObject:book];
+        }
+    }
+    [self.delegate booksSelectionController:self didSelectBooks:returnArray];
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+        [[NSNotificationCenter defaultCenter] postNotificationName:kBookSelectionPopoverCanBeDismissed object:self];
+    else
+        [self.navigationController popToRootViewControllerAnimated:YES];
+}
 
 @end

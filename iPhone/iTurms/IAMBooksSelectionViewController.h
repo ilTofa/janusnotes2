@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+#define kBookSelectionPopoverCanBeDismissed @"BookSelectionPopoverCanBeDismissed"
+
+@class IAMBooksSelectionViewController;
+
+@protocol IAMBooksSelectionViewControllerDelegate <NSObject>
+- (void)booksSelectionController:(IAMBooksSelectionViewController *)controller didSelectBooks:(NSArray *)booksArray;
+@end
+
 @interface IAMBooksSelectionViewController : UITableViewController
+
+@property (weak) id<IAMBooksSelectionViewControllerDelegate> delegate;
+@property NSArray *selectedBooks;
 
 @end

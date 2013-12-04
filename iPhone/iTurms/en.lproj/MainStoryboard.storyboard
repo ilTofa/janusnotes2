@@ -9,7 +9,7 @@
         <scene sceneID="QMk-oY-EFU">
             <objects>
                 <tableViewController id="FoL-Ok-bjW" customClass="IAMBooksSelectionViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Q66-xR-hLY">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Q66-xR-hLY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -40,7 +40,11 @@
                     <toolbarItems>
                         <barButtonItem systemItem="add" id="GTi-wo-BKh"/>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="Y4z-lQ-rg0"/>
-                        <barButtonItem systemItem="done" id="Emm-3D-liV"/>
+                        <barButtonItem systemItem="done" id="Emm-3D-liV">
+                            <connections>
+                                <action selector="doneAction:" destination="FoL-Ok-bjW" id="Ruh-Uz-JXc"/>
+                            </connections>
+                        </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="7Dm-aZ-fcg"/>
                 </tableViewController>
