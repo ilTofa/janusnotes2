@@ -54,8 +54,6 @@
 	[self.dateFormatter setDateStyle:NSDateFormatterMediumStyle];
 	[self.dateFormatter setTimeStyle:NSDateFormatterShortStyle];
     [self.dateFormatter setDoesRelativeDateFormatting:YES];
-    NSArray *leftButtons = @[self.editButtonItem, self.preferencesButton];
-    self.navigationItem.leftBarButtonItems = leftButtons;
     // Notifications to be honored during controller lifecycle
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismissPopoverRequested:) name:kPreferencesPopoverCanBeDismissed object:nil];
@@ -74,10 +72,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-//    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-//        // Workaround a modification on tableView content inset that happens on returning from note editor.
-//        self.tableView.contentInset = UIEdgeInsetsMake(64.0, 0, 0, 0);
-//    }
+    [self.navigationController setToolbarHidden:NO animated:YES];
     [self sortAgain];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(processAds:) name:kSkipAdProcessingChanged object:nil];
 }

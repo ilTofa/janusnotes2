@@ -99,12 +99,15 @@ Label riga 3</string>
                             <outlet property="delegate" destination="2" id="G2z-i2-Ss2"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Turms" id="Qev-6j-uPA">
-                        <barButtonItem key="leftBarButtonItem" title="Preferences" id="iVc-Ij-d3T">
+                    <toolbarItems>
+                        <barButtonItem title="Preferences" id="iVc-Ij-d3T">
                             <connections>
                                 <action selector="preferencesAction:" destination="2" id="KPg-es-yi6"/>
                             </connections>
                         </barButtonItem>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" title="Turms" id="Qev-6j-uPA">
+                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="ktx-cn-ppc"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="N2Q-cH-vbh">
                             <connections>
                                 <segue destination="aYD-Rr-6C9" kind="push" identifier="AddTextNote" id="klE-Tc-QFq"/>
@@ -511,13 +514,18 @@ Label riga 3</string>
         <!--Navigation Controller-->
         <scene sceneID="Z0j-FR-EXT">
             <objects>
-                <navigationController id="jOx-mc-5rj" sceneMemberID="viewController">
+                <navigationController toolbarHidden="NO" id="jOx-mc-5rj" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="gXB-5x-jMZ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="k5C-Vw-74N">
+                        <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="1" green="0.67141440911265593" blue="0.050752737226277378" alpha="1" colorSpace="deviceRGB"/>
+                    </toolbar>
                     <connections>
                         <segue destination="2" kind="relationship" relationship="rootViewController" id="eNW-K1-RM9"/>
                     </connections>

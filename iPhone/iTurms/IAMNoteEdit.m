@@ -55,6 +55,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.navigationController setToolbarHidden:YES animated:NO];
     // The NSManagedObjectContext instance should change for a local (to the controller instance) one.
     // We need to migrate the passed object to the new moc.
     self.noteEditorMOC = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSConfinementConcurrencyType];
