@@ -16,6 +16,7 @@
 		6416315716D7DB830004CB52 /* IAMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6416315616D7DB830004CB52 /* IAMViewController.m */; };
 		6416315916D831DB0004CB52 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6416315816D831DB0004CB52 /* MobileCoreServices.framework */; };
 		6416315D16D8345F0004CB52 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 6416315C16D8345F0004CB52 /* UIImage+RoundedCorner.m */; };
+		641858C21850DC8D00E855F0 /* IAMAddBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 641858C11850DC8D00E855F0 /* IAMAddBookViewController.m */; };
 		641A5EFC16ED463B00D3440C /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 641A5EFB16ED463B00D3440C /* MainStoryboard_iPad.storyboard */; };
 		641D954416E8CF6E00A253E3 /* IAMAttachmentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 641D954316E8CF6E00A253E3 /* IAMAttachmentDetailViewController.m */; };
 		6447056E16DD0FC4000A0262 /* SmallRow.png in Resources */ = {isa = PBXBuildFile; fileRef = 6447056C16DD0FC4000A0262 /* SmallRow.png */; };
@@ -112,6 +113,8 @@
 		6416315816D831DB0004CB52 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		6416315B16D8345F0004CB52 /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
 		6416315C16D8345F0004CB52 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
+		641858C01850DC8D00E855F0 /* IAMAddBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMAddBookViewController.h; sourceTree = "<group>"; };
+		641858C11850DC8D00E855F0 /* IAMAddBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMAddBookViewController.m; sourceTree = "<group>"; };
 		641A5EFB16ED463B00D3440C /* MainStoryboard_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		641D954216E8CF6E00A253E3 /* IAMAttachmentDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMAttachmentDetailViewController.h; sourceTree = "<group>"; };
 		641D954316E8CF6E00A253E3 /* IAMAttachmentDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMAttachmentDetailViewController.m; sourceTree = "<group>"; };
@@ -363,6 +366,8 @@
 			children = (
 				64896D2B184F336800AE5EEF /* IAMBooksSelectionViewController.h */,
 				64896D2C184F336800AE5EEF /* IAMBooksSelectionViewController.m */,
+				641858C01850DC8D00E855F0 /* IAMAddBookViewController.h */,
+				641858C11850DC8D00E855F0 /* IAMAddBookViewController.m */,
 			);
 			name = "Books Selection";
 			sourceTree = "<group>";
@@ -659,6 +664,7 @@
 				649DCEA016D28DB8003F5A83 /* IAmMine.xcdatamodeld in Sources */,
 				64522F3E18476D9900D65289 /* Books.m in Sources */,
 				640D40BE16D5128B003034B3 /* IAMNoteCell.m in Sources */,
+				641858C21850DC8D00E855F0 /* IAMAddBookViewController.m in Sources */,
 				64B9B4A516D7801100607F39 /* IAMNoteEdit.m in Sources */,
 				6416315716D7DB830004CB52 /* IAMViewController.m in Sources */,
 				6416315D16D8345F0004CB52 /* UIImage+RoundedCorner.m in Sources */,
