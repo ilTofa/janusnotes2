@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *addImageButton;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *recordingButton;
 @property (weak, nonatomic) IBOutlet UILabel *attachmentQuantityLabel;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *currentBookButton;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *textToToolbarConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *attachmentGreyRowToToolbarConstraint;
@@ -30,5 +31,6 @@
 - (IBAction)save:(id)sender;
 - (IBAction)addImageToNote:(id)sender;
 - (IBAction)recordAudio:(id)sender;
+- (IBAction)changeBookAction:(id)sender;
 
 @end

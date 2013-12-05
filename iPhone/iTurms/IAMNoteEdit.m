@@ -13,6 +13,7 @@
 
 #import "IAMAppDelegate.h"
 #import "Attachment.h"
+#import "Books.h"
 #import "IAMAddLinkViewController.h"
 #import "IAMAttachmentCell.h"
 #import "IAMAttachmentDetailViewController.h"
@@ -20,8 +21,9 @@
 #import "GTThemer.h"
 #import "UIImage+FixOrientation.h"
 #import "IAMMarkdownPreViewController.h"
+#import "IAMBooksSelectionViewController.h"
 
-@interface IAMNoteEdit () <UITextViewDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, IAMAddLinkViewControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, AttachmentDeleter, MicrophoneWindowDelegate>
+@interface IAMNoteEdit () <UITextViewDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, IAMAddLinkViewControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, AttachmentDeleter, MicrophoneWindowDelegate, IAMBooksSelectionViewControllerDelegate>
 
 @property CGRect oldFrame;
 @property (strong) NSString *originalTitle;
@@ -55,7 +57,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.navigationController setToolbarHidden:YES animated:NO];
     // The NSManagedObjectContext instance should change for a local (to the controller instance) one.
     // We need to migrate the passed object to the new moc.
     self.noteEditorMOC = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSConfinementConcurrencyType];
@@ -85,6 +86,12 @@
     // If this is a new note, set the cursor on title field
     if([self.titleEdit.text isEqualToString:@""])
         [self.titleEdit becomeFirstResponder];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self.navigationController setToolbarHidden:YES animated:NO];
+    [self bookButtonSetup];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -386,6 +393,26 @@
     [self refreshAttachments];
 }
 
+#pragma mark - Book Selection delegate
+
+- (void)bookButtonSetup {
+    NSString *bookTitle = @"No Book";
+    if (self.editedNote.book) {
+        if ([self.editedNote.book.name length] > 7) {
+            bookTitle = [NSString stringWithFormat:@"%@…", [self.editedNote.book.name substringToIndex:6]];
+        } else {
+            bookTitle = self.editedNote.book.name;
+        }
+    }
+    [self.currentBookButton setTitle:bookTitle];
+}
+
+- (void)booksSelectionController:(IAMBooksSelectionViewController *)controller didSelectBooks:(NSArray *)booksArray {
+    Books *selectedBook = booksArray[0];
+    self.editedNote.book = selectedBook;
+    [self bookButtonSetup];
+}
+
 #pragma mark - Segues
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -412,7 +439,12 @@
             [attachment generateFile];
         }
     }
-
+    if ([[segue identifier] isEqualToString:@"BookSelection"]) {
+        IAMBooksSelectionViewController *booksSelector = [segue destinationViewController];
+        booksSelector.delegate = self;
+        booksSelector.multiSelectionAllowed = NO;
+        booksSelector.managedObjectContext = self.noteEditorMOC;
+    }
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -520,6 +552,9 @@
 		self.popover = aPopover;
 		[self.popover presentPopoverFromBarButtonItem:self.recordingButton permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 	}
+}
+
+- (IBAction)changeBookAction:(id)sender {
 }
 
 @end

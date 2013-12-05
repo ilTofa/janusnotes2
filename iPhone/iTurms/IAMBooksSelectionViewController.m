@@ -17,7 +17,6 @@
 @interface IAMBooksSelectionViewController () <NSFetchedResultsControllerDelegate>
 
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
-@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 
 - (IBAction)doneAction:(id)sender;
 
@@ -39,7 +38,10 @@
     [super viewDidLoad];
     self.clearsSelectionOnViewWillAppear = NO;
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    self.managedObjectContext = ((IAMAppDelegate *)[[UIApplication sharedApplication] delegate]).managedObjectContext;
+    self.tableView.allowsMultipleSelection = self.multiSelectionAllowed;
+    if (!self.managedObjectContext) {
+        self.managedObjectContext = ((IAMAppDelegate *)[[UIApplication sharedApplication] delegate]).managedObjectContext;
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -150,14 +152,13 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     Books *book = [self.fetchedResultsController objectAtIndexPath:indexPath];
     // Check if already selected before
+    cell.accessoryType = UITableViewCellAccessoryNone;
     for (Books *oldBooks in self.selectedBooks) {
         if ([book isEqual:oldBooks]) {
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^(void){
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             });
             [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition: UITableViewScrollPositionNone];
-        } else {
-            cell.accessoryType = UITableViewCellAccessoryNone;
         }
     }
     cell.textLabel.text = book.name;
@@ -228,10 +229,11 @@
         }
     }
     [self.delegate booksSelectionController:self didSelectBooks:returnArray];
-    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         [[NSNotificationCenter defaultCenter] postNotificationName:kBookSelectionPopoverCanBeDismissed object:self];
-    else
-        [self.navigationController popToRootViewControllerAnimated:YES];
+    } else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 @end

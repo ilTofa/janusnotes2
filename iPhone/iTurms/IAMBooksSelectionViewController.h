@@ -21,4 +21,9 @@
 @property (weak) id<IAMBooksSelectionViewControllerDelegate> delegate;
 @property NSArray *selectedBooks;
 
+@property BOOL multiSelectionAllowed;
+
+// If this one is not setup from the caller, it is setup from the main one.
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+
 @end

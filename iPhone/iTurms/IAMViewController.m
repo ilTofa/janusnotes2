@@ -84,6 +84,7 @@
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kSkipAdProcessingChanged object:nil];
 }
 
@@ -388,6 +389,7 @@
         IAMBooksSelectionViewController *booksSelector = [segue destinationViewController];
         booksSelector.delegate = self;
         booksSelector.selectedBooks = self.selectedBooks;
+        booksSelector.multiSelectionAllowed = YES;
     }
 }
 

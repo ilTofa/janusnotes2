@@ -412,19 +412,12 @@ Label riga 3</string>
                                             <segue destination="IBG-Xh-hbM" kind="modal" identifier="markdownPreview" id="04F-gC-bYf"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem style="plain" id="g31-is-Azx">
-                                        <view key="customView" contentMode="scaleToFill" id="qQm-Ou-cgo">
-                                            <rect key="frame" x="100" y="6" width="80" height="33"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Files: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pov-IN-gep">
-                                                    <rect key="frame" x="0.0" y="6" width="80" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </view>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="qzg-dc-q9s"/>
+                                    <barButtonItem title="No Book" id="Xrb-a4-arA">
+                                        <connections>
+                                            <action selector="changeBookAction:" destination="aYD-Rr-6C9" id="Od9-9e-FPN"/>
+                                            <segue destination="FoL-Ok-bjW" kind="push" identifier="BookSelection" id="YAx-7o-fYC"/>
+                                        </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="oK3-Fa-IWM"/>
                                     <barButtonItem image="link-icon.png" id="I0S-hp-5Re" userLabel="Bar Button Item - Link">
@@ -480,9 +473,9 @@ Label riga 3</string>
                     <connections>
                         <outlet property="addImageButton" destination="ZOI-qk-nyn" id="jSU-2F-5e9"/>
                         <outlet property="attachmentGreyRowToToolbarConstraint" destination="cBC-O8-eJl" id="nF4-NJ-xd2"/>
-                        <outlet property="attachmentQuantityLabel" destination="pov-IN-gep" id="j5i-RB-2tJ"/>
                         <outlet property="attachmentsGreyRow" destination="DSt-ZI-WmB" id="ied-uK-ZI3"/>
                         <outlet property="collectionView" destination="JlD-hL-CQO" id="tEa-Cz-838"/>
+                        <outlet property="currentBookButton" destination="Xrb-a4-arA" id="xIn-uS-4Fg"/>
                         <outlet property="greyRowImage" destination="PZq-Ci-A7X" id="Kxb-Ij-gVN"/>
                         <outlet property="recordingButton" destination="ngK-vY-6zQ" id="0Hh-x9-2qM"/>
                         <outlet property="textEdit" destination="TM1-dV-cxf" id="gVR-9d-Pjg"/>
@@ -924,5 +917,6 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="klE-Tc-QFq"/>
+        <segue reference="YAx-7o-fYC"/>
     </inferredMetricsTieBreakers>
 </document>
