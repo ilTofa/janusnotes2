@@ -823,13 +823,77 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Select Book(s)" id="4gi-cK-9SD">
-                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="Jai-n8-Oxl"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="Jai-n8-Oxl">
+                            <connections>
+                                <segue destination="bbc-eE-aLI" kind="modal" identifier="AddBook" modalPresentationStyle="currentContext" id="RzM-IF-dZX"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UqJ-rl-lYb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5036" y="3407"/>
+        </scene>
+        <!--Add Book View Controller-->
+        <scene sceneID="Ohf-eQ-BhO">
+            <objects>
+                <viewController id="bbc-eE-aLI" customClass="IAMAddBookViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="A9K-30-hul"/>
+                        <viewControllerLayoutGuide type="bottom" id="F4h-yb-qM0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1Du-fj-OpH">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Hs-ym-C8c">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="Q0r-lu-HBM"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem systemItem="cancel" id="K0b-zj-fnP">
+                                        <connections>
+                                            <action selector="cancelAction:" destination="bbc-eE-aLI" id="lYc-EA-DK6"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Nd5-LH-zKE"/>
+                                    <barButtonItem systemItem="save" id="aED-L9-UML">
+                                        <connections>
+                                            <action selector="saveAction:" destination="bbc-eE-aLI" id="fyB-Ta-uxU"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New book name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qkx-6a-pQI">
+                                <rect key="frame" x="20" y="113" width="280" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="a8A-4y-nVl"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4Hs-ym-C8c" firstAttribute="top" secondItem="1Du-fj-OpH" secondAttribute="top" id="3HP-Sp-9Xb"/>
+                            <constraint firstItem="qkx-6a-pQI" firstAttribute="top" secondItem="4Hs-ym-C8c" secondAttribute="bottom" constant="69" id="d5W-Vp-DrW"/>
+                            <constraint firstItem="4Hs-ym-C8c" firstAttribute="leading" secondItem="1Du-fj-OpH" secondAttribute="leading" id="fa2-WV-vpH"/>
+                            <constraint firstItem="qkx-6a-pQI" firstAttribute="leading" secondItem="1Du-fj-OpH" secondAttribute="leading" constant="20" id="kzb-fu-25l"/>
+                            <constraint firstAttribute="trailing" secondItem="qkx-6a-pQI" secondAttribute="trailing" constant="20" id="xoE-KH-Vkd"/>
+                        </constraints>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="bookNameField" destination="qkx-6a-pQI" id="BAZ-IM-lvE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="r58-cY-Shq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5522" y="3407"/>
         </scene>
         <!--Books Selection View Controller-->
         <scene sceneID="PNP-UE-JDt">

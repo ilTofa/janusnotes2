@@ -226,13 +226,13 @@ Label riga 3</string>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="LaN-qu-i8T" firstAttribute="top" secondItem="PFH-mW-ygG" secondAttribute="bottom" id="7De-nE-Dmt"/>
                             <constraint firstAttribute="trailing" secondItem="LaN-qu-i8T" secondAttribute="trailing" id="HL1-Y4-OO8"/>
                             <constraint firstAttribute="trailing" secondItem="sJH-hg-xYm" secondAttribute="trailing" constant="20" id="Hbo-Cj-iFJ"/>
                             <constraint firstItem="sJH-hg-xYm" firstAttribute="top" secondItem="LaN-qu-i8T" secondAttribute="bottom" constant="50" id="M3g-KQ-S2r"/>
                             <constraint firstItem="sJH-hg-xYm" firstAttribute="leading" secondItem="vut-xS-gcn" secondAttribute="leading" constant="20" id="P9J-X4-8G4"/>
-                            <constraint firstItem="LaN-qu-i8T" firstAttribute="top" secondItem="PFH-mW-ygG" secondAttribute="bottom" id="SQr-DY-Khs"/>
                             <constraint firstItem="LaN-qu-i8T" firstAttribute="leading" secondItem="vut-xS-gcn" secondAttribute="leading" id="TPj-To-cnL"/>
-                            <constraint firstItem="LaN-qu-i8T" firstAttribute="top" secondItem="PFH-mW-ygG" secondAttribute="bottom" id="ldY-Xe-QVp"/>
+                            <constraint firstItem="LaN-qu-i8T" firstAttribute="top" secondItem="PFH-mW-ygG" secondAttribute="bottom" id="hUU-fw-DFq"/>
                         </constraints>
                     </view>
                     <connections>
