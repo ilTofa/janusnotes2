@@ -106,19 +106,19 @@ Label riga 3</string>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="wSa-Lo-GzF"/>
-                        <barButtonItem title="Books: All" id="0N4-nE-2pQ">
+                        <barButtonItem systemItem="add" id="EDt-TX-pWW">
                             <connections>
-                                <segue destination="fC1-fW-0Hs" kind="popover" identifier="BooksSelection" popoverAnchorBarButtonItem="0N4-nE-2pQ" id="QyM-GP-yda">
-                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                </segue>
+                                <segue destination="Ucd-PA-4nx" kind="push" identifier="AddTextNote" id="ZLW-nH-hE9"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Turms" id="H8f-sb-BPG">
                         <barButtonItem key="leftBarButtonItem" systemItem="edit" id="gCD-yB-9h5"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="EDt-TX-pWW">
+                        <barButtonItem key="rightBarButtonItem" title="Books: All" id="0N4-nE-2pQ">
                             <connections>
-                                <segue destination="Ucd-PA-4nx" kind="push" identifier="AddTextNote" id="ZLW-nH-hE9"/>
+                                <segue destination="fC1-fW-0Hs" kind="popover" identifier="BooksSelection" popoverAnchorBarButtonItem="0N4-nE-2pQ" id="QyM-GP-yda">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
