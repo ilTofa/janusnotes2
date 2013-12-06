@@ -101,12 +101,14 @@ Label riga 3</string>
                     </tableView>
                     <toolbarItems>
                         <barButtonItem title="Preferences" id="qIB-nN-cad">
+                            <color key="tintColor" red="0.0" green="0.45490199329999997" blue="0.78039222959999999" alpha="1" colorSpace="deviceRGB"/>
                             <connections>
                                 <action selector="preferencesAction:" destination="0MJ-8r-Bc6" id="iOL-To-HsN"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="wSa-Lo-GzF"/>
                         <barButtonItem systemItem="add" id="EDt-TX-pWW">
+                            <color key="tintColor" red="0.0" green="0.45490199329999997" blue="0.78039222959999999" alpha="1" colorSpace="deviceRGB"/>
                             <connections>
                                 <segue destination="Ucd-PA-4nx" kind="push" identifier="AddTextNote" id="ZLW-nH-hE9"/>
                             </connections>
@@ -960,7 +962,7 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
         <image name="link-icon.png" width="25" height="25"/>
         <image name="link-microphone.png" width="25" height="25"/>
     </resources>
-    <color key="tintColor" red="1" green="0.67141440910000005" blue="0.050752737229999997" alpha="1" colorSpace="deviceRGB"/>
+    <color key="tintColor" red="0.0" green="0.45490199329999997" blue="0.78039222959999999" alpha="1" colorSpace="deviceRGB"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
@@ -968,6 +970,6 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="ZLW-nH-hE9"/>
-        <segue reference="1FO-Ev-NEd"/>
+        <segue reference="QyM-GP-yda"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -39,12 +39,14 @@
                     </tableView>
                     <toolbarItems>
                         <barButtonItem systemItem="add" id="GTi-wo-BKh">
+                            <color key="tintColor" red="0.0" green="0.45490199329999997" blue="0.78039222959999999" alpha="1" colorSpace="deviceRGB"/>
                             <connections>
                                 <segue destination="kOa-Fz-e2a" kind="modal" identifier="AddBook" id="XDS-un-n99"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="Y4z-lQ-rg0"/>
                         <barButtonItem systemItem="done" id="Emm-3D-liV">
+                            <color key="tintColor" red="0.0" green="0.45490199329999997" blue="0.78039222959999999" alpha="1" colorSpace="deviceRGB"/>
                             <connections>
                                 <action selector="doneAction:" destination="FoL-Ok-bjW" id="Ruh-Uz-JXc"/>
                             </connections>
@@ -152,12 +154,14 @@ Label riga 3</string>
                     </tableView>
                     <toolbarItems>
                         <barButtonItem title="Preferences" id="iVc-Ij-d3T">
+                            <color key="tintColor" red="0.0" green="0.45490199329999997" blue="0.78039222959999999" alpha="1" colorSpace="deviceRGB"/>
                             <connections>
                                 <action selector="preferencesAction:" destination="2" id="KPg-es-yi6"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="DRf-RD-921"/>
                         <barButtonItem title="Books: All" id="0CY-km-B1A">
+                            <color key="tintColor" red="0.0" green="0.45490199329999997" blue="0.78039222959999999" alpha="1" colorSpace="deviceRGB"/>
                             <connections>
                                 <segue destination="FoL-Ok-bjW" kind="push" identifier="BooksSelection" id="dqI-DI-Oq0"/>
                             </connections>
@@ -505,14 +509,12 @@ Label riga 3</string>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem systemItem="trash" id="ryE-CA-mBB">
-                                        <color key="tintColor" red="1" green="0.67141440910000005" blue="0.050752737229999997" alpha="1" colorSpace="deviceRGB"/>
                                         <connections>
                                             <action selector="deleteAttachment:" destination="3ss-f5-lsw" id="vVT-1z-awl"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="ePM-Iw-ZMM"/>
                                     <barButtonItem systemItem="action" id="aU4-mm-dfc">
-                                        <color key="tintColor" red="1" green="0.67141440910000005" blue="0.050752737229999997" alpha="1" colorSpace="deviceRGB"/>
                                         <connections>
                                             <action selector="openInSafari:" destination="3ss-f5-lsw" id="bpT-Qp-EvP"/>
                                         </connections>
@@ -908,14 +910,14 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
         <image name="link-icon.png" width="25" height="25"/>
         <image name="link-microphone.png" width="25" height="25"/>
     </resources>
-    <color key="tintColor" red="1" green="0.67141440911265593" blue="0.050752737226277378" alpha="1" colorSpace="deviceRGB"/>
+    <color key="tintColor" red="0.0" green="0.45490199327468872" blue="0.78039222955703735" alpha="1" colorSpace="deviceRGB"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="dqI-DI-Oq0"/>
         <segue reference="klE-Tc-QFq"/>
-        <segue reference="YAx-7o-fYC"/>
     </inferredMetricsTieBreakers>
 </document>
