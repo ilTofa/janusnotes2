@@ -428,6 +428,8 @@
     if ([controller.selectedBooks count] > 0) {
         Books *selectedBook = controller.selectedBooks[0];
         self.editedNote.book = selectedBook;
+    } else {
+        self.editedNote.book = nil;
     }
     [self bookButtonSetup];
     if ([self.popSegue isPopoverVisible]) {
@@ -473,6 +475,9 @@
         booksSelector.delegate = self;
         booksSelector.multiSelectionAllowed = NO;
         booksSelector.managedObjectContext = self.noteEditorMOC;
+        if (self.editedNote.book) {
+            booksSelector.selectedBooks = @[self.editedNote.book];
+        }
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
             self.popSegue = ((UIStoryboardPopoverSegue *)segue).popoverController;
             self.popSegue.delegate = self;

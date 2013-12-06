@@ -129,6 +129,23 @@
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
 }
 
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    if ([cell isSelected]) {
+        // Deselect manually.
+        if ([tableView.delegate respondsToSelector:@selector(tableView:willDeselectRowAtIndexPath:)]) {
+            [tableView.delegate tableView:tableView willDeselectRowAtIndexPath:indexPath];
+        }
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        if ([tableView.delegate respondsToSelector:@selector(tableView:didDeselectRowAtIndexPath:)]) {
+            [tableView.delegate tableView:tableView didDeselectRowAtIndexPath:indexPath];
+        }
+        return nil;
+    }
+    return indexPath;
+}
+
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.accessoryType = UITableViewCellAccessoryNone;
