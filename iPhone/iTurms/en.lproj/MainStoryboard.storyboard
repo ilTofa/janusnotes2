@@ -415,7 +415,6 @@ Label riga 3</string>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="qzg-dc-q9s"/>
                                     <barButtonItem title="No Book" id="Xrb-a4-arA">
                                         <connections>
-                                            <action selector="changeBookAction:" destination="aYD-Rr-6C9" id="Od9-9e-FPN"/>
                                             <segue destination="FoL-Ok-bjW" kind="push" identifier="BookSelection" id="YAx-7o-fYC"/>
                                         </connections>
                                     </barButtonItem>
@@ -916,7 +915,7 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="dqI-DI-Oq0"/>
         <segue reference="klE-Tc-QFq"/>
+        <segue reference="YAx-7o-fYC"/>
     </inferredMetricsTieBreakers>
 </document>

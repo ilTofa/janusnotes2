@@ -130,7 +130,7 @@ Label riga 3</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sN5-2v-xNr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3074" y="2296"/>
+            <point key="canvasLocation" x="3080" y="2268"/>
         </scene>
         <!--Text Note Editor-->
         <scene sceneID="x2M-XJ-15O">
@@ -218,20 +218,7 @@ Label riga 3</string>
                                 <rect key="frame" x="0.0" y="980" width="768" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem style="plain" id="AYx-sY-enL">
-                                        <view key="customView" contentMode="scaleToFill" id="jxV-QP-jXo">
-                                            <rect key="frame" x="16" y="6" width="80" height="33"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Files: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u2s-5b-hCQ">
-                                                    <rect key="frame" x="0.0" y="6" width="80" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </view>
-                                    </barButtonItem>
+                                    <barButtonItem title="No Book" id="AEQ-yt-8fT"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="ikZ-ct-taH"/>
                                     <barButtonItem systemItem="action" id="oxJ-yA-yOT">
                                         <connections>
@@ -297,9 +284,9 @@ Label riga 3</string>
                     <connections>
                         <outlet property="addImageButton" destination="Rws-rA-muk" id="i2Q-x2-ex7"/>
                         <outlet property="attachmentGreyRowToToolbarConstraint" destination="ApX-9B-82r" id="pmC-Vf-HXm"/>
-                        <outlet property="attachmentQuantityLabel" destination="u2s-5b-hCQ" id="eBW-yH-fis"/>
                         <outlet property="attachmentsGreyRow" destination="DKG-5w-YOb" id="Syg-Tk-giQ"/>
                         <outlet property="collectionView" destination="Tlu-OU-Ezs" id="2Zs-yz-5sb"/>
+                        <outlet property="currentBookButton" destination="AEQ-yt-8fT" id="b0S-xf-dmy"/>
                         <outlet property="greyRowImage" destination="Og5-3L-Ope" id="wVk-JI-h2B"/>
                         <outlet property="recordingButton" destination="bMY-6y-ukZ" id="1wQ-Ga-jQz"/>
                         <outlet property="textEdit" destination="yhs-mQ-beR" id="xL5-su-Gn3"/>

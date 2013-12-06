@@ -131,13 +131,11 @@
 - (void)dynamicFontChanged:(NSNotification *)notification {
     self.textEdit.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
     self.titleEdit.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
-    self.attachmentQuantityLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
 }
 
 -(void)refreshAttachments
 {
     // Set attachment quantity
-    self.attachmentQuantityLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Files: %lu", nil), [self.editedNote.attachment count]];
     self.attachmentsArray = [self.editedNote.attachment allObjects];
     if([self.attachmentsArray count] == 0 && !self.attachmensAreHidden) {
         DLog(@"No attachments. Hiding collection view");
@@ -398,10 +396,18 @@
 - (void)bookButtonSetup {
     NSString *bookTitle = @"No Book";
     if (self.editedNote.book) {
-        if ([self.editedNote.book.name length] > 7) {
-            bookTitle = [NSString stringWithFormat:@"%@…", [self.editedNote.book.name substringToIndex:6]];
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+            if([self.editedNote.book.name length] > 7) {
+                bookTitle = [NSString stringWithFormat:@"%@…", [self.editedNote.book.name substringToIndex:6]];
+            } else {
+                bookTitle = self.editedNote.book.name;
+            }
         } else {
-            bookTitle = self.editedNote.book.name;
+            if([self.editedNote.book.name length] > 20) {
+                bookTitle = [NSString stringWithFormat:@"Book: %@…", [self.editedNote.book.name substringToIndex:20]];
+            } else {
+                bookTitle = [NSString stringWithFormat:@"Book: %@", self.editedNote.book.name];
+            }
         }
     }
     [self.currentBookButton setTitle:bookTitle];
@@ -552,9 +558,6 @@
 		self.popover = aPopover;
 		[self.popover presentPopoverFromBarButtonItem:self.recordingButton permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 	}
-}
-
-- (IBAction)changeBookAction:(id)sender {
 }
 
 @end
