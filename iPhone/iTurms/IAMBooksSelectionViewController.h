@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-#define kBookSelectionPopoverCanBeDismissed @"BookSelectionPopoverCanBeDismissed"
-
 @class IAMBooksSelectionViewController;
 
 @protocol IAMBooksSelectionViewControllerDelegate <NSObject>
@@ -25,5 +23,7 @@
 
 // If this one is not setup from the caller, it is setup from the main one.
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+
+- (IBAction)doneAction:(id)sender;
 
 @end

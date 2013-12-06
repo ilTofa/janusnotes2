@@ -18,8 +18,6 @@
 
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
-- (IBAction)doneAction:(id)sender;
-
 @end
 
 @implementation IAMBooksSelectionViewController
@@ -46,7 +44,11 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self.navigationController setToolbarHidden:NO animated:YES];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        [self.navigationController setToolbarHidden:NO animated:YES];
+    } else {
+        [self.navigationController setToolbarHidden:YES animated:NO];
+    }
     [self processAds:nil];
     [self setupFetchExecAndReload];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(processAds:) name:kSkipAdProcessingChanged object:nil];
@@ -228,11 +230,11 @@
             [returnArray addObject:book];
         }
     }
-    [self.delegate booksSelectionController:self didSelectBooks:returnArray];
-    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:kBookSelectionPopoverCanBeDismissed object:self];
-    } else {
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        [self.delegate booksSelectionController:self didSelectBooks:returnArray];
         [self.navigationController popViewControllerAnimated:YES];
+    } else {
+        self.selectedBooks = [NSArray arrayWithArray:returnArray];
     }
 }
 

@@ -20,7 +20,7 @@
 #import "IAMBooksSelectionViewController.h"
 #import "NSManagedObjectContext+FetchedObjectFromURI.h"
 
-@interface IAMViewController () <UISearchBarDelegate, NSFetchedResultsControllerDelegate, IAMBooksSelectionViewControllerDelegate>
+@interface IAMViewController () <UISearchBarDelegate, NSFetchedResultsControllerDelegate, IAMBooksSelectionViewControllerDelegate, UIPopoverControllerDelegate>
 
 @property (nonatomic) NSDateFormatter *dateFormatter;
 
@@ -62,6 +62,7 @@
     [self.dateFormatter setDoesRelativeDateFormatting:YES];
     // Notifications to be honored during controller lifecycle
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        self.navigationItem.leftBarButtonItem = self.editButtonItem;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismissPopoverRequested:) name:kPreferencesPopoverCanBeDismissed object:nil];
     }
     [self processAds:nil];
@@ -263,6 +264,38 @@
     }
 }
 
+- (BOOL)popoverControllerShouldDismissPopover:(UIPopoverController *)popoverController {
+    UINavigationController *navigationController = (UINavigationController *)popoverController.contentViewController;
+    IAMBooksSelectionViewController *controller = [[navigationController viewControllers] lastObject];
+    [controller doneAction:self];
+    self.selectedBooks = controller.selectedBooks;
+    self.booksQueryString = nil;
+    NSString *buttonTitleString;
+    for (Books *selectedBook in self.selectedBooks) {
+        if(self.booksQueryString == nil) {
+            self.booksQueryString = [NSString stringWithFormat:@" AND (book.name = \"%@\"", selectedBook.name];
+            buttonTitleString = [NSString stringWithFormat:@"Books: %@", selectedBook.name];
+        } else {
+            self.booksQueryString = [self.booksQueryString stringByAppendingFormat:@" OR book.name = \"%@\"", selectedBook.name];
+            buttonTitleString = [buttonTitleString stringByAppendingFormat:@", %@", selectedBook.name];
+        }
+    }
+    if (self.booksQueryString) {
+        self.booksQueryString = [self.booksQueryString stringByAppendingFormat:@")"];
+        if ([buttonTitleString length] > 35) {
+            buttonTitleString = [NSString stringWithFormat:@"%@…", [buttonTitleString substringToIndex:35]];
+        }
+        [self.booksSelectionButton setTitle:buttonTitleString];
+    } else {
+        [self.booksSelectionButton setTitle:@"Books: All"];
+    }
+    [self sortAgain];
+    if ([self.popSegue isPopoverVisible]) {
+        self.popSegue = nil;
+    }
+    return YES;
+}
+
 #pragma mark - Fetched results controller delegate
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
@@ -372,7 +405,7 @@
 -(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
     // If on iPad and we already have an active popover for preferences, don't perform segue
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && [identifier isEqualToString:@"Preferences7"] && [self.popSegue isPopoverVisible])
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && ([identifier isEqualToString:@"Preferences7"] || [identifier isEqualToString:@"BooksSelection"]) && [self.popSegue isPopoverVisible])
         return NO;
     return YES;
 }
@@ -386,10 +419,20 @@
         noteEditor.idForTheNoteToBeEdited = [selectedNote objectID];
     }
     if ([[segue identifier] isEqualToString:@"BooksSelection"]) {
-        IAMBooksSelectionViewController *booksSelector = [segue destinationViewController];
+        IAMBooksSelectionViewController *booksSelector;
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+            booksSelector = [segue destinationViewController];
+        } else {
+            UINavigationController *navigationController = (UINavigationController *)segue.destinationViewController;
+            booksSelector = [[navigationController viewControllers] lastObject];
+        }
         booksSelector.delegate = self;
         booksSelector.selectedBooks = self.selectedBooks;
         booksSelector.multiSelectionAllowed = YES;
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            self.popSegue = ((UIStoryboardPopoverSegue *)segue).popoverController;
+            self.popSegue.delegate = self;
+        }
     }
 }
 
