@@ -23,7 +23,7 @@
 #import "IAMMarkdownPreViewController.h"
 #import "IAMBooksSelectionViewController.h"
 
-@interface IAMNoteEdit () <UITextViewDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, IAMAddLinkViewControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, AttachmentDeleter, MicrophoneWindowDelegate, IAMBooksSelectionViewControllerDelegate>
+@interface IAMNoteEdit () <UITextViewDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, IAMAddLinkViewControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, AttachmentDeleter, MicrophoneWindowDelegate, IAMBooksSelectionViewControllerDelegate, UIPopoverControllerDelegate>
 
 @property CGRect oldFrame;
 @property (strong) NSString *originalTitle;
@@ -40,6 +40,8 @@
 @property (weak) NSManagedObjectContext *parentMOC;
 
 @property CGFloat currentAttachmentConstraintHeight;
+
+@property UIPopoverController* popSegue;
 
 @end
 
@@ -419,6 +421,21 @@
     [self bookButtonSetup];
 }
 
+- (BOOL)popoverControllerShouldDismissPopover:(UIPopoverController *)popoverController {
+    UINavigationController *navigationController = (UINavigationController *)popoverController.contentViewController;
+    IAMBooksSelectionViewController *controller = [[navigationController viewControllers] lastObject];
+    [controller doneAction:self];
+    if ([controller.selectedBooks count] > 0) {
+        Books *selectedBook = controller.selectedBooks[0];
+        self.editedNote.book = selectedBook;
+    }
+    [self bookButtonSetup];
+    if ([self.popSegue isPopoverVisible]) {
+        self.popSegue = nil;
+    }
+    return YES;
+}
+
 #pragma mark - Segues
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -446,11 +463,30 @@
         }
     }
     if ([[segue identifier] isEqualToString:@"BookSelection"]) {
-        IAMBooksSelectionViewController *booksSelector = [segue destinationViewController];
+        IAMBooksSelectionViewController *booksSelector;
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+            booksSelector = [segue destinationViewController];
+        } else {
+            UINavigationController *navigationController = (UINavigationController *)segue.destinationViewController;
+            booksSelector = [[navigationController viewControllers] lastObject];
+        }
         booksSelector.delegate = self;
         booksSelector.multiSelectionAllowed = NO;
         booksSelector.managedObjectContext = self.noteEditorMOC;
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            self.popSegue = ((UIStoryboardPopoverSegue *)segue).popoverController;
+            self.popSegue.delegate = self;
+        }
     }
+
+}
+
+-(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+    // If on iPad and we already have an active popover for preferences, don't perform segue
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && [identifier isEqualToString:@"BookSelection"] && [self.popSegue isPopoverVisible])
+        return NO;
+    return YES;
 }
 
 #pragma mark - UICollectionViewDataSource
