@@ -264,7 +264,7 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    DLog(@"Clicked button at index %d", buttonIndex);
+    DLog(@"Clicked button at index %ld", (long)buttonIndex);
     if (buttonIndex == 0) {
         DLog(@"Library requested");
         [self showMediaPickerFor:UIImagePickerControllerSourceTypePhotoLibrary];
@@ -451,7 +451,7 @@
         IAMAttachmentDetailViewController *segueController = [segue destinationViewController];
         NSArray *indexPaths = [self.collectionView indexPathsForSelectedItems];
         NSIndexPath *index = [indexPaths objectAtIndex:0];
-        DLog(@"Opening the detail for cell %d", index.row);
+        DLog(@"Opening the detail for cell %ld", (long)index.row);
         Attachment *attachment = self.attachmentsArray[index.row];
         segueController.theAttachment = attachment;
         segueController.deleterObject = self;
@@ -521,12 +521,12 @@
 #pragma mark - UICollectionViewDelegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    DLog(@"This is collectionView:didSelectItemAtIndexPath:%d", indexPath.row);
+    DLog(@"This is collectionView:didSelectItemAtIndexPath:%ld", (long)indexPath.row);
     [self performSegueWithIdentifier:@"AttachmentDetail" sender:nil];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
-    DLog(@"This is collectionView:didDeselectItemAtIndexPath:%d", indexPath.row);
+    DLog(@"This is collectionView:didDeselectItemAtIndexPath:%ld", (long)indexPath.row);
 }
 
 #pragma mark - UICollectionViewDelegateFlowLayout

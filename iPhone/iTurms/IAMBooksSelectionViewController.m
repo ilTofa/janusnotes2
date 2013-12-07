@@ -204,7 +204,7 @@
         DLog(@"No books selected.");
     } else {
         returnArray = [[NSMutableArray alloc] initWithCapacity:[selectedRows count]];
-        DLog(@"%d books selected.", [selectedRows count]);
+        DLog(@"%lu books selected.", (unsigned long)[selectedRows count]);
         for (NSIndexPath *indexPath in selectedRows) {
             Books *book = [self.fetchedResultsController objectAtIndexPath:indexPath];
             [returnArray addObject:book];

@@ -384,7 +384,7 @@
     NSInteger numericSection = [[theSection name] integerValue];
 	NSInteger year = numericSection / 1000;
 	NSInteger month = numericSection - (year * 1000);
-	NSString *titleString = [NSString stringWithFormat:@"%@ %d", [monthSymbols objectAtIndex:month-1], year];
+	NSString *titleString = [NSString stringWithFormat:@"%@ %ld", [monthSymbols objectAtIndex:month-1], (long)year];
 	return titleString;
 }
 

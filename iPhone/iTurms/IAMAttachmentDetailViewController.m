@@ -162,7 +162,7 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    DLog(@"Clicked button at index %d", buttonIndex);
+    DLog(@"Clicked button at index %ld", (long)buttonIndex);
     if(buttonIndex == 0)
     {
         [self.deleterObject deleteAttachment:self.theAttachment];
