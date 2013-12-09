@@ -917,7 +917,7 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="dqI-DI-Oq0"/>
         <segue reference="klE-Tc-QFq"/>
+        <segue reference="YAx-7o-fYC"/>
     </inferredMetricsTieBreakers>
 </document>

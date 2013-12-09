@@ -85,6 +85,7 @@
     self.attachmensAreHidden = NO;
     [self refreshAttachments];
     [self processAds:nil];
+    [self setupTitleBar];
     // If this is a new note, set the cursor on title field
     if([self.titleEdit.text isEqualToString:@""])
         [self.titleEdit becomeFirstResponder];
@@ -133,6 +134,16 @@
 - (void)dynamicFontChanged:(NSNotification *)notification {
     self.textEdit.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
     self.titleEdit.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
+}
+
+- (void)setupTitleBar {
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        if (![self.editedNote.title isEqualToString:@""]) {
+            self.title = self.editedNote.title;
+        } else {
+            self.title = @"Entry";
+        }
+    }
 }
 
 -(void)refreshAttachments
@@ -194,7 +205,12 @@
 #pragma mark - UITextViewDelegate
 
 - (void)textViewDidBeginEditing:(UITextView *)textView {
+    [self setupTitleBar];
     [textView scrollRangeToVisible:textView.selectedRange];
+}
+
+- (BOOL)textViewShouldEndEditing:(UITextView *)textView {
+    return YES;
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
@@ -230,9 +246,14 @@
     }];
     // If title is changed, delete old note (with wrong name)
     self.originalText = self.editedNote.text;
-    // If called via action
-    if(sender)
+    // If this is a phone and we're editing simply quit keyboard
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone && ([self.textEdit isFirstResponder] || [self.titleEdit isFirstResponder])) {
+        [self.textEdit resignFirstResponder];
+        [self.titleEdit resignFirstResponder];
+    } else if(sender) {
+        // If called via action
         [self.navigationController popToRootViewControllerAnimated:YES];
+    }
 }
 
 - (IBAction)addImageToNote:(id)sender
