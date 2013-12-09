@@ -147,13 +147,13 @@ Label riga 3</string>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Add title" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="GTf-zU-8nE">
-                                <rect key="frame" x="4" y="64" width="760" height="35"/>
+                                <rect key="frame" x="24" y="64" width="721" height="35"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text=" " translatesAutoresizingMaskIntoConstraints="NO" id="yhs-mQ-beR">
-                                <rect key="frame" x="0.0" y="97" width="768" height="784"/>
+                                <rect key="frame" x="20" y="97" width="728" height="784"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -265,21 +265,21 @@ Label riga 3</string>
                             <constraint firstItem="DKG-5w-YOb" firstAttribute="trailing" secondItem="Tlu-OU-Ezs" secondAttribute="trailing" id="9PI-Ni-8Uc"/>
                             <constraint firstItem="hYl-Yr-sju" firstAttribute="top" secondItem="DKG-5w-YOb" secondAttribute="bottom" constant="99" id="ApX-9B-82r"/>
                             <constraint firstItem="hYl-Yr-sju" firstAttribute="top" secondItem="yhs-mQ-beR" secondAttribute="bottom" constant="99" id="C9P-MZ-ogP"/>
-                            <constraint firstItem="Og5-3L-Ope" firstAttribute="trailing" secondItem="yhs-mQ-beR" secondAttribute="trailing" id="Ew1-d6-uHL"/>
+                            <constraint firstAttribute="trailing" secondItem="yhs-mQ-beR" secondAttribute="trailing" constant="20" id="ESq-pl-Kyd"/>
+                            <constraint firstItem="Og5-3L-Ope" firstAttribute="trailing" secondItem="yhs-mQ-beR" secondAttribute="trailing" constant="20" id="Ew1-d6-uHL"/>
                             <constraint firstItem="Og5-3L-Ope" firstAttribute="centerX" secondItem="GTf-zU-8nE" secondAttribute="centerX" id="JOx-yN-fmA"/>
-                            <constraint firstItem="GTf-zU-8nE" firstAttribute="leading" secondItem="HIx-Dd-SbZ" secondAttribute="leading" constant="4" id="Qxa-6a-E0a"/>
+                            <constraint firstItem="GTf-zU-8nE" firstAttribute="leading" secondItem="HIx-Dd-SbZ" secondAttribute="leading" constant="24" id="Qxa-6a-E0a"/>
                             <constraint firstItem="DKG-5w-YOb" firstAttribute="leading" secondItem="Og5-3L-Ope" secondAttribute="leading" id="Tuz-5S-vfY"/>
                             <constraint firstItem="hYl-Yr-sju" firstAttribute="top" secondItem="Tlu-OU-Ezs" secondAttribute="bottom" id="UYB-sW-Hnh"/>
                             <constraint firstItem="Og5-3L-Ope" firstAttribute="top" secondItem="hkO-Te-Ql8" secondAttribute="bottom" constant="33" id="aFP-SN-OUV"/>
                             <constraint firstItem="hYl-Yr-sju" firstAttribute="trailing" secondItem="Tlu-OU-Ezs" secondAttribute="trailing" id="b7a-kL-TnL"/>
-                            <constraint firstItem="yhs-mQ-beR" firstAttribute="leading" secondItem="Og5-3L-Ope" secondAttribute="leading" id="evo-w2-pcX"/>
+                            <constraint firstItem="yhs-mQ-beR" firstAttribute="leading" secondItem="Og5-3L-Ope" secondAttribute="leading" constant="20" id="evo-w2-pcX"/>
                             <constraint firstItem="GTf-zU-8nE" firstAttribute="bottom" secondItem="Og5-3L-Ope" secondAttribute="bottom" id="gTS-52-elU"/>
                             <constraint firstAttribute="bottom" secondItem="hYl-Yr-sju" secondAttribute="bottom" id="hPT-Hh-0RR"/>
+                            <constraint firstItem="yhs-mQ-beR" firstAttribute="leading" secondItem="HIx-Dd-SbZ" secondAttribute="leading" constant="20" id="hn9-qf-1OE"/>
                             <constraint firstItem="Og5-3L-Ope" firstAttribute="top" secondItem="yhs-mQ-beR" secondAttribute="top" id="k4y-zU-rYC"/>
                             <constraint firstItem="GTf-zU-8nE" firstAttribute="top" secondItem="hkO-Te-Ql8" secondAttribute="bottom" id="sEE-I5-bHz"/>
-                            <constraint firstItem="yhs-mQ-beR" firstAttribute="trailing" secondItem="DKG-5w-YOb" secondAttribute="trailing" id="vhR-k4-Kvv"/>
-                            <constraint firstAttribute="trailing" secondItem="yhs-mQ-beR" secondAttribute="trailing" id="vvQ-Ng-HTf"/>
-                            <constraint firstItem="DKG-5w-YOb" firstAttribute="leading" secondItem="HIx-Dd-SbZ" secondAttribute="leading" id="xgX-6X-FDf"/>
+                            <constraint firstItem="yhs-mQ-beR" firstAttribute="trailing" secondItem="DKG-5w-YOb" secondAttribute="trailing" constant="-20" id="vhR-k4-Kvv"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Entry" id="Ug4-QN-uRX">
@@ -969,7 +969,7 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="1FO-Ev-NEd"/>
         <segue reference="ZLW-nH-hE9"/>
-        <segue reference="QyM-GP-yda"/>
     </inferredMetricsTieBreakers>
 </document>
