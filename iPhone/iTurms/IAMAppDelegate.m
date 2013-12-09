@@ -183,7 +183,6 @@
     }
     [self.managedObjectContext reset];
     [[NSNotificationCenter defaultCenter] postNotificationName:kCoreDataStoreExternallyChanged object:self.persistentStoreCoordinator userInfo:@{@"reason": NSPersistentStoreCoordinatorStoresWillChangeNotification}];
-    //reset user interface
 }
 
 - (void)storesDidChange:(NSNotification *)n {
@@ -195,7 +194,6 @@
     DLog(@"NSPersistentStoreDidImportUbiquitousContentChangesNotification: %@", n);
     [self.managedObjectContext performBlock:^{
         [self.managedObjectContext mergeChangesFromContextDidSaveNotification:n];
-        [[NSNotificationCenter defaultCenter] postNotificationName:kCoreDataStoreExternallyChanged object:self.persistentStoreCoordinator userInfo:@{@"reason": NSPersistentStoreDidImportUbiquitousContentChangesNotification}];
     }];
 }
 

@@ -82,6 +82,7 @@
     [self.navigationController setToolbarHidden:NO animated:YES];
     [self sortAgain];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(processAds:) name:kSkipAdProcessingChanged object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(iCloudChangesComing:) name:kCoreDataStoreExternallyChanged object:nil];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -91,6 +92,11 @@
 
 -(void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)iCloudChangesComing:(NSNotification *)note {
+    DLog(@"Detected core data icloud changes, reloading.");
+    [self sortAgain];
 }
 
 - (void)processAds:(NSNotification *)note {
