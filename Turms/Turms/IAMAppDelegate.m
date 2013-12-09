@@ -160,7 +160,7 @@
                               NSPersistentStoreUbiquitousContentNameKey: @"Turms",
                               NSMigratePersistentStoresAutomaticallyOption: @YES,
                               NSInferMappingModelAutomaticallyOption: @YES};
-//    if (![NSPersistentStoreCoordinator removeUbiquitousContentAndPersistentStoreAtURL:storeURL options:options error:&error]) {
+//    if (![NSPersistentStoreCoordinator removeUbiquitousContentAndPersistentStoreAtURL:url options:options error:&error]) {
     if (![coordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:url options:options error:&error]) {
         [[NSApplication sharedApplication] presentError:error];
         return nil;
@@ -195,6 +195,7 @@
 #pragma mark - iCloud
 
 - (void)storesWillChange:(NSNotification *)n {
+    DLog(@"NSPersistentStoreCoordinatorStoresWillChangeNotification: %@", n);
     NSError *error;
     if ([self.managedObjectContext hasChanges]) {
         [self.managedObjectContext save:&error];
@@ -205,10 +206,12 @@
 }
 
 - (void)storesDidChange:(NSNotification *)n {
+    DLog(@"NSPersistentStoreCoordinatorStoresDidChangeNotification: %@", n);
     [[NSNotificationCenter defaultCenter] postNotificationName:kCoreDataStoreExternallyChanged object:self.persistentStoreCoordinator userInfo:@{@"reason": NSPersistentStoreCoordinatorStoresDidChangeNotification}];
 }
 
 - (void)storeHaveNewData:(NSNotification *)n {
+    DLog(@"NSPersistentStoreDidImportUbiquitousContentChangesNotification: %@", n);
     [self.managedObjectContext performBlock:^{
         [self.managedObjectContext mergeChangesFromContextDidSaveNotification:n];
         [[NSNotificationCenter defaultCenter] postNotificationName:kCoreDataStoreExternallyChanged object:self.persistentStoreCoordinator userInfo:@{@"reason": NSPersistentStoreDidImportUbiquitousContentChangesNotification}];
