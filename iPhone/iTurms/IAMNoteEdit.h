@@ -24,6 +24,8 @@
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *textToToolbarConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *attachmentGreyRowToToolbarConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleEditHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *textEditSpaceToTopConstraint;
 
 @property NSManagedObjectID *idForTheNoteToBeEdited;
 

@@ -206,10 +206,16 @@
 
 - (void)textViewDidBeginEditing:(UITextView *)textView {
     [self setupTitleBar];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        self.titleEditHeightConstraint.constant = self.textEditSpaceToTopConstraint.constant = 0.0;
+    }
     [textView scrollRangeToVisible:textView.selectedRange];
 }
 
 - (BOOL)textViewShouldEndEditing:(UITextView *)textView {
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        self.titleEditHeightConstraint.constant = self.textEditSpaceToTopConstraint.constant = 35.0;
+    }
     return YES;
 }
 
@@ -250,6 +256,7 @@
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone && ([self.textEdit isFirstResponder] || [self.titleEdit isFirstResponder])) {
         [self.textEdit resignFirstResponder];
         [self.titleEdit resignFirstResponder];
+        [self setupTitleBar];
     } else if(sender) {
         // If called via action
         [self.navigationController popToRootViewControllerAnimated:YES];
