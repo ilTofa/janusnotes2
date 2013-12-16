@@ -145,7 +145,7 @@
         [tempArray addObject:attachmentDictionary];
     }
     self.attachmentsArray = tempArray;
-    CGFloat attachmentWindowHeight = 101.0;
+    CGFloat attachmentWindowHeight = 117.0;
     if([self.attachmentsArray count] == 0) {
         attachmentWindowHeight = 45.0;
     }
