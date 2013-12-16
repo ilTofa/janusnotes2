@@ -182,8 +182,8 @@
                                             <constraint firstAttribute="bottom" secondItem="227" secondAttribute="bottom" id="l5m-5v-qb1"/>
                                             <constraint firstItem="227" firstAttribute="leading" secondItem="552" secondAttribute="leading" id="otr-h3-ZYs"/>
                                         </constraints>
-                                        <color key="borderColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                        <color key="fillColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                                        <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </box>
                                 </subviews>
                                 <constraints>
