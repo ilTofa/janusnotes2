@@ -241,7 +241,11 @@
                             <action selector="previewMarkdown:" target="-2" id="13V-LP-2X8"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="6337BDC8-B5B3-4E03-A914-DFDB9E27ACB9" label="Publish" paletteLabel="Publish" tag="-1" image="export" id="67R-SZ-wVt"/>
+                    <toolbarItem implicitItemIdentifier="6337BDC8-B5B3-4E03-A914-DFDB9E27ACB9" label="Publish" paletteLabel="Publish" tag="-1" image="export" id="67R-SZ-wVt">
+                        <connections>
+                            <action selector="publish:" target="-2" id="tia-qY-JnT"/>
+                        </connections>
+                    </toolbarItem>
                 </allowedToolbarItems>
                 <defaultToolbarItems>
                     <toolbarItem reference="892"/>

@@ -416,7 +416,7 @@
 #pragma mark - Publishing
 
 - (IBAction)publish:(id)sender {
-    
+    DLog(@"Text:\n%@\n<end>", self.editedNote.text);
 }
 
 #pragma mark - markdown support
