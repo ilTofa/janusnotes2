@@ -145,9 +145,9 @@
         [tempArray addObject:attachmentDictionary];
     }
     self.attachmentsArray = tempArray;
-    CGFloat attachmentWindowHeight = 117.0;
+    CGFloat attachmentWindowHeight = 90.0;
     if([self.attachmentsArray count] == 0) {
-        attachmentWindowHeight = 45.0;
+        attachmentWindowHeight = 42.0;
     }
     self.attacmentContainerViewHeightConstraint.constant = attachmentWindowHeight;
     NSRect windowFrame = [self.attachmentContainerView frame];
@@ -411,6 +411,12 @@
     } else {
         NSLog(@"Double click detected in collection view, but no collection item is selected. This should not happen");
     }
+}
+
+#pragma mark - Publishing
+
+- (IBAction)publish:(id)sender {
+    
 }
 
 #pragma mark - markdown support
