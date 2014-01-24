@@ -283,12 +283,6 @@ label riga 4</string>
                 <menuItem isSeparatorItem="YES" id="437">
                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                 </menuItem>
-                <menuItem title="Close" id="438">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="closeNote:" target="-2" id="446"/>
-                    </connections>
-                </menuItem>
                 <menuItem title="Delete…" id="441">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>

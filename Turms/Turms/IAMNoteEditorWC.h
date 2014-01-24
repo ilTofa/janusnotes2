@@ -29,6 +29,7 @@
 
 - (IBAction)saveAndContinue:(id)sender;
 - (IBAction)saveAndClose:(id)sender;
+- (IBAction)closeWithoutSave:(id)sender;
 - (IBAction)addAttachment:(id)sender;
 - (IBAction)deleteAttachment:(id)sender;
 - (IBAction)previewMarkdown:(id)sender;

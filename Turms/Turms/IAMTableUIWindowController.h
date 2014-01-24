@@ -33,13 +33,6 @@
 - (IBAction)actionPreferences:(id)sender;
 - (IBAction)showBooksAction:(id)sender;
 
-// Note editor actions from main menu
-- (IBAction)saveNoteAndContinueAction:(id)sender;
-- (IBAction)saveNoteAndCloseAction:(id)sender;
-- (IBAction)closeNote:(id)sender;
-- (IBAction)addAttachmentToNoteAction:(id)sender;
-- (IBAction)removeAttachmentFromNoteAction:(id)sender;
-
 // called from openFile in apdelegate
 - (void)openNoteAtURI:(NSURL *)uri;
 

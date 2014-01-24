@@ -285,42 +285,6 @@
     [self.collectionController showUIWindow:self];
 }
 
-- (IBAction)newNoteAction:(id)sender {
-    [self.collectionController addNote:sender];
-}
-
-- (IBAction)editNoteAction:(id)sender {
-    [self.collectionController editNote:sender];
-}
-
-- (IBAction)closeNoteAction:(id)sender {
-    [self.collectionController.window performClose:sender];
-}
-
-- (IBAction)deleteNoteAction:(id)sender {
-    [self.collectionController deleteNote:sender];
-}
-
-- (IBAction)saveNoteAndContinueAction:(id)sender {
-    [self.collectionController saveNoteAndContinueAction:sender];
-}
-
-- (IBAction)saveNoteAndCloseAction:(id)sender {
-    [self.collectionController saveNoteAndCloseAction:sender];
-}
-
-- (IBAction)closeNote:(id)sender {
-    [self.collectionController closeNote:sender];
-}
-
-- (IBAction)addAttachmentToNoteAction:(id)sender {
-    [self.collectionController addAttachmentToNoteAction:sender];
-}
-
-- (IBAction)removeAttachmentFromNoteAction:(id)sender {
-    [self.collectionController removeAttachmentFromNoteAction:sender];
-}
-
 - (IBAction)getIOSApp:(id)sender {
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://itunes.apple.com/app/id651150600"]];
 }

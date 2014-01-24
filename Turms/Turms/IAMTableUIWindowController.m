@@ -229,24 +229,4 @@
     return foundController;
 }
 
-- (IBAction)saveNoteAndContinueAction:(id)sender {
-    [[self keyNoteEditor] saveAndContinue:sender];
-}
-
-- (IBAction)saveNoteAndCloseAction:(id)sender {
-    [[self keyNoteEditor] saveAndClose:sender];
-}
-
-- (IBAction)closeNote:(id)sender {
-    [[self keyNoteEditor].window performClose:sender];
-}
-
-- (IBAction)addAttachmentToNoteAction:(id)sender {
-    [[self keyNoteEditor] addAttachment:sender];
-}
-
-- (IBAction)removeAttachmentFromNoteAction:(id)sender {
-    [[self keyNoteEditor] deleteAttachment:sender];
-}
-
 @end
