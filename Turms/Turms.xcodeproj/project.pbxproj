@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		641A9BC818440F5800C2EE74 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64EA621316F7110300F4838E /* CoreData.framework */; };
 		6421B45918928939008C7E46 /* NSManagedObject+Serialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 6421B45818928939008C7E46 /* NSManagedObject+Serialization.m */; };
+		6421B45D1892CC5B008C7E46 /* it.iltofa.turms.archive.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6421B45C1892CC5B008C7E46 /* it.iltofa.turms.archive.icns */; };
 		643BA048173BFA4600A6C437 /* IAmMine.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 64EA627016F71E1400F4838E /* IAmMine.xcdatamodeld */; };
 		643BA050173D26E300A6C437 /* IAMOpenWithWC.m in Sources */ = {isa = PBXBuildFile; fileRef = 643BA04E173D26E300A6C437 /* IAMOpenWithWC.m */; };
 		643BA051173D26E300A6C437 /* IAMOpenWithWC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 643BA04F173D26E300A6C437 /* IAMOpenWithWC.xib */; };
@@ -97,6 +98,7 @@
 /* Begin PBXFileReference section */
 		6421B45718928939008C7E46 /* NSManagedObject+Serialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSManagedObject+Serialization.h"; path = "../common/iCloud/NSManagedObject+Serialization.h"; sourceTree = "<group>"; };
 		6421B45818928939008C7E46 /* NSManagedObject+Serialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSManagedObject+Serialization.m"; path = "../common/iCloud/NSManagedObject+Serialization.m"; sourceTree = "<group>"; };
+		6421B45C1892CC5B008C7E46 /* it.iltofa.turms.archive.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = it.iltofa.turms.archive.icns; sourceTree = "<group>"; };
 		643BA04D173D26E300A6C437 /* IAMOpenWithWC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMOpenWithWC.h; sourceTree = "<group>"; };
 		643BA04E173D26E300A6C437 /* IAMOpenWithWC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMOpenWithWC.m; sourceTree = "<group>"; };
 		643BA04F173D26E300A6C437 /* IAMOpenWithWC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IAMOpenWithWC.xib; sourceTree = "<group>"; };
@@ -377,6 +379,7 @@
 				64B4B7BB181140A700766D43 /* MarkdownPreview.html */,
 				64B56854174658ED006D04C4 /* readme.txt */,
 				6476CFAA1746223900A6195C /* it.iltofa.turms.entry.icns */,
+				6421B45C1892CC5B008C7E46 /* it.iltofa.turms.archive.icns */,
 				64A1D4EC16FC9F7C00E50CC1 /* Turms.entitlements */,
 				64EA621716F7110300F4838E /* Turms-Info.plist */,
 				64EA621816F7110300F4838E /* InfoPlist.strings */,
@@ -565,6 +568,7 @@
 				64EA622016F7110300F4838E /* Credits.rtf in Resources */,
 				64EA622616F7110300F4838E /* MainMenu.xib in Resources */,
 				64522F461847F87800D65289 /* IAMAddBookWindowController.xib in Resources */,
+				6421B45D1892CC5B008C7E46 /* it.iltofa.turms.archive.icns in Resources */,
 				64EA628616F75E0000F4838E /* IAMNoteEditorWC.xib in Resources */,
 				64B4B7BC181140A700766D43 /* MarkdownPreview.html in Resources */,
 				644AC25C17257FE4007B51FF /* IAMTableUIWindowController.xib in Resources */,

@@ -22,6 +22,22 @@
 				<string>it.iltofa.turms.entry</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>turmsarchive</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>it.iltofa.turms.archive</string>
+			<key>CFBundleTypeName</key>
+			<string>Turms Archive</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>it.iltofa.turms.archive</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
@@ -72,6 +88,28 @@
 				<key>public.filename-extension</key>
 				<array>
 					<string>turmsentry</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.data</string>
+				<string>public.content</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Turms Archive</string>
+			<key>UTTypeIconFile</key>
+			<string>it.iltofa.turms.archive</string>
+			<key>UTTypeIdentifier</key>
+			<string>it.iltofa.turms.archive</string>
+			<key>UTTypeReferenceURL</key>
+			<string>http://www.iltofa.com/turms/</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>turmsarchive</string>
 				</array>
 			</dict>
 		</dict>

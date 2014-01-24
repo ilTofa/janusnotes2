@@ -11,6 +11,7 @@
 #import "IAMNoteEditorWC.h"
 #import "IAMAppDelegate.h"
 #import "NSManagedObjectContext+FetchedObjectFromURI.h"
+#import "NSManagedObject+Serialization.h"
 #import "Attachment.h"
 #import "Books.h"
 
@@ -227,6 +228,156 @@
         }
     }
     return foundController;
+}
+
+#pragma mark - Archives Management
+
+- (IBAction)backupNotesArchive:(id)sender {
+    DLog(@"called.");
+    NSArray *notes = [self.arrayController arrangedObjects];
+    NSMutableArray *notesToBeSerialized = [[NSMutableArray alloc] initWithCapacity:[notes count]];
+    for (Note *note in notes) {
+        NSDictionary *noteDict = [note toDictionary];
+        [notesToBeSerialized addObject:noteDict];
+    }
+    NSUInteger savedNotesCount = [notesToBeSerialized count];
+    if (savedNotesCount == 0) {
+        return;
+    }
+    NSData *data=[NSKeyedArchiver archivedDataWithRootObject:notesToBeSerialized];
+    DLog(@"Should save to a file %lu bytes of data", (unsigned long)[data length]);
+    NSSavePanel *savePanel = [NSSavePanel savePanel];
+    [savePanel setAllowedFileTypes:@[@"it.iltofa.turms.archive"]];
+    savePanel.allowsOtherFileTypes = NO;
+    [savePanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result){
+        if(result == NSFileHandlingPanelCancelButton) {
+            DLog(@"User canceled");
+        } else {
+            DLog(@"User selected URL %@, now saving.", savePanel.URL);
+            NSAlert *alert = [[NSAlert alloc] init];
+            NSString *message;
+            NSError *error;
+            if (![data writeToURL:savePanel.URL options:NSDataWritingAtomic error:&error]) {
+                message = [NSString stringWithFormat:@"Error saving data: %@", [error description]];
+            } else {
+                message = [NSString stringWithFormat:@"%lu notes saved in the archive. Archive is unencrypted, please store it in a secure place.", savedNotesCount];
+            }
+            [alert setInformativeText:message];
+            [alert setMessageText:NSLocalizedString(@"Backup Operation", @"")];
+            [alert addButtonWithTitle:@"OK"];
+            [alert beginSheetModalForWindow:self.window modalDelegate:nil didEndSelector:nil contextInfo:nil];
+        }
+    }];
+}
+
+- (void)saveNoteFromDictionary:(NSDictionary *)potentialNote {
+    NSError *error;
+    [NSManagedObject createManagedObjectFromDictionary:potentialNote inContext:self.sharedManagedObjectContext];
+    if(![self.sharedManagedObjectContext save:&error]) {
+        ALog(@"Unresolved error %@, %@", error, [error userInfo]);
+        NSAlert *alert = [NSAlert alertWithError:error];
+        [alert runModal];
+    }
+}
+
+- (IBAction)restoreNotesArchive:(id)sender {
+    DLog(@"called.");
+    NSOpenPanel *openPanel = [NSOpenPanel openPanel];
+    openPanel.allowsMultipleSelection = NO;
+    openPanel.canChooseDirectories = NO;
+    openPanel.canChooseFiles = YES;
+    [openPanel setAllowedFileTypes:@[@"it.iltofa.turms.archive", @"it.iltofa.janusarchive"]];
+    [openPanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result){
+        if(result == NSFileHandlingPanelCancelButton) {
+            DLog(@"User canceled");
+        } else {
+            DLog(@"User selected URL %@, now loading.", openPanel.URL);
+            NSData *data = [NSData dataWithContentsOfURL:openPanel.URL];
+            NSArray *notesRead = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+            NSUInteger notesInArchive, skippedNotes, savedNotes;
+            notesInArchive = skippedNotes = savedNotes = 0;
+            notesInArchive = [notesRead count];
+            DLog(@"Read %lu objects.", (unsigned long)notesInArchive);
+            NSError *error;
+            NSFetchRequest *request = [[NSFetchRequest alloc] init];
+            [request setEntity:[NSEntityDescription entityForName:@"Note" inManagedObjectContext:self.sharedManagedObjectContext]];
+            for (NSDictionary *potentialNote in notesRead) {
+                NSPredicate *predicate = [NSPredicate predicateWithFormat:@"uuid == %@", potentialNote[@"uuid"]];
+                [request setPredicate:predicate];
+                NSArray *results = [self.sharedManagedObjectContext executeFetchRequest:request error:&error];
+                if (results && [results count] > 0) {
+                    NSDate *potentialNoteTimestamp = [NSDate dateWithTimeIntervalSinceReferenceDate:[potentialNote[@"dAtEaTtr:timeStamp"] doubleValue]];
+                    if ([potentialNoteTimestamp compare:((Note *)results[0]).timeStamp] == NSOrderedDescending) {
+                        DLog(@"%@ should be saved %@ > %@.", ((Note *)results[0]).title, potentialNoteTimestamp, ((Note *)results[0]).timeStamp);
+                        [self saveNoteFromDictionary:potentialNote];
+                        savedNotes++;
+                    } else {
+                        skippedNotes++;
+                    }
+                } else {
+                    DLog(@"%@ should be saved because not existing on current db.", potentialNote[@"title"]);
+                    [self saveNoteFromDictionary:potentialNote];
+                    savedNotes++;
+                }
+            }
+            NSAlert *alert = [[NSAlert alloc] init];
+            NSString *message = [NSString stringWithFormat:@"%lu notes in archive. %lu notes imported. %lu notes skipped because already existing in an identical or newer version.", notesInArchive, savedNotes, skippedNotes];
+            [alert setInformativeText:message];
+            [alert setMessageText:NSLocalizedString(@"Restore Operation", @"")];
+            [alert addButtonWithTitle:@"OK"];
+            [alert beginSheetModalForWindow:self.window modalDelegate:nil didEndSelector:nil contextInfo:nil];
+        }
+    }];
+}
+
+- (IBAction)importNotesFromJanus:(id)sender {
+    DLog(@"called.");
+    NSOpenPanel *openPanel = [NSOpenPanel openPanel];
+    openPanel.allowsMultipleSelection = NO;
+    openPanel.canChooseDirectories = NO;
+    openPanel.canChooseFiles = YES;
+    [openPanel setAllowedFileTypes:@[@"it.iltofa.janusarchive"]];
+    [openPanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result){
+        if(result == NSFileHandlingPanelCancelButton) {
+            DLog(@"User canceled");
+        } else {
+            DLog(@"User selected URL %@, now loading.", openPanel.URL);
+            NSData *data = [NSData dataWithContentsOfURL:openPanel.URL];
+            NSArray *notesRead = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+            NSUInteger notesInArchive, skippedNotes, savedNotes;
+            notesInArchive = skippedNotes = savedNotes = 0;
+            notesInArchive = [notesRead count];
+            DLog(@"Read %lu objects.", (unsigned long)notesInArchive);
+            NSError *error;
+            NSFetchRequest *request = [[NSFetchRequest alloc] init];
+            [request setEntity:[NSEntityDescription entityForName:@"Note" inManagedObjectContext:self.sharedManagedObjectContext]];
+            for (NSDictionary *potentialNote in notesRead) {
+                NSPredicate *predicate = [NSPredicate predicateWithFormat:@"uuid == %@", potentialNote[@"uuid"]];
+                [request setPredicate:predicate];
+                NSArray *results = [self.sharedManagedObjectContext executeFetchRequest:request error:&error];
+                if (results && [results count] > 0) {
+                    NSDate *potentialNoteTimestamp = [NSDate dateWithTimeIntervalSinceReferenceDate:[potentialNote[@"dAtEaTtr:timeStamp"] doubleValue]];
+                    if ([potentialNoteTimestamp compare:((Note *)results[0]).timeStamp] == NSOrderedDescending) {
+                        DLog(@"%@ should be saved %@ > %@.", ((Note *)results[0]).title, potentialNoteTimestamp, ((Note *)results[0]).timeStamp);
+                        [self saveNoteFromDictionary:potentialNote];
+                        savedNotes++;
+                    } else {
+                        skippedNotes++;
+                    }
+                } else {
+                    DLog(@"%@ should be saved because not existing on current db.", ((Note *)results[0]).title);
+                    [self saveNoteFromDictionary:potentialNote];
+                    savedNotes++;
+                }
+            }
+            NSAlert *alert = [[NSAlert alloc] init];
+            NSString *message = [NSString stringWithFormat:@"%lu notes in archive. %lu notes imported. %lu notes skipped because already existing in an identical or newer version.", notesInArchive, savedNotes, skippedNotes];
+            [alert setInformativeText:message];
+            [alert setMessageText:NSLocalizedString(@"Restore Operation", @"")];
+            [alert addButtonWithTitle:@"OK"];
+            [alert beginSheetModalForWindow:self.window modalDelegate:nil didEndSelector:nil contextInfo:nil];
+        }
+    }];
 }
 
 @end

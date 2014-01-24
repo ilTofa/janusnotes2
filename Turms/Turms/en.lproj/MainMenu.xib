@@ -98,6 +98,21 @@ CA
                                     <action selector="deleteNote:" target="-1" id="8Tf-CI-2g3"/>
                                 </connections>
                             </menuItem>
+                            <menuItem isSeparatorItem="YES" id="PQO-Os-h0c">
+                                <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                            </menuItem>
+                            <menuItem title="Backup Shown Notes..." id="6kx-hj-x8B">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="backupNotesArchive:" target="-1" id="bdd-DO-vWR"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Restore Notes Archive..." id="IHD-Tx-4yo">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="restoreNotesArchive:" target="-1" id="UZf-hV-x6D"/>
+                                </connections>
+                            </menuItem>
                         </items>
                     </menu>
                 </menuItem>
