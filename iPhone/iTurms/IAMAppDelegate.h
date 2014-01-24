@@ -25,6 +25,8 @@
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic) NSString *locationString;
 
+@property (copy, nonatomic) NSString *cryptPassword;
+
 // CoreData helper
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;

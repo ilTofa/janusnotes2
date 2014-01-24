@@ -11,6 +11,7 @@
 #import "GTThemer.h"
 #import "iRate.h"
 #import "GTTransientMessage.h"
+#import "STKeychain.h"
 
 @interface IAMAppDelegate()
 
@@ -21,6 +22,8 @@
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
+
+@synthesize cryptPassword = _cryptPassword;
 
 + (void)initialize {
 //    [iRate sharedInstance].daysUntilPrompt = 5;
@@ -171,6 +174,34 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     DLog(@"Here we are");
+}
+
+#pragma mark - Encryption password
+
+#define DEFAULT_PASSWORD @"This password should be changed!"
+
+- (NSString *)cryptPassword {
+    if (!_cryptPassword) {
+        NSError *error;
+        _cryptPassword = [STKeychain getPasswordForUsername:@"crypt" andServiceName:@"it.iltofa.Turms" error:&error];
+        if (!_cryptPassword) {
+            _cryptPassword = DEFAULT_PASSWORD;
+            if (error) {
+                ALog(@"Error loading password, loading default password. Error: %@", [error description]);
+            }
+        }
+    }
+    return _cryptPassword;
+}
+
+- (void)setCryptPassword:(NSString *)aPassword {
+    NSError *error;
+    if(![STKeychain storeUsername:@"crypt" andPassword:_cryptPassword forServiceName:@"it.iltofa.Turms" updateExisting:YES error:&error]) {
+        ALog(@"Error saving password, password not changed. Error: %@", [error description]);
+    } else {
+        _cryptPassword = [[NSString alloc] initWithString:aPassword];
+        // TODO: save and re-encrypt the db from there...
+    }
 }
 
 #pragma mark - iCloud

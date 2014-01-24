@@ -211,16 +211,17 @@
             else
                 queryString = [queryString stringByAppendingFormat:@" AND (text contains[cd] \"%@\" OR title contains[cd] \"%@\")", term, term];
         }
-    }
-    else
+    } else {
         queryString = @"text  like[c] \"*\"";
+    }
     if (self.booksQueryString) {
         queryString = [queryString stringByAppendingString:self.booksQueryString];
     }
     DLog(@"Fetching again. Query string is: '%@'", queryString);
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:queryString];
-    [fetchRequest setPredicate:predicate];
-    
+    if (queryString) {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:queryString];
+        [fetchRequest setPredicate:predicate];
+    }    
     NSString *sectionNameKeyPath = @"sectionIdentifier";
     if (self.sortKey == sortTitle) {
         sectionNameKeyPath = nil;

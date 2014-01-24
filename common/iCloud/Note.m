@@ -54,7 +54,11 @@
     NSData *encryptedValue = [self encryptedText];
     if (encryptedValue != nil) {
         NSError *error;
+#if TARGET_OS_IPHONE
+        NSString *password = [(IAMAppDelegate *)[[UIApplication sharedApplication] delegate] cryptPassword];
+#else
         NSString *password = [(IAMAppDelegate *)[[NSApplication sharedApplication] delegate] cryptPassword];
+#endif
         NSData *decryptedData = [RNDecryptor decryptData:encryptedValue withPassword:password error:&error];
         NSString *text = [[NSString alloc] initWithData:decryptedData encoding:NSUTF8StringEncoding];
         [self setPrimitiveText:text];
@@ -75,7 +79,11 @@
     [self setPrimitiveValue:aText forKey:@"text"];
     [self didChangeValueForKey:@"text"];
     NSError *error;
+#if TARGET_OS_IPHONE
+    NSString *password = [(IAMAppDelegate *)[[UIApplication sharedApplication] delegate] cryptPassword];
+#else
     NSString *password = [(IAMAppDelegate *)[[NSApplication sharedApplication] delegate] cryptPassword];
+#endif
     NSData *encryptedValue = [RNEncryptor encryptData:[aText dataUsingEncoding:NSUTF8StringEncoding] withSettings:kRNCryptorAES256Settings password:password error:&error];
     [self setValue:encryptedValue forKey:@"encryptedText"];
 }

@@ -19,6 +19,12 @@
 		641858C21850DC8D00E855F0 /* IAMAddBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 641858C11850DC8D00E855F0 /* IAMAddBookViewController.m */; };
 		641A5EFC16ED463B00D3440C /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 641A5EFB16ED463B00D3440C /* MainStoryboard_iPad.storyboard */; };
 		641D954416E8CF6E00A253E3 /* IAMAttachmentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 641D954316E8CF6E00A253E3 /* IAMAttachmentDetailViewController.m */; };
+		6421B4691892DC7E008C7E46 /* RNCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6421B4621892DC7E008C7E46 /* RNCryptor.m */; };
+		6421B46A1892DC7E008C7E46 /* RNCryptorEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 6421B4641892DC7E008C7E46 /* RNCryptorEngine.m */; };
+		6421B46B1892DC7E008C7E46 /* RNDecryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6421B4661892DC7E008C7E46 /* RNDecryptor.m */; };
+		6421B46C1892DC7E008C7E46 /* RNEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6421B4681892DC7E008C7E46 /* RNEncryptor.m */; };
+		6421B46F1892DC8F008C7E46 /* STKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 6421B46E1892DC8F008C7E46 /* STKeychain.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6421B4731892DCC4008C7E46 /* NSManagedObject+Serialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 6421B4721892DCC4008C7E46 /* NSManagedObject+Serialization.m */; };
 		6447056E16DD0FC4000A0262 /* SmallRow.png in Resources */ = {isa = PBXBuildFile; fileRef = 6447056C16DD0FC4000A0262 /* SmallRow.png */; };
 		6447056F16DD0FC4000A0262 /* SmallRow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6447056D16DD0FC4000A0262 /* SmallRow@2x.png */; };
 		64522F3E18476D9900D65289 /* Books.m in Sources */ = {isa = PBXBuildFile; fileRef = 64522F3718476D9900D65289 /* Books.m */; };
@@ -118,6 +124,20 @@
 		641A5EFB16ED463B00D3440C /* MainStoryboard_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		641D954216E8CF6E00A253E3 /* IAMAttachmentDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMAttachmentDetailViewController.h; sourceTree = "<group>"; };
 		641D954316E8CF6E00A253E3 /* IAMAttachmentDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMAttachmentDetailViewController.m; sourceTree = "<group>"; };
+		6421B45F1892DC7E008C7E46 /* RNCryptor+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor+Private.h"; sourceTree = "<group>"; };
+		6421B4601892DC7E008C7E46 /* RNCryptor-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor-Prefix.pch"; sourceTree = "<group>"; };
+		6421B4611892DC7E008C7E46 /* RNCryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCryptor.h; sourceTree = "<group>"; };
+		6421B4621892DC7E008C7E46 /* RNCryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCryptor.m; sourceTree = "<group>"; };
+		6421B4631892DC7E008C7E46 /* RNCryptorEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCryptorEngine.h; sourceTree = "<group>"; };
+		6421B4641892DC7E008C7E46 /* RNCryptorEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCryptorEngine.m; sourceTree = "<group>"; };
+		6421B4651892DC7E008C7E46 /* RNDecryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNDecryptor.h; sourceTree = "<group>"; };
+		6421B4661892DC7E008C7E46 /* RNDecryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNDecryptor.m; sourceTree = "<group>"; };
+		6421B4671892DC7E008C7E46 /* RNEncryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNEncryptor.h; sourceTree = "<group>"; };
+		6421B4681892DC7E008C7E46 /* RNEncryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNEncryptor.m; sourceTree = "<group>"; };
+		6421B46D1892DC8F008C7E46 /* STKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STKeychain.h; path = ../common/Utilitites/STKeychain.h; sourceTree = "<group>"; };
+		6421B46E1892DC8F008C7E46 /* STKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STKeychain.m; path = ../common/Utilitites/STKeychain.m; sourceTree = "<group>"; };
+		6421B4711892DCC4008C7E46 /* NSManagedObject+Serialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSManagedObject+Serialization.h"; path = "../common/iCloud/NSManagedObject+Serialization.h"; sourceTree = "<group>"; };
+		6421B4721892DCC4008C7E46 /* NSManagedObject+Serialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSManagedObject+Serialization.m"; path = "../common/iCloud/NSManagedObject+Serialization.m"; sourceTree = "<group>"; };
 		6447056C16DD0FC4000A0262 /* SmallRow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SmallRow.png; path = Images/SmallRow.png; sourceTree = "<group>"; };
 		6447056D16DD0FC4000A0262 /* SmallRow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SmallRow@2x.png"; path = "Images/SmallRow@2x.png"; sourceTree = "<group>"; };
 		64522F3618476D9900D65289 /* Books.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Books.h; path = ../common/iCloud/Books.h; sourceTree = "<group>"; };
@@ -293,6 +313,33 @@
 			name = "Note Edit";
 			sourceTree = "<group>";
 		};
+		6421B45E1892DC7E008C7E46 /* RNCryptor */ = {
+			isa = PBXGroup;
+			children = (
+				6421B45F1892DC7E008C7E46 /* RNCryptor+Private.h */,
+				6421B4601892DC7E008C7E46 /* RNCryptor-Prefix.pch */,
+				6421B4611892DC7E008C7E46 /* RNCryptor.h */,
+				6421B4621892DC7E008C7E46 /* RNCryptor.m */,
+				6421B4631892DC7E008C7E46 /* RNCryptorEngine.h */,
+				6421B4641892DC7E008C7E46 /* RNCryptorEngine.m */,
+				6421B4651892DC7E008C7E46 /* RNDecryptor.h */,
+				6421B4661892DC7E008C7E46 /* RNDecryptor.m */,
+				6421B4671892DC7E008C7E46 /* RNEncryptor.h */,
+				6421B4681892DC7E008C7E46 /* RNEncryptor.m */,
+			);
+			name = RNCryptor;
+			path = ../common/RNCryptor;
+			sourceTree = "<group>";
+		};
+		6421B4701892DC94008C7E46 /* STKeychain */ = {
+			isa = PBXGroup;
+			children = (
+				6421B46D1892DC8F008C7E46 /* STKeychain.h */,
+				6421B46E1892DC8F008C7E46 /* STKeychain.m */,
+			);
+			name = STKeychain;
+			sourceTree = "<group>";
+		};
 		6433103F16E0A8950064EC5C /* Utilities (iOS) */ = {
 			isa = PBXGroup;
 			children = (
@@ -346,6 +393,8 @@
 		64845FE316E019F20046BE9C /* Utilities (common) */ = {
 			isa = PBXGroup;
 			children = (
+				6421B4701892DC94008C7E46 /* STKeychain */,
+				6421B45E1892DC7E008C7E46 /* RNCryptor */,
 				64EB0EF61819144E00DD9924 /* sundown */,
 				645ED8A61754F0A20070F83B /* iRate */,
 			);
@@ -375,6 +424,8 @@
 		649DCE9A16D28D30003F5A83 /* CoreData (common) */ = {
 			isa = PBXGroup;
 			children = (
+				6421B4711892DCC4008C7E46 /* NSManagedObject+Serialization.h */,
+				6421B4721892DCC4008C7E46 /* NSManagedObject+Serialization.m */,
 				64522F3618476D9900D65289 /* Books.h */,
 				64522F3718476D9900D65289 /* Books.m */,
 				64522F3818476D9900D65289 /* PublishedOn.h */,
@@ -660,23 +711,29 @@
 				64A0508016D28CCA0025E179 /* IAMAppDelegate.m in Sources */,
 				64EB0F061819144E00DD9924 /* autolink.c in Sources */,
 				64EB0F0B1819144E00DD9924 /* html_smartypants.c in Sources */,
+				6421B4691892DC7E008C7E46 /* RNCryptor.m in Sources */,
+				6421B46C1892DC7E008C7E46 /* RNEncryptor.m in Sources */,
 				64522F4118476D9900D65289 /* Tags.m in Sources */,
 				649DCEA016D28DB8003F5A83 /* IAmMine.xcdatamodeld in Sources */,
 				64522F3E18476D9900D65289 /* Books.m in Sources */,
 				640D40BE16D5128B003034B3 /* IAMNoteCell.m in Sources */,
 				641858C21850DC8D00E855F0 /* IAMAddBookViewController.m in Sources */,
 				64B9B4A516D7801100607F39 /* IAMNoteEdit.m in Sources */,
+				6421B46B1892DC7E008C7E46 /* RNDecryptor.m in Sources */,
 				6416315716D7DB830004CB52 /* IAMViewController.m in Sources */,
 				6416315D16D8345F0004CB52 /* UIImage+RoundedCorner.m in Sources */,
 				64027D7B16DD7CB800DEA647 /* IAMPreferencesController.m in Sources */,
 				64522F3F18476D9900D65289 /* PublishedOn.m in Sources */,
 				64E0AA4817E9067D008BF0E3 /* iRate.m in Sources */,
 				64F31CC416E4AF9000A80BE0 /* Note.m in Sources */,
+				6421B46A1892DC7E008C7E46 /* RNCryptorEngine.m in Sources */,
 				64896D2D184F336800AE5EEF /* IAMBooksSelectionViewController.m in Sources */,
 				64F31CCA16E5009B00A80BE0 /* Attachment.m in Sources */,
 				64A8A7E316E781EB0013AFFF /* IAMAddLinkViewController.m in Sources */,
 				64EB0F081819144E00DD9924 /* houdini_href_e.c in Sources */,
+				6421B4731892DCC4008C7E46 /* NSManagedObject+Serialization.m in Sources */,
 				64EB0F0D1819144E00DD9924 /* stack.c in Sources */,
+				6421B46F1892DC8F008C7E46 /* STKeychain.m in Sources */,
 				64A8A7E616E7B4770013AFFF /* IAMAttachmentCell.m in Sources */,
 				641D954416E8CF6E00A253E3 /* IAMAttachmentDetailViewController.m in Sources */,
 				6410E1CB17E85D2000B568D0 /* GTTransientMessage.m in Sources */,
