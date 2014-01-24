@@ -207,12 +207,10 @@
             if([term length] == 0)
                 continue;
             if(queryString == nil)
-                queryString = [NSString stringWithFormat:@"(text contains[cd] \"%@\" OR title contains[cd] \"%@\")", term, term];
+                queryString = [NSString stringWithFormat:@"title contains[cd] \"%@\"", term];
             else
-                queryString = [queryString stringByAppendingFormat:@" AND (text contains[cd] \"%@\" OR title contains[cd] \"%@\")", term, term];
+                queryString = [queryString stringByAppendingFormat:@" AND title contains[cd] \"%@\"", term];
         }
-    } else {
-        queryString = @"text  like[c] \"*\"";
     }
     if (self.booksQueryString) {
         queryString = [queryString stringByAppendingString:self.booksQueryString];
