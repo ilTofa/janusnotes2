@@ -230,8 +230,12 @@
         NSError *error;
         _cryptPassword = [STKeychain getPasswordForUsername:@"crypt" andServiceName:@"it.iltofa.Turms" error:&error];
         if (!_cryptPassword) {
-            ALog(@"Error loading password, loading default password. Error: %@", [error description]);
             _cryptPassword = DEFAULT_PASSWORD;
+            if (error) {
+                ALog(@"Error loading password, loading default password. Error: %@", [error description]);
+                NSAlert *alert = [NSAlert alertWithError:error];
+                [alert runModal];
+            }
         }
     }
     return _cryptPassword;
@@ -239,8 +243,10 @@
 
 - (void)setCryptPassword:(NSString *)aPassword {
     NSError *error;
-    if(![STKeychain storeUsername:@"crypt" andPassword:_cryptPassword forServiceName:@"it.iltofa.janus" updateExisting:YES error:&error]) {
+    if(![STKeychain storeUsername:@"crypt" andPassword:_cryptPassword forServiceName:@"it.iltofa.Turms" updateExisting:YES error:&error]) {
         ALog(@"Error saving password, password not changed. Error: %@", [error description]);
+        NSAlert *alert = [NSAlert alertWithError:error];
+        [alert runModal];
     } else {
         _cryptPassword = [[NSString alloc] initWithString:aPassword];
         // TODO: save and re-encrypt the db from there...
