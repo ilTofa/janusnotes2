@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		641A9BC818440F5800C2EE74 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64EA621316F7110300F4838E /* CoreData.framework */; };
+		6421B45918928939008C7E46 /* NSManagedObject+Serialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 6421B45818928939008C7E46 /* NSManagedObject+Serialization.m */; };
 		643BA048173BFA4600A6C437 /* IAmMine.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 64EA627016F71E1400F4838E /* IAmMine.xcdatamodeld */; };
 		643BA050173D26E300A6C437 /* IAMOpenWithWC.m in Sources */ = {isa = PBXBuildFile; fileRef = 643BA04E173D26E300A6C437 /* IAMOpenWithWC.m */; };
 		643BA051173D26E300A6C437 /* IAMOpenWithWC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 643BA04F173D26E300A6C437 /* IAMOpenWithWC.xib */; };
@@ -94,6 +95,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		6421B45718928939008C7E46 /* NSManagedObject+Serialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSManagedObject+Serialization.h"; path = "../common/iCloud/NSManagedObject+Serialization.h"; sourceTree = "<group>"; };
+		6421B45818928939008C7E46 /* NSManagedObject+Serialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSManagedObject+Serialization.m"; path = "../common/iCloud/NSManagedObject+Serialization.m"; sourceTree = "<group>"; };
 		643BA04D173D26E300A6C437 /* IAMOpenWithWC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMOpenWithWC.h; sourceTree = "<group>"; };
 		643BA04E173D26E300A6C437 /* IAMOpenWithWC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMOpenWithWC.m; sourceTree = "<group>"; };
 		643BA04F173D26E300A6C437 /* IAMOpenWithWC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IAMOpenWithWC.xib; sourceTree = "<group>"; };
@@ -411,6 +414,8 @@
 		64EA626B16F71DF500F4838E /* CoreData (common) */ = {
 			isa = PBXGroup;
 			children = (
+				6421B45718928939008C7E46 /* NSManagedObject+Serialization.h */,
+				6421B45818928939008C7E46 /* NSManagedObject+Serialization.m */,
 				64EA626C16F71E1400F4838E /* Attachment.h */,
 				64EA626D16F71E1400F4838E /* Attachment.m */,
 				64EA627016F71E1400F4838E /* IAmMine.xcdatamodeld */,
@@ -617,6 +622,7 @@
 				647EF40A18918EC50045F273 /* STKeychain.m in Sources */,
 				644AC2781726CFAC007B51FF /* IAMPrefsWindowController.m in Sources */,
 				643BA050173D26E300A6C437 /* IAMOpenWithWC.m in Sources */,
+				6421B45918928939008C7E46 /* NSManagedObject+Serialization.m in Sources */,
 				64EE7C77180C54EC004B94E2 /* stack.c in Sources */,
 				64EE7C75180C54EC004B94E2 /* buffer.c in Sources */,
 				645ED8A31754ED8A0070F83B /* iRate.m in Sources */,
