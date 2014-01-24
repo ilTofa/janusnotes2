@@ -23,6 +23,8 @@
 
 @property (strong, nonatomic) IAMTableUIWindowController *collectionController;
 
+@property (copy, nonatomic) NSString *cryptPassword;
+
 - (IBAction)saveAction:(id)sender;
 - (IBAction)preferencesAction:(id)sender;
 - (IBAction)notesWindowAction:(id)sender;

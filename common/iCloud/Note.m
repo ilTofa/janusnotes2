@@ -12,6 +12,9 @@
 #import "PublishedOn.h"
 #import "Tags.h"
 
+#import "IAMAppDelegate.h"
+#import "RNEncryptor.h"
+#import "RNDecryptor.h"
 
 @implementation Note
 
@@ -22,6 +25,8 @@
 @dynamic sectionIdentifier;
 @dynamic primitiveSectionIdentifier;
 @dynamic text;
+@dynamic primitiveText;
+@dynamic encryptedText;
 @dynamic timeStamp;
 @dynamic primitiveTimeStamp;
 @dynamic title;
@@ -44,7 +49,36 @@
     [self setAttachment:nil];
 }
 
+- (void)awakeFromFetch {
+    [super awakeFromFetch];
+    NSData *encryptedValue = [self encryptedText];
+    if (encryptedValue != nil) {
+        NSError *error;
+        NSString *password = [(IAMAppDelegate *)[[NSApplication sharedApplication] delegate] cryptPassword];
+        NSData *decryptedData = [RNDecryptor decryptData:encryptedValue withPassword:password error:&error];
+        NSString *text = [[NSString alloc] initWithData:decryptedData encoding:NSUTF8StringEncoding];
+        [self setPrimitiveText:text];
+    }
+}
+
 #pragma mark - Transient properties
+
+- (NSString *)text {
+    [self willAccessValueForKey:@"text"];
+    NSString *text = [self primitiveText];
+    [self didAccessValueForKey:@"text"];
+    return text;
+}
+
+- (void)setText:(NSString *)aText {
+    [self willChangeValueForKey:@"text"];
+    [self setPrimitiveValue:aText forKey:@"text"];
+    [self didChangeValueForKey:@"text"];
+    NSError *error;
+    NSString *password = [(IAMAppDelegate *)[[NSApplication sharedApplication] delegate] cryptPassword];
+    NSData *encryptedValue = [RNEncryptor encryptData:[aText dataUsingEncoding:NSUTF8StringEncoding] withSettings:kRNCryptorAES256Settings password:password error:&error];
+    [self setValue:encryptedValue forKey:@"encryptedText"];
+}
 
 - (NSString *)sectionIdentifier
 {
@@ -96,7 +130,6 @@
     [self setPrimitiveCreationIdentifier:nil];
 }
 
-
 #pragma mark - Key path dependencies
 
 + (NSSet *)keyPathsForValuesAffectingSectionIdentifier {
@@ -107,6 +140,11 @@
 + (NSSet *)keyPathsForValuesAffectingCreationIdentifier {
     // If the value of creationDate changes, the creation identifier may change as well.
     return [NSSet setWithObject:@"creationDate"];
+}
+
++ (NSSet *)keyPathsForValuesAffectingEncryptedText {
+    // If the value of text changes, the encrypted text should change as well
+    return [NSSet setWithObject:@"text"];
 }
 
 @end

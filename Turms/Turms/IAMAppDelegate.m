@@ -11,6 +11,7 @@
 #include <sys/sysctl.h>
 #import "IAMPrefsWindowController.h"
 #import "iRate.h"
+#import "STKeychain.h"
 
 @interface IAMAppDelegate ()
 
@@ -27,6 +28,8 @@
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize managedObjectContext = _managedObjectContext;
+
+@synthesize cryptPassword = _cryptPassword;
 
 //+ (void)initialize {
 //    // Init iRate
@@ -160,7 +163,7 @@
                               NSPersistentStoreUbiquitousContentNameKey: @"Turms",
                               NSMigratePersistentStoresAutomaticallyOption: @YES,
                               NSInferMappingModelAutomaticallyOption: @YES};
-//    if (![NSPersistentStoreCoordinator removeUbiquitousContentAndPersistentStoreAtURL:url options:options error:&error]) {
+//    if ([NSPersistentStoreCoordinator removeUbiquitousContentAndPersistentStoreAtURL:url options:options error:&error]) {
     if (![coordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:url options:options error:&error]) {
         [[NSApplication sharedApplication] presentError:error];
         return nil;
@@ -216,6 +219,32 @@
         [self.managedObjectContext mergeChangesFromContextDidSaveNotification:n];
         [[NSNotificationCenter defaultCenter] postNotificationName:kCoreDataStoreExternallyChanged object:self.persistentStoreCoordinator userInfo:@{@"reason": NSPersistentStoreDidImportUbiquitousContentChangesNotification}];
     }];
+}
+
+#pragma mark - Encryption password
+
+#define DEFAULT_PASSWORD @"This password should be changed!"
+
+- (NSString *)cryptPassword {
+    if (!_cryptPassword) {
+        NSError *error;
+        _cryptPassword = [STKeychain getPasswordForUsername:@"crypt" andServiceName:@"it.iltofa.Turms" error:&error];
+        if (!_cryptPassword) {
+            ALog(@"Error loading password, loading default password. Error: %@", [error description]);
+            _cryptPassword = DEFAULT_PASSWORD;
+        }
+    }
+    return _cryptPassword;
+}
+
+- (void)setCryptPassword:(NSString *)aPassword {
+    NSError *error;
+    if(![STKeychain storeUsername:@"crypt" andPassword:_cryptPassword forServiceName:@"it.iltofa.janus" updateExisting:YES error:&error]) {
+        ALog(@"Error saving password, password not changed. Error: %@", [error description]);
+    } else {
+        _cryptPassword = [[NSString alloc] initWithString:aPassword];
+        // TODO: save and re-encrypt the db from there...
+    }
 }
 
 #pragma mark -

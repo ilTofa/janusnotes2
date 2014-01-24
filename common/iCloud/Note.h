@@ -20,6 +20,8 @@
 @property (nonatomic, retain) NSString * sectionIdentifier;
 @property (nonatomic, retain) NSString *primitiveSectionIdentifier;
 @property (nonatomic, retain) NSString * text;
+@property (nonatomic, retain) NSString * primitiveText;
+@property (nonatomic, retain) NSData * encryptedText;
 @property (nonatomic, retain) NSDate * timeStamp;
 @property (nonatomic, retain) NSDate *primitiveTimeStamp;
 @property (nonatomic, retain) NSString * title;

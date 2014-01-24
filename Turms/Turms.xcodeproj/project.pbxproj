@@ -30,6 +30,11 @@
 		64629F65183F79F300753313 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64629F64183F79F300753313 /* Images.xcassets */; };
 		6476CFAB1746223900A6195C /* it.iltofa.turms.entry.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6476CFAA1746223900A6195C /* it.iltofa.turms.entry.icns */; };
 		6476CFAC1746228E00A6195C /* it.iltofa.turms.entry.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6476CFAA1746223900A6195C /* it.iltofa.turms.entry.icns */; };
+		647EF40418918D1C0045F273 /* RNCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 647EF3FD18918D1C0045F273 /* RNCryptor.m */; };
+		647EF40518918D1C0045F273 /* RNCryptorEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 647EF3FF18918D1C0045F273 /* RNCryptorEngine.m */; };
+		647EF40618918D1C0045F273 /* RNDecryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 647EF40118918D1C0045F273 /* RNDecryptor.m */; };
+		647EF40718918D1C0045F273 /* RNEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 647EF40318918D1C0045F273 /* RNEncryptor.m */; };
+		647EF40A18918EC50045F273 /* STKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 647EF40918918EC50045F273 /* STKeychain.m */; };
 		64A4E9B51742659A00BC49FE /* TurmsImporter.mdimporter in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64EA622E16F7110300F4838E /* TurmsImporter.mdimporter */; };
 		64A75591170358BC0085933D /* NSManagedObjectContext+FetchedObjectFromURI.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A75590170358BC0085933D /* NSManagedObjectContext+FetchedObjectFromURI.m */; };
 		64B4B7BC181140A700766D43 /* MarkdownPreview.html in Resources */ = {isa = PBXBuildFile; fileRef = 64B4B7BB181140A700766D43 /* MarkdownPreview.html */; };
@@ -122,6 +127,18 @@
 		645ED8A41754EFCE0070F83B /* iRate.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = iRate.bundle; sourceTree = "<group>"; };
 		64629F64183F79F300753313 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../Turms/Images.xcassets; sourceTree = "<group>"; };
 		6476CFAA1746223900A6195C /* it.iltofa.turms.entry.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = it.iltofa.turms.entry.icns; sourceTree = "<group>"; };
+		647EF3FA18918D1C0045F273 /* RNCryptor+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor+Private.h"; sourceTree = "<group>"; };
+		647EF3FB18918D1C0045F273 /* RNCryptor-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor-Prefix.pch"; sourceTree = "<group>"; };
+		647EF3FC18918D1C0045F273 /* RNCryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCryptor.h; sourceTree = "<group>"; };
+		647EF3FD18918D1C0045F273 /* RNCryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCryptor.m; sourceTree = "<group>"; };
+		647EF3FE18918D1C0045F273 /* RNCryptorEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCryptorEngine.h; sourceTree = "<group>"; };
+		647EF3FF18918D1C0045F273 /* RNCryptorEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCryptorEngine.m; sourceTree = "<group>"; };
+		647EF40018918D1C0045F273 /* RNDecryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNDecryptor.h; sourceTree = "<group>"; };
+		647EF40118918D1C0045F273 /* RNDecryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNDecryptor.m; sourceTree = "<group>"; };
+		647EF40218918D1C0045F273 /* RNEncryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNEncryptor.h; sourceTree = "<group>"; };
+		647EF40318918D1C0045F273 /* RNEncryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNEncryptor.m; sourceTree = "<group>"; };
+		647EF40818918EC50045F273 /* STKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STKeychain.h; path = ../common/Utilitites/STKeychain.h; sourceTree = "<group>"; };
+		647EF40918918EC50045F273 /* STKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STKeychain.m; path = ../common/Utilitites/STKeychain.m; sourceTree = "<group>"; };
 		64A1D4EC16FC9F7C00E50CC1 /* Turms.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Turms.entitlements; sourceTree = "<group>"; };
 		64A7558F170358BC0085933D /* NSManagedObjectContext+FetchedObjectFromURI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSManagedObjectContext+FetchedObjectFromURI.h"; path = "../common/iCloud/NSManagedObjectContext+FetchedObjectFromURI.h"; sourceTree = "<group>"; };
 		64A75590170358BC0085933D /* NSManagedObjectContext+FetchedObjectFromURI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSManagedObjectContext+FetchedObjectFromURI.m"; path = "../common/iCloud/NSManagedObjectContext+FetchedObjectFromURI.m"; sourceTree = "<group>"; };
@@ -242,6 +259,33 @@
 			);
 			name = iRate;
 			path = ../iRate/iRate;
+			sourceTree = "<group>";
+		};
+		647EF3F918918D1C0045F273 /* RNCryptor */ = {
+			isa = PBXGroup;
+			children = (
+				647EF3FA18918D1C0045F273 /* RNCryptor+Private.h */,
+				647EF3FB18918D1C0045F273 /* RNCryptor-Prefix.pch */,
+				647EF3FC18918D1C0045F273 /* RNCryptor.h */,
+				647EF3FD18918D1C0045F273 /* RNCryptor.m */,
+				647EF3FE18918D1C0045F273 /* RNCryptorEngine.h */,
+				647EF3FF18918D1C0045F273 /* RNCryptorEngine.m */,
+				647EF40018918D1C0045F273 /* RNDecryptor.h */,
+				647EF40118918D1C0045F273 /* RNDecryptor.m */,
+				647EF40218918D1C0045F273 /* RNEncryptor.h */,
+				647EF40318918D1C0045F273 /* RNEncryptor.m */,
+			);
+			name = RNCryptor;
+			path = ../common/RNCryptor;
+			sourceTree = "<group>";
+		};
+		647EF40B18918ECB0045F273 /* STKeychain */ = {
+			isa = PBXGroup;
+			children = (
+				647EF40818918EC50045F273 /* STKeychain.h */,
+				647EF40918918EC50045F273 /* STKeychain.m */,
+			);
+			name = STKeychain;
 			sourceTree = "<group>";
 		};
 		64A1D4ED16FCA12700E50CC1 /* Note Edit */ = {
@@ -390,6 +434,8 @@
 		64EA627816F71E7600F4838E /* Utilities (common) */ = {
 			isa = PBXGroup;
 			children = (
+				647EF40B18918ECB0045F273 /* STKeychain */,
+				647EF3F918918D1C0045F273 /* RNCryptor */,
 				645ED89E1754ED8A0070F83B /* iRate */,
 				64EE7C6A180C54EC004B94E2 /* sundown */,
 			);
@@ -546,9 +592,11 @@
 				64522F2F18476C1A00D65289 /* Books.m in Sources */,
 				64EA621C16F7110300F4838E /* main.m in Sources */,
 				64EE7C76180C54EC004B94E2 /* markdown.c in Sources */,
+				647EF40618918D1C0045F273 /* RNDecryptor.m in Sources */,
 				64522F2918476C1900D65289 /* Site.m in Sources */,
 				64EE7C74180C54EC004B94E2 /* autolink.c in Sources */,
 				64EA622316F7110300F4838E /* IAMAppDelegate.m in Sources */,
+				647EF40718918D1C0045F273 /* RNEncryptor.m in Sources */,
 				64EA627416F71E1400F4838E /* Attachment.m in Sources */,
 				64522F451847F87800D65289 /* IAMAddBookWindowController.m in Sources */,
 				64EA627616F71E1400F4838E /* IAmMine.xcdatamodeld in Sources */,
@@ -559,11 +607,14 @@
 				64522F3518476C4E00D65289 /* Note.m in Sources */,
 				64A75591170358BC0085933D /* NSManagedObjectContext+FetchedObjectFromURI.m in Sources */,
 				64522F3218476C1A00D65289 /* PublishedOn.m in Sources */,
+				647EF40418918D1C0045F273 /* RNCryptor.m in Sources */,
 				64522F2618475AAD00D65289 /* IAMBooksWindowController.m in Sources */,
 				64EE7C80180C58B9004B94E2 /* html.c in Sources */,
+				647EF40518918D1C0045F273 /* RNCryptorEngine.m in Sources */,
 				64EE7C7E180C58B9004B94E2 /* houdini_html_e.c in Sources */,
 				644AC25B17257FE4007B51FF /* IAMTableUIWindowController.m in Sources */,
 				644AC2741726C343007B51FF /* IAMCollectionItemView.m in Sources */,
+				647EF40A18918EC50045F273 /* STKeychain.m in Sources */,
 				644AC2781726CFAC007B51FF /* IAMPrefsWindowController.m in Sources */,
 				643BA050173D26E300A6C437 /* IAMOpenWithWC.m in Sources */,
 				64EE7C77180C54EC004B94E2 /* stack.c in Sources */,
