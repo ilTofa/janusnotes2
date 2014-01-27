@@ -16,6 +16,7 @@
 
 typedef enum {
     supportJanus = 0,
+    cryptPassword,
     sortSelector,
 } sectionIdentifiers;
 
@@ -30,6 +31,7 @@ typedef enum {
 @interface IAMPreferencesController () <MFMailComposeViewControllerDelegate, SKProductsRequestDelegate>
 
 @property NSArray *products;
+@property NSString *oldEncryptionKey;
 
 @end
 
@@ -52,6 +54,7 @@ typedef enum {
     self.sortSelector.selectedSegmentIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"sortBy"];
     self.dateSelector.selectedSegmentIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"dateShown"];
     [self.tableView setContentOffset:CGPointZero animated:YES];
+    self.cryptPasswordField.text = self.oldEncryptionKey = [(IAMAppDelegate *)[[UIApplication sharedApplication] delegate] cryptPassword];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -145,7 +148,7 @@ typedef enum {
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Sorting
-    if(indexPath.section == sortSelector) {
+    if(indexPath.section == sortSelector || indexPath.section == cryptPassword) {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
     // Support
@@ -224,6 +227,31 @@ typedef enum {
 
 - (IBAction)dateSelectorAction:(id)sender {
     [[NSUserDefaults standardUserDefaults] setInteger:self.dateSelector.selectedSegmentIndex forKey:@"dateShown"];
+}
+
+- (IBAction)cryptPasswordChangeAction:(id)sender {
+    if ([self.oldEncryptionKey isEqualToString:self.cryptPasswordField.text]) {
+        return;
+    }
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Warning" message: @"Are you sure you want to change the encryption key?" delegate: self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Change It",nil];
+    [alert show];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    [self cryptPasswordChangeAction:self];
+    return NO;
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+	if (buttonIndex != alertView.cancelButtonIndex) {
+        DLog(@"User confirmed changing the key, now really changing it from: '%@' to '%@'", self.oldEncryptionKey, self.cryptPasswordField.text);
+        [(IAMAppDelegate *)[[UIApplication sharedApplication] delegate] setCryptPassword:self.cryptPasswordField.text];
+        self.oldEncryptionKey = [(IAMAppDelegate *)[[UIApplication sharedApplication] delegate] cryptPassword];
+        [self.cryptPasswordField resignFirstResponder];
+	} else {
+        self.cryptPasswordField.text = self.oldEncryptionKey;
+    }
 }
 
 @end

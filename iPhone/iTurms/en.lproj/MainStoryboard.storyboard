@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="jOx-mc-5rj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="jOx-mc-5rj">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
@@ -660,7 +660,7 @@ Label riga 3</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <label key="tableFooterView" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="320" id="fxz-Pf-qT7">
-                            <rect key="frame" x="0.0" y="485" width="320" height="66"/>
+                            <rect key="frame" x="0.0" y="683" width="320" height="66"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <string key="text">This is Turms version 1.0 (137)
 ©2013 Giacomo Tufano - All rights Reserved
@@ -800,16 +800,62 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Dates &amp; Sort" id="dPY-Wf-dRM">
+                            <tableViewSection headerTitle="Encryption Key" id="dPY-Wf-dRM">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Q3O-JR-0HJ">
-                                        <rect key="frame" x="0.0" y="387" width="320" height="44"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="150" id="Q3O-JR-0HJ">
+                                        <rect key="frame" x="0.0" y="387" width="320" height="150"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Q3O-JR-0HJ" id="5rE-yo-Ht7">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="149"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ng4-na-vR4">
+                                                    <rect key="frame" x="20" y="7" width="280" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="mV7-Kq-sdp" id="r2w-jW-at6"/>
+                                                    </connections>
+                                                </textField>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LX2-Cm-qfa">
+                                                    <rect key="frame" x="20" y="45" width="280" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Change the Key">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="cryptPasswordChangeAction:" destination="mV7-Kq-sdp" eventType="touchUpInside" id="cgN-3S-O6z"/>
+                                                    </connections>
+                                                </button>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="nQL-V2-rKf">
+                                                    <rect key="frame" x="20" y="73" width="280" height="76"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <string key="text">Please wait for the sync to end before changing the encryption Key. We strongly recommend to backup the data (on a Macintosh) before trying to change the value.</string>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="ng4-na-vR4" secondAttribute="trailing" constant="20" symbolic="YES" id="9rS-oP-deB"/>
+                                                <constraint firstItem="ng4-na-vR4" firstAttribute="leading" secondItem="5rE-yo-Ht7" secondAttribute="leading" constant="20" symbolic="YES" id="JUD-Bw-lac"/>
+                                                <constraint firstItem="ng4-na-vR4" firstAttribute="top" secondItem="5rE-yo-Ht7" secondAttribute="top" constant="7" id="aoA-qA-Gqx"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Dates &amp; Sort" id="PTN-Bi-f2e">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="v6f-HP-YI0">
+                                        <rect key="frame" x="0.0" y="585" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="v6f-HP-YI0" id="1kc-1d-3pB">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="qaD-zA-qFV">
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="366-ud-L1g">
                                                     <rect key="frame" x="90" y="8" width="210" height="29"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <segments>
@@ -818,10 +864,10 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                                         <segment title="Title"/>
                                                     </segments>
                                                     <connections>
-                                                        <action selector="sortSelectorAction:" destination="mV7-Kq-sdp" eventType="valueChanged" id="prc-IF-jIX"/>
+                                                        <action selector="sortSelectorAction:" destination="mV7-Kq-sdp" eventType="valueChanged" id="qtC-L2-eQt"/>
                                                     </connections>
                                                 </segmentedControl>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sort by: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9pg-8P-bOo">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sort by: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KVV-W6-wAQ">
                                                     <rect key="frame" x="20" y="11" width="62" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -830,23 +876,23 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="qaD-zA-qFV" firstAttribute="leading" secondItem="9pg-8P-bOo" secondAttribute="trailing" constant="8" symbolic="YES" id="6wb-vx-LTB"/>
-                                                <constraint firstItem="9pg-8P-bOo" firstAttribute="top" secondItem="5rE-yo-Ht7" secondAttribute="top" constant="11" id="AEl-2B-eLq"/>
-                                                <constraint firstItem="qaD-zA-qFV" firstAttribute="top" secondItem="5rE-yo-Ht7" secondAttribute="top" constant="8" id="OXj-zY-6i8"/>
-                                                <constraint firstItem="9pg-8P-bOo" firstAttribute="leading" secondItem="5rE-yo-Ht7" secondAttribute="leading" constant="20" symbolic="YES" id="Vgr-8b-8NV"/>
-                                                <constraint firstAttribute="trailing" secondItem="qaD-zA-qFV" secondAttribute="trailing" constant="20" symbolic="YES" id="YjZ-NX-1dU"/>
-                                                <constraint firstItem="9pg-8P-bOo" firstAttribute="centerY" secondItem="5rE-yo-Ht7" secondAttribute="centerY" id="eV0-6x-eZ3"/>
+                                                <constraint firstAttribute="trailing" secondItem="366-ud-L1g" secondAttribute="trailing" constant="20" symbolic="YES" id="C8W-H8-PrC"/>
+                                                <constraint firstItem="KVV-W6-wAQ" firstAttribute="leading" secondItem="1kc-1d-3pB" secondAttribute="leading" constant="20" symbolic="YES" id="CMV-5B-us0"/>
+                                                <constraint firstItem="366-ud-L1g" firstAttribute="top" secondItem="1kc-1d-3pB" secondAttribute="top" constant="8" id="cqw-wO-Q5D"/>
+                                                <constraint firstItem="366-ud-L1g" firstAttribute="leading" secondItem="KVV-W6-wAQ" secondAttribute="trailing" constant="8" symbolic="YES" id="f4c-r5-4r6"/>
+                                                <constraint firstItem="KVV-W6-wAQ" firstAttribute="top" secondItem="1kc-1d-3pB" secondAttribute="top" constant="11" id="h0j-lL-ByO"/>
+                                                <constraint firstItem="KVV-W6-wAQ" firstAttribute="centerY" secondItem="1kc-1d-3pB" secondAttribute="centerY" id="ihh-Ev-VY8"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="UxY-We-yj0">
-                                        <rect key="frame" x="0.0" y="431" width="320" height="44"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="n5P-pO-61t">
+                                        <rect key="frame" x="0.0" y="629" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UxY-We-yj0" id="eVx-nP-nXg">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="n5P-pO-61t" id="qgd-pf-MHf">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="S63-Cu-rTh">
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="tsc-EB-AHS">
                                                     <rect key="frame" x="120" y="8" width="180" height="29"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <segments>
@@ -854,14 +900,14 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                                         <segment title="Creation"/>
                                                     </segments>
                                                     <connections>
-                                                        <action selector="dateSelectorAction:" destination="mV7-Kq-sdp" eventType="valueChanged" id="hBc-Qd-8dQ"/>
+                                                        <action selector="dateSelectorAction:" destination="mV7-Kq-sdp" eventType="valueChanged" id="sE1-1Z-Cdf"/>
                                                     </connections>
                                                 </segmentedControl>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show Date: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0LR-pk-cfP">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show Date: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wmt-m6-FXX">
                                                     <rect key="frame" x="20" y="11" width="92" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="92" id="L81-MH-Hbt"/>
+                                                        <constraint firstAttribute="width" constant="92" id="5Pj-EK-C3V"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -869,12 +915,12 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="S63-Cu-rTh" firstAttribute="leading" secondItem="0LR-pk-cfP" secondAttribute="trailing" constant="8" symbolic="YES" id="3Xj-tT-JZA"/>
-                                                <constraint firstItem="0LR-pk-cfP" firstAttribute="centerY" secondItem="eVx-nP-nXg" secondAttribute="centerY" id="75Q-Il-9mH"/>
-                                                <constraint firstAttribute="trailing" secondItem="S63-Cu-rTh" secondAttribute="trailing" constant="20" symbolic="YES" id="Eah-qB-lei"/>
-                                                <constraint firstItem="0LR-pk-cfP" firstAttribute="leading" secondItem="eVx-nP-nXg" secondAttribute="leading" constant="20" symbolic="YES" id="ScY-HI-58Y"/>
-                                                <constraint firstItem="S63-Cu-rTh" firstAttribute="top" secondItem="eVx-nP-nXg" secondAttribute="top" constant="8" id="Tyk-3s-d5d"/>
-                                                <constraint firstItem="0LR-pk-cfP" firstAttribute="top" secondItem="eVx-nP-nXg" secondAttribute="top" constant="11" id="lYt-h3-3hZ"/>
+                                                <constraint firstItem="tsc-EB-AHS" firstAttribute="top" secondItem="qgd-pf-MHf" secondAttribute="top" constant="8" id="Dgs-b3-sPd"/>
+                                                <constraint firstItem="Wmt-m6-FXX" firstAttribute="leading" secondItem="qgd-pf-MHf" secondAttribute="leading" constant="20" symbolic="YES" id="PGX-mg-S1y"/>
+                                                <constraint firstItem="Wmt-m6-FXX" firstAttribute="centerY" secondItem="qgd-pf-MHf" secondAttribute="centerY" id="bLm-jO-CMJ"/>
+                                                <constraint firstItem="Wmt-m6-FXX" firstAttribute="top" secondItem="qgd-pf-MHf" secondAttribute="top" constant="11" id="h5h-J7-87F"/>
+                                                <constraint firstAttribute="trailing" secondItem="tsc-EB-AHS" secondAttribute="trailing" constant="20" symbolic="YES" id="n39-9Z-NJp"/>
+                                                <constraint firstItem="tsc-EB-AHS" firstAttribute="leading" secondItem="Wmt-m6-FXX" secondAttribute="trailing" constant="8" symbolic="YES" id="zII-uQ-R3X"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -893,13 +939,12 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="dateSelector" destination="S63-Cu-rTh" id="HN3-Ff-oOu"/>
+                        <outlet property="cryptPasswordField" destination="ng4-na-vR4" id="WdG-OD-Q6Q"/>
                         <outlet property="productCoffeeCell" destination="kXH-vK-9DH" id="RCQ-PU-0Sr"/>
                         <outlet property="productCoffeeLabel" destination="Gq7-ZY-Ryv" id="EWz-ip-xNe"/>
                         <outlet property="productCoffeePriceLabel" destination="ad6-Gu-5XH" id="6zh-FM-dxE"/>
                         <outlet property="restoreCell" destination="S7f-BI-Vog" id="Xzn-NN-AQp"/>
                         <outlet property="restoreCellLabel" destination="lXT-oi-Jlm" id="Zyn-mb-FgC"/>
-                        <outlet property="sortSelector" destination="qaD-zA-qFV" id="iVb-F4-atI"/>
                         <outlet property="versionLabel" destination="fxz-Pf-qT7" id="YFe-u8-aiO"/>
                     </connections>
                 </tableViewController>

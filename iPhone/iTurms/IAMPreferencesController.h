@@ -31,9 +31,11 @@ typedef enum {
 @property (weak, nonatomic) IBOutlet UILabel *productCoffeePriceLabel;
 @property (weak, nonatomic) IBOutlet UITableViewCell *restoreCell;
 @property (weak, nonatomic) IBOutlet UILabel *restoreCellLabel;
+@property (weak, nonatomic) IBOutlet UITextField *cryptPasswordField;
 
 - (IBAction)done:(id)sender;
 - (IBAction)sortSelectorAction:(id)sender;
 - (IBAction)dateSelectorAction:(id)sender;
+- (IBAction)cryptPasswordChangeAction:(id)sender;
 
 @end

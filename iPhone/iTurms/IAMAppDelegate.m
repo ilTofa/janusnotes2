@@ -12,6 +12,7 @@
 #import "iRate.h"
 #import "GTTransientMessage.h"
 #import "STKeychain.h"
+#import "Note.h"
 
 @interface IAMAppDelegate()
 
@@ -196,11 +197,33 @@
 
 - (void)setCryptPassword:(NSString *)aPassword {
     NSError *error;
-    if(![STKeychain storeUsername:@"crypt" andPassword:_cryptPassword forServiceName:@"it.iltofa.Turms" updateExisting:YES error:&error]) {
+    NSString *oldPassword = _cryptPassword;
+    if(![STKeychain storeUsername:@"crypt" andPassword:aPassword forServiceName:@"it.iltofa.Turms" updateExisting:YES error:&error]) {
         ALog(@"Error saving password, password not changed. Error: %@", [error description]);
     } else {
         _cryptPassword = [[NSString alloc] initWithString:aPassword];
-        // TODO: save and re-encrypt the db from there...
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Note" inManagedObjectContext:self.managedObjectContext];
+        [fetchRequest setEntity:entity];
+        NSArray *fetchResults = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+        if (!fetchResults) {
+            NSString *errorMessage = [NSString stringWithFormat:@"Error loading notes from db. Please restore from a backup on a Macintosh. Error: %@", [error description]];
+            ALog(@"%@", errorMessage);
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:errorMessage delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+            [alert show];
+            return;
+        }
+        DLog(@"Re-encrypting %lu notes.", (unsigned long)[fetchResults count]);
+        for (Note *note in fetchResults) {
+            [note reencryptIfNeededFromOldCryptKey:oldPassword];
+        }
+        if (![self.managedObjectContext save:&error]) {
+            NSString *errorMessage = [NSString stringWithFormat:@"Error saving notes after re-encryption. Please restore from a backup on a Mac. Error: %@", [error description]];
+            ALog(@"%@", errorMessage);
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:errorMessage delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+            [alert show];
+        }
+        [[NSNotificationCenter defaultCenter] postNotificationName:kCoreDataStoreExternallyChanged object:self.persistentStoreCoordinator userInfo:@{@"reason": NSPersistentStoreCoordinatorStoresWillChangeNotification}];
     }
 }
 

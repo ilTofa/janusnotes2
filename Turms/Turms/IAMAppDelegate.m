@@ -251,7 +251,6 @@
         [alert runModal];
     } else {
         _cryptPassword = [[NSString alloc] initWithString:aPassword];
-        // TODO: save and re-encrypt the db from there...
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"Note" inManagedObjectContext:self.managedObjectContext];
         [fetchRequest setEntity:entity];

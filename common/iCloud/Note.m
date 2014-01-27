@@ -60,7 +60,12 @@
         NSString *password = [(IAMAppDelegate *)[[NSApplication sharedApplication] delegate] cryptPassword];
 #endif
         NSData *decryptedData = [RNDecryptor decryptData:encryptedValue withPassword:password error:&error];
-        NSString *text = [[NSString alloc] initWithData:decryptedData encoding:NSUTF8StringEncoding];
+        NSString *text;
+        if (decryptedData) {
+            text = [[NSString alloc] initWithData:decryptedData encoding:NSUTF8StringEncoding];
+        } else {
+            text = @"Wrong encryption key. Please change it in Preferences.";
+        }
         [self setPrimitiveText:text];
     }
 }
@@ -170,7 +175,15 @@
         NSData *decryptedData = [RNDecryptor decryptData:encryptedValue withPassword:password error:&error];
         // if decrypting with the new password is OK, then keep this else decrypt with the new key
         if (decryptedData) {
-            DLog(@"'%@' decrypted with the new password, no need to do anything.", self.title);
+            NSString *newText = [[NSString alloc] initWithData:decryptedData encoding:NSUTF8StringEncoding];
+            if ([newText isEqualToString:self.text]) {
+                DLog(@"'%@' decrypted with the new password, no need to do anything.", self.title);
+            } else {
+                DLog(@"'%@' decrypts with new password, but plain text is still not decoded. Decrypting.", self.title);
+                [self willChangeValueForKey:@"text"];
+                [self setPrimitiveValue:newText forKey:@"text"];
+                [self didChangeValueForKey:@"text"];
+            }
         } else {
             decryptedData = [RNDecryptor decryptData:encryptedValue withPassword:oldCryptKey error:&error];
             // if we have some valid data at this point, write them into the db (if needed) else show error
@@ -182,6 +195,8 @@
                 NSString *errorMessage = [NSString stringWithFormat:@"Cannot decrypt note '%@' with both old and new crypt password. It's probably better to restore from the backup.", self.title];
                 ALog(@"%@", errorMessage);
 #if TARGET_OS_IPHONE
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:errorMessage delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+                [alert show];
 #else
                 NSAlert *alert = [[NSAlert alloc] init];
                 [alert setInformativeText:errorMessage];
