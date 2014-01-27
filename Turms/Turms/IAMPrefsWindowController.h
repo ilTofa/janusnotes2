@@ -11,7 +11,9 @@
 @interface IAMPrefsWindowController : NSWindowController
 
 @property NSFont *currentFont;
+@property (weak) IBOutlet NSTextField *encryptionKeyField;
 
 - (IBAction)actionChangeFont:(id)sender;
+- (IBAction)changeEncryptionKey:(id)sender;
 
 @end
