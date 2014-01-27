@@ -155,4 +155,43 @@
     return [NSSet setWithObject:@"text"];
 }
 
+#pragma mark - Re-encrypt if needed
+
+- (void)reencryptIfNeededFromOldCryptKey:(NSString *)oldCryptKey {
+    // Get what we have on file
+    NSData *encryptedValue = [self encryptedText];
+    if (encryptedValue != nil) {
+        NSError *error;
+#if TARGET_OS_IPHONE
+        NSString *password = [(IAMAppDelegate *)[[UIApplication sharedApplication] delegate] cryptPassword];
+#else
+        NSString *password = [(IAMAppDelegate *)[[NSApplication sharedApplication] delegate] cryptPassword];
+#endif
+        NSData *decryptedData = [RNDecryptor decryptData:encryptedValue withPassword:password error:&error];
+        // if decrypting with the new password is OK, then keep this else decrypt with the new key
+        if (decryptedData) {
+            DLog(@"'%@' decrypted with the new password, no need to do anything.", self.title);
+        } else {
+            decryptedData = [RNDecryptor decryptData:encryptedValue withPassword:oldCryptKey error:&error];
+            // if we have some valid data at this point, write them into the db (if needed) else show error
+            NSString *newText = [[NSString alloc] initWithData:decryptedData encoding:NSUTF8StringEncoding];
+            if (decryptedData) {
+                DLog(@"'%@' decrypted with old password. Reencrypting.", self.title);
+                [self setText:newText];
+            } else {
+                NSString *errorMessage = [NSString stringWithFormat:@"Cannot decrypt note '%@' with both old and new crypt password. It's probably better to restore from the backup.", self.title];
+                ALog(@"%@", errorMessage);
+#if TARGET_OS_IPHONE
+#else
+                NSAlert *alert = [[NSAlert alloc] init];
+                [alert setInformativeText:errorMessage];
+                [alert setMessageText:NSLocalizedString(@"Error", @"")];
+                [alert addButtonWithTitle:@"Bad."];
+                [alert runModal];
+#endif
+            }
+        }
+    }
+}
+
 @end

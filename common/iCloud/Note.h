@@ -49,4 +49,6 @@
 - (void)addTags:(NSSet *)values;
 - (void)removeTags:(NSSet *)values;
 
+- (void)reencryptIfNeededFromOldCryptKey:(NSString *)oldCryptKey;
+
 @end

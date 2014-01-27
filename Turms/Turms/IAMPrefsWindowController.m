@@ -64,6 +64,8 @@
     if(returnCode == NSAlertSecondButtonReturn) {
         DLog(@"User confirmed changing the key, now really changing it from: '%@' to '%@'", self.oldEncryptionKey, self.encryptionKeyField.stringValue);
     }
+    [(IAMAppDelegate *)[[NSApplication sharedApplication] delegate] setCryptPassword:self.encryptionKeyField.stringValue];
+    self.oldEncryptionKey = [(IAMAppDelegate *)[[NSApplication sharedApplication] delegate] cryptPassword];
 }
 
 
