@@ -184,6 +184,7 @@
 - (NSString *)cryptPassword {
     if (!_cryptPassword) {
         NSError *error;
+//        [STKeychain deleteItemForUsername:@"crypt" andServiceName:@"it.iltofa.Turms" error:&error];
         _cryptPassword = [STKeychain getPasswordForUsername:@"crypt" andServiceName:@"it.iltofa.Turms" error:&error];
         if (!_cryptPassword) {
             _cryptPassword = DEFAULT_PASSWORD;
