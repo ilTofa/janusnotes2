@@ -112,7 +112,7 @@ typedef enum {
 - (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response
 {
     self.products = response.products;
-    for (NSString * invalidProductIdentifier in response.invalidProductIdentifiers) {
+    for (NSString __unused * invalidProductIdentifier in response.invalidProductIdentifiers) {
         // Handle any invalid product identifiers.
     }
     DLog(@"%@", self.products);

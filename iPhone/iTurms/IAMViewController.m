@@ -128,8 +128,8 @@
 }
 
 - (void)sortAgain {
-    self.sortKey = [[NSUserDefaults standardUserDefaults] integerForKey:@"sortBy"];
-    self.dateShownKey = [[NSUserDefaults standardUserDefaults] integerForKey:@"dateShown"];
+    self.sortKey = (SortKey)[[NSUserDefaults standardUserDefaults] integerForKey:@"sortBy"];
+    self.dateShownKey = (DateShownKey)[[NSUserDefaults standardUserDefaults] integerForKey:@"dateShown"];
     DLog(@"Sort: %d, date: %d", self.sortKey, self.dateShownKey);
     [self setupFetchExecAndReload];
 }
