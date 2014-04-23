@@ -215,14 +215,14 @@
 #pragma mark - Export
 
 - (BOOL)exportAsHTMLToURL:(NSURL *)exportUrl error:(NSError **)error {
+    NSURL *exportDirectory = [exportUrl URLByDeletingLastPathComponent];
     // Save attachments (if any)
     for (Attachment *attachment in self.attachment) {
-        [attachment generateFile];
+        [attachment generateFileToDirectory:exportDirectory error:error];
     }
     // Load preview support files
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"MarkdownPreview" ofType:@"html"];
     NSMutableString *htmlString = [[NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:error] mutableCopy];
-    NSURL *exportDirectory = [exportUrl URLByDeletingLastPathComponent];
     [htmlString replaceOccurrencesOfString:@"this_is_where_the_title_goes" withString:self.title options:NSLiteralSearch range:NSMakeRange(0, [htmlString length])];
 
     const char * prose = [self.text UTF8String];

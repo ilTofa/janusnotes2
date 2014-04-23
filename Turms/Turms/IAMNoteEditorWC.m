@@ -235,7 +235,7 @@
 - (IBAction)openAttachmentWith:(id)sender {
     if([[self.arrayController selectedObjects] count] != 0) {
         Attachment *toBeShown = [self.arrayController selectedObjects][0][@"attachment"];
-        NSURL *pathToBeShown = [toBeShown generateFile];
+        NSURL *pathToBeShown = [toBeShown generateFileInCacheDirectory];
         DLog(@"Open with apps requested for attachment: %@", pathToBeShown);
         CFURLRef defaultHandler;
         LSGetApplicationForURL((__bridge CFURLRef)(pathToBeShown), kLSRolesAll, NULL, &defaultHandler);
@@ -272,7 +272,7 @@
     } else {
         DLog(@"Open attachment with %@ (@ %@)", self.appsInfo[self.openWithController.selectedAppId][@"appName"], self.appsInfo[self.openWithController.selectedAppId][@"appURL"]);
         Attachment *toBeOpened = [self.arrayController selectedObjects][0][@"attachment"];
-        NSURL *file = [toBeOpened generateFile];
+        NSURL *file = [toBeOpened generateFileInCacheDirectory];
         if(![[NSWorkspace sharedWorkspace] openFile:[file path] withApplication:[self.appsInfo[self.openWithController.selectedAppId][@"appURL"] path]]) {
             NSAlert *alert = [[NSAlert alloc] init];
             NSString *message = [NSString stringWithFormat:@"No application is able to open the file \"%@\"", toBeOpened.filename];
@@ -290,7 +290,7 @@
 - (IBAction)showAttachmentInFinder:(id)sender {
     if([[self.arrayController selectedObjects] count] != 0) {
         Attachment *toBeShown = [self.arrayController selectedObjects][0][@"attachment"];
-        NSURL *pathToBeShown = [toBeShown generateFile];
+        NSURL *pathToBeShown = [toBeShown generateFileInCacheDirectory];
         DLog(@"Show in finder requested for attachment: %@", pathToBeShown);
         [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[pathToBeShown]];
     }
@@ -392,7 +392,7 @@
         DLog(@"Double click detected in collection view, processing event.");
         DLog(@"Selected object array: %@", [self.arrayController selectedObjects]);
         Attachment *toBeOpened = [self.arrayController selectedObjects][0][@"attachment"];
-        NSURL *file = [toBeOpened generateFile];
+        NSURL *file = [toBeOpened generateFileInCacheDirectory];
         if(![[NSWorkspace sharedWorkspace] openURL:file]) {
             NSAlert *alert = [[NSAlert alloc] init];
             NSString *message = [NSString stringWithFormat:@"No application is able to open the file \"%@\"", toBeOpened.filename];
@@ -595,7 +595,7 @@
 - (BOOL)collectionView:(NSCollectionView *)collectionView writeItemsAtIndexes:(NSIndexSet *)indexes toPasteboard:(NSPasteboard *)pasteboard {
     Attachment *toBeDragged = [self.arrayController arrangedObjects][indexes.firstIndex][@"attachment"];
     DLog(@"Writing %@ to pasteboard for dragging.", toBeDragged);
-    NSURL *file = [toBeDragged generateFile];
+    NSURL *file = [toBeDragged generateFileInCacheDirectory];
     if(file) {
         [pasteboard clearContents];
         return [pasteboard writeObjects:@[file]];

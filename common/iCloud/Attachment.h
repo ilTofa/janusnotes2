@@ -27,6 +27,7 @@
 @property (nonatomic, retain) NSString * primitiveFilename;
 @property (nonatomic, retain) Note *note;
 
-- (NSURL *)generateFile;
+- (NSURL *)generateFileInCacheDirectory;
+- (BOOL)generateFileToDirectory:(NSURL *)exportDirectory error:(NSError **)error;
 
 @end

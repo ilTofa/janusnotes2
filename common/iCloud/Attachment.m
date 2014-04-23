@@ -110,7 +110,7 @@
 
 #pragma mark - write out
 
-- (NSURL *)generateFile {
+- (NSURL *)generateFileInCacheDirectory {
     NSError *error;
     NSURL *cacheDirectory = [[NSFileManager defaultManager] URLForDirectory:NSCachesDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:&error];
     NSURL *cacheFile;
@@ -125,6 +125,23 @@
     if(![self.data writeToURL:cacheFile options:0 error:&error])
         NSLog(@"Error %@ writing attachment data to temporary file %@\nData: %@.", [error description], cacheFile, self);
     return cacheFile;
+}
+
+- (BOOL)generateFileToDirectory:(NSURL *)exportDirectory error:(NSError **)error {
+    NSURL *cacheFile;
+    if(self.filename && ![self.filename isEqualToString:@""])
+        cacheFile = [exportDirectory URLByAppendingPathComponent:self.filename];
+    else {
+        NSString *tempUuid = [[NSUUID UUID] UUIDString];
+        NSString *temporaryFilename = [NSString stringWithFormat:@"%@.%@", tempUuid, self.extension];
+        cacheFile = [exportDirectory URLByAppendingPathComponent:temporaryFilename];
+    }
+    DLog(@"Filename will be: %@", cacheFile);
+    BOOL retValue = [self.data writeToURL:cacheFile options:0 error:error];
+    if(!retValue) {
+        ALog(@"Error %@ writing attachment data to temporary file %@\nData: %@.", [*error description], cacheFile, self);
+    }
+    return retValue;
 }
 
 @end
