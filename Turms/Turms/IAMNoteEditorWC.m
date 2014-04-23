@@ -15,9 +15,6 @@
 #import "IAMOpenWithWC.h"
 #import "Books.h"
 
-#import "markdown.h"
-#import "html.h"
-
 @interface IAMNoteEditorWC () <NSWindowDelegate, NSCollectionViewDelegate> {
     BOOL _userConsentedToClose;
 }
@@ -40,7 +37,6 @@
 
 @property (strong) IBOutlet NSWindow *previewWindow;
 @property (weak) IBOutlet WebView *previewWebView;
-@property (strong) NSString *previewStyleHTML;
 
 @property (strong) NSURL *cacheDirectory;
 @property (strong) NSURL *cacheFile;
@@ -68,8 +64,6 @@
     self.editorFont = [NSFont fontWithName:fontName size:fontSize];
     // Load preview support files
     NSError *error;
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"MarkdownPreview" ofType:@"html"];
-    self.previewStyleHTML = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
     self.cacheDirectory = [[NSFileManager defaultManager] URLForDirectory:NSCachesDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:&error];
     self.cacheFile = [self.cacheDirectory URLByAppendingPathComponent:@"preview.html"];
     // The NSManagedObjectContext instance should change for a local (to the controller instance) one.
@@ -363,9 +357,6 @@
 }
 
 - (IBAction)previewMarkdown:(id)sender {
-    for (Attachment *attachment in self.editedNote.attachment) {
-        [attachment generateFile];
-    }
     [self loadMarkdownPreview];
     [self.previewWindow makeKeyAndOrderFront:self];
     [NSApp activateIgnoringOtherApps:YES];
@@ -433,46 +424,14 @@
 }
 
 - (void)loadMarkdownPreview {
-    [self.previewWindow setTitle:self.editedNote.title];
-    NSMutableString *htmlString = [self.previewStyleHTML mutableCopy];
-    [htmlString replaceOccurrencesOfString:@"this_is_where_the_title_goes" withString:self.editedNote.title options:NSLiteralSearch range:NSMakeRange(0, [htmlString length])];
-    [htmlString replaceOccurrencesOfString:@"this_is_where_the_text_goes" withString:[self convertToHTML:self.editedNote.text] options:NSLiteralSearch range:NSMakeRange(0, [htmlString length])];
-    [htmlString replaceOccurrencesOfString:@"$attachment$!" withString:[self.cacheDirectory absoluteString] options:NSLiteralSearch range:NSMakeRange(0, [htmlString length])];
     NSError *error;
-    [htmlString writeToURL:self.cacheFile atomically:NO encoding:NSUTF8StringEncoding error:&error];
+    [self.previewWindow setTitle:self.editedNote.title];
+    if (![self.editedNote exportAsHTMLToURL:self.cacheFile error:&error]) {
+        ALog(@"Error saving html preview file: %@", error);
+    } else {
+        [self.previewWebView.mainFrame loadRequest:[NSURLRequest requestWithURL:self.cacheFile]];
+    }
     [self.previewWebView.mainFrame loadRequest:[NSURLRequest requestWithURL:self.cacheFile]];
-}
-
-- (NSString *)convertToHTML:(NSString *)rawMarkdown {
-    const char * prose = [rawMarkdown UTF8String];
-    struct buf *ib, *ob;
-    
-    unsigned long length = [rawMarkdown lengthOfBytesUsingEncoding:NSUTF8StringEncoding] + 1;
-    
-    ib = bufnew(length);
-    bufgrow(ib, length);
-    memcpy(ib->data, prose, length);
-    ib->size = length;
-    
-    ob = bufnew(64);
-    
-    struct sd_callbacks callbacks;
-    struct html_renderopt options;
-    struct sd_markdown *markdown;
-    
-    
-    sdhtml_renderer(&callbacks, &options, 0);
-    markdown = sd_markdown_new(0, 16, &callbacks, &options);
-    
-    sd_markdown_render(ob, ib->data, ib->size, markdown);
-    sd_markdown_free(markdown);
-    
-    
-    NSString *shinyNewHTML = [NSString stringWithUTF8String:(const char *)ob->data];
-    
-    bufrelease(ib);
-    bufrelease(ob);
-    return shinyNewHTML;
 }
 
 #pragma mark - WebUIDelegate

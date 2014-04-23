@@ -16,6 +16,9 @@
 #import "RNEncryptor.h"
 #import "RNDecryptor.h"
 
+#import "markdown.h"
+#import "html.h"
+
 @implementation Note
 
 @dynamic creationDate;
@@ -208,5 +211,51 @@
         }
     }
 }
+
+#pragma mark - Export
+
+- (BOOL)exportAsHTMLToURL:(NSURL *)exportUrl error:(NSError **)error {
+    // Save attachments (if any)
+    for (Attachment *attachment in self.attachment) {
+        [attachment generateFile];
+    }
+    // Load preview support files
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"MarkdownPreview" ofType:@"html"];
+    NSMutableString *htmlString = [[NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:error] mutableCopy];
+    NSURL *exportDirectory = [exportUrl URLByDeletingLastPathComponent];
+    [htmlString replaceOccurrencesOfString:@"this_is_where_the_title_goes" withString:self.title options:NSLiteralSearch range:NSMakeRange(0, [htmlString length])];
+
+    const char * prose = [self.text UTF8String];
+    struct buf *ib, *ob;
+    
+    unsigned long length = [self.text lengthOfBytesUsingEncoding:NSUTF8StringEncoding] + 1;
+    
+    ib = bufnew(length);
+    bufgrow(ib, length);
+    memcpy(ib->data, prose, length);
+    ib->size = length;
+    
+    ob = bufnew(64);
+    
+    struct sd_callbacks callbacks;
+    struct html_renderopt options;
+    struct sd_markdown *markdown;
+    
+    sdhtml_renderer(&callbacks, &options, 0);
+    markdown = sd_markdown_new(0, 16, &callbacks, &options);
+    
+    sd_markdown_render(ob, ib->data, ib->size, markdown);
+    sd_markdown_free(markdown);
+    
+    [htmlString replaceOccurrencesOfString:@"this_is_where_the_text_goes" withString:[NSString stringWithUTF8String:(const char *)ob->data] options:NSLiteralSearch range:NSMakeRange(0, [htmlString length])];
+    [htmlString replaceOccurrencesOfString:@"$attachment$!" withString:[exportDirectory absoluteString] options:NSLiteralSearch range:NSMakeRange(0, [htmlString length])];
+
+    BOOL retValue = [htmlString writeToURL:exportUrl atomically:NO encoding:NSUTF8StringEncoding error:error];
+
+    bufrelease(ib);
+    bufrelease(ob);
+    return retValue;
+}
+
 
 @end

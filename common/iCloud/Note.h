@@ -51,4 +51,6 @@
 
 - (void)reencryptIfNeededFromOldCryptKey:(NSString *)oldCryptKey;
 
+- (BOOL)exportAsHTMLToURL:(NSURL *)exportUrl error:(NSError **)error;
+
 @end
