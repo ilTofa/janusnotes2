@@ -129,13 +129,11 @@
 
 - (BOOL)generateFileToDirectory:(NSURL *)exportDirectory error:(NSError **)error {
     NSURL *cacheFile;
-    if(self.filename && ![self.filename isEqualToString:@""])
-        cacheFile = [exportDirectory URLByAppendingPathComponent:self.filename];
-    else {
+    if (!self.filename || [self.filename isEqualToString:@""]) {
         NSString *tempUuid = [[NSUUID UUID] UUIDString];
-        NSString *temporaryFilename = [NSString stringWithFormat:@"%@.%@", tempUuid, self.extension];
-        cacheFile = [exportDirectory URLByAppendingPathComponent:temporaryFilename];
+        self.filename = [NSString stringWithFormat:@"%@.%@", tempUuid, self.extension];
     }
+    cacheFile = [exportDirectory URLByAppendingPathComponent:self.filename];
     DLog(@"Filename will be: %@", cacheFile);
     BOOL retValue = [self.data writeToURL:cacheFile options:0 error:error];
     if(!retValue) {
