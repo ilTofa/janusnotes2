@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5053" systemVersion="13C1021" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1090" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5053"/>
@@ -107,9 +107,15 @@ CA
                                     <items>
                                         <menuItem title="HTML File..." id="gwc-Mg-AUF">
                                             <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="exportHTML:" target="-1" id="qcg-YS-re4"/>
+                                            </connections>
                                         </menuItem>
                                         <menuItem title="Markdown File for Pelican..." id="9cU-oS-OGO">
                                             <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="exportMarkdownForPelican:" target="-1" id="gHI-rb-lQ9"/>
+                                            </connections>
                                         </menuItem>
                                     </items>
                                 </menu>

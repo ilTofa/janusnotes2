@@ -155,6 +155,51 @@
 
 #pragma mark - Actions
 
+- (IBAction)exportHTML:(id)sender {
+    NSAssert([[self.arrayController selectedObjects] firstObject], @"No note is selected in IAMTableUIWindowController:exportHTML:. This should never happen.");
+    Note *currentNote = [self.arrayController selectedObjects][0];
+    NSOpenPanel* panel = [NSOpenPanel openPanel];
+    [panel setCanChooseDirectories:YES];
+    [panel setCanCreateDirectories:YES];
+    [panel setCanChooseFiles:NO];
+    [panel setAllowsMultipleSelection:NO];
+    [panel setNameFieldLabel:@"Export HTML To"];
+    [panel setPrompt:@"Export"];
+    [panel beginSheetModalForWindow:[self window] completionHandler:^(NSInteger result) {
+        NSURL* url = [panel URL];
+        NSURL *outURL = [url URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.html", currentNote.title]];
+        DLog(@"User selected URL %@, now we should export to it (%@).", url, outURL);
+        NSError *error;
+        if (![currentNote exportAsHTMLToURL:outURL error:&error]) {
+            ALog(@"Error exporting file: %@", error);
+            NSAlert *alert = [NSAlert alertWithError:error];
+            [alert runModal];
+        }
+    }];
+}
+
+- (IBAction)exportMarkdownForPelican:(id)sender {
+    NSAssert([[self.arrayController selectedObjects] firstObject], @"No note is selected in exportMarkdownForPelican:. This should never happen.");
+    Note *currentNote = [self.arrayController selectedObjects][0];
+    NSOpenPanel* panel = [NSOpenPanel openPanel];
+    [panel setCanChooseDirectories:YES];
+    [panel setCanCreateDirectories:YES];
+    [panel setCanChooseFiles:NO];
+    [panel setAllowsMultipleSelection:NO];
+    [panel setNameFieldLabel:@"Export Markdown To"];
+    [panel setPrompt:@"Export"];
+    [panel beginSheetModalForWindow:[self window] completionHandler:^(NSInteger result) {
+        NSURL* url = [panel URL];
+        DLog(@"User selected URL %@, now we should export to it.", url);
+        NSError *error;
+        if (![currentNote exportAsMarkdownForPelican:url error:&error]) {
+            ALog(@"Error exporting markdown: %@", error);
+            NSAlert *alert = [NSAlert alertWithError:error];
+            [alert runModal];
+        }
+    }];
+}
+
 - (IBAction)deleteNote:(id)sender {
     NSAlert *alert = [[NSAlert alloc] init];
     [alert setInformativeText:NSLocalizedString(@"Are you sure you want to delete the note?", nil)];

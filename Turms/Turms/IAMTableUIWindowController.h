@@ -40,4 +40,8 @@
 // called from openFile in apdelegate
 - (void)openNoteAtURI:(NSURL *)uri;
 
+// Eventually called from main menu
+- (IBAction)exportHTML:(id)sender;
+- (IBAction)exportMarkdownForPelican:(id)sender;
+
 @end
