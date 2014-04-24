@@ -415,19 +415,22 @@
 }
 
 - (IBAction)exportHTML:(id)sender {
-    NSSavePanel *savePanel = [NSSavePanel savePanel];
-    [savePanel setNameFieldLabel:@"Export HTML To"];
-    [savePanel setNameFieldStringValue:[NSString stringWithFormat:@"%@.html", self.editedNote.title]];
-    [savePanel setPrompt:@"Export"];
-    [savePanel setCanSelectHiddenExtension:YES];
-    [savePanel setAllowedFileTypes:@[(NSString *)kUTTypeHTML]];
-    [savePanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result){
-        if(result == NSFileHandlingPanelCancelButton) {
-            DLog(@"User canceled");
-        } else {
-            DLog(@"User selected URL %@, now we should export to it.", savePanel.URL);
+    NSOpenPanel* panel = [NSOpenPanel openPanel];
+    [panel setCanChooseDirectories:YES];
+    [panel setCanCreateDirectories:YES];
+    [panel setCanChooseFiles:NO];
+    [panel setAllowsMultipleSelection:NO];
+    [panel setNameFieldLabel:@"Export HTML To"];
+    [panel setPrompt:@"Export"];
+    [panel beginSheetModalForWindow:[self window] completionHandler:^(NSInteger result) {
+        NSURL* url = [panel URL];
+        NSData* data = [url bookmarkDataWithOptions:NSURLBookmarkCreationWithSecurityScope includingResourceValuesForKeys:nil relativeToURL:nil error:nil];
+        if (data)
+        {
+            NSURL *outURL = [url URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.html", self.editedNote.title]];
+            DLog(@"User selected URL %@, now we should export to it (%@).", url, outURL);
             NSError *error;
-            if (![self.editedNote exportAsHTMLToURL:savePanel.URL error:&error]) {
+            if (![self.editedNote exportAsHTMLToURL:outURL error:&error]) {
                 ALog(@"Error exporting file: %@", error);
                 NSAlert *alert = [NSAlert alertWithError:error];
                 [alert runModal];
