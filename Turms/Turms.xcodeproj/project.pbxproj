@@ -62,6 +62,7 @@
 		64EA627616F71E1400F4838E /* IAmMine.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 64EA627016F71E1400F4838E /* IAmMine.xcdatamodeld */; };
 		64EA628516F75E0000F4838E /* IAMNoteEditorWC.m in Sources */ = {isa = PBXBuildFile; fileRef = 64EA628316F75E0000F4838E /* IAMNoteEditorWC.m */; };
 		64EA628616F75E0000F4838E /* IAMNoteEditorWC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64EA628416F75E0000F4838E /* IAMNoteEditorWC.xib */; };
+		64ED18E51908FCCB00AF4897 /* GTPopUpButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 64ED18E41908FCCB00AF4897 /* GTPopUpButtonCell.m */; };
 		64EE7C74180C54EC004B94E2 /* autolink.c in Sources */ = {isa = PBXBuildFile; fileRef = 64EE7C6B180C54EC004B94E2 /* autolink.c */; };
 		64EE7C75180C54EC004B94E2 /* buffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 64EE7C6D180C54EC004B94E2 /* buffer.c */; };
 		64EE7C76180C54EC004B94E2 /* markdown.c in Sources */ = {isa = PBXBuildFile; fileRef = 64EE7C70180C54EC004B94E2 /* markdown.c */; };
@@ -184,6 +185,8 @@
 		64EA628216F75E0000F4838E /* IAMNoteEditorWC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMNoteEditorWC.h; sourceTree = "<group>"; };
 		64EA628316F75E0000F4838E /* IAMNoteEditorWC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMNoteEditorWC.m; sourceTree = "<group>"; };
 		64EA628416F75E0000F4838E /* IAMNoteEditorWC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IAMNoteEditorWC.xib; sourceTree = "<group>"; };
+		64ED18E31908FCCB00AF4897 /* GTPopUpButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTPopUpButtonCell.h; sourceTree = "<group>"; };
+		64ED18E41908FCCB00AF4897 /* GTPopUpButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTPopUpButtonCell.m; sourceTree = "<group>"; };
 		64EE7C6B180C54EC004B94E2 /* autolink.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = autolink.c; sourceTree = "<group>"; };
 		64EE7C6C180C54EC004B94E2 /* autolink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = autolink.h; sourceTree = "<group>"; };
 		64EE7C6D180C54EC004B94E2 /* buffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = buffer.c; sourceTree = "<group>"; };
@@ -306,6 +309,8 @@
 				643BA04F173D26E300A6C437 /* IAMOpenWithWC.xib */,
 				645A7E5F1817C602003C9D5A /* IAMNoteEditTextView.h */,
 				645A7E601817C602003C9D5A /* IAMNoteEditTextView.m */,
+				64ED18E31908FCCB00AF4897 /* GTPopUpButtonCell.h */,
+				64ED18E41908FCCB00AF4897 /* GTPopUpButtonCell.m */,
 			);
 			name = "Note Edit";
 			path = ../Turms;
@@ -606,6 +611,7 @@
 				64EE7C74180C54EC004B94E2 /* autolink.c in Sources */,
 				64EA622316F7110300F4838E /* IAMAppDelegate.m in Sources */,
 				647EF40718918D1C0045F273 /* RNEncryptor.m in Sources */,
+				64ED18E51908FCCB00AF4897 /* GTPopUpButtonCell.m in Sources */,
 				64EA627416F71E1400F4838E /* Attachment.m in Sources */,
 				64522F451847F87800D65289 /* IAMAddBookWindowController.m in Sources */,
 				64EA627616F71E1400F4838E /* IAmMine.xcdatamodeld in Sources */,

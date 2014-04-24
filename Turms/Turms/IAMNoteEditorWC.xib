@@ -241,17 +241,32 @@
                             <action selector="previewMarkdown:" target="-2" id="13V-LP-2X8"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="6337BDC8-B5B3-4E03-A914-DFDB9E27ACB9" label="Publish" paletteLabel="Publish" tag="-1" image="export" id="67R-SZ-wVt">
-                        <connections>
-                            <action selector="publish:" target="-2" id="tia-qY-JnT"/>
-                        </connections>
+                    <toolbarItem implicitItemIdentifier="BA7498DC-D579-42B2-8B95-5E28BE764477" label="Export" paletteLabel="Export" tag="1" image="export" id="MDV-Nb-suB">
+                        <nil key="toolTip"/>
+                        <size key="minSize" width="42" height="25"/>
+                        <size key="maxSize" width="42" height="32"/>
+                        <popUpButton key="view" tag="1" id="ZJQ-0w-Rmy">
+                            <rect key="frame" x="0.0" y="14" width="45" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <popUpButtonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="export" alignment="left" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" arrowPosition="noArrow" id="PyT-qS-GmD" customClass="GTPopUpButtonCell">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                                <menu key="menu" title="OtherViews" id="cQt-JF-JCc">
+                                    <items>
+                                        <menuItem state="on" image="export" hidden="YES" id="7Zy-QU-SCU"/>
+                                        <menuItem title="As HTML..." id="euK-nD-ss1"/>
+                                        <menuItem title="Markdown for Pelican..." id="0if-In-ne4"/>
+                                    </items>
+                                </menu>
+                            </popUpButtonCell>
+                        </popUpButton>
                     </toolbarItem>
                 </allowedToolbarItems>
                 <defaultToolbarItems>
                     <toolbarItem reference="892"/>
                     <toolbarItem reference="893"/>
                     <toolbarItem reference="890"/>
-                    <toolbarItem reference="67R-SZ-wVt"/>
+                    <toolbarItem reference="MDV-Nb-suB"/>
                     <toolbarItem reference="887"/>
                     <toolbarItem reference="Sm7-qq-Ra0"/>
                     <toolbarItem reference="890"/>
