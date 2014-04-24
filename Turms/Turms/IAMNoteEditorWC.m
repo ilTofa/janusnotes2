@@ -414,6 +414,33 @@
     DLog(@"Text:\n%@\n<end>", self.editedNote.text);
 }
 
+- (IBAction)exportHTML:(id)sender {
+    NSSavePanel *savePanel = [NSSavePanel savePanel];
+    [savePanel setNameFieldLabel:@"Export HTML To"];
+    [savePanel setNameFieldStringValue:[NSString stringWithFormat:@"%@.html", self.editedNote.title]];
+    [savePanel setPrompt:@"Export"];
+    [savePanel setCanSelectHiddenExtension:YES];
+    [savePanel setAllowedFileTypes:@[(NSString *)kUTTypeHTML]];
+    [savePanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result){
+        if(result == NSFileHandlingPanelCancelButton) {
+            DLog(@"User canceled");
+        } else {
+            DLog(@"User selected URL %@, now we should export to it.", savePanel.URL);
+            NSError *error;
+            if (![self.editedNote exportAsHTMLToURL:savePanel.URL error:&error]) {
+                ALog(@"Error exporting file: %@", error);
+                NSAlert *alert = [NSAlert alertWithError:error];
+                [alert runModal];
+            }
+        }
+    }];
+}
+
+- (IBAction)exportMarkdownForPelican:(id)sender {
+    
+}
+
+
 #pragma mark - markdown support
 
 - (void)textDidChange:(NSNotification *)notification {

@@ -244,7 +244,7 @@
                     <toolbarItem implicitItemIdentifier="BA7498DC-D579-42B2-8B95-5E28BE764477" label="Export" paletteLabel="Export" tag="1" image="export" id="MDV-Nb-suB">
                         <nil key="toolTip"/>
                         <size key="minSize" width="42" height="25"/>
-                        <size key="maxSize" width="42" height="32"/>
+                        <size key="maxSize" width="45" height="32"/>
                         <popUpButton key="view" tag="1" id="ZJQ-0w-Rmy">
                             <rect key="frame" x="0.0" y="14" width="45" height="32"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -254,7 +254,11 @@
                                 <menu key="menu" title="OtherViews" id="cQt-JF-JCc">
                                     <items>
                                         <menuItem state="on" image="export" hidden="YES" id="7Zy-QU-SCU"/>
-                                        <menuItem title="As HTML..." id="euK-nD-ss1"/>
+                                        <menuItem title="As HTML..." id="euK-nD-ss1">
+                                            <connections>
+                                                <action selector="exportHTML:" target="-2" id="5vM-Lk-Y5u"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem title="Markdown for Pelican..." id="0if-In-ne4"/>
                                     </items>
                                 </menu>
