@@ -248,7 +248,7 @@
                         <popUpButton key="view" tag="1" id="ZJQ-0w-Rmy">
                             <rect key="frame" x="0.0" y="14" width="45" height="32"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <popUpButtonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="export" alignment="left" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" arrowPosition="noArrow" id="PyT-qS-GmD" customClass="GTPopUpButtonCell">
+                            <popUpButtonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="export" alignment="left" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" arrowPosition="noArrow" selectedItem="0if-In-ne4" id="PyT-qS-GmD" customClass="GTPopUpButtonCell">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
                                 <menu key="menu" title="OtherViews" id="cQt-JF-JCc">
@@ -259,7 +259,11 @@
                                                 <action selector="exportHTML:" target="-2" id="5vM-Lk-Y5u"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Markdown for Pelican..." id="0if-In-ne4"/>
+                                        <menuItem title="Markdown for Pelican..." id="0if-In-ne4">
+                                            <connections>
+                                                <action selector="exportMarkdownForPelican:" target="-2" id="uz2-xj-JAw"/>
+                                            </connections>
+                                        </menuItem>
                                     </items>
                                 </menu>
                             </popUpButtonCell>

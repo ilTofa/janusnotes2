@@ -424,23 +424,35 @@
     [panel setPrompt:@"Export"];
     [panel beginSheetModalForWindow:[self window] completionHandler:^(NSInteger result) {
         NSURL* url = [panel URL];
-        NSData* data = [url bookmarkDataWithOptions:NSURLBookmarkCreationWithSecurityScope includingResourceValuesForKeys:nil relativeToURL:nil error:nil];
-        if (data)
-        {
-            NSURL *outURL = [url URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.html", self.editedNote.title]];
-            DLog(@"User selected URL %@, now we should export to it (%@).", url, outURL);
-            NSError *error;
-            if (![self.editedNote exportAsHTMLToURL:outURL error:&error]) {
-                ALog(@"Error exporting file: %@", error);
-                NSAlert *alert = [NSAlert alertWithError:error];
-                [alert runModal];
-            }
+        NSURL *outURL = [url URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.html", self.editedNote.title]];
+        DLog(@"User selected URL %@, now we should export to it (%@).", url, outURL);
+        NSError *error;
+        if (![self.editedNote exportAsHTMLToURL:outURL error:&error]) {
+            ALog(@"Error exporting file: %@", error);
+            NSAlert *alert = [NSAlert alertWithError:error];
+            [alert runModal];
         }
     }];
 }
 
 - (IBAction)exportMarkdownForPelican:(id)sender {
-    
+    NSOpenPanel* panel = [NSOpenPanel openPanel];
+    [panel setCanChooseDirectories:YES];
+    [panel setCanCreateDirectories:YES];
+    [panel setCanChooseFiles:NO];
+    [panel setAllowsMultipleSelection:NO];
+    [panel setNameFieldLabel:@"Export Markdown To"];
+    [panel setPrompt:@"Export"];
+    [panel beginSheetModalForWindow:[self window] completionHandler:^(NSInteger result) {
+        NSURL* url = [panel URL];
+        DLog(@"User selected URL %@, now we should export to it.", url);
+        NSError *error;
+        if (![self.editedNote exportAsMarkdownForPelican:url error:&error]) {
+            ALog(@"Error exporting markdown: %@", error);
+            NSAlert *alert = [NSAlert alertWithError:error];
+            [alert runModal];
+        }
+    }];
 }
 
 
