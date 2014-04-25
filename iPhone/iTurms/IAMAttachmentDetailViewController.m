@@ -58,7 +58,7 @@
     if([self.theAttachment.type isEqualToString:@"Link"]) {
         [self.theWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[[NSString alloc] initWithData:self.theAttachment.data encoding:NSUTF8StringEncoding]]]];
     } else {
-        NSURL *file = [self.theAttachment generateFile];
+        NSURL *file = [self.theAttachment generateFileInCacheDirectory];
         self.interationController = [UIDocumentInteractionController interactionControllerWithURL:file];
         self.interationController.delegate = self;
         self.interationController.UTI = self.theAttachment.uti;

@@ -485,7 +485,7 @@
         segueController.markdownTitle = self.editedNote.title;
         segueController.markdownText = self.editedNote.text;
         for (Attachment *attachment in self.editedNote.attachment) {
-            [attachment generateFile];
+            [attachment generateFileInCacheDirectory];
         }
     }
     if ([[segue identifier] isEqualToString:@"BookSelection"]) {
