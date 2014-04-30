@@ -41,6 +41,11 @@
 //    [iRate sharedInstance].onlyPromptIfMainWindowIsAvailable = NO;
 //}
 
+- (void)applicationWillFinishLaunching:(NSNotification *)notification {
+    NSAppleEventManager *appleEventManager = [NSAppleEventManager sharedAppleEventManager];
+    [appleEventManager setEventHandler:self andSelector:@selector(handleGetURLEvent:withReplyEvent:) forEventClass:kInternetEventClass andEventID:kAEGetURL];
+}
+
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     DLog(@"Starting application init");
@@ -93,6 +98,12 @@
     } else {
         ALog(@"Error: no objectURI for %@", filename);
     }
+}
+
+- (void)handleGetURLEvent:(NSAppleEventDescriptor *)event withReplyEvent:(NSAppleEventDescriptor *)replyEvent {
+    // Extract the URL from the Apple event and handle it here.
+    NSString* url = [[event paramDescriptorForKeyword:keyDirectObject] stringValue];
+    NSLog(@"%@", url);
 }
 
 #pragma mark - Core Data
