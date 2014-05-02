@@ -102,8 +102,23 @@
 
 - (void)handleGetURLEvent:(NSAppleEventDescriptor *)event withReplyEvent:(NSAppleEventDescriptor *)replyEvent {
     // Extract the URL from the Apple event and handle it here.
-    NSString* url = [[event paramDescriptorForKeyword:keyDirectObject] stringValue];
-    NSLog(@"%@", url);
+    NSURL* url = [NSURL URLWithString:[[event paramDescriptorForKeyword:keyDirectObject] stringValue]];
+    NSString* receivedString = [url resourceSpecifier];
+    if (receivedString) {
+        DLog(@"Received: '%@'", receivedString);
+        // Now get data from URL
+        NSArray *components = [receivedString componentsSeparatedByString:@"?"];
+        if ([components count] != 3) {
+            ALog(@"Parsing go wrong: %@", components);
+        } else {
+            NSString *URL = [components[0] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            NSString *title = [components[1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            NSString *text = [components[2] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            DLog(@"URL: '%@'. Title: '%@'. Text: '%@'.", URL, title, text);
+        }
+    } else {
+        ALog(@"Invalid embedded URL in: '%@'", url);
+    }
 }
 
 #pragma mark - Core Data
