@@ -44,4 +44,7 @@
 - (IBAction)exportHTML:(id)sender;
 - (IBAction)exportMarkdownForPelican:(id)sender;
 
+// Called from received URL
+- (void)addNoteFromUrlWithTitle:(NSString *)title andURL:(NSString *)URL andText:(NSString *)text;
+
 @end

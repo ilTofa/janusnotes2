@@ -117,6 +117,20 @@
     [noteEditor showWindow:self];
 }
 
+- (void)addNoteFromUrlWithTitle:(NSString *)title andURL:(NSString *)URL andText:(NSString *)text {
+    DLog(@"Called to add a note for: %@", URL);
+    IAMNoteEditorWC *noteEditor = [[IAMNoteEditorWC alloc] initWithWindowNibName:@"IAMNoteEditorWC"];
+    [noteEditor setDelegate:self];
+    [noteEditor setCalledFromUrl:YES];
+    [noteEditor setCalledTitle:title];
+    [noteEditor setCalledURL:URL];
+    [noteEditor setCalledText:text];
+    // Preserve a reference to the controller to keep ARC happy
+    [self.noteWindowControllers addObject:noteEditor];
+    self.noteEditorIsShown = @(YES);
+    [noteEditor showWindow:self];
+}
+
 #pragma mark - Book Management
 
 - (IBAction)showBooksAction:(id)sender {

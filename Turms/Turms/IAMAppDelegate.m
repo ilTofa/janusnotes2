@@ -115,6 +115,11 @@
             NSString *title = [components[1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             NSString *text = [components[2] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             DLog(@"URL: '%@'. Title: '%@'. Text: '%@'.", URL, title, text);
+            if(!self.collectionController) {
+                ALog(@"Bad news. Init is *really* slow today, aborting open");
+            } else {
+                [self.collectionController addNoteFromUrlWithTitle:title andURL:URL andText:text];
+            }
         }
     } else {
         ALog(@"Invalid embedded URL in: '%@'", url);
