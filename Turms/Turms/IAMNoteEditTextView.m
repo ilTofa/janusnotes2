@@ -31,14 +31,33 @@
     // Intercept file URLS and cut the cache directory
     if ( [[pb types] containsObject:@"public.file-url"] ) {
         NSString *urlString = [pb propertyListForType:@"public.file-url"];
-        CFStringRef fileExtension = (CFStringRef) CFBridgingRetain([urlString pathExtension]);
-        CFStringRef fileUTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, fileExtension, NULL);
-        if (UTTypeConformsTo(fileUTI, kUTTypeImage)) {
+        NSString *fileExtension = [urlString pathExtension];
+        DLog("File extension: %@", fileExtension);
+        CFStringRef fileUTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)(fileExtension), NULL);
+        if ([fileExtension isEqualToString:@"url"]) {
+            NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]];
+            NSString *realURL = [NSString stringWithUTF8String:[data bytes]];
+            NSRange urlRange = [realURL rangeOfString:@"URL="];
+            if (urlRange.location == NSNotFound) {
+                DLog(@"Directly loading the url: '%@'", realURL);
+            } else {
+                realURL = [realURL substringFromIndex:urlRange.location + 4];
+                realURL = [realURL stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                DLog(@"Loading the parsed url: '%@'", realURL);
+            }
+            urlString = [NSString stringWithFormat:@"[](%@)", realURL];
+        } else if (UTTypeConformsTo(fileUTI, kUTTypeImage)) {
             DLog(@"It's an image");
             urlString = [NSString stringWithFormat:@"![](%@)", urlString];
         } else if (UTTypeConformsTo(fileUTI, kUTTypeText)) {
-            DLog(@"It's text");
-            urlString = [NSString stringWithFormat:@"[](%@)", urlString];
+            DLog(@"It's text, loading the real thing (if possible and encoded UTF-8)");
+            NSError *error;
+            NSString *stringFromFileAtURL = [[NSString alloc] initWithContentsOfURL:[NSURL URLWithString:urlString] encoding:NSUTF8StringEncoding error:&error];
+            if (!stringFromFileAtURL) {
+                urlString = stringFromFileAtURL;
+            } else {
+                urlString = [NSString stringWithFormat:@"[](%@)", urlString];
+            }
         }
         CFRelease(fileUTI);
         NSString *retVal = [urlString stringByReplacingOccurrencesOfString:self.cacheDirectory withString:@"$attachment$!"];
