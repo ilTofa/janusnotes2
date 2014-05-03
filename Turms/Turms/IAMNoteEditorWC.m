@@ -74,7 +74,28 @@
     // Prepare to receive drag & drops into CollectionView
     [self.attachmentsCollectionView registerForDraggedTypes:@[NSFilenamesPboardType]];
     [self.attachmentsCollectionView setDraggingSourceOperationMask:NSDragOperationCopy forLocal:NO];
-    if(!self.idForTheNoteToBeEdited) {
+    if (self.isCalledFromURL) {
+        // called from URL to create a new note
+        Note *newNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:self.noteEditorMOC];
+        newNote.title = (self.calledTitle) ?: @"";
+        newNote.text = (self.calledText) ?: @"";
+        self.editedNote = newNote;
+        // Now add attachment (if any)
+        if (self.calledURL && ![self.calledURL isEqualToString:@""]) {
+            DLog(@"This is addLinkViewController: didAddThisLink: for '%@'", self.calledURL);
+            Attachment *newAttachment = [NSEntityDescription insertNewObjectForEntityForName:@"Attachment" inManagedObjectContext:self.noteEditorMOC];
+            newAttachment.uti = (__bridge NSString *)(kUTTypeURL);
+            newAttachment.extension = (__bridge_transfer NSString *)UTTypeCopyPreferredTagWithClass(kUTTypeURL, kUTTagClassFilenameExtension);
+            if(!newAttachment.extension)
+                newAttachment.extension = @"url";
+            newAttachment.filename = [NSString stringWithFormat:@"%@.%@", [[NSUUID UUID] UUIDString], newAttachment.extension];
+            newAttachment.type = @"Link";
+            newAttachment.data = [self.calledURL dataUsingEncoding:NSUTF8StringEncoding];
+            // Now link attachment to the note
+            newAttachment.note = self.editedNote;
+            [self.editedNote addAttachmentObject:newAttachment];
+        }
+    } else if(!self.idForTheNoteToBeEdited) {
         // It seems that we're created without a note, that will mean that we're required to create a new one.
         Note *newNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:self.noteEditorMOC];
         self.editedNote = newNote;

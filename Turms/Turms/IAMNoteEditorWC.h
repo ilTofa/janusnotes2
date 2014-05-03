@@ -20,6 +20,11 @@
 
 @interface IAMNoteEditorWC : NSWindowController
 
+@property (getter = isCalledFromURL) BOOL calledFromUrl;
+@property (copy) NSString *calledTitle;
+@property (copy) NSString *calledURL;
+@property (copy) NSString *calledText;
+
 @property NSManagedObjectID *idForTheNoteToBeEdited;
 @property (assign, nonatomic) id<IAMNoteEditorWCDelegate> delegate;
 @property (strong, atomic) IBOutlet NSManagedObjectContext *noteEditorMOC;
