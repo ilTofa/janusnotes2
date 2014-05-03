@@ -78,7 +78,13 @@
         // called from URL to create a new note
         Note *newNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:self.noteEditorMOC];
         newNote.title = (self.calledTitle) ?: @"";
-        newNote.text = (self.calledText) ?: @"";
+        NSString *noteText;
+        if (self.calledURL && ![self.calledURL isEqualToString:@""]) {
+            newNote.text = (self.calledText) ?: @"";
+        } else {
+            noteText = [NSString stringWithFormat:@"URL: %@\n%@", self.calledURL, (self.calledText) ?: @""];
+        }
+        newNote.text = noteText;
         self.editedNote = newNote;
         // Now add attachment (if any)
         if (self.calledURL && ![self.calledURL isEqualToString:@""]) {

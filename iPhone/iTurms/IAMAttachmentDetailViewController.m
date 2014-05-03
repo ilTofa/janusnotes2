@@ -56,7 +56,17 @@
     [super viewDidAppear:animated];
     self.interationController = nil;
     if([self.theAttachment.type isEqualToString:@"Link"]) {
-        [self.theWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[[NSString alloc] initWithData:self.theAttachment.data encoding:NSUTF8StringEncoding]]]];
+        // Recover URL from Attachment data
+        NSString *realURL = [[NSString alloc] initWithData:self.theAttachment.data encoding:NSUTF8StringEncoding];
+        NSRange urlRange = [realURL rangeOfString:@"URL="];
+        if (urlRange.location == NSNotFound) {
+            DLog(@"Directly loading the url: '%@'", realURL);
+        } else {
+            realURL = [realURL substringFromIndex:urlRange.location + 4];
+            realURL = [realURL stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+            DLog(@"Loading the parsed url: '%@'", realURL);
+        }
+        [self.theWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:realURL]]];
     } else {
         NSURL *file = [self.theAttachment generateFileInCacheDirectory];
         self.interationController = [UIDocumentInteractionController interactionControllerWithURL:file];

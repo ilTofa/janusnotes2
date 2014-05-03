@@ -395,7 +395,8 @@
         newAttachment.extension = @"url";
     newAttachment.filename = [NSString stringWithFormat:@"%@.%@", [[NSUUID UUID] UUIDString], newAttachment.extension];
     newAttachment.type = @"Link";
-    newAttachment.data = [theLink dataUsingEncoding:NSUTF8StringEncoding];
+    NSString *attachmentContent = [NSString stringWithFormat:@"[InternetShortcut]\nURL=%@\n", theLink];
+    newAttachment.data = [attachmentContent dataUsingEncoding:NSUTF8StringEncoding];
     // Now link attachment to the note
     newAttachment.note = self.editedNote;
     [self.editedNote addAttachmentObject:newAttachment];
