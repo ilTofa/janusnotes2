@@ -8,11 +8,14 @@
 
 #import "IAMAppDelegate.h"
 
+#import <MobileCoreServices/MobileCoreServices.h>
 #import "GTThemer.h"
 #import "iRate.h"
 #import "GTTransientMessage.h"
 #import "STKeychain.h"
 #import "Note.h"
+#import "Attachment.h"
+#import "IAMViewController.h"
 
 @interface IAMAppDelegate()
 
@@ -81,6 +84,63 @@
             abort();
         }
     }
+}
+
+#pragma mark - URL support
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    // Extract the URL from the Apple event and handle it here.
+    DLog(@"Received %@ from %@.", url, sourceApplication);
+    NSString* receivedString = [url resourceSpecifier];
+    if (receivedString) {
+        DLog(@"Received: '%@'", receivedString);
+        // Now get data from URL
+        NSArray *components = [receivedString componentsSeparatedByString:@"?"];
+        if ([components count] != 3) {
+            ALog(@"Parsing go wrong: %@", components);
+            return NO;
+        } else {
+            NSString *URL = [components[0] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            NSString *title = [components[1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            NSString *text = [components[2] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            DLog(@"URL: '%@'. Title: '%@'. Text: '%@'.", URL, title, text);
+            // Creating new note
+            Note *newNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:self.managedObjectContext];
+            newNote.title = title;
+            newNote.text = text;
+            // and attachment for the URL
+            Attachment *newAttachment = [NSEntityDescription insertNewObjectForEntityForName:@"Attachment" inManagedObjectContext:self.managedObjectContext];
+            newAttachment.uti = (__bridge NSString *)(kUTTypeURL);
+            newAttachment.extension = (__bridge_transfer NSString *)UTTypeCopyPreferredTagWithClass(kUTTypeURL, kUTTagClassFilenameExtension);
+            if(!newAttachment.extension)
+                newAttachment.extension = @"url";
+            newAttachment.filename = [NSString stringWithFormat:@"%@.%@", [[NSUUID UUID] UUIDString], newAttachment.extension];
+            newAttachment.type = @"Link";
+            NSString *attachmentContent = [NSString stringWithFormat:@"[InternetShortcut]\nURL=%@\n", URL];
+            newAttachment.data = [attachmentContent dataUsingEncoding:NSUTF8StringEncoding];
+            // Now link attachment to the note
+            newAttachment.note = newNote;
+            [newNote addAttachmentObject:newAttachment];
+            [self saveContext];
+/*
+            UINavigationController *rootNavigationController = (UINavigationController *)self.window.rootViewController;
+            if(![rootNavigationController topViewController]) {
+                ALog(@"Bad news. Init is *really* slow today, aborting open");
+                return NO;
+            } else {
+                if ([NSStringFromClass([[rootNavigationController topViewController] class]) isEqualToString:@"IAMViewController"]) {
+                    DLog(@"view controller is a: %@, now show the new note!", [[rootNavigationController topViewController] class]);
+                    IAMViewController *controller = [rootNavigationController topViewController];
+                }
+                DLog(@"view controller is a: %@", [[rootNavigationController topViewController] class]);
+//                [self.collectionController addNoteFromUrlWithTitle:title andURL:URL andText:text];
+            } */
+        }
+    } else {
+        ALog(@"Invalid embedded URL in: '%@'", url);
+        return NO;
+    }
+    return YES;
 }
 
 #pragma mark - Core Data stack
