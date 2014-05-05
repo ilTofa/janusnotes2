@@ -13,6 +13,7 @@
 #import "iRate.h"
 #import "STKeychain.h"
 #import "Note.h"
+#import "Attachment.h"
 
 @interface IAMAppDelegate ()
 
@@ -116,7 +117,25 @@
             NSString *text = [components[2] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             DLog(@"URL: '%@'. Title: '%@'. Text: '%@'.", URL, title, text);
             if(!self.collectionController) {
-                ALog(@"Bad news. Init is *really* slow today, aborting open");
+                DLog(@"Bad news. Init is *really* slow today, saving automagically.");
+                // Creating new note
+                Note *newNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:self.managedObjectContext];
+                newNote.title = title;
+                newNote.text = text;
+                // and attachment for the URL
+                Attachment *newAttachment = [NSEntityDescription insertNewObjectForEntityForName:@"Attachment" inManagedObjectContext:self.managedObjectContext];
+                newAttachment.uti = (__bridge NSString *)(kUTTypeURL);
+                newAttachment.extension = (__bridge_transfer NSString *)UTTypeCopyPreferredTagWithClass(kUTTypeURL, kUTTagClassFilenameExtension);
+                if(!newAttachment.extension)
+                    newAttachment.extension = @"url";
+                newAttachment.filename = [NSString stringWithFormat:@"%@.%@", [[NSUUID UUID] UUIDString], newAttachment.extension];
+                newAttachment.type = @"Link";
+                NSString *attachmentContent = [NSString stringWithFormat:@"[InternetShortcut]\nURL=%@\n", URL];
+                newAttachment.data = [attachmentContent dataUsingEncoding:NSUTF8StringEncoding];
+                // Now link attachment to the note
+                newAttachment.note = newNote;
+                [newNote addAttachmentObject:newAttachment];
+                [self saveAction:self];
             } else {
                 [self.collectionController addNoteFromUrlWithTitle:title andURL:URL andText:text];
             }
