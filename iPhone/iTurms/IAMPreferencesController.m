@@ -13,10 +13,13 @@
 #import <StoreKit/StoreKit.h>
 #import "IAMAppDelegate.h"
 #import "iRate.h"
+#import "THPinViewController.h"
+#import "STKeychain.h"
 
 typedef enum {
-    supportJanus = 0,
+    supportTurms = 0,
     cryptPassword,
+    lockSelector,
     sortSelector,
 } sectionIdentifiers;
 
@@ -28,10 +31,12 @@ typedef enum {
     supportRestore
 } supportOptions;
 
-@interface IAMPreferencesController () <MFMailComposeViewControllerDelegate, SKProductsRequestDelegate>
+@interface IAMPreferencesController () <MFMailComposeViewControllerDelegate, SKProductsRequestDelegate, THPinViewControllerDelegate>
 
 @property NSArray *products;
 @property NSString *oldEncryptionKey;
+
+@property UIAlertView *lockCodeAlert;
 
 @end
 
@@ -55,6 +60,8 @@ typedef enum {
     self.dateSelector.selectedSegmentIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"dateShown"];
     [self.tableView setContentOffset:CGPointZero animated:YES];
     self.cryptPasswordField.text = self.oldEncryptionKey = [(IAMAppDelegate *)[[UIApplication sharedApplication] delegate] cryptPassword];
+    NSError *error;
+    self.lockSwitch.on = ([STKeychain getPasswordForUsername:@"lockCode" andServiceName:@"it.iltofa.turms" error:&error] != nil);
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -152,10 +159,10 @@ typedef enum {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
     // Support
-    if (indexPath.section == supportJanus) {
+    if (indexPath.section == supportTurms) {
         if (indexPath.row == supportHelp) {
             DLog(@"Call help site.");
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.janusnotes.com/help/"]];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.iltofa.com/turms/"]];
         } else if (indexPath.row == supportUnsatisfied) {
             DLog(@"Prepare email to support");
             [self sendCommentAction:self];
@@ -210,6 +217,36 @@ typedef enum {
     }
 }
 
+#pragma mark - THPinViewControllerDelegate
+
+// mandatory delegate methods
+
+- (NSUInteger)pinLengthForPinViewController:(THPinViewController *)pinViewController {
+    return 4;
+}
+
+- (BOOL)pinViewController:(THPinViewController *)pinViewController isPinValid:(NSString *)pin {
+    DLog(@"PIN is: %@", pin);
+    NSError *error;
+    [STKeychain storeUsername:@"lockCode" andPassword:pin forServiceName:@"it.iltofa.turms" updateExisting:YES error:&error];
+    UIAlertView *lastAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Lock Code Set", nil)
+                                                        message:[NSString stringWithFormat:NSLocalizedString(@"You just set the application lock code to %@.", nil), pin]
+                                                       delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+    lastAlert.alertViewStyle = UIAlertViewStyleDefault;
+    [lastAlert show];
+    return YES;
+}
+
+- (BOOL)userCanRetryInPinViewController:(THPinViewController *)pinViewController{
+    return YES;
+}
+
+- (void)pinViewControllerDidDismissAfterPinEntryWasCancelled:(THPinViewController *)pinViewController {
+    DLog(@"Restore PIN lock status.");
+    NSError *error;
+    self.lockSwitch.on = ([STKeychain getPasswordForUsername:@"lockCode" andServiceName:@"it.iltofa.turms" error:&error] != nil);
+}
+
 #pragma mark - Actions
 
 - (IBAction)done:(id)sender
@@ -251,6 +288,21 @@ typedef enum {
         [self.cryptPasswordField resignFirstResponder];
 	} else {
         self.cryptPasswordField.text = self.oldEncryptionKey;
+    }
+}
+
+- (IBAction)lockCodeAction:(id)sender {
+    if(self.lockSwitch.on) {
+        THPinViewController *pinViewController = [[THPinViewController alloc] initWithDelegate:self];
+        pinViewController.backgroundColor = [UIColor whiteColor];
+        pinViewController.promptTitle = @"Enter PIN";
+        pinViewController.promptColor = [UIColor colorWithRed:0.000 green:0.455 blue:0.780 alpha:1.000];
+        pinViewController.view.tintColor = [UIColor colorWithRed:0.000 green:0.455 blue:0.780 alpha:1.000];
+        pinViewController.hideLetters = YES;
+        [self presentViewController:pinViewController animated:YES completion:nil];
+    } else {
+        NSError *error;
+        [STKeychain deleteItemForUsername:@"lockCode" andServiceName:@"it.iltofa.turms" error:&error];
     }
 }
 

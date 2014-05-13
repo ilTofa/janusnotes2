@@ -39,6 +39,13 @@
 		645ED8AF1754F7730070F83B /* link-microphone-big.png in Resources */ = {isa = PBXBuildFile; fileRef = 645ED8AD1754F7730070F83B /* link-microphone-big.png */; };
 		645ED8B01754F7730070F83B /* link-microphone-big@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 645ED8AE1754F7730070F83B /* link-microphone-big@2x.png */; };
 		6476C11017E0CE270094C4AB /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CB194A17392BAD0014F35F /* iAd.framework */; };
+		64773E851922837600205D45 /* THPinViewController.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64773E731922837600205D45 /* THPinViewController.strings */; };
+		64773E861922837600205D45 /* THPinInputCirclesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 64773E7A1922837600205D45 /* THPinInputCirclesView.m */; };
+		64773E871922837600205D45 /* THPinInputCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 64773E7C1922837600205D45 /* THPinInputCircleView.m */; };
+		64773E881922837600205D45 /* THPinNumButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 64773E7E1922837600205D45 /* THPinNumButton.m */; };
+		64773E891922837600205D45 /* THPinNumPadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 64773E801922837600205D45 /* THPinNumPadView.m */; };
+		64773E8A1922837600205D45 /* THPinView.m in Sources */ = {isa = PBXBuildFile; fileRef = 64773E821922837600205D45 /* THPinView.m */; };
+		64773E8B1922837600205D45 /* THPinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64773E841922837600205D45 /* THPinViewController.m */; };
 		647DEAF417E701D900D3EE57 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CB194617392B7C0014F35F /* MessageUI.framework */; };
 		64896D2D184F336800AE5EEF /* IAMBooksSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64896D2C184F336800AE5EEF /* IAMBooksSelectionViewController.m */; };
 		648A2773171D875000338218 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 648A2772171D875000338218 /* MBProgressHUD.m */; };
@@ -155,6 +162,23 @@
 		645A7E6518183846003C9D5A /* link-browser@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "link-browser@2x.png"; path = "Images/link-browser@2x.png"; sourceTree = "<group>"; };
 		645ED8AD1754F7730070F83B /* link-microphone-big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "link-microphone-big.png"; path = "Images/link-microphone-big.png"; sourceTree = "<group>"; };
 		645ED8AE1754F7730070F83B /* link-microphone-big@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "link-microphone-big@2x.png"; path = "Images/link-microphone-big@2x.png"; sourceTree = "<group>"; };
+		64773E741922837600205D45 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/THPinViewController.strings; sourceTree = "<group>"; };
+		64773E751922837600205D45 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/THPinViewController.strings; sourceTree = "<group>"; };
+		64773E761922837600205D45 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/THPinViewController.strings; sourceTree = "<group>"; };
+		64773E771922837600205D45 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/THPinViewController.strings; sourceTree = "<group>"; };
+		64773E781922837600205D45 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/THPinViewController.strings; sourceTree = "<group>"; };
+		64773E791922837600205D45 /* THPinInputCirclesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPinInputCirclesView.h; sourceTree = "<group>"; };
+		64773E7A1922837600205D45 /* THPinInputCirclesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPinInputCirclesView.m; sourceTree = "<group>"; };
+		64773E7B1922837600205D45 /* THPinInputCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPinInputCircleView.h; sourceTree = "<group>"; };
+		64773E7C1922837600205D45 /* THPinInputCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPinInputCircleView.m; sourceTree = "<group>"; };
+		64773E7D1922837600205D45 /* THPinNumButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPinNumButton.h; sourceTree = "<group>"; };
+		64773E7E1922837600205D45 /* THPinNumButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPinNumButton.m; sourceTree = "<group>"; };
+		64773E7F1922837600205D45 /* THPinNumPadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPinNumPadView.h; sourceTree = "<group>"; };
+		64773E801922837600205D45 /* THPinNumPadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPinNumPadView.m; sourceTree = "<group>"; };
+		64773E811922837600205D45 /* THPinView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPinView.h; sourceTree = "<group>"; };
+		64773E821922837600205D45 /* THPinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPinView.m; sourceTree = "<group>"; };
+		64773E831922837600205D45 /* THPinViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPinViewController.h; sourceTree = "<group>"; };
+		64773E841922837600205D45 /* THPinViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPinViewController.m; sourceTree = "<group>"; };
 		64896D2B184F336800AE5EEF /* IAMBooksSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMBooksSelectionViewController.h; sourceTree = "<group>"; };
 		64896D2C184F336800AE5EEF /* IAMBooksSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMBooksSelectionViewController.m; sourceTree = "<group>"; };
 		648A2771171D875000338218 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
@@ -343,6 +367,7 @@
 		6433103F16E0A8950064EC5C /* Utilities (iOS) */ = {
 			isa = PBXGroup;
 			children = (
+				64773E721922837600205D45 /* THPinViewController */,
 				6410E1C917E85D2000B568D0 /* GTTransientMessage.h */,
 				6410E1CA17E85D2000B568D0 /* GTTransientMessage.m */,
 				648A2771171D875000338218 /* MBProgressHUD.h */,
@@ -388,6 +413,27 @@
 				6447056D16DD0FC4000A0262 /* SmallRow@2x.png */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		64773E721922837600205D45 /* THPinViewController */ = {
+			isa = PBXGroup;
+			children = (
+				64773E731922837600205D45 /* THPinViewController.strings */,
+				64773E791922837600205D45 /* THPinInputCirclesView.h */,
+				64773E7A1922837600205D45 /* THPinInputCirclesView.m */,
+				64773E7B1922837600205D45 /* THPinInputCircleView.h */,
+				64773E7C1922837600205D45 /* THPinInputCircleView.m */,
+				64773E7D1922837600205D45 /* THPinNumButton.h */,
+				64773E7E1922837600205D45 /* THPinNumButton.m */,
+				64773E7F1922837600205D45 /* THPinNumPadView.h */,
+				64773E801922837600205D45 /* THPinNumPadView.m */,
+				64773E811922837600205D45 /* THPinView.h */,
+				64773E821922837600205D45 /* THPinView.m */,
+				64773E831922837600205D45 /* THPinViewController.h */,
+				64773E841922837600205D45 /* THPinViewController.m */,
+			);
+			name = THPinViewController;
+			path = ../../../THPinViewController/THPinViewController;
 			sourceTree = "<group>";
 		};
 		64845FE316E019F20046BE9C /* Utilities (common) */ = {
@@ -694,6 +740,7 @@
 				64B56853174658B3006D04C4 /* readme.txt in Resources */,
 				64E0AA4317E70ED9008BF0E3 /* In-App-Products.plist in Resources */,
 				645A7E6618183846003C9D5A /* link-browser-big.png in Resources */,
+				64773E851922837600205D45 /* THPinViewController.strings in Resources */,
 				645ED8AF1754F7730070F83B /* link-microphone-big.png in Resources */,
 				645ED8B01754F7730070F83B /* link-microphone-big@2x.png in Resources */,
 			);
@@ -713,6 +760,7 @@
 				64EB0F0B1819144E00DD9924 /* html_smartypants.c in Sources */,
 				6421B4691892DC7E008C7E46 /* RNCryptor.m in Sources */,
 				6421B46C1892DC7E008C7E46 /* RNEncryptor.m in Sources */,
+				64773E8B1922837600205D45 /* THPinViewController.m in Sources */,
 				64522F4118476D9900D65289 /* Tags.m in Sources */,
 				649DCEA016D28DB8003F5A83 /* IAmMine.xcdatamodeld in Sources */,
 				64522F3E18476D9900D65289 /* Books.m in Sources */,
@@ -721,13 +769,16 @@
 				64B9B4A516D7801100607F39 /* IAMNoteEdit.m in Sources */,
 				6421B46B1892DC7E008C7E46 /* RNDecryptor.m in Sources */,
 				6416315716D7DB830004CB52 /* IAMViewController.m in Sources */,
+				64773E861922837600205D45 /* THPinInputCirclesView.m in Sources */,
 				6416315D16D8345F0004CB52 /* UIImage+RoundedCorner.m in Sources */,
 				64027D7B16DD7CB800DEA647 /* IAMPreferencesController.m in Sources */,
+				64773E881922837600205D45 /* THPinNumButton.m in Sources */,
 				64522F3F18476D9900D65289 /* PublishedOn.m in Sources */,
 				64E0AA4817E9067D008BF0E3 /* iRate.m in Sources */,
 				64F31CC416E4AF9000A80BE0 /* Note.m in Sources */,
 				6421B46A1892DC7E008C7E46 /* RNCryptorEngine.m in Sources */,
 				64896D2D184F336800AE5EEF /* IAMBooksSelectionViewController.m in Sources */,
+				64773E871922837600205D45 /* THPinInputCircleView.m in Sources */,
 				64F31CCA16E5009B00A80BE0 /* Attachment.m in Sources */,
 				64A8A7E316E781EB0013AFFF /* IAMAddLinkViewController.m in Sources */,
 				64EB0F081819144E00DD9924 /* houdini_href_e.c in Sources */,
@@ -744,8 +795,10 @@
 				64F9AC4D1704544800299C1B /* UIImage+FixOrientation.m in Sources */,
 				648A2773171D875000338218 /* MBProgressHUD.m in Sources */,
 				64DE6C261727E5320031183A /* NSManagedObjectContext+FetchedObjectFromURI.m in Sources */,
+				64773E891922837600205D45 /* THPinNumPadView.m in Sources */,
 				64EB0F0C1819144E00DD9924 /* markdown.c in Sources */,
 				640A176A18190D9500DB5788 /* IAMMarkdownPreViewController.m in Sources */,
+				64773E8A1922837600205D45 /* THPinView.m in Sources */,
 				64EB0F071819144E00DD9924 /* buffer.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -753,6 +806,18 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		64773E731922837600205D45 /* THPinViewController.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				64773E741922837600205D45 /* de */,
+				64773E751922837600205D45 /* en */,
+				64773E761922837600205D45 /* es */,
+				64773E771922837600205D45 /* fr */,
+				64773E781922837600205D45 /* it */,
+			);
+			name = THPinViewController.strings;
+			sourceTree = "<group>";
+		};
 		64A0507816D28CCA0025E179 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
