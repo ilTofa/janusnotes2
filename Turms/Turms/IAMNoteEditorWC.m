@@ -442,6 +442,27 @@
     DLog(@"Text:\n%@\n<end>", self.editedNote.text);
 }
 
+- (IBAction)exportText:(id)sender {
+    NSSavePanel* panel = [NSSavePanel savePanel];
+    [panel setCanCreateDirectories:YES];
+    [panel setNameFieldLabel:@"Export Text To"];
+    [panel setPrompt:@"Export"];
+    [panel setAllowedFileTypes:@[(NSString *)kUTTypeText]];
+    [panel setAllowsOtherFileTypes:YES];
+    [panel setExtensionHidden:NO];
+    [panel setCanSelectHiddenExtension:YES];
+    [panel beginSheetModalForWindow:[self window] completionHandler:^(NSInteger result) {
+        NSURL* url = [panel URL];
+        DLog(@"User selected URL %@, now we should export to it.", url);
+        NSError *error;
+        if (![self.editedNote exportAsTextToURL:url error:&error]) {
+            ALog(@"Error exporting file: %@", error);
+            NSAlert *alert = [NSAlert alertWithError:error];
+            [alert runModal];
+        }
+    }];
+}
+
 - (IBAction)exportHTML:(id)sender {
     NSOpenPanel* panel = [NSOpenPanel openPanel];
     [panel setCanChooseDirectories:YES];

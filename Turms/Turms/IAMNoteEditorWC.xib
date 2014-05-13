@@ -248,12 +248,18 @@
                         <popUpButton key="view" tag="1" id="ZJQ-0w-Rmy">
                             <rect key="frame" x="0.0" y="14" width="45" height="32"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <popUpButtonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="export" alignment="left" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" arrowPosition="noArrow" selectedItem="0if-In-ne4" id="PyT-qS-GmD" customClass="GTPopUpButtonCell">
+                            <popUpButtonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="export" alignment="left" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" arrowPosition="noArrow" selectedItem="Eu5-ee-dZp" id="PyT-qS-GmD" customClass="GTPopUpButtonCell">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                <font key="font" metaFont="system"/>
+                                <font key="font" metaFont="menu"/>
                                 <menu key="menu" title="OtherViews" id="cQt-JF-JCc">
                                     <items>
                                         <menuItem state="on" image="export" hidden="YES" id="7Zy-QU-SCU"/>
+                                        <menuItem title="As Text..." id="Eu5-ee-dZp">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="exportText:" target="-2" id="czj-R3-xfq"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem title="As HTML..." id="euK-nD-ss1">
                                             <connections>
                                                 <action selector="exportHTML:" target="-2" id="5vM-Lk-Y5u"/>

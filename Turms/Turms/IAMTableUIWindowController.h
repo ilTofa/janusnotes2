@@ -41,6 +41,7 @@
 - (void)openNoteAtURI:(NSURL *)uri;
 
 // Eventually called from main menu
+- (IBAction)exportText:(id)sender;
 - (IBAction)exportHTML:(id)sender;
 - (IBAction)exportMarkdownForPelican:(id)sender;
 

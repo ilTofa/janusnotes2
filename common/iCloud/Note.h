@@ -51,6 +51,7 @@
 
 - (void)reencryptIfNeededFromOldCryptKey:(NSString *)oldCryptKey;
 
+- (BOOL)exportAsTextToURL:(NSURL *)exportUrl error:(NSError **)error;
 - (BOOL)exportAsHTMLToURL:(NSURL *)exportUrl error:(NSError **)error;
 - (BOOL)exportAsMarkdownForPelican:(NSURL *)exportDirectory error:(NSError **)error;
 

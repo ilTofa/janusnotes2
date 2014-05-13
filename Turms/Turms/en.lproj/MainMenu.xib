@@ -105,6 +105,12 @@ CA
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Export/Publish" id="dbK-41-fyk">
                                     <items>
+                                        <menuItem title="Text File..." id="PjU-r5-CFt">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="exportText:" target="-1" id="R79-QW-vZR"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem title="HTML File..." id="gwc-Mg-AUF">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>

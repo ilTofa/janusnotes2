@@ -214,6 +214,21 @@
 
 #pragma mark - Export
 
+- (BOOL)exportAsTextToURL:(NSURL *)exportUrl error:(NSError **)error {
+    NSError *localError;
+    // Don't save attachments
+    NSMutableString *mdString = [NSMutableString new];
+    [mdString appendString:[NSString stringWithFormat:@"%@\n\n", self.title]];
+    [mdString appendString:self.text];
+    [mdString replaceOccurrencesOfString:@"$attachment$!" withString:@"" options:NSLiteralSearch range:NSMakeRange(0, [mdString length])];
+    BOOL retValue = [mdString writeToURL:exportUrl atomically:NO encoding:NSUTF8StringEncoding error:&localError];
+    if (!retValue) {
+        *error = localError;
+    }
+    return retValue;
+}
+
+
 - (BOOL)exportAsHTMLToURL:(NSURL *)exportUrl error:(NSError **)error {
     NSURL *exportDirectory = [exportUrl URLByDeletingLastPathComponent];
     // Save attachments (if any)

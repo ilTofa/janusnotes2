@@ -39,6 +39,7 @@
 - (IBAction)deleteAttachment:(id)sender;
 - (IBAction)previewMarkdown:(id)sender;
 
+- (IBAction)exportText:(id)sender;
 - (IBAction)exportHTML:(id)sender;
 - (IBAction)exportMarkdownForPelican:(id)sender;
 
