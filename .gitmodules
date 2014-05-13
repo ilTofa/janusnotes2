@@ -1,3 +1,6 @@
 [submodule "iRate-new"]
 	path = iRate
 	url = https://github.com/nicklockwood/iRate
+[submodule "THPinViewController"]
+	path = THPinViewController
+	url = https://github.com/antiraum/THPinViewController
