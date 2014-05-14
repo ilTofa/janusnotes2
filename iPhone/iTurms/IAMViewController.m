@@ -19,6 +19,8 @@
 #import "IAMPreferencesController.h"
 #import "IAMBooksSelectionViewController.h"
 #import "NSManagedObjectContext+FetchedObjectFromURI.h"
+#import "THPinViewController.h"
+#import "STKeychain.h"
 
 @interface IAMViewController () <UISearchBarDelegate, NSFetchedResultsControllerDelegate, IAMBooksSelectionViewControllerDelegate, UIPopoverControllerDelegate>
 
@@ -83,6 +85,10 @@
     [self sortAgain];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(processAds:) name:kSkipAdProcessingChanged object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(iCloudChangesComing:) name:kCoreDataStoreExternallyChanged object:nil];
+    if (self.appDelegate.pinRequestNeeded) {
+        [self getPin:nil];
+    }
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getPin:) name:kViewControllerShouldShowPINRequest object:nil];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -134,8 +140,14 @@
     [self setupFetchExecAndReload];
 }
 
-#pragma mark -
-#pragma mark Search and search delegate
+- (void)getPin:(NSNotification *)note {
+    if (note) {
+        DLog(@"Called from notification.");
+    }
+    [self.appDelegate getPinOnWindow:self];
+}
+
+#pragma mark - Search and search delegate
 
 -(void)loadPreviousSearchKeys {
     self.searchText = [[NSUserDefaults standardUserDefaults] stringForKey:@"searchText"];

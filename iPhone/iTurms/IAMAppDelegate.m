@@ -12,12 +12,15 @@
 #import "GTThemer.h"
 #import "iRate.h"
 #import "GTTransientMessage.h"
-#import "STKeychain.h"
 #import "Note.h"
 #import "Attachment.h"
 #import "IAMViewController.h"
+#import "STKeychain.h"
+#import "THPinViewController.h"
 
-@interface IAMAppDelegate()
+@interface IAMAppDelegate() <THPinViewControllerDelegate>
+
+@property (atomic) BOOL userInitedShutdown;
 
 @end
 
@@ -38,7 +41,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Core Location init: get number of times user denied location use in app lifetime...
+    // Starting, so we want PIN request (if any) later
+    self.userInitedShutdown = YES;
+   // Core Location init: get number of times user denied location use in app lifetime...
 	self.nLocationUseDenies = [[NSUserDefaults standardUserDefaults] integerForKey:@"userDeny"];
 	self.isLocationDenied = NO;
     self.locationString = NSLocalizedString(@"Location unknown", @"");
@@ -55,8 +60,8 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    DLog(@"Marking user inited app shutdown.");
+    self.userInitedShutdown = YES;
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -70,6 +75,21 @@
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
+    if (!self.userInitedShutdown) {
+        DLog(@"Active from external reason (no user inited), skipping PIN check");
+        return;
+    }
+    self.userInitedShutdown = NO;
+    NSError *error;
+    NSString *pin = [STKeychain getPasswordForUsername:@"lockCode" andServiceName:@"it.iltofa.turms" error:&error];
+    if(pin) {
+        DLog(@"PIN (%@) is required!", pin);
+        self.pinRequestNeeded = YES;
+        [[NSNotificationCenter defaultCenter] postNotificationName:kViewControllerShouldShowPINRequest object:self userInfo:nil];
+    } else {
+        DLog(@"PIN (%@) not required!", pin);
+        self.pinRequestNeeded = NO;
+    }
 }
 
 - (void)saveContext
@@ -84,6 +104,46 @@
             abort();
         }
     }
+}
+
+#pragma mark - PIN Request
+
+- (NSUInteger)pinLengthForPinViewController:(THPinViewController *)pinViewController {
+    return 4;
+}
+
+- (BOOL)pinViewController:(THPinViewController *)pinViewController isPinValid:(NSString *)pin {
+    DLog(@"PIN is: %@", pin);
+    NSError *error;
+    NSString *savedPIN = [STKeychain getPasswordForUsername:@"lockCode" andServiceName:@"it.iltofa.turms" error:&error];
+    if(!savedPIN || ![pin isEqualToString:savedPIN]) {
+        return NO;
+    } else {
+        self.pinRequestNeeded = NO;
+        return YES;
+    }
+}
+
+- (BOOL)userCanRetryInPinViewController:(THPinViewController *)pinViewController{
+    return YES;
+}
+
+- (BOOL)shouldPinViewControllerlDismissedAfterPinEntryWasCancelled:(THPinViewController *)pinViewController {
+    return NO;
+}
+
+- (void)getPinOnWindow:(UIViewController<THPinViewControllerDelegate> *)parentViewController {
+    if (!self.pinRequestNeeded) {
+        DLog(@"Call was not valid.");
+        return;
+    }
+    THPinViewController *pinViewController = [[THPinViewController alloc] initWithDelegate:self];
+    pinViewController.backgroundColor = [UIColor whiteColor];
+    pinViewController.promptTitle = @"Enter PIN";
+    pinViewController.promptColor = [UIColor colorWithRed:0.000 green:0.455 blue:0.780 alpha:1.000];
+    pinViewController.view.tintColor = [UIColor colorWithRed:0.000 green:0.455 blue:0.780 alpha:1.000];
+    pinViewController.hideLetters = YES;
+    [parentViewController presentViewController:pinViewController animated:YES completion:nil];
 }
 
 #pragma mark - URL support

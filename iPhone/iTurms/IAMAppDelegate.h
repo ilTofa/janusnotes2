@@ -14,6 +14,8 @@
 #define kGotLocation @"gotLocation"
 #define kSkipAdProcessingChanged @"skipAdChanged"
 #define kCoreDataStoreExternallyChanged @"kCoreDataStoreExternallyChanged"
+#define kViewControllerShouldShowPINRequest @"kViewControllerShouldShowPINRequest"
+
 
 @interface IAMAppDelegate : UIResponder <UIApplicationDelegate, CLLocationManagerDelegate, SKPaymentTransactionObserver>
 
@@ -33,6 +35,10 @@
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 - (NSURL *)applicationDocumentsDirectory;
 - (void)saveContext;
+
+// PIN support
+@property BOOL pinRequestNeeded;
+- (void)getPinOnWindow:(UIViewController *)parentViewController;
 
 // Ads
 @property (nonatomic) BOOL skipAds;

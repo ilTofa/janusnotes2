@@ -22,6 +22,7 @@
 #import "UIImage+FixOrientation.h"
 #import "IAMMarkdownPreViewController.h"
 #import "IAMBooksSelectionViewController.h"
+#import "THPinViewController.h"
 
 @interface IAMNoteEdit () <UITextViewDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, IAMAddLinkViewControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, AttachmentDeleter, MicrophoneWindowDelegate, IAMBooksSelectionViewControllerDelegate, UIPopoverControllerDelegate>
 
@@ -95,6 +96,7 @@
     [super viewDidAppear:animated];
     [self.navigationController setToolbarHidden:YES animated:NO];
     [self bookButtonSetup];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getPin:) name:kViewControllerShouldShowPINRequest object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -114,6 +116,13 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)getPin:(NSNotification *)note {
+    if (note) {
+        DLog(@"Called from notification.");
+    }
+    [(IAMAppDelegate *)[[UIApplication sharedApplication] delegate] getPinOnWindow:self];
 }
 
 - (void)processAds:(NSNotification *)note {
