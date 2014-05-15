@@ -95,8 +95,6 @@
 		64CEF2BE17D1F70900D3A58B /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CEF2BD17D1F70900D3A58B /* libc++.dylib */; };
 		64DE6C261727E5320031183A /* NSManagedObjectContext+FetchedObjectFromURI.m in Sources */ = {isa = PBXBuildFile; fileRef = 64DE6C251727E5320031183A /* NSManagedObjectContext+FetchedObjectFromURI.m */; };
 		64E0AA4317E70ED9008BF0E3 /* In-App-Products.plist in Resources */ = {isa = PBXBuildFile; fileRef = 64E0AA4217E70ED9008BF0E3 /* In-App-Products.plist */; };
-		64E0AA4517E9066E008BF0E3 /* iRate.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 64E0AA4417E9066E008BF0E3 /* iRate.bundle */; };
-		64E0AA4817E9067D008BF0E3 /* iRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 64E0AA4717E9067D008BF0E3 /* iRate.m */; };
 		64EB0F061819144E00DD9924 /* autolink.c in Sources */ = {isa = PBXBuildFile; fileRef = 64EB0EF71819144E00DD9924 /* autolink.c */; };
 		64EB0F071819144E00DD9924 /* buffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 64EB0EF91819144E00DD9924 /* buffer.c */; };
 		64EB0F081819144E00DD9924 /* houdini_href_e.c in Sources */ = {isa = PBXBuildFile; fileRef = 64EB0EFC1819144E00DD9924 /* houdini_href_e.c */; };
@@ -247,9 +245,6 @@
 		64DE6C241727E5320031183A /* NSManagedObjectContext+FetchedObjectFromURI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSManagedObjectContext+FetchedObjectFromURI.h"; path = "../common/iCloud/NSManagedObjectContext+FetchedObjectFromURI.h"; sourceTree = "<group>"; };
 		64DE6C251727E5320031183A /* NSManagedObjectContext+FetchedObjectFromURI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSManagedObjectContext+FetchedObjectFromURI.m"; path = "../common/iCloud/NSManagedObjectContext+FetchedObjectFromURI.m"; sourceTree = "<group>"; };
 		64E0AA4217E70ED9008BF0E3 /* In-App-Products.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "In-App-Products.plist"; sourceTree = "<group>"; };
-		64E0AA4417E9066E008BF0E3 /* iRate.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = iRate.bundle; path = iRate/iRate.bundle; sourceTree = "<group>"; };
-		64E0AA4617E9067D008BF0E3 /* iRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iRate.h; path = iRate/iRate.h; sourceTree = "<group>"; };
-		64E0AA4717E9067D008BF0E3 /* iRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iRate.m; path = iRate/iRate.m; sourceTree = "<group>"; };
 		64EB0EF71819144E00DD9924 /* autolink.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = autolink.c; sourceTree = "<group>"; };
 		64EB0EF81819144E00DD9924 /* autolink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = autolink.h; sourceTree = "<group>"; };
 		64EB0EF91819144E00DD9924 /* buffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = buffer.c; sourceTree = "<group>"; };
@@ -381,17 +376,6 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
-		645ED8A61754F0A20070F83B /* iRate */ = {
-			isa = PBXGroup;
-			children = (
-				64E0AA4617E9067D008BF0E3 /* iRate.h */,
-				64E0AA4717E9067D008BF0E3 /* iRate.m */,
-				64E0AA4417E9066E008BF0E3 /* iRate.bundle */,
-			);
-			name = iRate;
-			path = ../iRate;
-			sourceTree = "<group>";
-		};
 		646602A216DBD373007622FC /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -442,7 +426,6 @@
 				6421B4701892DC94008C7E46 /* STKeychain */,
 				6421B45E1892DC7E008C7E46 /* RNCryptor */,
 				64EB0EF61819144E00DD9924 /* sundown */,
-				645ED8A61754F0A20070F83B /* iRate */,
 			);
 			name = "Utilities (common)";
 			sourceTree = "<group>";
@@ -725,7 +708,6 @@
 				64A755801702137A0085933D /* FloatingWindow.textClipping in Resources */,
 				64CEF2BC17D0E65900D3A58B /* Images.xcassets in Resources */,
 				64A755811702137A0085933D /* MicrophoneBackground.png in Resources */,
-				64E0AA4517E9066E008BF0E3 /* iRate.bundle in Resources */,
 				64A755821702137A0085933D /* MicrophoneWindow-iPad.xib in Resources */,
 				64A755841702137A0085933D /* MicrophoneWindow.xib in Resources */,
 				64A755851702137A0085933D /* one.png in Resources */,
@@ -774,7 +756,6 @@
 				64027D7B16DD7CB800DEA647 /* IAMPreferencesController.m in Sources */,
 				64773E881922837600205D45 /* THPinNumButton.m in Sources */,
 				64522F3F18476D9900D65289 /* PublishedOn.m in Sources */,
-				64E0AA4817E9067D008BF0E3 /* iRate.m in Sources */,
 				64F31CC416E4AF9000A80BE0 /* Note.m in Sources */,
 				6421B46A1892DC7E008C7E46 /* RNCryptorEngine.m in Sources */,
 				64896D2D184F336800AE5EEF /* IAMBooksSelectionViewController.m in Sources */,

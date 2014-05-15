@@ -12,7 +12,6 @@
 #import <MessageUI/MessageUI.h>
 #import <StoreKit/StoreKit.h>
 #import "IAMAppDelegate.h"
-#import "iRate.h"
 #import "THPinViewController.h"
 #import "STKeychain.h"
 
@@ -168,7 +167,7 @@ typedef enum {
             [self sendCommentAction:self];
         } else if (indexPath.row == supportSatisfied) {
             DLog(@"Call iRate for rating");
-            [[iRate sharedInstance] openRatingsPageInAppStore];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=879143273&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8"]];
         } else if (indexPath.row == supportCoffee) {
             DLog(@"Buy Ads Removal");
             SKPayment *payment = [SKPayment paymentWithProduct:self.products[0]];

@@ -10,7 +10,6 @@
 
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "GTThemer.h"
-#import "iRate.h"
 #import "GTTransientMessage.h"
 #import "Note.h"
 #import "Attachment.h"
@@ -31,13 +30,6 @@
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
 @synthesize cryptPassword = _cryptPassword;
-
-+ (void)initialize {
-//    [iRate sharedInstance].daysUntilPrompt = 5;
-//    [iRate sharedInstance].usesUntilPrompt = 5;
-//    [iRate sharedInstance].appStoreID = 651150600;
-//    [iRate sharedInstance].appStoreGenreID = 0;
-}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
