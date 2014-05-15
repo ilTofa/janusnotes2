@@ -62,6 +62,8 @@
 	[self.dateFormatter setDateStyle:NSDateFormatterMediumStyle];
 	[self.dateFormatter setTimeStyle:NSDateFormatterShortStyle];
     [self.dateFormatter setDoesRelativeDateFormatting:YES];
+    // Ad support
+    [self processAds:nil];
     // Notifications to be honored during controller lifecycle
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         self.navigationItem.leftBarButtonItem = self.editButtonItem;

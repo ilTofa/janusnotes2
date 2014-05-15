@@ -378,10 +378,8 @@
     [[NSUserDefaults standardUserDefaults] setBool:skipAds forKey:@"skipAds"];
 }
 
-// TODO: restore ads support.
 - (BOOL)skipAds {
-    return YES;
-//    return [[NSUserDefaults standardUserDefaults] boolForKey:@"skipAds"];
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"skipAds"];
 }
 
 #pragma mark SKPaymentTransactionObserver
