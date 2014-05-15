@@ -65,6 +65,8 @@
     [dc addObserver:self selector:@selector(storesDidChange:) name:NSPersistentStoreCoordinatorStoresDidChangeNotification object:self.persistentStoreCoordinator];
     [dc addObserver:self selector:@selector(storeHaveNewData:) name:NSPersistentStoreDidImportUbiquitousContentChangesNotification object:self.persistentStoreCoordinator];
     [self deleteCache];
+    // Check first note
+    [self addReadmeIfNeeded];
 }
 
 - (BOOL)application:(NSApplication *)theApplication openFile:(NSString *)filename {
@@ -142,6 +144,28 @@
         }
     } else {
         ALog(@"Invalid embedded URL in: '%@'", url);
+    }
+}
+
+#pragma mark - Readme file
+
+-(void)addReadmeIfNeeded {
+    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"readmeAdded"]) {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"readmeAdded"];
+        DLog(@"Adding readme note.");
+        NSError *error;
+        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"readme" ofType:@"txt"];
+        NSString *readmeText = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
+        if (readmeText) {
+            Note *readmeNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:self.managedObjectContext];
+            readmeNote.title = @"Read me!";
+            readmeNote.text = readmeText;
+            if(![self.managedObjectContext save:&error]) {
+                ALog(@"Error saving readme note: %@,", [error description]);
+            }
+        } else {
+            ALog(@"Error reading readme text from bundle: %@", [error description]);
+        }
     }
 }
 

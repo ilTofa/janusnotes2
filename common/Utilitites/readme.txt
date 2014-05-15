@@ -14,6 +14,8 @@ Start collectiong your thoughts, wherever you are. Collect photos, links, video 
 
 All your data will be seamlessly synced via iCloud to every iPhone/iPad or Macintosh you have. Don't forget anymore the thing you was thinking about this morning, when, in the evening, you are on your mac writing that clever post.
 
+Collect links directly from the browser using the bookmarklet available on the app main site
+
 Encryption
 -
 Your notes text will be encrypted on your iCloud storage so to avoid the eavesdroppers. The Encryption Key is setup on the preference screen. Please choose a strong password and note it somewhere. Remember that your notes will *not* be readable anymore without the password! Don't lose or forget it! You've been warned. :)
