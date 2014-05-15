@@ -4,7 +4,6 @@
 <dict>
 	<key>com.apple.developer.ubiquity-container-identifiers</key>
 	<array>
-		<string>$(TeamIdentifierPrefix)it.iltofa.iTurms</string>
 		<string>$(TeamIdentifierPrefix)it.iltofa.Turms</string>
 	</array>
 </dict>

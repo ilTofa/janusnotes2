@@ -383,17 +383,17 @@
     }];
 }
 
-#pragma mark iAD
+#pragma mark - iAD
 
 - (void)setSkipAds:(BOOL)skipAds {
     [[NSUserDefaults standardUserDefaults] setBool:skipAds forKey:@"skipAds"];
 }
 
 - (BOOL)skipAds {
-    return YES;// [[NSUserDefaults standardUserDefaults] boolForKey:@"skipAds"];
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"skipAds"];
 }
 
-#pragma mark SKPaymentTransactionObserver
+#pragma mark - SKPaymentTransactionObserver
 
 - (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions {
     for (SKPaymentTransaction *transaction in transactions)
