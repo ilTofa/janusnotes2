@@ -56,6 +56,8 @@
     [dc addObserver:self selector:@selector(storeHaveNewData:) name:NSPersistentStoreDidImportUbiquitousContentChangesNotification object:self.persistentStoreCoordinator];
     // Purge cache directory
     [self deleteCache];
+    // Check first note
+    [self addReadmeIfNeeded];
     return YES;
 }
 
@@ -146,6 +148,28 @@
     [parentViewController presentViewController:pinViewController animated:YES completion:nil];
 }
 
+#pragma mark - Readme file
+
+-(void)addReadmeIfNeeded {
+    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"readmeAdded"]) {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"readmeAdded"];
+        DLog(@"Adding readme note.");
+        NSError *error;
+        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"readme" ofType:@"txt"];
+        NSString *readmeText = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
+        if (readmeText) {
+            Note *readmeNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:self.managedObjectContext];
+            readmeNote.title = @"Read me!";
+            readmeNote.text = readmeText;
+            if(![self.managedObjectContext save:&error]) {
+                ALog(@"Error saving readme note: %@,", [error description]);
+            }
+        } else {
+            ALog(@"Error reading readme text from bundle: %@", [error description]);
+        }
+    }
+}
+
 #pragma mark - URL support
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
@@ -182,19 +206,6 @@
             newAttachment.note = newNote;
             [newNote addAttachmentObject:newAttachment];
             [self saveContext];
-/*
-            UINavigationController *rootNavigationController = (UINavigationController *)self.window.rootViewController;
-            if(![rootNavigationController topViewController]) {
-                ALog(@"Bad news. Init is *really* slow today, aborting open");
-                return NO;
-            } else {
-                if ([NSStringFromClass([[rootNavigationController topViewController] class]) isEqualToString:@"IAMViewController"]) {
-                    DLog(@"view controller is a: %@, now show the new note!", [[rootNavigationController topViewController] class]);
-                    IAMViewController *controller = [rootNavigationController topViewController];
-                }
-                DLog(@"view controller is a: %@", [[rootNavigationController topViewController] class]);
-//                [self.collectionController addNoteFromUrlWithTitle:title andURL:URL andText:text];
-            } */
         }
     } else {
         ALog(@"Invalid embedded URL in: '%@'", url);
