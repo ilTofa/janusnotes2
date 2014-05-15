@@ -390,7 +390,7 @@
 }
 
 - (BOOL)skipAds {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:@"skipAds"];
+    return YES;// [[NSUserDefaults standardUserDefaults] boolForKey:@"skipAds"];
 }
 
 #pragma mark SKPaymentTransactionObserver
