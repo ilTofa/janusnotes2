@@ -8,3 +8,8 @@ The Macintosh version is fully sandboxed and have no access to anything else tha
 If you're privacy-conscious you should always lock your iPhone with a code (this will encrypt the notes' cache on your iPhone) and use FileVault on your Macintosh. Remember to lock your devices when you leave them.
 
 turms,note,notes,janus,privacy,encrypted,attachments,sharing,sync,icloud,video,audio,aes
+
+No_Ads_Turms
+it.iltofa.turms.noads
+Display Name: Happy? Remove Ads!
+Description: Remove ads from current (if any) and future versions of this app by paying a coffee to the developer.
