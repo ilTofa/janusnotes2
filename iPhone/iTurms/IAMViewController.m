@@ -64,9 +64,9 @@
     [self.dateFormatter setDoesRelativeDateFormatting:YES];
     // Ad support
     [self processAds:nil];
+    self.navigationItem.leftBarButtonItem = self.editButtonItem;
     // Notifications to be honored during controller lifecycle
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        self.navigationItem.leftBarButtonItem = self.editButtonItem;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismissPopoverRequested:) name:kPreferencesPopoverCanBeDismissed object:nil];
     }
     [self processAds:nil];
@@ -91,6 +91,8 @@
         [self getPin:nil];
     }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getPin:) name:kViewControllerShouldShowPINRequest object:nil];
+    // Ad support
+    [self processAds:nil];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {

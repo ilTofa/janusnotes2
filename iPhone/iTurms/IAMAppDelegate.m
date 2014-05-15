@@ -409,7 +409,7 @@
                 [GTTransientMessage showWithTitle:@"Thank you!" andSubTitle:@"No Ad will be shown anymore." forSeconds:1.0];
                 break;
             case SKPaymentTransactionStateFailed: {
-                DLog(@"SKPaymentTransactionStateFailed");
+                DLog(@"SKPaymentTransactionStateFailed: %@", transaction.error);
                 NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Error purchasing: %@.", nil), [transaction.error localizedDescription]];
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Purchase Error" message:message delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
                 [alert show];
