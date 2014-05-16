@@ -380,7 +380,7 @@
 }
 
 - (IBAction)getIOSApp:(id)sender {
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://itunes.apple.com/app/id651150600"]];
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://itunes.apple.com/app/id879143273"]];
 }
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender
@@ -444,17 +444,17 @@
     });
 }
 
-// TODO: fix url paths
+#pragma mark - Help menu
 
 - (IBAction)showFAQs:(id)sender {
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://www.ilTofa.com/"]];
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://www.iltofa.com/turms"]];
 }
 
 - (IBAction)showMarkdownHelp:(id)sender {
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet"]];
 }
 
-- (IBAction)sendAComment:(id)sender {
+- (NSString *)getModel {
     NSString *model;
     size_t length = 0;
     sysctlbyname("hw.model", NULL, &length, NULL, 0);
@@ -466,8 +466,24 @@
     } else {
         model = @"Unknown";
     }
-    NSString *subject = [NSString stringWithFormat:@"Feedback on Turms OS X app version %@ (%@) on a %@/%@", [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"], [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"], model, [[NSProcessInfo processInfo] operatingSystemVersionString]];
+    return model;
+}
+
+// TODO: add app
+- (IBAction)rateTheApp:(id)sender {
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"macappstore://userpub.itunes.apple.com/WebObjects/MZUserPublishing.woa/wa/addUserReview?id=%d&type=Purple+Software"]];
+}
+
+- (IBAction)sendFeedback:(id)sender {
+    NSString *subject = [NSString stringWithFormat:@"Feedback on Turms OS X app version %@ (%@) on a %@/%@", [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"], [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"], [self getModel], [[NSProcessInfo processInfo] operatingSystemVersionString]];
     NSString *urlString = [[NSString stringWithFormat:@"mailto:gt+turmssupport@iltofa.com?subject=%@", subject] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];;
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:urlString]];
 }
+
+- (IBAction)sendAComment:(id)sender {
+    NSString *subject = [NSString stringWithFormat:@"Comment on Turms OS X app version %@ (%@) on a %@/%@", [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"], [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"], [self getModel], [[NSProcessInfo processInfo] operatingSystemVersionString]];
+    NSString *urlString = [[NSString stringWithFormat:@"mailto:gt+turmssupport@iltofa.com?subject=%@", subject] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];;
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:urlString]];
+}
+
 @end

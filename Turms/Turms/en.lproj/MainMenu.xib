@@ -40,7 +40,14 @@
                                     <action selector="getIOSApp:" target="494" id="836"/>
                                 </connections>
                             </menuItem>
-                            <menuItem isSeparatorItem="YES" id="835"/>
+                            <menuItem isSeparatorItem="YES" id="SL8-L9-h8c"/>
+                            <menuItem title="Send a Comment" id="ZrZ-dY-k2n">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="sendAComment:" target="494" id="auR-Lm-QqB"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="1yG-wU-DfV"/>
                             <menuItem title="Services" id="131">
                                 <menu key="submenu" title="Services" systemMenu="services" id="130"/>
                             </menuItem>
@@ -429,12 +436,12 @@ CA
                                     <action selector="showMarkdownHelp:" target="494" id="rdE-fJ-Rei"/>
                                 </connections>
                             </menuItem>
-                            <menuItem isSeparatorItem="YES" id="SL8-L9-h8c"/>
-                            <menuItem title="Send a Comment" id="ZrZ-dY-k2n">
+                            <menuItem isSeparatorItem="YES" id="835"/>
+                            <menuItem title="Unsatisfied? Tell us why!" id="SIR-oQ-HE6">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="sendAComment:" target="494" id="auR-Lm-QqB"/>
-                                </connections>
+                            </menuItem>
+                            <menuItem title="Satisfied? Please Rate the App!" id="6ks-5C-qZJ">
+                                <modifierMask key="keyEquivalentModifierMask"/>
                             </menuItem>
                         </items>
                     </menu>
