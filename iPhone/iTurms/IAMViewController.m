@@ -229,6 +229,9 @@
         }
     }
     if (self.booksQueryString) {
+        if (!queryString) {
+            queryString = @"title like \"*\" ";
+        }
         queryString = [queryString stringByAppendingString:self.booksQueryString];
     }
     DLog(@"Fetching again. Query string is: '%@'", queryString);
@@ -279,6 +282,7 @@
     }
     if (self.booksQueryString) {
         self.booksQueryString = [self.booksQueryString stringByAppendingFormat:@")"];
+        DLog(@"Book selection string: '%@'", self.booksQueryString);
         [self.booksSelectionButton setTitle:@"Books: Some"];
     } else {
         [self.booksSelectionButton setTitle:@"Books: All"];
