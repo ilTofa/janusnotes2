@@ -37,6 +37,7 @@
 		647EF40A18918EC50045F273 /* STKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 647EF40918918EC50045F273 /* STKeychain.m */; };
 		64A4E9B51742659A00BC49FE /* TurmsImporter.mdimporter in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64EA622E16F7110300F4838E /* TurmsImporter.mdimporter */; };
 		64A75591170358BC0085933D /* NSManagedObjectContext+FetchedObjectFromURI.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A75590170358BC0085933D /* NSManagedObjectContext+FetchedObjectFromURI.m */; };
+		64A85F48192613400083479A /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64A85F47192613400083479A /* libcrypto.a */; };
 		64B4B7BC181140A700766D43 /* MarkdownPreview.html in Resources */ = {isa = PBXBuildFile; fileRef = 64B4B7BB181140A700766D43 /* MarkdownPreview.html */; };
 		64B56855174658ED006D04C4 /* readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 64B56854174658ED006D04C4 /* readme.txt */; };
 		64CB19281738EEE90014F35F /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CB19271738EEE90014F35F /* WebKit.framework */; };
@@ -143,6 +144,7 @@
 		64A1D4EC16FC9F7C00E50CC1 /* Turms.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Turms.entitlements; sourceTree = "<group>"; };
 		64A7558F170358BC0085933D /* NSManagedObjectContext+FetchedObjectFromURI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSManagedObjectContext+FetchedObjectFromURI.h"; path = "../common/iCloud/NSManagedObjectContext+FetchedObjectFromURI.h"; sourceTree = "<group>"; };
 		64A75590170358BC0085933D /* NSManagedObjectContext+FetchedObjectFromURI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSManagedObjectContext+FetchedObjectFromURI.m"; path = "../common/iCloud/NSManagedObjectContext+FetchedObjectFromURI.m"; sourceTree = "<group>"; };
+		64A85F47192613400083479A /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = "../common/openssl-1.0.1g/lib/libcrypto.a"; sourceTree = "<group>"; };
 		64B4B7BB181140A700766D43 /* MarkdownPreview.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = MarkdownPreview.html; path = ../../common/MarkdownPreview.html; sourceTree = "<group>"; };
 		64B56854174658ED006D04C4 /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = readme.txt; path = ../../common/Utilitites/readme.txt; sourceTree = "<group>"; };
 		64CB19271738EEE90014F35F /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
@@ -204,6 +206,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64A85F48192613400083479A /* libcrypto.a in Frameworks */,
 				641A9BC818440F5800C2EE74 /* CoreData.framework in Frameworks */,
 				64D8C9B71740F7F1005D87DC /* Security.framework in Frameworks */,
 				64CB192A1738EFF20014F35F /* SystemConfiguration.framework in Frameworks */,
@@ -322,6 +325,7 @@
 		64EA620E16F7110300F4838E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				64A85F47192613400083479A /* libcrypto.a */,
 				64D8C9B61740F7F1005D87DC /* Security.framework */,
 				64CB19291738EFF20014F35F /* SystemConfiguration.framework */,
 				64CB19271738EEE90014F35F /* WebKit.framework */,
@@ -705,6 +709,7 @@
 		64E0C373175358D100C1F946 /* Demo */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Turms/Turms.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
@@ -716,10 +721,15 @@
 				GCC_PREFIX_HEADER = "Turms/Turms-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = "DEMO=1";
 				INFOPLIST_FILE = "$(SRCROOT)/Turms/Turms-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/gt/Documents/dev/Turms/common/openssl-1.0.1g/lib",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_NAME = Turms;
 				PROVISIONING_PROFILE = "319AB1A8-ACE4-4274-9936-8C760DB238B3";
+				USER_HEADER_SEARCH_PATHS = "common/openssl-1.0.1g/include";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Demo;
@@ -776,6 +786,7 @@
 		64E0C376175359D700C1F946 /* Debug Demo */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Turms/Turms.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
@@ -789,10 +800,15 @@
 					"DEMO=1",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Turms/Turms-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/gt/Documents/dev/Turms/common/openssl-1.0.1g/lib",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_NAME = Turms;
 				PROVISIONING_PROFILE = "319AB1A8-ACE4-4274-9936-8C760DB238B3";
+				USER_HEADER_SEARCH_PATHS = "common/openssl-1.0.1g/include";
 				WRAPPER_EXTENSION = app;
 			};
 			name = "Debug Demo";
@@ -908,6 +924,7 @@
 		64EA624F16F7110300F4838E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Turms/Turms.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
@@ -917,10 +934,15 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Turms/Turms-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Turms/Turms-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/gt/Documents/dev/Turms/common/openssl-1.0.1g/lib",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_NAME = Turms;
 				PROVISIONING_PROFILE = "319AB1A8-ACE4-4274-9936-8C760DB238B3";
+				USER_HEADER_SEARCH_PATHS = "common/openssl-1.0.1g/include";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -928,6 +950,7 @@
 		64EA625016F7110300F4838E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Turms/Turms.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
@@ -938,10 +961,15 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Turms/Turms-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Turms/Turms-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/gt/Documents/dev/Turms/common/openssl-1.0.1g/lib",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_NAME = Turms;
 				PROVISIONING_PROFILE = "319AB1A8-ACE4-4274-9936-8C760DB238B3";
+				USER_HEADER_SEARCH_PATHS = "common/openssl-1.0.1g/include";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
