@@ -27,8 +27,6 @@
 		64522F451847F87800D65289 /* IAMAddBookWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64522F431847F87800D65289 /* IAMAddBookWindowController.m */; };
 		64522F461847F87800D65289 /* IAMAddBookWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64522F441847F87800D65289 /* IAMAddBookWindowController.xib */; };
 		645A7E611817C602003C9D5A /* IAMNoteEditTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 645A7E601817C602003C9D5A /* IAMNoteEditTextView.m */; };
-		645ED8A31754ED8A0070F83B /* iRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 645ED8A11754ED8A0070F83B /* iRate.m */; };
-		645ED8A51754EFCE0070F83B /* iRate.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 645ED8A41754EFCE0070F83B /* iRate.bundle */; };
 		64629F65183F79F300753313 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64629F64183F79F300753313 /* Images.xcassets */; };
 		6476CFAB1746223900A6195C /* it.iltofa.turms.entry.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6476CFAA1746223900A6195C /* it.iltofa.turms.entry.icns */; };
 		6476CFAC1746228E00A6195C /* it.iltofa.turms.entry.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6476CFAA1746223900A6195C /* it.iltofa.turms.entry.icns */; };
@@ -128,9 +126,6 @@
 		64522F441847F87800D65289 /* IAMAddBookWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IAMAddBookWindowController.xib; sourceTree = "<group>"; };
 		645A7E5F1817C602003C9D5A /* IAMNoteEditTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMNoteEditTextView.h; sourceTree = "<group>"; };
 		645A7E601817C602003C9D5A /* IAMNoteEditTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMNoteEditTextView.m; sourceTree = "<group>"; };
-		645ED8A01754ED8A0070F83B /* iRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iRate.h; sourceTree = "<group>"; };
-		645ED8A11754ED8A0070F83B /* iRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iRate.m; sourceTree = "<group>"; };
-		645ED8A41754EFCE0070F83B /* iRate.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = iRate.bundle; sourceTree = "<group>"; };
 		64629F64183F79F300753313 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../Turms/Images.xcassets; sourceTree = "<group>"; };
 		6476CFAA1746223900A6195C /* it.iltofa.turms.entry.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = it.iltofa.turms.entry.icns; sourceTree = "<group>"; };
 		647EF3FA18918D1C0045F273 /* RNCryptor+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor+Private.h"; sourceTree = "<group>"; };
@@ -256,17 +251,6 @@
 			);
 			name = Preferences;
 			path = ../Turms;
-			sourceTree = "<group>";
-		};
-		645ED89E1754ED8A0070F83B /* iRate */ = {
-			isa = PBXGroup;
-			children = (
-				645ED8A41754EFCE0070F83B /* iRate.bundle */,
-				645ED8A01754ED8A0070F83B /* iRate.h */,
-				645ED8A11754ED8A0070F83B /* iRate.m */,
-			);
-			name = iRate;
-			path = ../iRate/iRate;
 			sourceTree = "<group>";
 		};
 		647EF3F918918D1C0045F273 /* RNCryptor */ = {
@@ -449,7 +433,6 @@
 			children = (
 				647EF40B18918ECB0045F273 /* STKeychain */,
 				647EF3F918918D1C0045F273 /* RNCryptor */,
-				645ED89E1754ED8A0070F83B /* iRate */,
 				64EE7C6A180C54EC004B94E2 /* sundown */,
 			);
 			name = "Utilities (common)";
@@ -582,7 +565,6 @@
 				6476CFAB1746223900A6195C /* it.iltofa.turms.entry.icns in Resources */,
 				64B56855174658ED006D04C4 /* readme.txt in Resources */,
 				64629F65183F79F300753313 /* Images.xcassets in Resources */,
-				645ED8A51754EFCE0070F83B /* iRate.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -635,7 +617,6 @@
 				6421B45918928939008C7E46 /* NSManagedObject+Serialization.m in Sources */,
 				64EE7C77180C54EC004B94E2 /* stack.c in Sources */,
 				64EE7C75180C54EC004B94E2 /* buffer.c in Sources */,
-				645ED8A31754ED8A0070F83B /* iRate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

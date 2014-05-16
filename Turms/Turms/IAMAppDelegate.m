@@ -10,7 +10,6 @@
 
 #include <sys/sysctl.h>
 #import "IAMPrefsWindowController.h"
-#import "iRate.h"
 #import "STKeychain.h"
 #import "Note.h"
 #import "Attachment.h"
@@ -32,15 +31,6 @@
 @synthesize managedObjectContext = _managedObjectContext;
 
 @synthesize cryptPassword = _cryptPassword;
-
-//+ (void)initialize {
-//    // Init iRate
-//    [iRate sharedInstance].daysUntilPrompt = 5;
-//    [iRate sharedInstance].usesUntilPrompt = 15;
-//    [iRate sharedInstance].appStoreID = 651141191;
-//    [iRate sharedInstance].appStoreGenreID = 0;
-//    [iRate sharedInstance].onlyPromptIfMainWindowIsAvailable = NO;
-//}
 
 - (void)applicationWillFinishLaunching:(NSNotification *)notification {
     NSAppleEventManager *appleEventManager = [NSAppleEventManager sharedAppleEventManager];
