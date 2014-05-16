@@ -20,3 +20,4 @@ No_Ads_Turms
 it.iltofa.turms.noads
 Display Name: Happy? Remove Ads!
 Description: Remove ads from current (if any) and future versions of this app by paying a coffee to the developer.
+

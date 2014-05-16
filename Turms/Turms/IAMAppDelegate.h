@@ -8,10 +8,14 @@
 
 #import <Cocoa/Cocoa.h>
 #import <CoreLocation/CoreLocation.h>
+#import <StoreKit/StoreKit.h>
 
 #import "IAMTableUIWindowController.h"
 
 #define kCoreDataStoreExternallyChanged @"kCoreDataStoreExternallyChanged"
+
+#define kSkipAdProcessingChanged @"skipAdChanged"
+#define kViewControllerShouldShowPINRequest @"kViewControllerShouldShowPINRequest"
 
 @interface IAMAppDelegate : NSObject <NSApplicationDelegate>
 
@@ -30,5 +34,9 @@
 - (IBAction)notesWindowAction:(id)sender;
 
 - (IBAction)getIOSApp:(id)sender;
+
+// Ads
+@property (nonatomic) BOOL skipAds;
+@property (atomic) BOOL processingPurchase;
 
 @end

@@ -14,7 +14,7 @@
 #import "Note.h"
 #import "Attachment.h"
 
-@interface IAMAppDelegate ()
+@interface IAMAppDelegate () <SKPaymentTransactionObserver>
 
 @property (strong) IAMPrefsWindowController *prefsController;
 
@@ -49,6 +49,8 @@
         self.collectionController = [[IAMTableUIWindowController alloc] initWithWindowNibName:@"IAMTableUIWindowController"];
         [self.collectionController showWindow:self];
     }
+    // Set itself as store observer
+    [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
     // Now set for the iCloud notification
     NSNotificationCenter *dc = [NSNotificationCenter defaultCenter];
     [dc addObserver:self selector:@selector(storesWillChange:) name:NSPersistentStoreCoordinatorStoresWillChangeNotification object:self.persistentStoreCoordinator];
@@ -157,6 +159,83 @@
             ALog(@"Error reading readme text from bundle: %@", [error description]);
         }
     }
+}
+
+#pragma mark - iAD
+
+- (void)setSkipAds:(BOOL)skipAds {
+    [[NSUserDefaults standardUserDefaults] setBool:skipAds forKey:@"skipAds"];
+}
+
+- (BOOL)skipAds {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"skipAds"];
+}
+
+#pragma mark - SKPaymentTransactionObserver
+
+- (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions {
+    for (SKPaymentTransaction *transaction in transactions)
+    {
+        switch (transaction.transactionState)
+        {
+            case SKPaymentTransactionStatePurchased: {
+                DLog(@"SKPaymentTransactionStatePurchased");
+                self.skipAds = YES;
+                self.processingPurchase = NO;
+                [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kSkipAdProcessingChanged object:self]];
+                [queue finishTransaction:transaction];
+                NSString *question = NSLocalizedString(@"Thank you!", @"");
+                NSString *info = NSLocalizedString(@"No Ad will be shown anymore.", @"");
+                NSString *cancelButton = NSLocalizedString(@"OK", @"");
+                NSAlert *alert = [[NSAlert alloc] init];
+                [alert setMessageText:question];
+                [alert setInformativeText:info];
+                [alert addButtonWithTitle:cancelButton];
+                [alert runModal];
+            }
+                break;
+            case SKPaymentTransactionStateFailed: {
+                DLog(@"SKPaymentTransactionStateFailed: %@", transaction.error);
+                NSAlert *alert = [NSAlert alertWithError:transaction.error];
+                [alert runModal];
+                self.processingPurchase = NO;
+                [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kSkipAdProcessingChanged object:self]];
+                [queue finishTransaction:transaction];
+            }
+                break;
+            case SKPaymentTransactionStateRestored:
+                DLog(@"SKPaymentTransactionStateRestored");
+                self.skipAds = YES;
+                self.processingPurchase = NO;
+                [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kSkipAdProcessingChanged object:self]];
+                [queue finishTransaction:transaction];
+            case SKPaymentTransactionStatePurchasing:
+                DLog(@"SKPaymentTransactionStatePurchasing");
+                self.processingPurchase = YES;
+                [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kSkipAdProcessingChanged object:self]];
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+- (void)paymentQueue:(SKPaymentQueue *)queue restoreCompletedTransactionsFailedWithError:(NSError *)error {
+    DLog(@"Error restoring purchase: %@.", [error localizedDescription]);
+    NSAlert *alert = [NSAlert alertWithError:error];
+    [alert runModal];
+    self.processingPurchase = NO;
+    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kSkipAdProcessingChanged object:self]];
+}
+
+- (void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue {
+    DLog(@"Restore finished");
+    self.processingPurchase = NO;
+    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kSkipAdProcessingChanged object:self]];
+}
+
+- (void)paymentQueue:(SKPaymentQueue *)queue updatedDownloads:(NSArray *)downloads {
+    DLog(@"Called with %@", downloads);
 }
 
 #pragma mark - Core Data
