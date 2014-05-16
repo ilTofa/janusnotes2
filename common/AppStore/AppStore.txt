@@ -1,5 +1,9 @@
+Turms Notes Mobile
+
 Turms is a program for OS X and iOS that allows you to securely collect your thoughts, wherever you are.
 Start collecting photos, links, video and audio clips. All your data will be seamlessly synced via iCloud to every iPhone/iPad or Macintosh you have. You won't forget anymore what you were thinking about when later you are on your mac writing that clever post.
+
+The app is free to use with ads (from iAds) that can be avoided with an in-App purchase.
 
 The app is named after Turms, the Etruscan god of trade and the messenger god between people and gods.
 
@@ -7,8 +11,11 @@ We understand that thoughts and notes are a very personal things and we tried ve
 The Macintosh version is fully sandboxed and have no access to anything else than the attachments you added to the notes (a copy of them, stored with the notes). The iPhone/iPad versions can be locked with a PIN, requested on every app startup.
 If you're privacy-conscious you should always lock your iPhone with a code (this will encrypt the notes' cache on your iPhone) and use FileVault on your Macintosh. Remember to lock your devices when you leave them.
 
-turms,note,notes,janus,privacy,encrypted,attachments,sharing,sync,icloud,video,audio,aes
+turms,iturms,note,notes,janus,privacy,encrypted,attachments,sharing,sync,icloud,video,audio,aes
 
+The application syncs over iCloud with a corresponding OS X app, named Turms, also on review.
+
+Non Consumable
 No_Ads_Turms
 it.iltofa.turms.noads
 Display Name: Happy? Remove Ads!
