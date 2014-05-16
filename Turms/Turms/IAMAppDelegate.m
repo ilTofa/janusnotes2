@@ -459,9 +459,8 @@
     return model;
 }
 
-// TODO: add app
 - (IBAction)rateTheApp:(id)sender {
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"macappstore://userpub.itunes.apple.com/WebObjects/MZUserPublishing.woa/wa/addUserReview?id=%d&type=Purple+Software"]];
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"macappstore://userpub.itunes.apple.com/WebObjects/MZUserPublishing.woa/wa/addUserReview?id=879393686&type=Purple+Software"]];
 }
 
 - (IBAction)sendFeedback:(id)sender {
