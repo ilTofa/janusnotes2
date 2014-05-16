@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5053" systemVersion="13C1021" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5053" systemVersion="13D65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1090" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5053"/>
@@ -8,6 +8,9 @@
         <customObject id="-2" userLabel="File's Owner" customClass="IAMPrefsWindowController">
             <connections>
                 <outlet property="encryptionKeyField" destination="QEA-h6-FLN" id="6Se-ls-acZ"/>
+                <outlet property="productCoffeeLabel" destination="scW-Kk-ALX" id="HAH-mb-lvH"/>
+                <outlet property="productCoffeePriceLabel" destination="uCX-vX-q1O" id="KsI-qO-633"/>
+                <outlet property="restoreCellLabel" destination="7Uy-Fw-XhV" id="4M2-Bf-6Ib"/>
                 <outlet property="window" destination="1" id="3"/>
             </connections>
         </customObject>
@@ -119,6 +122,9 @@ This will stop the app from nagging you from time to time and will give the deve
 Remove Ads!</string>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
+                                            <connections>
+                                                <action selector="removeAds:" target="-2" id="wmL-gR-bh8"/>
+                                            </connections>
                                         </button>
                                         <button translatesAutoresizingMaskIntoConstraints="NO" id="7Uy-Fw-XhV">
                                             <rect key="frame" x="297" y="14" width="136" height="52"/>
@@ -131,15 +137,33 @@ Remove Ads!</string>
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
+                                            <connections>
+                                                <action selector="restorePurchase:" target="-2" id="AmG-dl-u6P"/>
+                                            </connections>
                                         </button>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uCX-vX-q1O">
+                                            <rect key="frame" x="162" y="20" width="124" height="40"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="120" id="TbZ-Ax-w07"/>
+                                                <constraint firstAttribute="height" constant="40" id="XwQ-tZ-80n"/>
+                                            </constraints>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="center" title="$ 1,99" id="evo-9i-fa5">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="uCX-vX-q1O" secondAttribute="bottom" constant="20" id="9WT-7s-KXE"/>
                                         <constraint firstItem="53C-AQ-cpl" firstAttribute="top" secondItem="ei9-Rw-b2C" secondAttribute="top" constant="14" id="Faa-6h-7aK"/>
                                         <constraint firstAttribute="centerX" secondItem="53C-AQ-cpl" secondAttribute="centerX" id="Jug-3b-VTq"/>
                                         <constraint firstItem="scW-Kk-ALX" firstAttribute="leading" secondItem="ei9-Rw-b2C" secondAttribute="leading" constant="17" id="Jzi-ko-Ytu"/>
                                         <constraint firstAttribute="bottom" secondItem="7Uy-Fw-XhV" secondAttribute="bottom" constant="17" id="oZP-sY-Vcq"/>
                                         <constraint firstAttribute="trailing" secondItem="7Uy-Fw-XhV" secondAttribute="trailing" constant="17" id="phj-XE-dlr"/>
                                         <constraint firstAttribute="bottom" secondItem="scW-Kk-ALX" secondAttribute="bottom" constant="17" id="vQ1-wO-9yR"/>
+                                        <constraint firstAttribute="centerX" secondItem="uCX-vX-q1O" secondAttribute="centerX" id="x17-Az-OgT"/>
                                     </constraints>
                                 </view>
                             </tabViewItem>

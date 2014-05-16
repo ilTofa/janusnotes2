@@ -12,8 +12,13 @@
 
 @property NSFont *currentFont;
 @property (weak) IBOutlet NSTextField *encryptionKeyField;
+@property (weak) IBOutlet NSTextField *productCoffeePriceLabel;
+@property (weak) IBOutlet NSButton *productCoffeeLabel;
+@property (weak) IBOutlet NSButton *restoreCellLabel;
 
 - (IBAction)actionChangeFont:(id)sender;
 - (IBAction)changeEncryptionKey:(id)sender;
+- (IBAction)restorePurchase:(id)sender;
+- (IBAction)removeAds:(id)sender;
 
 @end
