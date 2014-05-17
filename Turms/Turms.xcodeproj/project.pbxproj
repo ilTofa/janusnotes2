@@ -42,6 +42,8 @@
 		64B56855174658ED006D04C4 /* readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 64B56854174658ED006D04C4 /* readme.txt */; };
 		64C8DD0919267C50007DF53E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64C8DD0819267C50007DF53E /* StoreKit.framework */; };
 		64C8DD0B19274776007DF53E /* In-App-Products.plist in Resources */ = {isa = PBXBuildFile; fileRef = 64C8DD0A19274776007DF53E /* In-App-Products.plist */; };
+		64C8DD8419274EFB007DF53E /* INAppStoreWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 64C8DD8119274EFB007DF53E /* INAppStoreWindow.m */; settings = {COMPILER_FLAGS = "-Wno-deprecated-declarations"; }; };
+		64C8DD8519274EFB007DF53E /* INWindowButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 64C8DD8319274EFB007DF53E /* INWindowButton.m */; };
 		64CB19281738EEE90014F35F /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CB19271738EEE90014F35F /* WebKit.framework */; };
 		64CB192A1738EFF20014F35F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CB19291738EFF20014F35F /* SystemConfiguration.framework */; };
 		64D8C9B71740F7F1005D87DC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64D8C9B61740F7F1005D87DC /* Security.framework */; };
@@ -151,6 +153,10 @@
 		64B56854174658ED006D04C4 /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = readme.txt; path = ../../common/Utilitites/readme.txt; sourceTree = "<group>"; };
 		64C8DD0819267C50007DF53E /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		64C8DD0A19274776007DF53E /* In-App-Products.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "In-App-Products.plist"; sourceTree = "<group>"; };
+		64C8DD8019274EFB007DF53E /* INAppStoreWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INAppStoreWindow.h; sourceTree = "<group>"; };
+		64C8DD8119274EFB007DF53E /* INAppStoreWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INAppStoreWindow.m; sourceTree = "<group>"; };
+		64C8DD8219274EFB007DF53E /* INWindowButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INWindowButton.h; sourceTree = "<group>"; };
+		64C8DD8319274EFB007DF53E /* INWindowButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INWindowButton.m; sourceTree = "<group>"; };
 		64CB19271738EEE90014F35F /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		64CB19291738EFF20014F35F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		64D32800181A828200D94B1A /* TurmsImporter-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TurmsImporter-Info.plist"; sourceTree = "<group>"; };
@@ -308,6 +314,18 @@
 			path = ../Turms;
 			sourceTree = "<group>";
 		};
+		64C8DD7F19274EFB007DF53E /* INAppStoreWindow */ = {
+			isa = PBXGroup;
+			children = (
+				64C8DD8019274EFB007DF53E /* INAppStoreWindow.h */,
+				64C8DD8119274EFB007DF53E /* INAppStoreWindow.m */,
+				64C8DD8219274EFB007DF53E /* INWindowButton.h */,
+				64C8DD8319274EFB007DF53E /* INWindowButton.m */,
+			);
+			name = INAppStoreWindow;
+			path = ../../INAppStoreWindow/INAppStoreWindow;
+			sourceTree = "<group>";
+		};
 		64EA620316F7110300F4838E = {
 			isa = PBXGroup;
 			children = (
@@ -358,6 +376,7 @@
 		64EA621516F7110300F4838E /* Turms */ = {
 			isa = PBXGroup;
 			children = (
+				64C8DD7F19274EFB007DF53E /* INAppStoreWindow */,
 				64629F64183F79F300753313 /* Images.xcassets */,
 				64EA627816F71E7600F4838E /* Utilities (common) */,
 				64EA626B16F71DF500F4838E /* CoreData (common) */,
@@ -596,6 +615,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64C8DD8419274EFB007DF53E /* INAppStoreWindow.m in Sources */,
 				64EE7C7F180C58B9004B94E2 /* html_smartypants.c in Sources */,
 				64522F2F18476C1A00D65289 /* Books.m in Sources */,
 				64EA621C16F7110300F4838E /* main.m in Sources */,
@@ -612,6 +632,7 @@
 				64522F2C18476C1A00D65289 /* Tags.m in Sources */,
 				645A7E611817C602003C9D5A /* IAMNoteEditTextView.m in Sources */,
 				64EE7C7D180C58B9004B94E2 /* houdini_href_e.c in Sources */,
+				64C8DD8519274EFB007DF53E /* INWindowButton.m in Sources */,
 				64EA628516F75E0000F4838E /* IAMNoteEditorWC.m in Sources */,
 				64522F3518476C4E00D65289 /* Note.m in Sources */,
 				64A75591170358BC0085933D /* NSManagedObjectContext+FetchedObjectFromURI.m in Sources */,
