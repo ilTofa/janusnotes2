@@ -171,6 +171,19 @@
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"skipAds"];
 }
 
+- (void)nagUser {
+    NSString *question = NSLocalizedString(@"Thank you!", @"");
+    NSString *info = @"If you're happy with the app and you're using it regularly, show your appreciation by building the Full Version.\nThis will stop the app from nagging you from time to time and will give the developers reasons to continue development of the app.";
+    NSString *buyButton = @"Buy Now";
+    NSString *cancelButton = @"Later";
+    NSAlert *alert = [[NSAlert alloc] init];
+    [alert setMessageText:question];
+    [alert setInformativeText:info];
+    [alert addButtonWithTitle:buyButton];
+    [alert addButtonWithTitle:cancelButton];
+    [alert runModal];
+}
+
 #pragma mark - SKPaymentTransactionObserver
 
 - (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions {
