@@ -257,7 +257,7 @@
                 [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kSkipAdProcessingChanged object:self]];
                 [queue finishTransaction:transaction];
                 NSString *question = NSLocalizedString(@"Thank you!", @"");
-                NSString *info = NSLocalizedString(@"No Ad will be shown anymore.", @"");
+                NSString *info = NSLocalizedString(@"Restart the app to get rid of the window tag.", @"");
                 NSString *cancelButton = NSLocalizedString(@"OK", @"");
                 NSAlert *alert = [[NSAlert alloc] init];
                 [alert setMessageText:question];
