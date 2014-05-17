@@ -82,7 +82,7 @@
     }
     // If user already paid, leave disabled
     if (((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).skipAds) {
-        self.productCoffeePriceLabel.stringValue = @"Already bought.";
+        self.productCoffeePriceLabel.stringValue = @"Already bought. Thank you!";
         return;
     }
     // If a transaction is already in progress, leave disabled

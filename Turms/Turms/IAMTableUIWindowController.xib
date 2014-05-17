@@ -420,7 +420,7 @@ label riga 4</string>
                         <font key="font" metaFont="systemBold" size="12"/>
                     </buttonCell>
                     <connections>
-                        <action selector="buyFullVersion:" target="-2" id="pxJ-wO-I9F"/>
+                        <action selector="preferencesAction:" target="-1" id="WQx-h7-DPN"/>
                     </connections>
                 </button>
             </subviews>
