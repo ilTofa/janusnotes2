@@ -14,6 +14,7 @@
 #import "NSManagedObject+Serialization.h"
 #import "Attachment.h"
 #import "Books.h"
+#import "INAppStoreWindow.h"
 
 @interface IAMTableUIWindowController () <IAMNoteEditorWCDelegate, NSWindowDelegate>
 
@@ -24,6 +25,9 @@
 @property (strong) IBOutlet NSArrayController *booksArrayController;
 
 @property NSTimer *syncStatusTimer;
+
+@property (strong) IBOutlet NSView *freeRiderView;
+- (IBAction)buyFullVersion:(id)sender;
 
 @end
 
@@ -42,6 +46,12 @@
 - (void)windowDidLoad
 {
     [super windowDidLoad];
+    // Free rider window init
+    INAppStoreWindow *aWindow = (INAppStoreWindow *)[self window];
+    self.freeRiderView.frame = aWindow.titleBarView.bounds;
+    self.freeRiderView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
+    [aWindow.titleBarView addSubview:self.freeRiderView];
+    // Init
     [self.window setExcludedFromWindowsMenu:YES];
     [self.notesWindowMenuItem setState:NSOnState];
     [self.theTable setTarget:self];
@@ -310,6 +320,10 @@
         }
     }
     return foundController;
+}
+
+- (IBAction)buyFullVersion:(id)sender {
+    DLog(@"Do something to buy full version!");
 }
 
 #pragma mark - Archives Management
