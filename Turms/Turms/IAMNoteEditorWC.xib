@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5053" systemVersion="13D65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1090" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5053"/>
-        <plugIn identifier="com.apple.WebKitIBPlugin" version="5053"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
+        <plugIn identifier="com.apple.WebKitIBPlugin" version="5056"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="IAMNoteEditorWC">
@@ -13,6 +13,8 @@
                 <outlet property="attachmentsCollectionView" destination="228" id="475"/>
                 <outlet property="attacmentContainerViewHeightConstraint" destination="976" id="983"/>
                 <outlet property="booksArrayController" destination="65i-uE-9d2" id="GY2-QC-cm7"/>
+                <outlet property="freeRiderButton" destination="GZ0-LG-I6d" id="Fg8-sl-obq"/>
+                <outlet property="freeRiderView" destination="h1c-hj-vIw" id="sXZ-or-5qu"/>
                 <outlet property="previewWebView" destination="7D9-MZ-Gjp" id="XHP-e9-vxn"/>
                 <outlet property="previewWindow" destination="Teg-d6-8hA" id="GC4-Pc-Fqr"/>
                 <outlet property="window" destination="1" id="3"/>
@@ -25,7 +27,7 @@
             <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="570" height="437"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1418"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1366" height="768"/>
             <value key="minSize" type="size" width="250" height="200"/>
             <view key="contentView" id="2">
                 <rect key="frame" x="0.0" y="0.0" width="570" height="437"/>
@@ -487,7 +489,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="30" y="30" width="480" height="481"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1418"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1366" height="768"/>
             <view key="contentView" id="2Y1-sH-LpR">
                 <rect key="frame" x="0.0" y="0.0" width="480" height="481"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -512,6 +514,29 @@
                 </constraints>
             </view>
         </window>
+        <customView id="h1c-hj-vIw" userLabel="Free Rider Version View">
+            <rect key="frame" x="0.0" y="0.0" width="163" height="22"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GZ0-LG-I6d">
+                    <rect key="frame" x="17" y="2" width="129" height="17"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="recessed" title="Free Rider Version" bezelStyle="recessed" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="WvM-C2-qMh">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="systemBold" size="12"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="preferencesAction:" target="-1" id="o4U-h1-IzS"/>
+                    </connections>
+                </button>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="GZ0-LG-I6d" secondAttribute="trailing" constant="17" id="Qpy-sR-ose"/>
+                <constraint firstItem="GZ0-LG-I6d" firstAttribute="top" secondItem="h1c-hj-vIw" secondAttribute="top" constant="3" id="Xca-FI-8Q3"/>
+                <constraint firstItem="GZ0-LG-I6d" firstAttribute="leading" secondItem="h1c-hj-vIw" secondAttribute="leading" constant="17" id="oxb-0x-pSE"/>
+                <constraint firstAttribute="bottom" secondItem="GZ0-LG-I6d" secondAttribute="bottom" constant="3" id="tYf-bq-QjL"/>
+            </constraints>
+        </customView>
     </objects>
     <resources>
         <image name="add_property" width="64" height="64"/>

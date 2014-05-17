@@ -27,7 +27,6 @@
 @property NSTimer *syncStatusTimer;
 
 @property (strong) IBOutlet NSView *freeRiderView;
-- (IBAction)buyFullVersion:(id)sender;
 @property (weak) IBOutlet NSButton *freeRiderButton;
 
 @end
