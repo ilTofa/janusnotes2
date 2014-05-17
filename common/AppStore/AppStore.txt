@@ -21,3 +21,9 @@ it.iltofa.turms.noads
 Display Name: Happy? Remove Ads!
 Description: Remove ads from current (if any) and future versions of this app by paying a coffee to the developer.
 
+Non Consumable
+No_Ads_OSXTurms
+it.iltofa.turms.osxnoads
+Display Name: Happy? Buy Full Version!
+Description: If you're happy with the app and you're using it regularly, show your appreciation by building the Full Version. This will stop the app from nagging you from time to time and will give the developers reasons to continue development of the app.
+
