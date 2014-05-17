@@ -126,6 +126,9 @@
 
 - (IBAction)addNote:(id)sender {
     DLog(@"This is addNote handler in MainWindowController");
+    if([(IAMAppDelegate *)[[NSApplication sharedApplication] delegate] nagUser]) {
+        return;
+    }
     IAMNoteEditorWC *noteEditor = [[IAMNoteEditorWC alloc] initWithWindowNibName:@"IAMNoteEditorWC"];
     [noteEditor setDelegate:self];
     // Preserve a reference to the controller to keep ARC happy
@@ -136,6 +139,9 @@
 
 - (IBAction)editNote:(id)sender {
 //    DLog(@"Selected note for editing is: %@", [self.arrayController selectedObjects][0]);
+    if([(IAMAppDelegate *)[[NSApplication sharedApplication] delegate] nagUser]) {
+        return;
+    }
     IAMNoteEditorWC *noteEditor = [[IAMNoteEditorWC alloc] initWithWindowNibName:@"IAMNoteEditorWC"];
     [noteEditor setDelegate:self];
     [noteEditor setIdForTheNoteToBeEdited:[[self.arrayController selectedObjects][0] objectID]];

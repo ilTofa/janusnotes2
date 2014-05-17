@@ -38,5 +38,6 @@
 // Ads
 @property (nonatomic) BOOL skipAds;
 @property (atomic) BOOL processingPurchase;
+- (BOOL)nagUser;
 
 @end

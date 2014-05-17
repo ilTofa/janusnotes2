@@ -49,6 +49,9 @@
         self.collectionController = [[IAMTableUIWindowController alloc] initWithWindowNibName:@"IAMTableUIWindowController"];
         [self.collectionController showWindow:self];
     }
+    // Count executions
+    NSInteger count = [[NSUserDefaults standardUserDefaults] integerForKey:@"count"];
+    [[NSUserDefaults standardUserDefaults] setInteger:++count forKey:@"count"];
     // Set itself as store observer
     [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
     // Now set for the iCloud notification
@@ -171,7 +174,36 @@
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"skipAds"];
 }
 
-- (void)nagUser {
+- (BOOL)isTimeToNag {
+    // Get first run time.
+    NSDate *firstDate = [[NSUserDefaults standardUserDefaults] objectForKey:@"firstDate"];
+    if (!firstDate) {
+        DLog(@"First time");
+        [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"firstDate"];
+        return NO;
+    }
+    NSInteger count = [[NSUserDefaults standardUserDefaults] integerForKey:@"count"];
+    DLog(@"Time to nag? %.0f, %ld", [firstDate timeIntervalSinceNow], (long)count);
+    // Wait 7 days && 15 app executions
+    if ((-[firstDate timeIntervalSinceNow] > 86400 * 7) && count > 15) {
+        return YES;
+    }
+    return NO;
+}
+
+- (BOOL)nagUser {
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"skipAds"]) {
+        DLog(@"no Ads, no nag");
+        return NO;
+    }
+    if (![self isTimeToNag]) {
+        DLog(@"Still early");
+        return NO;
+    }
+    // Nag only 25%...
+    if (arc4random() % 4 != 0) {
+        return NO;
+    }
     NSString *question = NSLocalizedString(@"Thank you!", @"");
     NSString *info = @"If you're happy with the app and you're using it regularly, show your appreciation by building the Full Version.\nThis will stop the app from nagging you from time to time and will give the developers reasons to continue development of the app.";
     NSString *buyButton = @"Buy Now";
@@ -179,9 +211,15 @@
     NSAlert *alert = [[NSAlert alloc] init];
     [alert setMessageText:question];
     [alert setInformativeText:info];
-    [alert addButtonWithTitle:buyButton];
     [alert addButtonWithTitle:cancelButton];
-    [alert runModal];
+    [alert addButtonWithTitle:buyButton];
+    NSInteger answer = [alert runModal];
+    DLog(@"%ld", (long)answer);
+    if (answer == NSAlertSecondButtonReturn) {
+        [self preferencesAction:self];
+        return YES;
+    }
+    return NO;
 }
 
 #pragma mark - SKPaymentTransactionObserver
