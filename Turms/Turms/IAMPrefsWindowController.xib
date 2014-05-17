@@ -110,16 +110,14 @@ This will stop the app from nagging you from time to time and will give the deve
                                             </textFieldCell>
                                         </textField>
                                         <button translatesAutoresizingMaskIntoConstraints="NO" id="scW-Kk-ALX">
-                                            <rect key="frame" x="15" y="14" width="136" height="52"/>
+                                            <rect key="frame" x="209" y="47" width="224" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="47" id="Q22-ct-sz9"/>
-                                                <constraint firstAttribute="width" constant="132" id="rOH-Ie-Ljm"/>
+                                                <constraint firstAttribute="height" constant="25" id="Q22-ct-sz9"/>
+                                                <constraint firstAttribute="width" constant="220" id="rOH-Ie-Ljm"/>
                                             </constraints>
-                                            <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Uqm-jP-7Ks">
+                                            <buttonCell key="cell" type="bevel" title="Happy? Buy Full Version!" bezelStyle="regularSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Uqm-jP-7Ks">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                <string key="title">Happy?
-Remove Ads!</string>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
@@ -127,11 +125,11 @@ Remove Ads!</string>
                                             </connections>
                                         </button>
                                         <button translatesAutoresizingMaskIntoConstraints="NO" id="7Uy-Fw-XhV">
-                                            <rect key="frame" x="297" y="14" width="136" height="52"/>
+                                            <rect key="frame" x="209" y="14" width="224" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="47" id="LAx-To-BMZ"/>
-                                                <constraint firstAttribute="width" constant="132" id="lMx-6m-DVw"/>
+                                                <constraint firstAttribute="height" constant="25" id="LAx-To-BMZ"/>
+                                                <constraint firstAttribute="width" constant="220" id="lMx-6m-DVw"/>
                                             </constraints>
                                             <buttonCell key="cell" type="bevel" title="Restore Purchase" bezelStyle="regularSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1qJ-i3-WVJ">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -142,11 +140,11 @@ Remove Ads!</string>
                                             </connections>
                                         </button>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uCX-vX-q1O">
-                                            <rect key="frame" x="162" y="20" width="124" height="40"/>
+                                            <rect key="frame" x="3" y="17" width="202" height="40"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="120" id="TbZ-Ax-w07"/>
-                                                <constraint firstAttribute="height" constant="40" id="XwQ-tZ-80n"/>
+                                                <constraint firstAttribute="width" constant="198" id="lxh-dr-wyp"/>
+                                                <constraint firstAttribute="height" constant="40" id="miB-LL-L3y"/>
                                             </constraints>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="center" title="$ 1,99" id="evo-9i-fa5">
                                                 <font key="font" metaFont="system"/>
@@ -156,14 +154,14 @@ Remove Ads!</string>
                                         </textField>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="uCX-vX-q1O" secondAttribute="bottom" constant="20" id="9WT-7s-KXE"/>
                                         <constraint firstItem="53C-AQ-cpl" firstAttribute="top" secondItem="ei9-Rw-b2C" secondAttribute="top" constant="14" id="Faa-6h-7aK"/>
                                         <constraint firstAttribute="centerX" secondItem="53C-AQ-cpl" secondAttribute="centerX" id="Jug-3b-VTq"/>
-                                        <constraint firstItem="scW-Kk-ALX" firstAttribute="leading" secondItem="ei9-Rw-b2C" secondAttribute="leading" constant="17" id="Jzi-ko-Ytu"/>
+                                        <constraint firstItem="7Uy-Fw-XhV" firstAttribute="top" secondItem="scW-Kk-ALX" secondAttribute="bottom" constant="8" id="SVs-BX-RY3"/>
+                                        <constraint firstAttribute="bottom" secondItem="uCX-vX-q1O" secondAttribute="bottom" constant="17" id="eYk-fG-MXZ"/>
                                         <constraint firstAttribute="bottom" secondItem="7Uy-Fw-XhV" secondAttribute="bottom" constant="17" id="oZP-sY-Vcq"/>
                                         <constraint firstAttribute="trailing" secondItem="7Uy-Fw-XhV" secondAttribute="trailing" constant="17" id="phj-XE-dlr"/>
-                                        <constraint firstAttribute="bottom" secondItem="scW-Kk-ALX" secondAttribute="bottom" constant="17" id="vQ1-wO-9yR"/>
-                                        <constraint firstAttribute="centerX" secondItem="uCX-vX-q1O" secondAttribute="centerX" id="x17-Az-OgT"/>
+                                        <constraint firstItem="uCX-vX-q1O" firstAttribute="leading" secondItem="ei9-Rw-b2C" secondAttribute="leading" constant="5" id="qyg-C6-wgf"/>
+                                        <constraint firstAttribute="trailing" secondItem="scW-Kk-ALX" secondAttribute="trailing" constant="17" id="wxI-DH-c4i"/>
                                     </constraints>
                                 </view>
                             </tabViewItem>
