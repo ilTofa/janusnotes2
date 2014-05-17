@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5053" systemVersion="13D65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1090" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5053"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="IAMTableUIWindowController">
             <connections>
                 <outlet property="arrayController" destination="216" id="218"/>
                 <outlet property="booksArrayController" destination="8XF-GB-eMM" id="OoN-1q-t7X"/>
+                <outlet property="freeRiderButton" destination="svB-eQ-H0E" id="NLU-Ht-j6k"/>
                 <outlet property="freeRiderView" destination="so7-58-ckS" id="rOV-XT-YJy"/>
                 <outlet property="searchField" destination="85" id="240"/>
                 <outlet property="theBookController" destination="o4J-zF-bjD" id="SGx-75-ms0"/>
@@ -22,7 +23,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="180" width="503" height="462"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1418"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1366" height="768"/>
             <value key="minSize" type="size" width="350" height="275"/>
             <view key="contentView" id="2">
                 <rect key="frame" x="0.0" y="0.0" width="503" height="462"/>
@@ -296,7 +297,7 @@ label riga 4</string>
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES" HUD="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="272" y="172" width="200" height="170"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1418"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1366" height="768"/>
             <view key="contentView" id="Pe3-0N-Gjn">
                 <rect key="frame" x="0.0" y="0.0" width="200" height="170"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -408,14 +409,14 @@ label riga 4</string>
             </items>
         </menu>
         <customView id="so7-58-ckS" userLabel="Free Rider Version View">
-            <rect key="frame" x="0.0" y="0.0" width="163" height="19"/>
+            <rect key="frame" x="0.0" y="0.0" width="163" height="22"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="svB-eQ-H0E">
-                    <rect key="frame" x="17" y="0.0" width="129" height="19"/>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="svB-eQ-H0E">
+                    <rect key="frame" x="17" y="2" width="129" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="recessed" title="Free Rider Version" bezelStyle="recessed" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="c4w-Jd-2zl">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                    <buttonCell key="cell" type="recessed" title="Free Rider Version" bezelStyle="recessed" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="c4w-Jd-2zl">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="systemBold" size="12"/>
                     </buttonCell>
                     <connections>
@@ -423,6 +424,12 @@ label riga 4</string>
                     </connections>
                 </button>
             </subviews>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="svB-eQ-H0E" secondAttribute="bottom" constant="3" id="57O-G9-qwz"/>
+                <constraint firstAttribute="trailing" secondItem="svB-eQ-H0E" secondAttribute="trailing" constant="17" id="Ssq-Ux-DOg"/>
+                <constraint firstItem="svB-eQ-H0E" firstAttribute="leading" secondItem="so7-58-ckS" secondAttribute="leading" constant="17" id="WQw-wA-pmz"/>
+                <constraint firstItem="svB-eQ-H0E" firstAttribute="top" secondItem="so7-58-ckS" secondAttribute="top" constant="3" id="uVx-b9-sdr"/>
+            </constraints>
         </customView>
     </objects>
     <resources>
