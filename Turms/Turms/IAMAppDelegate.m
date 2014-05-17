@@ -169,6 +169,9 @@
 
 #pragma mark - iAD
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+
 - (void)whatever {
     // An array of the product identifiers to query in the receipt
     DLog(@"starting whatever.");
@@ -186,6 +189,8 @@
         }
     });
 }
+
+#pragma clang diagnostic pop
 
 - (void)setSkipAds:(BOOL)skipAds {
     [[NSUserDefaults standardUserDefaults] setBool:skipAds forKey:@"skipAds"];

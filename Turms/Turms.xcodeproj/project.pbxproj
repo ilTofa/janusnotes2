@@ -10,7 +10,6 @@
 		641A9BC818440F5800C2EE74 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64EA621316F7110300F4838E /* CoreData.framework */; };
 		6421B45918928939008C7E46 /* NSManagedObject+Serialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 6421B45818928939008C7E46 /* NSManagedObject+Serialization.m */; };
 		6421B45D1892CC5B008C7E46 /* it.iltofa.turms.archive.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6421B45C1892CC5B008C7E46 /* it.iltofa.turms.archive.icns */; };
-		643BA048173BFA4600A6C437 /* IAmMine.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 64EA627016F71E1400F4838E /* IAmMine.xcdatamodeld */; };
 		643BA050173D26E300A6C437 /* IAMOpenWithWC.m in Sources */ = {isa = PBXBuildFile; fileRef = 643BA04E173D26E300A6C437 /* IAMOpenWithWC.m */; };
 		643BA051173D26E300A6C437 /* IAMOpenWithWC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 643BA04F173D26E300A6C437 /* IAMOpenWithWC.xib */; };
 		644AC25B17257FE4007B51FF /* IAMTableUIWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 644AC25917257FE4007B51FF /* IAMTableUIWindowController.m */; };
@@ -30,13 +29,11 @@
 		64629F65183F79F300753313 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64629F64183F79F300753313 /* Images.xcassets */; };
 		64766FAB1927D7BF00EFF249 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64A85F47192613400083479A /* libcrypto.a */; };
 		6476CFAB1746223900A6195C /* it.iltofa.turms.entry.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6476CFAA1746223900A6195C /* it.iltofa.turms.entry.icns */; };
-		6476CFAC1746228E00A6195C /* it.iltofa.turms.entry.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6476CFAA1746223900A6195C /* it.iltofa.turms.entry.icns */; };
 		647EF40418918D1C0045F273 /* RNCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 647EF3FD18918D1C0045F273 /* RNCryptor.m */; };
 		647EF40518918D1C0045F273 /* RNCryptorEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 647EF3FF18918D1C0045F273 /* RNCryptorEngine.m */; };
 		647EF40618918D1C0045F273 /* RNDecryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 647EF40118918D1C0045F273 /* RNDecryptor.m */; };
 		647EF40718918D1C0045F273 /* RNEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 647EF40318918D1C0045F273 /* RNEncryptor.m */; };
 		647EF40A18918EC50045F273 /* STKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 647EF40918918EC50045F273 /* STKeychain.m */; };
-		64A4E9B51742659A00BC49FE /* TurmsImporter.mdimporter in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64EA622E16F7110300F4838E /* TurmsImporter.mdimporter */; };
 		64A75591170358BC0085933D /* NSManagedObjectContext+FetchedObjectFromURI.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A75590170358BC0085933D /* NSManagedObjectContext+FetchedObjectFromURI.m */; };
 		64B4B7BC181140A700766D43 /* MarkdownPreview.html in Resources */ = {isa = PBXBuildFile; fileRef = 64B4B7BB181140A700766D43 /* MarkdownPreview.html */; };
 		64B56855174658ED006D04C4 /* readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 64B56854174658ED006D04C4 /* readme.txt */; };
@@ -53,14 +50,6 @@
 		64EA622016F7110300F4838E /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 64EA621E16F7110300F4838E /* Credits.rtf */; };
 		64EA622316F7110300F4838E /* IAMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 64EA622216F7110300F4838E /* IAMAppDelegate.m */; };
 		64EA622616F7110300F4838E /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64EA622416F7110300F4838E /* MainMenu.xib */; };
-		64EA623316F7110300F4838E /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64EA623216F7110300F4838E /* CoreServices.framework */; };
-		64EA623516F7110300F4838E /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64EA623416F7110300F4838E /* CoreFoundation.framework */; };
-		64EA623716F7110300F4838E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64EA623616F7110300F4838E /* CoreData.framework */; };
-		64EA623916F7110300F4838E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64EA623816F7110300F4838E /* Foundation.framework */; };
-		64EA623F16F7110300F4838E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64EA623D16F7110300F4838E /* InfoPlist.strings */; };
-		64EA624116F7110300F4838E /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 64EA624016F7110300F4838E /* main.c */; };
-		64EA624316F7110300F4838E /* GetMetadataForFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 64EA624216F7110300F4838E /* GetMetadataForFile.m */; };
-		64EA624616F7110300F4838E /* TurmsSpotlightImporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 64EA624516F7110300F4838E /* TurmsSpotlightImporter.m */; };
 		64EA627416F71E1400F4838E /* Attachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 64EA626D16F71E1400F4838E /* Attachment.m */; };
 		64EA627616F71E1400F4838E /* IAmMine.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 64EA627016F71E1400F4838E /* IAmMine.xcdatamodeld */; };
 		64EA628516F75E0000F4838E /* IAMNoteEditorWC.m in Sources */ = {isa = PBXBuildFile; fileRef = 64EA628316F75E0000F4838E /* IAMNoteEditorWC.m */; };
@@ -75,29 +64,6 @@
 		64EE7C7F180C58B9004B94E2 /* html_smartypants.c in Sources */ = {isa = PBXBuildFile; fileRef = 64EE7C7A180C58B9004B94E2 /* html_smartypants.c */; };
 		64EE7C80180C58B9004B94E2 /* html.c in Sources */ = {isa = PBXBuildFile; fileRef = 64EE7C7B180C58B9004B94E2 /* html.c */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		64EA622F16F7110300F4838E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 64EA620416F7110300F4838E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 64EA622D16F7110300F4838E;
-			remoteInfo = JanusImporter;
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		64A4E9B41742656900BC49FE /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = Contents/Library/Spotlight;
-			dstSubfolderSpec = 1;
-			files = (
-				64A4E9B51742659A00BC49FE /* TurmsImporter.mdimporter in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		6421B45718928939008C7E46 /* NSManagedObject+Serialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSManagedObject+Serialization.h"; path = "../common/iCloud/NSManagedObject+Serialization.h"; sourceTree = "<group>"; };
@@ -175,7 +141,6 @@
 		64EA622116F7110300F4838E /* IAMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IAMAppDelegate.h; sourceTree = "<group>"; };
 		64EA622216F7110300F4838E /* IAMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IAMAppDelegate.m; sourceTree = "<group>"; };
 		64EA622516F7110300F4838E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		64EA622E16F7110300F4838E /* TurmsImporter.mdimporter */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TurmsImporter.mdimporter; sourceTree = BUILT_PRODUCTS_DIR; };
 		64EA623216F7110300F4838E /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		64EA623416F7110300F4838E /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		64EA623616F7110300F4838E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -224,17 +189,6 @@
 				64CB192A1738EFF20014F35F /* SystemConfiguration.framework in Frameworks */,
 				64CB19281738EEE90014F35F /* WebKit.framework in Frameworks */,
 				64EA621016F7110300F4838E /* Cocoa.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		64EA622B16F7110300F4838E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				64EA623316F7110300F4838E /* CoreServices.framework in Frameworks */,
-				64EA623516F7110300F4838E /* CoreFoundation.framework in Frameworks */,
-				64EA623716F7110300F4838E /* CoreData.framework in Frameworks */,
-				64EA623916F7110300F4838E /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,7 +295,6 @@
 			isa = PBXGroup;
 			children = (
 				64EA620C16F7110300F4838E /* Turms.app */,
-				64EA622E16F7110300F4838E /* TurmsImporter.mdimporter */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -504,34 +457,15 @@
 				64EA620816F7110300F4838E /* Sources */,
 				64EA620916F7110300F4838E /* Frameworks */,
 				64EA620A16F7110300F4838E /* Resources */,
-				64A4E9B41742656900BC49FE /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				64EA623016F7110300F4838E /* PBXTargetDependency */,
 			);
 			name = Turms;
 			productName = Janus;
 			productReference = 64EA620C16F7110300F4838E /* Turms.app */;
 			productType = "com.apple.product-type.application";
-		};
-		64EA622D16F7110300F4838E /* TurmsImporter */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 64EA624B16F7110300F4838E /* Build configuration list for PBXNativeTarget "TurmsImporter" */;
-			buildPhases = (
-				64EA622A16F7110300F4838E /* Sources */,
-				64EA622B16F7110300F4838E /* Frameworks */,
-				64EA622C16F7110300F4838E /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = TurmsImporter;
-			productName = JanusImporter;
-			productReference = 64EA622E16F7110300F4838E /* TurmsImporter.mdimporter */;
-			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
 
@@ -574,7 +508,6 @@
 			projectRoot = "";
 			targets = (
 				64EA620B16F7110300F4838E /* Turms */,
-				64EA622D16F7110300F4838E /* TurmsImporter */,
 			);
 		};
 /* End PBXProject section */
@@ -598,15 +531,6 @@
 				6476CFAB1746223900A6195C /* it.iltofa.turms.entry.icns in Resources */,
 				64B56855174658ED006D04C4 /* readme.txt in Resources */,
 				64629F65183F79F300753313 /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		64EA622C16F7110300F4838E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				64EA623F16F7110300F4838E /* InfoPlist.strings in Resources */,
-				6476CFAC1746228E00A6195C /* it.iltofa.turms.entry.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -655,26 +579,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		64EA622A16F7110300F4838E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				64EA624116F7110300F4838E /* main.c in Sources */,
-				64EA624316F7110300F4838E /* GetMetadataForFile.m in Sources */,
-				64EA624616F7110300F4838E /* TurmsSpotlightImporter.m in Sources */,
-				643BA048173BFA4600A6C437 /* IAmMine.xcdatamodeld in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		64EA623016F7110300F4838E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 64EA622D16F7110300F4838E /* TurmsImporter */;
-			targetProxy = 64EA622F16F7110300F4838E /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		64EA621816F7110300F4838E /* InfoPlist.strings */ = {
@@ -765,23 +670,6 @@
 			};
 			name = Demo;
 		};
-		64E0C374175358D100C1F946 /* Demo */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_IDENTITY = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TurmsImporter/TurmsImporter-Prefix.pch";
-				INFOPLIST_FILE = "TurmsImporter/TurmsImporter-Info.plist";
-				INSTALL_PATH = "@executable_path/../Contents/Library/Spotlight";
-				LIBRARY_STYLE = BUNDLE;
-				PRODUCT_NAME = TurmsImporter;
-				SKIP_INSTALL = YES;
-				WRAPPER_EXTENSION = mdimporter;
-			};
-			name = Demo;
-		};
 		64E0C375175359D700C1F946 /* Debug Demo */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -844,23 +732,6 @@
 			};
 			name = "Debug Demo";
 		};
-		64E0C377175359D700C1F946 /* Debug Demo */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_IDENTITY = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TurmsImporter/TurmsImporter-Prefix.pch";
-				INFOPLIST_FILE = "TurmsImporter/TurmsImporter-Info.plist";
-				INSTALL_PATH = "@executable_path/../Contents/Library/Spotlight";
-				LIBRARY_STYLE = BUNDLE;
-				PRODUCT_NAME = TurmsImporter;
-				SKIP_INSTALL = YES;
-				WRAPPER_EXTENSION = mdimporter;
-			};
-			name = "Debug Demo";
-		};
 		64EA624916F7110300F4838E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -915,40 +786,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				SDKROOT = macosx;
-			};
-			name = Release;
-		};
-		64EA624C16F7110300F4838E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_IDENTITY = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TurmsImporter/TurmsImporter-Prefix.pch";
-				INFOPLIST_FILE = "TurmsImporter/TurmsImporter-Info.plist";
-				INSTALL_PATH = "@executable_path/../Contents/Library/Spotlight";
-				LIBRARY_STYLE = BUNDLE;
-				PRODUCT_NAME = TurmsImporter;
-				SKIP_INSTALL = YES;
-				WRAPPER_EXTENSION = mdimporter;
-			};
-			name = Debug;
-		};
-		64EA624D16F7110300F4838E /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_IDENTITY = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TurmsImporter/TurmsImporter-Prefix.pch";
-				INFOPLIST_FILE = "TurmsImporter/TurmsImporter-Info.plist";
-				INSTALL_PATH = "@executable_path/../Contents/Library/Spotlight";
-				LIBRARY_STYLE = BUNDLE;
-				PRODUCT_NAME = TurmsImporter;
-				SKIP_INSTALL = YES;
-				WRAPPER_EXTENSION = mdimporter;
 			};
 			name = Release;
 		};
@@ -1015,17 +852,6 @@
 				64E0C375175359D700C1F946 /* Debug Demo */,
 				64EA624A16F7110300F4838E /* Release */,
 				64E0C372175358D100C1F946 /* Demo */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		64EA624B16F7110300F4838E /* Build configuration list for PBXNativeTarget "TurmsImporter" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				64EA624C16F7110300F4838E /* Debug */,
-				64E0C377175359D700C1F946 /* Debug Demo */,
-				64EA624D16F7110300F4838E /* Release */,
-				64E0C374175358D100C1F946 /* Demo */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

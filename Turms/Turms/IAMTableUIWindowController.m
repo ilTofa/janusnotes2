@@ -21,6 +21,7 @@
 @property (weak) IBOutlet NSSearchFieldCell *searchField;
 @property (copy) NSArray *sortDescriptors;
 @property NSPredicate *filterPredicate;
+@property (copy) NSString *bookQueryPredicate;
 
 @property (strong) IBOutlet NSArrayController *booksArrayController;
 
@@ -187,18 +188,14 @@
             [windowTitle appendFormat:@" and %@", selectedBook.name];
         }
     }];
-    if (queryString) {
-        DLog(@"Book query string is: %@", queryString);
-        self.filterPredicate = [NSPredicate predicateWithFormat:queryString];
-    } else {
-        DLog(@"Book query string is void");
-        self.filterPredicate = nil;
-    }
     if (windowTitle) {
         [self.window setTitle:windowTitle];
     } else {
         [self.window setTitle:@"Turms"];
     }
+    self.bookQueryPredicate = queryString;
+    DLog(@"Book query string is: %@", queryString);
+    [self searched:self];
 }
 
 #pragma mark - Actions
@@ -313,9 +310,13 @@
                 queryString = [queryString stringByAppendingFormat:@" AND (text contains[cd] \"%@\" OR title contains[cd] \"%@\")", term, term];
         }
     }
-    else
+    else {
         queryString = @"text  like[c] \"*\"";
-//    DLog(@"Filtering on: '%@'", queryString);
+    }
+    if (self.bookQueryPredicate) {
+        queryString = [queryString stringByAppendingFormat:@" AND (%@)", self.bookQueryPredicate];
+    }
+    DLog(@"Filtering on: '%@'", queryString);
     [self.arrayController setFilterPredicate:[NSPredicate predicateWithFormat:queryString]];
 }
 
