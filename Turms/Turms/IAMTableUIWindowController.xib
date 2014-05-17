@@ -415,6 +415,9 @@ label riga 4</string>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="svB-eQ-H0E">
                     <rect key="frame" x="17" y="2" width="129" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="129" id="gtK-HK-JKg"/>
+                    </constraints>
                     <buttonCell key="cell" type="recessed" title="Free Rider Version" bezelStyle="recessed" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="c4w-Jd-2zl">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="systemBold" size="12"/>
@@ -426,8 +429,7 @@ label riga 4</string>
             </subviews>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="svB-eQ-H0E" secondAttribute="bottom" constant="3" id="57O-G9-qwz"/>
-                <constraint firstAttribute="trailing" secondItem="svB-eQ-H0E" secondAttribute="trailing" constant="17" id="Ssq-Ux-DOg"/>
-                <constraint firstItem="svB-eQ-H0E" firstAttribute="leading" secondItem="so7-58-ckS" secondAttribute="leading" constant="17" id="WQw-wA-pmz"/>
+                <constraint firstAttribute="centerX" secondItem="svB-eQ-H0E" secondAttribute="centerX" id="Sb3-tX-oSe"/>
                 <constraint firstItem="svB-eQ-H0E" firstAttribute="top" secondItem="so7-58-ckS" secondAttribute="top" constant="3" id="uVx-b9-sdr"/>
             </constraints>
         </customView>

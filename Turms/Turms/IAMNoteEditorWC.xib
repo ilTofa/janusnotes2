@@ -432,7 +432,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <clipView key="contentView" id="X9O-Bn-ytk">
                 <rect key="frame" x="1" y="17" width="238" height="117"/>
-                <autoresizingMask key="autoresizingMask"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="830" id="828">
                         <rect key="frame" x="0.0" y="0.0" width="238" height="117"/>
@@ -521,6 +521,9 @@
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GZ0-LG-I6d">
                     <rect key="frame" x="17" y="2" width="129" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="129" id="Krr-My-s1q"/>
+                    </constraints>
                     <buttonCell key="cell" type="recessed" title="Free Rider Version" bezelStyle="recessed" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="WvM-C2-qMh">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="systemBold" size="12"/>
@@ -531,9 +534,8 @@
                 </button>
             </subviews>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="GZ0-LG-I6d" secondAttribute="trailing" constant="17" id="Qpy-sR-ose"/>
                 <constraint firstItem="GZ0-LG-I6d" firstAttribute="top" secondItem="h1c-hj-vIw" secondAttribute="top" constant="3" id="Xca-FI-8Q3"/>
-                <constraint firstItem="GZ0-LG-I6d" firstAttribute="leading" secondItem="h1c-hj-vIw" secondAttribute="leading" constant="17" id="oxb-0x-pSE"/>
+                <constraint firstAttribute="centerX" secondItem="GZ0-LG-I6d" secondAttribute="centerX" id="i9W-PP-cdT"/>
                 <constraint firstAttribute="bottom" secondItem="GZ0-LG-I6d" secondAttribute="bottom" constant="3" id="tYf-bq-QjL"/>
             </constraints>
         </customView>
