@@ -28,6 +28,7 @@
 		64522F461847F87800D65289 /* IAMAddBookWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64522F441847F87800D65289 /* IAMAddBookWindowController.xib */; };
 		645A7E611817C602003C9D5A /* IAMNoteEditTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 645A7E601817C602003C9D5A /* IAMNoteEditTextView.m */; };
 		64629F65183F79F300753313 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64629F64183F79F300753313 /* Images.xcassets */; };
+		64766FAB1927D7BF00EFF249 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64A85F47192613400083479A /* libcrypto.a */; };
 		6476CFAB1746223900A6195C /* it.iltofa.turms.entry.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6476CFAA1746223900A6195C /* it.iltofa.turms.entry.icns */; };
 		6476CFAC1746228E00A6195C /* it.iltofa.turms.entry.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6476CFAA1746223900A6195C /* it.iltofa.turms.entry.icns */; };
 		647EF40418918D1C0045F273 /* RNCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 647EF3FD18918D1C0045F273 /* RNCryptor.m */; };
@@ -37,7 +38,6 @@
 		647EF40A18918EC50045F273 /* STKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 647EF40918918EC50045F273 /* STKeychain.m */; };
 		64A4E9B51742659A00BC49FE /* TurmsImporter.mdimporter in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64EA622E16F7110300F4838E /* TurmsImporter.mdimporter */; };
 		64A75591170358BC0085933D /* NSManagedObjectContext+FetchedObjectFromURI.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A75590170358BC0085933D /* NSManagedObjectContext+FetchedObjectFromURI.m */; };
-		64A85F48192613400083479A /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64A85F47192613400083479A /* libcrypto.a */; };
 		64B4B7BC181140A700766D43 /* MarkdownPreview.html in Resources */ = {isa = PBXBuildFile; fileRef = 64B4B7BB181140A700766D43 /* MarkdownPreview.html */; };
 		64B56855174658ED006D04C4 /* readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 64B56854174658ED006D04C4 /* readme.txt */; };
 		64C8DD0919267C50007DF53E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64C8DD0819267C50007DF53E /* StoreKit.framework */; };
@@ -132,6 +132,7 @@
 		645A7E5F1817C602003C9D5A /* IAMNoteEditTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMNoteEditTextView.h; sourceTree = "<group>"; };
 		645A7E601817C602003C9D5A /* IAMNoteEditTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMNoteEditTextView.m; sourceTree = "<group>"; };
 		64629F64183F79F300753313 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../Turms/Images.xcassets; sourceTree = "<group>"; };
+		64766FAA1927D4F900EFF249 /* validation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = validation.h; sourceTree = "<group>"; };
 		6476CFAA1746223900A6195C /* it.iltofa.turms.entry.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = it.iltofa.turms.entry.icns; sourceTree = "<group>"; };
 		647EF3FA18918D1C0045F273 /* RNCryptor+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor+Private.h"; sourceTree = "<group>"; };
 		647EF3FB18918D1C0045F273 /* RNCryptor-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor-Prefix.pch"; sourceTree = "<group>"; };
@@ -216,8 +217,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64766FAB1927D7BF00EFF249 /* libcrypto.a in Frameworks */,
 				64C8DD0919267C50007DF53E /* StoreKit.framework in Frameworks */,
-				64A85F48192613400083479A /* libcrypto.a in Frameworks */,
 				641A9BC818440F5800C2EE74 /* CoreData.framework in Frameworks */,
 				64D8C9B71740F7F1005D87DC /* Security.framework in Frameworks */,
 				64CB192A1738EFF20014F35F /* SystemConfiguration.framework in Frameworks */,
@@ -382,6 +383,7 @@
 				64EA626B16F71DF500F4838E /* CoreData (common) */,
 				64EA622116F7110300F4838E /* IAMAppDelegate.h */,
 				64EA622216F7110300F4838E /* IAMAppDelegate.m */,
+				64766FAA1927D4F900EFF249 /* validation.h */,
 				64EA622416F7110300F4838E /* MainMenu.xib */,
 				64A1D4ED16FCA12700E50CC1 /* Note Edit */,
 				64EA621616F7110300F4838E /* Supporting Files */,

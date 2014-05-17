@@ -13,6 +13,7 @@
 #import "STKeychain.h"
 #import "Note.h"
 #import "Attachment.h"
+#import "validation.h"
 
 @interface IAMAppDelegate () <SKPaymentTransactionObserver>
 
@@ -62,6 +63,8 @@
     [self deleteCache];
     // Check first note
     [self addReadmeIfNeeded];
+    // Check receipt
+    [self whatever];
 }
 
 - (BOOL)application:(NSApplication *)theApplication openFile:(NSString *)filename {
@@ -165,6 +168,24 @@
 }
 
 #pragma mark - iAD
+
+- (void)whatever {
+    // An array of the product identifiers to query in the receipt
+    DLog(@"starting whatever.");
+    [self setSkipAds:NO];
+    NSURL *url = [[NSBundle mainBundle] URLForResource:@"In-App-Products" withExtension:@"plist"];
+    NSArray *identifiers = [NSArray arrayWithContentsOfURL:url];
+    // The validation code that enumerates the InApp purchases
+    RV_CheckInAppPurchases(identifiers, ^(NSString *identifier, BOOL isPresent, NSDictionary *purchaseInfo) {
+        DLog(@"%@ isPresent: %hhd.\n%@", identifier, isPresent, purchaseInfo);
+        if (isPresent) {
+            DLog(@">>> %@ x %d", identifier, [[purchaseInfo objectForKey:RV_INAPP_ATTRIBUTETYPE_QUANTITY] intValue]);
+            [self setSkipAds:YES];
+        } else {
+            DLog(@">>> %@ missing", identifier);
+        }
+    });
+}
 
 - (void)setSkipAds:(BOOL)skipAds {
     [[NSUserDefaults standardUserDefaults] setBool:skipAds forKey:@"skipAds"];
