@@ -23,7 +23,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="180" width="503" height="462"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1366" height="768"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1418"/>
             <value key="minSize" type="size" width="350" height="275"/>
             <view key="contentView" id="2">
                 <rect key="frame" x="0.0" y="0.0" width="503" height="462"/>
@@ -297,27 +297,28 @@ label riga 4</string>
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES" HUD="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="272" y="172" width="200" height="170"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1366" height="768"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1418"/>
+            <value key="minSize" type="size" width="200" height="170"/>
             <view key="contentView" id="Pe3-0N-Gjn">
                 <rect key="frame" x="0.0" y="0.0" width="200" height="170"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="42" horizontalPageScroll="10" verticalLineScroll="42" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ytm-G3-kfs">
-                        <rect key="frame" x="0.0" y="0.0" width="202" height="169"/>
+                        <rect key="frame" x="0.0" y="0.0" width="200" height="141"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <clipView key="contentView" id="if4-O5-NpK">
-                            <rect key="frame" x="0.0" y="0.0" width="202" height="169"/>
+                            <rect key="frame" x="0.0" y="0.0" width="200" height="141"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" columnResizing="NO" autosaveColumns="NO" rowHeight="40" rowSizeStyle="automatic" viewBased="YES" id="PDi-1J-wOr">
-                                    <rect key="frame" x="0.0" y="0.0" width="202" height="169"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="200" height="141"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <tableViewGridLines key="gridStyleMask" horizontal="YES"/>
                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <tableColumns>
-                                        <tableColumn width="199" minWidth="40" maxWidth="1000" id="5qZ-V7-q8F">
+                                        <tableColumn width="197" minWidth="40" maxWidth="1000" id="5qZ-V7-q8F">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -331,11 +332,11 @@ label riga 4</string>
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                             <prototypeCellViews>
                                                 <tableCellView id="Xcz-Qj-Eyi">
-                                                    <rect key="frame" x="1" y="1" width="199" height="40"/>
+                                                    <rect key="frame" x="1" y="1" width="197" height="40"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="CmF-cu-fU9">
-                                                            <rect key="frame" x="1" y="11" width="198" height="19"/>
+                                                            <rect key="frame" x="1" y="11" width="196" height="19"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="Table View Cell" id="QZM-fp-IIz">
                                                                 <font key="font" metaFont="system" size="15"/>
@@ -368,7 +369,7 @@ label riga 4</string>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </clipView>
                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="VyZ-Sc-Z3X">
-                            <rect key="frame" x="1" y="-15" width="0.0" height="16"/>
+                            <rect key="frame" x="0.0" y="-16" width="0.0" height="16"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="nT6-ab-rAB">
@@ -379,12 +380,48 @@ label riga 4</string>
                             <outlet property="menu" destination="swz-jb-zAi" id="EUY-Ib-xR4"/>
                         </connections>
                     </scrollView>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="u1o-N7-xw7">
+                        <rect key="frame" x="110" y="148" width="80" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="80" id="Oq4-bs-hhN"/>
+                            <constraint firstAttribute="height" constant="16" id="sWc-yc-QGT"/>
+                        </constraints>
+                        <buttonCell key="cell" type="inline" title="Delete..." bezelStyle="inline" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="UOB-RF-TdB">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="smallSystemBold"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="deleteBookAction:" target="o4J-zF-bjD" id="Z1h-Jr-Q63"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Snk-va-Mo4">
+                        <rect key="frame" x="10" y="148" width="80" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="80" id="4TL-h3-Md7"/>
+                            <constraint firstAttribute="height" constant="16" id="EGq-hu-F2B"/>
+                        </constraints>
+                        <buttonCell key="cell" type="inline" title="Add..." bezelStyle="inline" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cLp-ro-b4H">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="smallSystemBold"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="addBookAction:" target="o4J-zF-bjD" id="fjr-1S-knJ"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="Ytm-G3-kfs" firstAttribute="leading" secondItem="Pe3-0N-Gjn" secondAttribute="leading" id="ENd-n3-qzi"/>
+                    <constraint firstItem="Ytm-G3-kfs" firstAttribute="top" secondItem="Snk-va-Mo4" secondAttribute="bottom" constant="8" id="OX2-9l-B5R"/>
                     <constraint firstItem="Ytm-G3-kfs" firstAttribute="leading" secondItem="Pe3-0N-Gjn" secondAttribute="leading" id="TAV-QB-Jut"/>
-                    <constraint firstItem="Ytm-G3-kfs" firstAttribute="top" secondItem="Pe3-0N-Gjn" secondAttribute="top" constant="1" id="etu-bc-d6H"/>
+                    <constraint firstItem="Snk-va-Mo4" firstAttribute="leading" secondItem="Pe3-0N-Gjn" secondAttribute="leading" constant="10" id="TwT-l8-AIE"/>
+                    <constraint firstItem="u1o-N7-xw7" firstAttribute="top" secondItem="Pe3-0N-Gjn" secondAttribute="top" constant="5" id="bR5-4t-UKP"/>
+                    <constraint firstItem="Snk-va-Mo4" firstAttribute="top" secondItem="Pe3-0N-Gjn" secondAttribute="top" constant="5" id="frb-Nj-Cw4"/>
+                    <constraint firstAttribute="trailing" secondItem="u1o-N7-xw7" secondAttribute="trailing" constant="10" id="lNn-af-s1h"/>
+                    <constraint firstAttribute="bottom" secondItem="Ytm-G3-kfs" secondAttribute="bottom" id="nrq-9U-POp"/>
+                    <constraint firstAttribute="trailing" secondItem="Ytm-G3-kfs" secondAttribute="trailing" id="pzo-WF-nPF"/>
                     <constraint firstAttribute="bottom" secondItem="Ytm-G3-kfs" secondAttribute="bottom" id="wKu-cM-aeQ"/>
-                    <constraint firstAttribute="trailing" secondItem="Ytm-G3-kfs" secondAttribute="trailing" constant="-2" id="zcj-cP-kOb"/>
                 </constraints>
             </view>
             <connections>
