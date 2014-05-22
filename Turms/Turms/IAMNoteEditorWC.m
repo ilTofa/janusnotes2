@@ -480,13 +480,15 @@
     [panel setExtensionHidden:NO];
     [panel setCanSelectHiddenExtension:YES];
     [panel beginSheetModalForWindow:[self window] completionHandler:^(NSInteger result) {
-        NSURL* url = [panel URL];
-        DLog(@"User selected URL %@, now we should export to it.", url);
-        NSError *error;
-        if (![self.editedNote exportAsTextToURL:url error:&error]) {
-            ALog(@"Error exporting file: %@", error);
-            NSAlert *alert = [NSAlert alertWithError:error];
-            [alert runModal];
+        if (result == NSFileHandlingPanelOKButton) {
+            NSURL* url = [panel URL];
+            DLog(@"User selected URL %@, now we should export to it.", url);
+            NSError *error;
+            if (![self.editedNote exportAsTextToURL:url error:&error]) {
+                ALog(@"Error exporting file: %@", error);
+                NSAlert *alert = [NSAlert alertWithError:error];
+                [alert runModal];
+            }
         }
     }];
 }
@@ -500,14 +502,16 @@
     [panel setNameFieldLabel:@"Export HTML To"];
     [panel setPrompt:@"Export"];
     [panel beginSheetModalForWindow:[self window] completionHandler:^(NSInteger result) {
-        NSURL* url = [panel URL];
-        NSURL *outURL = [url URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.html", self.editedNote.title]];
-        DLog(@"User selected URL %@, now we should export to it (%@).", url, outURL);
-        NSError *error;
-        if (![self.editedNote exportAsHTMLToURL:outURL error:&error]) {
-            ALog(@"Error exporting file: %@", error);
-            NSAlert *alert = [NSAlert alertWithError:error];
-            [alert runModal];
+        if (result == NSFileHandlingPanelOKButton) {
+            NSURL* url = [panel URL];
+            NSURL *outURL = [url URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.html", self.editedNote.title]];
+            DLog(@"User selected URL %@, now we should export to it (%@).", url, outURL);
+            NSError *error;
+            if (![self.editedNote exportAsHTMLToURL:outURL error:&error]) {
+                ALog(@"Error exporting file: %@", error);
+                NSAlert *alert = [NSAlert alertWithError:error];
+                [alert runModal];
+            }
         }
     }];
 }
@@ -521,13 +525,15 @@
     [panel setNameFieldLabel:@"Export Markdown To"];
     [panel setPrompt:@"Export"];
     [panel beginSheetModalForWindow:[self window] completionHandler:^(NSInteger result) {
-        NSURL* url = [panel URL];
-        DLog(@"User selected URL %@, now we should export to it.", url);
-        NSError *error;
-        if (![self.editedNote exportAsMarkdownForPelican:url error:&error]) {
-            ALog(@"Error exporting markdown: %@", error);
-            NSAlert *alert = [NSAlert alertWithError:error];
-            [alert runModal];
+        if (result == NSFileHandlingPanelOKButton) {
+            NSURL* url = [panel URL];
+            DLog(@"User selected URL %@, now we should export to it.", url);
+            NSError *error;
+            if (![self.editedNote exportAsMarkdownForPelican:url error:&error]) {
+                ALog(@"Error exporting markdown: %@", error);
+                NSAlert *alert = [NSAlert alertWithError:error];
+                [alert runModal];
+            }
         }
     }];
 }
