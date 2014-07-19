@@ -44,6 +44,7 @@
 		64CB19281738EEE90014F35F /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CB19271738EEE90014F35F /* WebKit.framework */; };
 		64CB192A1738EFF20014F35F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CB19291738EFF20014F35F /* SystemConfiguration.framework */; };
 		64D8C9B71740F7F1005D87DC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64D8C9B61740F7F1005D87DC /* Security.framework */; };
+		64D985CF197B23C7006D008E /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64D985CE197B23C7006D008E /* Carbon.framework */; };
 		64EA621016F7110300F4838E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64EA620F16F7110300F4838E /* Cocoa.framework */; };
 		64EA621A16F7110300F4838E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64EA621816F7110300F4838E /* InfoPlist.strings */; };
 		64EA621C16F7110300F4838E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 64EA621B16F7110300F4838E /* main.m */; };
@@ -128,6 +129,7 @@
 		64CB19291738EFF20014F35F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		64D32800181A828200D94B1A /* TurmsImporter-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TurmsImporter-Info.plist"; sourceTree = "<group>"; };
 		64D8C9B61740F7F1005D87DC /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		64D985CE197B23C7006D008E /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		64EA620C16F7110300F4838E /* Turms.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Turms.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64EA620F16F7110300F4838E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		64EA621216F7110300F4838E /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -182,6 +184,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64D985CF197B23C7006D008E /* Carbon.framework in Frameworks */,
 				64766FAB1927D7BF00EFF249 /* libcrypto.a in Frameworks */,
 				64C8DD0919267C50007DF53E /* StoreKit.framework in Frameworks */,
 				641A9BC818440F5800C2EE74 /* CoreData.framework in Frameworks */,
@@ -302,6 +305,7 @@
 		64EA620E16F7110300F4838E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				64D985CE197B23C7006D008E /* Carbon.framework */,
 				64C8DD0819267C50007DF53E /* StoreKit.framework */,
 				64A85F47192613400083479A /* libcrypto.a */,
 				64D8C9B61740F7F1005D87DC /* Security.framework */,
