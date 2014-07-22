@@ -1,16 +1,15 @@
-What's Turms?
+Why Janus?
 -
-Turms is a program for OS X and iOS that allows you to securely collect your thoughts, wherever you are.
-
-
-Who's Turms?
--
-Turms was the Etruscan god of trade and the messenger god between people and gods.
-
+Janus Notes is a note taking program for iOS and OSX that seriously respect your right to privacy.
+It is named after the Latin God *Janus*, depicted as having two faces since he looks to the future and to the past. Or, may be, cloud storage and privacy. Or Macintoshes and iPhone/iPad. Or sharing and control.
 
 What does?
 -
-Start collectiong your thoughts, wherever you are. Collect photos, links, video and audio clips.
+Basic
+-
+To start simply add a note and begin writing. We're supporting plain text and markdown with preview (live preview on Macintosh).
+
+You can add attachments to the notes and they will live side by side with your notes. On Macintosh press '+' (or drag and drop a file) to attach it. On iOS you can attach a picture (from library or camera), a link or taking a voice note. Tap the attachment to see it on iOS. Double click or right click the icon on Mac to open or edit it.
 
 All your data will be seamlessly synced via iCloud to every iPhone/iPad or Macintosh you have. Don't forget anymore the thing you was thinking about this morning, when, in the evening, you are on your mac writing that clever post.
 
@@ -37,4 +36,4 @@ Both iOS and Mac apps do not "phone home" nor access anything else. There is no 
 
 Ads are served by default on iOS using the Apple's network (iAd), no additional information will be gathered by any other third party.
 
-Thank you and _happy collecting_!
+Thank you and _happy notes_!
