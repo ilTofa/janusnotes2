@@ -1,6 +1,6 @@
 //
 //  IAMTableUIWindowController.m
-//  Turms
+// Janus Notes 2
 //
 //  Created by Giacomo Tufano on 22/04/13.
 //  Copyright (c) 2013 Giacomo Tufano. All rights reserved.
@@ -182,7 +182,7 @@
         Books *selectedBook = self.booksArrayController.arrangedObjects[idx];
         if(queryString == nil) {
             queryString = [NSString stringWithFormat:@"book.name = \"%@\"", selectedBook.name];
-            windowTitle = [[NSMutableString alloc] initWithString:[NSString stringWithFormat:@"Turms: entries in %@", selectedBook.name]];
+            windowTitle = [[NSMutableString alloc] initWithString:[NSString stringWithFormat:@"Janus Notes 2: entries in %@", selectedBook.name]];
         } else {
             queryString = [queryString stringByAppendingFormat:@" OR book.name = \"%@\"", selectedBook.name];
             [windowTitle appendFormat:@" and %@", selectedBook.name];
@@ -191,7 +191,7 @@
     if (windowTitle) {
         [self.window setTitle:windowTitle];
     } else {
-        [self.window setTitle:@"Turms"];
+        [self.window setTitle:@"Janus Notes"];
     }
     self.bookQueryPredicate = queryString;
     DLog(@"Book query string is: %@", queryString);

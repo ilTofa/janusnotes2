@@ -130,15 +130,15 @@
 		64D32800181A828200D94B1A /* TurmsImporter-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TurmsImporter-Info.plist"; sourceTree = "<group>"; };
 		64D8C9B61740F7F1005D87DC /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		64D985CE197B23C7006D008E /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
-		64EA620C16F7110300F4838E /* Turms.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Turms.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		64EA620C16F7110300F4838E /* Janus Notes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Janus Notes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		64EA620F16F7110300F4838E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		64EA621216F7110300F4838E /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		64EA621316F7110300F4838E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		64EA621416F7110300F4838E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		64EA621716F7110300F4838E /* Turms-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Turms-Info.plist"; sourceTree = "<group>"; };
+		64EA621716F7110300F4838E /* Janus Notes-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Janus Notes-Info.plist"; sourceTree = "<group>"; };
 		64EA621916F7110300F4838E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		64EA621B16F7110300F4838E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		64EA621D16F7110300F4838E /* Turms-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Turms-Prefix.pch"; sourceTree = "<group>"; };
+		64EA621D16F7110300F4838E /* Janus Notes-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Janus Notes-Prefix.pch"; sourceTree = "<group>"; };
 		64EA621F16F7110300F4838E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		64EA622116F7110300F4838E /* IAMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IAMAppDelegate.h; sourceTree = "<group>"; };
 		64EA622216F7110300F4838E /* IAMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IAMAppDelegate.m; sourceTree = "<group>"; };
@@ -297,7 +297,7 @@
 		64EA620D16F7110300F4838E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				64EA620C16F7110300F4838E /* Turms.app */,
+				64EA620C16F7110300F4838E /* Janus Notes.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -359,10 +359,10 @@
 				6476CFAA1746223900A6195C /* it.iltofa.turms.entry.icns */,
 				6421B45C1892CC5B008C7E46 /* it.iltofa.turms.archive.icns */,
 				64A1D4EC16FC9F7C00E50CC1 /* Turms.entitlements */,
-				64EA621716F7110300F4838E /* Turms-Info.plist */,
+				64EA621716F7110300F4838E /* Janus Notes-Info.plist */,
 				64EA621816F7110300F4838E /* InfoPlist.strings */,
 				64EA621B16F7110300F4838E /* main.m */,
-				64EA621D16F7110300F4838E /* Turms-Prefix.pch */,
+				64EA621D16F7110300F4838E /* Janus Notes-Prefix.pch */,
 				64EA621E16F7110300F4838E /* Credits.rtf */,
 			);
 			name = "Supporting Files";
@@ -454,9 +454,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		64EA620B16F7110300F4838E /* Turms */ = {
+		64EA620B16F7110300F4838E /* Janus Notes */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 64EA624E16F7110300F4838E /* Build configuration list for PBXNativeTarget "Turms" */;
+			buildConfigurationList = 64EA624E16F7110300F4838E /* Build configuration list for PBXNativeTarget "Janus Notes" */;
 			buildPhases = (
 				64EA620816F7110300F4838E /* Sources */,
 				64EA620916F7110300F4838E /* Frameworks */,
@@ -466,9 +466,9 @@
 			);
 			dependencies = (
 			);
-			name = Turms;
+			name = "Janus Notes";
 			productName = Janus;
-			productReference = 64EA620C16F7110300F4838E /* Turms.app */;
+			productReference = 64EA620C16F7110300F4838E /* Janus Notes.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -491,7 +491,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 64EA620716F7110300F4838E /* Build configuration list for PBXProject "Turms" */;
+			buildConfigurationList = 64EA620716F7110300F4838E /* Build configuration list for PBXProject "Janus Notes" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -511,7 +511,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				64EA620B16F7110300F4838E /* Turms */,
+				64EA620B16F7110300F4838E /* Janus Notes */,
 			);
 		};
 /* End PBXProject section */
@@ -658,16 +658,16 @@
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Turms/Turms-Prefix.pch";
+				GCC_PREFIX_HEADER = "Turms/Janus Notes-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = "DEMO=1";
-				INFOPLIST_FILE = "$(SRCROOT)/Turms/Turms-Info.plist";
+				INFOPLIST_FILE = "Turms/Janus Notes-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/gt/Documents/dev/Turms/common/openssl-1.0.1g/lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_CODE_SIGN_FLAGS = "--deep";
-				PRODUCT_NAME = Turms;
+				PRODUCT_NAME = "Janus Notes";
 				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "common/openssl-1.0.1g/include";
 				WRAPPER_EXTENSION = app;
@@ -717,19 +717,19 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Turms/Turms-Prefix.pch";
+				GCC_PREFIX_HEADER = "Turms/Janus Notes-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"DEMO=1",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/Turms/Turms-Info.plist";
+				INFOPLIST_FILE = "Turms/Janus Notes-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/gt/Documents/dev/Turms/common/openssl-1.0.1g/lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_CODE_SIGN_FLAGS = "--deep";
-				PRODUCT_NAME = Turms;
+				PRODUCT_NAME = "Janus Notes";
 				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "common/openssl-1.0.1g/include";
 				WRAPPER_EXTENSION = app;
@@ -804,15 +804,15 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Turms/Turms-Prefix.pch";
-				INFOPLIST_FILE = "$(SRCROOT)/Turms/Turms-Info.plist";
+				GCC_PREFIX_HEADER = "Turms/Janus Notes-Prefix.pch";
+				INFOPLIST_FILE = "Turms/Janus Notes-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/gt/Documents/dev/Turms/common/openssl-1.0.1g/lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_CODE_SIGN_FLAGS = "--deep";
-				PRODUCT_NAME = Turms;
+				PRODUCT_NAME = "Janus Notes";
 				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "common/openssl-1.0.1g/include";
 				WRAPPER_EXTENSION = app;
@@ -831,15 +831,15 @@
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Turms/Turms-Prefix.pch";
-				INFOPLIST_FILE = "$(SRCROOT)/Turms/Turms-Info.plist";
+				GCC_PREFIX_HEADER = "Turms/Janus Notes-Prefix.pch";
+				INFOPLIST_FILE = "Turms/Janus Notes-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/gt/Documents/dev/Turms/common/openssl-1.0.1g/lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_CODE_SIGN_FLAGS = "--deep";
-				PRODUCT_NAME = Turms;
+				PRODUCT_NAME = "Janus Notes";
 				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "common/openssl-1.0.1g/include";
 				WRAPPER_EXTENSION = app;
@@ -849,7 +849,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		64EA620716F7110300F4838E /* Build configuration list for PBXProject "Turms" */ = {
+		64EA620716F7110300F4838E /* Build configuration list for PBXProject "Janus Notes" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				64EA624916F7110300F4838E /* Debug */,
@@ -860,7 +860,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		64EA624E16F7110300F4838E /* Build configuration list for PBXNativeTarget "Turms" */ = {
+		64EA624E16F7110300F4838E /* Build configuration list for PBXNativeTarget "Janus Notes" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				64EA624F16F7110300F4838E /* Debug */,

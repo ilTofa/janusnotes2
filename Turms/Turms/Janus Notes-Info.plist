@@ -87,13 +87,13 @@
 				<string>public.content</string>
 			</array>
 			<key>UTTypeDescription</key>
-			<string>Turms Entry</string>
+			<string>Janus Notes 2 Entry</string>
 			<key>UTTypeIconFile</key>
 			<string>it.iltofa.turms.entry.icns</string>
 			<key>UTTypeIdentifier</key>
 			<string>it.iltofa.turms.entry</string>
 			<key>UTTypeReferenceURL</key>
-			<string>http://www.iltofa.com/turms/</string>
+			<string>http://www.janusnotes.com/</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>com.apple.ostype</key>
@@ -111,13 +111,13 @@
 				<string>public.content</string>
 			</array>
 			<key>UTTypeDescription</key>
-			<string>Turms Archive</string>
+			<string>Janus Notes 2 Archive</string>
 			<key>UTTypeIconFile</key>
 			<string>it.iltofa.turms.archive</string>
 			<key>UTTypeIdentifier</key>
 			<string>it.iltofa.turms.archive</string>
 			<key>UTTypeReferenceURL</key>
-			<string>http://www.iltofa.com/turms/</string>
+			<string>http://www.janusnotes.com/</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>

@@ -1,6 +1,6 @@
 //
 //  IAMAppDelegate.m
-//  Turms
+//  Janus Notes 2
 //
 //  Created by Giacomo Tufano on 18/03/13.
 //  Copyright (c) 2013 Giacomo Tufano. All rights reserved.
@@ -620,14 +620,14 @@
 }
 
 - (IBAction)sendFeedback:(id)sender {
-    NSString *subject = [NSString stringWithFormat:@"Feedback on Turms OS X app version %@ (%@) on a %@/%@", [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"], [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"], [self getModel], [[NSProcessInfo processInfo] operatingSystemVersionString]];
-    NSString *urlString = [[NSString stringWithFormat:@"mailto:gt+turmssupport@iltofa.com?subject=%@", subject] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];;
+    NSString *subject = [NSString stringWithFormat:@"Feedback on Janus Notes 2 OS X app version %@ (%@) on a %@/%@", [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"], [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"], [self getModel], [[NSProcessInfo processInfo] operatingSystemVersionString]];
+    NSString *urlString = [[NSString stringWithFormat:@"mailto:gt+janus2support@iltofa.com?subject=%@", subject] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];;
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:urlString]];
 }
 
 - (IBAction)sendAComment:(id)sender {
-    NSString *subject = [NSString stringWithFormat:@"Comment on Turms OS X app version %@ (%@) on a %@/%@", [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"], [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"], [self getModel], [[NSProcessInfo processInfo] operatingSystemVersionString]];
-    NSString *urlString = [[NSString stringWithFormat:@"mailto:gt+turmssupport@iltofa.com?subject=%@", subject] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];;
+    NSString *subject = [NSString stringWithFormat:@"Comment on Janus Notes 2 OS X app version %@ (%@) on a %@/%@", [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"], [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"], [self getModel], [[NSProcessInfo processInfo] operatingSystemVersionString]];
+    NSString *urlString = [[NSString stringWithFormat:@"mailto:gt+janus2support@iltofa.com?subject=%@", subject] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];;
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:urlString]];
 }
 
