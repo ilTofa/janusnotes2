@@ -331,7 +331,6 @@
 				64EA626B16F71DF500F4838E /* CoreData (common) */,
 				64EA622116F7110300F4838E /* IAMAppDelegate.h */,
 				64EA622216F7110300F4838E /* IAMAppDelegate.m */,
-				64766FAA1927D4F900EFF249 /* validation.h */,
 				64EA622416F7110300F4838E /* MainMenu.xib */,
 				64A1D4ED16FCA12700E50CC1 /* Note Edit */,
 				64EA621616F7110300F4838E /* Supporting Files */,
@@ -344,6 +343,7 @@
 		64EA621616F7110300F4838E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				64766FAA1927D4F900EFF249 /* validation.h */,
 				64C8DD0A19274776007DF53E /* In-App-Products.plist */,
 				64B4B7BB181140A700766D43 /* MarkdownPreview.html */,
 				64B56854174658ED006D04C4 /* readme.txt */,
@@ -623,13 +623,13 @@
 				INFOPLIST_FILE = "Turms/Janus Notes-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/gt/Documents/dev/Turms/common/openssl-1.0.1g/lib",
+					"$(PROJECT_DIR)/../common/openssl-1.0.1g/lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_NAME = "Janus Notes";
 				PROVISIONING_PROFILE = "";
-				USER_HEADER_SEARCH_PATHS = "common/openssl-1.0.1g/include";
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../common/openssl-1.0.1g/include";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Demo;
@@ -685,13 +685,13 @@
 				INFOPLIST_FILE = "Turms/Janus Notes-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/gt/Documents/dev/Turms/common/openssl-1.0.1g/lib",
+					"$(PROJECT_DIR)/../common/openssl-1.0.1g/lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_NAME = "Janus Notes";
 				PROVISIONING_PROFILE = "";
-				USER_HEADER_SEARCH_PATHS = "common/openssl-1.0.1g/include";
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../common/openssl-1.0.1g/include";
 				WRAPPER_EXTENSION = app;
 			};
 			name = "Debug Demo";
@@ -768,13 +768,13 @@
 				INFOPLIST_FILE = "Turms/Janus Notes-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/gt/Documents/dev/Turms/common/openssl-1.0.1g/lib",
+					"$(PROJECT_DIR)/../common/openssl-1.0.1g/lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_NAME = "Janus Notes";
 				PROVISIONING_PROFILE = "";
-				USER_HEADER_SEARCH_PATHS = "common/openssl-1.0.1g/include";
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../common/openssl-1.0.1g/include";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -795,13 +795,13 @@
 				INFOPLIST_FILE = "Turms/Janus Notes-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/gt/Documents/dev/Turms/common/openssl-1.0.1g/lib",
+					"$(PROJECT_DIR)/../common/openssl-1.0.1g/lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_NAME = "Janus Notes";
 				PROVISIONING_PROFILE = "";
-				USER_HEADER_SEARCH_PATHS = "common/openssl-1.0.1g/include";
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../common/openssl-1.0.1g/include";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

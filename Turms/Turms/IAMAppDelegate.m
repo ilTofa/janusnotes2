@@ -619,13 +619,13 @@
 }
 
 - (IBAction)sendFeedback:(id)sender {
-    NSString *subject = [NSString stringWithFormat:@"Feedback on Janus Notes 2 OS X app version %@ (%@) on a %@/%@", [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"], [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"], [self getModel], [[NSProcessInfo processInfo] operatingSystemVersionString]];
+    NSString *subject = [NSString stringWithFormat:@"Feedback on Janus Notes 2 version %@ (%@) on a %@/%@", [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"], [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"], [self getModel], [[NSProcessInfo processInfo] operatingSystemVersionString]];
     NSString *urlString = [[NSString stringWithFormat:@"mailto:gt+janus2support@iltofa.com?subject=%@", subject] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];;
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:urlString]];
 }
 
 - (IBAction)sendAComment:(id)sender {
-    NSString *subject = [NSString stringWithFormat:@"Comment on Janus Notes 2 OS X app version %@ (%@) on a %@/%@", [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"], [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"], [self getModel], [[NSProcessInfo processInfo] operatingSystemVersionString]];
+    NSString *subject = [NSString stringWithFormat:@"Comment on Janus Notes 2 version %@ (%@) on a %@/%@", [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"], [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"], [self getModel], [[NSProcessInfo processInfo] operatingSystemVersionString]];
     NSString *urlString = [[NSString stringWithFormat:@"mailto:gt+janus2support@iltofa.com?subject=%@", subject] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];;
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:urlString]];
 }

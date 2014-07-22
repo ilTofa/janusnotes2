@@ -427,21 +427,33 @@ CA
                             <menuItem title="Janus Notes FAQs" id="bAx-6D-nby">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="showFAQs:" target="494" id="fZj-tG-ox4"/>
+                                    <action selector="showFAQs:" target="-1" id="Get-jd-MWO"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Markdown Cheat Sheet" id="h2o-7U-0dO">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="showMarkdownHelp:" target="494" id="rdE-fJ-Rei"/>
+                                    <action selector="showMarkdownHelp:" target="-1" id="Rrg-g5-Xep"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="835"/>
                             <menuItem title="Unsatisfied? Tell us why!" id="SIR-oQ-HE6">
                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="sendFeedback:" target="-1" id="9Xp-QP-d6f"/>
+                                </connections>
                             </menuItem>
                             <menuItem title="Satisfied? Please Rate the App!" id="6ks-5C-qZJ">
                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="rateTheApp:" target="-1" id="Ecb-ex-Ra6"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Happy? Buy the App!" id="x7f-X0-VPp">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="preferencesAction:" target="-1" id="nmJ-2H-wkL"/>
+                                </connections>
                             </menuItem>
                         </items>
                     </menu>
