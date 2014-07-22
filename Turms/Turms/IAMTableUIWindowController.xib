@@ -23,7 +23,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="180" width="503" height="462"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1418"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
             <value key="minSize" type="size" width="350" height="275"/>
             <view key="contentView" id="2">
                 <rect key="frame" x="0.0" y="0.0" width="503" height="462"/>
@@ -204,46 +204,101 @@ label riga 4</string>
                     <constraint firstItem="93" firstAttribute="top" secondItem="2" secondAttribute="top" id="o8U-St-ISz"/>
                 </constraints>
             </view>
-            <toolbar key="toolbar" implicitIdentifier="FED8E6D4-48A2-4332-A48D-536ADF4432AE" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="regular" id="489">
+            <toolbar key="toolbar" implicitIdentifier="FED8E6D4-48A2-4332-A48D-536ADF4432AE" displayMode="iconAndLabel" sizeMode="regular" id="489">
                 <allowedToolbarItems>
-                    <toolbarItem implicitItemIdentifier="61D2E551-5A63-4E96-8C0E-01FD89AE60D6" label="Add" paletteLabel="Add" tag="-1" image="document" id="495">
-                        <connections>
-                            <action selector="addNote:" target="-2" id="500"/>
-                        </connections>
-                    </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="65DD89A7-CED7-4FF5-8BD2-D11845D62C9E" label="Edit" paletteLabel="Edit" tag="-1" image="edit" id="496">
-                        <connections>
-                            <action selector="editNote:" target="-2" id="504"/>
-                        </connections>
-                    </toolbarItem>
                     <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="490"/>
-                    <toolbarItem implicitItemIdentifier="00DBB6B8-13E1-4C91-ADE4-9D5043207B90" label="Delete" paletteLabel="Delete" tag="-1" image="delete" id="497">
-                        <connections>
-                            <action selector="deleteNote:" target="-2" id="508"/>
-                        </connections>
-                    </toolbarItem>
                     <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="493"/>
-                    <toolbarItem implicitItemIdentifier="E61DFEDF-BC37-4F09-856B-D0905969A745" label="Prefs" paletteLabel="Prefs" tag="-1" image="settings" id="499">
+                    <toolbarItem implicitItemIdentifier="NSToolbarSeparatorItem" id="518"/>
+                    <toolbarItem implicitItemIdentifier="E9336FF6-F10B-4883-ADDE-EA1B193A68C2" label="Add" paletteLabel="Add Note" image="document_Template" id="L4i-1z-nAn">
+                        <nil key="toolTip"/>
+                        <size key="minSize" width="32" height="25"/>
+                        <size key="maxSize" width="32" height="25"/>
+                        <button key="view" verticalHuggingPriority="750" id="SLa-SI-Xjy">
+                            <rect key="frame" x="13" y="14" width="32" height="25"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <buttonCell key="cell" type="roundTextured" title="Round Textured" bezelStyle="texturedRounded" image="document_Template" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="nBm-K6-4X9">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                        </button>
                         <connections>
-                            <action selector="actionPreferences:" target="-2" id="510"/>
+                            <action selector="addNote:" target="-2" id="fQF-CR-hhv"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="NSToolbarSeparatorItem" id="518"/>
-                    <toolbarItem implicitItemIdentifier="253C5CB9-195B-4D75-AA2D-F3BE8F6FB7C8" label="Books" paletteLabel="Books" tag="-1" image="books" id="fzG-XB-Qpr">
+                    <toolbarItem implicitItemIdentifier="4AD43731-1EFE-44AD-9C21-3AC2DA5F42F6" label="Edit" paletteLabel="Edit Note" image="edit_Template" id="bzh-ql-OHC">
+                        <nil key="toolTip"/>
+                        <size key="minSize" width="32" height="25"/>
+                        <size key="maxSize" width="32" height="25"/>
+                        <button key="view" verticalHuggingPriority="750" id="Ulu-LA-WHF">
+                            <rect key="frame" x="12" y="14" width="32" height="25"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <buttonCell key="cell" type="roundTextured" title="Round Textured" bezelStyle="texturedRounded" image="edit_Template" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="u3u-5q-iLO">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                        </button>
                         <connections>
-                            <action selector="showBooksAction:" target="-2" id="0DN-eD-nfy"/>
+                            <action selector="editNote:" target="-2" id="9WO-rv-yRI"/>
+                        </connections>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="3646F658-C360-41D7-962F-957467E8EE2F" label="Delete" paletteLabel="Delete Note" image="delete_Template" id="UyV-lb-wnR">
+                        <nil key="toolTip"/>
+                        <size key="minSize" width="32" height="25"/>
+                        <size key="maxSize" width="32" height="28"/>
+                        <button key="view" verticalHuggingPriority="750" id="m8E-ua-oPK">
+                            <rect key="frame" x="19" y="14" width="32" height="28"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <buttonCell key="cell" type="roundTextured" title="Round Rect Button" bezelStyle="texturedRounded" image="delete_Template" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4id-5A-GrI">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                        </button>
+                        <connections>
+                            <action selector="deleteNote:" target="-2" id="UST-J0-taO"/>
+                        </connections>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="1BB4DEE3-E91E-418A-A7F1-CC7A105B633A" label="Books" paletteLabel="Show Books" image="books_Template" id="byL-bJ-fVw">
+                        <nil key="toolTip"/>
+                        <size key="minSize" width="32" height="25"/>
+                        <size key="maxSize" width="32" height="25"/>
+                        <button key="view" verticalHuggingPriority="750" id="iQp-qZ-PDw">
+                            <rect key="frame" x="19" y="14" width="32" height="25"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <buttonCell key="cell" type="roundTextured" title="Round Textured" bezelStyle="texturedRounded" image="books_Template" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xzE-ni-8PA">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                        </button>
+                        <connections>
+                            <action selector="showBooksAction:" target="-2" id="g9I-Cf-vlV"/>
+                        </connections>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="83AC61F0-9DC2-460B-901B-53D7C9A80D28" label="Prefs" paletteLabel="Preferences" image="settings_Template" id="yCT-ew-nju">
+                        <nil key="toolTip"/>
+                        <size key="minSize" width="32" height="25"/>
+                        <size key="maxSize" width="32" height="25"/>
+                        <button key="view" verticalHuggingPriority="750" id="jdN-oh-dEy">
+                            <rect key="frame" x="19" y="14" width="32" height="25"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <buttonCell key="cell" type="roundTextured" title="Round Textured" bezelStyle="texturedRounded" image="settings_Template" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cTm-xz-wP3">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                        </button>
+                        <connections>
+                            <action selector="actionPreferences:" target="-2" id="bnR-Hr-oIO"/>
                         </connections>
                     </toolbarItem>
                 </allowedToolbarItems>
                 <defaultToolbarItems>
-                    <toolbarItem reference="495"/>
-                    <toolbarItem reference="496"/>
+                    <toolbarItem reference="L4i-1z-nAn"/>
+                    <toolbarItem reference="bzh-ql-OHC"/>
                     <toolbarItem reference="490"/>
-                    <toolbarItem reference="497"/>
+                    <toolbarItem reference="UyV-lb-wnR"/>
                     <toolbarItem reference="493"/>
-                    <toolbarItem reference="fzG-XB-Qpr"/>
+                    <toolbarItem reference="byL-bJ-fVw"/>
                     <toolbarItem reference="493"/>
-                    <toolbarItem reference="499"/>
+                    <toolbarItem reference="yCT-ew-nju"/>
                 </defaultToolbarItems>
             </toolbar>
             <connections>
@@ -297,7 +352,7 @@ label riga 4</string>
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES" HUD="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="272" y="172" width="200" height="170"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1418"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
             <value key="minSize" type="size" width="200" height="170"/>
             <view key="contentView" id="Pe3-0N-Gjn">
                 <rect key="frame" x="0.0" y="0.0" width="200" height="170"/>
@@ -472,10 +527,10 @@ label riga 4</string>
         </customView>
     </objects>
     <resources>
-        <image name="books" width="20.756755828857422" height="20.756755828857422"/>
-        <image name="delete" width="20.756755828857422" height="20.756755828857422"/>
-        <image name="document" width="20.756755828857422" height="20.756755828857422"/>
-        <image name="edit" width="20.756755828857422" height="20.756755828857422"/>
-        <image name="settings" width="20.756755828857422" height="20.756755828857422"/>
+        <image name="books_Template" width="32" height="32"/>
+        <image name="delete_Template" width="32" height="32"/>
+        <image name="document_Template" width="32" height="32"/>
+        <image name="edit_Template" width="32" height="32"/>
+        <image name="settings_Template" width="20.756755828857422" height="20.756755828857422"/>
     </resources>
 </document>
