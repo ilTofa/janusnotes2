@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1090" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
@@ -27,7 +27,7 @@
             <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="570" height="437"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1366" height="768"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
             <value key="minSize" type="size" width="250" height="200"/>
             <view key="contentView" id="2">
                 <rect key="frame" x="0.0" y="0.0" width="570" height="437"/>
@@ -209,53 +209,23 @@
                     <constraint firstAttribute="trailing" secondItem="642" secondAttribute="trailing" id="980"/>
                 </constraints>
             </view>
-            <toolbar key="toolbar" implicitIdentifier="67C1842C-EA04-4065-BC76-90AC93A99629" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="small" id="886">
+            <toolbar key="toolbar" implicitIdentifier="67C1842C-EA04-4065-BC76-90AC93A99629" displayMode="iconAndLabel" sizeMode="regular" id="886">
                 <allowedToolbarItems>
                     <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="887"/>
                     <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="890"/>
-                    <toolbarItem implicitItemIdentifier="D8E30839-EDBF-4CD3-B308-C2467BF5BACB" label="Save" paletteLabel="Save" tag="-1" image="save" id="892">
-                        <connections>
-                            <action selector="saveAndContinue:" target="-2" id="898"/>
-                        </connections>
-                    </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="9E67B704-8699-4471-9131-64BE80716607" label="Close" paletteLabel="Close" tag="-1" image="close" id="893">
-                        <connections>
-                            <action selector="performClose:" target="1" id="897"/>
-                        </connections>
-                    </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="5DF24705-AF24-49D4-8548-650BEF991C39" label="Add Attach" paletteLabel="Add Attach" tag="-1" image="add_property" id="894">
-                        <connections>
-                            <action selector="addAttachment:" target="-2" id="899"/>
-                        </connections>
-                    </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="DA6A5240-418E-4267-9A1A-66CCC800CC53" label="Remove Attach" paletteLabel="Remove Attach" tag="-1" image="delete_property" id="895">
-                        <connections>
-                            <action selector="deleteAttachment:" target="-2" id="900"/>
-                        </connections>
-                    </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="43D11E1C-6295-4329-8FE1-310D8FF07429" label="Open Attach" paletteLabel="Open Attach" tag="-1" image="show_property" id="901">
-                        <connections>
-                            <action selector="openAttachmentWith:" target="-2" id="902"/>
-                        </connections>
-                    </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="0A34F9EF-0583-4532-9A2F-E97CFB37F34F" label="Preview" paletteLabel="Preview" tag="-1" image="preview" id="Sm7-qq-Ra0">
-                        <connections>
-                            <action selector="previewMarkdown:" target="-2" id="13V-LP-2X8"/>
-                        </connections>
-                    </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="BA7498DC-D579-42B2-8B95-5E28BE764477" label="Export" paletteLabel="Export" tag="1" image="export" id="MDV-Nb-suB">
+                    <toolbarItem implicitItemIdentifier="BA7498DC-D579-42B2-8B95-5E28BE764477" label="Export" paletteLabel="Export" tag="1" image="export_Template" id="MDV-Nb-suB">
                         <nil key="toolTip"/>
-                        <size key="minSize" width="42" height="25"/>
-                        <size key="maxSize" width="45" height="32"/>
+                        <size key="minSize" width="32" height="25"/>
+                        <size key="maxSize" width="32" height="28"/>
                         <popUpButton key="view" tag="1" id="ZJQ-0w-Rmy">
-                            <rect key="frame" x="0.0" y="14" width="45" height="32"/>
+                            <rect key="frame" x="5" y="14" width="32" height="28"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <popUpButtonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="export" alignment="left" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" arrowPosition="noArrow" selectedItem="Eu5-ee-dZp" id="PyT-qS-GmD" customClass="GTPopUpButtonCell">
+                            <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" arrowPosition="noArrow" id="PyT-qS-GmD" customClass="GTPopUpButtonCell">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="menu"/>
                                 <menu key="menu" title="OtherViews" id="cQt-JF-JCc">
                                     <items>
-                                        <menuItem state="on" image="export" hidden="YES" id="7Zy-QU-SCU"/>
+                                        <menuItem state="on" image="export_Template" hidden="YES" id="7Zy-QU-SCU"/>
                                         <menuItem title="As Text..." id="Eu5-ee-dZp">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
@@ -277,18 +247,114 @@
                             </popUpButtonCell>
                         </popUpButton>
                     </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="9B89DBD5-38DD-4DDB-A0B5-AE85E14D15B1" label="Save" paletteLabel="Save Note" image="save_Template" id="Syt-tA-KON">
+                        <nil key="toolTip"/>
+                        <size key="minSize" width="32" height="25"/>
+                        <size key="maxSize" width="32" height="25"/>
+                        <button key="view" verticalHuggingPriority="750" id="zFC-Oe-NLP">
+                            <rect key="frame" x="14" y="14" width="32" height="25"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <buttonCell key="cell" type="roundTextured" title="Round Textured" bezelStyle="texturedRounded" image="save_Template" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Ngz-7K-xct">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                        </button>
+                        <connections>
+                            <action selector="saveAndContinue:" target="-2" id="Gby-ND-C0a"/>
+                        </connections>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="730FC371-7285-4915-87B5-DCDBA2F782A3" label="Close" paletteLabel="Close Note" image="close_Template" id="BZd-xn-2a8">
+                        <nil key="toolTip"/>
+                        <size key="minSize" width="32" height="25"/>
+                        <size key="maxSize" width="32" height="25"/>
+                        <button key="view" verticalHuggingPriority="750" id="wHo-4N-pPF">
+                            <rect key="frame" x="17" y="14" width="32" height="25"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <buttonCell key="cell" type="roundTextured" title="Round Textured" bezelStyle="texturedRounded" image="close_Template" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="wiQ-ru-9hO">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                        </button>
+                        <connections>
+                            <action selector="performClose:" target="1" id="23E-JU-H1N"/>
+                        </connections>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="396C49FC-2973-4B1F-9F30-3E6552813BC0" label="Preview" paletteLabel="Preview Note" image="preview_Template" id="18r-Dj-sRi">
+                        <nil key="toolTip"/>
+                        <size key="minSize" width="32" height="25"/>
+                        <size key="maxSize" width="32" height="25"/>
+                        <button key="view" verticalHuggingPriority="750" id="abT-6G-nAb">
+                            <rect key="frame" x="22" y="14" width="32" height="25"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <buttonCell key="cell" type="roundTextured" title="Round Textured" bezelStyle="texturedRounded" image="preview_Template" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ewA-Pn-uSE">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                        </button>
+                        <connections>
+                            <action selector="previewMarkdown:" target="-2" id="4jP-gL-3aB"/>
+                        </connections>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="A06FBACA-A9D6-4ACC-BBA3-275F635B3830" label="Add Attach" paletteLabel="Add Attachment" image="add_property_Template" id="WRS-fl-44w">
+                        <nil key="toolTip"/>
+                        <size key="minSize" width="32" height="25"/>
+                        <size key="maxSize" width="32" height="25"/>
+                        <button key="view" verticalHuggingPriority="750" id="r6e-xC-06N">
+                            <rect key="frame" x="31" y="14" width="32" height="25"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <buttonCell key="cell" type="roundTextured" title="Round Textured" bezelStyle="texturedRounded" image="add_property_Template" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="7BB-ts-AcY">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                        </button>
+                        <connections>
+                            <action selector="addAttachment:" target="-2" id="yLb-im-IUE"/>
+                        </connections>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="D1229B1C-1701-4C82-A49B-B9BD7B3C27BC" label="Remove Attach" paletteLabel="Remove Attachment" image="delete_property_Template" id="fKE-fw-rnf">
+                        <nil key="toolTip"/>
+                        <size key="minSize" width="32" height="25"/>
+                        <size key="maxSize" width="32" height="25"/>
+                        <button key="view" verticalHuggingPriority="750" id="1id-kD-dyF">
+                            <rect key="frame" x="42" y="14" width="32" height="25"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <buttonCell key="cell" type="roundTextured" title="Round Textured" bezelStyle="texturedRounded" image="delete_property_Template" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xCF-CQ-TV1">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                        </button>
+                        <connections>
+                            <action selector="deleteAttachment:" target="-2" id="eWi-Vo-eJ8"/>
+                        </connections>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="E51EF663-AA96-45A7-87F9-E1D990A407A4" label="Open Attach" paletteLabel="Open Attachment" image="show_property_Template" id="m9D-hk-H0E">
+                        <nil key="toolTip"/>
+                        <size key="minSize" width="32" height="25"/>
+                        <size key="maxSize" width="32" height="25"/>
+                        <button key="view" verticalHuggingPriority="750" id="b08-8O-8So">
+                            <rect key="frame" x="35" y="14" width="32" height="25"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <buttonCell key="cell" type="roundTextured" title="Round Textured" bezelStyle="texturedRounded" image="show_property_Template" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="h2G-hD-0rd">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                        </button>
+                        <connections>
+                            <action selector="openAttachmentWith:" target="-2" id="EmZ-jC-yiz"/>
+                        </connections>
+                    </toolbarItem>
                 </allowedToolbarItems>
                 <defaultToolbarItems>
-                    <toolbarItem reference="892"/>
-                    <toolbarItem reference="893"/>
+                    <toolbarItem reference="Syt-tA-KON"/>
+                    <toolbarItem reference="BZd-xn-2a8"/>
                     <toolbarItem reference="890"/>
                     <toolbarItem reference="MDV-Nb-suB"/>
                     <toolbarItem reference="887"/>
-                    <toolbarItem reference="Sm7-qq-Ra0"/>
+                    <toolbarItem reference="18r-Dj-sRi"/>
                     <toolbarItem reference="890"/>
-                    <toolbarItem reference="901"/>
-                    <toolbarItem reference="894"/>
-                    <toolbarItem reference="895"/>
+                    <toolbarItem reference="m9D-hk-H0E"/>
+                    <toolbarItem reference="WRS-fl-44w"/>
+                    <toolbarItem reference="fKE-fw-rnf"/>
                 </defaultToolbarItems>
             </toolbar>
             <connections>
@@ -489,7 +555,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="30" y="30" width="480" height="481"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1366" height="768"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1418"/>
             <view key="contentView" id="2Y1-sH-LpR">
                 <rect key="frame" x="0.0" y="0.0" width="480" height="481"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -541,12 +607,12 @@
         </customView>
     </objects>
     <resources>
-        <image name="add_property" width="64" height="64"/>
-        <image name="close" width="64" height="64"/>
-        <image name="delete_property" width="20.756755828857422" height="20.756755828857422"/>
-        <image name="export" width="20.756755828857422" height="20.756755828857422"/>
-        <image name="preview" width="64" height="64"/>
-        <image name="save" width="20.756755828857422" height="20.756755828857422"/>
-        <image name="show_property" width="20.756755828857422" height="20.756755828857422"/>
+        <image name="add_property_Template" width="32" height="32"/>
+        <image name="close_Template" width="20.756755828857422" height="20.756755828857422"/>
+        <image name="delete_property_Template" width="32" height="32"/>
+        <image name="export_Template" width="32" height="32"/>
+        <image name="preview_Template" width="20.756755828857422" height="20.756755828857422"/>
+        <image name="save_Template" width="32" height="32"/>
+        <image name="show_property_Template" width="20.756755828857422" height="20.756755828857422"/>
     </resources>
 </document>
