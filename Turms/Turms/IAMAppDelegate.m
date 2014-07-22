@@ -380,8 +380,7 @@
     
     NSURL *url = [applicationFilesDirectory URLByAppendingPathComponent:@"store.sqlite"];
     NSPersistentStoreCoordinator *coordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:mom];
-    NSDictionary *options = @{NSPersistentStoreUbiquitousContainerIdentifierKey: @"6483W56522.it.iltofa.Turms",
-                              NSPersistentStoreUbiquitousContentNameKey: @"Turms",
+    NSDictionary *options = @{NSPersistentStoreUbiquitousContentNameKey: @"Turms",
                               NSMigratePersistentStoresAutomaticallyOption: @YES,
                               NSInferMappingModelAutomaticallyOption: @YES};
 //    if ([NSPersistentStoreCoordinator removeUbiquitousContentAndPersistentStoreAtURL:url options:options error:&error]) {
@@ -593,7 +592,7 @@
 #pragma mark - Help menu
 
 - (IBAction)showFAQs:(id)sender {
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://www.iltofa.com/turms"]];
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://www.janusnotes.com/faq.html"]];
 }
 
 - (IBAction)showMarkdownHelp:(id)sender {
