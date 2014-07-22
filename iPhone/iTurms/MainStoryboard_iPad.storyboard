@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="7ep-k0-Kpd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="7ep-k0-Kpd">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--View Controller - Turms-->
+        <!--View Controller - Janus Notes-->
         <scene sceneID="tb7-TX-mQL">
             <objects>
-                <tableViewController id="0MJ-8r-Bc6" customClass="IAMViewController" sceneMemberID="viewController">
+                <tableViewController title="Janus Notes" id="0MJ-8r-Bc6" customClass="IAMViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="22" sectionFooterHeight="22" id="KJO-ot-G2Q">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -101,20 +101,18 @@ Label riga 3</string>
                     </tableView>
                     <toolbarItems>
                         <barButtonItem title="Preferences" id="qIB-nN-cad">
-                            <color key="tintColor" red="0.0" green="0.45490199329999997" blue="0.78039222959999999" alpha="1" colorSpace="deviceRGB"/>
                             <connections>
                                 <action selector="preferencesAction:" destination="0MJ-8r-Bc6" id="iOL-To-HsN"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="wSa-Lo-GzF"/>
                         <barButtonItem systemItem="add" id="EDt-TX-pWW">
-                            <color key="tintColor" red="0.0" green="0.45490199329999997" blue="0.78039222959999999" alpha="1" colorSpace="deviceRGB"/>
                             <connections>
                                 <segue destination="Ucd-PA-4nx" kind="push" identifier="AddTextNote" id="ZLW-nH-hE9"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" title="Turms" id="H8f-sb-BPG">
+                    <navigationItem key="navigationItem" title="Janus Notes 2" id="H8f-sb-BPG">
                         <barButtonItem key="leftBarButtonItem" systemItem="edit" id="gCD-yB-9h5"/>
                         <barButtonItem key="rightBarButtonItem" title="Books: All" id="0N4-nE-2pQ">
                             <connections>
@@ -569,7 +567,7 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                             <nil key="highlightedColor"/>
                         </label>
                         <sections>
-                            <tableViewSection headerTitle="Support Turms &amp; Turms Support" id="3M5-XO-JAU">
+                            <tableViewSection headerTitle="Support Janus &amp; janus Support" id="3M5-XO-JAU">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Rrp-CY-8r0">
                                         <rect key="frame" x="0.0" y="99" width="400" height="44"/>
@@ -578,7 +576,7 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                             <rect key="frame" x="0.0" y="0.0" width="400" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Turms Help Web Site." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oUT-6Q-5co">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Janus Notes Help Web Site." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oUT-6Q-5co">
                                                     <rect key="frame" x="20" y="11" width="360" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -984,7 +982,7 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
         <image name="link-icon.png" width="25" height="25"/>
         <image name="link-microphone.png" width="25" height="25"/>
     </resources>
-    <color key="tintColor" red="0.0" green="0.45490199329999997" blue="0.78039222959999999" alpha="1" colorSpace="deviceRGB"/>
+    <color key="tintColor" red="1" green="0.67141443489999997" blue="0.050752736630000003" alpha="1" colorSpace="deviceRGB"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
