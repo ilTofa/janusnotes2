@@ -99,6 +99,7 @@
 		645A7E5F1817C602003C9D5A /* IAMNoteEditTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMNoteEditTextView.h; sourceTree = "<group>"; };
 		645A7E601817C602003C9D5A /* IAMNoteEditTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMNoteEditTextView.m; sourceTree = "<group>"; };
 		64629F64183F79F300753313 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../Turms/Images.xcassets; sourceTree = "<group>"; };
+		6466017D197EE232007EFAB5 /* validate_base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = validate_base.h; sourceTree = "<group>"; };
 		64766FAA1927D4F900EFF249 /* validation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = validation.h; sourceTree = "<group>"; };
 		6476CFAA1746223900A6195C /* it.iltofa.turms.entry.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = it.iltofa.turms.entry.icns; sourceTree = "<group>"; };
 		647EF3FA18918D1C0045F273 /* RNCryptor+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor+Private.h"; sourceTree = "<group>"; };
@@ -343,6 +344,7 @@
 		64EA621616F7110300F4838E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6466017D197EE232007EFAB5 /* validate_base.h */,
 				64766FAA1927D4F900EFF249 /* validation.h */,
 				64C8DD0A19274776007DF53E /* In-App-Products.plist */,
 				64B4B7BB181140A700766D43 /* MarkdownPreview.html */,

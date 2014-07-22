@@ -7,8 +7,10 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "validate_base.h"
 
 int main(int argc, char *argv[])
 {
+//    return CheckReceiptAndRun(argc, (const char **)argv);
     return NSApplicationMain(argc, (const char **)argv);
 }
