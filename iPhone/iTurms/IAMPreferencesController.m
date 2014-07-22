@@ -53,7 +53,7 @@ typedef enum {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.versionLabel.text = [NSString stringWithFormat:@"This is Turms %@ (%@)\n©2013 Giacomo Tufano - All rights reserved.\nIcons from icons8, licensed CC BY-ND 3.0", [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"], [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"]];
+    self.versionLabel.text = [NSString stringWithFormat:@"This is Janus Notes 2 %@ (%@)\n©2013 Giacomo Tufano - All rights reserved.\nIcons from icons8, licensed CC BY-ND 3.0", [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"], [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"]];
     // Load base values
     self.sortSelector.selectedSegmentIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"sortBy"];
     self.dateSelector.selectedSegmentIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"dateShown"];
@@ -161,7 +161,7 @@ typedef enum {
     if (indexPath.section == supportTurms) {
         if (indexPath.row == supportHelp) {
             DLog(@"Call help site.");
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.iltofa.com/turms/"]];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.janusnotes.com/"]];
         } else if (indexPath.row == supportUnsatisfied) {
             DLog(@"Prepare email to support");
             [self sendCommentAction:self];
@@ -187,7 +187,7 @@ typedef enum {
     MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
     controller.mailComposeDelegate = self;
     [controller setToRecipients:@[@"gt+iTurmsSupport@ilTofa.com"]];
-    [controller setSubject:[NSString stringWithFormat:@"Feedback on Turms iOS app version %@ (%@)", [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"], [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"]]];
+    [controller setSubject:[NSString stringWithFormat:@"Feedback on Janus Notes Mobile version %@ (%@)", [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"], [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"]]];
     [controller setMessageBody:@"" isHTML:NO];
     if (controller)
         [self presentViewController:controller animated:YES completion:nil];

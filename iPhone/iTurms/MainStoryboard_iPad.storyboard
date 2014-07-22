@@ -112,7 +112,7 @@ Label riga 3</string>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" title="Janus Notes 2" id="H8f-sb-BPG">
+                    <navigationItem key="navigationItem" title="Notes" id="H8f-sb-BPG">
                         <barButtonItem key="leftBarButtonItem" systemItem="edit" id="gCD-yB-9h5"/>
                         <barButtonItem key="rightBarButtonItem" title="Books: All" id="0N4-nE-2pQ">
                             <connections>
