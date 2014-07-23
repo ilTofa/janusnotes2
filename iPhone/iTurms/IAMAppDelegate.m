@@ -134,8 +134,8 @@
     THPinViewController *pinViewController = [[THPinViewController alloc] initWithDelegate:self];
     pinViewController.backgroundColor = [UIColor whiteColor];
     pinViewController.promptTitle = @"Enter PIN";
-    pinViewController.promptColor = [UIColor colorWithRed:0.000 green:0.455 blue:0.780 alpha:1.000];
-    pinViewController.view.tintColor = [UIColor colorWithRed:0.000 green:0.455 blue:0.780 alpha:1.000];
+    pinViewController.promptColor = [UIColor colorWithRed:1.000 green:0.671 blue:0.051 alpha:1.000];
+    pinViewController.view.tintColor = [UIColor colorWithRed:1.000 green:0.671 blue:0.051 alpha:1.000];
     pinViewController.hideLetters = YES;
     [parentViewController presentViewController:pinViewController animated:YES completion:nil];
 }
@@ -381,7 +381,7 @@
 }
 
 - (BOOL)skipAds {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:@"skipAds"];
+    return YES;// [[NSUserDefaults standardUserDefaults] boolForKey:@"skipAds"];
 }
 
 #pragma mark - SKPaymentTransactionObserver

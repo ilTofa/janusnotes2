@@ -1,19 +1,19 @@
-Turms Notes Mobile
+Janus Notes 2 Mobile
 
-Turms is a program for OS X and iOS that allows you to securely collect your thoughts, wherever you are.
+Janus Notes is an open source note taking program for iPhone/iPad (and Macintosh) for that seriously respect your right to privacy. 
+It is named after the Latin God Janus, depicted as having two faces since he looks to the future and to the past. Or, may be, cloud storage and privacy. Or Macintoshes and iPhone/iPad. Or sharing and control. 
 Start collecting photos, links, video and audio clips. All your data will be seamlessly synced via iCloud to every iPhone/iPad or Macintosh you have. You won't forget anymore what you were thinking about when later you are on your mac writing that clever post.
+You can add attachments to the notes and they will live side by side with your notes. 
+You can share the notes among different Macs and to your iDevices using Dropbox. Or not. It's your call. 
+You can seamlessly share the notes among different Macs and to your iDevices using iCloud. That will happen automatically if you have iCloud configured. Your notes’ text will be encrypted on the iCloud storage so to avoid the eavesdroppers. 
+Please note that attachments are not encrypted in any case. The source code is available (MIT licensed) on GitHub under ilTofa/janusnotes. 
+We understand that note-taking is a very personal thing and we tried very hard to have your data as safe as possible. 
+We have *no* access to your dropbox beside the specific folder that we use for storing notes. Your data is safe. 
+If you're privacy-conscious you should lock your iPhone with a code (this will encrypt the notes' cache on your iPhone). Remember to lock your devices when you leave them. 
+This app do not "phone home" nor access anything else. There is no analytics package nor 3d party ads for this reason. That means that we have no idea on how you use the app and what is happening. Please send your feedback and suggestions!
 
-The app is free to use with ads (from iAds) that can be avoided with an in-App purchase.
-
-The app is named after Turms, the Etruscan god of trade and the messenger god between people and gods.
-
-We understand that thoughts and notes are a very personal things and we tried very hard to have your data as safe as possible. Your notes text will be encrypted on your iCloud storage so to avoid the eavesdroppers using AES-256. The relevant (d)encrypting code fragments will be available on the app website.
-The Macintosh version is fully sandboxed and have no access to anything else than the attachments you added to the notes (a copy of them, stored with the notes). The iPhone/iPad versions can be locked with a PIN, requested on every app startup.
-If you're privacy-conscious you should always lock your iPhone with a code (this will encrypt the notes' cache on your iPhone) and use FileVault on your Macintosh. Remember to lock your devices when you leave them.
-
-turms,iturms,note,notes,janus,privacy,encrypted,attachments,sharing,sync,icloud,video,audio,aes
-
-The application syncs over iCloud with a corresponding OS X app, named Turms, also on review.
+keywords
+note,notes,janus,privacy,encrypted,crypt,attachments,sharing,sync,video,audio,aes,turms,iturms
 
 Non Consumable
 No_Ads_Turms
@@ -21,9 +21,26 @@ it.iltofa.turms.noads
 Display Name: Happy? Remove Ads!
 Description: Remove ads from current (if any) and future versions of this app by paying a coffee to the developer.
 
+Janus Notes 2
+
+Janus Notes is an open source note taking program for OSX that seriously respect your right to privacy. 
+A companion app for iPhone and iPad allows you to have your notes always with you. 
+It is named after the Latin God Janus, depicted as having two faces since he looks to the future and to the past. Or, may be, cloud storage and privacy. Or Macintoshes and iPhone/iPad. Or sharing and control. 
+Start collecting photos, links, video and audio clips. All your data will be seamlessly synced via iCloud to every iPhone/iPad or Macintosh you have. You won't forget anymore what you were thinking about when later you are on your mac writing that clever post.
+You can add attachments to the notes and they will live side by side with your notes. 
+You can seamlessly share the notes among different Macs and to your iDevices using iCloud. That will happen automatically if you have iCloud configured. Your notes’ text will be encrypted on the iCloud storage so to avoid the eavesdroppers. 
+The encryption password is available in clear in the software and can be freely changed. It is saved in the System Keychain and, therefore, it is sure when the device is locked (as it should always be when not in use). The cloud storage (the real target of encryption) is always encrypted without any copy of the password. We feel this is the right balance between usability and security. Please note that attachments are not encrypted in any case. The source code is available (MIT licensed) on GitHub under ilTofa/janusnotes. 
+We understand that note-taking is a very personal thing and we tried very hard to have your data as safe as possible. 
+We have *no* access to your dropbox beside the specific folder that we use for storing notes. Your data is safe. 
+The app is fully sandboxed and we have no access to anything else than the dropbox folder you choose and the attachments you added to the notes (a copy of them, stored with the notes). 
+If you're privacy-conscious you should use FileVault on your Macintosh. Remember to lock your devices when you leave them. 
+This app do not "phone home" nor access anything else. There is no analytics package nor ads for this reason. That means that we have no idea on how you use the app and what is happening. Please send your feedback and suggestions!
+
+keywords
+note,notes,janus,privacy,encrypted,crypt,attachments,sharing,sync,video,audio,aes,turms,iturms
+
 Non Consumable
 No_Ads_OSXTurms
 it.iltofa.turms.osxnoads
 Display Name: Happy? Buy Full Version!
 Description: If you're happy with the app and you're using it regularly, show your appreciation by building the Full Version. This will stop the app from nagging you from time to time and will give the developers reasons to continue development of the app.
-
