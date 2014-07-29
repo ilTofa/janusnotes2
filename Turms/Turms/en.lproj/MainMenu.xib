@@ -14,10 +14,10 @@
         <customObject id="-3" userLabel="Application"/>
         <menu title="AMainMenu" systemMenu="main" id="29">
             <items>
-                <menuItem title="Janus Notes" id="56">
-                    <menu key="submenu" title="Janus Notes" systemMenu="apple" id="57">
+                <menuItem title="Janus Notes 2" id="56">
+                    <menu key="submenu" title="Janus Notes 2" systemMenu="apple" id="57">
                         <items>
-                            <menuItem title="About Janus Notes" id="58">
+                            <menuItem title="About Janus Notes 2" id="58">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="orderFrontStandardAboutPanel:" target="-2" id="142"/>

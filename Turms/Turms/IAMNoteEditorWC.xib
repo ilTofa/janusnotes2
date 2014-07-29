@@ -27,7 +27,7 @@
             <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="570" height="437"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1418"/>
             <value key="minSize" type="size" width="250" height="200"/>
             <view key="contentView" id="2">
                 <rect key="frame" x="0.0" y="0.0" width="570" height="437"/>
@@ -220,7 +220,7 @@
                         <popUpButton key="view" tag="1" id="ZJQ-0w-Rmy">
                             <rect key="frame" x="5" y="14" width="32" height="28"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" arrowPosition="noArrow" id="PyT-qS-GmD" customClass="GTPopUpButtonCell">
+                            <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="export_Template" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" arrowPosition="noArrow" id="PyT-qS-GmD" customClass="GTPopUpButtonCell">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="menu"/>
                                 <menu key="menu" title="OtherViews" id="cQt-JF-JCc">
@@ -611,8 +611,8 @@
         <image name="close_Template" width="20.756755828857422" height="20.756755828857422"/>
         <image name="delete_property_Template" width="32" height="32"/>
         <image name="export_Template" width="32" height="32"/>
-        <image name="preview_Template" width="20.756755828857422" height="20.756755828857422"/>
+        <image name="preview_Template" width="32" height="32"/>
         <image name="save_Template" width="32" height="32"/>
-        <image name="show_property_Template" width="20.756755828857422" height="20.756755828857422"/>
+        <image name="show_property_Template" width="32" height="32"/>
     </resources>
 </document>

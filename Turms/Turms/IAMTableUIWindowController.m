@@ -191,7 +191,7 @@
     if (windowTitle) {
         [self.window setTitle:windowTitle];
     } else {
-        [self.window setTitle:@"Janus Notes"];
+        [self.window setTitle:@"Janus Notes 2"];
     }
     self.bookQueryPredicate = queryString;
     DLog(@"Book query string is: %@", queryString);

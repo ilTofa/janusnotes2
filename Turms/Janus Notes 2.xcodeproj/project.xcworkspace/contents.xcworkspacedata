@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Janus Notes.xcodeproj">
+      location = "self:Janus Notes 2.xcodeproj">
    </FileRef>
 </Workspace>

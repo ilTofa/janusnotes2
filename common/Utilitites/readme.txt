@@ -1,6 +1,6 @@
 Why Janus?
 -
-Janus Notes is a note taking program for iOS and OSX that seriously respect your right to privacy.
+Janus Notes 2 is a note taking program for iOS and OSX that seriously respect your right to privacy.
 It is named after the Latin God *Janus*, depicted as having two faces since he looks to the future and to the past. Or, may be, cloud storage and privacy. Or Macintoshes and iPhone/iPad. Or sharing and control.
 
 What does?
