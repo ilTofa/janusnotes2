@@ -166,6 +166,12 @@
     [noteEditor showWindow:self];
 }
 
+- (void)saveAllOpenNotes {
+    for (IAMNoteEditorWC *editor in self.noteWindowControllers) {
+        [editor saveAndContinue:self];
+    }
+}
+
 #pragma mark - Book Management
 
 - (IBAction)showBooksAction:(id)sender {

@@ -33,6 +33,9 @@
 - (IBAction)actionPreferences:(id)sender;
 - (IBAction)showBooksAction:(id)sender;
 
+// Last resort save (for use in quitting app)
+- (void)saveAllOpenNotes;
+
 // Called directly from main menu
 - (IBAction)backupNotesArchive:(id)sender;
 - (IBAction)restoreNotesArchive:(id)sender;
