@@ -9,7 +9,7 @@
 //
 // Platform                   : OSX
 // CFBundleIdentifier         : it.iltofa.Turms
-// CFBundleShortVersionString : 2.0
+// CFBundleShortVersionString : 2.0.1
 // Prefix                     : RV
 // Success Behavior           : CheckInApp
 // Failure Behavior           : DoNothing
@@ -140,41 +140,41 @@ extern "C" {
         RV_InAppAttributeTypeCancellationDate = 1712,
         
         // Storage key base value
-        RV_StoreNone = 696,
+        RV_StoreNone = 1515,
         // Bundle identifier
-        RV_StoreReceiptAttributeTypeBundleId = RV_StoreNone + (RV_ReceiptAttributeTypeBundleId << 2),
-        RV_StoreReceiptAttributeTypeBundleIdData = RV_StoreNone + (RV_ReceiptAttributeTypeBundleId << 2) + 1,
+        RV_StoreReceiptAttributeTypeBundleId = RV_StoreNone + (RV_ReceiptAttributeTypeBundleId << 1),
+        RV_StoreReceiptAttributeTypeBundleIdData = RV_StoreNone + (RV_ReceiptAttributeTypeBundleId << 1) + 1,
         // Application version
-        RV_StoreReceiptAttributeTypeBundleVersion = RV_StoreNone + (RV_ReceiptAttributeTypeBundleVersion << 2),
-        RV_StoreReceiptAttributeTypeBundleVersionData = RV_StoreNone + (RV_ReceiptAttributeTypeBundleId << 2) + 1,
+        RV_StoreReceiptAttributeTypeBundleVersion = RV_StoreNone + (RV_ReceiptAttributeTypeBundleVersion << 1),
+        RV_StoreReceiptAttributeTypeBundleVersionData = RV_StoreNone + (RV_ReceiptAttributeTypeBundleId << 1) + 1,
         // Opaque value
-        RV_StoreReceiptAttributeTypeOpaqueValue = RV_StoreNone + (RV_ReceiptAttributeTypeOpaqueValue << 2),
+        RV_StoreReceiptAttributeTypeOpaqueValue = RV_StoreNone + (RV_ReceiptAttributeTypeOpaqueValue << 1),
         // Hash value
-        RV_StoreReceiptAttributeTypeHash = RV_StoreNone + (RV_ReceiptAttributeTypeHash << 2),
+        RV_StoreReceiptAttributeTypeHash = RV_StoreNone + (RV_ReceiptAttributeTypeHash << 1),
         // In-app purchase receipt
-        RV_StoreReceiptAttributeTypeInAppPurchase = RV_StoreNone + (RV_ReceiptAttributeTypeInAppPurchase << 2),
+        RV_StoreReceiptAttributeTypeInAppPurchase = RV_StoreNone + (RV_ReceiptAttributeTypeInAppPurchase << 1),
         // Original Application Version
-        RV_StoreReceiptAttributeTypeOriginalApplicationVersion = RV_StoreNone + (RV_ReceiptAttributeTypeOriginalApplicationVersion << 2),
+        RV_StoreReceiptAttributeTypeOriginalApplicationVersion = RV_StoreNone + (RV_ReceiptAttributeTypeOriginalApplicationVersion << 1),
         // Receipt Expiration Date
-        RV_StoreReceiptAttributeTypeExpirationDate = RV_StoreNone + (RV_ReceiptAttributeTypeExpirationDate << 2),
+        RV_StoreReceiptAttributeTypeExpirationDate = RV_StoreNone + (RV_ReceiptAttributeTypeExpirationDate << 1),
         // Quantity
-        RV_StoreInAppAttributeTypeQuantity = RV_StoreNone + (RV_InAppAttributeTypeQuantity << 2),
+        RV_StoreInAppAttributeTypeQuantity = RV_StoreNone + (RV_InAppAttributeTypeQuantity << 1),
         // Product identifier
-        RV_StoreInAppAttributeTypeProductIdentifer = RV_StoreNone + (RV_InAppAttributeTypeProductIdentifer << 2),
+        RV_StoreInAppAttributeTypeProductIdentifer = RV_StoreNone + (RV_InAppAttributeTypeProductIdentifer << 1),
         // Transaction identifier
-        RV_StoreInAppAttributeTypeTransactionIdentifer = RV_StoreNone + (RV_InAppAttributeTypeTransactionIdentifer << 2),
+        RV_StoreInAppAttributeTypeTransactionIdentifer = RV_StoreNone + (RV_InAppAttributeTypeTransactionIdentifer << 1),
         // Purchase date
-        RV_StoreInAppAttributeTypePurchaseDate = RV_StoreNone + (RV_InAppAttributeTypePurchaseDate << 2),
+        RV_StoreInAppAttributeTypePurchaseDate = RV_StoreNone + (RV_InAppAttributeTypePurchaseDate << 1),
         // Original transaction identifier
-        RV_StoreInAppAttributeTypeOriginalTransactionIdentifer = RV_StoreNone + (RV_InAppAttributeTypeOriginalTransactionIdentifer << 2),
+        RV_StoreInAppAttributeTypeOriginalTransactionIdentifer = RV_StoreNone + (RV_InAppAttributeTypeOriginalTransactionIdentifer << 1),
         // Original purchase date
-        RV_StoreInAppAttributeTypeOriginalPurchaseDate = RV_StoreNone + (RV_InAppAttributeTypeOriginalPurchaseDate << 2),
+        RV_StoreInAppAttributeTypeOriginalPurchaseDate = RV_StoreNone + (RV_InAppAttributeTypeOriginalPurchaseDate << 1),
         // Subscription Expiration Date
-        RV_StoreInAppAttributeTypeSubscriptionExpirationDate = RV_StoreNone + (RV_InAppAttributeTypeSubscriptionExpirationDate << 2),
+        RV_StoreInAppAttributeTypeSubscriptionExpirationDate = RV_StoreNone + (RV_InAppAttributeTypeSubscriptionExpirationDate << 1),
         // Web Order Line Item ID
-        RV_StoreInAppAttributeTypeWebOrderLineItemId = RV_StoreNone + (RV_InAppAttributeTypeWebOrderLineItemId << 2),
+        RV_StoreInAppAttributeTypeWebOrderLineItemId = RV_StoreNone + (RV_InAppAttributeTypeWebOrderLineItemId << 1),
         // Cancellation Date
-        RV_StoreInAppAttributeTypeCancellationDate = RV_StoreNone + (RV_InAppAttributeTypeCancellationDate << 2)
+        RV_StoreInAppAttributeTypeCancellationDate = RV_StoreNone + (RV_InAppAttributeTypeCancellationDate << 1)
         
     } RV_ReceiptAttributeType;
     
@@ -197,45 +197,48 @@ extern "C" {
     
     // Shared context for receipt validation
     typedef struct _RV_CheckingContext {
-        CFTypeRef dummy0006;
-        CFTypeRef inapp_block;
-        CFTypeRef receipt_dict;
-        CFTypeRef dummy000B;
-        CFTypeRef main_bundle;
-        CFTypeRef dummy0002;
-        CFTypeRef guid_data;
-        CFTypeRef dummy000A;
-        CFTypeRef dummy000C;
-        CFTypeRef ca_data;
-        CFTypeRef dummy0005;
+        CFTypeRef dummy0004;
         CFTypeRef inapp_identifiers;
+        CFTypeRef dummy000C;
+        CFTypeRef dummy0003;
         CFTypeRef dummy0001;
         CFTypeRef receipt_data;
-        CFTypeRef dummy000D;
-        CFTypeRef dummy0004;
-        CFTypeRef dummy0003;
-        CFTypeRef dummy0008;
-        CFTypeRef dummy0009;
-        CFTypeRef dummy0000;
+        CFTypeRef dummy0005;
         CFTypeRef dummy0007;
+        CFTypeRef dummy000B;
+        CFTypeRef main_bundle;
+        CFTypeRef dummy0006;
+        CFTypeRef ca_data;
+        CFTypeRef receipt_dict;
+        CFTypeRef dummy0008;
+        CFTypeRef dummy000E;
+        CFTypeRef dummy000A;
+        CFTypeRef dummy000D;
+        CFTypeRef inapp_block;
+        CFTypeRef guid_data;
+        CFTypeRef dummy0009;
+        CFTypeRef dummy0002;
+        CFTypeRef dummy0000;
     } RV_CheckingContext;
     
     // Shared context for receipt parsing
     typedef struct _RV_ParsingContext {
         const unsigned char * end;
-        CFTypeRef dummy0006;
-        CFTypeRef dummy0003;
-        CFTypeRef dictionary;
-        CFTypeRef dummy0000;
-        CFTypeRef dummy0009;
-        CFTypeRef dummy0004;
         CFTypeRef dummy0005;
+        const unsigned char * ptr;
+        CFTypeRef dummy000B;
+        CFTypeRef dummy0003;
+        CFTypeRef dummy0008;
         CFTypeRef dummy0007;
         struct _RV_ParsingContext * parent;
+        CFTypeRef dictionary;
+        CFTypeRef dummy0004;
+        CFTypeRef dummy000A;
         CFTypeRef dummy0001;
-        CFTypeRef dummy0008;
-        const unsigned char * ptr;
+        CFTypeRef dummy0009;
         CFTypeRef dummy0002;
+        CFTypeRef dummy0000;
+        CFTypeRef dummy0006;
     } RV_ParsingContext;
     
     // Symbol ASN1_get_object
@@ -348,26 +351,16 @@ extern "C" {
     typedef void (*__RV_EVP_MD_CTX_init)(EVP_MD_CTX *ctx);
     // Symbol exit
     typedef void (*__RV_exit)(int status);
+    // Symbol freeifaddrs
+    typedef void (*__RV_freeifaddrs)(struct ifaddrs *ifp);
+    // Symbol getifaddrs
+    typedef int (*__RV_getifaddrs)(struct ifaddrs **ifap);
     // Symbol glob
     typedef int (*__RV_glob)(const char * __restrict, int, int (*)(const char *, int), glob_t * __restrict);
     // Symbol glob_b
     typedef int (*__RV_glob_b)(const char * __restrict, int, int (^)(const char *, int), glob_t * __restrict);
     // Symbol globfree
     typedef void (*__RV_globfree)(glob_t *);
-    // Symbol IOBSDNameMatching
-    typedef CFMutableDictionaryRef (*__RV_IOBSDNameMatching)(mach_port_t masterPort, uint32_t options, const char * bsdName);
-    // Symbol IOIteratorNext
-    typedef io_object_t (*__RV_IOIteratorNext)(io_iterator_t iterator);
-    // Symbol IOMasterPort
-    typedef kern_return_t (*__RV_IOMasterPort)(mach_port_t bootstrapPort, mach_port_t *masterPort);
-    // Symbol IOObjectRelease
-    typedef kern_return_t (*__RV_IOObjectRelease)(io_object_t object);
-    // Symbol IORegistryEntryCreateCFProperty
-    typedef CFTypeRef (*__RV_IORegistryEntryCreateCFProperty)(io_registry_entry_t entry, CFStringRef key, CFAllocatorRef allocator, IOOptionBits options);
-    // Symbol IORegistryEntryGetParentEntry
-    typedef kern_return_t (*__RV_IORegistryEntryGetParentEntry)(io_registry_entry_t entry, const io_name_t plane, io_registry_entry_t * parent);
-    // Symbol IOServiceGetMatchingServices
-    typedef kern_return_t (*__RV_IOServiceGetMatchingServices)(mach_port_t masterPort, CFDictionaryRef matching, io_iterator_t *existing);
     // Symbol kCFBundleIdentifierKey
     typedef const CFStringRef *__RV_kCFBundleIdentifierKey;
     // Symbol kCFTypeArrayCallBacks
@@ -434,6 +427,8 @@ extern "C" {
     typedef int (*__RV_sk_num)(const _STACK *);
     // Symbol sk_value
     typedef void *(*__RV_sk_value)(const _STACK *, int);
+    // Symbol strcmp
+    typedef int (*__RV_strcmp)(const char *s1, const char *s2);
     // Symbol strlen
     typedef size_t (*__RV_strlen)(const char *);
     // Symbol strncmp
@@ -455,1481 +450,1106 @@ extern "C" {
     
     
     // Table for storing strings
-    static const char *RV_Strings[565] = {
-        // "BIO_write" / M(Xor1) / S(119) / L(9)
-        "\x35\x3e\x38\x28\x00\x05\x1e\x03\x12\x77\x16\x9b\xbf\xc8\x6f\x70",
-        // "X509_NAME_get_text_by_NID" / M(Xor3) / S(143) / L(25)
-        "\xe9\x84\x81\x88\xee\xff\xf0\xfc\xf4\xee\xd6\xd4\xc5\xee\xc5\xd4\xc9\xc5\xee\xd3\xc8\xee\xff\xf8\xf5\xb1\xfe\x31\x17\x3e\x4c\x4f\x31\x0b",
-        // "CFDictionaryCreateMutable" / M(Xor2) / S(79) / L(25)
-        "\x2e\x2b\x29\x04\x0e\x19\x04\x02\x03\x0c\x1f\x14\x2e\x1f\x08\x0c\x19\x08\x20\x18\x19\x0c\x0f\x01\x08\x6d\x1e\xca\xea\x9b\x0d\xa7\x92\xfc",
-        // "ASN1_OBJECT_free" / M(Xor3) / S(55) / L(16)
-        "\x09\x1b\x06\x79\x17\x07\x0a\x02\x0d\x0b\x1c\x17\x2e\x3a\x2d\x2d\x48",
+    static const char *RV_Strings[542] = {
+        // "CFDataGetBytePtr" / M(Xor4) / S(132) / L(16)
+        "\x87\x82\x80\xa5\xb0\xa5\x83\xa1\xb0\x86\xbd\xb0\xa1\x94\xb0\xb6\xc4",
         // "" / M(None) / S(0) / L(0)
-        "\x1e\x8b\xec\x6d\x2b\x4c\x42\xa4\x07\xcc\x84\xb0\x7f\x43\xb8\x69\xca\x77\xdc\xdc\x64\xbe\x4a\x89\xdd\x7d\xfe\x8d\x18\x0c\x08\xa4",
-        // "CFArrayGetValueAtIndex" / M(Xor1) / S(87) / L(22)
-        "\x14\x11\x16\x25\x25\x36\x2e\x10\x32\x23\x01\x36\x3b\x22\x32\x16\x23\x1e\x39\x33\x32\x2f\x57",
-        // "dlsym" / M(Xor4) / S(75) / L(5)
-        "\xd4\xdc\xc3\xc9\xdd\xb0\xab\x62\x87\xaf\xb3\x56\x14\x04\x98\x99",
-        // "ASN1_get_object" / M(Xor3) / S(202) / L(15)
-        "\x9b\x89\x94\xeb\x85\xbd\xbf\xae\x85\xb5\xb8\xb0\xbf\xb9\xae\xda",
-        // "." / M(Xor2) / S(235) / L(1)
-        "\xd5\xfb\xec\xc7\xa9\x27\x18\x6a\x54\x00\x0a\x32\xdc\x6b\x98\x63",
-        // "kSecMatchSubjectContains" / M(Xor4) / S(179) / L(24)
-        "\x78\x40\x76\x70\x5e\x72\x67\x70\x7b\x40\x66\x71\x79\x76\x70\x67\x50\x7c\x7d\x67\x72\x7a\x7d\x60\x13\xd0\x41\x8a\x02\x8a\xc3\x23\x75",
-        // "CFNumberCreate" / M(Xor1) / S(222) / L(14)
-        "\x9d\x98\x90\xab\xb3\xbc\xbb\xac\x9d\xac\xbb\xbf\xaa\xbb\xde\x37",
-        // "globfree" / M(Xor3) / S(64) / L(8)
-        "\x37\x3c\x3f\x32\x36\x22\x35\x35\x50\xde\xd5\xc5\xfb\xbe\x55\xad",
-        // "" / M(None) / S(0) / L(0)
-        "\x95\x6f\xcd\x43\x80\xec\x48\xdc\x02\xca\xdb\x69\x3a\x48\x7f\xdc\x3c\x7c\xf9\xff\x02\x7f\xc2\x7a\xf6\x7c\xa0\xe8\xcc\x56\x5c\x2a",
-        // "" / M(None) / S(0) / L(0)
-        "\xc9\xba\xd5\x15\x08\x6f\xe9\xed\x3b\x5f\xe3\x65\xbc\xca\xc7\x63\x86\x81\xed\x30\x40\xb2\x47\x6b\xa5\x13\x6e\x6a\xe3\xd8\xf2\x14",
-        // "Apple Root CA" / M(Xor2) / S(44) / L(13)
-        "\x7d\x4c\x4c\x50\x59\x1c\x6e\x53\x53\x48\x1c\x7f\x7d\x3c\x0d\x07",
-        // "X509_STORE_add_cert" / M(Rot) / S(205) / L(19)
-        "\x25\x02\xfd\x06\x2c\x20\x21\x1c\x1f\x12\x2c\x2e\x31\x31\x2c\x30\x32\x3f\x41\xcd",
-        // "IOMasterPort" / M(Xor4) / S(175) / L(12)
-        "\xb9\xbf\xbd\x91\x83\x84\x95\x82\xa0\x9f\x82\x84\xf0\x76\x40\x95",
-        // "kSecClass" / M(Xor3) / S(210) / L(9)
-        "\x89\xb1\x87\x81\xa1\x8e\x83\x91\x91\xe2\xa2\x1c\xd2\x60\x84\x8d",
-        // "" / M(None) / S(0) / L(0)
-        "\x8e\x7b\x86\xd5\x8c\xb4\x15\xd9\xf6\x77\x12\xd2\x3f\x0f\x33\x8b\xd6\x8d\x79\x61\x72\x83\x37\xb5\x2b\x59\x8f\x32\xe3\x35\xd8\x61",
-        // "CFNumberCreate" / M(Xor3) / S(220) / L(14)
-        "\xaf\xaa\xa2\x99\x81\x8e\x89\x9e\xaf\x9e\x89\x8d\x98\x89\xec\xf4",
-        // "_MASReceipt" / M(Xor1) / S(151) / L(11)
-        "\xc8\xda\xd6\xc4\xc5\xf2\xf4\xf2\xfe\xe7\xe3\x97\xe8\x04\xa5\x67",
-        // "" / M(None) / S(0) / L(0)
-        "\x69\x6b\x52\xe9\x8b\xb7\x30\xfb\xab\x60\xb6\xde\x3f\xc4\x33\xf0\xe8\x14\xdb\xb0\xf5\xbd\x3b\x2d\x11\x1b\x83\xa2\x29\x5d\xa9\xfa",
-        // "EVP_DigestInit" / M(Xor3) / S(105) / L(14)
-        "\x3c\x2f\x29\x26\x3d\x10\x1e\x1c\x0a\x0d\x30\x17\x10\x0d\x79\x0a",
-        // "CFReadStreamCreateWithFile" / M(Xor4) / S(88) / L(26)
-        "\x4b\x4e\x5a\x6d\x69\x6c\x5b\x7c\x7a\x6d\x69\x65\x4b\x7a\x6d\x69\x7c\x6d\x5f\x61\x7c\x60\x4e\x61\x64\x6d\x08\xe5\xa4\x7f\x48\x62\xc5\x8b\xa5",
-        // "" / M(None) / S(0) / L(0)
-        "\xcc\xb2\x1c\x61\xd0\x6e\x57\xe5\xa5\x65\x86\xc1\x8e\x7a\x79\xfd\x48\x73\xaf\x41\x0c\x7b\xb7\x6f\x9e\xa0\xcd\x2a\xe7\xc1\xa4\xc5",
-        // "CFURLCreateCopyAppendingPathComponent" / M(Rot) / S(17) / L(37)
-        "\x54\x57\x66\x63\x5d\x54\x83\x76\x72\x85\x76\x54\x80\x81\x8a\x52\x81\x81\x76\x7f\x75\x7a\x7f\x78\x61\x72\x85\x79\x54\x80\x7e\x81\x80\x7f\x76\x7f\x85\x11",
-        // "" / M(None) / S(0) / L(0)
-        "\xba\x50\x57\x7d\x36\xb8\x77\xea\xcc\x68\x00\xb4\xb1\xc0\x75\xa2\x7d\xe2\xd5\xfe\x76\xe8\x56\x07\xf7\xcb\x09\x52\x38\x9e\x6e\xba",
-        // "" / M(None) / S(0) / L(0)
-        "\x98\x1e\xc1\xda\xc9\xb8\x88\xa5\xf5\xcd\x6b\x0d\x04\xcf\x19\x96\xa9\x02\x21\x94\x88\x05\x57\x00\xb8\x39\xbc\x5b\xef\xbf\x61\x26",
-        // "kSecReturnRef" / M(Xor2) / S(109) / L(13)
-        "\x16\x2e\x18\x1e\x2f\x18\x09\x08\x0f\x13\x2f\x18\x1b\x7d\x19\xc7",
-        // "CFArrayCreateMutable" / M(Rot) / S(236) / L(20)
-        "\x2f\x32\x2d\x5e\x5e\x4d\x65\x2f\x5e\x51\x4d\x60\x51\x39\x61\x60\x4d\x4e\x58\x51\xec",
-        // "EVP_DigestUpdate" / M(Xor2) / S(118) / L(16)
-        "\x22\x31\x37\x38\x23\x0e\x00\x02\x14\x13\x32\x17\x03\x06\x13\x02\x67",
-        // "kCFBundleIdentifierKey" / M(Xor2) / S(220) / L(22)
-        "\xa0\x88\x8d\x89\xbe\xa5\xaf\xa7\xae\x82\xaf\xae\xa5\xbf\xa2\xad\xa2\xae\xb9\x80\xae\xb2\xcb",
-        // "IOObjectRelease" / M(Rot) / S(189) / L(15)
-        "\x06\x0c\x0c\x1f\x27\x22\x20\x31\x0f\x22\x29\x22\x1e\x30\x22\xbd",
-        // "kSecClassCertificate" / M(Rot) / S(236) / L(20)
-        "\x57\x3f\x51\x4f\x2f\x58\x4d\x5f\x5f\x2f\x51\x5e\x60\x55\x52\x55\x4f\x4d\x60\x51\xec",
-        // "kCFTypeArrayCallBacks" / M(Rot) / S(41) / L(21)
-        "\x94\x6c\x6f\x7d\xa2\x99\x8e\x6a\x9b\x9b\x8a\xa2\x6c\x8a\x95\x95\x6b\x8a\x8c\x94\x9c\x29",
-        // "" / M(None) / S(0) / L(0)
-        "\x72\x33\x48\xa3\xbc\xa5\x89\xe6\x38\xd3\xdd\xe2\x5f\x50\xb0\xf7\x13\xcf\x96\xdc\xae\xaf\x58\x72\xac\x8d\x92\x25\xfc\xe2\x1c\x0f",
-        // "en0" / M(Xor4) / S(130) / L(3)
-        "\x45\x4e\x10\x20\xf4\x27\x7c\x11\x80\x1d\x60\xce\x68\x02\x59\xf6",
-        // "IOIteratorNext" / M(Xor4) / S(113) / L(14)
-        "\x59\x5f\x59\x64\x75\x62\x71\x64\x7f\x62\x5e\x75\x68\x64\x10\x6d",
-        // "" / M(None) / S(0) / L(0)
-        "\x95\x98\x30\x22\x70\xc8\xe6\xb2\xee\x51\xfe\xac\x56\xa8\xa7\x45\x8d\x2e\xc9\xca\xc2\x7f\x09\x63\x9e\xaf\x73\x99\x34\xc0\xff\x85",
-        // "ASN1_OBJECT_free" / M(Rot) / S(6) / L(16)
-        "\x47\x59\x54\x37\x65\x55\x48\x50\x4b\x49\x5a\x65\x6c\x78\x6b\x6b\x06",
-        // "" / M(None) / S(0) / L(0)
-        "\xe4\x8b\xe3\xb2\xfa\x07\x4f\xcd\x42\x67\x12\xe4\xec\xd9\x68\x48\xef\xe2\xb2\x63\xad\x5b\x0f\x0f\xb4\xa4\x3e\xbd\xcd\xdf\x62\x21",
-        // "SecCertificateCopyData" / M(Xor1) / S(44) / L(22)
-        "\x7f\x49\x4f\x6f\x49\x5e\x58\x45\x4a\x45\x4f\x4d\x58\x49\x6f\x43\x5c\x55\x68\x4d\x58\x4d\x2c",
-        // "objc_msgSend" / M(Xor3) / S(225) / L(12)
-        "\x9e\x93\x9b\x92\xae\x9c\x82\x96\xa2\x94\x9f\x95\xf1\xb2\x7e\xf7",
-        // "glob_b" / M(Rot) / S(87) / L(6)
-        "\xbe\xc3\xc6\xb9\xb6\xb9\x57\xe2\x66\xdb\xc1\xd0\x4f\x9c\x8b\x5e",
-        // "/usr/lib/libSystem.dylib" / M(Xor3) / S(202) / L(24)
-        "\xc4\x9e\x98\x99\xc4\x87\x82\x89\xc4\x87\x82\x89\xb8\x92\x98\x9f\x8e\x86\xc5\x8f\x92\x87\x82\x89\xeb\xe5\x91\x1f\x37\x15\x32\x74\xce",
-        // "" / M(None) / S(0) / L(0)
-        "\x0e\x96\x99\x71\xbb\xcd\xdd\x44\x3e\xe6\x18\x5f\xd1\xad\x53\x8e\xfa\xce\x5a\x76\xf3\x20\x23\xc2\x7d\x4d\x19\x88\x4b\x82\xf0\xfe",
-        // "strncmp" / M(Xor4) / S(165) / L(7)
-        "\x23\x24\x22\x3e\x33\x3d\x20\x50\x5c\x83\x30\x31\x5a\x73\xf2\xc8",
-        // "OpenSSL_add_all_digests" / M(Xor3) / S(93) / L(23)
-        "\x32\x0d\x18\x13\x2e\x2e\x31\x22\x1c\x19\x19\x22\x1c\x11\x11\x22\x19\x14\x1a\x18\x0e\x09\x0e\x7d\x0f\x6d\xb7\x19\x7a\xfa\x1c\x30",
-        // "/usr/lib/libobjc.dylib" / M(Xor4) / S(214) / L(22)
-        "\x15\x4f\x49\x48\x15\x56\x53\x58\x15\x56\x53\x58\x55\x58\x50\x59\x14\x5e\x43\x56\x53\x58\x3a",
-        // "sk_num" / M(Xor3) / S(100) / L(6)
-        "\x07\x1f\x2b\x1a\x01\x19\x74\xfb\x11\x39\x08\x9d\x7a\xe7\x88\x7d",
-        // "IOBSDNameMatching" / M(Rot) / S(147) / L(17)
-        "\xdc\xe2\xd5\xe6\xd7\xe1\xf4\x00\xf8\xe0\xf4\x07\xf6\xfb\xfc\x01\xfa\x93",
-        // "" / M(None) / S(0) / L(0)
-        "\x28\x2c\xcc\x8c\x08\xba\xf5\x60\xe8\xe3\x08\x36\x68\xef\xec\xf1\x27\xf1\xa4\x44\x93\xe0\x30\x10\x6d\x6d\xa5\x2f\xc5\x22\x4f\xdd",
-        // "sel_registerName" / M(Rot) / S(38) / L(16)
-        "\x99\x8b\x92\x85\x98\x8b\x8d\x8f\x99\x9a\x8b\x98\x74\x87\x93\x8b\x26",
-        // "kSecMatchLimit" / M(Rot) / S(233) / L(14)
-        "\x54\x3c\x4e\x4c\x36\x4a\x5d\x4c\x51\x35\x52\x56\x52\x5d\xe9\xd1",
-        // "CC_SHA1" / M(Rot) / S(126) / L(7)
-        "\xc1\xc1\xdd\xd1\xc6\xbf\xaf\x7e\xc8\xb9\xa8\x66\x10\xf0\x46\x8a",
-        // "CFStringCreateWithBytes" / M(Xor4) / S(85) / L(23)
-        "\xe3\xe6\xf3\xd4\xd2\xc9\xce\xc7\xe3\xd2\xc5\xc1\xd4\xc5\xf7\xc9\xd4\xc8\xe2\xd9\xd4\xc5\xd3\xa0\xde\x58\x31\x7c\xda\x66\x00\x82",
-        // "" / M(None) / S(0) / L(0)
-        "\xfe\x35\x57\x9a\x45\x64\xa2\x08\xa7\x69\xd2\xae\x8d\x42\x92\x6c\xdf\xab\xe3\x1c\xbd\xce\xaf\x4b\x2d\x97\x35\x6e\x75\x90\xbe\xdf",
-        // "CFDataAppendBytes" / M(Xor2) / S(55) / L(17)
-        "\x66\x63\x61\x44\x51\x44\x64\x55\x55\x40\x4b\x41\x67\x5c\x51\x40\x56\x25",
-        // "IORegistryEntryGetParentEntry" / M(Xor1) / S(133) / L(29)
-        "\xcc\xca\xd7\xe0\xe2\xec\xf6\xf1\xf7\xfc\xc0\xeb\xf1\xf7\xfc\xc2\xe0\xf1\xd5\xe4\xf7\xe0\xeb\xf1\xc0\xeb\xf1\xf7\xfc\x85\x58\xf3\xf9\xf6\x16\x66\x29\x35",
-        // "setjmp" / M(Xor1) / S(151) / L(6)
-        "\xe4\xf2\xe3\xfd\xfa\xe7\x97\xd2\x6e\x97\xdc\xe8\x0a\xad\xe9\x80",
-        // "CFBundleGetIdentifier" / M(Xor3) / S(214) / L(21)
-        "\xaf\xaa\xae\x99\x82\x88\x80\x89\xab\x89\x98\xa5\x88\x89\x82\x98\x85\x8a\x85\x89\x9e\xec",
-        // "CFDictionaryCreateMutable" / M(Xor3) / S(16) / L(25)
-        "\x71\x74\x76\x5b\x51\x46\x5b\x5d\x5c\x53\x40\x4b\x71\x40\x57\x53\x46\x57\x7f\x47\x46\x53\x50\x5e\x57\x32\xad\x81\xbc\xf2\xac\x5f\x96\x84",
-        // "CFStringCompare" / M(Xor1) / S(183) / L(15)
-        "\xf4\xf1\xe4\xc3\xc5\xde\xd9\xd0\xf4\xd8\xda\xc7\xd6\xc5\xd2\xb7",
-        // "/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation" / M(Xor2) / S(133) / L(66)
-        "\xe9\x95\xbf\xb5\xb2\xa3\xab\xe9\x8a\xaf\xa4\xb4\xa7\xb4\xbf\xe9\x80\xb4\xa7\xab\xa3\xb1\xa9\xb4\xad\xb5\xe9\x85\xa9\xb4\xa3\x80\xa9\xb3\xa8\xa2\xa7\xb2\xaf\xa9\xa8\xe8\xa0\xb4\xa7\xab\xa3\xb1\xa9\xb4\xad\xe9\x85\xa9\xb4\xa3\x80\xa9\xb3\xa8\xa2\xa7\xb2\xaf\xa9\xa8\xc6",
-        // "EVP_DigestFinal" / M(Xor1) / S(41) / L(15)
-        "\x6c\x7f\x79\x76\x6d\x40\x4e\x4c\x5a\x5d\x6f\x40\x47\x48\x45\x29",
-        // "en0" / M(Xor4) / S(17) / L(3)
-        "\x75\x7e\x20\x10\xac\xc9\x6b\x20\xcd\xc8\xe6\x32\xd9\xbc\x21\xd3",
-        // "" / M(None) / S(0) / L(0)
-        "\x3b\x9f\x64\xb9\x62\xa9\x5f\xba\x11\xf8\x61\x76\x22\x62\x61\x22\x3f\x0e\xf9\x56\xac\xbe\x1f\x1e\xf9\xb8\x35\x8b\x02\xf9\xa9\xed",
-        // "CFDateFormatterSetFormat" / M(Xor4) / S(169) / L(24)
-        "\x8a\x8f\x8d\xa8\xbd\xac\x8f\xa6\xbb\xa4\xa8\xbd\xbd\xac\xbb\x9a\xac\xbd\x8f\xa6\xbb\xa4\xa8\xbd\xc9\xcd\x2a\xd3\x3c\x2d\x00\xe1\x72",
-        // "start" / M(Xor2) / S(104) / L(5)
-        "\x0b\x0c\x19\x0a\x0c\x78\x50\x7b\x5b\xdc\x63\xea\xf4\x03\x3b\x8a",
-        // "2.0" / M(Xor1) / S(124) / L(3)
-        "\x4e\x52\x4c\x7c\x95\xc8\x9f\xd7\xae\x0f\x5b\xb9\xb3\x3f\x71\x74",
-        // "" / M(None) / S(0) / L(0)
-        "\x57\xd9\x4d\x16\x20\x2f\x0b\xbc\x6c\xd5\x22\x66\x21\xf0\x2b\x0f\x9d\x7d\x38\xea\x8e\xc4\x36\x4e\x47\x8a\x6c\x4b\x89\x30\xae\x54",
-        // "" / M(None) / S(0) / L(0)
-        "\x8c\x8c\x53\xbc\x41\x70\xf7\x30\x70\x7c\x1e\xc2\x2f\x5a\xe7\xab\x70\xaa\x1e\xb6\x6f\x78\x3e\x02\x4d\xc1\xc2\x63\xed\x9b\xc5\x3b",
-        // "" / M(None) / S(0) / L(0)
-        "\x65\xa6\x48\x5e\xc0\xd0\x27\xf2\x0d\x8d\xcb\xd8\x54\xbd\x0f\x45\x3d\xab\x89\x25\x42\x13\x8e\x50\x27\xad\x73\xe2\xaf\x26\x09\x7d",
-        // "SecItemCopyMatching" / M(Xor2) / S(223) / L(19)
-        "\x98\xae\xa8\x82\xbf\xae\xa6\x88\xa4\xbb\xb2\x86\xaa\xbf\xa8\xa3\xa2\xa5\xac\xcb",
-        // "/System/Library/Keychains/SystemRootCertificates.keychain" / M(Xor2) / S(26) / L(57)
-        "\x77\x0b\x21\x2b\x2c\x3d\x35\x77\x14\x31\x3a\x2a\x39\x2a\x21\x77\x13\x3d\x21\x3b\x30\x39\x31\x36\x2b\x77\x0b\x21\x2b\x2c\x3d\x35\x0a\x37\x37\x2c\x1b\x3d\x2a\x2c\x31\x3e\x31\x3b\x39\x2c\x3d\x2b\x76\x33\x3d\x21\x3b\x30\x39\x31\x36\x58\xe6\xed\xc6\x05\xc7\x36\x3b\x5c",
-        // "CFBundleCopyBundleURL" / M(Xor3) / S(244) / L(21)
-        "\x49\x4c\x48\x7f\x64\x6e\x66\x6f\x49\x65\x7a\x73\x48\x7f\x64\x6e\x66\x6f\x5f\x58\x46\x0a",
-        // "X509_STORE_new" / M(Xor3) / S(226) / L(14)
-        "\xaa\xc7\xc2\xcb\xad\xa1\xa6\xbd\xa0\xb7\xad\x9c\x97\x85\xf2\x1e",
-        // "" / M(None) / S(0) / L(0)
-        "\x6f\x90\xf6\x57\x05\x29\x9b\x2a\x6c\x72\x2c\x4a\x36\x2a\x73\xfc\x9a\x14\xef\x0b\xeb\x9f\x32\xe7\x37\xb7\x68\x68\xcb\xfd\x57\xe2",
-        // "" / M(None) / S(0) / L(0)
-        "\x20\x58\xab\x0a\x87\xe5\xd2\x41\x11\x74\x35\x36\x28\xef\x1e\x3f\x75\xbc\x7a\x46\x5a\x0c\x26\x8c\x6f\x9d\xac\xfb\xa2\xb5\x58\x2b",
-        // "" / M(None) / S(0) / L(0)
-        "\x61\xb7\x15\xff\x02\x84\xdd\x5a\x9e\x33\x91\xa4\x45\x25\xc1\xab\x47\xca\xbc\xd0\x5a\xa1\x8a\xf5\xf7\xf3\xf5\x88\xe3\x4e\x64\xb7",
-        // "EVP_MD_CTX_init" / M(Xor4) / S(112) / L(15)
-        "\x45\x56\x50\x5f\x4d\x44\x5f\x43\x54\x58\x5f\x69\x6e\x69\x74\x00",
-        // "longjmp" / M(Rot) / S(152) / L(7)
-        "\x04\x07\x06\xff\x02\x05\x08\x98\x72\xe1\xa4\x8d\x4f\x8e\x5a\x0d",
-        // "sha1" / M(Xor1) / S(71) / L(4)
-        "\x34\x2f\x26\x76\x47\x9a\xd2\x5e\xb9\x22\x05\x7e\x5a\x7e\x05\x9a",
-        // "" / M(None) / S(0) / L(0)
-        "\xd5\x01\xa5\x83\xa9\xf8\x7e\xca\x74\xaf\x8a\x8a\xb1\x84\x01\x79\xa5\xb9\x05\x19\xd2\x0a\xc7\xa9\xe2\x13\x59\x7e\xda\xe4\xdb\xd4",
-        // "kSecMatchLimit" / M(Xor4) / S(182) / L(14)
-        "\x0b\x33\x05\x03\x2d\x01\x14\x03\x08\x2c\x09\x0d\x09\x14\x60\x30",
-        // "CFReadStreamRead" / M(Xor4) / S(58) / L(16)
-        "\x99\x9c\x88\xbf\xbb\xbe\x89\xae\xa8\xbf\xbb\xb7\x88\xbf\xbb\xbe\xda",
-        // "kSecClassCertificate" / M(Xor2) / S(154) / L(20)
-        "\xe4\xdc\xea\xec\xcc\xe3\xee\xfc\xfc\xcc\xea\xfd\xfb\xe6\xe9\xe6\xec\xee\xfb\xea\x8f",
-        // "CFDataAppendBytes" / M(Rot) / S(146) / L(17)
-        "\xd5\xd8\xd6\xf3\x06\xf3\xd3\x02\x02\xf7\x00\xf6\xd4\x0b\x06\xf7\x05\x92",
-        // "ASN1_get_object" / M(Xor3) / S(194) / L(15)
-        "\x93\x81\x9c\xe3\x8d\xb5\xb7\xa6\x8d\xbd\xb0\xb8\xb7\xb1\xa6\xd2",
-        // "SecKeychainOpen" / M(Xor1) / S(168) / L(15)
-        "\xfb\xcd\xcb\xe3\xcd\xd1\xcb\xc0\xc9\xc1\xc6\xe7\xd8\xcd\xc6\xa8",
-        // "SHA1_Update" / M(Xor4) / S(105) / L(11)
-        "\xc3\xd8\xd1\xa1\xcf\xc5\xe0\xf4\xf1\xe4\xf5\x90\x82\x43\xeb\xa0",
-        // "CFStringCompare" / M(Xor2) / S(164) / L(15)
-        "\xf7\xf2\xe7\xc0\xc6\xdd\xda\xd3\xf7\xdb\xd9\xc4\xd5\xc6\xd1\xb4",
-        // "CFURLCreateWithFileSystemPathRelativeToBase" / M(Xor4) / S(18) / L(43)
-        "\xeb\xee\xfd\xfa\xe4\xeb\xda\xcd\xc9\xdc\xcd\xff\xc1\xdc\xc0\xee\xc1\xc4\xcd\xfb\xd1\xdb\xdc\xcd\xc5\xf8\xc9\xdc\xc0\xfa\xcd\xc4\xc9\xdc\xc1\xde\xcd\xfc\xc7\xea\xc9\xdb\xcd\xa8\x68\xdd\xcd\x0b\x73\x05\x10\x08",
-        // "IOBSDNameMatching" / M(Xor2) / S(155) / L(17)
-        "\xc0\xc6\xcb\xda\xcd\xc7\xe8\xe4\xec\xc4\xe8\xfd\xea\xe1\xe0\xe7\xee\x89",
-        // "Contents/_MASReceipt/receipt" / M(Xor2) / S(171) / L(28)
-        "\xcd\xe1\xe0\xfa\xeb\xe0\xfa\xfd\xa1\xd1\xc3\xcf\xdd\xdc\xeb\xed\xeb\xe7\xfe\xfa\xa1\xfc\xeb\xed\xeb\xe7\xfe\xfa\x8e\xcd\x3b\xe7\x94\x9c\xa8\xcf\x3f",
-        // "CFBundleShortVersionString" / M(Xor2) / S(68) / L(26)
-        "\x24\x21\x25\x12\x09\x03\x0b\x02\x34\x0f\x08\x15\x13\x31\x02\x15\x14\x0e\x08\x09\x34\x13\x15\x0e\x09\x00\x67\x1b\x41\x2f\xd0\x7f\x41\x4a\x10",
-        // "" / M(None) / S(0) / L(0)
-        "\xbf\xe1\x1a\xba\x74\x3c\xa9\xce\x24\x03\xca\x41\xcf\x80\x2e\x4d\x11\xe1\x2f\x64\x73\x7f\xdb\x01\x42\xc4\x68\xef\x84\x42\x20\xa6",
-        // "IORegistryEntryGetParentEntry" / M(Xor1) / S(115) / L(29)
-        "\x3a\x3c\x21\x16\x14\x1a\x00\x07\x01\x0a\x36\x1d\x07\x01\x0a\x34\x16\x07\x23\x12\x01\x16\x1d\x07\x36\x1d\x07\x01\x0a\x73\xa3\x4a\x7c\xb8\x38\x42\xc8\x74",
-        // "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'" / M(Xor3) / S(233) / L(32)
-        "\x73\x73\x73\x73\x2d\x27\x2d\x47\x47\x2d\x27\x2d\x6e\x6e\x2d\x5e\x2d\x42\x42\x2d\x30\x2d\x67\x67\x2d\x30\x2d\x79\x79\x2d\x50\x2d\x0a",
-        // "kSecMatchLimitAll" / M(Xor2) / S(35) / L(17)
-        "\x5a\x62\x54\x52\x7c\x50\x45\x52\x59\x7d\x58\x5c\x58\x45\x70\x5d\x5d\x31",
-        // "RTLD_MAIN_ONLY" / M(Xor4) / S(208) / L(14)
-        "\x52\x54\x4c\x44\x5f\x4d\x41\x49\x4e\x5f\x4f\x4e\x4c\x59\x00\xbe",
-        // "CFURLCreateCopyAppendingPathComponent" / M(Xor2) / S(217) / L(37)
-        "\xbc\xb9\xaa\xad\xb3\xbc\x8d\x9a\x9e\x8b\x9a\xbc\x90\x8f\x86\xbe\x8f\x8f\x9a\x91\x9b\x96\x91\x98\xaf\x9e\x8b\x97\xbc\x90\x92\x8f\x90\x91\x9a\x91\x8b\xff",
-        // "" / M(None) / S(0) / L(0)
-        "\x8b\x87\xc0\x6f\xb5\x80\x4b\x58\xa7\x24\xea\x6d\x96\x47\xce\xe0\xd0\x95\x15\xeb\x60\x99\xb3\x18\x55\x93\xfa\x04\x86\x29\x83\xcc",
-        // "" / M(None) / S(0) / L(0)
-        "\x5b\xa6\x56\x61\xea\xe6\x7f\x30\x11\x9a\x4e\x88\x1e\x41\x4d\x29\x6e\xd5\xf5\x7f\xbb\xf7\x23\xbf\x2b\x1a\x18\x54\x96\x64\xd8\x77",
-        // "kCFBundleIdentifierKey" / M(Rot) / S(80) / L(22)
-        "\xbb\x93\x96\x92\xc5\xbe\xb4\xbc\xb5\x99\xb4\xb5\xbe\xc4\xb9\xb6\xb9\xb5\xc2\x9b\xb5\xc9\x50",
-        // "CFBundleVersion" / M(Xor2) / S(182) / L(15)
-        "\xe5\xe0\xe4\xd3\xc8\xc2\xca\xc3\xf0\xc3\xd4\xd5\xcf\xc9\xc8\xa6",
-        // "receipt" / M(Xor4) / S(88) / L(7)
-        "\xf2\xe5\xe3\xe5\xe9\xf0\xf4\x80\xb5\xb4\xf6\x29\x18\xbf\xa7\xe4",
-        // "CFReadStreamClose" / M(Xor4) / S(98) / L(17)
-        "\xa7\xa2\xb6\x81\x85\x80\xb7\x90\x96\x81\x85\x89\xa7\x88\x8b\x97\x81\xe4",
-        // "" / M(None) / S(0) / L(0)
-        "\x12\x50\x1e\x0e\x29\x8d\x93\xa7\x26\x40\xf6\xe1\xde\xbc\xf5\x96\x67\xdf\xeb\x32\x92\x1e\xf3\xe3\x93\x06\x42\xdc\xbd\xf1\x9d\x6a",
-        // "setjmp" / M(Xor1) / S(92) / L(6)
-        "\x2f\x39\x28\x36\x31\x2c\x5c\x64\x84\xa2\xb8\xd5\x91\x1c\xf6\x3a",
-        // "SecKeychainSearchCreateFromAttributes" / M(Xor1) / S(5) / L(37)
-        "\x56\x60\x66\x4e\x60\x7c\x66\x6d\x64\x6c\x6b\x56\x60\x64\x77\x66\x6d\x46\x77\x60\x64\x71\x60\x43\x77\x6a\x68\x44\x71\x71\x77\x6c\x67\x70\x71\x60\x76\x05",
-        // "PKCS7_get0_signers" / M(Xor3) / S(216) / L(18)
-        "\xbb\xa0\xa8\xb8\xdc\xb4\x8c\x8e\x9f\xdb\xb4\x98\x82\x8c\x85\x8e\x99\x98\xeb",
-        // "BIO_new" / M(Xor1) / S(85) / L(7)
-        "\x17\x1c\x1a\x0a\x3b\x30\x22\x55\x63\xdf\x1a\xd2\xe8\xc9\xee\xa8",
-        // "SHA1_Init" / M(Xor4) / S(231) / L(9)
-        "\x23\x38\x31\x41\x2f\x39\x1e\x19\x04\x70\x3c\x6f\xb1\x60\x87\x27",
-        // "sk_value" / M(Xor1) / S(236) / L(8)
-        "\x9f\x87\xb3\x9a\x8d\x80\x99\x89\xec\xd5\x81\xad\x4f\xcf\xef\xd3",
-        // "" / M(None) / S(0) / L(0)
-        "\x73\x0e\x92\x3c\x63\x91\x34\xd8\x6d\x15\x93\x88\x64\x04\xcb\x48\x87\x12\x11\xba\xa6\xe7\xda\xa8\xdc\x10\x7b\xec\x2a\x02\x73\x4e",
-        // "d2i_X509_bio" / M(Xor4) / S(235) / L(12)
-        "\xd4\x82\xd9\xef\xe8\x85\x80\x89\xef\xd2\xd9\xdf\xb0\xb7\xc4\xd6",
-        // "" / M(None) / S(0) / L(0)
-        "\xd2\xe0\x4e\x55\x57\xf1\xca\x1f\x58\xd9\x21\xd8\x78\x0c\x09\xea\x2a\x32\x60\xd1\xc7\x9b\xf7\x25\x3b\xb1\xee\x0e\x39\x42\x0d\x4d",
-        // "" / M(None) / S(0) / L(0)
-        "\xbc\xb9\x67\x8c\x8b\xbf\x3f\x9c\xe8\xde\x59\xd4\x1f\x3f\xb1\xb7\xd4\xca\xfd\x1b\xc8\x30\x41\x85\x24\x94\xed\xcb\x65\x0b\xe0\xbc",
-        // "/usr/lib/libSystem.dylib" / M(Rot) / S(177) / L(24)
-        "\xe0\x26\x24\x23\xe0\x1d\x1a\x13\xe0\x1d\x1a\x13\x04\x2a\x24\x25\x16\x1e\xdf\x15\x2a\x1d\x1a\x13\xb1\x42\x3e\x29\x7b\x52\xe4\xce\xa6",
-        // "" / M(None) / S(0) / L(0)
-        "\xf1\x43\x7e\xa3\xed\xc9\x38\x73\x5e\x96\xd3\xab\xd2\xc6\xe4\xb6\x8d\x59\x20\x6d\xdd\x01\x6d\x00\xc7\x24\x0d\xe7\xd2\x75\x63\x75",
-        // "sha1" / M(Xor3) / S(234) / L(4)
-        "\x89\x92\x9b\xcb\xfa\x81\x9f\x7a\xcd\xc8\xc3\x54\xbf\x2c\xf1\x89",
-        // "d2i_PKCS7_bio" / M(Xor3) / S(47) / L(13)
-        "\x5b\x0d\x56\x60\x6f\x74\x7c\x6c\x08\x60\x5d\x56\x50\x3f\xa1\xfc",
-        // "globfree" / M(Xor2) / S(191) / L(8)
-        "\xc8\xc3\xc0\xcd\xc9\xdd\xca\xca\xaf\xc9\x79\x0d\x55\x14\xb1\xdf",
-        // "kSecMatchSubjectContains" / M(Xor4) / S(94) / L(24)
-        "\x75\x4d\x7b\x7d\x53\x7f\x6a\x7d\x76\x4d\x6b\x7c\x74\x7b\x7d\x6a\x5d\x71\x70\x6a\x7f\x77\x70\x6d\x1e\x25\x4f\x68\x77\xd8\x6f\xc7\xf7",
-        // "611E5B662C593A08FF58D14AE22452D198DF6C60" / M(Xor1) / S(218) / L(40)
-        "\xec\xeb\xeb\x9f\xef\x98\xec\xec\xe8\x99\xef\xe3\xe9\x9b\xea\xe2\x9c\x9c\xef\xe2\x9e\xeb\xee\x9b\x9f\xe8\xe8\xee\xef\xe8\x9e\xeb\xe3\xe2\x9e\x9c\xec\x99\xec\xea\xda\x85\xb1\xb7\xe0\xb2\x3a\x6d\xd4",
-        // "CC_SHA1_Update" / M(Xor2) / S(239) / L(14)
-        "\xbc\xbc\xa0\xac\xb7\xbe\xce\xa0\xaa\x8f\x9b\x9e\x8b\x9a\xff\xa3",
-        // "kSecClass" / M(Xor4) / S(179) / L(9)
-        "\x5b\x63\x55\x53\x73\x5c\x51\x43\x43\x30\x26\xdd\xcb\x87\x33\x3d",
-        // "_MASReceipt" / M(Xor4) / S(20) / L(11)
-        "\x1f\x0d\x01\x13\x12\x25\x23\x25\x29\x30\x34\x40\xfc\x84\x54\x86",
-        // "" / M(None) / S(0) / L(0)
-        "\x80\xc3\x00\x73\x6d\xea\xd2\x1e\x3d\xa4\xfb\x5b\x52\x3f\x17\x24\xcc\xc9\xbe\x7d\x39\x6b\x58\x7c\xc3\xbb\xa2\x79\x5c\x4d\xa0\x3f",
-        // "dlsym" / M(Xor4) / S(167) / L(5)
-        "\x14\x1c\x03\x09\x1d\x70\x43\xbc\x91\xe4\xf6\x29\x7d\x14\x0a\xc0",
-        // "CFBundleGetMainBundle" / M(Xor1) / S(8) / L(21)
-        "\x4b\x4e\x4a\x7d\x66\x6c\x64\x6d\x4f\x6d\x7c\x45\x69\x61\x66\x4a\x7d\x66\x6c\x64\x6d\x08",
-        // "CFDataGetLength" / M(Xor4) / S(32) / L(15)
-        "\x43\x46\x44\x61\x74\x61\x47\x65\x74\x4c\x65\x6e\x67\x74\x68\x00",
-        // "CFArrayAppendValue" / M(Xor4) / S(233) / L(18)
-        "\x08\x0d\x0a\x39\x39\x2a\x32\x0a\x3b\x3b\x2e\x25\x2f\x1d\x2a\x27\x3e\x2e\x4b",
-        // "" / M(None) / S(0) / L(0)
-        "\x59\x2f\xb0\x76\x74\xa4\x9e\x68\x8c\x56\xae\x5f\xc7\x02\xa8\x4b\x60\x51\x44\x58\x19\x16\xd4\x40\x69\xd1\xc3\xf6\x76\x2e\x7f\xd4",
-        // "" / M(None) / S(0) / L(0)
-        "\x17\xa4\xac\xf2\x78\x15\x7b\x81\x68\x6c\x38\xe0\x52\x42\xa7\x82\x51\xd1\xb6\x65\xd7\x71\xc0\x85\x18\x0b\xc9\x81\x2c\x89\xec\x0b",
-        // "" / M(None) / S(0) / L(0)
-        "\xee\x42\x27\xe6\xb0\x65\xa3\xdd\x00\x73\xa2\xb3\x3e\x63\x7f\xe4\xb8\xb7\x2c\xf5\x02\xf6\xe7\x0c\xb6\x6a\xcb\x91\x65\x15\xdd\x8a",
-        // "kSecReturnRef" / M(Xor1) / S(19) / L(13)
-        "\x78\x40\x76\x70\x41\x76\x67\x66\x61\x7d\x41\x76\x75\x13\xf1\xf5",
-        // "kCFTypeDictionaryValueCallBacks" / M(Xor4) / S(48) / L(31)
-        "\x6b\x43\x46\x54\x79\x70\x65\x44\x69\x63\x74\x69\x6f\x6e\x61\x72\x79\x56\x61\x6c\x75\x65\x43\x61\x6c\x6c\x42\x61\x63\x6b\x73\x00",
-        // "" / M(None) / S(0) / L(0)
-        "\x6c\xc5\x3e\x9e\x03\x44\x03\x6d\x18\xfe\x38\xe1\x6e\xc9\x9e\x0b\x55\x5e\xb5\x9a\x23\xd6\x2d\x63\xd5\x61\xa8\x11\x62\x5f\xda\x92",
-        // "CFBundleGetMainBundle" / M(Xor2) / S(48) / L(21)
-        "\x65\x60\x64\x53\x48\x42\x4a\x43\x61\x43\x52\x6b\x47\x4f\x48\x64\x53\x48\x42\x4a\x43\x26",
-        // "" / M(None) / S(0) / L(0)
-        "\x5a\xa3\x7a\x5d\xf4\xb5\x46\xad\x62\xce\x40\x67\xd2\x10\xdf\x53\x95\x69\xe8\x53\xb3\x7e\xaf\xd9\x6b\x9b\x23\xa6\x4f\x4d\x27\x6b",
-        // "" / M(None) / S(0) / L(0)
-        "\x9c\x6a\xa1\x07\xf7\x8e\x2c\x01\xc9\x4b\xb1\xcf\x23\xaf\xb3\xfb\xf6\x0c\xed\xbc\x10\x8d\x6b\xee\x06\x10\xbb\xed\xbe\xb7\x80\x60",
-        // "CFRelease" / M(Xor1) / S(218) / L(9)
-        "\x99\x9c\x88\xbf\xb6\xbf\xbb\xa9\xbf\xda\xfd\x74\x29\x8c\x5c\x33",
-        // "" / M(None) / S(0) / L(0)
-        "\x04\xf4\xb6\x02\xec\x2f\x9f\x99\x73\xdc\x66\xf7\x6d\x22\x6d\x7c\x94\x13\xea\x61\x8e\x6f\xeb\x3c\x66\xad\x51\xf4\xa1\xfc\x62\x30",
-        // "/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation" / M(Xor1) / S(1) / L(66)
-        "\x2e\x52\x78\x72\x75\x64\x6c\x2e\x4d\x68\x63\x73\x60\x73\x78\x2e\x47\x73\x60\x6c\x64\x76\x6e\x73\x6a\x72\x2e\x42\x6e\x73\x64\x47\x6e\x74\x6f\x65\x60\x75\x68\x6e\x6f\x2f\x67\x73\x60\x6c\x64\x76\x6e\x73\x6a\x2e\x42\x6e\x73\x64\x47\x6e\x74\x6f\x65\x60\x75\x68\x6e\x6f\x01",
-        // "Contents" / M(Xor1) / S(4) / L(8)
-        "\x47\x6b\x6a\x70\x61\x6a\x70\x77\x04\xc8\xd0\x27\xf8\xa3\xd0\xbe",
-        // "CFReadStreamOpen" / M(Rot) / S(46) / L(16)
-        "\x71\x74\x80\x93\x8f\x92\x81\xa2\xa0\x93\x8f\x9b\x7d\x9e\x93\x9c\x2e",
-        // "" / M(None) / S(0) / L(0)
-        "\xd8\xd5\x69\x2c\x41\x91\x8e\x79\x78\xd9\xd1\xae\xfe\xfc\x03\xca\xa9\x0e\x9c\xca\x15\x83\xfe\xd4\x1c\xe0\x98\xbf\xee\x0e\x0b\xf9",
-        // "strncmp" / M(Xor1) / S(224) / L(7)
-        "\x93\x94\x92\x8e\x83\x8d\x90\xe0\xd8\x2a\x15\x8e\x1c\xf2\xc6\xcf",
-        // "kCFTypeDictionaryValueCallBacks" / M(Xor2) / S(9) / L(31)
-        "\x42\x6a\x6f\x7d\x50\x59\x4c\x6d\x40\x4a\x5d\x40\x46\x47\x48\x5b\x50\x7f\x48\x45\x5c\x4c\x6a\x48\x45\x45\x6b\x48\x4a\x42\x5a\x29",
-        // "kSecMatchLimitAll" / M(Xor1) / S(56) / L(17)
-        "\x53\x6b\x5d\x5b\x75\x59\x4c\x5b\x50\x74\x51\x55\x51\x4c\x79\x54\x54\x38",
-        // "kSecClass" / M(Xor3) / S(35) / L(9)
-        "\x58\x60\x56\x50\x70\x5f\x52\x40\x40\x33\xc4\xf3\xaf\x36\x93\xf4",
-        // "" / M(None) / S(0) / L(0)
-        "\x63\x8c\x25\xbf\x23\x71\x79\xca\x6a\xdc\xc5\xc4\x59\x67\x3e\x92\x91\x70\x5b\xe1\x0e\x53\x25\xdf\x72\xdd\x06\x81\x6d\x1c\x00\xad",
-        // "" / M(None) / S(0) / L(0)
-        "\x6f\xf5\xe8\x3a\xa2\x9b\x8c\x17\x7d\x2b\x6e\x34\x75\xaa\xae\x3c\x6e\xbb\xb9\x6c\xa1\xee\xf9\xb6\x1c\x30\xd6\xe9\xce\xdd\x3e\x52",
-        // "SHA1_Final" / M(Xor3) / S(2) / L(10)
-        "\x41\x5a\x53\x23\x4d\x54\x7b\x7c\x73\x7e\x12\x76\xc7\x47\x35\xfa",
-        // "/System/Library/Frameworks/Security.framework/Security" / M(Xor1) / S(62) / L(54)
-        "\x11\x6d\x47\x4d\x4a\x5b\x53\x11\x72\x57\x5c\x4c\x5f\x4c\x47\x11\x78\x4c\x5f\x53\x5b\x49\x51\x4c\x55\x4d\x11\x6d\x5b\x5d\x4b\x4c\x57\x4a\x47\x10\x58\x4c\x5f\x53\x5b\x49\x51\x4c\x55\x11\x6d\x5b\x5d\x4b\x4c\x57\x4a\x47\x3e",
-        // "CFBundleGetValueForInfoDictionaryKey" / M(Xor3) / S(169) / L(36)
-        "\x8d\x88\x8c\xbb\xa0\xaa\xa2\xab\x89\xab\xba\x98\xaf\xa2\xbb\xab\x88\xa1\xbc\x87\xa0\xa8\xa1\x8a\xa7\xad\xba\xa7\xa1\xa0\xaf\xbc\xb7\x85\xab\xb7\xce",
-        // "" / M(None) / S(0) / L(0)
-        "\x5f\x99\x56\x25\xf2\x93\xe3\x54\x02\xa0\x28\xa1\xb2\x37\xe6\xbb\xc0\xd6\xab\x84\x4e\x22\x6f\x1c\x96\x4f\xe4\x7d\xa9\xf8\x33\x29",
-        // "" / M(None) / S(0) / L(0)
-        "\x29\xce\x0b\xd3\xf8\x77\x56\xb2\xfa\xe2\xc1\x1c\x9f\xd6\x46\xff\x9a\x87\x05\x51\x34\x46\x1e\x35\x70\x88\x1a\x1e\x9b\x6b\xfd\x50",
-        // "Contents/_MASReceipt/receipt" / M(Xor2) / S(170) / L(28)
-        "\xcc\xe0\xe1\xfb\xea\xe1\xfb\xfc\xa0\xd0\xc2\xce\xdc\xdd\xea\xec\xea\xe6\xff\xfb\xa0\xfd\xea\xec\xea\xe6\xff\xfb\x8f\x26\xe3\x9e\xb5\x71\x3d\xa9\x15",
-        // "CFBundleCopyBundleURL" / M(Xor3) / S(28) / L(21)
-        "\x71\x74\x70\x47\x5c\x56\x5e\x57\x71\x5d\x42\x4b\x70\x47\x5c\x56\x5e\x57\x67\x60\x7e\x32",
-        // "CFReadStreamOpen" / M(Xor2) / S(54) / L(16)
-        "\x64\x61\x75\x42\x46\x43\x74\x53\x55\x42\x46\x4a\x68\x57\x42\x49\x27",
-        // "" / M(None) / S(0) / L(0)
-        "\xa5\x46\xe0\x95\x97\x0f\x75\xc0\x3b\x23\x7f\xfd\xed\x29\xfe\x60\xde\x5b\x63\x8a\x5d\xc8\x2b\xd8\x28\xc4\xf2\x62\xe0\x47\x3d\x3a",
-        // "receipt" / M(Rot) / S(221) / L(7)
-        "\x4f\x42\x40\x42\x46\x4d\x51\xdd\x8a\xd0\x00\x08\x20\x4c\xc7\x30",
-        // "%02X" / M(Xor2) / S(103) / L(4)
-        "\x52\x47\x45\x2f\x77\x2d\xdf\x0b\xa2\xce\x20\x91\xb4\xa8\x2a\x1d",
-        // "IORegistryEntryGetParentEntry" / M(Xor2) / S(146) / L(29)
-        "\xfd\xfb\xe6\xd1\xd3\xdd\xc7\xc0\xc6\xcd\xf1\xda\xc0\xc6\xcd\xf3\xd1\xc0\xe4\xd5\xc6\xd1\xda\xc0\xf1\xda\xc0\xc6\xcd\xb4\xb3\xd0\x56\x78\x8f\x4c\x00\x3a",
-        // "setDelegate:" / M(Xor3) / S(144) / L(12)
-        "\xd3\xc5\xd4\xe4\xc5\xcc\xc5\xc7\xc1\xd4\xc5\x9a\xa0\xb5\xa1\x0b",
-        // "CFReadStreamCreateWithFile" / M(Xor1) / S(237) / L(26)
-        "\xae\xab\xbf\x88\x8c\x89\xbe\x99\x9f\x88\x8c\x80\xae\x9f\x88\x8c\x99\x88\xba\x84\x99\x85\xab\x84\x81\x88\xed\x3e\x2d\x37\x2b\x17\xe1\x6d\x9c",
-        // "CFEqual" / M(Xor4) / S(32) / L(7)
-        "\x43\x46\x45\x71\x75\x61\x6c\x00\x0a\x03\x17\x2a\xd7\x75\x5a\x4d",
-        // "_MASReceipt" / M(Rot) / S(217) / L(11)
-        "\x38\x26\x1a\x2c\x2b\x3e\x3c\x3e\x42\x49\x4d\xd9\xd4\xa6\xed\x36",
-        // "sk_free" / M(Rot) / S(122) / L(7)
-        "\xed\xe5\xd9\xe0\xec\xdf\xdf\x7a\x24\x58\x2b\x56\x03\x9a\x8b\x31",
-        // "CFStringCreateWithBytes" / M(Xor1) / S(2) / L(23)
-        "\x41\x44\x51\x76\x70\x6b\x6c\x65\x41\x70\x67\x63\x76\x67\x55\x6b\x76\x6a\x40\x7b\x76\x67\x71\x02\x84\x17\x6e\x77\xe1\x6b\xc0\x23",
-        // "CFBundleGetMainBundle" / M(Xor1) / S(207) / L(21)
-        "\x8c\x89\x8d\xba\xa1\xab\xa3\xaa\x88\xaa\xbb\x82\xae\xa6\xa1\x8d\xba\xa1\xab\xa3\xaa\xcf",
-        // "CFURLCreateFromFileSystemRepresentation" / M(Xor1) / S(114) / L(39)
-        "\x31\x34\x27\x20\x3e\x31\x00\x17\x13\x06\x17\x34\x00\x1d\x1f\x34\x1b\x1e\x17\x21\x0b\x01\x06\x17\x1f\x20\x17\x02\x00\x17\x01\x17\x1c\x06\x13\x06\x1b\x1d\x1c\x72\xe8\x53\x76\xdc\x7f\x95\x46\x64",
-        // "" / M(None) / S(0) / L(0)
-        "\xa6\x9d\x9d\xa2\xe8\x1d\x01\x3a\xa8\xa9\xee\xa9\xe8\x56\x09\x97\x5f\x55\x2c\x38\x8b\xb5\x13\x6b\x9f\x43\xf8\xf4\x26\x57\xbf\x01",
-        // "%02x" / M(Rot) / S(163) / L(4)
-        "\xc8\xd3\xd5\x1b\xa3\xa5\xe7\xc5\xcd\x47\xed\x5b\x87\x57\xd2\x65",
-        // "" / M(None) / S(0) / L(0)
-        "\x7b\xd6\x0f\x44\x40\xa7\x56\x46\xfc\x0d\x5e\x24\x3d\x76\xc5\xbd\x25\xae\x69\xeb\x20\xe5\x7a\xa5\x21\xc6\x93\xa4\xdd\x5a\xe3\x61",
-        // "PKCS7_get0_signers" / M(Xor1) / S(194) / L(18)
-        "\x92\x89\x81\x91\xf5\x9d\xa5\xa7\xb6\xf2\x9d\xb1\xab\xa5\xac\xa7\xb0\xb1\xc2",
-        // "glob_b" / M(Xor4) / S(91) / L(6)
-        "\xd7\xdc\xdf\xd2\xef\xd2\xb0\xc9\xba\x4e\xa6\xa8\x60\x75\xac\x71",
-        // "611E5B662C593A08FF58D14AE22452D198DF6C60" / M(Xor3) / S(191) / L(40)
-        "\xc6\xc1\xc1\xb5\xc5\xb2\xc6\xc6\xc2\xb3\xc5\xc9\xc3\xb1\xc0\xc8\xb6\xb6\xc5\xc8\xb4\xc1\xc4\xb1\xb5\xc2\xc2\xc4\xc5\xc2\xb4\xc1\xc9\xc8\xb4\xb6\xc6\xb3\xc6\xc0\xf0\x2d\xaa\x53\x45\x43\x3a\x0e\x9f",
-        // "." / M(Xor3) / S(73) / L(1)
-        "\x77\x59\xcd\xae\x4f\x80\x3a\x99\xe4\x56\x8a\x79\x65\xde\x17\xd6",
-        // "CFArrayAppendValue" / M(Xor4) / S(235) / L(18)
-        "\x32\x37\x30\x03\x03\x10\x08\x30\x01\x01\x14\x1f\x15\x27\x10\x1d\x04\x14\x71",
-        // "611E5B662C593A08FF58D14AE22452D198DF6C60" / M(Xor1) / S(24) / L(40)
-        "\x2e\x29\x29\x5d\x2d\x5a\x2e\x2e\x2a\x5b\x2d\x21\x2b\x59\x28\x20\x5e\x5e\x2d\x20\x5c\x29\x2c\x59\x5d\x2a\x2a\x2c\x2d\x2a\x5c\x29\x21\x20\x5c\x5e\x2e\x5b\x2e\x28\x18\x24\x26\xc5\x40\x45\x0e\x33\x81",
-        // "EVP_MD_CTX_init" / M(Xor2) / S(158) / L(15)
-        "\xcb\xd8\xde\xd1\xc3\xca\xd1\xcd\xda\xd6\xd1\xe7\xe0\xe7\xfa\x8e",
-        // "" / M(None) / S(0) / L(0)
-        "\xac\xe0\x4a\xc4\x19\x93\xd2\xa1\x2f\x7d\xcf\x9f\x94\x2d\xf0\xf9\x21\x31\x61\x82\x7a\x65\x1d\x19\x29\x2e\xfa\x7b\x8e\xc2\x74\x5b",
-        // "strlen" / M(Rot) / S(75) / L(6)
-        "\xbe\xbf\xbd\xb7\xb0\xb9\x4b\x9a\x45\x41\x3f\xb5\xa0\x0b\x48\xb3",
-        // "CFArrayGetValueAtIndex" / M(Xor2) / S(228) / L(22)
-        "\xb0\xb5\xb2\x81\x81\x92\x8a\xb4\x96\x87\xa5\x92\x9f\x86\x96\xb2\x87\xba\x9d\x97\x96\x8b\xf3",
-        // "CFDateFormatterCreateDateFromString" / M(Xor1) / S(216) / L(35)
-        "\x9b\x9e\x9c\xb9\xac\xbd\x9e\xb7\xaa\xb5\xb9\xac\xac\xbd\xaa\x9b\xaa\xbd\xb9\xac\xbd\x9c\xb9\xac\xbd\x9e\xaa\xb7\xb5\x8b\xac\xaa\xb1\xb6\xbf\xd8",
-        // "EVP_DigestUpdate" / M(Rot) / S(158) / L(16)
-        "\xe3\xf4\xee\xfd\xe2\x07\x05\x03\x11\x12\xf3\x0e\x02\xff\x12\x03\x9e",
-        // "/usr/lib/libSystem.dylib" / M(Xor4) / S(2) / L(24)
-        "\x6d\x37\x31\x30\x6d\x2e\x2b\x20\x6d\x2e\x2b\x20\x11\x3b\x31\x36\x27\x2f\x6c\x26\x3b\x2e\x2b\x20\x42\xf0\x74\xd9\x1c\x69\x0a\x1f\xe1",
+        "\xeb\x08\x6e\x12\x64\x24\xa2\x1d\x39\xd8\x8a\x9e\xf7\x2e\x75\xa8\x99\x8b\xbb\x59\xda\x77\x16\x67\x47\x7e\xb9\x29\x11\x8d\xb2\xf8",
+        // "kSecReturnRef" / M(Xor2) / S(222) / L(13)
+        "\xa5\x9d\xab\xad\x9c\xab\xba\xbb\xbc\xa0\x9c\xab\xa8\xce\xd7\x92",
+        // "kCFBundleIdentifierKey" / M(Xor3) / S(110) / L(22)
+        "\xee\xc6\xc3\xc7\xf0\xeb\xe1\xe9\xe0\xcc\xe1\xe0\xeb\xf1\xec\xe3\xec\xe0\xf7\xce\xe0\xfc\x85",
         // "objc_getClass" / M(Xor3) / S(140) / L(13)
-        "\xf3\xfe\xf6\xff\xc3\xfb\xf9\xe8\xdf\xf0\xfd\xef\xef\x9c\x61\x3c",
-        // "IORegistryEntryCreateCFProperty" / M(Xor4) / S(156) / L(31)
-        "\xc9\xcf\xd2\xe5\xe7\xe9\xf3\xf4\xf2\xf9\xc5\xee\xf4\xf2\xf9\xc3\xf2\xe5\xe1\xf4\xe5\xc3\xc6\xd0\xf2\xef\xf0\xe5\xf2\xf4\xf9\x80",
+        "\xf3\xfe\xf6\xff\xc3\xfb\xf9\xe8\xdf\xf0\xfd\xef\xef\x9c\x1c\x37",
+        // "CFDataAppendBytes" / M(Xor4) / S(158) / L(17)
+        "\x5f\x5a\x58\x7d\x68\x7d\x5d\x6c\x6c\x79\x72\x78\x5e\x65\x68\x79\x6f\x1c",
+        // "it.iltofa.Turms" / M(Xor2) / S(160) / L(15)
+        "\xd9\xc4\x9e\xd9\xdc\xc4\xdf\xd6\xd1\x9e\xe4\xc5\xc2\xdd\xc3\xb0",
+        // "setDelegate:" / M(Xor1) / S(233) / L(12)
+        "\x9a\x8c\x9d\xad\x8c\x85\x8c\x8e\x88\x9d\x8c\xd3\xe9\x8b\x48\xd6",
+        // "BIO_free" / M(Xor2) / S(4) / L(8)
+        "\x56\x5d\x5b\x4b\x72\x66\x71\x71\x14\x20\xff\x58\x19\x3a\xf6\x62",
+        // "PKCS7_verify" / M(Xor2) / S(135) / L(12)
+        "\xc7\xdc\xd4\xc4\xa0\xc8\xe1\xf2\xe5\xfe\xf1\xee\x97\x21\x87\x2f",
+        // "CFDataCreate" / M(Rot) / S(36) / L(12)
+        "\x67\x6a\x68\x85\x98\x85\x67\x96\x89\x85\x98\x89\x24\x64\xa8\x58",
+        // "Contents" / M(Rot) / S(6) / L(8)
+        "\x49\x75\x74\x7a\x6b\x74\x7a\x79\x06\x1d\x50\x27\x90\xa1\x43\xbb",
+        // "alloc" / M(Xor4) / S(227) / L(5)
+        "\x51\x5c\x5c\x5f\x53\x30\x67\xd5\x08\x17\xa8\x96\xcf\xda\xa9\x7f",
+        // "CC_SHA1" / M(Xor3) / S(255) / L(7)
+        "\x4c\x4c\x50\x5c\x47\x4e\x3e\x0f\x3b\xd0\x0f\x11\x2f\x06\xe4\x01",
+        // "CFBundleVersion" / M(Xor4) / S(114) / L(15)
+        "\x63\x66\x62\x55\x4e\x44\x4c\x45\x76\x45\x52\x53\x49\x4f\x4e\x20",
+        // "CFDictionaryCreateMutable" / M(Xor1) / S(22) / L(25)
+        "\x55\x50\x52\x7f\x75\x62\x7f\x79\x78\x77\x64\x6f\x55\x64\x73\x77\x62\x73\x5b\x63\x62\x77\x74\x7a\x73\x16\x23\x17\x5b\x96\xc4\xd6\x6b\x6b",
+        // "CFURLCreateFromFileSystemRepresentation" / M(Rot) / S(75) / L(39)
+        "\x8e\x91\xa0\x9d\x97\x8e\xbd\xb0\xac\xbf\xb0\x91\xbd\xba\xb8\x91\xb4\xb7\xb0\x9e\xc4\xbe\xbf\xb0\xb8\x9d\xb0\xbb\xbd\xb0\xbe\xb0\xb9\xbf\xac\xbf\xb4\xba\xb9\x4b\x53\x44\x17\xfb\x70\x7b\x3f\x59",
+        // "X509_free" / M(Rot) / S(203) / L(9)
+        "\x23\x00\xfb\x04\x2a\x31\x3d\x30\x30\xcb\x2c\x7d\x4e\x9c\x8c\xc2",
+        // "d2i_PKCS7_bio" / M(Rot) / S(93) / L(13)
+        "\xc1\x8f\xc6\xbc\xad\xa8\xa0\xb0\x94\xbc\xbf\xc6\xcc\x5d\x57\x08",
+        // "_MASReceipt/receipt" / M(Rot) / S(131) / L(19)
+        "\xe2\xd0\xc4\xd6\xd5\xe8\xe6\xe8\xec\xf3\xf7\xb2\xf5\xe8\xe6\xe8\xec\xf3\xf7\x83",
+        // "%02x:" / M(Xor3) / S(238) / L(5)
+        "\xdb\xce\xcc\x86\xc4\xfe\x57\xba\x8d\x06\xfd\xed\x3c\x72\x4c\x58",
+        // "CFDataCreate" / M(Xor3) / S(230) / L(12)
+        "\xb5\xb0\xb2\x97\x82\x97\xb5\x84\x93\x97\x82\x93\xf6\x06\xbb\x56",
+        // "BIO_free" / M(Xor4) / S(141) / L(8)
+        "\x92\x99\x9f\x8f\xb6\xa2\xb5\xb5\xd0\x98\x74\xa6\x30\x28\xd4\xf4",
+        // "X509_STORE_new" / M(Xor1) / S(224) / L(14)
+        "\xb8\xd5\xd0\xd9\xbf\xb3\xb4\xaf\xb2\xa5\xbf\x8e\x85\x97\xe0\x82",
+        // "it.iltofa.Turms" / M(Xor4) / S(146) / L(15)
+        "\x49\x54\x0e\x49\x4c\x54\x4f\x46\x41\x0e\x74\x55\x52\x4d\x53\x20",
+        // "CFRelease" / M(Xor1) / S(246) / L(9)
+        "\xb5\xb0\xa4\x93\x9a\x93\x97\x85\x93\xf6\x5c\x39\x3d\x86\x44\xaf",
         // "" / M(None) / S(0) / L(0)
-        "\xdd\xe1\x55\x9d\xe1\x97\xcd\x2b\x8c\x38\x8a\x9e\x6b\x15\x87\x08\x9c\x64\xa9\x61\xcb\x21\xed\x50\x02\x68\x6f\x7b\xb2\x3b\xd4\x04",
-        // "CFBundleGetValueForInfoDictionaryKey" / M(Xor3) / S(79) / L(36)
-        "\x37\x32\x36\x01\x1a\x10\x18\x11\x33\x11\x00\x22\x15\x18\x01\x11\x32\x1b\x06\x3d\x1a\x12\x1b\x30\x1d\x17\x00\x1d\x1b\x1a\x15\x06\x0d\x3f\x11\x0d\x74",
-        // "X509_digest" / M(Xor1) / S(46) / L(11)
-        "\x76\x1b\x1e\x17\x71\x4a\x47\x49\x4b\x5d\x5a\x2e\x6e\x47\x2f\x30",
-        // "SecKeychainSearchCopyNext" / M(Xor2) / S(87) / L(25)
-        "\x26\x10\x16\x3e\x10\x0c\x16\x1d\x14\x1c\x1b\x26\x10\x14\x07\x16\x1d\x36\x1a\x05\x0c\x3b\x10\x0d\x01\x75\xe1\xc0\x42\xeb\xa4\xb3\x0a\xa6",
-        // "Contents" / M(Xor2) / S(180) / L(8)
-        "\xe7\xcb\xca\xd0\xc1\xca\xd0\xd7\xa4\x6d\x1d\x88\x22\x33\x2e\xa2",
-        // "SecCertificateCopyData" / M(Xor2) / S(54) / L(22)
-        "\x72\x44\x42\x62\x44\x53\x55\x48\x47\x48\x42\x40\x55\x44\x62\x4e\x51\x58\x65\x40\x55\x40\x21",
+        "\xc2\x61\x21\x2f\x88\x40\x0f\x12\x1e\x1a\x7c\x32\xbe\xef\x34\x01\xa4\x30\x68\xce\xc2\x93\x71\xf2\x46\x0d\xf1\x34\x9c\x61\x0e\x26",
+        // "_MASReceipt" / M(Xor2) / S(223) / L(11)
+        "\x90\x82\x8e\x9c\x9d\xaa\xac\xaa\xa6\xbf\xbb\xcf\x95\x4c\xea\x71",
+        // "glob" / M(Xor2) / S(158) / L(4)
+        "\xe9\xe2\xe1\xec\x8e\x61\xfa\x1e\x29\xb7\xfa\xd5\x78\x19\x9b\x6d",
         // "" / M(None) / S(0) / L(0)
-        "\xf0\x97\x14\xf6\xc2\xda\x72\x19\x94\xfc\xd8\x18\x99\xfc\x2c\xd9\x2b\x91\x0b\x12\x10\x39\x87\xd9\xf1\xbd\x88\xea\xd4\xf2\xb9\x73",
-        // "X509_STORE_add_cert" / M(Xor1) / S(209) / L(19)
-        "\x89\xe4\xe1\xe8\x8e\x82\x85\x9e\x83\x94\x8e\xb0\xb5\xb5\x8e\xb2\xb4\xa3\xa5\xd1",
-        // "exit" / M(Xor3) / S(56) / L(4)
-        "\x2d\x30\x21\x3c\x48\x30\x9e\x04\x77\xe4\xab\x1f\x44\xa6\x50\xb1",
-        // "61:1e:5b:66:2c:59:3a:08:ff:58:d1:4a:e2:24:52:d1:98:df:6c:60" / M(Xor4) / S(65) / L(59)
-        "\x72\x75\x7e\x75\x21\x7e\x71\x26\x7e\x72\x72\x7e\x76\x27\x7e\x71\x7d\x7e\x77\x25\x7e\x74\x7c\x7e\x22\x22\x7e\x71\x7c\x7e\x20\x75\x7e\x70\x25\x7e\x21\x76\x7e\x76\x70\x7e\x71\x76\x7e\x20\x75\x7e\x7d\x7c\x7e\x20\x22\x7e\x72\x27\x7e\x72\x74\x44\x5a\x5a\x26\x1b\x0d\x26\x04\x43",
+        "\xb9\x6f\x22\xc5\x6f\x85\x74\x97\xe7\x8b\xf1\x0b\xb5\x83\xf5\x54\x38\xab\x38\xdd\xf1\x50\xe9\x9b\xa7\xb1\x0c\xc3\xd0\x89\x9e\x86",
+        // "2.0.1" / M(Xor2) / S(216) / L(5)
+        "\xfa\xe6\xf8\xe6\xf9\xc8\x3c\xaa\x9f\x69\x0e\x40\x68\x12\xba\xc4",
         // "" / M(None) / S(0) / L(0)
-        "\xa3\x8e\xc5\x52\x7c\x8b\xdb\xc3\x38\x18\x56\xb9\x10\xb3\xc9\x29\x77\xb1\xf2\xc7\x66\xe1\x4a\x7d\xf3\x86\x30\x70\x5d\xe6\x3d\xd0",
-        // "kSecReturnRef" / M(Xor4) / S(108) / L(13)
-        "\xab\x93\xa5\xa3\x92\xa5\xb4\xb5\xb2\xae\x92\xa5\xa6\xc0\x19\xde",
+        "\x33\xf1\x41\xb3\x3a\xb1\x0c\x4f\xf8\xbc\x96\xe4\xa2\x21\x09\xaa\x66\x3f\x27\xd9\x91\x85\x88\x32\x3c\x31\x84\xbc\x4b\xc2\x8b\x97",
+        // "CFBundleGetIdentifier" / M(Xor4) / S(199) / L(21)
+        "\x59\x5c\x58\x6f\x74\x7e\x76\x7f\x5d\x7f\x6e\x53\x7e\x7f\x74\x6e\x73\x7c\x73\x7f\x68\x1a",
+        // "CFURLCreateCopyAppendingPathComponent" / M(Xor3) / S(178) / L(37)
+        "\x9b\x9e\x8d\x8a\x94\x9b\xaa\xbd\xb9\xac\xbd\x9b\xb7\xa8\xa1\x99\xa8\xa8\xbd\xb6\xbc\xb1\xb6\xbf\x88\xb9\xac\xb0\x9b\xb7\xb5\xa8\xb7\xb6\xbd\xb6\xac\xd8",
+        // "CFArrayGetValueAtIndex" / M(Rot) / S(186) / L(22)
+        "\xfd\x00\xfb\x2c\x2c\x1b\x33\x01\x1f\x2e\x10\x1b\x26\x2f\x1f\xfb\x2e\x03\x28\x1e\x1f\x32\xba",
+        // "/System/Library/Keychains/SystemRootCertificates.keychain" / M(Xor3) / S(165) / L(57)
+        "\xc8\xb4\x9e\x94\x93\x82\x8a\xc8\xab\x8e\x85\x95\x86\x95\x9e\xc8\xac\x82\x9e\x84\x8f\x86\x8e\x89\x94\xc8\xb4\x9e\x94\x93\x82\x8a\xb5\x88\x88\x93\xa4\x82\x95\x93\x8e\x81\x8e\x84\x86\x93\x82\x94\xc9\x8c\x82\x9e\x84\x8f\x86\x8e\x89\xe7\x32\xc6\x9a\xce\x73\xf9\xd6\xa2",
+        // "receipt" / M(Xor3) / S(162) / L(7)
+        "\xc0\xd7\xd1\xd7\xdb\xc2\xc6\xb2\x5a\x9d\xb8\x58\xb7\xd1\x9e\xad",
+        // "receipt" / M(Rot) / S(203) / L(7)
+        "\x3d\x30\x2e\x30\x34\x3b\x3f\xcb\xb0\x3f\x34\x90\x3e\xae\x91\xb4",
         // "" / M(None) / S(0) / L(0)
-        "\xc3\xc0\xc2\xdf\xeb\x78\x0f\x02\x19\x59\x1f\x48\xd2\xa6\x8f\x73\xc9\x02\xb9\x64\x95\xd3\x35\xd2\xca\x05\x90\x9c\x9f\x63\xb4\x35",
-        // "IOServiceGetMatchingServices" / M(Rot) / S(255) / L(28)
-        "\x48\x4e\x52\x64\x71\x75\x68\x62\x64\x46\x64\x73\x4c\x60\x73\x62\x67\x68\x6d\x66\x52\x64\x71\x75\x68\x62\x64\x72\xff\x66\x7d\xcc\x99\x29\xf4\x65\x4f",
-        // "IOServiceGetMatchingServices" / M(Xor1) / S(1) / L(28)
-        "\x48\x4e\x52\x64\x73\x77\x68\x62\x64\x46\x64\x75\x4c\x60\x75\x62\x69\x68\x6f\x66\x52\x64\x73\x77\x68\x62\x64\x72\x01\x21\xa5\xaf\xd4\xcb\x57\x3e\xfa",
-        // "dlopen" / M(Rot) / S(147) / L(6)
-        "\xf7\xff\x02\x03\xf8\x01\x93\xc4\x11\x47\x47\x1e\x52\x69\xd2\xbd",
-        // "X509_NAME_get_text_by_NID" / M(Xor2) / S(164) / L(25)
-        "\xde\xb3\xb6\xbf\xd9\xc8\xc7\xcb\xc3\xd9\xe1\xe3\xf2\xd9\xf2\xe3\xfe\xf2\xd9\xe4\xff\xd9\xc8\xcf\xc2\x86\x67\x13\x94\xe6\x97\xec\xe3\xe1",
+        "\x92\x34\x74\xd0\xe0\xd3\x4b\x8d\x45\xf8\xb5\x17\xbf\x64\x12\x74\x75\xdb\x3e\x14\x3e\xdc\xfb\x9b\x5e\x0c\x3f\x6a\xd1\x38\x04\x6b",
+        // "kSecClassCertificate" / M(Rot) / S(202) / L(20)
+        "\x35\x1d\x2f\x2d\x0d\x36\x2b\x3d\x3d\x0d\x2f\x3c\x3e\x33\x30\x33\x2d\x2b\x3e\x2f\xca",
+        // "kCFTypeDictionaryKeyCallBacks" / M(Xor1) / S(171) / L(29)
+        "\xc0\xe8\xed\xff\xd2\xdb\xce\xef\xc2\xc8\xdf\xc2\xc4\xc5\xca\xd9\xd2\xe0\xce\xd2\xe8\xca\xc7\xc7\xe9\xca\xc8\xc0\xd8\xab\x01\xae\x82\x16\xf4\x2e\xb3\x33",
+        // "longjmp" / M(Xor3) / S(46) / L(7)
+        "\x52\x51\x50\x59\x54\x53\x4e\x3e\x10\x35\xc5\x4b\xec\xdd\xf6\xf0",
+        // "CFDictionaryGetValue" / M(Xor4) / S(73) / L(20)
+        "\xbe\xbb\xb9\x94\x9e\x89\x94\x92\x93\x9c\x8f\x84\xba\x98\x89\xab\x9c\x91\x88\x98\xfd",
         // "" / M(None) / S(0) / L(0)
-        "\xfe\xfc\x99\xc8\xe0\x23\x99\x04\xe7\xf0\x0e\x02\x4b\x77\x48\x21\xbc\x2b\xdf\xc0\x46\xda\x1c\x8d\xc1\xc5\x45\x23\x98\xec\x69\x15",
-        // "EVP_DigestFinal" / M(Xor4) / S(45) / L(15)
-        "\x95\x86\x80\x8f\x94\xb9\xb7\xb5\xa3\xa4\x96\xb9\xbe\xb1\xbc\xd0",
-        // "/System/Library/Frameworks/IOKit.framework/IOKit" / M(Xor1) / S(30) / L(48)
-        "\x31\x4d\x67\x6d\x6a\x7b\x73\x31\x52\x77\x7c\x6c\x7f\x6c\x67\x31\x58\x6c\x7f\x73\x7b\x69\x71\x6c\x75\x6d\x31\x57\x51\x55\x77\x6a\x30\x78\x6c\x7f\x73\x7b\x69\x71\x6c\x75\x31\x57\x51\x55\x77\x6a\x1e",
+        "\x77\x9d\x2f\x8b\x62\xa5\x98\xf1\xca\x4b\x9a\x7c\x47\xac\x37\xa1\xd2\x77\x7d\xe0\xf0\x52\x93\x27\xbd\xd6\xa0\x55\x71\xa6\xf4\x53",
+        // "Contents" / M(Xor2) / S(247) / L(8)
+        "\xa4\x88\x89\x93\x82\x89\x93\x94\xe7\xa3\xab\xe0\x03\x1d\xdc\x04",
+        // "RTLD_MAIN_ONLY" / M(Xor2) / S(63) / L(14)
+        "\x7d\x7b\x63\x6b\x70\x62\x6e\x66\x61\x70\x60\x61\x63\x76\x2f\x04",
+        // "strlen" / M(Xor2) / S(82) / L(6)
+        "\x31\x36\x30\x2e\x27\x2c\x42\x1a\x37\x83\x3a\xbf\x78\x9f\x5a\x56",
+        // "CFDataGetLength" / M(Xor1) / S(222) / L(15)
+        "\x9d\x98\x9a\xbf\xaa\xbf\x99\xbb\xaa\x92\xbb\xb0\xb9\xaa\xb6\xde",
+        // "kSecMatchLimit" / M(Xor2) / S(93) / L(14)
+        "\x26\x1e\x28\x2e\x00\x2c\x39\x2e\x25\x01\x24\x20\x24\x39\x4d\x0d",
+        // "SKReceiptRefreshRequest" / M(Xor1) / S(123) / L(23)
+        "\x28\x30\x29\x1e\x18\x1e\x12\x0b\x0f\x29\x1e\x1d\x09\x1e\x08\x13\x29\x1e\x0a\x0e\x1e\x08\x0f\x7b\x94\x7e\xe6\xac\xdf\xea\xb0\xda",
+        // "CFReadStreamOpen" / M(Xor4) / S(121) / L(16)
+        "\x4a\x4f\x5b\x6c\x68\x6d\x5a\x7d\x7b\x6c\x68\x64\x46\x79\x6c\x67\x09",
+        // "CFReadStreamClose" / M(Rot) / S(197) / L(17)
+        "\x08\x0b\x17\x2a\x26\x29\x18\x39\x37\x2a\x26\x32\x08\x31\x34\x38\x2a\xc5",
+        // "CFArrayGetCount" / M(Xor2) / S(1) / L(15)
+        "\x52\x57\x50\x63\x63\x70\x68\x56\x74\x65\x52\x7e\x64\x7f\x65\x11",
         // "" / M(None) / S(0) / L(0)
-        "\x72\x2f\x39\xd0\x5a\x17\x2b\xa8\x46\x8e\x84\xd4\x8c\x5a\xb5\x3c\x44\xca\x56\x7c\xca\xc7\xcc\xe9\x8a\x6a\x8e\x0f\xc8\x81\xd8\x3f",
-        // "sk_free" / M(Rot) / S(207) / L(7)
-        "\x42\x3a\x2e\x35\x41\x34\x34\xcf\xc4\x68\x41\xa5\xd1\xaa\x1a\x61",
-        // "sha1" / M(Xor3) / S(17) / L(4)
-        "\x52\x49\x40\x10\x21\x14\x8e\x8a\xd8\x82\x50\x01\xd9\xeb\x4c\x91",
-        // "SecItemCopyMatching" / M(Xor2) / S(135) / L(19)
-        "\xc0\xf6\xf0\xda\xe7\xf6\xfe\xd0\xfc\xe3\xea\xde\xf2\xe7\xf0\xfb\xfa\xfd\xf4\x93",
-        // "CFDataGetBytePtr" / M(Xor1) / S(121) / L(16)
-        "\x3a\x3f\x3d\x18\x0d\x18\x3e\x1c\x0d\x3b\x00\x0d\x1c\x29\x0d\x0b\x79",
-        // "CFBundleGetIdentifier" / M(Xor2) / S(106) / L(21)
-        "\x3f\x3a\x3e\x09\x12\x18\x10\x19\x3b\x19\x08\x35\x18\x19\x12\x08\x15\x1a\x15\x19\x0e\x7c",
-        // "CFArrayGetCount" / M(Xor1) / S(96) / L(15)
-        "\x23\x26\x21\x12\x12\x01\x19\x27\x05\x14\x23\x0f\x15\x0e\x14\x60",
-        // "start" / M(Xor1) / S(48) / L(5)
-        "\x43\x44\x51\x42\x44\x30\x60\x14\xe8\x1c\xdd\xe1\x2e\xd2\xf2\xd9",
-        // "alloc" / M(Xor2) / S(161) / L(5)
-        "\xd0\xdd\xdd\xde\xd2\xb1\xb6\x24\x75\xab\xe0\x01\xcc\x49\xea\xab",
-        // "/System/Library/Frameworks/Security.framework/Security" / M(Xor3) / S(127) / L(54)
-        "\x99\xe5\xcf\xc5\xc2\xd3\xdb\x99\xfa\xdf\xd4\xc4\xd7\xc4\xcf\x99\xf0\xc4\xd7\xdb\xd3\xc1\xd9\xc4\xdd\xc5\x99\xe5\xd3\xd5\xc3\xc4\xdf\xc2\xcf\x98\xd0\xc4\xd7\xdb\xd3\xc1\xd9\xc4\xdd\x99\xe5\xd3\xd5\xc3\xc4\xdf\xc2\xcf\xb6",
-        // "CFReadStreamClose" / M(Xor1) / S(135) / L(17)
-        "\xc4\xc1\xd5\xe2\xe6\xe3\xd4\xf3\xf5\xe2\xe6\xea\xc4\xeb\xe8\xf4\xe2\x87",
-        // "SHA1" / M(Rot) / S(176) / L(4)
-        "\x03\xf8\xf1\xe1\xb0\x8e\x8c\x92\xce\x0a\xe4\x35\x94\xa8\xa3\x8f",
-        // "PKCS7_free" / M(Xor2) / S(233) / L(10)
-        "\xa9\xb2\xba\xaa\xce\xa6\x9f\x8b\x9c\x9c\xf9\x62\x85\x86\x80\x34",
-        // "init" / M(Rot) / S(153) / L(4)
-        "\x02\x07\x02\x0d\x99\x93\x4c\xe2\x44\xf5\x79\x86\xdf\x11\xd3\x36",
-        // "CFReadStreamOpen" / M(Xor3) / S(224) / L(16)
-        "\xb2\xb7\xa3\x94\x90\x95\xa2\x85\x83\x94\x90\x9c\xbe\x81\x94\x9f\xf1",
-        // "CFDataGetLength" / M(Xor1) / S(36) / L(15)
-        "\x67\x62\x60\x45\x50\x45\x63\x41\x50\x68\x41\x4a\x43\x50\x4c\x24",
-        // "SHA1_Init" / M(Xor3) / S(148) / L(9)
-        "\xf7\xec\xe5\x95\xfb\xed\xca\xcd\xd0\xa4\xee\x70\x9f\x4e\x55\x8e",
-        // "SHA1_Final" / M(Xor3) / S(8) / L(10)
-        "\x4b\x50\x59\x29\x47\x5e\x71\x76\x79\x74\x18\x95\xd1\xda\x4f\x73",
-        // "%02X:" / M(Xor2) / S(186) / L(5)
-        "\x8f\x9a\x98\xf2\x90\xaa\x4d\x0e\x62\xb1\x30\x97\xeb\x53\x2a\x30",
-        // "BIO_write" / M(Xor3) / S(4) / L(9)
-        "\x56\x5d\x5b\x4b\x63\x66\x7d\x60\x71\x14\xd7\x5c\x1e\xf0\xfe\x84",
-        // "SHA1_Init" / M(Xor4) / S(123) / L(9)
-        "\xe3\xf8\xf1\x81\xef\xf9\xde\xd9\xc4\xb0\x8a\x9d\x9a\xec\x0a\x65",
-        // "Contents/_MASReceipt" / M(Xor1) / S(246) / L(20)
-        "\xb5\x99\x98\x82\x93\x98\x82\x85\xd9\xa9\xbb\xb7\xa5\xa4\x93\x95\x93\x9f\x86\x82\xf6",
+        "\x2e\x69\x7c\x42\x1c\x66\x3c\xd3\x09\xc7\x97\x5d\xeb\xa8\x08\x37\x4f\x68\xc9\x7c\xc7\x5d\x76\x24\x6f\xc5\x0e\x1f\x88\x32\xb5\xf6",
+        // "X509_get_ext_by_OBJ" / M(Rot) / S(134) / L(19)
+        "\xde\xbb\xb6\xbf\xe5\xed\xeb\xfa\xe5\xeb\xfe\xfa\xe5\xe8\xff\xe5\xd5\xc8\xd0\x86",
+        // "longjmp" / M(Xor2) / S(177) / L(7)
+        "\xcd\xce\xcf\xc6\xcb\xcc\xd1\xa1\xa5\x60\x56\x50\x6f\x9f\x74\x38",
+        // "_MASReceipt/receipt" / M(Xor1) / S(14) / L(19)
+        "\x51\x43\x4f\x5d\x5c\x6b\x6d\x6b\x67\x7e\x7a\x21\x7c\x6b\x6d\x6b\x67\x7e\x7a\x0e",
+        // "/System/Library/Frameworks/Security.framework/Security" / M(Xor2) / S(208) / L(54)
+        "\xc8\xb4\x9e\x94\x93\x82\x8a\xc8\xab\x8e\x85\x95\x86\x95\x9e\xc8\xa1\x95\x86\x8a\x82\x90\x88\x95\x8c\x94\xc8\xb4\x82\x84\x92\x95\x8e\x93\x9e\xc9\x81\x95\x86\x8a\x82\x90\x88\x95\x8c\xc8\xb4\x82\x84\x92\x95\x8e\x93\x9e\xe7",
+        // "CFDataCreate" / M(Xor2) / S(241) / L(12)
+        "\xa2\xa7\xa5\x80\x95\x80\xa2\x93\x84\x80\x95\x84\xe1\xc6\x1c\x9c",
         // "" / M(None) / S(0) / L(0)
-        "\xaa\x80\x7d\x77\xeb\xed\x6c\x7f\xe7\x14\x6a\xca\x0f\x54\xc0\xd7\x3b\xdb\x94\x88\x23\xe7\x3c\x32\x84\xb9\x53\xe2\x2c\x3d\x3c\xc7",
-        // "CFDictionaryAddValue" / M(Xor3) / S(226) / L(20)
-        "\xb4\xb1\xb3\x9e\x94\x83\x9e\x98\x99\x96\x85\x8e\xb6\x93\x93\xa1\x96\x9b\x82\x92\xf7",
-        // "/usr/lib/libobjc.dylib" / M(Xor1) / S(63) / L(22)
-        "\x10\x4a\x4c\x4d\x10\x53\x56\x5d\x10\x53\x56\x5d\x50\x5d\x55\x5c\x11\x5b\x46\x53\x56\x5d\x3f",
-        // "dlopen" / M(Xor2) / S(122) / L(6)
-        "\x0e\x06\x05\x1a\x0f\x04\x6a\x93\x5c\x02\x47\x4d\xc2\xe2\x5b\x94",
-        // "CFDictionaryAddValue" / M(Xor3) / S(42) / L(20)
-        "\x7c\x79\x7b\x56\x5c\x4b\x56\x50\x51\x5e\x4d\x46\x7e\x5b\x5b\x69\x5e\x53\x4a\x5a\x3f",
-        // "Contents/_MASReceipt" / M(Rot) / S(188) / L(20)
-        "\xff\x2b\x2a\x30\x21\x2a\x30\x2f\xeb\x1b\x09\xfd\x0f\x0e\x21\x1f\x21\x25\x2c\x30\xbc",
+        "\x42\xd3\xe4\xe9\xc1\x8e\x98\x9b\x28\x14\x16\x74\x8a\x35\xb1\x98\x67\xdb\x46\x51\x1e\xc2\x9e\x38\x27\xa9\x5d\x33\xa4\xae\x3b\x6d",
+        // "PKCS7_free" / M(Rot) / S(31) / L(10)
+        "\x6f\x6a\x62\x72\x56\x7e\x85\x91\x84\x84\x1f\xb0\xde\x2d\xab\xc7",
+        // "CFReadStreamRead" / M(Xor4) / S(163) / L(16)
+        "\x90\x95\x81\xb6\xb2\xb7\x80\xa7\xa1\xb6\xb2\xbe\x81\xb6\xb2\xb7\xd3",
+        // "1.2.840.113635.100.6.11.1" / M(Xor3) / S(166) / L(25)
+        "\xf9\xe6\xfa\xe6\xf0\xfc\xf8\xe6\xf9\xf9\xfb\xfe\xfb\xfd\xe6\xf9\xf8\xf8\xe6\xfe\xe6\xf9\xf9\xe6\xf9\xc8\xbb\xa0\xd7\x01\x7c\xfe\xa4\xc5",
+        // "Contents/_MASReceipt" / M(Xor4) / S(125) / L(20)
+        "\x02\x2e\x2f\x35\x24\x2f\x35\x32\x6e\x1e\x0c\x00\x12\x13\x24\x22\x24\x28\x31\x35\x41",
+        // "kSecMatchLimitAll" / M(Xor4) / S(253) / L(17)
+        "\xa1\x99\xaf\xa9\x87\xab\xbe\xa9\xa2\x86\xa3\xa7\xa3\xbe\x8b\xa6\xa6\xca",
+        // "sk_free" / M(Xor4) / S(196) / L(7)
+        "\x33\x2b\x1f\x26\x32\x25\x25\x40\x50\x7d\xc8\x31\xac\xb1\xc3\xc8",
         // "" / M(None) / S(0) / L(0)
-        "\xa6\x6f\x6a\xc1\x4a\x60\x7b\x6c\x8f\x7b\xe8\x42\xa4\xe5\xac\x57\xe5\xd5\xbc\xe6\x55\x9b\x03\xe3\xd9\x0d\x0d\x29\xa2\x0b\x03\x7b",
+        "\x9e\x83\x46\x76\x1d\xd2\x85\xb6\x01\xed\x35\x75\x3f\xb3\x86\x36\x9e\x65\xc1\x54\x8d\x06\xbb\xd5\x35\x61\xa3\x4a\x70\xc5\x15\x72",
+        // "d2i_X509_bio" / M(Rot) / S(131) / L(12)
+        "\xe7\xb5\xec\xe2\xdb\xb8\xb3\xbc\xe2\xe5\xec\xf2\x83\x39\x56\x6a",
+        // "_MASReceipt/receipt" / M(Xor4) / S(6) / L(19)
+        "\x27\x35\x39\x2b\x2a\x1d\x1b\x1d\x11\x08\x0c\x57\x0a\x1d\x1b\x1d\x11\x08\x0c\x78",
+        // "EVP_DigestInit" / M(Rot) / S(22) / L(14)
+        "\x5b\x6c\x66\x75\x5a\x7f\x7d\x7b\x89\x8a\x5f\x84\x7f\x8a\x16\x13",
+        // "Apple Root CA" / M(Xor3) / S(90) / L(13)
+        "\x2b\x1a\x1a\x06\x0f\x4a\x38\x05\x05\x1e\x4a\x29\x2b\x6a\xb3\xf1",
+        // "CFDateFormatterCreate" / M(Xor1) / S(16) / L(21)
+        "\x53\x56\x54\x71\x64\x75\x56\x7f\x62\x7d\x71\x64\x64\x75\x62\x53\x62\x75\x71\x64\x75\x10",
+        // "en0" / M(Rot) / S(151) / L(3)
+        "\xfc\x05\xc7\x97\x91\xfe\xbb\xdc\xdf\x7e\x5a\x25\xf6\x29\xbb\x46",
+        // "/usr/lib/libobjc.dylib" / M(Xor2) / S(207) / L(22)
+        "\xf7\xad\xab\xaa\xf7\xb4\xb1\xba\xf7\xb4\xb1\xba\xb7\xba\xb2\xbb\xf6\xbc\xa1\xb4\xb1\xba\xd8",
         // "" / M(None) / S(0) / L(0)
-        "\x85\xee\xe2\xcd\xb0\xdb\x2b\xe3\xf5\xbf\xcb\x3d\x92\xa1\x2f\xa1\xdf\x46\xd5\x02\x9b\x30\xc3\x2b\xea\x7b\xdf\x7d\xb0\xa0\x41\xab",
-        // "BIO_s_mem" / M(Rot) / S(128) / L(9)
-        "\xc2\xc9\xcf\xdf\xf3\xdf\xed\xe5\xed\x80\xfc\x63\xec\x4d\x67\x89",
-        // "EVP_get_digestbyname" / M(Xor3) / S(69) / L(20)
-        "\x1f\x0c\x0a\x05\x3d\x3f\x2e\x05\x3e\x33\x3d\x3f\x29\x2e\x38\x23\x34\x3b\x37\x3f\x5a",
-        // "IOObjectRelease" / M(Xor1) / S(194) / L(15)
-        "\x8b\x8d\x8d\xa0\xa8\xa7\xa1\xb6\x90\xa7\xae\xa7\xa3\xb1\xa7\xc2",
-        // "CFDataCreateMutable" / M(Rot) / S(188) / L(19)
-        "\xff\x02\x00\x1d\x30\x1d\xff\x2e\x21\x1d\x30\x21\x09\x31\x30\x1d\x1e\x28\x21\xbc",
+        "\x13\x29\x3e\x15\xf6\xfd\x12\x31\x3d\xe1\x90\xc9\x34\x97\x7d\x52\x74\xfc\x90\x59\x3d\x75\x58\x2b\x6f\x1d\x37\x08\xdc\x88\xa3\xcf",
+        // "alloc" / M(Xor2) / S(75) / L(5)
+        "\x3a\x37\x37\x34\x38\x5b\x4a\xaf\x7a\x78\x27\xc7\x5e\x6c\x78\x1b",
+        // "X509_STORE_new" / M(Xor3) / S(7) / L(14)
+        "\x4f\x22\x27\x2e\x48\x44\x43\x58\x45\x52\x48\x79\x72\x60\x17\x43",
+        // "SKReceiptRefreshRequest" / M(Xor2) / S(125) / L(23)
+        "\x0e\x16\x0f\x38\x3e\x38\x34\x2d\x29\x0f\x38\x3b\x2f\x38\x2e\x35\x0f\x38\x2c\x28\x38\x2e\x29\x5d\x82\xb4\xd3\x52\x22\x3e\x96\x58",
+        // "X509_get_ext_by_OBJ" / M(Xor3) / S(107) / L(19)
+        "\x27\x4a\x4f\x46\x20\x18\x1a\x0b\x20\x1a\x07\x0b\x20\x1d\x06\x20\x30\x3d\x35\x7f",
+        // "exit" / M(Rot) / S(95) / L(4)
+        "\xc4\xd7\xc8\xd3\x5f\x47\xcf\x0f\xea\xc3\x07\xfe\x20\x1a\xa8\xb5",
+        // "Contents" / M(Xor2) / S(93) / L(8)
+        "\x0e\x22\x23\x39\x28\x23\x39\x3e\x4d\x94\x5e\xff\x54\x20\xb1\xc1",
+        // "EVP_DigestUpdate" / M(Xor4) / S(195) / L(16)
+        "\xb6\xa5\xa3\xac\xb7\x9a\x94\x96\x80\x87\xa6\x83\x97\x92\x87\x96\xf3",
         // "" / M(None) / S(0) / L(0)
-        "\x86\x28\x76\x67\x53\x0b\x28\x44\xf5\x76\x11\x52\xff\xd2\x1f\xae\x22\x91\x4a\x24\x5a\x63\x3a\xd9\x68\xb9\x56\x48\x88\x1f\xba\xb1",
-        // "CC_SHA1_Init" / M(Xor2) / S(86) / L(12)
-        "\x05\x05\x19\x15\x0e\x07\x77\x19\x0f\x28\x2f\x32\x46\xff\x5b\x4c",
+        "\xb0\x54\xe5\x76\x7f\xee\xb8\x4b\xf1\xc5\xc4\x34\xc9\x45\x7d\x09\xf2\x85\x13\x67\xe9\x8d\xcf\x43\x78\xea\x2f\x7f\x7e\x23\x78\xf1",
         // "" / M(None) / S(0) / L(0)
-        "\xca\x55\x2c\x3f\xa1\x5c\x82\x31\x23\x43\xb8\x76\xd6\x60\xf0\x10\x13\x25\x27\x67\x18\x21\xf0\xd5\x5e\x21\x3b\x13\x69\xcb\xc1\xc3",
+        "\xf0\xca\x04\x00\xce\x37\xd5\x6a\x09\x0a\x46\xd5\x8c\xca\x5c\x2b\xa4\x4d\xd9\x5c\x0a\x7f\x57\xbe\x64\x1a\x71\x7e\x20\x80\x76\x86",
+        // "EVP_DigestInit" / M(Xor3) / S(242) / L(14)
+        "\x47\x54\x52\x5d\x46\x6b\x65\x67\x71\x76\x4b\x6c\x6b\x76\x02\xd8",
         // "" / M(None) / S(0) / L(0)
-        "\x53\xcd\x99\x89\xfc\xbf\xbd\x12\x7e\x24\xfd\xf2\x4a\x19\xe9\x93\x5b\x35\x0d\x74\xb6\xef\xef\x06\x02\x5e\xa6\x18\x60\xc2\x73\x10",
-        // "CFDataCreate" / M(Rot) / S(137) / L(12)
-        "\xcc\xcf\xcd\xea\xfd\xea\xcc\xfb\xee\xea\xfd\xee\x89\xb0\x26\x7e",
+        "\xbb\xba\xed\xf3\xb9\xb2\xac\xc6\xe0\xc5\x8e\x8c\x82\x4f\xeb\xb9\x85\x14\x0e\xff\x03\xf7\x7a\x6a\x0e\x49\x12\xda\x7e\x23\xbe\x43",
+        // "sk_free" / M(Xor1) / S(39) / L(7)
+        "\x54\x4c\x78\x41\x55\x42\x42\x27\x02\x10\x31\x84\x70\xcb\x9b\xce",
+        // "SecKeychainSearchCopyNext" / M(Xor3) / S(136) / L(25)
+        "\xf9\xcf\xc9\xe1\xcf\xd3\xc9\xc2\xcb\xc3\xc4\xf9\xcf\xcb\xd8\xc9\xc2\xe9\xc5\xda\xd3\xe4\xcf\xd2\xde\xaa\x6b\x84\xed\x1e\x89\x66\x26\xe1",
+        // "CFArrayCreateMutable" / M(Xor4) / S(98) / L(20)
+        "\x49\x4c\x4b\x78\x78\x6b\x73\x49\x78\x6f\x6b\x7e\x6f\x47\x7f\x7e\x6b\x68\x66\x6f\x0a",
+        // "/usr/lib/libSystem.dylib" / M(Rot) / S(254) / L(24)
+        "\x2d\x73\x71\x70\x2d\x6a\x67\x60\x2d\x6a\x67\x60\x51\x77\x71\x72\x63\x6b\x2c\x62\x77\x6a\x67\x60\xfe\x2f\xc6\x16\xea\x02\x4c\x88\xeb",
+        // "ASN1_OBJECT_free" / M(Xor3) / S(221) / L(16)
+        "\xaf\xbd\xa0\xdf\xb1\xa1\xac\xa4\xab\xad\xba\xb1\x88\x9c\x8b\x8b\xee",
         // "" / M(None) / S(0) / L(0)
-        "\xc4\x94\x79\xe3\x15\xd7\x27\x80\xca\xf2\x5a\xa4\x6b\x01\xe5\x58\x1e\xdd\x6d\x51\x6b\xff\x50\x42\x09\x04\x10\x18\xaa\xe5\xeb\xfe",
-        // "d2i_X509_bio" / M(Xor2) / S(234) / L(12)
-        "\x9e\xc8\x93\xa5\xa2\xcf\xca\xc3\xa5\x98\x93\x95\xfa\xa2\xec\x54",
+        "\x29\x80\x47\xff\x48\x0d\x3f\xeb\xc7\xc4\x4e\x0a\x7c\x60\x44\xfa\x0c\x27\x6b\x45\x02\x53\xc7\x78\x91\x6d\xac\xb9\x69\x9f\x86\xf5",
+        // "_MASReceipt" / M(Xor1) / S(155) / L(11)
+        "\xc4\xd6\xda\xc8\xc9\xfe\xf8\xfe\xf2\xeb\xef\x9b\x67\x76\x0e\xbf",
+        // "BIO_write" / M(Rot) / S(152) / L(9)
+        "\xda\xe1\xe7\xf7\x0f\x0a\x01\x0c\xfd\x98\x09\xea\x74\x8a\x74\x08",
         // "" / M(None) / S(0) / L(0)
-        "\x59\x0b\x98\xa6\xad\xe7\xad\x02\x16\x30\x06\x65\x83\xf0\xb6\xbf\x54\xa1\x08\x47\x18\x8e\x25\xc6\x3b\x6d\x4a\x6e\x2a\x3f\xd2\xc7",
-        // "CC_SHA1" / M(Xor3) / S(214) / L(7)
-        "\xa5\xa5\xb9\xb5\xae\xa7\xd7\xe6\xa1\x85\xf5\x4b\x84\x0d\x09\x4a",
-        // "CFStringGetFileSystemRepresentation" / M(Xor3) / S(155) / L(35)
-        "\xfc\xf9\xec\xcb\xcd\xd6\xd1\xd8\xf8\xda\xcb\xf9\xd6\xd3\xda\xec\xc6\xcc\xcb\xda\xd2\xed\xda\xcf\xcd\xda\xcc\xda\xd1\xcb\xde\xcb\xd6\xd0\xd1\xbf",
-        // "EVP_get_digestbyname" / M(Xor4) / S(35) / L(20)
-        "\x9a\x89\x8f\x80\xb8\xba\xab\x80\xbb\xb6\xb8\xba\xac\xab\xbd\xa6\xb1\xbe\xb2\xba\xdf",
-        // "EVP_DigestUpdate" / M(Xor2) / S(28) / L(16)
-        "\x48\x5b\x5d\x52\x49\x64\x6a\x68\x7e\x79\x58\x7d\x69\x6c\x79\x68\x0d",
-        // "longjmp" / M(Xor2) / S(195) / L(7)
-        "\xbf\xbc\xbd\xb4\xb9\xbe\xa3\xd3\x73\xe7\xba\xca\x70\xcd\xd0\xe3",
-        // "CFDateFormatterCreateDateFromString" / M(Xor1) / S(19) / L(35)
-        "\x50\x55\x57\x72\x67\x76\x55\x7c\x61\x7e\x72\x67\x67\x76\x61\x50\x61\x76\x72\x67\x76\x57\x72\x67\x76\x55\x61\x7c\x7e\x40\x67\x61\x7a\x7d\x74\x13",
-        // "CFDateFormatterSetFormat" / M(Xor3) / S(208) / L(24)
-        "\xb2\xb7\xb5\x90\x85\x94\xb7\x9e\x83\x9c\x90\x85\x85\x94\x83\xa2\x94\x85\xb7\x9e\x83\x9c\x90\x85\xf1\x06\x9d\x3a\x32\x39\x71\x33\xd8",
-        // "%02x" / M(Xor3) / S(240) / L(4)
-        "\x25\x30\x32\x78\x00\xa5\x4e\x51\x9a\x19\xa9\x62\x20\x2a\x55\x68",
-        // "CFArrayGetValueAtIndex" / M(Xor2) / S(161) / L(22)
-        "\xf5\xf0\xf7\xc4\xc4\xd7\xcf\xf1\xd3\xc2\xe0\xd7\xda\xc3\xd3\xf7\xc2\xff\xd8\xd2\xd3\xce\xb6",
+        "\xfd\xca\x3d\x78\xd3\x8b\x75\x8b\x08\xe6\x93\xbd\xf4\x27\xa2\x95\xb8\xa5\x2e\xc4\xb9\x1f\xbc\x33\x82\x7c\xc1\xd0\x3a\xb4\x75\x3c",
         // "" / M(None) / S(0) / L(0)
-        "\xdb\x29\x9d\x06\x7d\xf5\xa1\x5f\x88\xcc\x48\x23\xe6\xc1\x1d\x43\xc9\xa2\xce\x3b\xbb\xab\x2b\x91\x2f\x6e\x09\xa7\x6a\xb7\x60\xb7",
-        // "CFDataGetBytePtr" / M(Xor3) / S(228) / L(16)
-        "\xb6\xb3\xb1\x94\x81\x94\xb2\x90\x81\xb7\x8c\x81\x90\xa5\x81\x87\xf5",
-        // "CFBundleVersion" / M(Rot) / S(172) / L(15)
-        "\xef\xf2\xee\x21\x1a\x10\x18\x11\x02\x11\x1e\x1f\x15\x1b\x1a\xac",
+        "\xbb\x67\x76\xbe\x6b\x1c\x58\x76\x6e\xc6\x16\x3e\x9a\xa8\xbc\x5d\xea\x2f\xf7\x99\x64\xd2\x80\xc1\x0e\xd6\x01\x14\x1f\x58\x33\x92",
+        // "dlsym" / M(Xor2) / S(189) / L(5)
+        "\xc9\xc1\xde\xd4\xc0\xad\x59\xb8\xa7\x39\x5d\x59\xad\xb0\x42\x40",
+        // "CFEqual" / M(Xor3) / S(254) / L(7)
+        "\x4d\x48\x4b\x7f\x7b\x6f\x62\x0e\x88\x44\x9b\x6f\x6d\xb3\xf6\x2c",
+        // "/System/Library/Keychains/SystemRootCertificates.keychain" / M(Xor2) / S(92) / L(57)
+        "\x31\x4d\x67\x6d\x6a\x7b\x73\x31\x52\x77\x7c\x6c\x7f\x6c\x67\x31\x55\x7b\x67\x7d\x76\x7f\x77\x70\x6d\x31\x4d\x67\x6d\x6a\x7b\x73\x4c\x71\x71\x6a\x5d\x7b\x6c\x6a\x77\x78\x77\x7d\x7f\x6a\x7b\x6d\x30\x75\x7b\x67\x7d\x76\x7f\x77\x70\x1e\xd8\x72\x64\x24\x0d\xb3\x0c\x4d",
+        // "CFBundleShortVersionString" / M(Xor1) / S(141) / L(26)
+        "\xce\xcb\xcf\xf8\xe3\xe9\xe1\xe8\xde\xe5\xe2\xff\xf9\xdb\xe8\xff\xfe\xe4\xe2\xe3\xde\xf9\xff\xe4\xe3\xea\x8d\x26\x81\x02\x86\xf6\xe1\x96\x14",
+        // "CFArrayCreateMutable" / M(Xor1) / S(86) / L(20)
+        "\x15\x10\x17\x24\x24\x37\x2f\x15\x24\x33\x37\x22\x33\x1b\x23\x22\x37\x34\x3a\x33\x56",
+        // "objc_msgSend" / M(Xor1) / S(106) / L(12)
+        "\x05\x08\x00\x09\x35\x07\x19\x0d\x39\x0f\x04\x0e\x6a\x69\x6c\x8b",
+        // "X509_NAME_get_text_by_NID" / M(Xor1) / S(192) / L(25)
+        "\x98\xf5\xf0\xf9\x9f\x8e\x81\x8d\x85\x9f\xa7\xa5\xb4\x9f\xb4\xa5\xb8\xb4\x9f\xa2\xb9\x9f\x8e\x89\x84\xc0\x9a\xb6\xef\xc0\x75\xe4\x2c\x0f",
+        // "CFDictionaryGetValue" / M(Xor4) / S(84) / L(20)
+        "\xa7\xa2\xa0\x8d\x87\x90\x8d\x8b\x8a\x85\x96\x9d\xa3\x81\x90\xb2\x85\x88\x91\x81\xe4",
+        // "RTLD_MAIN_ONLY" / M(Xor1) / S(241) / L(14)
+        "\xa3\xa5\xbd\xb5\xae\xbc\xb0\xb8\xbf\xae\xbe\xbf\xbd\xa8\xf1\x52",
         // "" / M(None) / S(0) / L(0)
-        "\xa8\x3a\x1c\x60\x09\xf4\xa1\x11\xd7\x65\x79\xdd\xd2\x79\x9a\xa9\x3d\xdc\x64\x82\xd5\x1b\x67\x24\x81\x62\xea\x1d\xeb\xad\xbd\x76",
-        // "SecItemCopyMatching" / M(Xor4) / S(238) / L(19)
-        "\xcb\xfd\xfb\xd1\xec\xfd\xf5\xdb\xf7\xe8\xe1\xd5\xf9\xec\xfb\xf0\xf1\xf6\xff\x98",
-        // "objc_msgSend" / M(Xor3) / S(200) / L(12)
-        "\xb7\xba\xb2\xbb\x87\xb5\xab\xbf\x8b\xbd\xb6\xbc\xd8\x2a\x28\x48",
+        "\x78\xcd\xa7\xb6\x8c\xfa\xd9\x5b\xbb\xff\xcc\x1f\xba\xea\xb3\xc1\x6e\xeb\xce\x25\x94\x1c\x09\x29\xef\xa9\x17\xb5\x90\x5d\x9c\x12",
+        // "PKCS7_free" / M(Xor3) / S(246) / L(10)
+        "\x56\x4d\x45\x55\x31\x59\x60\x74\x63\x63\x06\x6e\xd2\x9e\xd4\xba",
+        // "sk_num" / M(Rot) / S(125) / L(6)
+        "\xf0\xe8\xdc\xeb\xf2\xea\x7d\x4a\x93\x4f\x8d\xec\xe8\x9d\x0c\x70",
         // "" / M(None) / S(0) / L(0)
-        "\xf5\xe3\xa9\x09\xef\xa4\xa8\x20\x64\xf1\xd6\x39\xd6\x10\x2a\x0b\xec\xa6\xbd\x4c\xcb\xb3\xf9\x31\x45\x38\xb6\x00\x05\xfd\x68\xb6",
-        // "setDelegate:" / M(Xor3) / S(204) / L(12)
-        "\xaf\xb9\xa8\x98\xb9\xb0\xb9\xbb\xbd\xa8\xb9\xe6\xdc\x1c\x0a\xa0",
-        // "CFStringCreateWithCString" / M(Xor2) / S(247) / L(25)
-        "\x96\x93\x86\xa1\xa7\xbc\xbb\xb2\x96\xa7\xb0\xb4\xa1\xb0\x82\xbc\xa1\xbd\x96\x86\xa1\xa7\xbc\xbb\xb2\xd5\x4a\xdf\x2b\x49\x9c\xa8\xd4\x8f",
-        // "strlen" / M(Xor2) / S(109) / L(6)
-        "\x0e\x09\x0f\x11\x18\x13\x7d\x48\x83\xe5\x50\x85\x48\x1a\x0d\xdb",
-        // "CFBundleUnloadExecutable" / M(Xor3) / S(0) / L(24)
-        "\x62\x67\x63\x54\x4f\x45\x4d\x44\x74\x4f\x4d\x4e\x40\x45\x64\x59\x44\x42\x54\x55\x40\x43\x4d\x44\x21\x4b\xee\x97\x6d\xf8\x09\x65\xde",
+        "\x0a\x17\x71\x7a\xed\xd2\xa9\x28\xc1\x0c\xca\x3f\x3d\x63\xb7\xe5\xe7\x58\xfd\x69\xc8\xd5\xf6\x65\xc2\x8f\x44\x11\x0c\x07\xb2\x92",
+        // "kCFTypeDictionaryKeyCallBacks" / M(Rot) / S(221) / L(29)
+        "\x48\x20\x23\x31\x56\x4d\x42\x21\x46\x40\x51\x46\x4c\x4b\x3e\x4f\x56\x28\x42\x56\x20\x3e\x49\x49\x1f\x3e\x40\x48\x50\xdd\x20\xd1\x20\x04\x8c\xfd\x00\x7f",
+        // "EVP_DigestUpdate" / M(Rot) / S(190) / L(16)
+        "\x03\x14\x0e\x1d\x02\x27\x25\x23\x31\x32\x13\x2e\x22\x1f\x32\x23\xbe",
+        // "CFDictionarySetValue" / M(Rot) / S(77) / L(20)
+        "\x90\x93\x91\xb6\xb0\xc1\xb6\xbc\xbb\xae\xbf\xc6\xa0\xb2\xc1\xa3\xae\xb9\xc2\xb2\x4d",
+        // "SHA1_Update" / M(Xor4) / S(124) / L(11)
+        "\x93\x88\x81\xf1\x9f\x95\xb0\xa4\xa1\xb4\xa5\xc0\x2a\x21\x85\x13",
+        // "CFArrayCreateMutable" / M(Xor1) / S(231) / L(20)
+        "\xa4\xa1\xa6\x95\x95\x86\x9e\xa4\x95\x82\x86\x93\x82\xaa\x92\x93\x86\x85\x8b\x82\xe7",
+        // "CFURLCreateFromFileSystemRepresentation" / M(Xor2) / S(241) / L(39)
+        "\x82\x87\x94\x93\x8d\x82\xb3\xa4\xa0\xb5\xa4\x87\xb3\xae\xac\x87\xa8\xad\xa4\x92\xb8\xb2\xb5\xa4\xac\x93\xa4\xb1\xb3\xa4\xb2\xa4\xaf\xb5\xa0\xb5\xa8\xae\xaf\xc1\xf8\xc7\x75\xb5\x8d\x4f\xd5\xdd",
         // "" / M(None) / S(0) / L(0)
-        "\x00\x88\x06\x99\xa3\x89\x7e\x32\xef\xbe\xc4\x88\x4f\xb3\x2b\x50\x1d\xb1\x66\xeb\xa8\xbf\x0e\x3e\xe2\x21\x03\x55\x00\x1f\xa1\x31",
-        // "IORegistryEntryCreateCFProperty" / M(Xor4) / S(190) / L(31)
-        "\x89\x8f\x92\xa5\xa7\xa9\xb3\xb4\xb2\xb9\x85\xae\xb4\xb2\xb9\x83\xb2\xa5\xa1\xb4\xa5\x83\x86\x90\xb2\xaf\xb0\xa5\xb2\xb4\xb9\xc0",
-        // "CFBundleCopyBundleURL" / M(Rot) / S(234) / L(21)
-        "\x2d\x30\x2c\x5f\x58\x4e\x56\x4f\x2d\x59\x5a\x63\x2c\x5f\x58\x4e\x56\x4f\x3f\x3c\x36\xea",
+        "\x3d\xc0\x54\x7b\xac\x4f\x09\x88\x04\x76\x27\x2a\x54\x34\x32\x89\xe6\x87\x71\x7e\x50\x95\x60\x78\xda\xb1\x26\x71\x25\x59\x1f\x38",
         // "" / M(None) / S(0) / L(0)
-        "\x02\x18\x74\x4d\xc1\x76\xdf\x9b\x89\x0c\xe6\xe0\x0a\x39\x22\x06\x56\x95\xfd\xaf\xfd\x49\x15\xcf\x85\xed\x25\x55\xc8\x08\x52\x53",
+        "\x08\x54\x17\x12\x0f\x83\xb2\x5d\x71\x75\xf8\x49\x84\x61\x04\x4a\xb5\x93\xeb\x9b\xe1\x58\x73\x04\xb8\x00\x63\x9a\x40\x85\xd6\xa6",
         // "" / M(None) / S(0) / L(0)
-        "\x35\xb8\xa1\x6e\xa9\xf1\x2d\x16\x5a\xd0\xed\xf9\xc2\xc4\x29\x13\x9b\x15\x30\xab\x56\x99\xde\xae\xe3\xbb\xac\x52\xcd\xee\x6d\x72",
-        // "CFStringCreateWithBytes" / M(Xor2) / S(28) / L(23)
-        "\x7f\x7a\x6f\x48\x4e\x55\x52\x5b\x7f\x4e\x59\x5d\x48\x59\x6b\x55\x48\x54\x7e\x45\x48\x59\x4f\x3c\x78\xa5\x85\x26\x9a\xfb\xd9\x05",
-        // "CFDataCreate" / M(Xor2) / S(227) / L(12)
-        "\xb0\xb5\xb7\x92\x87\x92\xb0\x81\x96\x92\x87\x96\xf3\x36\x4f\x5c",
+        "\x05\xb1\x31\x0a\xaf\xd1\x85\x9b\xd2\xdd\x93\xb5\xb3\x08\x04\xd5\xf8\x25\x0e\x8b\x19\x99\x62\x61\x4e\x66\xe0\x05\xd4\xe0\xd8\xd5",
+        // "X509_get_ext_by_OBJ" / M(Xor3) / S(159) / L(19)
+        "\xeb\x86\x83\x8a\xec\xd4\xd6\xc7\xec\xd6\xcb\xc7\xec\xd1\xca\xec\xfc\xf1\xf9\xb3",
+        // "dlopen" / M(Xor4) / S(184) / L(6)
+        "\xe4\xec\xef\xf0\xe5\xee\x80\xac\xa1\x58\xf2\x96\x6c\x99\x10\xc2",
         // "" / M(None) / S(0) / L(0)
-        "\xb1\x16\xf2\x11\x77\x5e\xdd\x43\xf9\xe7\x7e\x51\xf2\x7b\xf0\xd7\x09\x69\xa9\x75\x3a\x64\xe5\xc2\x07\x8b\x7b\x97\x7a\xcf\x38\x17",
-        // "BIO_s_mem" / M(Rot) / S(234) / L(9)
-        "\x2c\x33\x39\x49\x5d\x49\x57\x4f\x57\xea\x08\xdb\xaf\xc0\x9e\x99",
-        // "OBJ_txt2obj" / M(Xor2) / S(124) / L(11)
-        "\x23\x2e\x26\x33\x18\x14\x18\x5e\x03\x0e\x06\x6c\x3b\xc8\x91\x44",
-        // "CFDictionaryGetValue" / M(Xor1) / S(26) / L(20)
-        "\x59\x5c\x5e\x73\x79\x6e\x73\x75\x74\x7b\x68\x63\x5d\x7f\x6e\x4c\x7b\x76\x6f\x7f\x1a",
-        // "_MASReceipt/receipt" / M(Xor3) / S(113) / L(19)
-        "\xda\xc8\xc4\xd6\xd7\xe0\xe6\xe0\xec\xf5\xf1\xaa\xf7\xe0\xe6\xe0\xec\xf5\xf1\x85",
-        // "strlen" / M(Rot) / S(200) / L(6)
-        "\x3b\x3c\x3a\x34\x2d\x36\xc8\xc4\xe1\x89\x99\x18\x9c\x24\x62\xed",
-        // "objc_getClass" / M(Xor2) / S(5) / L(13)
-        "\x7a\x77\x7f\x76\x4a\x72\x70\x61\x56\x79\x74\x66\x66\x15\xc8\x35",
-        // "it.iltofa.Turms" / M(Xor3) / S(249) / L(15)
-        "\x60\x7d\x27\x60\x65\x7d\x66\x6f\x68\x27\x5d\x7c\x7b\x64\x7a\x09",
-        // "BIO_new" / M(Xor4) / S(231) / L(7)
-        "\x32\x39\x3f\x2f\x1e\x15\x07\x70\xaa\x41\xa0\x86\x19\x31\x39\xdd",
+        "\xa3\x1b\xb6\xce\xad\xfc\x45\xdf\x9a\xc5\x8c\x56\x3f\xda\xa2\x56\xb1\xfd\xb9\x3b\xb1\xf5\xcd\x2f\x0e\x16\x53\xe0\x24\x88\x55\xf2",
         // "" / M(None) / S(0) / L(0)
-        "\xd6\x05\x7a\x71\xd1\xad\x23\xc3\x0c\xc7\x02\xe1\x5f\x7a\xc8\x21\xb4\x20\xd7\x36\x74\x9e\x39\x99\x3f\xed\x97\x06\x8c\x2f\x1f\x35",
+        "\x42\xcd\x29\x5d\xc9\x2a\x32\xa2\x73\x10\xd2\xde\xe7\x6d\x94\x1f\x57\xca\xb1\xf3\xbc\x4f\x7f\xb0\xd8\xe8\xa5\x50\x32\x1b\xac\xf8",
+        // "CFDataCreateMutable" / M(Xor3) / S(113) / L(19)
+        "\xc6\xc3\xc1\xe4\xf1\xe4\xc6\xf7\xe0\xe4\xf1\xe0\xc8\xf0\xf1\xe4\xe7\xe9\xe0\x85",
+        // "PKCS7_get0_signers" / M(Xor4) / S(64) / L(18)
+        "\x90\x8b\x83\x93\xf7\x9f\xa7\xa5\xb4\xf0\x9f\xb3\xa9\xa7\xae\xa5\xb2\xb3\xc0",
+        // "CFDataCreateMutable" / M(Xor1) / S(96) / L(19)
+        "\x23\x26\x24\x01\x14\x01\x23\x12\x05\x01\x14\x05\x2d\x15\x14\x01\x02\x0c\x05\x60",
+        // "CFDataGetLength" / M(Xor2) / S(194) / L(15)
+        "\x91\x94\x96\xb3\xa6\xb3\x95\xb7\xa6\x9e\xb7\xbc\xb5\xa6\xba\xd2",
+        // "/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation" / M(Xor1) / S(140) / L(66)
+        "\xa3\xdf\xf5\xff\xf8\xe9\xe1\xa3\xc0\xe5\xee\xfe\xed\xfe\xf5\xa3\xca\xfe\xed\xe1\xe9\xfb\xe3\xfe\xe7\xff\xa3\xcf\xe3\xfe\xe9\xca\xe3\xf9\xe2\xe8\xed\xf8\xe5\xe3\xe2\xa2\xea\xfe\xed\xe1\xe9\xfb\xe3\xfe\xe7\xa3\xcf\xe3\xfe\xe9\xca\xe3\xf9\xe2\xe8\xed\xf8\xe5\xe3\xe2\x8c",
+        // "exit" / M(Xor1) / S(180) / L(4)
+        "\xd1\xcc\xdd\xc0\xb4\xb0\xef\xba\x17\xca\xbd\xab\xb9\xf3\x38\x22",
+        // "init" / M(Xor3) / S(190) / L(4)
+        "\xa7\xa0\xa7\xba\xce\x2c\x44\x40\xec\xf4\x13\x28\x70\x2b\xb6\x7e",
         // "" / M(None) / S(0) / L(0)
-        "\xdb\xb7\x4f\x11\x1c\x75\x0f\xe8\xb4\x88\x9e\x03\xef\x47\x89\x6d\x4c\x8e\x00\x73\x43\x09\xf7\xa1\x2a\xc2\x21\xc0\x91\xad\xb4\x24",
-        // "kSecMatchSearchList" / M(Xor1) / S(169) / L(19)
-        "\xc2\xfa\xcc\xca\xe4\xc8\xdd\xca\xc1\xfa\xcc\xc8\xdb\xca\xc1\xe5\xc0\xda\xdd\xa9",
+        "\x51\x7c\x83\x60\xf2\x35\xc2\x92\xa6\xef\x89\xbd\x38\x7d\xaf\x5e\x3e\x6b\x3b\xd4\x55\x3a\x45\x4a\x7b\xac\xd9\x68\x38\xfd\xe0\xe1",
+        // "CFNumberCreate" / M(Xor1) / S(36) / L(14)
+        "\x67\x62\x6a\x51\x49\x46\x41\x56\x67\x56\x41\x45\x50\x41\x24\x2c",
+        // "CFDateFormatterCreateDateFromString" / M(Rot) / S(33) / L(35)
+        "\x64\x67\x65\x82\x95\x86\x67\x90\x93\x8e\x82\x95\x95\x86\x93\x64\x93\x86\x82\x95\x86\x65\x82\x95\x86\x67\x93\x90\x8e\x74\x95\x93\x8a\x8f\x88\x21",
         // "" / M(None) / S(0) / L(0)
-        "\x12\x79\x43\x5b\x8a\x80\x97\x46\xd4\x48\x36\x00\x5a\x30\xa1\x9e\xc2\xd4\xe4\xcb\x9e\x72\x81\xb7\xa4\xd5\xcd\xc0\xeb\x8e\x50\x6d",
-        // "CFDataGetLength" / M(Xor2) / S(81) / L(15)
-        "\x02\x07\x05\x20\x35\x20\x06\x24\x35\x0d\x24\x2f\x26\x35\x29\x41",
-        // "EVP_DigestInit" / M(Xor1) / S(248) / L(14)
-        "\xbd\xae\xa8\xa7\xbc\x91\x9f\x9d\x8b\x8c\xb1\x96\x91\x8c\xf8\x42",
-        // "kCFTypeDictionaryValueCallBacks" / M(Xor2) / S(210) / L(31)
-        "\x99\xb1\xb4\xa6\x8b\x82\x97\xb6\x9b\x91\x86\x9b\x9d\x9c\x93\x80\x8b\xa4\x93\x9e\x87\x97\xb1\x93\x9e\x9e\xb0\x93\x91\x99\x81\xf2",
+        "\x6a\xe2\x54\x2a\x34\x16\x70\xf9\x8b\x46\xb8\xe8\xf9\x45\x6a\x8e\x6d\xf8\x76\xca\xe2\xaf\x18\x70\x11\xa0\x0c\xc7\x00\xab\x21\xac",
+        // "start" / M(Xor4) / S(152) / L(5)
+        "\xf3\xf4\xe1\xf2\xf4\x80\x86\x9c\x37\x7b\x01\x23\x04\x35\x07\x9a",
+        // "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'" / M(Xor1) / S(190) / L(32)
+        "\xc7\xc7\xc7\xc7\x99\x93\x99\xf3\xf3\x99\x93\x99\xda\xda\x99\xea\x99\xf6\xf6\x99\x84\x99\xd3\xd3\x99\x84\x99\xcd\xcd\x99\xe4\x99\xbe",
         // "" / M(None) / S(0) / L(0)
-        "\xb4\x55\xcd\xef\xec\x58\xcc\xae\xcb\x2b\x8f\x77\x6a\x85\x1f\x72\x1e\x4c\xf2\xd0\xc2\x26\xd3\xa5\xc5\xee\x8d\x9b\x94\x3f\x7a\x25",
-        // "kCFBundleIdentifierKey" / M(Xor4) / S(170) / L(22)
-        "\x2d\x05\x00\x04\x33\x28\x22\x2a\x23\x0f\x22\x23\x28\x32\x2f\x20\x2f\x23\x34\x0d\x23\x3f\x46",
-        // "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'" / M(Rot) / S(244) / L(32)
-        "\x6d\x6d\x6d\x6d\x1b\x21\x1b\x41\x41\x1b\x21\x1b\x58\x58\x1b\x48\x1b\x3c\x3c\x1b\x2e\x1b\x61\x61\x1b\x2e\x1b\x67\x67\x1b\x4e\x1b\xf4",
+        "\x63\x43\x05\x50\x83\x6a\xf3\xb0\xfd\x42\x5d\x8b\x58\x96\x32\x0b\x9b\x38\x5b\x70\xfd\x34\xbf\xbd\x7f\x10\x24\xe3\x92\x06\x05\xdb",
         // "" / M(None) / S(0) / L(0)
-        "\x7d\x0a\x71\xe2\xc5\x1c\x7e\x50\xb5\x98\xd8\xcd\xb0\x5a\xe3\xff\x10\xdf\x33\x4f\xfa\x11\xf2\x8f\xd8\xc3\x7d\x09\x93\xaf\x30\x7b",
-        // "glob_b" / M(Xor1) / S(122) / L(6)
-        "\x1d\x16\x15\x18\x25\x18\x7a\xab\x14\xb7\x17\xaf\xdf\xbe\x7d\x97",
-        // "OBJ_txt2obj" / M(Rot) / S(70) / L(11)
-        "\x95\x88\x90\xa5\xba\xbe\xba\x78\xb5\xa8\xb0\x46\x0b\x9f\x7a\xb2",
-        // "BIO_write" / M(Xor3) / S(215) / L(9)
-        "\xa5\xae\xa8\xb8\x90\x95\x8e\x93\x82\xe7\x96\x03\xb6\x02\x73\x46",
-        // "CFDataCreate" / M(Xor3) / S(57) / L(12)
-        "\x0a\x0f\x0d\x28\x3d\x28\x0a\x3b\x2c\x28\x3d\x2c\x49\x6b\xb3\x52",
-        // "alloc" / M(Xor2) / S(102) / L(5)
-        "\x17\x1a\x1a\x19\x15\x76\xcf\x22\x5c\x7c\xea\x4c\xa2\x9e\x5b\x3f",
-        // "CFDateFormatterCreate" / M(Xor3) / S(177) / L(21)
-        "\x84\x81\x83\xa6\xb3\xa2\x81\xa8\xb5\xaa\xa6\xb3\xb3\xa2\xb5\x84\xb5\xa2\xa6\xb3\xa2\xc7",
-        // "CFBundleGetValueForInfoDictionaryKey" / M(Rot) / S(211) / L(36)
-        "\x16\x19\x15\x48\x41\x37\x3f\x38\x1a\x38\x47\x29\x34\x3f\x48\x38\x19\x42\x45\x1c\x41\x39\x42\x17\x3c\x36\x47\x3c\x42\x41\x34\x45\x4c\x1e\x38\x4c\xd3",
-        // "CFBundleShortVersionString" / M(Xor1) / S(92) / L(26)
-        "\x1f\x1a\x1e\x29\x32\x38\x30\x39\x0f\x34\x33\x2e\x28\x0a\x39\x2e\x2f\x35\x33\x32\x0f\x28\x2e\x35\x32\x3b\x5c\x04\x60\x6b\x2a\x1a\x85\xf7\x9d",
-        // "CFStringCreateWithCString" / M(Xor2) / S(136) / L(25)
-        "\xe9\xec\xf9\xde\xd8\xc3\xc4\xcd\xe9\xd8\xcf\xcb\xde\xcf\xfd\xc3\xde\xc2\xe9\xf9\xde\xd8\xc3\xc4\xcd\xaa\xb6\xcd\x5d\x1b\xa2\xbd\x9b\x28",
-        // "CFRelease" / M(Xor4) / S(193) / L(9)
-        "\x53\x56\x42\x75\x7c\x75\x71\x63\x75\x10\x09\x8d\x6b\x65\x27\x28",
-        // "CFNumberCreate" / M(Xor1) / S(92) / L(14)
-        "\x1f\x1a\x12\x29\x31\x3e\x39\x2e\x1f\x2e\x39\x3d\x28\x39\x5c\x12",
-        // "IOMACAddress" / M(Xor3) / S(228) / L(12)
-        "\xbd\xbb\xb9\xb5\xb7\xb5\x90\x90\x86\x91\x87\x87\xf4\x27\x6e\x02",
-        // "Apple Root CA" / M(Xor4) / S(108) / L(13)
-        "\x81\xb0\xb0\xac\xa5\xe0\x92\xaf\xaf\xb4\xe0\x83\x81\xc0\x34\x1d",
-        // "kSecMatchSearchList" / M(Xor3) / S(5) / L(19)
-        "\x72\x4a\x7c\x7a\x54\x78\x6d\x7a\x71\x4a\x7c\x78\x6b\x7a\x71\x55\x70\x6a\x6d\x19",
-        // "EVP_MD_CTX_init" / M(Rot) / S(111) / L(15)
-        "\xb4\xc5\xbf\xce\xbc\xb3\xce\xb2\xc3\xc7\xce\xd8\xdd\xd8\xe3\x6f",
-        // "2.0" / M(Xor2) / S(38) / L(3)
-        "\x04\x18\x06\x36\x93\xd3\x03\xdc\x42\x35\x02\xf5\xe3\x68\x4e\x05",
+        "\x48\x76\x8b\x6e\xec\xd3\x5b\x62\x5d\x3e\x6e\x71\xb1\xe4\xb0\x54\x21\xfb\xa2\x1c\x19\x1b\xa7\x87\xfb\x8e\xc5\x15\x7d\x20\x54\x9b",
         // "" / M(None) / S(0) / L(0)
-        "\x76\xf7\x9e\x9d\xd4\xc5\x8e\x1e\x3b\x12\x9d\x72\x2c\xc2\xb2\x36\x16\xc9\x1d\x8a\xab\xca\xf5\x01\x94\x7a\x44\x28\x47\xb8\xc1\x96",
-        // "%02X" / M(Xor3) / S(17) / L(4)
-        "\x04\x11\x13\x79\x21\xc2\x60\x88\xa3\x88\xee\xe1\x16\x5e\x8d\xf0",
-        // "init" / M(Rot) / S(203) / L(4)
-        "\x34\x39\x34\x3f\xcb\xe7\x13\x7b\x90\x16\x2e\x15\xb0\xd8\xce\x67",
-        // "exit" / M(Xor4) / S(0) / L(4)
-        "\x65\x78\x69\x74\x00\x85\x8e\xb7\xd5\x00\xf9\x99\x96\x68\xbd\x1f",
-        // "OpenSSL_add_all_digests" / M(Xor4) / S(88) / L(23)
-        "\x4f\x70\x65\x6e\x53\x53\x4c\x5f\x61\x64\x64\x5f\x61\x6c\x6c\x5f\x64\x69\x67\x65\x73\x74\x73\x00\x9c\x2b\x86\x96\x61\xd1\x6f\xc7",
-        // "_MASReceipt/receipt" / M(Xor2) / S(185) / L(19)
-        "\xf2\xe0\xec\xfe\xff\xc8\xce\xc8\xc4\xdd\xd9\x82\xdf\xc8\xce\xc8\xc4\xdd\xd9\xad",
-        // "kSecMatchLimit" / M(Xor1) / S(117) / L(14)
-        "\x1e\x26\x10\x16\x38\x14\x01\x16\x1d\x39\x1c\x18\x1c\x01\x75\x51",
+        "\xe4\x1f\x1d\xe6\xe5\x4d\x5a\x46\x16\x5f\xcd\xe0\x1a\xa4\x16\xf7\x15\x96\x1e\x7c\x88\xe5\x87\xad\x91\x6b\x51\x05\xee\x0e\x07\x17",
+        // "%02x:" / M(Rot) / S(232) / L(5)
+        "\x0d\x18\x1a\x60\x22\xe8\x85\xee\xd5\xf2\xe4\x9d\x0c\x24\x6c\x2e",
+        // "CFBundleUnloadExecutable" / M(Xor4) / S(10) / L(24)
+        "\x09\x0c\x08\x3f\x24\x2e\x26\x2f\x1f\x24\x26\x25\x2b\x2e\x0f\x32\x2f\x29\x3f\x3e\x2b\x28\x26\x2f\x4a\xea\x11\x93\xd5\x9f\x0c\x6d\xbe",
+        // "%02x:" / M(Rot) / S(181) / L(5)
+        "\xda\xe5\xe7\x2d\xef\xb5\xac\xbf\x40\x33\x4b\x99\x31\x78\x51\x4d",
         // "" / M(None) / S(0) / L(0)
-        "\x5c\xc5\x30\x3d\x2d\x21\x4d\xda\xc9\x69\x31\x6f\x65\x28\x99\xd6\x2f\x03\xc5\x6b\x68\x77\xb9\xdf\x9b\xd8\x6d\x96\x97\x6d\xd1\x61",
-        // "IOMACAddress" / M(Xor3) / S(89) / L(12)
-        "\x20\x26\x24\x28\x2a\x28\x0d\x0d\x1b\x0c\x1a\x1a\x69\xf4\x26\x51",
+        "\x27\x0e\xa3\xd1\xc9\x0c\x3e\x29\xe6\x0c\xfe\x9c\x92\xc1\x00\x4e\xfd\x59\xc4\x77\x31\x46\x94\xcd\xf7\x0e\x43\x13\x84\x4e\x08\xec",
+        // "kSecReturnRef" / M(Rot) / S(48) / L(13)
+        "\x9b\x83\x95\x93\x82\x95\xa4\xa5\xa2\x9e\x82\x95\x96\x30\x38\xa4",
+        // "CFDictionaryAddValue" / M(Xor2) / S(39) / L(20)
+        "\x71\x74\x76\x5b\x51\x46\x5b\x5d\x5c\x53\x40\x4b\x73\x56\x56\x64\x53\x5e\x47\x57\x32",
+        // "CFDictionaryAddValue" / M(Xor1) / S(228) / L(20)
+        "\xa7\xa2\xa0\x8d\x87\x90\x8d\x8b\x8a\x85\x96\x9d\xa5\x80\x80\xb2\x85\x88\x91\x81\xe4",
+        // "CC_SHA1_Init" / M(Xor1) / S(247) / L(12)
+        "\xb4\xb4\xa8\xa4\xbf\xb6\xc6\xa8\xbe\x99\x9e\x83\xf7\x77\x4b\x38",
+        // "SHA1_Final" / M(Xor4) / S(204) / L(10)
+        "\x93\x88\x81\xf1\x9f\x86\xa9\xae\xa1\xac\xc0\x85\x13\xb1\x80\xe2",
+        // "CFStringGetFileSystemRepresentation" / M(Xor3) / S(86) / L(35)
+        "\x39\x3c\x29\x0e\x08\x13\x14\x1d\x3d\x1f\x0e\x3c\x13\x16\x1f\x29\x03\x09\x0e\x1f\x17\x28\x1f\x0a\x08\x1f\x09\x1f\x14\x0e\x1b\x0e\x13\x15\x14\x7a",
+        // "CC_SHA1_Final" / M(Xor1) / S(43) / L(13)
+        "\x68\x68\x74\x78\x63\x6a\x1a\x74\x6d\x42\x45\x4a\x47\x2b\x70\x9c",
+        // "CFBundleShortVersionString" / M(Xor3) / S(221) / L(26)
+        "\x43\x46\x42\x75\x6e\x64\x6c\x65\x53\x68\x6f\x72\x74\x56\x65\x72\x73\x69\x6f\x6e\x53\x74\x72\x69\x6e\x67\x00\x6f\xdc\xc0\x62\x39\x1c\x32\x50",
+        // "/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation" / M(Xor4) / S(239) / L(66)
+        "\xa2\xde\xf4\xfe\xf9\xe8\xe0\xa2\xc1\xe4\xef\xff\xec\xff\xf4\xa2\xcb\xff\xec\xe0\xe8\xfa\xe2\xff\xe6\xfe\xa2\xce\xe2\xff\xe8\xcb\xe2\xf8\xe3\xe9\xec\xf9\xe4\xe2\xe3\xa3\xeb\xff\xec\xe0\xe8\xfa\xe2\xff\xe6\xa2\xce\xe2\xff\xe8\xcb\xe2\xf8\xe3\xe9\xec\xf9\xe4\xe2\xe3\x8d",
+        // "setjmp" / M(Xor1) / S(177) / L(6)
+        "\xc2\xd4\xc5\xdb\xdc\xc1\xb1\xc8\xb7\x48\xdc\x3a\x0d\xe8\xf2\x1f",
         // "" / M(None) / S(0) / L(0)
-        "\x49\x33\x40\xbc\x5d\x89\x9c\x3f\x9a\x1a\xc4\x40\x62\x7d\x47\xb4\xde\x6b\xbb\xb0\x21\x53\xc5\xfa\x7c\xfc\xfc\x70\xc4\xc3\x3d\x89",
-        // "X509_STORE_free" / M(Xor1) / S(48) / L(15)
-        "\x68\x05\x00\x09\x6f\x63\x64\x7f\x62\x75\x6f\x56\x42\x55\x55\x30",
-        // "PKCS7_get0_signers" / M(Rot) / S(186) / L(18)
-        "\x0a\x05\xfd\x0d\xf1\x19\x21\x1f\x2e\xea\x19\x2d\x23\x21\x28\x1f\x2c\x2d\xba",
-        // "/System/Library/Keychains/SystemRootCertificates.keychain" / M(Xor3) / S(77) / L(57)
-        "\xa0\xdc\xf6\xfc\xfb\xea\xe2\xa0\xc3\xe6\xed\xfd\xee\xfd\xf6\xa0\xc4\xea\xf6\xec\xe7\xee\xe6\xe1\xfc\xa0\xdc\xf6\xfc\xfb\xea\xe2\xdd\xe0\xe0\xfb\xcc\xea\xfd\xfb\xe6\xe9\xe6\xec\xee\xfb\xea\xfc\xa1\xe4\xea\xf6\xec\xe7\xee\xe6\xe1\x8f\x80\x2b\xde\xcf\xd8\x23\x83\xb3",
-        // "it.iltofa.Turms" / M(Xor1) / S(58) / L(15)
-        "\x53\x4e\x14\x53\x56\x4e\x55\x5c\x5b\x14\x6e\x4f\x48\x57\x49\x3a",
+        "\x79\xc1\xe1\x7d\x11\x54\xf7\xc7\x98\xc4\xb8\x11\xb3\x41\x18\xc4\x74\x42\xc2\xda\x89\xb9\x0e\x3a\x95\xe2\xef\x4b\xfb\xea\x32\x1e",
+        // "strncmp" / M(Xor2) / S(2) / L(7)
+        "\x61\x66\x60\x7c\x71\x7f\x62\x12\x9f\xca\x5e\xdd\x8e\xec\x65\x5f",
+        // "CFBundleCopyBundleURL" / M(Xor4) / S(90) / L(21)
+        "\xff\xfa\xfe\xc9\xd2\xd8\xd0\xd9\xff\xd3\xcc\xc5\xfe\xc9\xd2\xd8\xd0\xd9\xe9\xee\xf0\xbc",
+        // "sel_registerName" / M(Xor4) / S(50) / L(16)
+        "\x21\x37\x3e\x0d\x20\x37\x35\x3b\x21\x26\x37\x20\x1c\x33\x3f\x37\x52",
+        // "CFStringCompare" / M(Xor2) / S(134) / L(15)
+        "\xd5\xd0\xc5\xe2\xe4\xff\xf8\xf1\xd5\xf9\xfb\xe6\xf7\xe4\xf3\x96",
+        // "setjmp" / M(Xor1) / S(128) / L(6)
+        "\xf3\xe5\xf4\xea\xed\xf0\x80\x76\xf3\xfd\x66\xca\x57\xcf\x0c\xff",
+        // "/System/Library/Frameworks/Security.framework/Security" / M(Xor3) / S(217) / L(54)
+        "\x3f\x43\x69\x63\x64\x75\x7d\x3f\x5c\x79\x72\x62\x71\x62\x69\x3f\x56\x62\x71\x7d\x75\x67\x7f\x62\x7b\x63\x3f\x43\x75\x73\x65\x62\x79\x64\x69\x3e\x76\x62\x71\x7d\x75\x67\x7f\x62\x7b\x3f\x43\x75\x73\x65\x62\x79\x64\x69\x10",
+        // "receipt" / M(Xor1) / S(12) / L(7)
+        "\x7e\x69\x6f\x69\x65\x7c\x78\x0c\xe4\xad\x8a\x3e\x8e\x19\x8f\xcf",
+        // "strlen" / M(Rot) / S(163) / L(6)
+        "\x16\x17\x15\x0f\x08\x11\xa3\x86\x04\xa2\xc6\x8c\x9b\xd2\x13\x07",
         // "" / M(None) / S(0) / L(0)
-        "\xcf\x17\xaa\x24\xc5\x1c\x8e\x7a\x24\x5a\xaf\xb7\x56\x65\x19\xa0\x5c\x70\x9a\x26\xa9\x0d\x23\xbf\x64\x29\x12\x38\xc4\x7f\xb1\x1f",
-        // "/System/Library/Keychains/SystemRootCertificates.keychain" / M(Xor3) / S(195) / L(57)
-        "\x2a\x56\x7c\x76\x71\x60\x68\x2a\x49\x6c\x67\x77\x64\x77\x7c\x2a\x4e\x60\x7c\x66\x6d\x64\x6c\x6b\x76\x2a\x56\x7c\x76\x71\x60\x68\x57\x6a\x6a\x71\x46\x60\x77\x71\x6c\x63\x6c\x66\x64\x71\x60\x76\x2b\x6e\x60\x7c\x66\x6d\x64\x6c\x6b\x05\xb9\x14\x61\x9d\x80\x19\x10\xab",
-        // "alloc" / M(Xor2) / S(183) / L(5)
-        "\xc6\xcb\xcb\xc8\xc4\xa7\xbb\xa4\x82\x51\x20\x38\xd7\x84\x1e\x46",
-        // "EVP_DigestFinal" / M(Xor3) / S(187) / L(15)
-        "\x8e\x9d\x9b\x94\x8f\xa2\xac\xae\xb8\xbf\x8d\xa2\xa5\xaa\xa7\xcb",
-        // "sk_num" / M(Xor2) / S(98) / L(6)
-        "\x01\x19\x2d\x1c\x07\x1f\x72\x5c\x6a\x4f\x2f\x06\xe1\xd8\x0b\x91",
+        "\x73\x39\xe4\x81\x0e\xbf\x35\x38\xe5\x82\xb5\x56\xbc\xda\xbe\xbd\x79\x61\x24\x38\x52\x1e\xba\x5a\x4d\xa8\x99\x8f\x46\x37\x92\x60",
+        // "OpenSSL_add_all_digests" / M(Xor3) / S(39) / L(23)
+        "\x08\x37\x22\x29\x14\x14\x0b\x18\x26\x23\x23\x18\x26\x2b\x2b\x18\x23\x2e\x20\x22\x34\x33\x34\x47\x97\x1a\xb2\x71\xed\x42\xcf\x3c",
         // "" / M(None) / S(0) / L(0)
-        "\xf5\x69\x90\xaa\x26\xe1\x9b\x3e\x0e\x4a\x16\xfa\xaa\xb7\xd6\xbc\x97\xd3\x5e\x8b\xff\xbe\xd8\xaf\x22\x40\x93\x1b\xf5\xac\xdf\xe6",
+        "\xdf\x36\x5b\x5c\x84\x3e\x06\xb7\xc8\x61\xb6\x51\x66\xf0\x80\x3a\x95\x47\xb2\x6c\xa3\xfa\x8c\x13\x5a\xae\x26\xb1\x3a\xf6\x32\x2d",
         // "" / M(None) / S(0) / L(0)
-        "\x4c\x65\xa1\x5b\xbb\x62\xca\x9f\xd9\xc6\xc7\x1d\x0e\x65\xe7\xb5\x06\xd1\xa4\xa8\x89\x05\x40\x0e\x1d\x2b\x09\xcb\x26\x39\x73\x6e",
-        // "PKCS7_verify" / M(Xor1) / S(156) / L(12)
-        "\xcc\xd7\xdf\xcf\xab\xc3\xea\xf9\xee\xf5\xfa\xe5\x9c\xb4\x35\x14",
+        "\xb9\x54\xa0\x6a\x74\xcd\x3c\x3e\xcb\xdc\x85\xe6\x7a\xbf\xce\x39\x4d\xea\x69\x94\xfd\x9b\x2d\xb1\x7d\x07\xbc\x1a\xc9\x38\x7a\x8a",
+        // "CFBundleVersion" / M(Xor3) / S(137) / L(15)
+        "\xda\xdf\xdb\xec\xf7\xfd\xf5\xfc\xcf\xfc\xeb\xea\xf0\xf6\xf7\x99",
+        // "CFBundleVersion" / M(Xor4) / S(234) / L(15)
+        "\xe3\xe6\xe2\xd5\xce\xc4\xcc\xc5\xf6\xc5\xd2\xd3\xc9\xcf\xce\xa0",
+        // "61:1E:5B:66:2C:59:3A:08:FF:58:D1:4A:E2:24:52:D1:98:DF:6C:60" / M(Xor4) / S(93) / L(59)
+        "\x82\x85\x8e\x85\xf1\x8e\x81\xf6\x8e\x82\x82\x8e\x86\xf7\x8e\x81\x8d\x8e\x87\xf5\x8e\x84\x8c\x8e\xf2\xf2\x8e\x81\x8c\x8e\xf0\x85\x8e\x80\xf5\x8e\xf1\x86\x8e\x86\x80\x8e\x81\x86\x8e\xf0\x85\x8e\x8d\x8c\x8e\xf0\xf2\x8e\x82\xf7\x8e\x82\x84\xb4\xb3\x73\xc2\x06\x59\xa4\x06\xcd",
+        // "611e5b662c593a08ff58d14ae22452d198df6c60" / M(Xor3) / S(147) / L(40)
+        "\xf2\xf5\xf5\xa1\xf1\xa6\xf2\xf2\xf6\xa7\xf1\xfd\xf7\xa5\xf4\xfc\xa2\xa2\xf1\xfc\xa0\xf5\xf0\xa5\xa1\xf6\xf6\xf0\xf1\xf6\xa0\xf5\xfd\xfc\xa0\xa2\xf2\xa7\xf2\xf4\xc4\x86\x87\x22\x14\xc6\xd9\x79\xfa",
+        // "EVP_DigestInit" / M(Rot) / S(138) / L(14)
+        "\xcf\xe0\xda\xe9\xce\xf3\xf1\xef\xfd\xfe\xd3\xf8\xf3\xfe\x8a\x2a",
         // "" / M(None) / S(0) / L(0)
-        "\x71\x50\x33\x8d\xa9\x70\xd4\xe2\xcc\x8d\xe7\x56\x34\xd2\x6f\x13\x23\x68\x11\x2a\x86\xa6\x72\xdd\xf3\x50\x28\x2e\xb8\x59\xca\xf7",
-        // "setDelegate:" / M(Xor3) / S(18) / L(12)
-        "\x51\x47\x56\x66\x47\x4e\x47\x45\x43\x56\x47\x18\x22\x5a\x35\x99",
-        // "CFURLCreateFromFileSystemRepresentation" / M(Xor2) / S(33) / L(39)
-        "\x52\x57\x44\x43\x5d\x52\x63\x74\x70\x65\x74\x57\x63\x7e\x7c\x57\x78\x7d\x74\x42\x68\x62\x65\x74\x7c\x43\x74\x61\x63\x74\x62\x74\x7f\x65\x70\x65\x78\x7e\x7f\x11\x19\x45\x20\xa0\xe1\xfb\x58\xb1",
-        // "init" / M(Xor4) / S(179) / L(4)
-        "\x59\x5e\x59\x44\x30\x44\x74\x30\x82\x46\x50\xe4\xa4\x5f\xca\x24",
-        // "CFDictionarySetValue" / M(Rot) / S(177) / L(20)
-        "\xf4\xf7\xf5\x1a\x14\x25\x1a\x20\x1f\x12\x23\x2a\x04\x16\x25\x07\x12\x1d\x26\x16\xb1",
-        // "IOBSDNameMatching" / M(Xor3) / S(112) / L(17)
-        "\xcb\xcd\xc0\xd1\xc6\xcc\xe3\xef\xe7\xcf\xe3\xf6\xe1\xea\xeb\xec\xe5\x82",
-        // "X509_free" / M(Xor1) / S(163) / L(9)
-        "\xfb\x96\x93\x9a\xfc\xc5\xd1\xc6\xc6\xa3\xb5\x36\xda\x95\x52\xb8",
-        // "CFDataCreateMutable" / M(Xor3) / S(66) / L(19)
-        "\x15\x10\x12\x37\x22\x37\x15\x24\x33\x37\x22\x33\x1b\x23\x22\x37\x34\x3a\x33\x56",
-        // "CFURLCreateWithFileSystemPathRelativeToBase" / M(Xor3) / S(247) / L(43)
-        "\x68\x6d\x7e\x79\x67\x68\x59\x4e\x4a\x5f\x4e\x7c\x42\x5f\x43\x6d\x42\x47\x4e\x78\x52\x58\x5f\x4e\x46\x7b\x4a\x5f\x43\x79\x4e\x47\x4a\x5f\x42\x5d\x4e\x7f\x44\x69\x4a\x58\x4e\x2b\x3f\xe0\xc1\x44\xab\x7b\xbc\x6f",
-        // "X509_STORE_new" / M(Xor3) / S(157) / L(14)
-        "\xf5\x98\x9d\x94\xf2\xfe\xf9\xe2\xff\xe8\xf2\xc3\xc8\xda\xad\x9d",
-        // "CFStringCompare" / M(Xor4) / S(154) / L(15)
-        "\xe3\xe6\xf3\xd4\xd2\xc9\xce\xc7\xe3\xcf\xcd\xd0\xc1\xd2\xc5\xa0",
-        // "RTLD_MAIN_ONLY" / M(Xor4) / S(201) / L(14)
-        "\xc2\xc4\xdc\xd4\xcf\xdd\xd1\xd9\xde\xcf\xdf\xde\xdc\xc9\x90\x99",
-        // "." / M(Rot) / S(145) / L(1)
-        "\xbf\x91\x48\xcf\xa8\x18\x66\xe1\xfe\xaa\x3a\x09\xe9\x6a\x1c\x2f",
+        "\x95\xd9\xcc\x7f\x76\xc1\x6c\x5b\xf9\xc7\x02\x0f\xfd\xf0\xe5\xa8\x31\x1e\xf5\x20\x2d\xfa\xb3\x2f\xbf\xc6\x9e\xf4\x57\x7b\xd2\x70",
+        // "kSecClass" / M(Xor4) / S(99) / L(9)
+        "\x5b\x63\x55\x53\x73\x5c\x51\x43\x43\x30\xf2\x43\x26\x99\x65\xf9",
+        // "setDelegate:" / M(Rot) / S(232) / L(12)
+        "\x5b\x4d\x5c\x2c\x4d\x54\x4d\x4f\x49\x5c\x4d\x22\xe8\x57\x21\xeb",
         // "" / M(None) / S(0) / L(0)
-        "\xf9\x39\x36\xb7\x30\x14\x46\xf3\xad\x3c\x97\x5e\x7f\x9a\x9b\x40\x38\xb8\xa2\xf8\x80\x1a\xa3\x7a\x56\xf9\x56\xf1\x3f\xc0\x9b\xd9",
-        // "SHA1" / M(Xor3) / S(40) / L(4)
-        "\x6b\x70\x79\x09\x38\x0c\x22\xaf\x72\x08\xec\xc4\xf4\x9d\x39\x1b",
-        // "sel_registerName" / M(Rot) / S(48) / L(16)
-        "\xa3\x95\x9c\x8f\xa2\x95\x97\x99\xa3\xa4\x95\xa2\x7e\x91\x9d\x95\x30",
-        // "kSecClassCertificate" / M(Xor4) / S(210) / L(20)
-        "\x51\x69\x5f\x59\x79\x56\x5b\x49\x49\x79\x5f\x48\x4e\x53\x5c\x53\x59\x5b\x4e\x5f\x3a",
+        "\xe3\xbd\xe3\x6a\xc1\xdd\x53\xa5\xb9\x4a\x9f\xdd\x6e\x33\xfe\x4d\x48\xf6\x7c\xd5\xe0\xff\xb7\x24\xf6\x0e\x9b\x0b\xff\x8f\x07\x54",
+        // "PKCS7_verify" / M(Xor1) / S(99) / L(12)
+        "\x33\x28\x20\x30\x54\x3c\x15\x06\x11\x0a\x05\x1a\x63\xd6\x0f\x04",
+        // "." / M(Xor1) / S(155) / L(1)
+        "\xb5\x9b\x8d\x2b\xf0\x14\x90\x92\x16\xc9\xf9\xea\x1d\x26\xbb\x26",
+        // "611E5B662C593A08FF58D14AE22452D198DF6C60" / M(Xor2) / S(111) / L(40)
+        "\x68\x6f\x6f\x1b\x6b\x1c\x68\x68\x6c\x1d\x6b\x67\x6d\x1f\x6e\x66\x18\x18\x6b\x66\x1a\x6f\x6a\x1f\x1b\x6c\x6c\x6a\x6b\x6c\x1a\x6f\x67\x66\x1a\x18\x68\x1d\x68\x6e\x5e\x11\x7e\x69\x2a\x9c\x69\x36\x51",
+        // "OBJ_txt2obj" / M(Xor3) / S(106) / L(11)
+        "\x35\x38\x30\x25\x0e\x02\x0e\x48\x15\x18\x10\x7a\xe7\x28\x0b\xe8",
+        // "strcmp" / M(Xor2) / S(156) / L(6)
+        "\xff\xf8\xfe\xef\xe1\xfc\x8c\x3c\x7a\x93\xa0\x0e\x10\x20\x1b\xc7",
+        // "/System/Library/Keychains/SystemRootCertificates.keychain" / M(Xor3) / S(144) / L(57)
+        "\xfd\x81\xab\xa1\xa6\xb7\xbf\xfd\x9e\xbb\xb0\xa0\xb3\xa0\xab\xfd\x99\xb7\xab\xb1\xba\xb3\xbb\xbc\xa1\xfd\x81\xab\xa1\xa6\xb7\xbf\x80\xbd\xbd\xa6\x91\xb7\xa0\xa6\xbb\xb4\xbb\xb1\xb3\xa6\xb7\xa1\xfc\xb9\xb7\xab\xb1\xba\xb3\xbb\xbc\xd2\xb0\x9a\x98\x44\xc5\x6b\x49\xaa",
+        // "CFStringCreateWithCString" / M(Rot) / S(6) / L(25)
+        "\x49\x4c\x59\x7a\x78\x6f\x74\x6d\x49\x78\x6b\x67\x7a\x6b\x5d\x6f\x7a\x6e\x49\x59\x7a\x78\x6f\x74\x6d\x06\x14\xd6\x83\xef\x3a\x1e\x1a\x2f",
+        // "CFDateFormatterCreateDateFromString" / M(Xor4) / S(210) / L(35)
+        "\xcb\xce\xcc\xe9\xfc\xed\xce\xe7\xfa\xe5\xe9\xfc\xfc\xed\xfa\xcb\xfa\xed\xe9\xfc\xed\xcc\xe9\xfc\xed\xce\xfa\xe7\xe5\xdb\xfc\xfa\xe1\xe6\xef\x88",
+        // "CC_SHA1" / M(Xor2) / S(32) / L(7)
+        "\x73\x73\x6f\x63\x78\x71\x01\x30\xa6\x8f\x70\x90\x35\x89\xd4\xb7",
+        // "init" / M(Rot) / S(29) / L(4)
+        "\x86\x8b\x86\x91\x1d\x53\xa7\x78\x41\x71\x23\x1c\x9a\xa1\x6b\x77",
+        // "sha1" / M(Xor1) / S(156) / L(4)
+        "\xef\xf4\xfd\xad\x9c\xa2\x9c\x90\xac\x6f\xb0\xd0\x10\x2a\x2b\x05",
+        // "SecKeychainOpen" / M(Xor3) / S(31) / L(15)
+        "\x7c\x4a\x4c\x64\x4a\x56\x4c\x47\x4e\x46\x41\x60\x5f\x4a\x41\x2f",
+        // "d2i_PKCS7_bio" / M(Xor3) / S(112) / L(13)
+        "\xe4\xb2\xe9\xdf\xd0\xcb\xc3\xd3\xb7\xdf\xe2\xe9\xef\x80\xf1\x98",
+        // "ASN1_get_object" / M(Xor3) / S(145) / L(15)
+        "\xe0\xf2\xef\x90\xfe\xc6\xc4\xd5\xfe\xce\xc3\xcb\xc4\xc2\xd5\xa1",
+        // "CFStringCompare" / M(Rot) / S(78) / L(15)
+        "\x91\x94\xa1\xc2\xc0\xb7\xbc\xb5\x91\xbd\xbb\xbe\xaf\xc0\xb3\x4e",
         // "" / M(None) / S(0) / L(0)
-        "\xdf\xab\xbf\xd6\x53\xd4\x77\xe2\x2f\x59\x88\x8d\x25\x58\x39\x79\xfa\x2e\xd7\xc7\x19\x0a\x5b\x20\x59\x8b\xf8\x5a\xc0\x71\x7b\xcb",
-        // "CC_SHA1_Final" / M(Xor2) / S(248) / L(13)
-        "\xab\xab\xb7\xbb\xa0\xa9\xd9\xb7\xae\x81\x86\x89\x84\xe8\x4a\xea",
-        // "BIO_new" / M(Xor2) / S(243) / L(7)
-        "\xa1\xaa\xac\xbc\x8d\x86\x94\xe3\x14\xca\xf4\xff\xdf\xf8\xd1\x0f",
-        // "/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation" / M(Rot) / S(113) / L(66)
-        "\xa0\xc4\xea\xe4\xe5\xd6\xde\xa0\xbd\xda\xd3\xe3\xd2\xe3\xea\xa0\xb7\xe3\xd2\xde\xd6\xe8\xe0\xe3\xdc\xe4\xa0\xb4\xe0\xe3\xd6\xb7\xe0\xe6\xdf\xd5\xd2\xe5\xda\xe0\xdf\x9f\xd7\xe3\xd2\xde\xd6\xe8\xe0\xe3\xdc\xa0\xb4\xe0\xe3\xd6\xb7\xe0\xe6\xdf\xd5\xd2\xe5\xda\xe0\xdf\x71",
-        // "1.2.840.113635.100.6.11.1" / M(Xor4) / S(181) / L(25)
-        "\x3b\x24\x38\x24\x32\x3e\x3a\x24\x3b\x3b\x39\x3c\x39\x3f\x24\x3b\x3a\x3a\x24\x3c\x24\x3b\x3b\x24\x3b\x0a\xa3\x8c\x67\xc7\xdf\x51\x0a\x3c",
+        "\x0d\xb8\x70\x20\x82\xb2\xaa\xe3\xd6\xff\xa4\x58\x1a\xb4\x77\x9a\xcf\x8f\x58\x4c\x7b\x43\x68\x8e\xaf\x2b\xfa\xa1\x5a\xa1\xfa\xd6",
+        // "globfree" / M(Xor3) / S(143) / L(8)
+        "\xf8\xf3\xf0\xfd\xf9\xed\xfa\xfa\x9f\x68\xa8\x28\x90\x36\xcf\x06",
         // "" / M(None) / S(0) / L(0)
-        "\x0c\x3e\xd6\xf1\x74\x43\x07\xbe\xbd\x74\x20\xb8\x00\x99\x1e\x36\xa0\xcb\xf8\xe5\xff\x2a\x5e\x14\x9e\x81\xff\x62\x60\x34\xdb\x71",
+        "\x74\xa0\x39\x16\x19\x4a\xd6\xad\x26\xec\x7c\x93\x83\x74\xbb\x67\x5e\x70\x10\x5e\x34\x65\x59\x37\x44\xcf\xe7\x6c\x98\x60\x0c\x28",
+        // "dlsym" / M(Xor1) / S(195) / L(5)
+        "\xa7\xaf\xb0\xba\xae\xc3\x14\x05\x0d\xe5\xe4\x02\x3f\x00\x6e\x37",
+        // "objc_msgSend" / M(Xor1) / S(222) / L(12)
+        "\xb1\xbc\xb4\xbd\x81\xb3\xad\xb9\x8d\xbb\xb0\xba\xde\xa6\xd7\xf0",
         // "" / M(None) / S(0) / L(0)
-        "\x9b\x13\x6d\x6d\x58\xa0\x5a\xc4\x8e\x0b\xcf\x34\x0b\x31\xc1\x44\xec\x77\x5a\x5d\x11\x46\xef\x9b\xa3\xc2\x83\x07\xea\x67\x64\xf9",
-        // "it.iltofa.Turms" / M(Xor3) / S(233) / L(15)
-        "\x90\x8d\xd7\x90\x95\x8d\x96\x9f\x98\xd7\xad\x8c\x8b\x94\x8a\xf9",
-        // "CFReadStreamClose" / M(Xor1) / S(69) / L(17)
-        "\x06\x03\x17\x20\x24\x21\x16\x31\x37\x20\x24\x28\x06\x29\x2a\x36\x20\x45",
-        // "PKCS7_free" / M(Xor4) / S(174) / L(10)
-        "\xb0\xab\xa3\xb3\xd7\xbf\x86\x92\x85\x85\xe0\x7d\xb1\x69\xa8\x25",
-        // "SHA1" / M(Xor3) / S(24) / L(4)
-        "\x7b\x60\x69\x19\x28\x96\x2f\xfa\x80\x62\xa5\x8f\x44\xaf\x00\xec",
+        "\xd8\xb8\xdc\x86\x30\x02\xde\x67\x31\xe8\x3c\x1d\x0e\x03\x35\x78\xe7\x2b\xba\xee\x09\x9a\xc9\x4b\xc7\x81\x3a\x92\x19\xd3\xcf\xbe",
+        // "Contents/_MASReceipt/receipt" / M(Rot) / S(156) / L(28)
+        "\xdf\x0b\x0a\x10\x01\x0a\x10\x0f\xcb\xfb\xe9\xdd\xef\xee\x01\xff\x01\x05\x0c\x10\xcb\x0e\x01\xff\x01\x05\x0c\x10\x9c\xf4\x03\xcb\x81\x66\x8c\x44\xca",
+        // "61:1e:5b:66:2c:59:3a:08:ff:58:d1:4a:e2:24:52:d1:98:df:6c:60" / M(Xor3) / S(81) / L(59)
+        "\xa3\xa4\xaf\xa4\xf0\xaf\xa0\xf7\xaf\xa3\xa3\xaf\xa7\xf6\xaf\xa0\xac\xaf\xa6\xf4\xaf\xa5\xad\xaf\xf3\xf3\xaf\xa0\xad\xaf\xf1\xa4\xaf\xa1\xf4\xaf\xf0\xa7\xaf\xa7\xa1\xaf\xa0\xa7\xaf\xf1\xa4\xaf\xac\xad\xaf\xf1\xf3\xaf\xa3\xf6\xaf\xa3\xa5\x95\xb9\xaa\x5c\x36\x2f\xdd\xfa\x80",
         // "" / M(None) / S(0) / L(0)
-        "\xe6\x14\xe8\xcc\x8d\xed\x74\x5b\xdf\x81\x8a\xa1\x18\x17\x24\x03\xde\x3d\xdf\x58\x49\x74\x0d\xa1\x2d\x58\x84\x8c\x12\x6d\x50\x32",
+        "\xba\x93\x57\x66\x65\xb8\x32\xe6\x89\xe5\xa4\x46\x5c\xbe\x6e\xf8\x07\x66\x32\x05\x46\x39\x59\x19\xfd\x48\x2f\xca\x9d\x26\x35\x4b",
+        // "alloc" / M(Xor3) / S(212) / L(5)
+        "\x85\x88\x88\x8b\x87\xe4\x5b\xcd\x24\x56\x5f\xc6\x63\x9f\x6b\xec",
         // "" / M(None) / S(0) / L(0)
-        "\x2c\x4e\xa9\x6a\x18\xa9\x20\xe8\x99\x1d\x7e\xb8\xfc\x7b\x8d\x01\x94\x2a\x82\x5e\x54\xf6\xa9\xb3\xe8\x9a\x22\x23\xd4\xca\x3b\xf6",
-        // "CFDateFormatterCreate" / M(Rot) / S(132) / L(21)
-        "\xc7\xca\xc8\xe5\xf8\xe9\xca\xf3\xf6\xf1\xe5\xf8\xf8\xe9\xf6\xc7\xf6\xe9\xe5\xf8\xe9\x84",
-        // "BIO_free" / M(Xor2) / S(162) / L(8)
-        "\xf0\xfb\xfd\xed\xd4\xc0\xd7\xd7\xb2\xbc\xe2\x88\xd2\x7e\x15\x4c",
+        "\x5f\x57\x79\xc8\xa7\x77\x09\xee\x23\x53\xbc\x03\x54\x90\xf1\xae\x83\xf1\x63\x4f\x36\xa8\x89\x6f\x34\x00\xed\x9d\x11\xbb\xdc\x9a",
+        // "EVP_MD_CTX_init" / M(Xor4) / S(7) / L(15)
+        "\x35\x26\x20\x2f\x3d\x34\x2f\x33\x24\x28\x2f\x19\x1e\x19\x04\x70",
+        // "CFArrayAppendValue" / M(Rot) / S(157) / L(18)
+        "\xe0\xe3\xde\x0f\x0f\xfe\x16\xde\x0d\x0d\x02\x0b\x01\xf3\xfe\x09\x12\x02\x9d",
         // "" / M(None) / S(0) / L(0)
-        "\xe7\x6d\x22\x5f\x1b\xa9\x75\xdd\xa8\xb4\xd5\xeb\x1f\x16\xf8\x7a\x70\xe9\x69\xee\x98\x85\xf7\x35\x66\x3c\x47\xb9\x8e\x76\x72\xbc",
-        // "kSecMatchSearchList" / M(Xor3) / S(214) / L(19)
-        "\x81\xb9\x8f\x89\xa7\x8b\x9e\x89\x82\xb9\x8f\x8b\x98\x89\x82\xa6\x83\x99\x9e\xea",
-        // "sk_num" / M(Xor4) / S(229) / L(6)
-        "\x23\x3b\x0f\x3e\x25\x3d\x50\x05\xfa\x4a\x0c\x65\x3a\xf3\xfc\x4b",
-        // "SecKeychainSearchCreateFromAttributes" / M(Xor1) / S(53) / L(37)
-        "\x66\x50\x56\x7e\x50\x4c\x56\x5d\x54\x5c\x5b\x66\x50\x54\x47\x56\x5d\x76\x47\x50\x54\x41\x50\x73\x47\x5a\x58\x74\x41\x41\x47\x5c\x57\x40\x41\x50\x46\x35",
-        // "PKCS7_verify" / M(Xor2) / S(148) / L(12)
-        "\xd4\xcf\xc7\xd7\xb3\xdb\xf2\xe1\xf6\xed\xe2\xfd\x84\x62\xea\xd9",
-        // "ASN1_OBJECT_free" / M(Xor1) / S(53) / L(16)
-        "\x74\x66\x7b\x04\x6a\x7a\x77\x7f\x70\x76\x61\x6a\x53\x47\x50\x50\x35",
-        // "SecCertificateCopyData" / M(Xor2) / S(73) / L(22)
-        "\x0d\x3b\x3d\x1d\x3b\x2c\x2a\x37\x38\x37\x3d\x3f\x2a\x3b\x1d\x31\x2e\x27\x1a\x3f\x2a\x3f\x5e",
-        // "X509_get_ext_by_OBJ" / M(Xor2) / S(97) / L(19)
-        "\x2d\x40\x45\x4c\x2a\x12\x10\x01\x2a\x10\x0d\x01\x2a\x17\x0c\x2a\x3a\x37\x3f\x75",
-        // "CFBundleShortVersionString" / M(Xor2) / S(13) / L(26)
-        "\x6d\x68\x6c\x5b\x40\x4a\x42\x4b\x7d\x46\x41\x5c\x5a\x78\x4b\x5c\x5d\x47\x41\x40\x7d\x5a\x5c\x47\x40\x49\x2e\xff\xa7\x05\xd1\x83\x6c\x91\x10",
-        // "X509_free" / M(Xor2) / S(168) / L(9)
-        "\xe0\x8d\x88\x81\xe7\xde\xca\xdd\xdd\xb8\x02\xe9\x9d\x79\xda\xaf",
+        "\xc1\x50\x89\x58\x69\xde\x06\x59\xe2\x40\xa2\xf6\x02\xb0\x8f\x8d\x14\x2f\xdd\xff\x14\x79\x6e\xc4\x95\x28\x3e\x4e\x0d\x2b\xe7\xca",
         // "" / M(None) / S(0) / L(0)
-        "\x75\xca\xe2\x11\x5b\x77\x08\x1a\xba\x98\xf4\x65\x5e\x23\xbb\xb3\x33\xe6\xdc\x1b\x3c\xc4\x84\x2b\xf8\x58\x7c\x09\x4d\xfe\xd4\x8e",
+        "\x71\x7b\x61\x5d\x8d\x41\x1e\xf5\xdd\x34\x72\x36\x93\x10\x00\x6f\x6a\xc4\x5e\xc3\xae\xb0\xb2\xf7\xde\x0d\xf7\x0c\x50\xc5\x3a\xec",
         // "" / M(None) / S(0) / L(0)
-        "\xf9\x3d\xf6\xb9\xb8\xd4\xbf\xbd\xb6\x83\x12\x7d\x49\x33\xb1\x3b\x44\xee\x3c\x84\x29\x73\xe7\xe7\xd0\xa5\x1b\xa2\xbe\x33\x5a\xfd",
-        // "CFDataGetBytePtr" / M(Rot) / S(89) / L(16)
-        "\x9c\x9f\x9d\xba\xcd\xba\xa0\xbe\xcd\x9b\xd2\xcd\xbe\xa9\xcd\xcb\x59",
-        // "CFBundleIdentifier" / M(Xor2) / S(247) / L(18)
-        "\xa7\xa2\xa6\x91\x8a\x80\x88\x81\xad\x80\x81\x8a\x90\x8d\x82\x8d\x81\x96\xe4",
-        // "glob" / M(Xor1) / S(126) / L(4)
-        "\x19\x12\x11\x1c\x7e\x6f\x86\x0a\xa7\xbb\x1c\x1b\x39\x25\x70\x0d",
-        // "kSecMatchLimitAll" / M(Xor4) / S(168) / L(17)
-        "\xbb\x83\xb5\xb3\x9d\xb1\xa4\xb3\xb8\x9c\xb9\xbd\xb9\xa4\x91\xbc\xbc\xd0",
+        "\x63\x6e\x84\xcc\x1d\x7f\x8d\xa5\xc4\x18\xa1\x51\xcb\xbe\x12\x9d\x4a\x31\x56\x00\xda\x22\x8f\x84\x18\xf3\xd8\xc1\x24\x9f\x68\x38",
+        // "kCFBundleIdentifierKey" / M(Rot) / S(29) / L(22)
+        "\x88\x60\x63\x5f\x92\x8b\x81\x89\x82\x66\x81\x82\x8b\x91\x86\x83\x86\x82\x8f\x68\x82\x96\x1d",
+        // "CFRelease" / M(Xor2) / S(22) / L(9)
+        "\x45\x40\x54\x63\x6a\x63\x67\x75\x63\x06\xc3\x85\x1e\x44\xa3\xad",
         // "" / M(None) / S(0) / L(0)
-        "\xe2\x71\x53\xe0\xda\x87\x02\xf8\xa1\xed\xde\xb7\x9a\x10\x43\x11\x88\xd7\xee\xab\x3f\xa0\x33\xfc\x5a\x84\x66\xd7\xf9\x37\xba\xbd",
+        "\x6f\x59\x95\x42\x44\x42\x5d\xcd\x7a\x2d\x6c\xad\xd5\x90\x67\x59\xf5\x04\x33\x8f\xa1\x9a\x83\x2b\xfe\x2a\x37\xda\x3a\x4a\x48\xf7",
+        // "dlsym" / M(Xor1) / S(46) / L(5)
+        "\x4a\x42\x5d\x57\x43\x2e\x34\x8b\x4e\x55\xdc\xdc\x99\x8c\xcb\x4b",
+        // "objc_getClass" / M(Xor2) / S(157) / L(13)
+        "\xe2\xef\xe7\xee\xd2\xea\xe8\xf9\xce\xe1\xec\xfe\xfe\x8d\xcc\x8d",
+        // "EVP_DigestFinal" / M(Xor2) / S(105) / L(15)
+        "\x3c\x2f\x29\x26\x3d\x10\x1e\x1c\x0a\x0d\x3f\x10\x17\x18\x15\x79",
         // "" / M(None) / S(0) / L(0)
-        "\xe1\x24\x9f\x91\x99\xa0\xf7\x33\x65\x65\x96\x7e\x34\x47\xb3\xd3\x4b\x96\x3b\xe6\x39\x23\x42\x25\x8f\x2e\x41\x49\xee\x61\x01\x6e",
+        "\x9e\x74\xe5\x1e\xe8\x81\x36\xf0\x3b\x52\xcd\x4b\x80\xf5\x00\xed\xf4\xae\x8a\x49\x65\x1e\xef\x78\xbb\x20\x5c\x26\x5a\xdb\x96\x8a",
+        // "CFStringGetFileSystemRepresentation" / M(Xor1) / S(114) / L(35)
+        "\x31\x34\x21\x06\x00\x1b\x1c\x15\x35\x17\x06\x34\x1b\x1e\x17\x21\x0b\x01\x06\x17\x1f\x20\x17\x02\x00\x17\x01\x17\x1c\x06\x13\x06\x1b\x1d\x1c\x72",
+        // "CFStringCreateWithBytes" / M(Xor3) / S(205) / L(23)
+        "\xae\xab\xbe\x99\x9f\x84\x83\x8a\xae\x9f\x88\x8c\x99\x88\xba\x84\x99\x85\xaf\x94\x99\x88\x9e\xed\xf5\xe1\x7a\xed\xe2\xed\x7a\x5e",
+        // "it.iltofa.Turms" / M(Xor1) / S(234) / L(15)
+        "\x83\x9e\xc4\x83\x86\x9e\x85\x8c\x8b\xc4\xbe\x9f\x98\x87\x99\xea",
+        // "SHA1" / M(Xor4) / S(154) / L(4)
+        "\xf3\xe8\xe1\x91\xa0\x27\xb6\x67\xe0\x14\xd2\x0f\x71\xc4\x9e\x6b",
+        // "sha1" / M(Xor2) / S(163) / L(4)
+        "\xc0\xdb\xd2\x82\xb3\xa2\xb7\x39\x04\x97\xd4\x55\xf6\x4a\x10\xb5",
+        // "CFDateFormatterSetFormat" / M(Rot) / S(210) / L(24)
+        "\x15\x18\x16\x33\x46\x37\x18\x41\x44\x3f\x33\x46\x46\x37\x44\x25\x37\x46\x18\x41\x44\x3f\x33\x46\xd2\x76\xa4\x57\xa2\xbe\x23\xa6\x3b",
+        // "CFArrayAppendValue" / M(Xor1) / S(34) / L(18)
+        "\x61\x64\x63\x50\x50\x43\x5b\x63\x52\x52\x47\x4c\x46\x74\x43\x4e\x57\x47\x22",
+        // "CFDictionaryCreateMutable" / M(Xor4) / S(41) / L(25)
+        "\x31\x34\x36\x1b\x11\x06\x1b\x1d\x1c\x13\x00\x0b\x31\x00\x17\x13\x06\x17\x3f\x07\x06\x13\x10\x1e\x17\x72\x90\x94\x8f\x3e\x64\xee\x69\x92",
+        // "SHA1_Init" / M(Xor2) / S(24) / L(9)
+        "\x5b\x40\x49\x39\x57\x41\x66\x61\x7c\x08\x95\xa9\xb4\x0e\xd6\x54",
+        // "CFBundleGetIdentifier" / M(Xor1) / S(196) / L(21)
+        "\x87\x82\x86\xb1\xaa\xa0\xa8\xa1\x83\xa1\xb0\x8d\xa0\xa1\xaa\xb0\xad\xa2\xad\xa1\xb6\xc4",
+        // "CFReadStreamRead" / M(Xor1) / S(123) / L(16)
+        "\x38\x3d\x29\x1e\x1a\x1f\x28\x0f\x09\x1e\x1a\x16\x29\x1e\x1a\x1f\x7b",
+        // "" / M(None) / S(0) / L(0)
+        "\xf1\x19\xdf\x8a\x10\x72\x59\x07\x0f\x85\x05\x58\x35\x65\x3b\x85\x6f\x16\x7e\x14\xef\x6c\x60\x14\x83\xcc\x3e\x5d\x71\xc3\x97\x33",
+        // "%02x" / M(Xor2) / S(89) / L(4)
+        "\x6c\x79\x7b\x31\x49\xe1\x5d\x79\x01\xe7\x06\xf0\x23\xdb\x18\xe6",
+        // "setDelegate:" / M(Xor1) / S(78) / L(12)
+        "\x3d\x2b\x3a\x0a\x2b\x22\x2b\x29\x2f\x3a\x2b\x74\x4e\x26\x67\x0a",
+        // "BIO_write" / M(Xor3) / S(154) / L(9)
+        "\xe8\xe3\xe5\xf5\xdd\xd8\xc3\xde\xcf\xaa\x77\xed\xfb\xe8\x6f\x50",
+        // "CFURLCreateCopyAppendingPathComponent" / M(Xor2) / S(5) / L(37)
+        "\x60\x65\x76\x71\x6f\x60\x51\x46\x42\x57\x46\x60\x4c\x53\x5a\x62\x53\x53\x46\x4d\x47\x4a\x4d\x44\x73\x42\x57\x4b\x60\x4c\x4e\x53\x4c\x4d\x46\x4d\x57\x23",
+        // "CFDataGetBytePtr" / M(Xor2) / S(128) / L(16)
+        "\xd2\xd7\xd5\xf0\xe5\xf0\xd6\xf4\xe5\xd3\xe8\xe5\xf4\xc1\xe5\xe3\x91",
+        // "sel_registerName" / M(Rot) / S(160) / L(16)
+        "\x13\x05\x0c\xff\x12\x05\x07\x09\x13\x14\x05\x12\xee\x01\x0d\x05\xa0",
+        // "BIO_new" / M(Xor2) / S(39) / L(7)
+        "\x75\x7e\x78\x68\x59\x52\x40\x37\x38\x96\x37\x84\x86\xb6\xa1\x17",
+        // "" / M(None) / S(0) / L(0)
+        "\x43\x48\x45\x27\xbf\x9b\xb2\x6f\x3e\x73\xca\x51\x2e\x83\x17\xa7\x9d\x90\xe8\xfd\x6a\xd3\xf3\xbd\xd5\x97\x44\xe8\xb3\xbd\x55\xa0",
+        // "CFBundleGetValueForInfoDictionaryKey" / M(Xor1) / S(40) / L(36)
+        "\x6b\x6e\x6a\x5d\x46\x4c\x44\x4d\x6f\x4d\x5c\x7e\x49\x44\x5d\x4d\x6e\x47\x5a\x61\x46\x4e\x47\x6c\x41\x4b\x5c\x41\x47\x46\x49\x5a\x51\x63\x4d\x51\x28",
+        // "" / M(None) / S(0) / L(0)
+        "\x46\x91\x8d\xe4\x37\xb7\x6e\xc8\x78\xee\x2b\xf2\x02\x8c\x21\xc5\xf6\xa6\x18\x88\x10\xd9\xde\xa3\x01\xb4\x99\xdb\x63\xfa\x01\x76",
+        // "CFDictionaryCreateMutable" / M(Rot) / S(66) / L(25)
+        "\x85\x88\x86\xab\xa5\xb6\xab\xb1\xb0\xa3\xb4\xbb\x85\xb4\xa7\xa3\xb6\xa7\x8f\xb7\xb6\xa3\xa4\xae\xa7\x42\x9b\x50\x4f\xde\x93\x21\xc8\xa1",
+        // "ASN1_OBJECT_free" / M(Xor1) / S(64) / L(16)
+        "\x01\x13\x0e\x71\x1f\x0f\x02\x0a\x05\x03\x14\x1f\x26\x32\x25\x25\x40",
+        // "" / M(None) / S(0) / L(0)
+        "\xfa\xdc\x25\x3b\x81\x8a\x86\xd8\x99\x41\xe4\xe1\xc3\x19\xdf\x32\x96\x90\x4e\xd8\x5a\x5b\x9f\xd0\x96\xb1\xbf\xfb\x36\xe3\x42\xa0",
+        // "glob_b" / M(Xor4) / S(42) / L(6)
+        "\xc7\xcc\xcf\xc2\xff\xc2\xa0\x44\x3b\x8b\xd2\x71\xe5\x20\xa9\x6d",
+        // "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'" / M(Xor1) / S(184) / L(32)
+        "\xc1\xc1\xc1\xc1\x9f\x95\x9f\xf5\xf5\x9f\x95\x9f\xdc\xdc\x9f\xec\x9f\xf0\xf0\x9f\x82\x9f\xd5\xd5\x9f\x82\x9f\xcb\xcb\x9f\xe2\x9f\xb8",
+        // "/System/Library/Frameworks/Security.framework/Security" / M(Rot) / S(11) / L(54)
+        "\x3a\x5e\x84\x7e\x7f\x70\x78\x3a\x57\x74\x6d\x7d\x6c\x7d\x84\x3a\x51\x7d\x6c\x78\x70\x82\x7a\x7d\x76\x7e\x3a\x5e\x70\x6e\x80\x7d\x74\x7f\x84\x39\x71\x7d\x6c\x78\x70\x82\x7a\x7d\x76\x3a\x5e\x70\x6e\x80\x7d\x74\x7f\x84\x0b",
+        // "" / M(None) / S(0) / L(0)
+        "\x54\xea\x0e\x20\xc9\x07\xe6\xc3\x10\x88\x3a\x38\x7f\x83\x04\x30\x1d\xe8\x1b\x68\xc3\x1d\x34\x59\x87\x3a\x2d\x61\xc1\x7e\xf1\xd5",
+        // "strcmp" / M(Xor3) / S(252) / L(6)
+        "\x7f\x78\x7e\x6f\x61\x7c\x0c\x59\x80\x3d\xcd\xa4\x89\x9f\x6b\xc4",
+        // "BIO_s_mem" / M(Xor2) / S(48) / L(9)
+        "\x62\x69\x6f\x7f\x53\x7f\x4d\x45\x4d\x20\xbe\xa8\x62\xfc\x95\x5b",
+        // "%02X:" / M(Xor4) / S(171) / L(5)
+        "\x95\x80\x82\xe8\x8a\xb0\x00\x34\xbd\xf6\xe7\x86\x7d\x84\x58\xf5",
+        // "" / M(None) / S(0) / L(0)
+        "\x30\x5b\xa7\x8a\x9a\x5b\x2d\x65\x73\x66\xbc\xf1\x97\x81\x9c\x3d\x2a\x85\xce\xd5\x21\xc3\xaf\x7e\xba\xb2\x78\x3f\x6c\x8a\x95\xab",
         // "d2i_X509_bio" / M(Xor3) / S(151) / L(12)
-        "\xc3\x95\xce\xf8\xff\x92\x97\x9e\xf8\xc5\xce\xc8\xa7\x6f\xc5\xab",
-        // "sk_value" / M(Xor1) / S(48) / L(8)
-        "\x43\x5b\x6f\x46\x51\x5c\x45\x55\x30\xba\x04\x5f\x56\x98\x06\x5b",
-        // "SKReceiptRefreshRequest" / M(Xor1) / S(142) / L(23)
-        "\xdd\xc5\xdc\xeb\xed\xeb\xe7\xfe\xfa\xdc\xeb\xe8\xfc\xeb\xfd\xe6\xdc\xeb\xff\xfb\xeb\xfd\xfa\x8e\xe3\x9b\x44\xe7\x28\xa1\x2c\x71",
+        "\xc3\x95\xce\xf8\xff\x92\x97\x9e\xf8\xc5\xce\xc8\xa7\x9e\xf8\xc3",
+        // "CFStringCompare" / M(Xor2) / S(68) / L(15)
+        "\x17\x12\x07\x20\x26\x3d\x3a\x33\x17\x3b\x39\x24\x35\x26\x31\x54",
+        // "X509_NAME_get_text_by_NID" / M(Rot) / S(137) / L(25)
+        "\xe1\xbe\xb9\xc2\xe8\xd7\xca\xd6\xce\xe8\xf0\xee\xfd\xe8\xfd\xee\x01\xfd\xe8\xeb\x02\xe8\xd7\xd2\xcd\x89\xeb\x60\x35\x3a\x29\x87\xee\x99",
+        // "init" / M(Xor1) / S(127) / L(4)
+        "\x16\x11\x16\x0b\x7f\x9b\x20\xc5\xbc\xe1\x4a\xfc\xad\x06\xce\x92",
+        // "sk_value" / M(Rot) / S(170) / L(8)
+        "\x1d\x15\x09\x20\x0b\x16\x1f\x0f\xaa\x5e\xf3\xd1\x1b\xc9\x99\x9b",
         // "" / M(None) / S(0) / L(0)
-        "\x87\x79\x21\x1b\xdc\xfc\x5d\xb4\x8c\x57\x6f\x58\x66\x0f\xb9\x35\xf4\x38\x96\xb0\x48\x59\xbc\x72\x9c\x25\x6f\x7d\xc4\xfa\xd5\xb1",
-        // "EVP_DigestInit" / M(Rot) / S(222) / L(14)
-        "\x23\x34\x2e\x3d\x22\x47\x45\x43\x51\x52\x27\x4c\x47\x52\xde\x2f",
-        // "dlsym" / M(Xor2) / S(112) / L(5)
-        "\x04\x0c\x13\x19\x0d\x60\x31\x49\x58\xb8\xc0\x92\xbf\x5c\x37\x8e",
+        "\x15\xd4\x7b\x8d\xec\x83\x94\xe0\xbd\x96\x99\xee\xfb\x70\xaa\x09\x7f\x7a\xe8\x82\x12\x66\x3f\x85\x46\xd3\x0e\x0d\x6f\xaa\xd1\x92",
+        // "d2i_PKCS7_bio" / M(Xor4) / S(207) / L(13)
+        "\x94\xc2\x99\xaf\xa0\xbb\xb3\xa3\xc7\xaf\x92\x99\x9f\xf0\x00\x8d",
+        // "getifaddrs" / M(Xor3) / S(179) / L(10)
+        "\xa4\xa6\xb7\xaa\xa5\xa2\xa7\xa7\xb1\xb0\xc3\xb1\x1e\x3f\x41\xbb",
+        // "EVP_DigestFinal" / M(Xor2) / S(44) / L(15)
+        "\x79\x6a\x6c\x63\x78\x55\x5b\x59\x4f\x48\x7a\x55\x52\x5d\x50\x3c",
+        // "X509_STORE_free" / M(Xor2) / S(215) / L(15)
+        "\x9f\xf2\xf7\xfe\x98\x94\x93\x88\x95\x82\x98\xa1\xb5\xa2\xa2\xc7",
+        // "ASN1_get_object" / M(Xor3) / S(60) / L(15)
+        "\x0d\x1f\x02\x7d\x13\x2b\x29\x38\x13\x23\x2e\x26\x29\x2f\x38\x4c",
+        // "PKCS7_verify" / M(Xor1) / S(177) / L(12)
+        "\xe1\xfa\xf2\xe2\x86\xee\xc7\xd4\xc3\xd8\xd7\xc8\xb1\x85\xb7\x3e",
+        // "X509_STORE_add_cert" / M(Rot) / S(237) / L(19)
+        "\x45\x22\x1d\x26\x4c\x40\x41\x3c\x3f\x32\x4c\x4e\x51\x51\x4c\x50\x52\x5f\x61\xed",
         // "" / M(None) / S(0) / L(0)
-        "\xd9\x3e\x0e\xdb\xe0\xa3\x1a\x15\xa1\x02\x50\x89\xda\xe8\x68\x1d\x91\x1b\xd9\x71\x9c\x06\x98\xd6\xa0\xe3\x0d\x00\x1c\xb9\x9a\x76",
-        // "611e5b662c593a08ff58d14ae22452d198df6c60" / M(Xor4) / S(119) / L(40)
-        "\xf1\xf6\xf6\xa2\xf2\xa5\xf1\xf1\xf5\xa4\xf2\xfe\xf4\xa6\xf7\xff\xa1\xa1\xf2\xff\xa3\xf6\xf3\xa6\xa2\xf5\xf5\xf3\xf2\xf5\xa3\xf6\xfe\xff\xa3\xa1\xf1\xa4\xf1\xf7\xc7\xf7\x44\x3a\xc3\xbc\x98\x5d\x6d",
-        // "PKCS7_verify" / M(Xor3) / S(57) / L(12)
-        "\x19\x02\x0a\x1a\x7e\x16\x3f\x2c\x3b\x20\x2f\x30\x49\xc4\x3d\x6d",
+        "\xa8\x25\x58\xa8\x85\x2b\x92\x21\x05\x53\xec\x9f\xb1\x48\x3e\x34\x6c\xa5\x30\x5f\x1b\xeb\xd9\x82\x2b\x56\x35\x43\xfe\x68\x4d\x9c",
         // "" / M(None) / S(0) / L(0)
-        "\xb6\x6d\x08\xdd\x35\xd0\xcc\xd7\xa7\x7a\xd6\xd7\xbd\xb6\xd9\xc6\x85\x8c\x70\xc4\xde\x1c\x16\x63\x88\xa1\xd3\x02\x6e\x49\x49\xca",
+        "\x91\x45\x01\x5c\xbf\x61\xca\x4a\x0e\x42\x51\xb2\x4b\x54\xab\xc4\xa7\xb8\xd7\x2b\xac\x68\x45\x0b\x94\x12\xa6\x29\x6b\x31\x56\xba",
+        // "611E5B662C593A08FF58D14AE22452D198DF6C60" / M(Xor2) / S(224) / L(40)
+        "\xe7\xe0\xe0\x94\xe4\x93\xe7\xe7\xe3\x92\xe4\xe8\xe2\x90\xe1\xe9\x97\x97\xe4\xe9\x95\xe0\xe5\x90\x94\xe3\xe3\xe5\xe4\xe3\x95\xe0\xe8\xe9\x95\x97\xe7\x92\xe7\xe1\xd1\x9f\xb5\x32\xfe\xc3\xf0\x55\xc3",
+        // "kSecMatchLimit" / M(Xor2) / S(143) / L(14)
+        "\xf4\xcc\xfa\xfc\xd2\xfe\xeb\xfc\xf7\xd3\xf6\xf2\xf6\xeb\x9f\x02",
         // "" / M(None) / S(0) / L(0)
-        "\x5b\xd5\xb2\x02\x2b\xb2\x43\xca\x96\x4d\x00\xd8\x27\x7c\xbf\x3d\x5b\x6b\x2d\x19\x4b\x50\x2c\xeb\x11\x32\x2a\x32\xa4\x1a\x94\xdc",
-        // "CFDataAppendBytes" / M(Xor4) / S(145) / L(17)
-        "\x71\x74\x76\x53\x46\x53\x73\x42\x42\x57\x5c\x56\x70\x4b\x46\x57\x41\x32",
-        // "CFReadStreamRead" / M(Xor2) / S(22) / L(16)
-        "\x44\x41\x55\x62\x66\x63\x54\x73\x75\x62\x66\x6a\x55\x62\x66\x63\x07",
-        // "strncmp" / M(Xor1) / S(124) / L(7)
-        "\x0f\x08\x0e\x12\x1f\x11\x0c\x7c\xd3\xf9\x59\x47\xe6\x1e\xb3\x36",
-        // "receipt" / M(Rot) / S(207) / L(7)
-        "\x41\x34\x32\x34\x38\x3f\x43\xcf\xa8\x11\xb9\x80\x09\x30\x51\x83",
-        // "X509_STORE_add_cert" / M(Xor2) / S(254) / L(19)
-        "\xb2\xdf\xda\xd3\xb5\xb9\xbe\xa5\xb8\xaf\xb5\x8b\x8e\x8e\xb5\x89\x8f\x98\x9e\xea",
-        // "%02X:" / M(Xor4) / S(31) / L(5)
-        "\xd5\xc0\xc2\xa8\xca\xf0\x49\x40\xcd\x6d\x64\x3c\x5d\x2a\xa2\x5f",
-        // "%02x:" / M(Xor2) / S(58) / L(5)
-        "\x0f\x1a\x18\x52\x10\x2a\xaf\x3b\xf9\xb1\x56\x0e\x5c\x77\x39\x5c",
-        // "CFRelease" / M(Xor1) / S(225) / L(9)
-        "\xa2\xa7\xb3\x84\x8d\x84\x80\x92\x84\xe1\x37\x52\x85\x23\x49\x13",
-        // "CC_SHA1_Update" / M(Rot) / S(83) / L(14)
-        "\x96\x96\xb2\xa6\x9b\x94\x84\xb2\xa8\xc3\xb7\xb4\xc7\xb8\x53\x73",
+        "\x45\xa9\x4e\xfe\xfd\xea\x89\xa7\xfd\x77\x87\xf0\x3f\x70\x3c\x20\xc2\x23\x9d\xd5\xfc\x1b\x46\xd7\x00\x57\x0d\xc1\x63\xe0\xc1\x66",
+        // "EVP_DigestUpdate" / M(Xor4) / S(117) / L(16)
+        "\x80\x93\x95\x9a\x81\xac\xa2\xa0\xb6\xb1\x90\xb5\xa1\xa4\xb1\xa0\xc5",
         // "" / M(None) / S(0) / L(0)
-        "\xe4\x89\xd7\xe5\x8e\x5d\x06\x48\x31\x04\x96\xc4\xd1\xc6\x36\x9c\x8f\xa0\xd7\x3b\xa4\x2f\x36\x7f\xf1\x28\x2b\x46\x23\xe5\xc4\x4e",
-        // "CFReadStreamCreateWithFile" / M(Xor1) / S(118) / L(26)
-        "\x35\x30\x24\x13\x17\x12\x25\x02\x04\x13\x17\x1b\x35\x04\x13\x17\x02\x13\x21\x1f\x02\x1e\x30\x1f\x1a\x13\x76\x09\x91\xe6\x91\x44\x04\x5a\xf5",
-        // "X509_digest" / M(Xor2) / S(251) / L(11)
-        "\xb3\xde\xdb\xd2\xb4\x8f\x82\x8c\x8e\x98\x9f\xeb\x4f\x45\x6a\xa3",
-        // "CC_SHA1_Init" / M(Xor4) / S(149) / L(12)
-        "\x13\x13\x0f\x03\x18\x11\x61\x0f\x19\x3e\x39\x24\x50\x82\x03\x32",
+        "\x45\xd9\x2a\x5a\x15\x3a\x87\x87\xf6\xb4\x8d\xd6\x6c\x2a\xc4\xbc\x12\x4f\x1b\xaa\xcd\x75\xf8\xde\x64\x74\xd4\xa2\xd4\x4e\x20\x76",
         // "" / M(None) / S(0) / L(0)
-        "\x1b\xfb\x41\x62\xaa\xf9\x06\xbf\xdb\x8c\x41\x0f\xab\xfd\xb5\x92\x40\x01\x07\x5e\xf6\xae\x18\x95\x6d\xdb\xa3\x2b\xb2\x0d\x41\x72",
-        // "dlopen" / M(Xor2) / S(158) / L(6)
-        "\xea\xe2\xe1\xfe\xeb\xe0\x8e\x54\x6a\x4a\xfa\x51\x25\x1d\xef\xfc",
+        "\x81\xd3\x62\x68\x04\x12\x5b\x05\x11\x4e\xba\x52\x4d\xd0\xde\x21\xf2\x99\xed\xc0\x0b\x73\x46\xce\x58\x57\xf8\xad\x36\x75\x2b\xf0",
+        // "%02X" / M(Xor1) / S(154) / L(4)
+        "\xbf\xaa\xa8\xc2\x9a\x17\x40\xc9\x10\x49\x79\x36\x4b\x5b\x4c\x26",
+        // "EVP_get_digestbyname" / M(Xor1) / S(165) / L(20)
+        "\xe0\xf3\xf5\xfa\xc2\xc0\xd1\xfa\xc1\xcc\xc2\xc0\xd6\xd1\xc7\xdc\xcb\xc4\xc8\xc0\xa5",
+        // "kSecClass" / M(Rot) / S(140) / L(9)
+        "\xf7\xdf\xf1\xef\xcf\xf8\xed\xff\xff\x8c\xf7\x5b\x53\x64\xde\x26",
+        // "X509_STORE_new" / M(Xor2) / S(150) / L(14)
+        "\xde\xb3\xb6\xbf\xd9\xd5\xd2\xc9\xd4\xc3\xd9\xe8\xe3\xf1\x86\xc7",
+        // "CFURLCreateWithFileSystemPathRelativeToBase" / M(Xor2) / S(142) / L(43)
+        "\xf9\xfc\xef\xe8\xf6\xf9\xc8\xdf\xdb\xce\xdf\xed\xd3\xce\xd2\xfc\xd3\xd6\xdf\xe9\xc3\xc9\xce\xdf\xd7\xea\xdb\xce\xd2\xe8\xdf\xd6\xdb\xce\xd3\xcc\xdf\xee\xd5\xf8\xdb\xc9\xdf\xba\xca\xe1\xa4\x9a\x99\xc0\x73\x8b",
+        // "611E5B662C593A08FF58D14AE22452D198DF6C60" / M(Rot) / S(52) / L(40)
+        "\x6a\x65\x65\x79\x69\x76\x6a\x6a\x66\x77\x69\x6d\x67\x75\x64\x6c\x7a\x7a\x69\x6c\x78\x65\x68\x75\x79\x66\x66\x68\x69\x66\x78\x65\x6d\x6c\x78\x7a\x6a\x77\x6a\x64\x34\xa9\xbc\x81\x0a\xcd\xd5\x49\xf4",
+        // "CFBundleGetValueForInfoDictionaryKey" / M(Xor4) / S(92) / L(36)
+        "\x0f\x0a\x0e\x39\x22\x28\x20\x29\x0b\x29\x38\x1a\x2d\x20\x39\x29\x0a\x23\x3e\x05\x22\x2a\x23\x08\x25\x2f\x38\x25\x23\x22\x2d\x3e\x35\x07\x29\x35\x4c",
+        // "." / M(Xor3) / S(215) / L(1)
+        "\xc9\xe7\xdb\xf3\xec\x4c\x28\x01\x85\xe8\xa1\xa6\x94\xe4\x2c\x7d",
         // "" / M(None) / S(0) / L(0)
-        "\x29\x0a\x83\xc1\x1a\x38\xe6\xfd\x5f\xd5\x33\x46\x38\x87\x67\x5c\xbb\x50\xa2\xf7\x32\xb6\x0d\xa9\xd2\x37\xdf\xe9\xde\xce\xd8\xde",
+        "\xa3\x3f\x1c\x1a\xdc\xf4\xdd\xf0\x5c\x81\xbd\x0c\x6a\x84\x98\x96\x1b\x7c\xaa\x27\x17\xab\x4b\x90\x2f\x22\x4b\xea\x36\x67\x27\x20",
+        // "61:1E:5B:66:2C:59:3A:08:FF:58:D1:4A:E2:24:52:D1:98:DF:6C:60" / M(Xor4) / S(196) / L(59)
+        "\x26\x21\x2a\x21\x55\x2a\x25\x52\x2a\x26\x26\x2a\x22\x53\x2a\x25\x29\x2a\x23\x51\x2a\x20\x28\x2a\x56\x56\x2a\x25\x28\x2a\x54\x21\x2a\x24\x51\x2a\x55\x22\x2a\x22\x24\x2a\x25\x22\x2a\x54\x21\x2a\x29\x28\x2a\x54\x56\x2a\x26\x53\x2a\x26\x20\x10\x63\xa1\x6d\x66\xeb\xf4\xf9\x95",
         // "" / M(None) / S(0) / L(0)
-        "\x2d\x6b\xdc\x65\xc5\x2e\x2b\xe4\x46\xb7\xbb\xfe\x7b\x61\x87\xc4\x08\x6c\x4c\xc9\x2f\x73\x99\x4b\xdc\x17\xe5\xb5\x73\xb7\xd2\x7b",
-        // "CFArrayCreateMutable" / M(Xor4) / S(34) / L(20)
-        "\x89\x8c\x8b\xb8\xb8\xab\xb3\x89\xb8\xaf\xab\xbe\xaf\x87\xbf\xbe\xab\xa8\xa6\xaf\xca",
-        // "SecKeychainOpen" / M(Xor4) / S(97) / L(15)
-        "\x43\x75\x73\x5b\x75\x69\x73\x78\x71\x79\x7e\x5f\x60\x75\x7e\x10",
+        "\xf1\x38\x94\x41\x66\x59\x88\x5c\x7d\x70\x16\xe4\x5b\x9a\x83\xc8\x27\xd5\x61\x4b\x3e\xc4\xc9\x83\x4d\xe4\x85\x9a\x8d\x83\x68\xff",
+        // "kSecMatchLimitAll" / M(Xor1) / S(64) / L(17)
+        "\x2b\x13\x25\x23\x0d\x21\x34\x23\x28\x0c\x29\x2d\x29\x34\x01\x2c\x2c\x40",
+        // "." / M(Xor1) / S(130) / L(1)
+        "\xac\x82\x5b\xd8\x15\xb9\xb3\xea\x50\xf2\xee\x81\xcd\xac\x3e\xfb",
+        // "SHA1_Final" / M(Rot) / S(59) / L(10)
+        "\x8e\x83\x7c\x6c\x9a\x81\xa4\xa9\x9c\xa7\x3b\x31\x19\x05\x9e\x66",
+        // "/usr/lib/libSystem.dylib" / M(Xor3) / S(26) / L(24)
+        "\x14\x4e\x48\x49\x14\x57\x52\x59\x14\x57\x52\x59\x68\x42\x48\x4f\x5e\x56\x15\x5f\x42\x57\x52\x59\x3b\x06\x40\x2b\xde\xe3\x50\x57\x7c",
+        // "strncmp" / M(Xor2) / S(111) / L(7)
+        "\x0c\x0b\x0d\x11\x1c\x12\x0f\x7f\x59\xbf\xde\x6a\xbf\xe6\x7c\xf9",
+        // "EVP_MD_CTX_init" / M(Rot) / S(68) / L(15)
+        "\x89\x9a\x94\xa3\x91\x88\xa3\x87\x98\x9c\xa3\xad\xb2\xad\xb8\x44",
         // "" / M(None) / S(0) / L(0)
-        "\x8f\x7c\x8a\x39\x0b\x05\xd4\xf7\x47\x36\xab\x69\x86\x9a\x10\x87\x5a\xc8\x04\x28\x5a\x20\x0b\xb1\xdc\x60\xda\x8b\x23\x26\x0f\x4f",
-        // "CFDateFormatterSetFormat" / M(Xor2) / S(238) / L(24)
-        "\x8c\x89\x8b\xae\xbb\xaa\x89\xa0\xbd\xa2\xae\xbb\xbb\xaa\xbd\x9c\xaa\xbb\x89\xa0\xbd\xa2\xae\xbb\xcf\xac\x76\xec\xb4\x34\x0e\x34\x60",
-        // "SecKeychainOpen" / M(Xor2) / S(190) / L(15)
-        "\xfd\xcb\xcd\xe5\xcb\xd7\xcd\xc6\xcf\xc7\xc0\xe1\xde\xcb\xc0\xae",
-        // "61:1E:5B:66:2C:59:3A:08:FF:58:D1:4A:E2:24:52:D1:98:DF:6C:60" / M(Rot) / S(27) / L(59)
-        "\x51\x4c\x55\x4c\x60\x55\x50\x5d\x55\x51\x51\x55\x4d\x5e\x55\x50\x54\x55\x4e\x5c\x55\x4b\x53\x55\x61\x61\x55\x50\x53\x55\x5f\x4c\x55\x4f\x5c\x55\x60\x4d\x55\x4d\x4f\x55\x50\x4d\x55\x5f\x4c\x55\x54\x53\x55\x5f\x61\x55\x51\x5e\x55\x51\x4b\x1b\x5c\xc7\x04\xfa\x8c\x03\x50\x54",
-        // "IOObjectRelease" / M(Xor3) / S(232) / L(15)
-        "\xb1\xb7\xb7\x9a\x92\x9d\x9b\x8c\xaa\x9d\x94\x9d\x99\x8b\x9d\xf8",
-        // "SHA1_Update" / M(Xor1) / S(70) / L(11)
-        "\x15\x0e\x07\x77\x19\x13\x36\x22\x27\x32\x23\x46\x32\x44\xe8\x4e",
+        "\x03\x4d\xf6\x85\x29\xfd\x13\x53\x55\xd4\xc5\xcc\x6c\x86\xc7\xac\xd4\x66\x65\x9b\xd9\xa3\xb8\xf2\x34\x46\x4a\xe0\x30\x8a\x49\x2a",
+        // "kSecClassCertificate" / M(Xor3) / S(203) / L(20)
+        "\x8b\xb3\x85\x83\xa3\x8c\x81\x93\x93\xa3\x85\x92\x94\x89\x86\x89\x83\x81\x94\x85\xe0",
+        // "en0" / M(Xor1) / S(189) / L(3)
+        "\xd8\xd3\x8d\xbd\x8d\xf0\x6d\xdb\xc2\x6c\x0a\x74\x72\xce\x50\x2d",
         // "" / M(None) / S(0) / L(0)
-        "\x70\x85\x53\x12\xdb\xed\xb4\x81\x12\x84\xc5\x07\x18\x78\x3f\x2a\x3b\x85\xdb\xe7\x94\xab\x6b\x3f\x0c\x05\xe6\xf9\x2a\xe7\x42\xc6",
-        // "CFDateFormatterCreate" / M(Xor1) / S(115) / L(21)
-        "\x30\x35\x37\x12\x07\x16\x35\x1c\x01\x1e\x12\x07\x07\x16\x01\x30\x01\x16\x12\x07\x16\x73",
+        "\x1a\x41\x1e\x8f\x2e\xfc\x00\x7b\x01\xfb\xe6\xa3\xeb\x25\xcb\x5b\xaf\x3e\x50\xad\x53\xdd\xb6\xd9\x32\xb4\x67\x9a\xcf\x16\x52\xda",
         // "" / M(None) / S(0) / L(0)
-        "\x23\x26\xa4\x7f\x81\x97\x48\x2f\x8d\x7e\x4c\x72\x8c\x5f\x46\x9c\x53\xd5\xa5\x2a\xfb\x28\x0c\xa9\x61\x2c\x6e\x5b\x6b\x1c\x38\xe2",
-        // "61:1e:5b:66:2c:59:3a:08:ff:58:d1:4a:e2:24:52:d1:98:df:6c:60" / M(Xor1) / S(98) / L(59)
-        "\x54\x53\x58\x53\x07\x58\x57\x00\x58\x54\x54\x58\x50\x01\x58\x57\x5b\x58\x51\x03\x58\x52\x5a\x58\x04\x04\x58\x57\x5a\x58\x06\x53\x58\x56\x03\x58\x07\x50\x58\x50\x56\x58\x57\x50\x58\x06\x53\x58\x5b\x5a\x58\x06\x04\x58\x54\x01\x58\x54\x52\x62\x28\x9d\xa3\x9d\xaf\x35\x23\x22",
-        // "kCFTypeArrayCallBacks" / M(Xor2) / S(72) / L(21)
-        "\x35\x1d\x18\x0a\x27\x2e\x3b\x1f\x2c\x2c\x3f\x27\x1d\x3f\x32\x32\x1c\x3f\x3d\x35\x2d\x5e",
-        // "2.0" / M(Xor1) / S(164) / L(3)
-        "\x96\x8a\x94\xa4\x13\x3c\x39\xc8\x16\x37\xbf\xfa\x22\x41\xeb\x6d",
+        "\xd3\xca\xe5\xc9\x9b\xa1\xe1\x79\xb7\x26\x4b\x2b\x50\xda\x3b\x5b\x14\x96\x79\x96\xbb\x32\xd7\x40\x6e\x54\xa9\x64\x60\x5f\x9a\x88",
+        // "SecKeychainSearchCreateFromAttributes" / M(Rot) / S(112) / L(37)
+        "\xc3\xd5\xd3\xbb\xd5\xe9\xd3\xd8\xd1\xd9\xde\xc3\xd5\xd1\xe2\xd3\xd8\xb3\xe2\xd5\xd1\xe4\xd5\xb6\xe2\xdf\xdd\xb1\xe4\xe4\xe2\xd9\xd2\xe5\xe4\xd5\xe3\x70",
         // "" / M(None) / S(0) / L(0)
-        "\xf7\x46\xba\xa5\xec\xdf\xe4\x9e\x31\x06\x42\x6a\xb0\x42\x33\x62\xa3\xb9\x8a\xce\x7b\x26\x8d\x41\x2f\x5d\xc4\xdb\xab\x69\x4b\xee",
-        // "CFArrayCreateMutable" / M(Xor2) / S(89) / L(20)
-        "\x0f\x0a\x0d\x3e\x3e\x2d\x35\x0f\x3e\x29\x2d\x38\x29\x01\x39\x38\x2d\x2e\x20\x29\x4c",
-        // "1.2.840.113635.100.6.11.1" / M(Xor3) / S(118) / L(25)
-        "\xa9\xb6\xaa\xb6\xa0\xac\xa8\xb6\xa9\xa9\xab\xae\xab\xad\xb6\xa9\xa8\xa8\xb6\xae\xb6\xa9\xa9\xb6\xa9\x98\x03\xb1\x31\xfa\x1b\x02\x19\x24",
-        // "IOIteratorNext" / M(Xor4) / S(187) / L(14)
-        "\xf9\xff\xf9\xc4\xd5\xc2\xd1\xc4\xdf\xc2\xfe\xd5\xc8\xc4\xb0\x38",
+        "\x43\xc0\x57\xbf\xd4\xf0\x20\x54\x2a\xba\x33\xbc\x21\x84\x01\xf2\x46\x12\xf0\x6a\xb6\xf3\x3f\x4b\x86\x25\x71\xdc\xcc\xf0\x58\x63",
+        // "_MASReceipt" / M(Xor1) / S(6) / L(11)
+        "\x59\x4b\x47\x55\x54\x63\x65\x63\x6f\x76\x72\x06\x0f\xad\x26\x49",
+        // "CFBundleCopyBundleURL" / M(Xor1) / S(32) / L(21)
+        "\x63\x66\x62\x55\x4e\x44\x4c\x45\x63\x4f\x50\x59\x62\x55\x4e\x44\x4c\x45\x75\x72\x6c\x20",
+        // "freeifaddrs" / M(Xor3) / S(47) / L(11)
+        "\x59\x4d\x5a\x5a\x56\x59\x5e\x5b\x5b\x4d\x4c\x3f\xda\xe5\x6d\xb0",
+        // "glob" / M(Xor4) / S(51) / L(4)
+        "\x57\x5c\x5f\x52\x30\x94\x85\xf3\xec\xf5\xb0\xa8\x45\x87\x52\xaa",
+        // "sk_free" / M(Rot) / S(145) / L(7)
+        "\x04\xfc\xf0\xf7\x03\xf6\xf6\x91\xc3\xc5\xb2\xd5\x9e\x43\x7c\x19",
+        // "CC_SHA1" / M(Xor2) / S(132) / L(7)
+        "\xd7\xd7\xcb\xc7\xdc\xd5\xa5\x94\xab\xa3\x52\x48\x70\x81\x75\x0d",
         // "" / M(None) / S(0) / L(0)
-        "\x4d\x46\x30\x21\xaf\x04\x69\xf1\x31\xeb\x9f\x2d\xad\xe6\x1c\x20\xfd\x10\x97\x8f\x71\xcf\x97\x08\xf9\x74\x75\xca\x2f\xe0\x34\x3f",
-        // "CC_SHA1" / M(Xor2) / S(156) / L(7)
-        "\xcf\xcf\xd3\xdf\xc4\xcd\xbd\x8c\x2b\xfe\x20\xda\x08\xcf\x6f\x73",
-        // "objc_getClass" / M(Xor4) / S(24) / L(13)
-        "\xef\xe2\xea\xe3\xdf\xe7\xe5\xf4\xc3\xec\xe1\xf3\xf3\x80\xcf\x86",
-        // "IORegistryEntryCreateCFProperty" / M(Xor3) / S(93) / L(31)
-        "\x34\x32\x2f\x18\x1a\x14\x0e\x09\x0f\x04\x38\x13\x09\x0f\x04\x3e\x0f\x18\x1c\x09\x18\x3e\x3b\x2d\x0f\x12\x0d\x18\x0f\x09\x04\x7d",
-        // "start" / M(Xor4) / S(185) / L(5)
-        "\xe3\xe4\xf1\xe2\xe4\x90\x83\x54\xe7\x93\xa9\xcb\xc3\xff\xe0\x9e",
-        // "exit" / M(Rot) / S(147) / L(4)
-        "\xf8\x0b\xfc\x07\x93\x53\xfa\x16\xc2\x7c\x9f\xc2\xe2\xdd\x1e\x02",
-        // "CFArrayGetCount" / M(Xor2) / S(111) / L(15)
-        "\x3c\x39\x3e\x0d\x0d\x1e\x06\x38\x1a\x0b\x3c\x10\x0a\x11\x0b\x7f",
-        // "CFEqual" / M(Xor1) / S(28) / L(7)
-        "\x5f\x5a\x59\x6d\x69\x7d\x70\x1c\xd4\xae\x74\x60\xc8\x48\x57\x4b",
-        // "BIO_s_mem" / M(Xor3) / S(60) / L(9)
-        "\x0e\x05\x03\x13\x3f\x13\x21\x29\x21\x4c\x3b\x1b\xde\x63\xb5\x30",
-        // "CFBundleIdentifier" / M(Xor4) / S(39) / L(18)
-        "\xa6\xa3\xa7\x90\x8b\x81\x89\x80\xac\x81\x80\x8b\x91\x8c\x83\x8c\x80\x97\xe5",
-        // "IOMasterPort" / M(Rot) / S(237) / L(12)
-        "\x36\x3c\x3a\x4e\x60\x61\x52\x5f\x3d\x5c\x5f\x61\xed\x9d\x5b\x26",
-        // "X509_STORE_new" / M(Xor2) / S(98) / L(14)
-        "\x2a\x47\x42\x4b\x2d\x21\x26\x3d\x20\x37\x2d\x1c\x17\x05\x72\xaf",
-        // "sk_value" / M(Xor3) / S(218) / L(8)
-        "\x99\x81\xb5\x9c\x8b\x86\x9f\x8f\xea\x46\x88\xcb\x99\x13\xf5\x1f",
+        "\xfc\x91\xf8\x93\xb8\xb7\x5a\x21\x4f\x66\xa6\x50\x7c\xe4\x00\x22\xcd\x84\xf3\x84\x92\xa9\x2f\xe0\xc3\xc6\xc7\x40\x37\x68\xf9\x08",
+        // "X509_NAME_get_text_by_NID" / M(Rot) / S(233) / L(25)
+        "\x41\x1e\x19\x22\x48\x37\x2a\x36\x2e\x48\x50\x4e\x5d\x48\x5d\x4e\x61\x5d\x48\x4b\x62\x48\x37\x32\x2d\xe9\x97\x72\xac\x28\x51\x45\x25\xed",
         // "" / M(None) / S(0) / L(0)
-        "\xd4\x56\xcb\x82\x94\x4c\x45\x82\xbc\x7a\x36\xeb\xb4\xbd\xa9\x26\x64\x4f\x65\xe0\x39\x6a\xba\x0d\x71\xd9\x56\x2d\x6f\x1c\xac\xae",
-        // "CFDataCreateMutable" / M(Xor1) / S(196) / L(19)
-        "\x87\x82\x80\xa5\xb0\xa5\x87\xb6\xa1\xa5\xb0\xa1\x89\xb1\xb0\xa5\xa6\xa8\xa1\xc4",
-        // "1.2.840.113635.100.6.11.1" / M(Rot) / S(54) / L(25)
-        "\x67\x64\x68\x64\x6e\x6a\x66\x64\x67\x67\x69\x6c\x69\x6b\x64\x67\x66\x66\x64\x6c\x64\x67\x67\x64\x67\x36\xb1\x98\xb9\x1c\x4a\x35\x0b\xe1",
-        // "X509_get_ext_by_OBJ" / M(Xor3) / S(177) / L(19)
-        "\x9d\xf0\xf5\xfc\x9a\xa2\xa0\xb1\x9a\xa0\xbd\xb1\x9a\xa7\xbc\x9a\x8a\x87\x8f\xc5",
-        // "BIO_free" / M(Xor3) / S(71) / L(8)
-        "\x15\x1e\x18\x08\x31\x25\x32\x32\x57\x63\xe8\x9b\xef\xa2\xad\x5a",
+        "\x6a\xcd\x16\xd1\x07\x1c\xf1\x24\x45\x6b\x77\x31\x60\x96\x1c\xa5\x61\xaa\x15\x8b\xb9\xef\x69\xf3\x26\x2b\x7d\xe7\xaf\x3d\x30\x2b",
         // "" / M(None) / S(0) / L(0)
-        "\x2f\x24\xf6\xc1\x31\x5f\x77\xd6\xab\x48\x29\x91\x96\x2c\x4e\xeb\x03\x9c\x74\x01\x70\x17\x93\x25\x27\xa7\x8b\xd2\x1a\xe6\x0b\xe6",
-        // "CFURLCreateWithFileSystemPathRelativeToBase" / M(Xor4) / S(78) / L(43)
-        "\x9b\x9e\x8d\x8a\x94\x9b\xaa\xbd\xb9\xac\xbd\x8f\xb1\xac\xb0\x9e\xb1\xb4\xbd\x8b\xa1\xab\xac\xbd\xb5\x88\xb9\xac\xb0\x8a\xbd\xb4\xb9\xac\xb1\xae\xbd\x8c\xb7\x9a\xb9\xab\xbd\xd8\x13\x15\x86\x5a\xd3\xd0\xd8\x1d",
-        // "d2i_PKCS7_bio" / M(Xor2) / S(198) / L(13)
-        "\xb2\xe4\xbf\x89\x86\x9d\x95\x85\xe1\x89\xb4\xbf\xb9\xd6\x8e\x46",
-        // "IOIteratorNext" / M(Xor4) / S(91) / L(14)
-        "\xf9\xff\xf9\xc4\xd5\xc2\xd1\xc4\xdf\xc2\xfe\xd5\xc8\xc4\xb0\x50",
-        // "Contents/_MASReceipt" / M(Xor4) / S(216) / L(20)
-        "\xfb\xd7\xd6\xcc\xdd\xd6\xcc\xcb\x97\xe7\xf5\xf9\xeb\xea\xdd\xdb\xdd\xd1\xc8\xcc\xb8",
-        // "611e5b662c593a08ff58d14ae22452d198df6c60" / M(Xor1) / S(88) / L(40)
-        "\x6e\x69\x69\x3d\x6d\x3a\x6e\x6e\x6a\x3b\x6d\x61\x6b\x39\x68\x60\x3e\x3e\x6d\x60\x3c\x69\x6c\x39\x3d\x6a\x6a\x6c\x6d\x6a\x3c\x69\x61\x60\x3c\x3e\x6e\x3b\x6e\x68\x58\xbd\x8f\x63\x83\x28\x35\xaf\xc0",
-        // "CC_SHA1_Init" / M(Rot) / S(219) / L(12)
-        "\x1e\x1e\x3a\x2e\x23\x1c\x0c\x3a\x24\x49\x44\x4f\xdb\x5a\x40\x3f",
-        // "CFDateFormatterCreateDateFromString" / M(Xor4) / S(179) / L(35)
-        "\x6f\x6a\x68\x4d\x58\x49\x6a\x43\x5e\x41\x4d\x58\x58\x49\x5e\x6f\x5e\x49\x4d\x58\x49\x68\x4d\x58\x49\x6a\x5e\x43\x41\x7f\x58\x5e\x45\x42\x4b\x2c",
-        // "CFDictionaryAddValue" / M(Rot) / S(115) / L(20)
-        "\xb6\xb9\xb7\xdc\xd6\xe7\xdc\xe2\xe1\xd4\xe5\xec\xb4\xd7\xd7\xc9\xd4\xdf\xe8\xd8\x73",
+        "\x21\x3a\xd9\x4a\x84\x6a\x06\x27\x22\x48\x6f\x07\xf0\x3f\x77\xd0\xa0\x9c\xc3\x50\xb9\xbb\xd8\x3f\xab\xdb\xf8\xbd\x98\x87\x1d\x1d",
         // "" / M(None) / S(0) / L(0)
-        "\xcf\xee\xc1\x23\x27\x7c\xd8\x79\x4c\xc9\x6b\x38\xfa\xa2\x7a\x4b\xb1\xae\xa2\x9c\x02\xc6\xa3\x49\x55\x08\x00\x0e\x37\xfa\xfd\x31",
-        // "X509_digest" / M(Xor1) / S(187) / L(11)
-        "\xe3\x8e\x8b\x82\xe4\xdf\xd2\xdc\xde\xc8\xcf\xbb\x64\x94\xc9\xad",
-        // "CFURLCreateCopyAppendingPathComponent" / M(Xor4) / S(194) / L(37)
-        "\x8f\x8a\x99\x9e\x80\x8f\xbe\xa9\xad\xb8\xa9\x8f\xa3\xbc\xb5\x8d\xbc\xbc\xa9\xa2\xa8\xa5\xa2\xab\x9c\xad\xb8\xa4\x8f\xa3\xa1\xbc\xa3\xa2\xa9\xa2\xb8\xcc",
-        // "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'" / M(Xor3) / S(216) / L(32)
-        "\x80\x80\x80\x80\xde\xd4\xde\xb4\xb4\xde\xd4\xde\x9d\x9d\xde\xad\xde\xb1\xb1\xde\xc3\xde\x94\x94\xde\xc3\xde\x8a\x8a\xde\xa3\xde\xf9",
-        // "CFReadStreamRead" / M(Xor3) / S(39) / L(16)
-        "\x7b\x7e\x6a\x5d\x59\x5c\x6b\x4c\x4a\x5d\x59\x55\x6a\x5d\x59\x5c\x38",
-        // "kSecMatchSubjectContains" / M(Xor1) / S(39) / L(24)
-        "\x4c\x74\x42\x44\x6a\x46\x53\x44\x4f\x74\x52\x45\x4d\x42\x44\x53\x64\x48\x49\x53\x46\x4e\x49\x54\x27\xea\x7e\xa6\x7c\xe8\x37\x07\x14",
-        // "globfree" / M(Xor2) / S(188) / L(8)
-        "\xcb\xc0\xc3\xce\xca\xde\xc9\xc9\xac\xa4\x43\xa5\xc8\x76\xc7\x29",
-        // "objc_msgSend" / M(Xor1) / S(3) / L(12)
-        "\x6c\x61\x69\x60\x5c\x6e\x70\x64\x50\x66\x6d\x67\x03\x0b\xa8\xc2",
+        "\x49\x2e\xc2\x59\xa5\xdc\x2e\x91\x0a\x79\xc8\x69\x36\xad\x1b\xe7\x7f\xa1\xef\xf2\xa5\xa9\x0d\x04\xf1\xaa\x88\x2b\xc4\x29\xf9\x91",
+        // "OBJ_txt2obj" / M(Xor3) / S(45) / L(11)
+        "\x72\x7f\x77\x62\x49\x45\x49\x0f\x52\x5f\x57\x3d\x9b\x18\x5c\xa8",
         // "" / M(None) / S(0) / L(0)
-        "\xfb\x60\x25\x5d\x32\xac\x70\xb7\xea\xc5\x5f\xd4\x15\xcc\x82\xdd\x52\x83\xd2\x0c\xae\x10\xe8\x9d\xf2\x61\xfe\xc9\x49\x2b\x09\x94",
-        // "CC_SHA1_Update" / M(Rot) / S(82) / L(14)
-        "\x95\x95\xb1\xa5\x9a\x93\x83\xb1\xa7\xc2\xb6\xb3\xc6\xb7\x52\xba",
-        // "CFDictionaryGetValue" / M(Rot) / S(16) / L(20)
-        "\x53\x56\x54\x79\x73\x84\x79\x7f\x7e\x71\x82\x89\x57\x75\x84\x66\x71\x7c\x85\x75\x10",
+        "\x3d\xf5\x3e\x87\x09\xca\xb4\xb8\x1c\x21\x60\xc7\x16\x2f\x31\xa7\xea\x4e\x34\x6c\xc2\xf4\x23\xb7\xf1\xcc\x1a\x1e\xd3\x63\xdc\x52",
+        // "PKCS7_get0_signers" / M(Xor3) / S(120) / L(18)
+        "\xdb\xc0\xc8\xd8\xbc\xd4\xec\xee\xff\xbb\xd4\xf8\xe2\xec\xe5\xee\xf9\xf8\x8b",
+        // "kSecMatchSearchList" / M(Xor2) / S(108) / L(19)
+        "\x13\x2b\x1d\x1b\x35\x19\x0c\x1b\x10\x2b\x1d\x19\x0a\x1b\x10\x34\x11\x0b\x0c\x78",
         // "" / M(None) / S(0) / L(0)
-        "\xde\xa6\xd8\x25\x8c\xad\xc9\xd4\x5c\x1f\xc9\xf5\x17\x93\x61\xb7\x15\x9e\x0f\x6e\xb1\xd2\x28\x67\x81\x7e\x85\x0d\x1f\xc2\xed\x16",
-        // "OBJ_txt2obj" / M(Xor1) / S(10) / L(11)
-        "\x45\x48\x40\x55\x7e\x72\x7e\x38\x65\x68\x60\x0a\xbc\x9f\xc0\xdb",
-        // "CFStringGetFileSystemRepresentation" / M(Xor2) / S(189) / L(35)
-        "\xda\xdf\xca\xed\xeb\xf0\xf7\xfe\xde\xfc\xed\xdf\xf0\xf5\xfc\xca\xe0\xea\xed\xfc\xf4\xcb\xfc\xe9\xeb\xfc\xea\xfc\xf7\xed\xf8\xed\xf0\xf6\xf7\x99",
+        "\x5c\xa7\x08\x6f\x97\xec\xb5\xd7\xb7\xa0\xbd\x38\xe6\x19\xe0\x39\xb8\xbb\x10\xa6\x56\x95\xb4\xeb\x99\x97\x7f\x9a\x33\xc8\x03\x44",
         // "" / M(None) / S(0) / L(0)
-        "\x68\x40\x0b\x20\xb5\xef\x7c\x9a\x6d\x33\xfd\x3f\x5f\x16\x74\x8b\xdf\x7f\x43\x3c\x0c\x46\xa6\xc8\x3d\x98\x1a\x6c\xf8\xda\x57\xc2",
-        // "X509_STORE_free" / M(Xor4) / S(209) / L(15)
-        "\x48\x25\x20\x29\x4f\x43\x44\x5f\x42\x55\x4f\x76\x62\x75\x75\x10",
-        // "%02x" / M(Rot) / S(144) / L(4)
-        "\xb5\xc0\xc2\x08\x90\xf7\xad\x90\x51\xc2\x12\xd7\x4e\x51\x3c\xf4",
-        // "IOMasterPort" / M(Xor3) / S(147) / L(12)
-        "\xea\xec\xee\xc2\xd0\xd7\xc6\xd1\xf3\xcc\xd1\xd7\xa3\xf3\xdb\x7b",
-        // "X509_free" / M(Xor2) / S(141) / L(9)
-        "\xc5\xa8\xad\xa4\xc2\xfb\xef\xf8\xf8\x9d\x38\x48\xed\x9b\xd8\x93",
-        // "SHA1_Update" / M(Xor1) / S(48) / L(11)
-        "\x63\x78\x71\x01\x6f\x65\x40\x54\x51\x44\x55\x30\x23\xb7\x73\x92",
-        // "SKReceiptRefreshRequest" / M(Xor3) / S(165) / L(23)
-        "\x96\x8e\x97\xa0\xa6\xa0\xac\xb5\xb1\x97\xa0\xa3\xb7\xa0\xb6\xad\x97\xa0\xb4\xb0\xa0\xb6\xb1\xc5\x81\xb6\x86\x2a\xd7\x5f\x59\xbc",
-        // "61:1E:5B:66:2C:59:3A:08:FF:58:D1:4A:E2:24:52:D1:98:DF:6C:60" / M(Xor3) / S(210) / L(59)
-        "\x20\x27\x2c\x27\x53\x2c\x23\x54\x2c\x20\x20\x2c\x24\x55\x2c\x23\x2f\x2c\x25\x57\x2c\x26\x2e\x2c\x50\x50\x2c\x23\x2e\x2c\x52\x27\x2c\x22\x57\x2c\x53\x24\x2c\x24\x22\x2c\x23\x24\x2c\x52\x27\x2c\x2f\x2e\x2c\x52\x50\x2c\x20\x55\x2c\x20\x26\x16\x0a\xf6\x9f\x8c\x5f\x0f\x6d\xbf",
-        // "Apple Root CA" / M(Xor2) / S(200) / L(13)
-        "\x99\xa8\xa8\xb4\xbd\xf8\x8a\xb7\xb7\xac\xf8\x9b\x99\xd8\x95\xe9",
-        // "CFBundleVersion" / M(Xor1) / S(84) / L(15)
-        "\x17\x12\x16\x21\x3a\x30\x38\x31\x02\x31\x26\x27\x3d\x3b\x3a\x54",
-        // "BIO_free" / M(Xor4) / S(129) / L(8)
-        "\x52\x59\x5f\x4f\x76\x62\x75\x75\x10\x4c\xd0\x8d\xb0\x53\x49\xb2",
+        "\x69\xbf\x09\xdd\x48\x18\xc7\xb0\x95\x79\x5c\x1b\x9d\x8d\x03\x05\x33\x83\x9e\x39\x30\x14\x4e\x18\x3d\x48\x65\xb9\xa4\x9d\x10\x07",
+        // "SHA1_Update" / M(Rot) / S(161) / L(11)
+        "\xf4\xe9\xe2\xd2\x00\xf6\x11\x05\x02\x15\x06\xa1\x2b\x2e\xf7\x20",
         // "" / M(None) / S(0) / L(0)
-        "\xb1\x95\xf8\xd8\x33\x4b\x42\x8a\xbf\x8f\x2a\x74\xc5\xe1\xc0\xb9\x41\xed\xf2\xb3\xc9\x13\xbf\xa6\x8e\x75\x28\xdc\xbb\x31\x57\xe2",
+        "\x0b\x43\xdc\xcb\x7b\x52\x36\xb3\x87\x8c\x08\x1d\x65\x9f\x9c\x81\x59\x37\x35\x79\x23\x66\x33\x62\xb4\xc5\x01\x7c\x9c\x74\x7a\xe1",
+        // "CFBundleGetMainBundle" / M(Xor3) / S(156) / L(21)
+        "\xf1\xf4\xf0\xc7\xdc\xd6\xde\xd7\xf5\xd7\xc6\xff\xd3\xdb\xdc\xf0\xc7\xdc\xd6\xde\xd7\xb2",
         // "" / M(None) / S(0) / L(0)
-        "\x74\x6d\x14\xea\x50\x93\xca\x25\x3e\x56\x49\x58\x7d\x93\x08\x97\x09\xa4\x44\x1b\x1f\x25\x6b\xcf\x21\x8b\xc3\x48\xfa\xaf\xbf\x99",
-        // "IOServiceGetMatchingServices" / M(Xor3) / S(92) / L(28)
-        "\xc8\xce\xd2\xe4\xf3\xf7\xe8\xe2\xe4\xc6\xe4\xf5\xcc\xe0\xf5\xe2\xe9\xe8\xef\xe6\xd2\xe4\xf3\xf7\xe8\xe2\xe4\xf2\x81\x38\x3b\x7b\xd2\x11\x3b\x37\x1a",
-        // "CC_SHA1_Final" / M(Xor1) / S(118) / L(13)
-        "\x35\x35\x29\x25\x3e\x37\x47\x29\x30\x1f\x18\x17\x1a\x76\x4f\xc4",
-        // "CFArrayAppendValue" / M(Xor1) / S(176) / L(18)
-        "\xf3\xf6\xf1\xc2\xc2\xd1\xc9\xf1\xc0\xc0\xd5\xde\xd4\xe6\xd1\xdc\xc5\xd5\xb0",
-        // "/usr/lib/libobjc.dylib" / M(Xor2) / S(244) / L(22)
-        "\xcc\x96\x90\x91\xcc\x8f\x8a\x81\xcc\x8f\x8a\x81\x8c\x81\x89\x80\xcd\x87\x9a\x8f\x8a\x81\xe3",
+        "\xf1\xcf\x13\x80\x28\x63\x68\xb2\x29\x67\x03\xb7\xf1\xe8\xe4\xdb\x94\x9f\xb8\x27\x00\x9c\x8d\x29\x52\x0c\xb8\xfb\x29\xd2\x4a\xd5",
         // "" / M(None) / S(0) / L(0)
-        "\x51\xd3\x2b\x6d\x64\x2c\xb0\xa9\xe3\x4e\x6f\xae\xf4\x99\x3a\xbf\x54\x9c\x19\x72\x36\xa7\x23\xda\x1b\x41\xbf\xe2\x2e\x9d\x74\x95",
-        // "CFURLCreateFromFileSystemRepresentation" / M(Xor1) / S(110) / L(39)
-        "\x2d\x28\x3b\x3c\x22\x2d\x1c\x0b\x0f\x1a\x0b\x28\x1c\x01\x03\x28\x07\x02\x0b\x3d\x17\x1d\x1a\x0b\x03\x3c\x0b\x1e\x1c\x0b\x1d\x0b\x00\x1a\x0f\x1a\x07\x01\x00\x6e\x6e\xe8\x8e\xfd\x16\x89\x91\x2d",
-        // "SKReceiptRefreshRequest" / M(Xor1) / S(115) / L(23)
-        "\x20\x38\x21\x16\x10\x16\x1a\x03\x07\x21\x16\x15\x01\x16\x00\x1b\x21\x16\x02\x06\x16\x00\x07\x73\x3a\x89\x58\x0f\x7d\x9a\x55\xab",
-        // "kCFTypeDictionaryKeyCallBacks" / M(Xor1) / S(116) / L(29)
-        "\x1f\x37\x32\x20\x0d\x04\x11\x30\x1d\x17\x00\x1d\x1b\x1a\x15\x06\x0d\x3f\x11\x0d\x37\x15\x18\x18\x36\x15\x17\x1f\x07\x74\x3d\xad\x06\xf8\x07\xdf\x29\x51",
+        "\x63\xa1\x19\xad\xae\xb3\x9c\x7e\xa3\x95\xc0\xfc\x65\x97\xd4\x8a\x73\xf4\xc4\xa1\x4a\xa7\x97\x1c\x6c\x71\x67\x7b\xb5\xb5\x15\xab",
         // "" / M(None) / S(0) / L(0)
-        "\x73\xfb\xe9\xcf\x9f\x6f\x5c\x4a\x50\xa7\x01\xac\xee\xc3\xab\x46\x6f\x82\x89\x17\x80\x21\x24\xbc\x60\x2f\x84\x95\x8d\x41\x4c\x98",
-        // "EVP_get_digestbyname" / M(Rot) / S(150) / L(20)
-        "\xdb\xec\xe6\xf5\xfd\xfb\x0a\xf5\xfa\xff\xfd\xfb\x09\x0a\xf8\x0f\x04\xf7\x03\xfb\x96",
-        // "CFBundleGetIdentifier" / M(Rot) / S(95) / L(21)
-        "\xa2\xa5\xa1\xd4\xcd\xc3\xcb\xc4\xa6\xc4\xd3\xa8\xc3\xc4\xcd\xd3\xc8\xc5\xc8\xc4\xd1\x5f",
-        // "SHA1_Final" / M(Xor2) / S(183) / L(10)
-        "\xf4\xef\xe6\x96\xf8\xe1\xce\xc9\xc6\xcb\xa7\x94\xcc\x8d\xc2\xef",
-        // "CC_SHA1_Final" / M(Xor2) / S(12) / L(13)
-        "\x5f\x5f\x43\x4f\x54\x5d\x2d\x43\x5a\x75\x72\x7d\x70\x1c\x4c\x9e",
-        // "CFStringCreateWithCString" / M(Xor1) / S(239) / L(25)
-        "\xac\xa9\xbc\x9b\x9d\x86\x81\x88\xac\x9d\x8a\x8e\x9b\x8a\xb8\x86\x9b\x87\xac\xbc\x9b\x9d\x86\x81\x88\xef\xce\xfa\xe2\x30\x57\xb8\x2f\x4e",
-        // "61:1e:5b:66:2c:59:3a:08:ff:58:d1:4a:e2:24:52:d1:98:df:6c:60" / M(Xor4) / S(175) / L(59)
-        "\x4a\x4d\x46\x4d\x19\x46\x49\x1e\x46\x4a\x4a\x46\x4e\x1f\x46\x49\x45\x46\x4f\x1d\x46\x4c\x44\x46\x1a\x1a\x46\x49\x44\x46\x18\x4d\x46\x48\x1d\x46\x19\x4e\x46\x4e\x48\x46\x49\x4e\x46\x18\x4d\x46\x45\x44\x46\x18\x1a\x46\x4a\x1f\x46\x4a\x4c\x7c\xac\x8c\xb7\x5a\x5f\x60\xf5\x48",
-        // "en0" / M(Xor1) / S(206) / L(3)
-        "\xab\xa0\xfe\xce\xcd\x37\x60\xa5\x38\x70\x49\x4f\x94\xc2\xfc\x1d",
+        "\xc3\x6e\xf6\xf4\x83\x4c\x06\x09\x2b\xc3\x62\x5e\x51\xe5\x92\x35\x9f\x46\x94\xae\x1d\x95\xbf\xb8\xdd\xab\xb6\xb9\x30\x50\x77\x99",
+        // "CFURLCreateWithFileSystemPathRelativeToBase" / M(Xor2) / S(57) / L(43)
+        "\x4e\x4b\x58\x5f\x41\x4e\x7f\x68\x6c\x79\x68\x5a\x64\x79\x65\x4b\x64\x61\x68\x5e\x74\x7e\x79\x68\x60\x5d\x6c\x79\x65\x5f\x68\x61\x6c\x79\x64\x7b\x68\x59\x62\x4f\x6c\x7e\x68\x0d\xd2\x91\x36\xbb\x35\xc3\xe6\xe4",
+        // "EVP_get_digestbyname" / M(Xor2) / S(82) / L(20)
+        "\x02\x11\x17\x18\x20\x22\x33\x18\x23\x2e\x20\x22\x34\x33\x25\x3e\x29\x26\x2a\x22\x47",
+        // "CC_SHA1_Update" / M(Rot) / S(173) / L(14)
+        "\xf0\xf0\x0c\x00\xf5\xee\xde\x0c\x02\x1d\x11\x0e\x21\x12\xad\x3f",
+        // "kSecClassCertificate" / M(Xor4) / S(42) / L(20)
+        "\x19\x21\x17\x11\x31\x1e\x13\x01\x01\x31\x17\x00\x06\x1b\x14\x1b\x11\x13\x06\x17\x72",
+        // "1.2.840.113635.100.6.11.1" / M(Xor4) / S(106) / L(25)
+        "\x25\x3a\x26\x3a\x2c\x20\x24\x3a\x25\x25\x27\x22\x27\x21\x3a\x25\x24\x24\x3a\x22\x3a\x25\x25\x3a\x25\x14\x51\xde\x4b\x7c\xf9\xa0\xcb\x9e",
+        // "kSecMatchSubjectContains" / M(Xor2) / S(81) / L(24)
+        "\x1b\x23\x15\x13\x3d\x11\x04\x13\x18\x23\x05\x12\x1a\x15\x13\x04\x33\x1f\x1e\x04\x11\x19\x1e\x03\x70\xca\xf3\x67\x25\xaa\x7b\xac\x6c",
         // "" / M(None) / S(0) / L(0)
-        "\xfe\xc8\xac\x47\xaa\x77\x13\x0e\x2d\x97\xe8\x1e\x27\x01\xb5\x5f\xe0\x8f\x5e\x99\x10\x33\x48\xda\xfd\x20\x23\x58\xc4\xe5\x36\x42",
-        // "sk_free" / M(Xor2) / S(65) / L(7)
-        "\x22\x3a\x0e\x37\x23\x34\x34\x51\x8d\xce\xea\x3a\x0a\x3d\x15\xef",
+        "\x69\xfd\x99\x06\x46\xef\xf8\x3d\x55\x7e\x0d\x9c\x8a\x02\x5d\xb4\x94\xbc\xc4\xfb\x84\xc5\x33\x2a\x04\xf9\x5b\x7c\x05\x17\x11\xed",
         // "" / M(None) / S(0) / L(0)
-        "\x79\x6a\xc3\xd0\x9b\xaa\x90\x0f\xa1\xf9\xb9\xe6\x10\xf1\x73\x85\x32\x63\x72\x34\x7c\x67\x61\xbb\x4e\x41\x83\xda\xdb\x68\x7d\x1e",
-        // "glob" / M(Xor2) / S(146) / L(4)
-        "\xe5\xee\xed\xe0\x82\xe5\x9e\xa3\x3c\xcb\xe2\x77\x30\x9d\xbc\x57",
+        "\x6e\xe4\x51\xb4\x5b\x8f\xd8\xeb\xb1\xd8\xe9\x21\x10\xf9\x84\xb2\xa6\xbd\x5e\xb3\x4a\x60\x87\x7c\x8e\xb4\xb5\x91\x94\x68\x65\x69",
+        // "CFArrayGetValueAtIndex" / M(Rot) / S(125) / L(22)
+        "\xc0\xc3\xbe\xef\xef\xde\xf6\xc4\xe2\xf1\xd3\xde\xe9\xf2\xe2\xbe\xf1\xc6\xeb\xe1\xe2\xf5\x7d",
         // "" / M(None) / S(0) / L(0)
-        "\xf6\xef\x65\x40\xf0\xc3\xeb\x5b\x5c\xfb\x27\xdc\xb6\xe0\x78\x41\xd2\xe1\xd4\xea\x09\xce\xc4\x5b\x73\xd4\x6a\x5b\xba\xcc\x23\x45",
-        // "kCFTypeArrayCallBacks" / M(Xor4) / S(197) / L(21)
-        "\x85\xad\xa8\xba\x97\x9e\x8b\xaf\x9c\x9c\x8f\x97\xad\x8f\x82\x82\xac\x8f\x8d\x85\x9d\xee",
-        // "/System/Library/Frameworks/IOKit.framework/IOKit" / M(Xor3) / S(92) / L(48)
-        "\xa2\xde\xf4\xfe\xf9\xe8\xe0\xa2\xc1\xe4\xef\xff\xec\xff\xf4\xa2\xcb\xff\xec\xe0\xe8\xfa\xe2\xff\xe6\xfe\xa2\xc4\xc2\xc6\xe4\xf9\xa3\xeb\xff\xec\xe0\xe8\xfa\xe2\xff\xe6\xa2\xc4\xc2\xc6\xe4\xf9\x8d",
+        "\xcc\x35\xb2\x68\xf2\x63\x2f\xe1\x15\x07\x9c\xd1\x7b\xd3\xa2\x88\x6b\xa6\xc7\x74\x83\xa9\x88\x04\x18\x1c\x01\xf2\x9d\x75\xbb\xcf",
+        // "Contents/_MASReceipt" / M(Xor2) / S(64) / L(20)
+        "\x16\x3a\x3b\x21\x30\x3b\x21\x26\x7a\x0a\x18\x14\x06\x07\x30\x36\x30\x3c\x25\x21\x55",
+        // "EVP_MD_CTX_init" / M(Xor2) / S(186) / L(15)
+        "\xef\xfc\xfa\xf5\xe7\xee\xf5\xe9\xfe\xf2\xf5\xc3\xc4\xc3\xde\xaa",
         // "" / M(None) / S(0) / L(0)
-        "\x9c\xbd\xbf\x34\x3b\x93\x0c\xf1\x90\x90\x5f\x92\x5e\x93\xf7\xf3\xce\xae\x70\x80\xae\xb0\xfa\xb0\x52\xa8\x81\xbb\x88\x58\x4e\x6b",
-        // "kCFTypeDictionaryKeyCallBacks" / M(Rot) / S(15) / L(29)
-        "\x7a\x52\x55\x63\x88\x7f\x74\x53\x78\x72\x83\x78\x7e\x7d\x70\x81\x88\x5a\x74\x88\x52\x70\x7b\x7b\x51\x70\x72\x7a\x82\x0f\x3c\x43\x26\x3c\xfb\xf8\x0d\x0b",
+        "\xc2\xe2\x84\x3f\x7e\xb1\x10\x1e\x52\xb7\xec\xd6\xdd\xde\xf3\x89\x9c\x98\x90\xa1\xca\xf0\xad\xfc\x72\xd0\xe3\xb2\xe4\x7e\xd1\xf6",
+        // "CFReadStreamCreateWithFile" / M(Xor3) / S(72) / L(26)
+        "\x28\x2d\x39\x0e\x0a\x0f\x38\x1f\x19\x0e\x0a\x06\x28\x19\x0e\x0a\x1f\x0e\x3c\x02\x1f\x03\x2d\x02\x07\x0e\x6b\xfd\xf9\x50\xbb\x06\xc3\x2a\x5a",
+        // "CFStringCreateWithBytes" / M(Xor4) / S(88) / L(23)
+        "\x43\x46\x53\x74\x72\x69\x6e\x67\x43\x72\x65\x61\x74\x65\x57\x69\x74\x68\x42\x79\x74\x65\x73\x00\x42\x9d\x4e\x1d\xae\x63\xdf\xe4",
+        // "kCFTypeDictionaryValueCallBacks" / M(Xor2) / S(42) / L(31)
+        "\x61\x49\x4c\x5e\x73\x7a\x6f\x4e\x63\x69\x7e\x63\x65\x64\x6b\x78\x73\x5c\x6b\x66\x7f\x6f\x49\x6b\x66\x66\x48\x6b\x69\x61\x79\x0a",
+        // "BIO_s_mem" / M(Xor1) / S(94) / L(9)
+        "\x1c\x17\x11\x01\x2d\x01\x33\x3b\x33\x5e\x17\x85\x82\x47\xfa\xeb",
+        // "start" / M(Xor4) / S(87) / L(5)
+        "\x03\x04\x11\x02\x04\x70\xae\xef\x03\xa7\x4c\x61\x7f\x72\x79\xc9",
+        // "CFBundleCopyBundleURL" / M(Xor4) / S(213) / L(21)
+        "\x0d\x08\x0c\x3b\x20\x2a\x22\x2b\x0d\x21\x3e\x37\x0c\x3b\x20\x2a\x22\x2b\x1b\x1c\x02\x4e",
+        // "CFReadStreamClose" / M(Xor4) / S(89) / L(17)
+        "\x01\x04\x10\x27\x23\x26\x11\x36\x30\x27\x23\x2f\x01\x2e\x2d\x31\x27\x42",
+        // "BIO_new" / M(Rot) / S(6) / L(7)
+        "\x48\x4f\x55\x65\x74\x6b\x7d\x06\xc7\x15\x5d\xa4\x2f\xbb\xa4\xea",
         // "" / M(None) / S(0) / L(0)
-        "\x6a\x96\x7c\x23\x82\xe4\x49\xdf\x13\x26\x79\x89\x1f\x13\x60\xc3\x82\xc1\xda\xfe\x44\xca\xf7\x31\x52\x28\xb8\x18\x11\x28\xa7\xb1",
+        "\xb5\xe5\xe4\xa4\xf5\xc4\x94\xe1\x0a\x2e\xe3\xe2\xdf\x97\x56\x1b\xaa\x30\x0f\xeb\x90\x3d\xfe\xcb\x2c\x9f\x5a\xda\xbb\x4c\x89\x70",
         // "" / M(None) / S(0) / L(0)
-        "\x7d\x39\x18\xd5\x74\xe3\x92\x0a\x2c\xae\xa6\xaf\x6c\x2f\xb9\x20\x55\x58\x02\x6f\x47\x26\xc4\xb8\x19\x42\x0a\xad\x70\x65\x4c\x08",
-        // "SecKeychainSearchCreateFromAttributes" / M(Xor1) / S(135) / L(37)
-        "\xd4\xe2\xe4\xcc\xe2\xfe\xe4\xef\xe6\xee\xe9\xd4\xe2\xe6\xf5\xe4\xef\xc4\xf5\xe2\xe6\xf3\xe2\xc1\xf5\xe8\xea\xc6\xf3\xf3\xf5\xee\xe5\xf2\xf3\xe2\xf4\x87",
-        // "CFDictionarySetValue" / M(Xor2) / S(68) / L(20)
-        "\x12\x17\x15\x38\x32\x25\x38\x3e\x3f\x30\x23\x28\x02\x34\x25\x07\x30\x3d\x24\x34\x51",
-        // "Contents" / M(Xor3) / S(71) / L(8)
-        "\x14\x38\x39\x23\x32\x39\x23\x24\x57\x3e\xe8\x1d\x98\xb8\x4c\x39",
-        // "Contents/_MASReceipt/receipt" / M(Xor2) / S(131) / L(28)
-        "\xe5\xc9\xc8\xd2\xc3\xc8\xd2\xd5\x89\xf9\xeb\xe7\xf5\xf4\xc3\xc5\xc3\xcf\xd6\xd2\x89\xd4\xc3\xc5\xc3\xcf\xd6\xd2\xa6\x32\x68\xd1\x01\xb7\x18\x79\xc4",
-        // "/System/Library/Frameworks/IOKit.framework/IOKit" / M(Xor2) / S(27) / L(48)
-        "\x05\x79\x53\x59\x5e\x4f\x47\x05\x66\x43\x48\x58\x4b\x58\x53\x05\x6c\x58\x4b\x47\x4f\x5d\x45\x58\x41\x59\x05\x63\x65\x61\x43\x5e\x04\x4c\x58\x4b\x47\x4f\x5d\x45\x58\x41\x05\x63\x65\x61\x43\x5e\x2a",
-        // "%02x:" / M(Xor4) / S(52) / L(5)
-        "\x65\x70\x72\x38\x7a\x40\x37\x6d\x95\xd8\xf9\x22\xab\xea\x8a\x49",
-        // "CFEqual" / M(Xor3) / S(50) / L(7)
-        "\x01\x04\x07\x33\x37\x23\x2e\x42\xad\xbf\x7c\xd0\x21\x05\xd9\x9a",
-        // "CFDictionarySetValue" / M(Xor1) / S(118) / L(20)
-        "\x35\x30\x32\x1f\x15\x02\x1f\x19\x18\x17\x04\x0f\x25\x13\x02\x20\x17\x1a\x03\x13\x76",
-        // "%02x:" / M(Xor2) / S(0) / L(5)
-        "\x35\x20\x22\x68\x2a\x10\x9a\x9d\x01\x1f\x39\x66\x25\xf7\x93\x19",
-        // "CFDictionaryGetValue" / M(Xor2) / S(249) / L(20)
-        "\xaf\xaa\xa8\x85\x8f\x98\x85\x83\x82\x8d\x9e\x95\xab\x89\x98\xba\x8d\x80\x99\x89\xec",
-        // "SecKeychainSearchCopyNext" / M(Rot) / S(88) / L(25)
-        "\xab\xbd\xbb\xa3\xbd\xd1\xbb\xc0\xb9\xc1\xc6\xab\xbd\xb9\xca\xbb\xc0\x9b\xc7\xc8\xd1\xa6\xbd\xd0\xcc\x58\x4c\xcd\x5e\xdf\x1e\x09\x49\x0f",
-        // "IOMACAddress" / M(Xor3) / S(124) / L(12)
-        "\xc5\xc3\xc1\xcd\xcf\xcd\xe8\xe8\xfe\xe9\xff\xff\x8c\xdb\xa6\x43",
-        // "CFBundleUnloadExecutable" / M(Xor3) / S(211) / L(24)
-        "\xb7\xb2\xb6\x81\x9a\x90\x98\x91\xa1\x9a\x98\x9b\x95\x90\xb1\x8c\x91\x97\x81\x80\x95\x96\x98\x91\xf4\xb6\x35\xc2\x92\xe8\xdc\x4c\xaf",
+        "\xac\xbd\xf2\xfb\xfe\x5c\x32\x80\xee\x5f\x91\xde\x5f\x70\xfe\xa6\xa4\x43\x58\x0a\xc2\x84\x6d\x44\x38\x27\xb2\xfa\xc5\x38\xae\x89",
+        // "Contents/_MASReceipt/receipt" / M(Xor1) / S(23) / L(28)
+        "\x54\x78\x79\x63\x72\x79\x63\x64\x38\x48\x5a\x56\x44\x45\x72\x74\x72\x7e\x67\x63\x38\x65\x72\x74\x72\x7e\x67\x63\x17\x95\xad\xe2\x4f\x8f\x52\xdb\x84",
+        // "SecKeychainSearchCreateFromAttributes" / M(Xor4) / S(176) / L(37)
+        "\x73\x45\x43\x6b\x45\x59\x43\x48\x41\x49\x4e\x73\x45\x41\x52\x43\x48\x63\x52\x45\x41\x54\x45\x66\x52\x4f\x4d\x61\x54\x54\x52\x49\x42\x55\x54\x45\x53\x20",
         // "" / M(None) / S(0) / L(0)
-        "\xf9\xcb\xe3\x6f\xa7\x31\x09\x61\x6c\x81\xfb\xd5\x83\xd0\x6d\x9a\x0f\x76\x0e\x64\xb7\x41\x64\x75\x40\x4d\xf1\x04\x3c\x61\x01\xcb",
+        "\x40\x84\x50\x00\x37\xe6\x1d\x03\x8c\xcb\x92\x86\x7a\x79\x5e\xe7\x66\x32\x28\xc1\x87\x51\xc1\x22\x7d\x6d\xaa\xfe\x24\x4c\x63\xea",
+        // "sk_value" / M(Xor3) / S(24) / L(8)
+        "\x5b\x43\x77\x5e\x49\x44\x5d\x4d\x28\xb8\xbc\xe1\xbb\x4c\x8e\xb9",
+        // "CFEqual" / M(Rot) / S(203) / L(7)
+        "\x0e\x11\x10\x3c\x40\x2c\x37\xcb\x28\x07\x3c\x47\x31\xa9\xa9\x88",
+        // "SecCertificateCopyData" / M(Xor1) / S(218) / L(22)
+        "\x89\xbf\xb9\x99\xbf\xa8\xae\xb3\xbc\xb3\xb9\xbb\xae\xbf\x99\xb5\xaa\xa3\x9e\xbb\xae\xbb\xda",
+        // "SecKeychainOpen" / M(Xor4) / S(147) / L(15)
+        "\x63\x55\x53\x7b\x55\x49\x53\x58\x51\x59\x5e\x7f\x40\x55\x5e\x30",
         // "" / M(None) / S(0) / L(0)
-        "\x42\x24\xb4\x97\xac\xe8\xb3\xbb\x49\x8c\x61\xe3\x6e\x82\x53\xa3\x02\xbc\xbb\x6b\x29\xeb\x07\x2e\x88\xbe\xbb\x10\x84\x20\xad\xb0",
+        "\xd2\xc5\x4c\xd9\xf6\x84\x47\xbc\xdd\x25\xe1\x01\xfd\x1b\x82\x15\xaa\x44\x4f\xc7\x14\x62\x26\x55\xb2\x8b\xb4\x5e\xef\x98\xbb\xd0",
+        // "SecKeychainOpen" / M(Xor2) / S(194) / L(15)
+        "\x81\xb7\xb1\x99\xb7\xab\xb1\xba\xb3\xbb\xbc\x9d\xa2\xb7\xbc\xd2",
+        // "kCFBundleIdentifierKey" / M(Xor4) / S(247) / L(22)
+        "\x5a\x72\x77\x73\x44\x5f\x55\x5d\x54\x78\x55\x54\x5f\x45\x58\x57\x58\x54\x43\x7a\x54\x48\x31",
         // "" / M(None) / S(0) / L(0)
-        "\x38\x6e\x73\xa0\x61\xea\x46\x6b\x74\x51\xa8\x4c\x18\x79\x6e\x11\xc5\x33\x49\x2c\xdc\xe0\x1d\x92\xec\x45\x23\x0b\x86\xc9\x75\xdd",
-        // "61:1E:5B:66:2C:59:3A:08:FF:58:D1:4A:E2:24:52:D1:98:DF:6C:60" / M(Xor3) / S(3) / L(59)
-        "\x71\x76\x7d\x76\x02\x7d\x72\x05\x7d\x71\x71\x7d\x75\x04\x7d\x72\x7e\x7d\x74\x06\x7d\x77\x7f\x7d\x01\x01\x7d\x72\x7f\x7d\x03\x76\x7d\x73\x06\x7d\x02\x75\x7d\x75\x73\x7d\x72\x75\x7d\x03\x76\x7d\x7e\x7f\x7d\x03\x01\x7d\x71\x04\x7d\x71\x77\x47\x14\xa7\xa3\x00\x57\xb0\x66\xde",
-        // "glob" / M(Xor1) / S(174) / L(4)
-        "\xc9\xc2\xc1\xcc\xae\xcc\xbe\x01\x8e\x44\x2a\xe2\x83\x2d\x15\x26",
-        // "d2i_PKCS7_bio" / M(Xor4) / S(104) / L(13)
-        "\xe4\xb2\xe9\xdf\xd0\xcb\xc3\xd3\xb7\xdf\xe2\xe9\xef\x80\xea\x34",
-        // "X509_get_ext_by_OBJ" / M(Xor1) / S(6) / L(19)
-        "\x5e\x33\x36\x3f\x59\x61\x63\x72\x59\x63\x7e\x72\x59\x64\x7f\x59\x49\x44\x4c\x06",
+        "\xee\x6d\xa4\x78\x7c\x42\x64\x50\x88\xe3\x71\xc0\x3d\x5f\xfc\x27\xbb\x1f\x49\xc5\x5d\xca\x2f\x02\xd6\xde\x34\x7d\x07\x04\x57\x8c",
+        // "2.0.1" / M(Xor1) / S(127) / L(5)
+        "\x4d\x51\x4f\x51\x4e\x7f\x48\x1e\xb9\xf1\x25\xb4\x9c\x38\xa3\x7e",
+        // "en0" / M(Xor2) / S(25) / L(3)
+        "\x6c\x67\x39\x09\x3b\x70\xec\xb0\x11\x26\xe8\x77\xfc\xf5\xbe\xf0",
+        // "objc_msgSend" / M(Xor1) / S(171) / L(12)
+        "\xc4\xc9\xc1\xc8\xf4\xc6\xd8\xcc\xf8\xce\xc5\xcf\xab\xa2\x77\x33",
+        // "X509_digest" / M(Xor4) / S(236) / L(11)
+        "\x98\xf5\xf0\xf9\x9f\xa4\xa9\xa7\xa5\xb3\xb4\xc0\x27\xde\x3e\xda",
+        // "%02X" / M(Xor2) / S(161) / L(4)
+        "\x94\x81\x83\xe9\xb1\x8f\x7d\x21\xe3\x29\xb7\xfa\x07\x52\xfa\xdb",
+        // "sha1" / M(Xor2) / S(189) / L(4)
+        "\xde\xc5\xcc\x9c\xad\xed\x51\xfd\x0f\x95\xfb\xbc\x49\xe5\x59\xab",
+        // "X509_STORE_free" / M(Xor3) / S(29) / L(15)
+        "\x75\x18\x1d\x14\x72\x7e\x79\x62\x7f\x68\x72\x4b\x5f\x48\x48\x2d",
+        // "CFNumberCreate" / M(Xor4) / S(42) / L(14)
+        "\xe3\xe6\xee\xd5\xcd\xc2\xc5\xd2\xe3\xd2\xc5\xc1\xd4\xc5\xa0\xc1",
+        // "ASN1_get_object" / M(Xor1) / S(46) / L(15)
+        "\x6f\x7d\x60\x1f\x71\x49\x4b\x5a\x71\x41\x4c\x44\x4b\x4d\x5a\x2e",
+        // "CFRelease" / M(Xor1) / S(107) / L(9)
+        "\x28\x2d\x39\x0e\x07\x0e\x0a\x18\x0e\x6b\xde\xd0\x35\xcd\xd8\x6b",
+        // "CC_SHA1_Final" / M(Xor4) / S(167) / L(13)
+        "\x33\x33\x2f\x23\x38\x31\x41\x2f\x36\x19\x1e\x11\x1c\x70\xba\xb8",
+        // "CFEqual" / M(Xor2) / S(100) / L(7)
+        "\x37\x32\x31\x05\x01\x15\x18\x74\x9d\x84\x88\xb3\xa0\xd1\x37\x93",
+        // "kSecMatchSearchList" / M(Xor4) / S(101) / L(19)
+        "\x8f\xb7\x81\x87\xa9\x85\x90\x87\x8c\xb7\x81\x85\x96\x87\x8c\xa8\x8d\x97\x90\xe4",
+        // "EVP_DigestFinal" / M(Xor1) / S(249) / L(15)
+        "\xbc\xaf\xa9\xa6\xbd\x90\x9e\x9c\x8a\x8d\xbf\x90\x97\x98\x95\xf9",
+        // "%02x" / M(Xor4) / S(12) / L(4)
+        "\xe5\xf0\xf2\xb8\xc0\xf5\x24\xde\xe3\x8f\xb6\x1e\xc0\x04\xf8\x16",
         // "" / M(None) / S(0) / L(0)
-        "\x18\x10\x3a\x22\x6a\xda\x35\xf0\xf7\x87\x21\xfd\x0f\x26\x11\xf6\xd1\x75\xec\x78\x9a\xe4\x3b\x5a\x56\x63\x65\x3f\x80\x6b\x35\x84",
+        "\x9c\xfd\x90\x3d\xde\x23\x19\x82\x88\x30\x7d\x4f\x04\x5b\x26\xb0\xb4\xd5\x2a\x71\x90\xb6\x78\x62\xd0\xa6\xe8\x3f\x64\x41\x37\x06",
+        // "kSecMatchSubjectContains" / M(Xor2) / S(45) / L(24)
+        "\x67\x5f\x69\x6f\x41\x6d\x78\x6f\x64\x5f\x79\x6e\x66\x69\x6f\x78\x4f\x63\x62\x78\x6d\x65\x62\x7f\x0c\x2d\xbf\xbe\xf1\xf7\x7d\xa4\xac",
+        // "X509_free" / M(Xor4) / S(80) / L(9)
+        "\x58\x35\x30\x39\x5f\x66\x72\x65\x65\x00\xae\xc7\xc7\x7d\xdf\x0d",
         // "" / M(None) / S(0) / L(0)
-        "\x5a\x21\x2a\x1a\x69\x47\x00\xcf\x61\xd4\x3f\x63\x46\x38\x57\x91\xef\xc0\xa6\x47\x48\x09\xa7\x94\xb5\x19\xf7\x4f\x71\xee\xef\x27",
-        // "X509_NAME_get_text_by_NID" / M(Xor3) / S(95) / L(25)
-        "\xd9\xb4\xb1\xb8\xde\xcf\xc0\xcc\xc4\xde\xe6\xe4\xf5\xde\xf5\xe4\xf9\xf5\xde\xe3\xf8\xde\xcf\xc8\xc5\x81\x13\x76\x1a\x6e\x07\xcd\x75\x0e",
-        // "%02X" / M(Xor3) / S(6) / L(4)
-        "\x33\x26\x24\x4e\x16\x6e\x4e\xe5\x26\x29\xf5\xd6\xdf\x94\xe1\x50",
+        "\x5b\x40\x42\xed\x5a\xa0\x01\x0b\x6b\x73\x9a\xeb\x3a\x78\x89\x74\x0e\x8d\x95\xc8\xa0\x16\x54\x96\xa2\x4f\xfa\xf0\xc8\x78\x80\x7c",
         // "" / M(None) / S(0) / L(0)
-        "\x25\x4d\xbd\xac\xe0\xd8\x9f\x3f\x86\x2c\xd2\x52\x9b\x31\xb3\xc1\xad\x4c\x47\x30\xfa\x47\x94\x32\xfb\xdd\x5d\xbd\x67\x28\x30\x22",
-        // "PKCS7_free" / M(Xor1) / S(81) / L(10)
-        "\x01\x1a\x12\x02\x66\x0e\x37\x23\x34\x34\x51\x51\x19\xdb\x6c\x95",
+        "\xc5\x09\xb4\x18\x21\xad\x26\x3f\xc7\x9d\xdc\xc8\x16\x62\x0d\x3a\x04\x99\x44\x73\x79\xbe\x86\xde\x7b\x38\x39\x41\x7f\x53\xe5\x2b",
+        // "611e5b662c593a08ff58d14ae22452d198df6c60" / M(Xor4) / S(31) / L(40)
+        "\xd9\xde\xde\x8a\xda\x8d\xd9\xd9\xdd\x8c\xda\xd6\xdc\x8e\xdf\xd7\x89\x89\xda\xd7\x8b\xde\xdb\x8e\x8a\xdd\xdd\xdb\xda\xdd\x8b\xde\xd6\xd7\x8b\x89\xd9\x8c\xd9\xdf\xef\x38\xbf\x98\xd2\x15\x43\xdb\xd8",
         // "" / M(None) / S(0) / L(0)
-        "\x4d\x13\x90\xf3\x9d\x25\xde\x2d\x12\x59\xff\x18\x0f\x5f\xff\x83\x1d\x1a\xf2\xb3\x86\xc6\xf7\x03\x00\xa9\x1b\xec\x3b\x79\x61\x59",
-        // "longjmp" / M(Xor3) / S(172) / L(7)
-        "\xd0\xd3\xd2\xdb\xd6\xd1\xcc\xbc\x75\x36\xc4\x17\xad\x0f\x27\x12",
-        // "CFBundleIdentifier" / M(Xor4) / S(51) / L(18)
-        "\x8a\x8f\x8b\xbc\xa7\xad\xa5\xac\x80\xad\xac\xa7\xbd\xa0\xaf\xa0\xac\xbb\xc9",
-        // "CFStringGetFileSystemRepresentation" / M(Xor2) / S(13) / L(35)
-        "\x6a\x6f\x7a\x5d\x5b\x40\x47\x4e\x6e\x4c\x5d\x6f\x40\x45\x4c\x7a\x50\x5a\x5d\x4c\x44\x7b\x4c\x59\x5b\x4c\x5a\x4c\x47\x5d\x48\x5d\x40\x46\x47\x29",
+        "\xac\xfd\x0f\x72\x61\x26\x66\xd4\x89\xfb\x84\x2d\x9c\x96\x10\xc3\xd3\xc1\xb7\x86\xf9\x2c\x97\x99\x5d\xb7\x09\xaf\x4b\xff\xd8\xf3",
         // "" / M(None) / S(0) / L(0)
-        "\x19\x79\x52\x83\x21\x53\xc2\x2a\x2f\x2c\x3d\x46\xc0\xce\x3b\xf8\xdc\xb3\xa1\x7a\xed\xb6\xc1\xf4\xfa\x17\xa0\x19\x03\x8b\x6b\xe8",
-        // "X509_STORE_free" / M(Rot) / S(128) / L(15)
-        "\xd8\xb5\xb0\xb9\xdf\xd3\xd4\xcf\xd2\xc5\xdf\xe6\xf2\xe5\xe5\x80",
-        // "_MASReceipt/receipt" / M(Xor3) / S(155) / L(19)
-        "\xf0\xe2\xee\xfc\xfd\xca\xcc\xca\xc6\xdf\xdb\x80\xdd\xca\xcc\xca\xc6\xdf\xdb\xaf",
-        // "kCFTypeDictionaryKeyCallBacks" / M(Xor4) / S(238) / L(29)
-        "\x3f\x17\x12\x00\x2d\x24\x31\x10\x3d\x37\x20\x3d\x3b\x3a\x35\x26\x2d\x1f\x31\x2d\x17\x35\x38\x38\x16\x35\x37\x3f\x27\x54\x61\xd0\x17\xae\x92\xf2\x3c\xb4",
-        // "CFBundleUnloadExecutable" / M(Xor2) / S(145) / L(24)
-        "\xf3\xf6\xf2\xc5\xde\xd4\xdc\xd5\xe5\xde\xdc\xdf\xd1\xd4\xf5\xc8\xd5\xd3\xc5\xc4\xd1\xd2\xdc\xd5\xb0\xb7\xe8\xa2\x59\x63\xd6\xc7\xf8",
-        // "ASN1_get_object" / M(Xor1) / S(178) / L(15)
-        "\xf3\xe1\xfc\x83\xed\xd5\xd7\xc6\xed\xdd\xd0\xd8\xd7\xd1\xc6\xb2",
-        // "RTLD_MAIN_ONLY" / M(Rot) / S(69) / L(14)
-        "\x97\x99\x91\x89\xa4\x92\x86\x8e\x93\xa4\x94\x93\x91\x9e\x45\xa9",
+        "\x14\xe0\x43\xe8\xc5\x77\x29\x40\xc5\x82\xbb\xf2\xc4\x59\x47\xe2\xdb\x81\x38\xcf\x07\xe5\x52\xb9\xe9\x2f\x2e\x79\x61\xef\xaa\x48",
+        // "start" / M(Xor4) / S(128) / L(5)
+        "\x73\x74\x61\x72\x74\x00\x55\x6e\xbc\x9b\x45\x42\x65\x98\xa9\xbb",
+        // "kSecReturnRef" / M(Xor3) / S(238) / L(13)
+        "\x95\xad\x9b\x9d\xac\x9b\x8a\x8b\x8c\x90\xac\x9b\x98\xfe\x20\xdb",
+        // "ASN1_OBJECT_free" / M(Xor3) / S(78) / L(16)
+        "\x1e\x0c\x11\x6e\x00\x10\x1d\x15\x1a\x1c\x0b\x00\x39\x2d\x3a\x3a\x5f",
+        // "CFReadStreamOpen" / M(Xor3) / S(183) / L(16)
+        "\x8b\x8e\x9a\xad\xa9\xac\x9b\xbc\xba\xad\xa9\xa5\x87\xb8\xad\xa6\xc8",
+        // "X509_digest" / M(Rot) / S(230) / L(11)
+        "\x3e\x1b\x16\x1f\x45\x4a\x4f\x4d\x4b\x59\x5a\xe6\x66\x3d\xc2\xd5",
+        // "CFBundleGetMainBundle" / M(Xor2) / S(41) / L(21)
+        "\x7c\x79\x7d\x4a\x51\x5b\x53\x5a\x78\x5a\x4b\x72\x5e\x56\x51\x7d\x4a\x51\x5b\x53\x5a\x3f",
+        // "%02X:" / M(Xor3) / S(29) / L(5)
+        "\x08\x1d\x1f\x75\x17\x2d\xd9\x45\xbe\xa3\x24\xde\xf2\x7e\xcd\x41",
+        // "CFBundleIdentifier" / M(Xor4) / S(126) / L(18)
+        "\x19\x1c\x18\x2f\x34\x3e\x36\x3f\x13\x3e\x3f\x34\x2e\x33\x3c\x33\x3f\x28\x5a",
+        // "SecKeychainSearchCopyNext" / M(Rot) / S(97) / L(25)
+        "\xb4\xc6\xc4\xac\xc6\xda\xc4\xc9\xc2\xca\xcf\xb4\xc6\xc2\xd3\xc4\xc9\xa4\xd0\xd1\xda\xaf\xc6\xd9\xd5\x61\x95\xb1\xda\xf9\x6d\xc3\x11\x48",
+        // "kSecMatchSubjectContains" / M(Rot) / S(233) / L(24)
+        "\x54\x3c\x4e\x4c\x36\x4a\x5d\x4c\x51\x3c\x5e\x4b\x53\x4e\x4c\x5d\x2c\x58\x57\x5d\x4a\x52\x57\x5c\xe9\xe4\xa1\x1c\xc8\xa1\x7c\xdc\x52",
+        // "kCFTypeArrayCallBacks" / M(Xor3) / S(43) / L(21)
+        "\x2a\x02\x07\x15\x38\x31\x24\x00\x33\x33\x20\x38\x02\x20\x2d\x2d\x03\x20\x22\x2a\x32\x41",
         // "" / M(None) / S(0) / L(0)
-        "\x2a\xd3\xda\xc8\x9f\x31\x48\x25\x3d\x3e\x11\x0c\xd9\x40\x42\x0c\xaf\x04\x4c\x21\x75\xd5\xee\x31\x4e\x7f\xa8\x59\xb3\x90\xe2\x0a",
-        // "SecKeychainSearchCopyNext" / M(Rot) / S(73) / L(25)
-        "\x9c\xae\xac\x94\xae\xc2\xac\xb1\xaa\xb2\xb7\x9c\xae\xaa\xbb\xac\xb1\x8c\xb8\xb9\xc2\x97\xae\xc1\xbd\x49\xee\x68\x7d\x59\xa4\x8d\x37\xcf",
-        // "OpenSSL_add_all_digests" / M(Xor1) / S(188) / L(23)
-        "\xf3\xcc\xd9\xd2\xef\xef\xf0\xe3\xdd\xd8\xd8\xe3\xdd\xd0\xd0\xe3\xd8\xd5\xdb\xd9\xcf\xc8\xcf\xbc\xfd\xd7\xe2\x74\xf2\xbc\xce\xe1",
+        "\x36\x01\x71\xa9\xd1\xb6\x7c\xf1\xe6\x35\x4d\x2a\x24\xb2\x46\xa4\xce\xd9\x81\xd2\x9e\xe9\x48\xcc\xaa\x42\x76\x1b\xa6\x72\xc4\xd4",
+        // "61:1E:5B:66:2C:59:3A:08:FF:58:D1:4A:E2:24:52:D1:98:DF:6C:60" / M(Xor2) / S(5) / L(59)
+        "\x77\x70\x7b\x70\x04\x7b\x74\x03\x7b\x77\x77\x7b\x73\x02\x7b\x74\x78\x7b\x72\x00\x7b\x71\x79\x7b\x07\x07\x7b\x74\x79\x7b\x05\x70\x7b\x75\x00\x7b\x04\x73\x7b\x73\x75\x7b\x74\x73\x7b\x05\x70\x7b\x78\x79\x7b\x05\x07\x7b\x77\x02\x7b\x77\x71\x41\x05\xf4\x7d\x47\xaa\x46\xf2\xec",
+        // "CFReadStreamCreateWithFile" / M(Xor1) / S(51) / L(26)
+        "\x70\x75\x61\x56\x52\x57\x60\x47\x41\x56\x52\x5e\x70\x41\x56\x52\x47\x56\x64\x5a\x47\x5b\x75\x5a\x5f\x56\x33\x8e\xf5\x7a\xf0\x6b\x43\x44\xfe",
+        // "61:1e:5b:66:2c:59:3a:08:ff:58:d1:4a:e2:24:52:d1:98:df:6c:60" / M(Xor4) / S(159) / L(59)
+        "\x0a\x0d\x06\x0d\x59\x06\x09\x5e\x06\x0a\x0a\x06\x0e\x5f\x06\x09\x05\x06\x0f\x5d\x06\x0c\x04\x06\x5a\x5a\x06\x09\x04\x06\x58\x0d\x06\x08\x5d\x06\x59\x0e\x06\x0e\x08\x06\x09\x0e\x06\x58\x0d\x06\x05\x04\x06\x58\x5a\x06\x0a\x5f\x06\x0a\x0c\x3c\xc6\x4f\xc3\x8a\xda\x68\xe6\x84",
         // "" / M(None) / S(0) / L(0)
-        "\xee\xff\x34\xb4\xf4\xfa\xb6\xd0\x04\x9d\x2e\xcc\x41\xeb\x05\xc9\xc8\x21\x71\xaa\xd7\xda\x05\x20\xe4\xdb\x93\xea\x3c\x4d\x6f\x6d",
-        // "setjmp" / M(Xor4) / S(4) / L(6)
-        "\x33\x25\x34\x2a\x2d\x30\x40\x49\x68\xc9\xee\xd5\xcd\x53\xe8\x11",
-        // "sel_registerName" / M(Xor2) / S(123) / L(16)
-        "\x19\x0f\x06\x35\x18\x0f\x0d\x03\x19\x1e\x0f\x18\x24\x0b\x07\x0f\x6a",
-        // "611e5b662c593a08ff58d14ae22452d198df6c60" / M(Xor1) / S(239) / L(40)
-        "\xd9\xde\xde\x8a\xda\x8d\xd9\xd9\xdd\x8c\xda\xd6\xdc\x8e\xdf\xd7\x89\x89\xda\xd7\x8b\xde\xdb\x8e\x8a\xdd\xdd\xdb\xda\xdd\x8b\xde\xd6\xd7\x8b\x89\xd9\x8c\xd9\xdf\xef\x09\x3a\x26\x2d\x6a\xfe\xcc\x08",
-        // "CFDictionaryCreateMutable" / M(Xor1) / S(248) / L(25)
-        "\xbb\xbe\xbc\x91\x9b\x8c\x91\x97\x96\x99\x8a\x81\xbb\x8a\x9d\x99\x8c\x9d\xb5\x8d\x8c\x99\x9a\x94\x9d\xf8\x18\x17\x42\xcd\x2a\x4e\xd7\x78",
-        // "CFArrayGetCount" / M(Xor2) / S(49) / L(15)
-        "\x62\x67\x60\x53\x53\x40\x58\x66\x44\x55\x62\x4e\x54\x4f\x55\x21",
-        // "/System/Library/Frameworks/Security.framework/Security" / M(Rot) / S(135) / L(54)
-        "\xb6\xda\x00\xfa\xfb\xec\xf4\xb6\xd3\xf0\xe9\xf9\xe8\xf9\x00\xb6\xcd\xf9\xe8\xf4\xec\xfe\xf6\xf9\xf2\xfa\xb6\xda\xec\xea\xfc\xf9\xf0\xfb\x00\xb5\xed\xf9\xe8\xf4\xec\xfe\xf6\xf9\xf2\xb6\xda\xec\xea\xfc\xf9\xf0\xfb\x00\x87",
-        // "%02X:" / M(Xor1) / S(208) / L(5)
-        "\xf5\xe0\xe2\x88\xea\xd0\x39\xd8\xa0\xd2\x5e\x38\x05\x8c\x59\xe3",
+        "\x9b\x85\xa5\x9a\x34\x95\x9b\x36\xb3\x5f\x4e\x35\x46\x68\x70\x1d\x85\xeb\x02\x45\x48\x37\x83\x61\x65\xec\x04\x36\x82\xe7\x55\xaf",
+        // "RTLD_MAIN_ONLY" / M(Rot) / S(220) / L(14)
+        "\x2e\x30\x28\x20\x3b\x29\x1d\x25\x2a\x3b\x2b\x2a\x28\x35\xdc\xed",
+        // "" / M(None) / S(0) / L(0)
+        "\x82\xee\xdb\xef\x6b\xdd\x33\xb0\x53\x96\xd0\x59\xa0\x11\x48\x48\xdd\x8a\x17\x6f\xf0\xdd\x7f\xec\x03\xb7\xbf\x45\x29\xbd\x03\x02",
+        // "CC_SHA1_Update" / M(Xor4) / S(190) / L(14)
+        "\xa3\xa3\xbf\xb3\xa8\xa1\xd1\xbf\xb5\x90\x84\x81\x94\x85\xe0\x31",
+        // "611e5b662c593a08ff58d14ae22452d198df6c60" / M(Xor2) / S(177) / L(40)
+        "\xb6\xb1\xb1\xe5\xb5\xe2\xb6\xb6\xb2\xe3\xb5\xb9\xb3\xe1\xb0\xb8\xe6\xe6\xb5\xb8\xe4\xb1\xb4\xe1\xe5\xb2\xb2\xb4\xb5\xb2\xe4\xb1\xb9\xb8\xe4\xe6\xb6\xe3\xb6\xb0\x80\x36\x5f\xa9\xb4\x31\xb1\x00\x2c",
+        // "X509_free" / M(Rot) / S(175) / L(9)
+        "\x07\xe4\xdf\xe8\x0e\x15\x21\x14\x14\xaf\x35\xcc\x62\x86\xd8\x6a",
+        // "SecItemCopyMatching" / M(Xor4) / S(239) / L(19)
+        "\xff\xc9\xcf\xe5\xd8\xc9\xc1\xef\xc3\xdc\xd5\xe1\xcd\xd8\xcf\xc4\xc5\xc2\xcb\xac",
+        // "" / M(None) / S(0) / L(0)
+        "\x0b\xb7\x64\xed\xc8\x5f\xd4\x3d\x0e\x77\x2e\xd9\x46\xa5\xe2\x79\xe8\x4d\x77\x3d\xbd\x98\xac\x7f\xe2\x23\x8a\x7e\x15\xd3\xdc\x16",
+        // "longjmp" / M(Xor4) / S(30) / L(7)
+        "\x8c\x8f\x8e\x87\x8a\x8d\x90\xe0\x53\xf3\xdf\x9f\x52\xdb\xed\x9c",
+        // "CFReadStreamOpen" / M(Xor3) / S(239) / L(16)
+        "\x43\x46\x52\x65\x61\x64\x53\x74\x72\x65\x61\x6d\x4f\x70\x65\x6e\x00",
+        // "SecKeychainSearchCopyNext" / M(Xor4) / S(104) / L(25)
+        "\x83\xb5\xb3\x9b\xb5\xa9\xb3\xb8\xb1\xb9\xbe\x83\xb5\xb1\xa2\xb3\xb8\x93\xbf\xa0\xa9\x9e\xb5\xa8\xa4\xd0\xb2\xd5\x87\xce\x3f\x29\xf7\xe2",
+        // "X509_digest" / M(Xor1) / S(202) / L(11)
+        "\x92\xff\xfa\xf3\x95\xae\xa3\xad\xaf\xb9\xbe\xca\x07\x03\xe7\xbe",
+        // "" / M(None) / S(0) / L(0)
+        "\x87\x58\x2a\xc7\xca\xa3\x66\x63\xa2\xca\xf8\xb3\x1f\xe6\x3f\x84\xd5\x9b\xba\xab\xa7\x2f\x26\xf5\x30\x0b\xc2\x00\x95\x31\xd6\xaa",
+        // "sk_value" / M(Xor3) / S(117) / L(8)
+        "\xf6\xee\xda\xf3\xe4\xe9\xf0\xe0\x85\xf0\x8c\x9f\xa7\x05\xf4\xf8",
+        // "" / M(None) / S(0) / L(0)
+        "\xd5\x63\xe0\x93\x85\xfb\x39\x64\x77\xdc\x83\x12\xf0\x7c\x59\xec\xf3\x7f\xbb\x15\x3e\xab\x40\xdd\x83\xc7\xe7\x36\x1d\x6b\x29\x3e",
+        // "CFReadStreamRead" / M(Rot) / S(123) / L(16)
+        "\xbe\xc1\xcd\xe0\xdc\xdf\xce\xef\xed\xe0\xdc\xe8\xcd\xe0\xdc\xdf\x7b",
+        // "SecItemCopyMatching" / M(Xor2) / S(34) / L(19)
+        "\x65\x53\x55\x7f\x42\x53\x5b\x75\x59\x46\x4f\x7b\x57\x42\x55\x5e\x5f\x58\x51\x36",
+        // "BIO_new" / M(Xor2) / S(188) / L(7)
+        "\xee\xe5\xe3\xf3\xc2\xc9\xdb\xac\x05\x16\x7d\x60\x1b\xae\xd6\xcf",
+        // "%02X:" / M(Xor2) / S(189) / L(5)
+        "\x88\x9d\x9f\xf5\x97\xad\x0d\xeb\x6c\x2d\x36\xdf\x33\x9b\x40\x49",
+        // "SHA1" / M(Xor1) / S(221) / L(4)
+        "\x8e\x95\x9c\xec\xdd\xb9\xbe\x16\x11\xd3\x45\x6f\x79\x64\x1c\x33",
+        // "" / M(None) / S(0) / L(0)
+        "\x52\x1c\x30\x0d\xf6\xc2\x2b\xe8\xa7\x3a\xef\x92\xf0\x7b\xb5\x53\x87\xfb\x18\x5e\x14\x6b\x80\x96\x11\xc3\x62\x78\x05\x77\x38\x8f",
+        // "" / M(None) / S(0) / L(0)
+        "\x34\x48\x22\x5d\x8c\xdd\x37\xa0\xf7\xbf\xfc\xdf\x96\xd4\x5c\xed\xb5\x23\xd3\xa4\x65\xb2\x05\xc2\xe7\xe8\xea\x98\x36\x4d\xb0\x06",
+        // "CFDataGetBytePtr" / M(Xor4) / S(88) / L(16)
+        "\x9b\x9e\x9c\xb9\xac\xb9\x9f\xbd\xac\x9a\xa1\xac\xbd\x88\xac\xaa\xd8",
+        // "" / M(None) / S(0) / L(0)
+        "\x43\x30\x96\x10\xe4\xe0\xf6\x9a\x46\xf5\x8a\x6f\x05\xcd\x90\x4e\xdb\x7a\x8d\x6c\x40\xeb\xdf\x2e\x04\xf2\xc7\x7b\xf9\x56\xaa\x5c",
+        // "CFBundleIdentifier" / M(Xor3) / S(24) / L(18)
+        "\x68\x6d\x69\x5e\x45\x4f\x47\x4e\x62\x4f\x4e\x45\x5f\x42\x4d\x42\x4e\x59\x2b",
+        // "setjmp" / M(Xor1) / S(180) / L(6)
+        "\xc7\xd1\xc0\xde\xd9\xc4\xb4\xf8\x5a\x98\x1f\xa6\x96\x10\xe4\x60",
+        // "CFDictionaryAddValue" / M(Xor3) / S(0) / L(20)
+        "\x56\x53\x51\x7c\x76\x61\x7c\x7a\x7b\x74\x67\x6c\x54\x71\x71\x43\x74\x79\x60\x70\x15",
+        // "Apple Root CA" / M(Xor1) / S(139) / L(13)
+        "\xca\xfb\xfb\xe7\xee\xab\xd9\xe4\xe4\xff\xab\xc8\xca\x8b\x79\x04",
+        // "" / M(None) / S(0) / L(0)
+        "\x79\x07\x55\x27\xce\x8e\x5c\x66\x47\x59\x17\xf8\x72\x1a\xe3\xb9\xe3\xf8\xd0\xbb\x53\x59\x5c\xe7\xb6\x8f\xbb\xbc\x11\x67\x3d\xdf",
+        // "" / M(None) / S(0) / L(0)
+        "\xad\x31\x58\x0c\x5b\x76\x6b\x22\x96\x94\x9c\x84\x97\x85\xd1\x1d\x3b\x38\xbf\x3c\x44\x42\x1e\x99\x59\x24\xcf\xc2\x33\xe6\xfb\x25",
+        // "exit" / M(Xor4) / S(45) / L(4)
+        "\xb5\xa8\xb9\xa4\xd0\xc8\xc3\x83\xb4\x33\x8f\xe0\x5f\x59\xdf\xa2",
+        // "" / M(None) / S(0) / L(0)
+        "\xc2\x82\x5c\xed\x82\x5e\xe8\xc6\xbc\x98\xfc\x16\x14\x1a\xc8\x1c\x35\x97\xed\x4f\x34\x57\xe4\x87\x6e\xd5\xb0\x6d\xf3\x0d\x39\xcf",
+        // "CFDictionaryGetValue" / M(Xor4) / S(80) / L(20)
+        "\xd3\xd6\xd4\xf9\xf3\xe4\xf9\xff\xfe\xf1\xe2\xe9\xd7\xf5\xe4\xc6\xf1\xfc\xe5\xf5\x90",
+        // "CFNumberCreate" / M(Xor1) / S(231) / L(14)
+        "\xa4\xa1\xa9\x92\x8a\x85\x82\x95\xa4\x95\x82\x86\x93\x82\xe7\x91",
+        // "getifaddrs" / M(Xor1) / S(96) / L(10)
+        "\x07\x05\x14\x09\x06\x01\x04\x04\x12\x13\x60\xab\xad\x4f\x47\x4a",
+        // "" / M(None) / S(0) / L(0)
+        "\xd8\x04\x88\x80\x70\xb6\x54\x1e\x02\x28\x4f\xf5\x0d\xc7\xb4\xd2\xb5\xf9\x11\xc5\xf2\xed\xec\xf2\xaa\x58\x64\x02\xed\x31\x71\x9e",
+        // "SHA1_Init" / M(Xor4) / S(204) / L(9)
+        "\x93\x88\x81\xf1\x9f\x89\xae\xa9\xb4\xc0\xd0\xc5\x95\xd5\x2b\x16",
+        // "CC_SHA1_Final" / M(Xor1) / S(93) / L(13)
+        "\x1e\x1e\x02\x0e\x15\x1c\x6c\x02\x1b\x34\x33\x3c\x31\x5d\xe0\x79",
+        // "kCFTypeDictionaryValueCallBacks" / M(Xor3) / S(155) / L(31)
+        "\xd0\xf8\xfd\xef\xc2\xcb\xde\xff\xd2\xd8\xcf\xd2\xd4\xd5\xda\xc9\xc2\xed\xda\xd7\xce\xde\xf8\xda\xd7\xd7\xf9\xda\xd8\xd0\xc8\xbb",
+        // "kCFTypeArrayCallBacks" / M(Xor1) / S(9) / L(21)
+        "\x62\x4a\x4f\x5d\x70\x79\x6c\x48\x7b\x7b\x68\x70\x4a\x68\x65\x65\x4b\x68\x6a\x62\x7a\x09",
+        // "CFDateFormatterCreateDateFromString" / M(Xor3) / S(162) / L(35)
+        "\x85\x80\x82\xa7\xb2\xa3\x80\xa9\xb4\xab\xa7\xb2\xb2\xa3\xb4\x85\xb4\xa3\xa7\xb2\xa3\x82\xa7\xb2\xa3\x80\xb4\xa9\xab\x95\xb2\xb4\xaf\xa8\xa1\xc6",
+        // "" / M(None) / S(0) / L(0)
+        "\x95\xd4\xc7\x1f\x0c\x01\x68\x63\xe1\xf3\x3e\x6e\x64\xf7\x9b\x7b\x2b\x57\x08\xf1\x1f\x07\x5e\x39\x6e\xb4\xb9\x50\xa9\x53\xb6\x9f",
+        // "kSecMatchLimitAll" / M(Rot) / S(112) / L(17)
+        "\xdb\xc3\xd5\xd3\xbd\xd1\xe4\xd3\xd8\xbc\xd9\xdd\xd9\xe4\xb1\xdc\xdc\x70",
+        // "CFStringGetFileSystemRepresentation" / M(Xor2) / S(242) / L(35)
+        "\x95\x90\x85\xa2\xa4\xbf\xb8\xb1\x91\xb3\xa2\x90\xbf\xba\xb3\x85\xaf\xa5\xa2\xb3\xbb\x84\xb3\xa6\xa4\xb3\xa5\xb3\xb8\xa2\xb7\xa2\xbf\xb9\xb8\xd6",
+        // "CFDataAppendBytes" / M(Xor4) / S(169) / L(17)
+        "\xa1\xa4\xa6\x83\x96\x83\xa3\x92\x92\x87\x8c\x86\xa0\x9b\x96\x87\x91\xe2",
+        // "SHA1" / M(Xor2) / S(135) / L(4)
+        "\xc4\xdf\xd6\xa6\x97\x28\x60\x31\x4e\x55\x58\xc8\x17\xd5\x56\xcd",
+        // "%02X" / M(Xor1) / S(90) / L(4)
+        "\x7f\x6a\x68\x02\x5a\xb6\xb4\x2d\x1b\x01\xb7\x76\x2d\x1a\x70\x6c",
+        // "X509_STORE_add_cert" / M(Xor3) / S(175) / L(19)
+        "\x9b\xf6\xf3\xfa\x9c\x90\x97\x8c\x91\x86\x9c\xa2\xa7\xa7\x9c\xa0\xa6\xb1\xb7\xc3",
+        // "PKCS7_get0_signers" / M(Xor3) / S(214) / L(18)
+        "\xb9\xa2\xaa\xba\xde\xb6\x8e\x8c\x9d\xd9\xb6\x9a\x80\x8e\x87\x8c\x9b\x9a\xe9",
+        // "OpenSSL_add_all_digests" / M(Xor4) / S(193) / L(23)
+        "\x6f\x50\x45\x4e\x73\x73\x6c\x7f\x41\x44\x44\x7f\x41\x4c\x4c\x7f\x44\x49\x47\x45\x53\x54\x53\x20\x5c\x99\x14\x5c\x90\xff\xf4\x0f",
+        // "CFArrayGetCount" / M(Xor2) / S(97) / L(15)
+        "\x32\x37\x30\x03\x03\x10\x08\x36\x14\x05\x32\x1e\x04\x1f\x05\x71",
+        // "CFReadStreamClose" / M(Rot) / S(124) / L(17)
+        "\xbf\xc2\xce\xe1\xdd\xe0\xcf\xf0\xee\xe1\xdd\xe9\xbf\xe8\xeb\xef\xe1\x7c",
+        // "CFArrayGetValueAtIndex" / M(Xor4) / S(95) / L(22)
+        "\xca\xcf\xc8\xfb\xfb\xe8\xf0\xce\xec\xfd\xdf\xe8\xe5\xfc\xec\xc8\xfd\xc0\xe7\xed\xec\xf1\x89",
+        // "CFURLCreateWithFileSystemPathRelativeToBase" / M(Xor3) / S(17) / L(43)
+        "\x06\x03\x10\x17\x09\x06\x37\x20\x24\x31\x20\x12\x2c\x31\x2d\x03\x2c\x29\x20\x16\x3c\x36\x31\x20\x28\x15\x24\x31\x2d\x17\x20\x29\x24\x31\x2c\x33\x20\x11\x2a\x07\x24\x36\x20\x45\x05\x1e\xf9\x15\x0b\xa8\x21\x0d",
+        // "" / M(None) / S(0) / L(0)
+        "\x46\x5c\xb6\x9e\x62\xbd\x36\x39\xce\xba\xbc\x01\xce\xe4\x94\x70\xe9\xb0\x48\x9c\x88\x1e\xe7\xf5\x8d\x6a\x68\x6e\x9f\xaa\x2c\xa8",
+        // "CFReadStreamCreateWithFile" / M(Xor1) / S(164) / L(26)
+        "\xe7\xe2\xf6\xc1\xc5\xc0\xf7\xd0\xd6\xc1\xc5\xc9\xe7\xd6\xc1\xc5\xd0\xc1\xf3\xcd\xd0\xcc\xe2\xcd\xc8\xc1\xa4\xfe\xcb\x2d\xf9\xf3\x4f\x2d\x5e",
+        // "Contents/_MASReceipt/receipt" / M(Rot) / S(202) / L(28)
+        "\x0d\x39\x38\x3e\x2f\x38\x3e\x3d\xf9\x29\x17\x0b\x1d\x1c\x2f\x2d\x2f\x33\x3a\x3e\xf9\x3c\x2f\x2d\x2f\x33\x3a\x3e\xca\x25\x41\x68\x7c\x0f\xa4\x62\x89",
+        // "" / M(None) / S(0) / L(0)
+        "\x24\x83\xb1\x63\x28\xb6\xe7\xbb\x6d\x58\xa8\x82\x7f\x3f\x52\x79\x26\x4e\xe8\x3b\xb4\x0c\x73\x9e\x37\x33\xec\xfe\x94\x80\x52\x13",
+        // "freeifaddrs" / M(Xor4) / S(50) / L(11)
+        "\x46\x52\x45\x45\x49\x46\x41\x44\x44\x52\x53\x20\xba\xf1\x40\x28",
+        // "CFBundleGetIdentifier" / M(Xor4) / S(6) / L(21)
+        "\xc7\xc2\xc6\xf1\xea\xe0\xe8\xe1\xc3\xe1\xf0\xcd\xe0\xe1\xea\xf0\xed\xe2\xed\xe1\xf6\x84",
+        // "SecCertificateCopyData" / M(Rot) / S(211) / L(22)
+        "\x26\x38\x36\x16\x38\x45\x47\x3c\x39\x3c\x36\x34\x47\x38\x16\x42\x43\x4c\x17\x34\x47\x34\xd3",
+        // "CFDataCreateMutable" / M(Rot) / S(49) / L(19)
+        "\x74\x77\x75\x92\xa5\x92\x74\xa3\x96\x92\xa5\x96\x7e\xa6\xa5\x92\x93\x9d\x96\x31",
+        // "" / M(None) / S(0) / L(0)
+        "\x4c\x64\x58\x4b\x64\x54\x1d\x70\x89\xfa\xb4\x4c\x69\xdb\x82\xef\x33\x35\x81\xa0\x15\xac\x55\x11\x37\x4d\x0a\xdd\x52\x92\x9d\xfd",
+        // "sk_num" / M(Xor1) / S(212) / L(6)
+        "\xa7\xbf\x8b\xba\xa1\xb9\xd4\x09\x7e\x90\xf4\x32\x77\xdf\x2a\xea",
+        // "CFStringCreateWithBytes" / M(Xor3) / S(131) / L(23)
+        "\xe0\xe5\xf0\xd7\xd1\xca\xcd\xc4\xe0\xd1\xc6\xc2\xd7\xc6\xf4\xca\xd7\xcb\xe1\xda\xd7\xc6\xd0\xa3\xfa\xa9\x74\x97\x4a\xa4\x17\x4f",
+        // "CFURLCreateCopyAppendingPathComponent" / M(Xor4) / S(87) / L(37)
+        "\xa9\xac\xbf\xb8\xa6\xa9\x98\x8f\x8b\x9e\x8f\xa9\x85\x9a\x93\xab\x9a\x9a\x8f\x84\x8e\x83\x84\x8d\xba\x8b\x9e\x82\xa9\x85\x87\x9a\x85\x84\x8f\x84\x9e\xea",
+        // "dlopen" / M(Xor3) / S(250) / L(6)
+        "\x6e\x66\x65\x7a\x6f\x64\x0a\xf2\xfb\x8c\x28\x5e\x12\x74\xe2\x2b",
+        // "getifaddrs" / M(Rot) / S(89) / L(10)
+        "\xc0\xbe\xcd\xc2\xbf\xba\xbd\xbd\xcb\xcc\x59\x95\x04\x72\x8e\xdb",
+        // "sel_registerName" / M(Rot) / S(92) / L(16)
+        "\xcf\xc1\xc8\xbb\xce\xc1\xc3\xc5\xcf\xd0\xc1\xce\xaa\xbd\xc9\xc1\x5c",
+        // "objc_getClass" / M(Xor1) / S(85) / L(13)
+        "\x3a\x37\x3f\x36\x0a\x32\x30\x21\x16\x39\x34\x26\x26\x55\x94\x82",
+        // "dlopen" / M(Xor3) / S(55) / L(6)
+        "\x23\x2b\x28\x37\x22\x29\x47\x55\x1f\xf6\xa6\x0a\x3a\x14\x1e\xd4",
+        // "/usr/lib/libobjc.dylib" / M(Xor4) / S(186) / L(22)
+        "\x99\xc3\xc5\xc4\x99\xda\xdf\xd4\x99\xda\xdf\xd4\xd9\xd4\xdc\xd5\x98\xd2\xcf\xda\xdf\xd4\xb6",
+        // "" / M(None) / S(0) / L(0)
+        "\xcf\xae\xce\x33\xd6\x77\xf6\x37\x1a\xb2\xba\x14\xf7\xc7\x48\x25\xfb\x9f\xf4\xb7\x2d\xc0\x75\x4f\x94\xaa\x7c\x31\x7e\xa6\x79\x51",
+        // "EVP_get_digestbyname" / M(Xor2) / S(58) / L(20)
+        "\x6a\x79\x7f\x70\x48\x4a\x5b\x70\x4b\x46\x48\x4a\x5c\x5b\x4d\x56\x41\x4e\x42\x4a\x2f",
+        // "" / M(None) / S(0) / L(0)
+        "\xdf\x01\x91\x55\xe3\xbb\xa6\x0d\x3a\xe1\xac\x5d\x7e\x95\x9b\xe8\xb9\x60\x60\x21\x14\xf7\x83\x7d\xcf\xcc\xa1\x81\x93\x3b\x90\x0d",
+        // "kSecMatchSearchList" / M(Xor3) / S(129) / L(19)
+        "\xfe\xc6\xf0\xf6\xd8\xf4\xe1\xf6\xfd\xc6\xf0\xf4\xe7\xf6\xfd\xd9\xfc\xe6\xe1\x95",
+        // "" / M(None) / S(0) / L(0)
+        "\x78\xd8\x68\x99\x48\xb3\x89\x13\xe6\x93\x56\x0c\xac\x7e\xcb\x17\xda\xb0\x8f\xfd\x12\x3e\xc1\xd2\x89\xb9\xed\x4a\x72\xf3\x84\x26",
+        // "CFBundleIdentifier" / M(Xor4) / S(223) / L(18)
+        "\xce\xcb\xcf\xf8\xe3\xe9\xe1\xe8\xc4\xe9\xe8\xe3\xf9\xe4\xeb\xe4\xe8\xff\x8d",
+        // "/usr/lib/libobjc.dylib" / M(Xor3) / S(80) / L(22)
+        "\x48\x12\x14\x15\x48\x0b\x0e\x05\x48\x0b\x0e\x05\x08\x05\x0d\x04\x49\x03\x1e\x0b\x0e\x05\x67",
+        // "CFDateFormatterCreate" / M(Xor1) / S(0) / L(21)
+        "\x43\x46\x44\x61\x74\x65\x46\x6f\x72\x6d\x61\x74\x74\x65\x72\x43\x72\x65\x61\x74\x65\x00",
+        // "CC_SHA1_Update" / M(Xor4) / S(150) / L(14)
+        "\x23\x23\x3f\x33\x28\x21\x51\x3f\x35\x10\x04\x01\x14\x05\x60\x0e",
+        // "" / M(None) / S(0) / L(0)
+        "\xfb\x18\x07\x71\xe9\x1c\x1c\xa2\x85\xb0\x91\x16\xe4\x45\xbb\xfd\x43\xe8\x93\x49\xc8\x9d\x88\x51\xdd\x4f\x91\xd6\xca\x6c\xf6\x44",
+        // "SHA1_Update" / M(Xor2) / S(121) / L(11)
+        "\x3a\x21\x28\x58\x36\x3c\x19\x0d\x08\x1d\x0c\x69\x19\x07\x32\xfc",
+        // "Apple Root CA" / M(Rot) / S(187) / L(13)
+        "\xfc\x2b\x2b\x27\x20\xdb\x0d\x2a\x2a\x2f\xdb\xfe\xfc\xbb\x62\x91",
+        // "OBJ_txt2obj" / M(Rot) / S(168) / L(11)
+        "\xf7\xea\xf2\x07\x1c\x20\x1c\xda\x17\x0a\x12\xa8\x92\x16\x53\x8e",
+        // "glob_b" / M(Xor2) / S(190) / L(6)
+        "\xc9\xc2\xc1\xcc\xf1\xcc\xae\x4b\x6b\xed\x21\x34\x00\x59\xbe\x8e",
+        // "CFDateFormatterCreate" / M(Xor4) / S(188) / L(21)
+        "\x6b\x6e\x6c\x49\x5c\x4d\x6e\x47\x5a\x45\x49\x5c\x5c\x4d\x5a\x6b\x5a\x4d\x49\x5c\x4d\x28",
+        // "kCFTypeArrayCallBacks" / M(Rot) / S(10) / L(21)
+        "\x75\x4d\x50\x5e\x83\x7a\x6f\x4b\x7c\x7c\x6b\x83\x4d\x6b\x76\x76\x4c\x6b\x6d\x75\x7d\x0a",
+        // "CFStringCreateWithCString" / M(Rot) / S(48) / L(25)
+        "\x73\x76\x83\xa4\xa2\x99\x9e\x97\x73\xa2\x95\x91\xa4\x95\x87\x99\xa4\x98\x73\x83\xa4\xa2\x99\x9e\x97\x30\xcd\xfb\xf6\xd7\x1a\x40\xe6\xd8",
+        // "strlen" / M(Rot) / S(222) / L(6)
+        "\x51\x52\x50\x4a\x43\x4c\xde\x93\x9e\x10\xfb\x02\xbe\xb7\xf2\x22",
+        // "CFDataAppendBytes" / M(Xor2) / S(129) / L(17)
+        "\xd0\xd5\xd7\xf2\xe7\xf2\xd2\xe3\xe3\xf6\xfd\xf7\xd1\xea\xe7\xf6\xe0\x93",
+        // "" / M(None) / S(0) / L(0)
+        "\x0d\xa5\x7b\x95\x9a\x86\x5b\xdd\x6c\xa7\x69\xc9\x75\x24\x49\x37\xdc\x9e\xb8\x9c\x28\x17\x30\xb7\x0b\x62\xf6\x54\x82\x95\x46\xa8",
+        // "kCFTypeDictionaryKeyCallBacks" / M(Xor2) / S(32) / L(29)
+        "\x6d\x45\x40\x52\x7f\x76\x63\x42\x6f\x65\x72\x6f\x69\x68\x67\x74\x7f\x4d\x63\x7f\x45\x67\x6a\x6a\x44\x67\x65\x6d\x75\x06\x48\xac\xaf\xed\x73\xdd\xa8\x1c",
+        // "" / M(None) / S(0) / L(0)
+        "\x44\xe9\xad\x1b\xd0\x97\xb4\x0b\x0c\xf5\x91\x2c\x74\x71\x21\x25\x43\x2f\xe0\x76\xea\x61\xfd\x64\x61\x92\xe7\x7e\xb6\xc3\x29\x61",
+        // "BIO_write" / M(Xor1) / S(1) / L(9)
+        "\x43\x48\x4e\x5e\x76\x73\x68\x75\x64\x01\xb2\x6d\xc2\xca\x79\xee",
+        // "2.0.1" / M(Rot) / S(18) / L(5)
+        "\x44\x40\x42\x40\x43\x12\x5b\x6e\x03\x60\xd8\x8c\xb4\x8a\x84\xd3",
+        // "" / M(None) / S(0) / L(0)
+        "\x9b\x74\x37\x48\xb0\xd7\x16\xb6\x5a\x88\xbb\xb2\x2c\xce\xb9\xa6\x00\x64\x6c\x03\xde\x83\x7f\xe2\x4d\x39\xe3\x87\xe7\xdc\xf5\x55",
+        // "OpenSSL_add_all_digests" / M(Xor1) / S(175) / L(23)
+        "\xe0\xdf\xca\xc1\xfc\xfc\xe3\xf0\xce\xcb\xcb\xf0\xce\xc3\xc3\xf0\xcb\xc6\xc8\xca\xdc\xdb\xdc\xaf\x88\xdb\x2d\xa9\xa1\x8e\xb1\x32",
+        // "" / M(None) / S(0) / L(0)
+        "\x9b\x08\x71\xc2\x44\x52\x6c\x9d\x2f\x7b\x0a\xe6\x82\x79\xe5\x7e\x44\xae\x9b\x2f\xdc\x4c\x6b\x45\xd8\x2f\xd7\xed\x92\xc3\x4a\xbc",
+        // "CFDictionarySetValue" / M(Xor3) / S(189) / L(20)
+        "\x91\x94\x96\xbb\xb1\xa6\xbb\xbd\xbc\xb3\xa0\xab\x81\xb7\xa6\x84\xb3\xbe\xa7\xb7\xd2",
+        // "CFDataGetLength" / M(Rot) / S(5) / L(15)
+        "\x48\x4b\x49\x66\x79\x66\x4c\x6a\x79\x51\x6a\x73\x6c\x79\x6d\x05",
+        // "" / M(None) / S(0) / L(0)
+        "\x59\x40\xa7\x46\x4c\x40\xc1\x82\x20\xbd\x68\xaf\xa7\x32\x77\x08\x60\xb4\xb0\xf9\x4a\x31\x0b\xde\xaf\x30\x1a\xfe\x06\x2b\xdc\xac",
+        // "d2i_X509_bio" / M(Xor1) / S(23) / L(12)
+        "\x73\x25\x7e\x48\x4f\x22\x27\x2e\x48\x75\x7e\x78\x17\x66\x8a\x98",
+        // "SecItemCopyMatching" / M(Xor4) / S(121) / L(19)
+        "\x27\x11\x17\x3d\x00\x11\x19\x37\x1b\x04\x0d\x39\x15\x00\x17\x1c\x1d\x1a\x13\x74",
+        // "/usr/lib/libSystem.dylib" / M(Xor3) / S(8) / L(24)
+        "\x06\x5c\x5a\x5b\x06\x45\x40\x4b\x06\x45\x40\x4b\x7a\x50\x5a\x5d\x4c\x44\x07\x4d\x50\x45\x40\x4b\x29\x58\x2b\x0a\x13\x0d\xfd\xdb\x07",
+        // "kSecClass" / M(Xor4) / S(141) / L(9)
+        "\xbb\x83\xb5\xb3\x93\xbc\xb1\xa3\xa3\xd0\xc8\xe3\x58\xd6\xbb\xf0",
+        // "CFBundleUnloadExecutable" / M(Xor4) / S(133) / L(24)
+        "\x66\x63\x67\x50\x4b\x41\x49\x40\x70\x4b\x49\x4a\x44\x41\x60\x5d\x40\x46\x50\x51\x44\x47\x49\x40\x25\x36\xb3\xcd\x12\x2f\xc5\x0d\x97",
+        // "PKCS7_free" / M(Xor3) / S(201) / L(10)
+        "\x89\x92\x9a\x8a\xee\x86\xbf\xab\xbc\xbc\xd9\x48\x2f\x87\xb0\xcd",
+        // "kSecMatchLimit" / M(Xor3) / S(119) / L(14)
+        "\xec\xd4\xe2\xe4\xca\xe6\xf3\xe4\xef\xcb\xee\xea\xee\xf3\x87\xfd",
+        // "/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation" / M(Rot) / S(17) / L(66)
+        "\x40\x64\x8a\x84\x85\x76\x7e\x40\x5d\x7a\x73\x83\x72\x83\x8a\x40\x57\x83\x72\x7e\x76\x88\x80\x83\x7c\x84\x40\x54\x80\x83\x76\x57\x80\x86\x7f\x75\x72\x85\x7a\x80\x7f\x3f\x77\x83\x72\x7e\x76\x88\x80\x83\x7c\x40\x54\x80\x83\x76\x57\x80\x86\x7f\x75\x72\x85\x7a\x80\x7f\x11",
+        // "CFBundleUnloadExecutable" / M(Xor4) / S(191) / L(24)
+        "\xdc\xd9\xdd\xea\xf1\xfb\xf3\xfa\xca\xf1\xf3\xf0\xfe\xfb\xda\xe7\xfa\xfc\xea\xeb\xfe\xfd\xf3\xfa\x9f\x83\x5a\xab\xce\x5f\x59\x61\x70",
+        // "61:1e:5b:66:2c:59:3a:08:ff:58:d1:4a:e2:24:52:d1:98:df:6c:60" / M(Xor4) / S(129) / L(59)
+        "\x72\x75\x7e\x75\x21\x7e\x71\x26\x7e\x72\x72\x7e\x76\x27\x7e\x71\x7d\x7e\x77\x25\x7e\x74\x7c\x7e\x22\x22\x7e\x71\x7c\x7e\x20\x75\x7e\x70\x25\x7e\x21\x76\x7e\x76\x70\x7e\x71\x76\x7e\x20\x75\x7e\x7d\x7c\x7e\x20\x22\x7e\x72\x27\x7e\x72\x74\x44\xb2\x16\x23\x48\x97\x54\x2c\x38",
+        // "" / M(None) / S(0) / L(0)
+        "\x5b\x4c\x7d\xd2\xd2\xb2\x07\x3c\x4d\xe6\x7e\xe2\x02\x3a\x39\xf9\x7f\xa6\xd3\x94\xbd\x1e\xe0\xac\xe4\x5b\xc8\x79\x6d\x0e\x7a\xe4",
+        // "" / M(None) / S(0) / L(0)
+        "\x70\x82\x31\xc4\x30\x3c\xce\x67\x34\x0a\x26\xb6\x74\xed\xfe\x02\x4c\xbe\x36\x8c\xbe\xcd\x31\x77\xdc\xfb\xa1\x0d\x81\xca\x6d\xe6",
+        // "X509_STORE_add_cert" / M(Rot) / S(121) / L(19)
+        "\xd1\xae\xa9\xb2\xd8\xcc\xcd\xc8\xcb\xbe\xd8\xda\xdd\xdd\xd8\xdc\xde\xeb\xed\x79",
+        // "CFDictionarySetValue" / M(Xor1) / S(138) / L(20)
+        "\xc9\xcc\xce\xe3\xe9\xfe\xe3\xe5\xe4\xeb\xf8\xf3\xd9\xef\xfe\xdc\xeb\xe6\xff\xef\x8a",
+        // "BIO_free" / M(Xor2) / S(195) / L(8)
+        "\x91\x9a\x9c\x8c\xb5\xa1\xb6\xb6\xd3\x2c\x20\xa4\xa1\xe6\x37\x63",
+        // "strcmp" / M(Xor4) / S(97) / L(6)
+        "\x63\x64\x62\x73\x7d\x60\x10\x77\x59\x61\xe8\x8d\x2e\x71\x36\x11",
+        // "" / M(None) / S(0) / L(0)
+        "\xb2\x74\xbb\x4c\xc5\x4c\xfa\x7c\x59\x14\x5d\x30\x5f\x12\x7a\x6c\x7f\xcc\xd7\x5f\x8c\xb0\x76\x89\xcf\xbd\x08\xe4\x77\x82\x6c\xb7",
+        // "kCFTypeDictionaryValueCallBacks" / M(Xor3) / S(238) / L(31)
+        "\x65\x4d\x48\x5a\x77\x7e\x6b\x4a\x67\x6d\x7a\x67\x61\x60\x6f\x7c\x77\x58\x6f\x62\x7b\x6b\x4d\x6f\x62\x62\x4c\x6f\x6d\x65\x7d\x0e",
+        // "CFBundleGetValueForInfoDictionaryKey" / M(Xor2) / S(108) / L(36)
+        "\x0a\x0f\x0b\x3c\x27\x2d\x25\x2c\x0e\x2c\x3d\x1f\x28\x25\x3c\x2c\x0f\x26\x3b\x00\x27\x2f\x26\x0d\x20\x2a\x3d\x20\x26\x27\x28\x3b\x30\x02\x2c\x30\x49",
+        // "" / M(None) / S(0) / L(0)
+        "\xb0\x12\x58\x44\x8e\xec\x88\xdf\x3f\x69\xb5\x5e\x41\x81\x01\x52\x2b\xe4\x04\x9d\x53\xeb\x79\xfa\xc3\xa9\xf4\x81\xbe\x0d\xf4\x7a",
+        // "globfree" / M(Xor4) / S(121) / L(8)
+        "\xf7\xfc\xff\xf2\xf6\xe2\xf5\xf5\x90\x00\x13\x8b\xf4\xee\xdc\x8b",
+        // "CFBundleShortVersionString" / M(Xor1) / S(196) / L(26)
+        "\x87\x82\x86\xb1\xaa\xa0\xa8\xa1\x97\xac\xab\xb6\xb0\x92\xa1\xb6\xb7\xad\xab\xaa\x97\xb0\xb6\xad\xaa\xa3\xc4\x52\x8e\x14\xa2\x7e\xa5\x98\x06",
+        // "glob" / M(Xor1) / S(63) / L(4)
+        "\x58\x53\x50\x5d\x3f\xc4\xaa\x0e\x77\x1d\xac\xe8\x30\xc3\xea\xe7",
+        // "CFURLCreateFromFileSystemRepresentation" / M(Xor2) / S(55) / L(39)
+        "\x44\x41\x52\x55\x4b\x44\x75\x62\x66\x73\x62\x41\x75\x68\x6a\x41\x6e\x6b\x62\x54\x7e\x74\x73\x62\x6a\x55\x62\x77\x75\x62\x74\x62\x69\x73\x66\x73\x6e\x68\x69\x07\xd6\xd3\x91\xa9\x7b\x65\x25\x4b",
+        // "CFArrayAppendValue" / M(Xor2) / S(244) / L(18)
+        "\xa4\xa1\xa6\x95\x95\x86\x9e\xa6\x97\x97\x82\x89\x83\xb1\x86\x8b\x92\x82\xe7",
+        // "SHA1_Init" / M(Xor1) / S(56) / L(9)
+        "\x6b\x70\x79\x09\x67\x71\x56\x51\x4c\x38\xcd\x3d\xdb\x1e\x7c\x1d",
+        // "SHA1_Final" / M(Xor3) / S(189) / L(10)
+        "\x9e\x85\x8c\xfc\x92\x8b\xa4\xa3\xac\xa1\xcd\xe8\x14\x33\xbe\x4e",
+        // "" / M(None) / S(0) / L(0)
+        "\xd4\xf4\x7b\x00\xd1\xf9\x6b\x2c\xa0\xf3\x5b\xee\x5d\x8a\x10\xd5\xf9\x5f\xef\xf5\xc3\x5e\xc3\x36\x3d\x63\xc9\x8d\x1b\x8f\x73\x12",
+        // "SecKeychainSearchCreateFromAttributes" / M(Xor2) / S(211) / L(37)
+        "\xa6\x90\x96\xbe\x90\x8c\x96\x9d\x94\x9c\x9b\xa6\x90\x94\x87\x96\x9d\xb6\x87\x90\x94\x81\x90\xb3\x87\x9a\x98\xb4\x81\x81\x87\x9c\x97\x80\x81\x90\x86\xf5",
+        // "strncmp" / M(Xor3) / S(230) / L(7)
+        "\x85\x82\x84\x98\x95\x9b\x86\xf6\x35\xcf\x0e\x96\x2d\x19\x05\x14",
+        // "CFDateFormatterSetFormat" / M(Xor2) / S(245) / L(24)
+        "\x97\x92\x90\xb5\xa0\xb1\x92\xbb\xa6\xb9\xb5\xa0\xa0\xb1\xa6\x87\xb1\xa0\x92\xbb\xa6\xb9\xb5\xa0\xd4\xae\xc0\xb7\x67\x04\x7f\x71\x14",
+        // "glob_b" / M(Xor1) / S(130) / L(6)
+        "\xe5\xee\xed\xe0\xdd\xe0\x82\x86\x29\x99\x3b\xa5\x1c\x38\x9a\x62",
+        // "sk_num" / M(Xor4) / S(51) / L(6)
+        "\x43\x5b\x6f\x5e\x45\x5d\x30\x1b\x7c\xb6\x56\x23\x43\x73\xea\x86",
+        // "CFDateFormatterSetFormat" / M(Xor1) / S(103) / L(24)
+        "\x24\x21\x23\x06\x13\x02\x21\x08\x15\x0a\x06\x13\x13\x02\x15\x34\x02\x13\x21\x08\x15\x0a\x06\x13\x67\xc4\x33\x30\x8a\x0b\x73\x0e\xe0",
+        // "" / M(None) / S(0) / L(0)
+        "\xc8\xc1\x03\x52\x23\x76\x42\x56\xea\xa5\xae\x5d\x27\x1a\x37\x8c\x6c\x90\xb8\x31\xf2\x65\x06\xc1\x2b\xb9\xfd\x7e\xd5\xf5\xea\x4a",
+        // "" / M(None) / S(0) / L(0)
+        "\x08\xb5\x40\x00\x62\xf5\x9e\x6c\xf2\x5e\x3d\x92\x6c\x5d\x30\x7b\x37\x0f\x8f\x9c\xb9\x7e\x28\x7e\xb9\x4e\x11\x23\x13\x4c\xb7\x7e",
+        // "CC_SHA1_Init" / M(Xor1) / S(113) / L(12)
+        "\x32\x32\x2e\x22\x39\x30\x40\x2e\x38\x1f\x18\x05\x71\x0d\xde\xf6",
+        // "" / M(None) / S(0) / L(0)
+        "\xb3\x4f\x1f\x95\xad\xd9\x5c\xf0\x59\xa8\xa1\x55\xab\x88\x99\xad\x00\xae\x6d\xb1\xe2\x9d\x92\x8a\x02\xf1\xe0\xcd\x47\xc4\x0f\x01",
+        // "X509_STORE_free" / M(Rot) / S(30) / L(15)
+        "\x76\x53\x4e\x57\x7d\x71\x72\x6d\x70\x63\x7d\x84\x90\x83\x83\x1e",
+        // "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'" / M(Xor4) / S(29) / L(32)
+        "\xc4\xc4\xc4\xc4\x9a\x90\x9a\xf0\xf0\x9a\x90\x9a\xd9\xd9\x9a\xe9\x9a\xf5\xf5\x9a\x87\x9a\xd0\xd0\x9a\x87\x9a\xce\xce\x9a\xe7\x9a\xbd",
+        // "" / M(None) / S(0) / L(0)
+        "\x05\x94\xf1\x17\xb1\xa8\xe2\x89\x0e\xe1\x2f\x08\x9c\x8a\xeb\x2f\x4b\x1f\x43\x46\x05\xf3\x6e\xb1\x49\x8a\xa3\x96\x27\xb4\x0e\xcf",
+        // "CFStringCreateWithCString" / M(Xor4) / S(32) / L(25)
+        "\x03\x06\x13\x34\x32\x29\x2e\x27\x03\x32\x25\x21\x34\x25\x17\x29\x34\x28\x03\x13\x34\x32\x29\x2e\x27\x40\x7f\x42\xa1\x5c\xa7\x6b\x76\x5d",
+        // "Contents/_MASReceipt" / M(Xor4) / S(162) / L(20)
+        "\x09\x25\x24\x3e\x2f\x24\x3e\x39\x65\x15\x07\x0b\x19\x18\x2f\x29\x2f\x23\x3a\x3e\x4a",
+        // "CFArrayGetCount" / M(Xor4) / S(73) / L(15)
+        "\xd3\xd6\xd1\xe2\xe2\xf1\xe9\xd7\xf5\xe4\xd3\xff\xe5\xfe\xe4\x90",
+        // "SecCertificateCopyData" / M(Xor1) / S(140) / L(22)
+        "\xdf\xe9\xef\xcf\xe9\xfe\xf8\xe5\xea\xe5\xef\xed\xf8\xe9\xcf\xe3\xfc\xf5\xc8\xed\xf8\xed\x8c",
+        // "SKReceiptRefreshRequest" / M(Xor1) / S(224) / L(23)
+        "\xb3\xab\xb2\x85\x83\x85\x89\x90\x94\xb2\x85\x86\x92\x85\x93\x88\xb2\x85\x91\x95\x85\x93\x94\xe0\x1f\x5e\x31\x85\x6d\xd9\x86\x76",
+        // "CFBundleGetMainBundle" / M(Xor1) / S(106) / L(21)
+        "\x29\x2c\x28\x1f\x04\x0e\x06\x0f\x2d\x0f\x1e\x27\x0b\x03\x04\x28\x1f\x04\x0e\x06\x0f\x6a",
+        // "%02x" / M(Xor2) / S(45) / L(4)
+        "\x18\x0d\x0f\x45\x3d\x41\xfd\x97\x04\x67\xe4\xa1\x7c\x21\x7c\x3a",
+        // "" / M(None) / S(0) / L(0)
+        "\x99\xc0\x25\xa3\xec\x0f\xc2\xd1\x62\x4d\x6e\x9c\x98\x9f\x1b\x51\xa8\x55\x29\xb1\x9c\x5b\xf3\x36\xfb\x31\xf1\x0e\xbc\xd3\xc7\x3d",
+        // "freeifaddrs" / M(Rot) / S(45) / L(11)
+        "\x93\x9f\x92\x92\x96\x93\x8e\x91\x91\x9f\xa0\x2d\x3c\xc6\xe6\xfa",
+        // "" / M(None) / S(0) / L(0)
+        "\x7e\xe1\x99\x00\xf1\x4b\x13\xfa\x77\xed\x1c\x54\x56\x13\xbd\x12\x8f\x72\xa4\x19\xf8\x3a\x07\x5c\x41\x44\x0a\xeb\x1d\x76\xbd\x68",
+        // "1.2.840.113635.100.6.11.1" / M(Xor2) / S(65) / L(25)
+        "\x52\x4d\x51\x4d\x5b\x57\x53\x4d\x52\x52\x50\x55\x50\x56\x4d\x52\x53\x53\x4d\x55\x4d\x52\x52\x4d\x52\x63\xc5\xbc\xa7\x9c\x4b\x2e\xf3\x83",
+        // "BIO_s_mem" / M(Xor2) / S(4) / L(9)
+        "\x56\x5d\x5b\x4b\x67\x4b\x79\x71\x79\x14\x54\x5f\xb1\x96\x31\x92",
+        // "CC_SHA1_Init" / M(Rot) / S(234) / L(12)
+        "\x2d\x2d\x49\x3d\x32\x2b\x1b\x49\x33\x58\x53\x5e\xea\x55\x92\xcc",
+        // "globfree" / M(Xor3) / S(111) / L(8)
+        "\x18\x13\x10\x1d\x19\x0d\x1a\x1a\x7f\xcf\x87\xd4\x00\x91\xa9\x61",
     };
     
     // Table for storing pointers
-    static void *RV_Pointers[565] = {
-        ((void *) BIO_write),
-        ((void *) X509_NAME_get_text_by_NID),
+    static void *RV_Pointers[542] = {
         ((void *) NULL),
-        ((void *) ASN1_OBJECT_free),
         ((void *) NULL),
         ((void *) NULL),
-        ((void *) dlsym),
-        ((void *) ASN1_get_object),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
-        ((void *) globfree),
         ((void *) NULL),
         ((void *) NULL),
-        ((void *) NULL),
-        ((void *) X509_STORE_add_cert),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) EVP_DigestInit),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) EVP_DigestUpdate),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) ASN1_OBJECT_free),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) glob_b),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) strncmp),
-        ((void *) OpenSSL_add_all_digests),
-        ((void *) NULL),
-        ((void *) sk_num),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) CFStringCreateWithBytes),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) EVP_DigestFinal),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) X509_STORE_new),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) EVP_MD_CTX_init),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) ASN1_get_object),
-        ((void *) NULL),
-        ((void *) SHA1_Update),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) RTLD_MAIN_ONLY),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) PKCS7_get0_signers),
-        ((void *) BIO_new),
-        ((void *) SHA1_Init),
-        ((void *) sk_value),
-        ((void *) NULL),
-        ((void *) d2i_X509_bio),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) d2i_PKCS7_bio),
-        ((void *) globfree),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) dlsym),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) strncmp),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) SHA1_Final),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) sk_free),
-        ((void *) CFStringCreateWithBytes),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) PKCS7_get0_signers),
-        ((void *) glob_b),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) EVP_MD_CTX_init),
-        ((void *) NULL),
-        ((void *) strlen),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) EVP_DigestUpdate),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) X509_digest),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) X509_STORE_add_cert),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) dlopen),
-        ((void *) X509_NAME_get_text_by_NID),
-        ((void *) NULL),
-        ((void *) EVP_DigestFinal),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) sk_free),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) SHA1),
-        ((void *) PKCS7_free),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) SHA1_Init),
-        ((void *) SHA1_Final),
-        ((void *) NULL),
-        ((void *) BIO_write),
-        ((void *) SHA1_Init),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) dlopen),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) BIO_s_mem),
-        ((void *) EVP_get_digestbyname),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) d2i_X509_bio),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) EVP_get_digestbyname),
-        ((void *) EVP_DigestUpdate),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) CFStringCreateWithCString),
-        ((void *) strlen),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) CFStringCreateWithBytes),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) BIO_s_mem),
-        ((void *) OBJ_txt2obj),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) strlen),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) BIO_new),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) EVP_DigestInit),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) glob_b),
-        ((void *) OBJ_txt2obj),
-        ((void *) BIO_write),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) CFStringCreateWithCString),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) EVP_MD_CTX_init),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) OpenSSL_add_all_digests),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) X509_STORE_free),
-        ((void *) PKCS7_get0_signers),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) EVP_DigestFinal),
-        ((void *) sk_num),
-        ((void *) NULL),
-        ((void *) NULL),
+        ((void *) BIO_free),
         ((void *) PKCS7_verify),
+        ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
@@ -1937,167 +1557,15 @@ extern "C" {
         ((void *) NULL),
         ((void *) NULL),
         ((void *) X509_free),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) X509_STORE_new),
-        ((void *) NULL),
-        ((void *) RTLD_MAIN_ONLY),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) SHA1),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) BIO_new),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) PKCS7_free),
-        ((void *) SHA1),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) BIO_free),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) sk_num),
-        ((void *) NULL),
-        ((void *) PKCS7_verify),
-        ((void *) ASN1_OBJECT_free),
-        ((void *) NULL),
-        ((void *) X509_get_ext_by_OBJ),
-        ((void *) NULL),
-        ((void *) X509_free),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) glob),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) d2i_X509_bio),
-        ((void *) sk_value),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) EVP_DigestInit),
-        ((void *) dlsym),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) PKCS7_verify),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) strncmp),
-        ((void *) NULL),
-        ((void *) X509_STORE_add_cert),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) X509_digest),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) dlopen),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) SHA1_Update),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) BIO_s_mem),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) X509_STORE_new),
-        ((void *) sk_value),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) X509_get_ext_by_OBJ),
-        ((void *) BIO_free),
-        ((void *) NULL),
-        ((void *) NULL),
         ((void *) d2i_PKCS7_bio),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) X509_digest),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) globfree),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) OBJ_txt2obj),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) X509_STORE_free),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) X509_free),
-        ((void *) SHA1_Update),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
         ((void *) BIO_free),
+        ((void *) X509_STORE_new),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) EVP_get_digestbyname),
-        ((void *) NULL),
-        ((void *) SHA1_Final),
-        ((void *) NULL),
-        ((void *) CFStringCreateWithCString),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) sk_free),
         ((void *) NULL),
         ((void *) glob),
         ((void *) NULL),
@@ -2116,6 +1584,246 @@ extern "C" {
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
+        ((void *) RTLD_MAIN_ONLY),
+        ((void *) strlen),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) X509_get_ext_by_OBJ),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) PKCS7_free),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) sk_free),
+        ((void *) NULL),
+        ((void *) d2i_X509_bio),
+        ((void *) NULL),
+        ((void *) EVP_DigestInit),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) X509_STORE_new),
+        ((void *) NULL),
+        ((void *) X509_get_ext_by_OBJ),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) EVP_DigestUpdate),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) EVP_DigestInit),
+        ((void *) NULL),
+        ((void *) sk_free),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) ASN1_OBJECT_free),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) BIO_write),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) dlsym),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) X509_NAME_get_text_by_NID),
+        ((void *) NULL),
+        ((void *) RTLD_MAIN_ONLY),
+        ((void *) NULL),
+        ((void *) PKCS7_free),
+        ((void *) sk_num),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) EVP_DigestUpdate),
+        ((void *) NULL),
+        ((void *) SHA1_Update),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) X509_get_ext_by_OBJ),
+        ((void *) dlopen),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) PKCS7_get0_signers),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) SHA1_Final),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) strncmp),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) strlen),
+        ((void *) NULL),
+        ((void *) OpenSSL_add_all_digests),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) EVP_DigestInit),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) PKCS7_verify),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) OBJ_txt2obj),
+        ((void *) strcmp),
+        ((void *) NULL),
+        ((void *) CFStringCreateWithCString),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) d2i_PKCS7_bio),
+        ((void *) ASN1_get_object),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) globfree),
+        ((void *) NULL),
+        ((void *) dlsym),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) EVP_MD_CTX_init),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) dlsym),
+        ((void *) NULL),
+        ((void *) EVP_DigestFinal),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) CFStringCreateWithBytes),
+        ((void *) NULL),
+        ((void *) SHA1),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) SHA1_Init),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) BIO_write),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) BIO_new),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) ASN1_OBJECT_free),
+        ((void *) NULL),
+        ((void *) glob_b),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) strcmp),
+        ((void *) BIO_s_mem),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) d2i_X509_bio),
+        ((void *) NULL),
+        ((void *) X509_NAME_get_text_by_NID),
+        ((void *) NULL),
+        ((void *) sk_value),
+        ((void *) NULL),
+        ((void *) d2i_PKCS7_bio),
+        ((void *) NULL),
+        ((void *) EVP_DigestFinal),
+        ((void *) X509_STORE_free),
+        ((void *) ASN1_get_object),
+        ((void *) PKCS7_verify),
+        ((void *) X509_STORE_add_cert),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) EVP_DigestUpdate),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) EVP_get_digestbyname),
+        ((void *) NULL),
+        ((void *) X509_STORE_new),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) SHA1_Final),
+        ((void *) NULL),
+        ((void *) strncmp),
+        ((void *) EVP_MD_CTX_init),
+        ((void *) NULL),
+        ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
@@ -2125,27 +1833,146 @@ extern "C" {
         ((void *) NULL),
         ((void *) NULL),
         ((void *) glob),
-        ((void *) d2i_PKCS7_bio),
-        ((void *) X509_get_ext_by_OBJ),
+        ((void *) sk_free),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) X509_NAME_get_text_by_NID),
         ((void *) NULL),
         ((void *) NULL),
-        ((void *) PKCS7_free),
+        ((void *) NULL),
+        ((void *) OBJ_txt2obj),
+        ((void *) NULL),
+        ((void *) PKCS7_get0_signers),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
+        ((void *) SHA1_Update),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) EVP_get_digestbyname),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) EVP_MD_CTX_init),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) CFStringCreateWithBytes),
+        ((void *) NULL),
+        ((void *) BIO_s_mem),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) BIO_new),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) sk_value),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) X509_digest),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) X509_STORE_free),
         ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
         ((void *) ASN1_get_object),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) EVP_DigestFinal),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) X509_free),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) ASN1_OBJECT_free),
+        ((void *) NULL),
+        ((void *) X509_digest),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
         ((void *) RTLD_MAIN_ONLY),
         ((void *) NULL),
         ((void *) NULL),
+        ((void *) NULL),
+        ((void *) X509_free),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) X509_digest),
+        ((void *) NULL),
+        ((void *) sk_value),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) BIO_new),
+        ((void *) NULL),
+        ((void *) SHA1),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) SHA1_Init),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) SHA1),
+        ((void *) NULL),
+        ((void *) X509_STORE_add_cert),
+        ((void *) PKCS7_get0_signers),
         ((void *) OpenSSL_add_all_digests),
         ((void *) NULL),
         ((void *) NULL),
@@ -2155,6 +1982,105 @@ extern "C" {
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) sk_num),
+        ((void *) CFStringCreateWithBytes),
+        ((void *) NULL),
+        ((void *) dlopen),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) dlopen),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) EVP_get_digestbyname),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) SHA1_Update),
+        ((void *) NULL),
+        ((void *) OBJ_txt2obj),
+        ((void *) glob_b),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) CFStringCreateWithCString),
+        ((void *) strlen),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) BIO_write),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) OpenSSL_add_all_digests),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) d2i_X509_bio),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) PKCS7_free),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) X509_STORE_add_cert),
+        ((void *) NULL),
+        ((void *) BIO_free),
+        ((void *) strcmp),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) globfree),
+        ((void *) NULL),
+        ((void *) glob),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) SHA1_Init),
+        ((void *) SHA1_Final),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) strncmp),
+        ((void *) NULL),
+        ((void *) glob_b),
+        ((void *) sk_num),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) X509_STORE_free),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) CFStringCreateWithCString),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) BIO_s_mem),
+        ((void *) NULL),
+        ((void *) globfree),
     };
     
     // Push a new diagnostic context
@@ -2167,216 +2093,211 @@ extern "C" {
 #pragma clang diagnostic ignored "-Wused-but-marked-unused"
     
     // Global variables
-    static int RV_QTQIYYKDHZUX __unused;
-    static int RV_WZFOWZREXLHB __unused;
-    static int RV_KYEHJWKNZEEB __unused;
-    static int RV_QWQFLAFLIXCL __unused;
-    static int RV_WVGZWQTCUMDX __unused;
-    static int RV_HOMCOURKRIMK __unused;
-    static int RV_CVYYOQHHDSEM __unused;
-    static int RV_OVBWQJKFFITA __unused;
+    static int RV_NMCRJBPXHTDH __unused;
+    static int RV_SJPVPZSFHYYD __unused;
+    static int RV_JCTZLPASYXCW __unused;
+    static int RV_QBGASNEBJQIE __unused;
+    static int RV_ULDQRPYUOEON __unused;
+    static int RV_LNQGAPCQAYML __unused;
+    static int RV_EHCQHJFPOOLY __unused;
+    static int RV_EMCRXNTABHOH __unused;
     
     
     // The long jump buffer
     static jmp_buf RV_JumpBuf __unused;
     
-#define RV_ASN1_get_object_015F0058 ((__RV_ASN1_get_object) RV_LookupFunction015(RV_ObfuscationFunction00B, 351, 201, 16, RV_ObfuscationFunction009, 88, 194, 16))
-#define RV_ASN1_OBJECT_free_02290179 ((__RV_ASN1_OBJECT_free) RV_LookupFunction015(RV_ObfuscationFunction004, 553, 69, 16, RV_ObfuscationFunction006, 377, 53, 17))
-#define RV_BIO_free_00640173 ((__RV_BIO_free) RV_LookupFunction015(RV_ObfuscationFunction00B, 100, 208, 16, RV_ObfuscationFunction008, 371, 162, 16))
-#define RV_BIO_free_006401E7 ((__RV_BIO_free) RV_LookupFunction015(RV_ObfuscationFunction00B, 100, 208, 16, RV_ObfuscationFunction00C, 487, 129, 16))
-#define RV_BIO_free_02290173 ((__RV_BIO_free) RV_LookupFunction015(RV_ObfuscationFunction004, 553, 69, 16, RV_ObfuscationFunction008, 371, 162, 16))
-#define RV_BIO_new_00640070 ((__RV_BIO_new) RV_LookupFunction015(RV_ObfuscationFunction00B, 100, 208, 16, RV_ObfuscationFunction005, 112, 85, 16))
-#define RV_BIO_new_015F0122 ((__RV_BIO_new) RV_LookupFunction015(RV_ObfuscationFunction00B, 351, 201, 16, RV_ObfuscationFunction00B, 290, 231, 16))
-#define RV_BIO_new_015F0167 ((__RV_BIO_new) RV_LookupFunction015(RV_ObfuscationFunction00B, 351, 201, 16, RV_ObfuscationFunction007, 359, 243, 16))
-#define RV_BIO_s_mem_0064011B ((__RV_BIO_s_mem) RV_LookupFunction015(RV_ObfuscationFunction00B, 100, 208, 16, RV_ObfuscationFunction004, 283, 234, 16))
-#define RV_BIO_s_mem_015F00F3 ((__RV_BIO_s_mem) RV_LookupFunction015(RV_ObfuscationFunction00B, 351, 201, 16, RV_ObfuscationFunction003, 243, 128, 16))
-#define RV_BIO_s_mem_015F011B ((__RV_BIO_s_mem) RV_LookupFunction015(RV_ObfuscationFunction00B, 351, 201, 16, RV_ObfuscationFunction004, 283, 234, 16))
-#define RV_BIO_write_015F00E8 ((__RV_BIO_write) RV_LookupFunction015(RV_ObfuscationFunction00B, 351, 201, 16, RV_ObfuscationFunction009, 232, 4, 16))
-#define RV_BIO_write_022900E8 ((__RV_BIO_write) RV_LookupFunction015(RV_ObfuscationFunction004, 553, 69, 16, RV_ObfuscationFunction009, 232, 4, 16))
-#define RV_BIO_write_02290130 ((__RV_BIO_write) RV_LookupFunction015(RV_ObfuscationFunction004, 553, 69, 16, RV_ObfuscationFunction009, 304, 215, 16))
-#define RV_CC_SHA1_Init_0077019D ((__RV_CC_SHA1_Init) RV_LookupFunction015(RV_ObfuscationFunction003, 119, 177, 33, RV_ObfuscationFunction00B, 413, 149, 16))
-#define RV_CFArrayAppendValue_009100B6 ((__RV_CFArrayAppendValue) RV_LookupFunction015(RV_ObfuscationFunction006, 145, 1, 67, RV_ObfuscationFunction00C, 182, 235, 19))
-#define RV_CFArrayAppendValue_016800B6 ((__RV_CFArrayAppendValue) RV_LookupFunction015(RV_ObfuscationFunction003, 360, 113, 67, RV_ObfuscationFunction00C, 182, 235, 19))
-#define RV_CFArrayGetValueAtIndex_00910005 ((__RV_CFArrayGetValueAtIndex) RV_LookupFunction015(RV_ObfuscationFunction006, 145, 1, 67, RV_ObfuscationFunction006, 5, 87, 23))
-#define RV_CFArrayGetValueAtIndex_01680107 ((__RV_CFArrayGetValueAtIndex) RV_LookupFunction015(RV_ObfuscationFunction003, 360, 113, 67, RV_ObfuscationFunction008, 263, 161, 23))
-#define RV_CFBundleGetMainBundle_00910083 ((__RV_CFBundleGetMainBundle) RV_LookupFunction015(RV_ObfuscationFunction006, 145, 1, 67, RV_ObfuscationFunction006, 131, 8, 22))
-#define RV_CFBundleUnloadExecutable_003F0227 ((__RV_CFBundleUnloadExecutable) RV_LookupFunction015(RV_ObfuscationFunction007, 63, 133, 67, RV_ObfuscationFunction008, 551, 145, 33))
-#define RV_CFDataAppendBytes_00910039 ((__RV_CFDataAppendBytes) RV_LookupFunction015(RV_ObfuscationFunction006, 145, 1, 67, RV_ObfuscationFunction007, 57, 55, 18))
-#define RV_CFDataAppendBytes_00910191 ((__RV_CFDataAppendBytes) RV_LookupFunction015(RV_ObfuscationFunction006, 145, 1, 67, RV_ObfuscationFunction00B, 401, 145, 18))
-#define RV_CFDataCreate_003F00FB ((__RV_CFDataCreate) RV_LookupFunction015(RV_ObfuscationFunction007, 63, 133, 67, RV_ObfuscationFunction004, 251, 137, 16))
-#define RV_CFDataCreate_00910131 ((__RV_CFDataCreate) RV_LookupFunction015(RV_ObfuscationFunction006, 145, 1, 67, RV_ObfuscationFunction009, 305, 57, 16))
-#define RV_CFDataCreate_01680119 ((__RV_CFDataCreate) RV_LookupFunction015(RV_ObfuscationFunction003, 360, 113, 67, RV_ObfuscationFunction007, 281, 227, 16))
-#define RV_CFDataCreateMutable_003F00F6 ((__RV_CFDataCreateMutable) RV_LookupFunction015(RV_ObfuscationFunction007, 63, 133, 67, RV_ObfuscationFunction004, 246, 188, 20))
-#define RV_CFDataCreateMutable_009100F6 ((__RV_CFDataCreateMutable) RV_LookupFunction015(RV_ObfuscationFunction006, 145, 1, 67, RV_ObfuscationFunction004, 246, 188, 20))
-#define RV_CFDataCreateMutable_009101C2 ((__RV_CFDataCreateMutable) RV_LookupFunction015(RV_ObfuscationFunction006, 145, 1, 67, RV_ObfuscationFunction005, 450, 196, 20))
-#define RV_CFDateFormatterCreate_00910133 ((__RV_CFDateFormatterCreate) RV_LookupFunction015(RV_ObfuscationFunction006, 145, 1, 67, RV_ObfuscationFunction00A, 307, 177, 22))
-#define RV_CFDateFormatterCreate_01680133 ((__RV_CFDateFormatterCreate) RV_LookupFunction015(RV_ObfuscationFunction003, 360, 113, 67, RV_ObfuscationFunction00A, 307, 177, 22))
-#define RV_CFDateFormatterCreateDateFromString_009101CD ((__RV_CFDateFormatterCreateDateFromString) RV_LookupFunction015(RV_ObfuscationFunction006, 145, 1, 67, RV_ObfuscationFunction00C, 461, 179, 36))
-#define RV_CFDateFormatterCreateDateFromString_016801CD ((__RV_CFDateFormatterCreateDateFromString) RV_LookupFunction015(RV_ObfuscationFunction003, 360, 113, 67, RV_ObfuscationFunction00C, 461, 179, 36))
-#define RV_CFDateFormatterSetFormat_00910105 ((__RV_CFDateFormatterSetFormat) RV_LookupFunction015(RV_ObfuscationFunction006, 145, 1, 67, RV_ObfuscationFunction00A, 261, 208, 33))
-#define RV_CFDateFormatterSetFormat_016801A5 ((__RV_CFDateFormatterSetFormat) RV_LookupFunction015(RV_ObfuscationFunction003, 360, 113, 67, RV_ObfuscationFunction008, 421, 238, 33))
-#define RV_CFDictionaryGetValue_0091011D ((__RV_CFDictionaryGetValue) RV_LookupFunction015(RV_ObfuscationFunction006, 145, 1, 67, RV_ObfuscationFunction005, 285, 26, 21))
-#define RV_CFDictionaryGetValue_0168011D ((__RV_CFDictionaryGetValue) RV_LookupFunction015(RV_ObfuscationFunction003, 360, 113, 67, RV_ObfuscationFunction005, 285, 26, 21))
-#define RV_CFDictionaryGetValue_016801D9 ((__RV_CFDictionaryGetValue) RV_LookupFunction015(RV_ObfuscationFunction003, 360, 113, 67, RV_ObfuscationFunction003, 473, 16, 21))
-#define RV_CFReadStreamClose_003F006B ((__RV_CFReadStreamClose) RV_LookupFunction015(RV_ObfuscationFunction007, 63, 133, 67, RV_ObfuscationFunction00B, 107, 98, 18))
-#define RV_CFReadStreamClose_003F00DF ((__RV_CFReadStreamClose) RV_LookupFunction015(RV_ObfuscationFunction007, 63, 133, 67, RV_ObfuscationFunction005, 223, 135, 18))
-#define RV_CFReadStreamOpen_01680093 ((__RV_CFReadStreamOpen) RV_LookupFunction015(RV_ObfuscationFunction003, 360, 113, 67, RV_ObfuscationFunction003, 147, 46, 17))
-#define RV_CFReadStreamOpen_016800A2 ((__RV_CFReadStreamOpen) RV_LookupFunction015(RV_ObfuscationFunction003, 360, 113, 67, RV_ObfuscationFunction008, 162, 54, 17))
-#define RV_CFRelease_003F0137 ((__RV_CFRelease) RV_LookupFunction015(RV_ObfuscationFunction007, 63, 133, 67, RV_ObfuscationFunction00C, 311, 193, 16))
-#define RV_CFRelease_003F0198 ((__RV_CFRelease) RV_LookupFunction015(RV_ObfuscationFunction007, 63, 133, 67, RV_ObfuscationFunction006, 408, 225, 16))
-#define RV_CFRelease_0091008F ((__RV_CFRelease) RV_LookupFunction015(RV_ObfuscationFunction006, 145, 1, 67, RV_ObfuscationFunction006, 143, 218, 16))
-#define RV_CFRelease_00910137 ((__RV_CFRelease) RV_LookupFunction015(RV_ObfuscationFunction006, 145, 1, 67, RV_ObfuscationFunction00C, 311, 193, 16))
-#define RV_CFRelease_00910198 ((__RV_CFRelease) RV_LookupFunction015(RV_ObfuscationFunction006, 145, 1, 67, RV_ObfuscationFunction006, 408, 225, 16))
-#define RV_CFRelease_0168008F ((__RV_CFRelease) RV_LookupFunction015(RV_ObfuscationFunction003, 360, 113, 67, RV_ObfuscationFunction006, 143, 218, 16))
-#define RV_CFRelease_01680137 ((__RV_CFRelease) RV_LookupFunction015(RV_ObfuscationFunction003, 360, 113, 67, RV_ObfuscationFunction00C, 311, 193, 16))
-#define RV_CFRelease_01680198 ((__RV_CFRelease) RV_LookupFunction015(RV_ObfuscationFunction003, 360, 113, 67, RV_ObfuscationFunction006, 408, 225, 16))
-#define RV_CFURLCreateWithFileSystemPathRelativeToBase_003F015C ((__RV_CFURLCreateWithFileSystemPathRelativeToBase) RV_LookupFunction015(RV_ObfuscationFunction007, 63, 133, 67, RV_ObfuscationFunction00A, 348, 247, 52))
-#define RV_CFURLCreateWithFileSystemPathRelativeToBase_009101C7 ((__RV_CFURLCreateWithFileSystemPathRelativeToBase) RV_LookupFunction015(RV_ObfuscationFunction006, 145, 1, 67, RV_ObfuscationFunction00C, 455, 78, 52))
-#define RV_d2i_PKCS7_bio_0064007A ((__RV_d2i_PKCS7_bio) RV_LookupFunction015(RV_ObfuscationFunction00B, 100, 208, 16, RV_ObfuscationFunction00A, 122, 47, 16))
-#define RV_d2i_PKCS7_bio_015F01C8 ((__RV_d2i_PKCS7_bio) RV_LookupFunction015(RV_ObfuscationFunction00B, 351, 201, 16, RV_ObfuscationFunction008, 456, 198, 16))
-#define RV_d2i_PKCS7_bio_015F0217 ((__RV_d2i_PKCS7_bio) RV_LookupFunction015(RV_ObfuscationFunction00B, 351, 201, 16, RV_ObfuscationFunction00B, 535, 104, 16))
-#define RV_d2i_X509_bio_015F00FD ((__RV_d2i_X509_bio) RV_LookupFunction015(RV_ObfuscationFunction00B, 351, 201, 16, RV_ObfuscationFunction007, 253, 234, 16))
-#define RV_EVP_DigestFinal_022900D3 ((__RV_EVP_DigestFinal) RV_LookupFunction015(RV_ObfuscationFunction004, 553, 69, 16, RV_ObfuscationFunction00B, 211, 45, 16))
-#define RV_EVP_DigestInit_02290016 ((__RV_EVP_DigestInit) RV_LookupFunction015(RV_ObfuscationFunction004, 553, 69, 16, RV_ObfuscationFunction009, 22, 105, 16))
-#define RV_EVP_DigestUpdate_006400BD ((__RV_EVP_DigestUpdate) RV_LookupFunction015(RV_ObfuscationFunction00B, 100, 208, 16, RV_ObfuscationFunction003, 189, 158, 17))
-#define RV_EVP_get_digestbyname_015F01F3 ((__RV_EVP_get_digestbyname) RV_LookupFunction015(RV_ObfuscationFunction00B, 351, 201, 16, RV_ObfuscationFunction004, 499, 150, 21))
-#define RV_EVP_MD_CTX_init_006400B8 ((__RV_EVP_MD_CTX_init) RV_LookupFunction015(RV_ObfuscationFunction00B, 100, 208, 16, RV_ObfuscationFunction007, 184, 158, 16))
-#define RV_exit_002C0141 ((__RV_exit) RV_LookupFunction015(RV_ObfuscationFunction00A, 44, 202, 33, RV_ObfuscationFunction00C, 321, 0, 16))
-#define RV_exit_002C01B9 ((__RV_exit) RV_LookupFunction015(RV_ObfuscationFunction00A, 44, 202, 33, RV_ObfuscationFunction004, 441, 147, 16))
-#define RV_exit_00770141 ((__RV_exit) RV_LookupFunction015(RV_ObfuscationFunction003, 119, 177, 33, RV_ObfuscationFunction00C, 321, 0, 16))
-#define RV_exit_007701B9 ((__RV_exit) RV_LookupFunction015(RV_ObfuscationFunction003, 119, 177, 33, RV_ObfuscationFunction004, 441, 147, 16))
-#define RV_exit_00BE0141 ((__RV_exit) RV_LookupFunction015(RV_ObfuscationFunction00C, 190, 2, 33, RV_ObfuscationFunction00C, 321, 0, 16))
-#define RV_exit_00BE01B9 ((__RV_exit) RV_LookupFunction015(RV_ObfuscationFunction00C, 190, 2, 33, RV_ObfuscationFunction004, 441, 147, 16))
-#define RV_QTQIYYKDHZUX_002C0199 ((__RV_CC_SHA1_Update) RV_LookupFunction015(RV_ObfuscationFunction00A, 44, 202, 33, RV_ObfuscationFunction003, RV_QTQIYYKDHZUX, 83, 16))
-#define RV_QTQIYYKDHZUX_003F000A ((__RV_CFNumberCreate) RV_LookupFunction015(RV_ObfuscationFunction007, 63, 133, 67, RV_ObfuscationFunction006, RV_QTQIYYKDHZUX, 222, 16))
-#define RV_QTQIYYKDHZUX_003F01CE ((__RV_CFDictionaryAddValue) RV_LookupFunction015(RV_ObfuscationFunction007, 63, 133, 67, RV_ObfuscationFunction003, RV_QTQIYYKDHZUX, 115, 21))
-#define RV_QTQIYYKDHZUX_00910156 ((__RV_CFURLCreateFromFileSystemRepresentation) RV_LookupFunction015(RV_ObfuscationFunction006, 145, 1, 67, RV_ObfuscationFunction008, RV_QTQIYYKDHZUX, 33, 48))
-#define RV_QTQIYYKDHZUX_00DE01A3 ((__RV_SecKeychainOpen) RV_LookupFunction015(RV_ObfuscationFunction009, 222, 127, 55, RV_ObfuscationFunction00B, RV_QTQIYYKDHZUX, 97, 16))
-#define RV_WZFOWZREXLHB_003F0084 ((__RV_CFDataGetLength) RV_LookupFunction015(RV_ObfuscationFunction007, 63, 133, 67, RV_ObfuscationFunction00C, RV_WZFOWZREXLHB, 32, 16))
-#define RV_WZFOWZREXLHB_00910017 ((__RV_CFReadStreamCreateWithFile) RV_LookupFunction015(RV_ObfuscationFunction006, 145, 1, 67, RV_ObfuscationFunction00C, RV_WZFOWZREXLHB, 88, 35))
-#define RV_WZFOWZREXLHB_009101B1 ((__RV_CFArrayCreateMutable) RV_LookupFunction015(RV_ObfuscationFunction006, 145, 1, 67, RV_ObfuscationFunction007, RV_WZFOWZREXLHB, 89, 21))
-#define RV_WZFOWZREXLHB_0091020E ((__RV_CFDictionaryGetValue) RV_LookupFunction015(RV_ObfuscationFunction006, 145, 1, 67, RV_ObfuscationFunction008, RV_WZFOWZREXLHB, 249, 21))
-#define RV_WZFOWZREXLHB_00DE0205 ((__RV_SecKeychainSearchCreateFromAttributes) RV_LookupFunction015(RV_ObfuscationFunction009, 222, 127, 55, RV_ObfuscationFunction005, RV_WZFOWZREXLHB, 135, 38))
-#define RV_WZFOWZREXLHB_0168000A ((__RV_CFNumberCreate) RV_LookupFunction015(RV_ObfuscationFunction003, 360, 113, 67, RV_ObfuscationFunction006, RV_WZFOWZREXLHB, 222, 16))
-#define RV_WZFOWZREXLHB_0168003E ((__RV_CFStringCompare) RV_LookupFunction015(RV_ObfuscationFunction003, 360, 113, 67, RV_ObfuscationFunction005, RV_WZFOWZREXLHB, 183, 16))
-#define RV_WZFOWZREXLHB_0168011D ((__RV_CFDictionaryGetValue) RV_LookupFunction015(RV_ObfuscationFunction003, 360, 113, 67, RV_ObfuscationFunction005, RV_WZFOWZREXLHB, 26, 21))
-#define RV_WZFOWZREXLHB_020001BE ((__RV_IOMasterPort) RV_LookupFunction015(RV_ObfuscationFunction009, 512, 92, 49, RV_ObfuscationFunction004, RV_WZFOWZREXLHB, 237, 16))
-#define RV_KYEHJWKNZEEB_003F0109 ((__RV_CFDataGetBytePtr) RV_LookupFunction015(RV_ObfuscationFunction007, 63, 133, 67, RV_ObfuscationFunction00A, RV_KYEHJWKNZEEB, 228, 17))
-#define RV_KYEHJWKNZEEB_00770166 ((__RV_CC_SHA1_Final) RV_LookupFunction015(RV_ObfuscationFunction003, 119, 177, 33, RV_ObfuscationFunction007, RV_KYEHJWKNZEEB, 248, 16))
-#define RV_KYEHJWKNZEEB_0091009D ((__RV_CFBundleGetValueForInfoDictionaryKey) RV_LookupFunction015(RV_ObfuscationFunction006, 145, 1, 67, RV_ObfuscationFunction009, RV_KYEHJWKNZEEB, 169, 37))
-#define RV_KYEHJWKNZEEB_009101BA ((__RV_CFArrayGetCount) RV_LookupFunction015(RV_ObfuscationFunction006, 145, 1, 67, RV_ObfuscationFunction008, RV_KYEHJWKNZEEB, 111, 16))
-#define RV_KYEHJWKNZEEB_009101DC ((__RV_CFStringGetFileSystemRepresentation) RV_LookupFunction015(RV_ObfuscationFunction006, 145, 1, 67, RV_ObfuscationFunction008, RV_KYEHJWKNZEEB, 189, 36))
-#define RV_KYEHJWKNZEEB_020901B7 ((__RV_IORegistryEntryCreateCFProperty) RV_LookupFunction015(RV_ObfuscationFunction007, 521, 27, 49, RV_ObfuscationFunction00A, RV_KYEHJWKNZEEB, 93, 32))
-#define RV_KYEHJWKNZEEB_02330049 ((__RV_SecItemCopyMatching) RV_LookupFunction015(RV_ObfuscationFunction003, 563, 135, 55, RV_ObfuscationFunction007, RV_KYEHJWKNZEEB, 223, 20))
-#define RV_QWQFLAFLIXCL_003F015E ((__RV_CFStringCompare) RV_LookupFunction015(RV_ObfuscationFunction007, 63, 133, 67, RV_ObfuscationFunction00C, RV_QWQFLAFLIXCL, 154, 16))
-#define RV_QWQFLAFLIXCL_003F0191 ((__RV_CFDataAppendBytes) RV_LookupFunction015(RV_ObfuscationFunction007, 63, 133, 67, RV_ObfuscationFunction00B, RV_QWQFLAFLIXCL, 145, 18))
-#define RV_QWQFLAFLIXCL_003F01B1 ((__RV_CFArrayCreateMutable) RV_LookupFunction015(RV_ObfuscationFunction007, 63, 133, 67, RV_ObfuscationFunction007, RV_QWQFLAFLIXCL, 89, 21))
-#define RV_QWQFLAFLIXCL_01680013 ((__RV_CFNumberCreate) RV_LookupFunction015(RV_ObfuscationFunction003, 360, 113, 67, RV_ObfuscationFunction00A, RV_QWQFLAFLIXCL, 220, 16))
-#define RV_QWQFLAFLIXCL_016800F6 ((__RV_CFDataCreateMutable) RV_LookupFunction015(RV_ObfuscationFunction003, 360, 113, 67, RV_ObfuscationFunction004, RV_QWQFLAFLIXCL, 188, 20))
-#define RV_QWQFLAFLIXCL_016801EC ((__RV_CFArrayAppendValue) RV_LookupFunction015(RV_ObfuscationFunction003, 360, 113, 67, RV_ObfuscationFunction006, RV_QWQFLAFLIXCL, 176, 19))
-#define RV_WVGZWQTCUMDX_003F004B ((__RV_CFBundleCopyBundleURL) RV_LookupFunction015(RV_ObfuscationFunction007, 63, 133, 67, RV_ObfuscationFunction00A, RV_WVGZWQTCUMDX, 244, 22))
-#define RV_WVGZWQTCUMDX_003F00DB ((__RV_CFArrayGetCount) RV_LookupFunction015(RV_ObfuscationFunction007, 63, 133, 67, RV_ObfuscationFunction005, RV_WVGZWQTCUMDX, 96, 16))
-#define RV_WVGZWQTCUMDX_003F0127 ((__RV_CFDataGetLength) RV_LookupFunction015(RV_ObfuscationFunction007, 63, 133, 67, RV_ObfuscationFunction007, RV_WVGZWQTCUMDX, 81, 16))
-#define RV_WVGZWQTCUMDX_003F015E ((__RV_CFStringCompare) RV_LookupFunction015(RV_ObfuscationFunction007, 63, 133, 67, RV_ObfuscationFunction00C, RV_WVGZWQTCUMDX, 154, 16))
-#define RV_WVGZWQTCUMDX_0091015E ((__RV_CFStringCompare) RV_LookupFunction015(RV_ObfuscationFunction006, 145, 1, 67, RV_ObfuscationFunction00C, RV_WVGZWQTCUMDX, 154, 16))
-#define RV_WVGZWQTCUMDX_0168020B ((__RV_CFEqual) RV_LookupFunction015(RV_ObfuscationFunction003, 360, 113, 67, RV_ObfuscationFunction009, RV_WVGZWQTCUMDX, 50, 16))
-#define RV_WVGZWQTCUMDX_020900A6 ((__RV_IORegistryEntryGetParentEntry) RV_LookupFunction015(RV_ObfuscationFunction007, 521, 27, 49, RV_ObfuscationFunction007, RV_WVGZWQTCUMDX, 146, 38))
-#define RV_HOMCOURKRIMK_003F00EC ((__RV_CFDictionaryAddValue) RV_LookupFunction015(RV_ObfuscationFunction007, 63, 133, 67, RV_ObfuscationFunction009, RV_HOMCOURKRIMK, 226, 21))
-#define RV_HOMCOURKRIMK_003F011D ((__RV_CFDictionaryGetValue) RV_LookupFunction015(RV_ObfuscationFunction007, 63, 133, 67, RV_ObfuscationFunction005, RV_HOMCOURKRIMK, 26, 21))
-#define RV_HOMCOURKRIMK_00910013 ((__RV_CFNumberCreate) RV_LookupFunction015(RV_ObfuscationFunction006, 145, 1, 67, RV_ObfuscationFunction00A, RV_HOMCOURKRIMK, 220, 16))
-#define RV_HOMCOURKRIMK_0091003D ((__RV_CFDictionaryCreateMutable) RV_LookupFunction015(RV_ObfuscationFunction006, 145, 1, 67, RV_ObfuscationFunction009, RV_HOMCOURKRIMK, 16, 34))
-#define RV_HOMCOURKRIMK_00910065 ((__RV_CFURLCreateCopyAppendingPathComponent) RV_LookupFunction015(RV_ObfuscationFunction006, 145, 1, 67, RV_ObfuscationFunction007, RV_HOMCOURKRIMK, 217, 38))
-#define RV_HOMCOURKRIMK_0091009D ((__RV_CFBundleGetValueForInfoDictionaryKey) RV_LookupFunction015(RV_ObfuscationFunction006, 145, 1, 67, RV_ObfuscationFunction009, RV_HOMCOURKRIMK, 169, 37))
-#define RV_HOMCOURKRIMK_020901C9 ((__RV_IOIteratorNext) RV_LookupFunction015(RV_ObfuscationFunction007, 521, 27, 49, RV_ObfuscationFunction00C, RV_HOMCOURKRIMK, 91, 16))
-#define RV_CVYYOQHHDSEM_002C0036 ((__RV_CC_SHA1) RV_LookupFunction015(RV_ObfuscationFunction00A, 44, 202, 33, RV_ObfuscationFunction003, RV_CVYYOQHHDSEM, 126, 16))
-#define RV_CVYYOQHHDSEM_00910057 ((__RV_CFDataAppendBytes) RV_LookupFunction015(RV_ObfuscationFunction006, 145, 1, 67, RV_ObfuscationFunction003, RV_CVYYOQHHDSEM, 146, 18))
-#define RV_CVYYOQHHDSEM_009101F4 ((__RV_CFBundleGetIdentifier) RV_LookupFunction015(RV_ObfuscationFunction006, 145, 1, 67, RV_ObfuscationFunction004, RV_CVYYOQHHDSEM, 95, 22))
-#define RV_CVYYOQHHDSEM_00DE020F ((__RV_SecKeychainSearchCopyNext) RV_LookupFunction015(RV_ObfuscationFunction009, 222, 127, 55, RV_ObfuscationFunction003, RV_CVYYOQHHDSEM, 88, 34))
-#define RV_CVYYOQHHDSEM_01680109 ((__RV_CFDataGetBytePtr) RV_LookupFunction015(RV_ObfuscationFunction003, 360, 113, 67, RV_ObfuscationFunction00A, RV_CVYYOQHHDSEM, 228, 17))
-#define RV_CVYYOQHHDSEM_01680158 ((__RV_CFDictionarySetValue) RV_LookupFunction015(RV_ObfuscationFunction003, 360, 113, 67, RV_ObfuscationFunction003, RV_CVYYOQHHDSEM, 177, 21))
-#define RV_CVYYOQHHDSEM_02090159 ((__RV_IOBSDNameMatching) RV_LookupFunction015(RV_ObfuscationFunction007, 521, 27, 49, RV_ObfuscationFunction009, RV_CVYYOQHHDSEM, 112, 18))
-#define RV_OVBWQJKFFITA_003F003D ((__RV_CFDictionaryCreateMutable) RV_LookupFunction015(RV_ObfuscationFunction007, 63, 133, 67, RV_ObfuscationFunction009, RV_OVBWQJKFFITA, 16, 34))
-#define RV_OVBWQJKFFITA_003F0055 ((__RV_CFReadStreamRead) RV_LookupFunction015(RV_ObfuscationFunction007, 63, 133, 67, RV_ObfuscationFunction00C, RV_OVBWQJKFFITA, 58, 17))
-#define RV_OVBWQJKFFITA_003F0138 ((__RV_CFNumberCreate) RV_LookupFunction015(RV_ObfuscationFunction007, 63, 133, 67, RV_ObfuscationFunction005, RV_OVBWQJKFFITA, 92, 16))
-#define RV_OVBWQJKFFITA_009100E4 ((__RV_CFDataGetLength) RV_LookupFunction015(RV_ObfuscationFunction006, 145, 1, 67, RV_ObfuscationFunction006, RV_OVBWQJKFFITA, 36, 16))
-#define RV_OVBWQJKFFITA_00910109 ((__RV_CFDataGetBytePtr) RV_LookupFunction015(RV_ObfuscationFunction006, 145, 1, 67, RV_ObfuscationFunction00A, RV_OVBWQJKFFITA, 228, 17))
-#define RV_OVBWQJKFFITA_00D400CF ((__RV_IOServiceGetMatchingServices) RV_LookupFunction015(RV_ObfuscationFunction005, 212, 30, 49, RV_ObfuscationFunction006, RV_OVBWQJKFFITA, 1, 37))
-#define RV_OVBWQJKFFITA_01680107 ((__RV_CFArrayGetValueAtIndex) RV_LookupFunction015(RV_ObfuscationFunction003, 360, 113, 67, RV_ObfuscationFunction008, RV_OVBWQJKFFITA, 161, 23))
-#define RV_IOObjectRelease_02090020 ((__RV_IOObjectRelease) RV_LookupFunction015(RV_ObfuscationFunction007, 521, 27, 49, RV_ObfuscationFunction004, 32, 189, 16))
-#define RV_kCFBundleIdentifierKey_0168012B ((__RV_kCFBundleIdentifierKey) RV_LookupFunction015(RV_ObfuscationFunction003, 360, 113, 67, RV_ObfuscationFunction00B, 299, 170, 23))
-#define RV_kCFTypeArrayCallBacks_003F0022 ((__RV_kCFTypeArrayCallBacks) RV_LookupFunction015(RV_ObfuscationFunction007, 63, 133, 67, RV_ObfuscationFunction003, 34, 41, 22))
-#define RV_kCFTypeArrayCallBacks_00910022 ((__RV_kCFTypeArrayCallBacks) RV_LookupFunction015(RV_ObfuscationFunction006, 145, 1, 67, RV_ObfuscationFunction003, 34, 41, 22))
-#define RV_kCFTypeArrayCallBacks_009101AE ((__RV_kCFTypeArrayCallBacks) RV_LookupFunction015(RV_ObfuscationFunction006, 145, 1, 67, RV_ObfuscationFunction007, 430, 72, 22))
-#define RV_kCFTypeDictionaryKeyCallBacks_003F01F1 ((__RV_kCFTypeDictionaryKeyCallBacks) RV_LookupFunction015(RV_ObfuscationFunction007, 63, 133, 67, RV_ObfuscationFunction005, 497, 116, 38))
-#define RV_kCFTypeDictionaryKeyCallBacks_003F0202 ((__RV_kCFTypeDictionaryKeyCallBacks) RV_LookupFunction015(RV_ObfuscationFunction007, 63, 133, 67, RV_ObfuscationFunction004, 514, 15, 38))
-#define RV_kCFTypeDictionaryKeyCallBacks_016801F1 ((__RV_kCFTypeDictionaryKeyCallBacks) RV_LookupFunction015(RV_ObfuscationFunction003, 360, 113, 67, RV_ObfuscationFunction005, 497, 116, 38))
-#define RV_kCFTypeDictionaryValueCallBacks_003F008A ((__RV_kCFTypeDictionaryValueCallBacks) RV_LookupFunction015(RV_ObfuscationFunction007, 63, 133, 67, RV_ObfuscationFunction00B, 138, 48, 32))
-#define RV_kCFTypeDictionaryValueCallBacks_003F0096 ((__RV_kCFTypeDictionaryValueCallBacks) RV_LookupFunction015(RV_ObfuscationFunction007, 63, 133, 67, RV_ObfuscationFunction007, 150, 9, 32))
-#define RV_kCFTypeDictionaryValueCallBacks_0091008A ((__RV_kCFTypeDictionaryValueCallBacks) RV_LookupFunction015(RV_ObfuscationFunction006, 145, 1, 67, RV_ObfuscationFunction00B, 138, 48, 32))
-#define RV_kSecClass_02330011 ((__RV_kSecClass) RV_LookupFunction015(RV_ObfuscationFunction003, 563, 135, 55, RV_ObfuscationFunction00A, 17, 210, 16))
-#define RV_kSecClass_02330098 ((__RV_kSecClass) RV_LookupFunction015(RV_ObfuscationFunction003, 563, 135, 55, RV_ObfuscationFunction009, 152, 35, 16))
-#define RV_kSecClassCertificate_02330021 ((__RV_kSecClassCertificate) RV_LookupFunction015(RV_ObfuscationFunction003, 563, 135, 55, RV_ObfuscationFunction004, 33, 236, 21))
-#define RV_kSecClassCertificate_02330056 ((__RV_kSecClassCertificate) RV_LookupFunction015(RV_ObfuscationFunction003, 563, 135, 55, RV_ObfuscationFunction007, 86, 154, 21))
-#define RV_kSecMatchLimit_00DE0054 ((__RV_kSecMatchLimit) RV_LookupFunction015(RV_ObfuscationFunction009, 222, 127, 55, RV_ObfuscationFunction00B, 84, 182, 16))
-#define RV_kSecMatchLimit_02330054 ((__RV_kSecMatchLimit) RV_LookupFunction015(RV_ObfuscationFunction003, 563, 135, 55, RV_ObfuscationFunction00B, 84, 182, 16))
-#define RV_kSecMatchLimitAll_00DE0063 ((__RV_kSecMatchLimitAll) RV_LookupFunction015(RV_ObfuscationFunction009, 222, 127, 55, RV_ObfuscationFunction007, 99, 35, 18))
-#define RV_kSecMatchSearchList_02330125 ((__RV_kSecMatchSearchList) RV_LookupFunction015(RV_ObfuscationFunction003, 563, 135, 55, RV_ObfuscationFunction005, 293, 169, 20))
-#define RV_kSecMatchSearchList_02330175 ((__RV_kSecMatchSearchList) RV_LookupFunction015(RV_ObfuscationFunction003, 563, 135, 55, RV_ObfuscationFunction009, 373, 214, 20))
-#define RV_kSecMatchSubjectContains_009C0009 ((__RV_kSecMatchSubjectContains) RV_LookupFunction015(RV_ObfuscationFunction006, 156, 62, 55, RV_ObfuscationFunction00B, 9, 179, 33))
-#define RV_kSecMatchSubjectContains_02330009 ((__RV_kSecMatchSubjectContains) RV_LookupFunction015(RV_ObfuscationFunction003, 563, 135, 55, RV_ObfuscationFunction00B, 9, 179, 33))
-#define RV_kSecReturnRef_00DE00CC ((__RV_kSecReturnRef) RV_LookupFunction015(RV_ObfuscationFunction009, 222, 127, 55, RV_ObfuscationFunction00B, 204, 108, 16))
-#define RV_kSecReturnRef_02330089 ((__RV_kSecReturnRef) RV_LookupFunction015(RV_ObfuscationFunction003, 563, 135, 55, RV_ObfuscationFunction006, 137, 19, 16))
-#define RV_longjmp_002C0051 ((__RV_longjmp) RV_LookupFunction015(RV_ObfuscationFunction00A, 44, 202, 33, RV_ObfuscationFunction004, 81, 152, 16))
-#define RV_longjmp_00770103 ((__RV_longjmp) RV_LookupFunction015(RV_ObfuscationFunction003, 119, 177, 33, RV_ObfuscationFunction007, 259, 195, 16))
-#define RV_longjmp_00770220 ((__RV_longjmp) RV_LookupFunction015(RV_ObfuscationFunction003, 119, 177, 33, RV_ObfuscationFunction009, 544, 172, 16))
-#define RV_longjmp_00BE0051 ((__RV_longjmp) RV_LookupFunction015(RV_ObfuscationFunction00C, 190, 2, 33, RV_ObfuscationFunction004, 81, 152, 16))
-#define RV_longjmp_00BE0103 ((__RV_longjmp) RV_LookupFunction015(RV_ObfuscationFunction00C, 190, 2, 33, RV_ObfuscationFunction007, 259, 195, 16))
-#define RV_OBJ_txt2obj_015F01DB ((__RV_OBJ_txt2obj) RV_LookupFunction015(RV_ObfuscationFunction00B, 351, 201, 16, RV_ObfuscationFunction006, 475, 10, 16))
-#define RV_objc_getClass_003000BF ((__RV_objc_getClass) RV_LookupFunction015(RV_ObfuscationFunction00B, 48, 214, 23, RV_ObfuscationFunction00A, 191, 140, 16))
-#define RV_objc_getClass_00300120 ((__RV_objc_getClass) RV_LookupFunction015(RV_ObfuscationFunction00B, 48, 214, 23, RV_ObfuscationFunction008, 288, 5, 16))
-#define RV_objc_getClass_00ED00BF ((__RV_objc_getClass) RV_LookupFunction015(RV_ObfuscationFunction006, 237, 63, 23, RV_ObfuscationFunction00A, 191, 140, 16))
-#define RV_objc_getClass_00ED0120 ((__RV_objc_getClass) RV_LookupFunction015(RV_ObfuscationFunction006, 237, 63, 23, RV_ObfuscationFunction008, 288, 5, 16))
-#define RV_objc_getClass_00ED01B6 ((__RV_objc_getClass) RV_LookupFunction015(RV_ObfuscationFunction006, 237, 63, 23, RV_ObfuscationFunction00B, 438, 24, 16))
-#define RV_objc_getClass_01ED00BF ((__RV_objc_getClass) RV_LookupFunction015(RV_ObfuscationFunction008, 493, 244, 23, RV_ObfuscationFunction00A, 191, 140, 16))
-#define RV_objc_getClass_01ED0120 ((__RV_objc_getClass) RV_LookupFunction015(RV_ObfuscationFunction008, 493, 244, 23, RV_ObfuscationFunction008, 288, 5, 16))
-#define RV_objc_getClass_01ED01B6 ((__RV_objc_getClass) RV_LookupFunction015(RV_ObfuscationFunction008, 493, 244, 23, RV_ObfuscationFunction00B, 438, 24, 16))
-#define RV_objc_msgSend_0030002A ((__RV_objc_msgSend) RV_LookupFunction015(RV_ObfuscationFunction00B, 48, 214, 23, RV_ObfuscationFunction009, 42, 225, 16))
-#define RV_objc_msgSend_003001D6 ((__RV_objc_msgSend) RV_LookupFunction015(RV_ObfuscationFunction00B, 48, 214, 23, RV_ObfuscationFunction006, 470, 3, 16))
-#define RV_objc_msgSend_00ED002A ((__RV_objc_msgSend) RV_LookupFunction015(RV_ObfuscationFunction006, 237, 63, 23, RV_ObfuscationFunction009, 42, 225, 16))
-#define RV_objc_msgSend_00ED010D ((__RV_objc_msgSend) RV_LookupFunction015(RV_ObfuscationFunction006, 237, 63, 23, RV_ObfuscationFunction00A, 269, 200, 16))
-#define RV_objc_msgSend_01ED002A ((__RV_objc_msgSend) RV_LookupFunction015(RV_ObfuscationFunction008, 493, 244, 23, RV_ObfuscationFunction009, 42, 225, 16))
-#define RV_objc_msgSend_01ED010D ((__RV_objc_msgSend) RV_LookupFunction015(RV_ObfuscationFunction008, 493, 244, 23, RV_ObfuscationFunction00A, 269, 200, 16))
-#define RV_objc_msgSend_01ED01D6 ((__RV_objc_msgSend) RV_LookupFunction015(RV_ObfuscationFunction008, 493, 244, 23, RV_ObfuscationFunction006, 470, 3, 16))
-#define RV_OpenSSL_add_all_digests_015F022C ((__RV_OpenSSL_add_all_digests) RV_LookupFunction015(RV_ObfuscationFunction00B, 351, 201, 16, RV_ObfuscationFunction005, 556, 188, 32))
-#define RV_OpenSSL_add_all_digests_02290142 ((__RV_OpenSSL_add_all_digests) RV_LookupFunction015(RV_ObfuscationFunction004, 553, 69, 16, RV_ObfuscationFunction00C, 322, 88, 32))
-#define RV_PKCS7_free_0064021E ((__RV_PKCS7_free) RV_LookupFunction015(RV_ObfuscationFunction00B, 100, 208, 16, RV_ObfuscationFunction006, 542, 81, 16))
-#define RV_PKCS7_free_015F00E1 ((__RV_PKCS7_free) RV_LookupFunction015(RV_ObfuscationFunction00B, 351, 201, 16, RV_ObfuscationFunction008, 225, 233, 16))
-#define RV_PKCS7_free_022900E1 ((__RV_PKCS7_free) RV_LookupFunction015(RV_ObfuscationFunction004, 553, 69, 16, RV_ObfuscationFunction008, 225, 233, 16))
-#define RV_PKCS7_get0_signers_015F00B2 ((__RV_PKCS7_get0_signers) RV_LookupFunction015(RV_ObfuscationFunction00B, 351, 201, 16, RV_ObfuscationFunction006, 178, 194, 19))
-#define RV_PKCS7_verify_00640178 ((__RV_PKCS7_verify) RV_LookupFunction015(RV_ObfuscationFunction00B, 100, 208, 16, RV_ObfuscationFunction007, 376, 148, 16))
-#define RV_SecCertificateCopyData_00DE00C6 ((__RV_SecCertificateCopyData) RV_LookupFunction015(RV_ObfuscationFunction009, 222, 127, 55, RV_ObfuscationFunction007, 198, 54, 23))
-#define RV_sel_registerName_00300163 ((__RV_sel_registerName) RV_LookupFunction015(RV_ObfuscationFunction00B, 48, 214, 23, RV_ObfuscationFunction004, 355, 48, 17))
-#define RV_sel_registerName_0030022F ((__RV_sel_registerName) RV_LookupFunction015(RV_ObfuscationFunction00B, 48, 214, 23, RV_ObfuscationFunction008, 559, 123, 17))
-#define RV_sel_registerName_00ED0163 ((__RV_sel_registerName) RV_LookupFunction015(RV_ObfuscationFunction006, 237, 63, 23, RV_ObfuscationFunction004, 355, 48, 17))
-#define RV_sel_registerName_00ED022F ((__RV_sel_registerName) RV_LookupFunction015(RV_ObfuscationFunction006, 237, 63, 23, RV_ObfuscationFunction008, 559, 123, 17))
-#define RV_sel_registerName_01ED0034 ((__RV_sel_registerName) RV_LookupFunction015(RV_ObfuscationFunction008, 493, 244, 23, RV_ObfuscationFunction004, 52, 38, 17))
-#define RV_sel_registerName_01ED0163 ((__RV_sel_registerName) RV_LookupFunction015(RV_ObfuscationFunction008, 493, 244, 23, RV_ObfuscationFunction004, 355, 48, 17))
-#define RV_sel_registerName_01ED022F ((__RV_sel_registerName) RV_LookupFunction015(RV_ObfuscationFunction008, 493, 244, 23, RV_ObfuscationFunction008, 559, 123, 17))
-#define RV_setjmp_0077006D ((__RV_setjmp) RV_LookupFunction015(RV_ObfuscationFunction003, 119, 177, 33, RV_ObfuscationFunction005, 109, 92, 16))
-#define RV_SHA1_015F016F ((__RV_SHA1) RV_LookupFunction015(RV_ObfuscationFunction00B, 351, 201, 16, RV_ObfuscationFunction00A, 367, 24, 16))
-#define RV_SHA1_Final_015F01F5 ((__RV_SHA1_Final) RV_LookupFunction015(RV_ObfuscationFunction00B, 351, 201, 16, RV_ObfuscationFunction008, 501, 183, 16))
-#define RV_SHA1_Init_00640071 ((__RV_SHA1_Init) RV_LookupFunction015(RV_ObfuscationFunction00B, 100, 208, 16, RV_ObfuscationFunction00B, 113, 231, 16))
-#define RV_SHA1_Update_006401E2 ((__RV_SHA1_Update) RV_LookupFunction015(RV_ObfuscationFunction00B, 100, 208, 16, RV_ObfuscationFunction005, 482, 48, 16))
-#define RV_sk_free_006400AB ((__RV_sk_free) RV_LookupFunction015(RV_ObfuscationFunction00B, 100, 208, 16, RV_ObfuscationFunction003, 171, 122, 16))
-#define RV_sk_num_02290150 ((__RV_sk_num) RV_LookupFunction015(RV_ObfuscationFunction004, 553, 69, 16, RV_ObfuscationFunction008, 336, 98, 16))
-#define RV_sk_value_00640072 ((__RV_sk_value) RV_LookupFunction015(RV_ObfuscationFunction00B, 100, 208, 16, RV_ObfuscationFunction006, 114, 236, 16))
-#define RV_X509_digest_022900C3 ((__RV_X509_digest) RV_LookupFunction015(RV_ObfuscationFunction004, 553, 69, 16, RV_ObfuscationFunction005, 195, 46, 16))
-#define RV_X509_free_015F01E1 ((__RV_X509_free) RV_LookupFunction015(RV_ObfuscationFunction00B, 351, 201, 16, RV_ObfuscationFunction007, 481, 141, 16))
-#define RV_X509_get_ext_by_OBJ_015F01C4 ((__RV_X509_get_ext_by_OBJ) RV_LookupFunction015(RV_ObfuscationFunction00B, 351, 201, 16, RV_ObfuscationFunction00A, 452, 177, 20))
-#define RV_X509_NAME_get_text_by_NID_015F0001 ((__RV_X509_NAME_get_text_by_NID) RV_LookupFunction015(RV_ObfuscationFunction00B, 351, 201, 16, RV_ObfuscationFunction009, 1, 143, 34))
-#define RV_X509_STORE_add_cert_02290195 ((__RV_X509_STORE_add_cert) RV_LookupFunction015(RV_ObfuscationFunction004, 553, 69, 16, RV_ObfuscationFunction007, 405, 254, 20))
-#define RV_X509_STORE_free_02290148 ((__RV_X509_STORE_free) RV_LookupFunction015(RV_ObfuscationFunction004, 553, 69, 16, RV_ObfuscationFunction005, 328, 48, 16))
-#define RV_X509_STORE_new_0064015D ((__RV_X509_STORE_new) RV_LookupFunction015(RV_ObfuscationFunction00B, 100, 208, 16, RV_ObfuscationFunction009, 349, 157, 16))
+#define RV_ASN1_get_object_002D0163 ((__RV_ASN1_get_object) RV_LookupFunction015(RV_ObfuscationFunction008, 45, 63, 16, RV_ObfuscationFunction006, 355, 46, 16))
+#define RV_ASN1_OBJECT_free_002D0174 ((__RV_ASN1_OBJECT_free) RV_LookupFunction015(RV_ObfuscationFunction008, 45, 63, 16, RV_ObfuscationFunction009, 372, 78, 17))
+#define RV_BIO_free_002D0016 ((__RV_BIO_free) RV_LookupFunction015(RV_ObfuscationFunction008, 45, 63, 16, RV_ObfuscationFunction00B, 22, 141, 16))
+#define RV_BIO_free_01820016 ((__RV_BIO_free) RV_LookupFunction015(RV_ObfuscationFunction003, 386, 220, 16, RV_ObfuscationFunction00B, 22, 141, 16))
+#define RV_BIO_free_018201F5 ((__RV_BIO_free) RV_LookupFunction015(RV_ObfuscationFunction003, 386, 220, 16, RV_ObfuscationFunction007, 501, 195, 16))
+#define RV_BIO_new_002D014D ((__RV_BIO_new) RV_LookupFunction015(RV_ObfuscationFunction008, 45, 63, 16, RV_ObfuscationFunction004, 333, 6, 16))
+#define RV_BIO_new_006800E6 ((__RV_BIO_new) RV_LookupFunction015(RV_ObfuscationFunction005, 104, 241, 16, RV_ObfuscationFunction007, 230, 39, 16))
+#define RV_BIO_s_mem_018200F2 ((__RV_BIO_s_mem) RV_LookupFunction015(RV_ObfuscationFunction003, 386, 220, 16, RV_ObfuscationFunction008, 242, 48, 16))
+#define RV_BIO_s_mem_0182021B ((__RV_BIO_s_mem) RV_LookupFunction015(RV_ObfuscationFunction003, 386, 220, 16, RV_ObfuscationFunction008, 539, 4, 16))
+#define RV_BIO_write_002D00E2 ((__RV_BIO_write) RV_LookupFunction015(RV_ObfuscationFunction008, 45, 63, 16, RV_ObfuscationFunction00A, 226, 154, 16))
+#define RV_BIO_write_006801DF ((__RV_BIO_write) RV_LookupFunction015(RV_ObfuscationFunction005, 104, 241, 16, RV_ObfuscationFunction005, 479, 1, 16))
+#define RV_BIO_write_018200E2 ((__RV_BIO_write) RV_LookupFunction015(RV_ObfuscationFunction003, 386, 220, 16, RV_ObfuscationFunction00A, 226, 154, 16))
+#define RV_CC_SHA1_Final_011801A6 ((__RV_CC_SHA1_Final) RV_LookupFunction015(RV_ObfuscationFunction009, 280, 26, 33, RV_ObfuscationFunction005, 422, 93, 16))
+#define RV_CFArrayGetValueAtIndex_01EE01B5 ((__RV_CFArrayGetValueAtIndex) RV_LookupFunction015(RV_ObfuscationFunction004, 494, 17, 67, RV_ObfuscationFunction00B, 437, 95, 23))
+#define RV_CFBundleGetMainBundle_007E0135 ((__RV_CFBundleGetMainBundle) RV_LookupFunction015(RV_ObfuscationFunction005, 126, 140, 67, RV_ObfuscationFunction009, 309, 156, 22))
+#define RV_CFBundleUnloadExecutable_007E01EB ((__RV_CFBundleUnloadExecutable) RV_LookupFunction015(RV_ObfuscationFunction005, 126, 140, 67, RV_ObfuscationFunction00C, 491, 133, 33))
+#define RV_CFDataCreate_007E000A ((__RV_CFDataCreate) RV_LookupFunction015(RV_ObfuscationFunction005, 126, 140, 67, RV_ObfuscationFunction003, 10, 36, 16))
+#define RV_CFDataCreate_007E0015 ((__RV_CFDataCreate) RV_LookupFunction015(RV_ObfuscationFunction005, 126, 140, 67, RV_ObfuscationFunction009, 21, 230, 16))
+#define RV_CFDataCreateMutable_0096007C ((__RV_CFDataCreateMutable) RV_LookupFunction015(RV_ObfuscationFunction00B, 150, 239, 67, RV_ObfuscationFunction006, 124, 96, 20))
+#define RV_CFDataCreateMutable_01EE01BE ((__RV_CFDataCreateMutable) RV_LookupFunction015(RV_ObfuscationFunction004, 494, 17, 67, RV_ObfuscationFunction004, 446, 49, 20))
+#define RV_CFDataGetBytePtr_00960000 ((__RV_CFDataGetBytePtr) RV_LookupFunction015(RV_ObfuscationFunction00B, 150, 239, 67, RV_ObfuscationFunction00B, 0, 132, 17))
+#define RV_CFDataGetBytePtr_00960197 ((__RV_CFDataGetBytePtr) RV_LookupFunction015(RV_ObfuscationFunction00B, 150, 239, 67, RV_ObfuscationFunction00C, 407, 88, 17))
+#define RV_CFDataGetBytePtr_01EE0000 ((__RV_CFDataGetBytePtr) RV_LookupFunction015(RV_ObfuscationFunction004, 494, 17, 67, RV_ObfuscationFunction00B, 0, 132, 17))
+#define RV_CFDataGetLength_007E01E5 ((__RV_CFDataGetLength) RV_LookupFunction015(RV_ObfuscationFunction005, 126, 140, 67, RV_ObfuscationFunction003, 485, 5, 16))
+#define RV_CFDataGetLength_009601E5 ((__RV_CFDataGetLength) RV_LookupFunction015(RV_ObfuscationFunction00B, 150, 239, 67, RV_ObfuscationFunction003, 485, 5, 16))
+#define RV_CFDataGetLength_01EE01E5 ((__RV_CFDataGetLength) RV_LookupFunction015(RV_ObfuscationFunction004, 494, 17, 67, RV_ObfuscationFunction003, 485, 5, 16))
+#define RV_CFDateFormatterSetFormat_007E0205 ((__RV_CFDateFormatterSetFormat) RV_LookupFunction015(RV_ObfuscationFunction005, 126, 140, 67, RV_ObfuscationFunction007, 517, 245, 33))
+#define RV_CFDateFormatterSetFormat_00960208 ((__RV_CFDateFormatterSetFormat) RV_LookupFunction015(RV_ObfuscationFunction00B, 150, 239, 67, RV_ObfuscationFunction006, 520, 103, 33))
+#define RV_CFDictionaryGetValue_0096002A ((__RV_CFDictionaryGetValue) RV_LookupFunction015(RV_ObfuscationFunction00B, 150, 239, 67, RV_ObfuscationFunction00B, 42, 73, 21))
+#define RV_CFDictionaryGetValue_009601A1 ((__RV_CFDictionaryGetValue) RV_LookupFunction015(RV_ObfuscationFunction00B, 150, 239, 67, RV_ObfuscationFunction00C, 417, 80, 21))
+#define RV_CFDictionaryGetValue_01EE002A ((__RV_CFDictionaryGetValue) RV_LookupFunction015(RV_ObfuscationFunction004, 494, 17, 67, RV_ObfuscationFunction00B, 42, 73, 21))
+#define RV_CFDictionarySetValue_01EE01E4 ((__RV_CFDictionarySetValue) RV_LookupFunction015(RV_ObfuscationFunction004, 494, 17, 67, RV_ObfuscationFunction009, 484, 189, 21))
+#define RV_CFDictionarySetValue_01EE01F4 ((__RV_CFDictionarySetValue) RV_LookupFunction015(RV_ObfuscationFunction004, 494, 17, 67, RV_ObfuscationFunction005, 500, 138, 21))
+#define RV_CFReadStreamCreateWithFile_009601B8 ((__RV_CFReadStreamCreateWithFile) RV_LookupFunction015(RV_ObfuscationFunction00B, 150, 239, 67, RV_ObfuscationFunction005, 440, 164, 35))
+#define RV_CFReadStreamCreateWithFile_01EE01B8 ((__RV_CFReadStreamCreateWithFile) RV_LookupFunction015(RV_ObfuscationFunction004, 494, 17, 67, RV_ObfuscationFunction005, 440, 164, 35))
+#define RV_CFRelease_007E00CE ((__RV_CFRelease) RV_LookupFunction015(RV_ObfuscationFunction005, 126, 140, 67, RV_ObfuscationFunction008, 206, 22, 16))
+#define RV_CFRelease_007E0164 ((__RV_CFRelease) RV_LookupFunction015(RV_ObfuscationFunction005, 126, 140, 67, RV_ObfuscationFunction006, 356, 107, 16))
+#define RV_CFRelease_00960019 ((__RV_CFRelease) RV_LookupFunction015(RV_ObfuscationFunction00B, 150, 239, 67, RV_ObfuscationFunction005, 25, 246, 16))
+#define RV_CFRelease_009600CE ((__RV_CFRelease) RV_LookupFunction015(RV_ObfuscationFunction00B, 150, 239, 67, RV_ObfuscationFunction008, 206, 22, 16))
+#define RV_CFRelease_00960164 ((__RV_CFRelease) RV_LookupFunction015(RV_ObfuscationFunction00B, 150, 239, 67, RV_ObfuscationFunction006, 356, 107, 16))
+#define RV_CFRelease_01EE0019 ((__RV_CFRelease) RV_LookupFunction015(RV_ObfuscationFunction004, 494, 17, 67, RV_ObfuscationFunction005, 25, 246, 16))
+#define RV_CFRelease_01EE00CE ((__RV_CFRelease) RV_LookupFunction015(RV_ObfuscationFunction004, 494, 17, 67, RV_ObfuscationFunction008, 206, 22, 16))
+#define RV_CFURLCreateCopyAppendingPathComponent_007E01C2 ((__RV_CFURLCreateCopyAppendingPathComponent) RV_LookupFunction015(RV_ObfuscationFunction005, 126, 140, 67, RV_ObfuscationFunction00B, 450, 87, 38))
+#define RV_CFURLCreateCopyAppendingPathComponent_01EE01C2 ((__RV_CFURLCreateCopyAppendingPathComponent) RV_LookupFunction015(RV_ObfuscationFunction004, 494, 17, 67, RV_ObfuscationFunction00B, 450, 87, 38))
+#define RV_CFURLCreateFromFileSystemRepresentation_007E0010 ((__RV_CFURLCreateFromFileSystemRepresentation) RV_LookupFunction015(RV_ObfuscationFunction005, 126, 140, 67, RV_ObfuscationFunction003, 16, 75, 48))
+#define RV_CFURLCreateFromFileSystemRepresentation_01EE0072 ((__RV_CFURLCreateFromFileSystemRepresentation) RV_LookupFunction015(RV_ObfuscationFunction004, 494, 17, 67, RV_ObfuscationFunction007, 114, 241, 48))
+#define RV_d2i_PKCS7_bio_002D0012 ((__RV_d2i_PKCS7_bio) RV_LookupFunction015(RV_ObfuscationFunction008, 45, 63, 16, RV_ObfuscationFunction004, 18, 93, 16))
+#define RV_d2i_PKCS7_bio_002D00FB ((__RV_d2i_PKCS7_bio) RV_LookupFunction015(RV_ObfuscationFunction008, 45, 63, 16, RV_ObfuscationFunction00C, 251, 207, 16))
+#define RV_d2i_PKCS7_bio_006800BA ((__RV_d2i_PKCS7_bio) RV_LookupFunction015(RV_ObfuscationFunction005, 104, 241, 16, RV_ObfuscationFunction00A, 186, 112, 16))
+#define RV_d2i_X509_bio_002D0043 ((__RV_d2i_X509_bio) RV_LookupFunction015(RV_ObfuscationFunction008, 45, 63, 16, RV_ObfuscationFunction004, 67, 131, 16))
+#define RV_EVP_DigestFinal_002D0168 ((__RV_EVP_DigestFinal) RV_LookupFunction015(RV_ObfuscationFunction008, 45, 63, 16, RV_ObfuscationFunction005, 360, 249, 16))
+#define RV_EVP_DigestInit_006800A9 ((__RV_EVP_DigestInit) RV_LookupFunction015(RV_ObfuscationFunction005, 104, 241, 16, RV_ObfuscationFunction003, 169, 138, 16))
+#define RV_EVP_DigestUpdate_00680051 ((__RV_EVP_DigestUpdate) RV_LookupFunction015(RV_ObfuscationFunction005, 104, 241, 16, RV_ObfuscationFunction00B, 81, 195, 17))
+#define RV_EVP_get_digestbyname_002D010B ((__RV_EVP_get_digestbyname) RV_LookupFunction015(RV_ObfuscationFunction008, 45, 63, 16, RV_ObfuscationFunction005, 267, 165, 21))
+#define RV_EVP_MD_CTX_init_006800C8 ((__RV_EVP_MD_CTX_init) RV_LookupFunction015(RV_ObfuscationFunction005, 104, 241, 16, RV_ObfuscationFunction00C, 200, 7, 16))
+#define RV_exit_0059004F ((__RV_exit) RV_LookupFunction015(RV_ObfuscationFunction004, 89, 254, 33, RV_ObfuscationFunction003, 79, 95, 16))
+#define RV_exit_0059007F ((__RV_exit) RV_LookupFunction015(RV_ObfuscationFunction004, 89, 254, 33, RV_ObfuscationFunction006, 127, 180, 16))
+#define RV_exit_0059019F ((__RV_exit) RV_LookupFunction015(RV_ObfuscationFunction004, 89, 254, 33, RV_ObfuscationFunction00B, 415, 45, 16))
+#define RV_exit_0118004F ((__RV_exit) RV_LookupFunction015(RV_ObfuscationFunction009, 280, 26, 33, RV_ObfuscationFunction003, 79, 95, 16))
+#define RV_exit_0118007F ((__RV_exit) RV_LookupFunction015(RV_ObfuscationFunction009, 280, 26, 33, RV_ObfuscationFunction006, 127, 180, 16))
+#define RV_exit_01E9004F ((__RV_exit) RV_LookupFunction015(RV_ObfuscationFunction00A, 489, 8, 33, RV_ObfuscationFunction003, 79, 95, 16))
+#define RV_exit_01E9007F ((__RV_exit) RV_LookupFunction015(RV_ObfuscationFunction00A, 489, 8, 33, RV_ObfuscationFunction006, 127, 180, 16))
+#define RV_exit_01E9019F ((__RV_exit) RV_LookupFunction015(RV_ObfuscationFunction00A, 489, 8, 33, RV_ObfuscationFunction00B, 415, 45, 16))
+#define RV_NMCRJBPXHTDH_007E009A ((__RV_CFBundleCopyBundleURL) RV_LookupFunction015(RV_ObfuscationFunction005, 126, 140, 67, RV_ObfuscationFunction00C, RV_NMCRJBPXHTDH, 90, 22))
+#define RV_NMCRJBPXHTDH_007E00BC ((__RV_CFStringCompare) RV_LookupFunction015(RV_ObfuscationFunction005, 126, 140, 67, RV_ObfuscationFunction003, RV_NMCRJBPXHTDH, 78, 16))
+#define RV_NMCRJBPXHTDH_007E00DA ((__RV_CFArrayAppendValue) RV_LookupFunction015(RV_ObfuscationFunction005, 126, 140, 67, RV_ObfuscationFunction005, RV_NMCRJBPXHTDH, 34, 19))
+#define RV_NMCRJBPXHTDH_00960064 ((__RV_CFArrayCreateMutable) RV_LookupFunction015(RV_ObfuscationFunction00B, 150, 239, 67, RV_ObfuscationFunction006, RV_NMCRJBPXHTDH, 86, 21))
+#define RV_NMCRJBPXHTDH_009601BE ((__RV_CFDataCreateMutable) RV_LookupFunction015(RV_ObfuscationFunction00B, 150, 239, 67, RV_ObfuscationFunction004, RV_NMCRJBPXHTDH, 49, 20))
+#define RV_NMCRJBPXHTDH_01EE0067 ((__RV_CFDictionaryGetValue) RV_LookupFunction015(RV_ObfuscationFunction004, 494, 17, 67, RV_ObfuscationFunction00B, RV_NMCRJBPXHTDH, 84, 21))
+#define RV_NMCRJBPXHTDH_01EE00DD ((__RV_CFBundleGetIdentifier) RV_LookupFunction015(RV_ObfuscationFunction004, 494, 17, 67, RV_ObfuscationFunction006, RV_NMCRJBPXHTDH, 196, 22))
+#define RV_SJPVPZSFHYYD_007E01A1 ((__RV_CFDictionaryGetValue) RV_LookupFunction015(RV_ObfuscationFunction005, 126, 140, 67, RV_ObfuscationFunction00C, RV_SJPVPZSFHYYD, 80, 21))
+#define RV_SJPVPZSFHYYD_009600E8 ((__RV_CFBundleGetValueForInfoDictionaryKey) RV_LookupFunction015(RV_ObfuscationFunction00B, 150, 239, 67, RV_ObfuscationFunction006, RV_SJPVPZSFHYYD, 40, 37))
+#define RV_SJPVPZSFHYYD_009600EA ((__RV_CFDictionaryCreateMutable) RV_LookupFunction015(RV_ObfuscationFunction00B, 150, 239, 67, RV_ObfuscationFunction003, RV_SJPVPZSFHYYD, 66, 34))
+#define RV_SJPVPZSFHYYD_00960190 ((__RV_CFReadStreamRead) RV_LookupFunction015(RV_ObfuscationFunction00B, 150, 239, 67, RV_ObfuscationFunction004, RV_SJPVPZSFHYYD, 123, 17))
+#define RV_SJPVPZSFHYYD_009601B3 ((__RV_CFArrayGetCount) RV_LookupFunction015(RV_ObfuscationFunction00B, 150, 239, 67, RV_ObfuscationFunction008, RV_SJPVPZSFHYYD, 97, 16))
+#define RV_SJPVPZSFHYYD_0118021C ((__RV_CC_SHA1_Init) RV_LookupFunction015(RV_ObfuscationFunction009, 280, 26, 33, RV_ObfuscationFunction004, RV_SJPVPZSFHYYD, 234, 16))
+#define RV_JCTZLPASYXCW_007E0061 ((__RV_CFEqual) RV_LookupFunction015(RV_ObfuscationFunction005, 126, 140, 67, RV_ObfuscationFunction00A, RV_JCTZLPASYXCW, 254, 16))
+#define RV_JCTZLPASYXCW_007E01A2 ((__RV_CFNumberCreate) RV_LookupFunction015(RV_ObfuscationFunction005, 126, 140, 67, RV_ObfuscationFunction006, RV_JCTZLPASYXCW, 231, 16))
+#define RV_JCTZLPASYXCW_0096009C ((__RV_CFStringCompare) RV_LookupFunction015(RV_ObfuscationFunction00B, 150, 239, 67, RV_ObfuscationFunction007, RV_JCTZLPASYXCW, 134, 16))
+#define RV_JCTZLPASYXCW_009601B3 ((__RV_CFArrayGetCount) RV_LookupFunction015(RV_ObfuscationFunction00B, 150, 239, 67, RV_ObfuscationFunction008, RV_JCTZLPASYXCW, 97, 16))
+#define RV_JCTZLPASYXCW_011801C4 ((__RV_getifaddrs) RV_LookupFunction015(RV_ObfuscationFunction009, 280, 26, 33, RV_ObfuscationFunction004, RV_JCTZLPASYXCW, 89, 16))
+#define RV_JCTZLPASYXCW_01EE0005 ((__RV_CFDataAppendBytes) RV_LookupFunction015(RV_ObfuscationFunction004, 494, 17, 67, RV_ObfuscationFunction00C, RV_JCTZLPASYXCW, 158, 18))
+#define RV_JCTZLPASYXCW_01EE008F ((__RV_CFDictionaryAddValue) RV_LookupFunction015(RV_ObfuscationFunction004, 494, 17, 67, RV_ObfuscationFunction008, RV_JCTZLPASYXCW, 39, 21))
+#define RV_QBGASNEBJQIE_007E009C ((__RV_CFStringCompare) RV_LookupFunction015(RV_ObfuscationFunction005, 126, 140, 67, RV_ObfuscationFunction007, RV_QBGASNEBJQIE, 134, 16))
+#define RV_QBGASNEBJQIE_007E00DA ((__RV_CFArrayAppendValue) RV_LookupFunction015(RV_ObfuscationFunction005, 126, 140, 67, RV_ObfuscationFunction005, RV_QBGASNEBJQIE, 34, 19))
+#define RV_QBGASNEBJQIE_007E0110 ((__RV_CFBundleGetValueForInfoDictionaryKey) RV_LookupFunction015(RV_ObfuscationFunction005, 126, 140, 67, RV_ObfuscationFunction00B, RV_QBGASNEBJQIE, 92, 37))
+#define RV_QBGASNEBJQIE_01E90127 ((__RV_CC_SHA1) RV_LookupFunction015(RV_ObfuscationFunction00A, 489, 8, 33, RV_ObfuscationFunction008, RV_QBGASNEBJQIE, 132, 16))
+#define RV_QBGASNEBJQIE_01EE002F ((__RV_CFDataGetLength) RV_LookupFunction015(RV_ObfuscationFunction004, 494, 17, 67, RV_ObfuscationFunction006, RV_QBGASNEBJQIE, 222, 16))
+#define RV_QBGASNEBJQIE_01EE0071 ((__RV_CFArrayCreateMutable) RV_LookupFunction015(RV_ObfuscationFunction004, 494, 17, 67, RV_ObfuscationFunction006, RV_QBGASNEBJQIE, 231, 21))
+#define RV_QBGASNEBJQIE_01EE0082 ((__RV_CFNumberCreate) RV_LookupFunction015(RV_ObfuscationFunction004, 494, 17, 67, RV_ObfuscationFunction005, RV_QBGASNEBJQIE, 36, 16))
+#define RV_QBGASNEBJQIE_01EE0139 ((__RV_CFURLCreateWithFileSystemPathRelativeToBase) RV_LookupFunction015(RV_ObfuscationFunction004, 494, 17, 67, RV_ObfuscationFunction008, RV_QBGASNEBJQIE, 57, 52))
+#define RV_QBGASNEBJQIE_01EE0141 ((__RV_CFArrayGetValueAtIndex) RV_LookupFunction015(RV_ObfuscationFunction004, 494, 17, 67, RV_ObfuscationFunction004, RV_QBGASNEBJQIE, 125, 23))
+#define RV_ULDQRPYUOEON_0039017A ((__RV_SecKeychainSearchCopyNext) RV_LookupFunction015(RV_ObfuscationFunction007, 57, 208, 55, RV_ObfuscationFunction004, RV_ULDQRPYUOEON, 97, 34))
+#define RV_ULDQRPYUOEON_01EE003A ((__RV_CFDataCreate) RV_LookupFunction015(RV_ObfuscationFunction004, 494, 17, 67, RV_ObfuscationFunction007, RV_ULDQRPYUOEON, 241, 16))
+#define RV_ULDQRPYUOEON_01EE01A2 ((__RV_CFNumberCreate) RV_LookupFunction015(RV_ObfuscationFunction004, 494, 17, 67, RV_ObfuscationFunction006, RV_ULDQRPYUOEON, 231, 16))
+#define RV_ULDQRPYUOEON_01EE01A9 ((__RV_CFDateFormatterCreateDateFromString) RV_LookupFunction015(RV_ObfuscationFunction004, 494, 17, 67, RV_ObfuscationFunction00A, RV_ULDQRPYUOEON, 162, 36))
+#define RV_ULDQRPYUOEON_01EE01BE ((__RV_CFDataCreateMutable) RV_LookupFunction015(RV_ObfuscationFunction004, 494, 17, 67, RV_ObfuscationFunction004, RV_ULDQRPYUOEON, 49, 20))
+#define RV_LNQGAPCQAYML_00590184 ((__RV_CC_SHA1_Update) RV_LookupFunction015(RV_ObfuscationFunction004, 89, 254, 33, RV_ObfuscationFunction00B, RV_LNQGAPCQAYML, 190, 16))
+#define RV_LNQGAPCQAYML_005901BB ((__RV_freeifaddrs) RV_LookupFunction015(RV_ObfuscationFunction004, 89, 254, 33, RV_ObfuscationFunction00B, RV_LNQGAPCQAYML, 50, 16))
+#define RV_LNQGAPCQAYML_00960093 ((__RV_CFStringGetFileSystemRepresentation) RV_LookupFunction015(RV_ObfuscationFunction00B, 150, 239, 67, RV_ObfuscationFunction009, RV_LNQGAPCQAYML, 86, 36))
+#define RV_LNQGAPCQAYML_009600F6 ((__RV_CFStringCompare) RV_LookupFunction015(RV_ObfuscationFunction00B, 150, 239, 67, RV_ObfuscationFunction007, RV_LNQGAPCQAYML, 68, 16))
+#define RV_LNQGAPCQAYML_009E0155 ((__RV_SecCertificateCopyData) RV_LookupFunction015(RV_ObfuscationFunction009, 158, 217, 55, RV_ObfuscationFunction006, RV_LNQGAPCQAYML, 218, 23))
+#define RV_LNQGAPCQAYML_01EE0067 ((__RV_CFDictionaryGetValue) RV_LookupFunction015(RV_ObfuscationFunction004, 494, 17, 67, RV_ObfuscationFunction00B, RV_LNQGAPCQAYML, 84, 21))
+#define RV_LNQGAPCQAYML_01EE008F ((__RV_CFDictionaryAddValue) RV_LookupFunction015(RV_ObfuscationFunction004, 494, 17, 67, RV_ObfuscationFunction008, RV_LNQGAPCQAYML, 39, 21))
+#define RV_EHCQHJFPOOLY_007E000F ((__RV_CFDictionaryCreateMutable) RV_LookupFunction015(RV_ObfuscationFunction005, 126, 140, 67, RV_ObfuscationFunction006, RV_EHCQHJFPOOLY, 22, 34))
+#define RV_EHCQHJFPOOLY_007E01B4 ((__RV_CFReadStreamClose) RV_LookupFunction015(RV_ObfuscationFunction005, 126, 140, 67, RV_ObfuscationFunction004, RV_EHCQHJFPOOLY, 124, 18))
+#define RV_EHCQHJFPOOLY_00960005 ((__RV_CFDataAppendBytes) RV_LookupFunction015(RV_ObfuscationFunction00B, 150, 239, 67, RV_ObfuscationFunction00C, RV_EHCQHJFPOOLY, 158, 18))
+#define RV_EHCQHJFPOOLY_0096003A ((__RV_CFDataCreate) RV_LookupFunction015(RV_ObfuscationFunction00B, 150, 239, 67, RV_ObfuscationFunction007, RV_EHCQHJFPOOLY, 241, 16))
+#define RV_EHCQHJFPOOLY_01EE0082 ((__RV_CFNumberCreate) RV_LookupFunction015(RV_ObfuscationFunction004, 494, 17, 67, RV_ObfuscationFunction005, RV_EHCQHJFPOOLY, 36, 16))
+#define RV_EHCQHJFPOOLY_01EE0197 ((__RV_CFDataGetBytePtr) RV_LookupFunction015(RV_ObfuscationFunction004, 494, 17, 67, RV_ObfuscationFunction00C, RV_EHCQHJFPOOLY, 88, 17))
+#define RV_EMCRXNTABHOH_007E018A ((__RV_CFReadStreamOpen) RV_LookupFunction015(RV_ObfuscationFunction005, 126, 140, 67, RV_ObfuscationFunction009, RV_EMCRXNTABHOH, 239, 17))
+#define RV_EMCRXNTABHOH_007E01D0 ((__RV_CFDateFormatterCreate) RV_LookupFunction015(RV_ObfuscationFunction005, 126, 140, 67, RV_ObfuscationFunction006, RV_EMCRXNTABHOH, 0, 22))
+#define RV_EMCRXNTABHOH_0096009C ((__RV_CFStringCompare) RV_LookupFunction015(RV_ObfuscationFunction00B, 150, 239, 67, RV_ObfuscationFunction007, RV_EMCRXNTABHOH, 134, 16))
+#define RV_EMCRXNTABHOH_00EF0120 ((__RV_SecKeychainSearchCreateFromAttributes) RV_LookupFunction015(RV_ObfuscationFunction003, 239, 11, 55, RV_ObfuscationFunction004, RV_EMCRXNTABHOH, 112, 38))
+#define RV_EMCRXNTABHOH_01EE0162 ((__RV_CFNumberCreate) RV_LookupFunction015(RV_ObfuscationFunction004, 494, 17, 67, RV_ObfuscationFunction00C, RV_EMCRXNTABHOH, 42, 16))
+#define RV_EMCRXNTABHOH_01EE01DB ((__RV_CFDataAppendBytes) RV_LookupFunction015(RV_ObfuscationFunction004, 494, 17, 67, RV_ObfuscationFunction007, RV_EMCRXNTABHOH, 129, 18))
+#define RV_kCFBundleIdentifierKey_00960159 ((__RV_kCFBundleIdentifierKey) RV_LookupFunction015(RV_ObfuscationFunction00B, 150, 239, 67, RV_ObfuscationFunction00B, 345, 247, 23))
+#define RV_kCFTypeArrayCallBacks_007E017C ((__RV_kCFTypeArrayCallBacks) RV_LookupFunction015(RV_ObfuscationFunction005, 126, 140, 67, RV_ObfuscationFunction009, 380, 43, 22))
+#define RV_kCFTypeArrayCallBacks_0096017C ((__RV_kCFTypeArrayCallBacks) RV_LookupFunction015(RV_ObfuscationFunction00B, 150, 239, 67, RV_ObfuscationFunction009, 380, 43, 22))
+#define RV_kCFTypeArrayCallBacks_01EE017C ((__RV_kCFTypeArrayCallBacks) RV_LookupFunction015(RV_ObfuscationFunction004, 494, 17, 67, RV_ObfuscationFunction009, 380, 43, 22))
+#define RV_kCFTypeDictionaryKeyCallBacks_007E01DD ((__RV_kCFTypeDictionaryKeyCallBacks) RV_LookupFunction015(RV_ObfuscationFunction005, 126, 140, 67, RV_ObfuscationFunction008, 477, 32, 38))
+#define RV_kCFTypeDictionaryKeyCallBacks_0096006D ((__RV_kCFTypeDictionaryKeyCallBacks) RV_LookupFunction015(RV_ObfuscationFunction00B, 150, 239, 67, RV_ObfuscationFunction003, 109, 221, 38))
+#define RV_kCFTypeDictionaryKeyCallBacks_01EE01DD ((__RV_kCFTypeDictionaryKeyCallBacks) RV_LookupFunction015(RV_ObfuscationFunction004, 494, 17, 67, RV_ObfuscationFunction008, 477, 32, 38))
+#define RV_kCFTypeDictionaryValueCallBacks_007E0148 ((__RV_kCFTypeDictionaryValueCallBacks) RV_LookupFunction015(RV_ObfuscationFunction005, 126, 140, 67, RV_ObfuscationFunction008, 328, 42, 32))
+#define RV_kCFTypeDictionaryValueCallBacks_007E01F8 ((__RV_kCFTypeDictionaryValueCallBacks) RV_LookupFunction015(RV_ObfuscationFunction005, 126, 140, 67, RV_ObfuscationFunction00A, 504, 238, 32))
+#define RV_kCFTypeDictionaryValueCallBacks_01EE0148 ((__RV_kCFTypeDictionaryValueCallBacks) RV_LookupFunction015(RV_ObfuscationFunction004, 494, 17, 67, RV_ObfuscationFunction008, 328, 42, 32))
+#define RV_kCFTypeDictionaryValueCallBacks_01EE01A7 ((__RV_kCFTypeDictionaryValueCallBacks) RV_LookupFunction015(RV_ObfuscationFunction004, 494, 17, 67, RV_ObfuscationFunction00A, 423, 155, 32))
+#define RV_kSecClass_0039010C ((__RV_kSecClass) RV_LookupFunction015(RV_ObfuscationFunction007, 57, 208, 55, RV_ObfuscationFunction004, 268, 140, 16))
+#define RV_kSecClass_009E010C ((__RV_kSecClass) RV_LookupFunction015(RV_ObfuscationFunction009, 158, 217, 55, RV_ObfuscationFunction004, 268, 140, 16))
+#define RV_kSecClassCertificate_00EF011C ((__RV_kSecClassCertificate) RV_LookupFunction015(RV_ObfuscationFunction003, 239, 11, 55, RV_ObfuscationFunction00A, 284, 203, 21))
+#define RV_kSecClassCertificate_00EF013C ((__RV_kSecClassCertificate) RV_LookupFunction015(RV_ObfuscationFunction003, 239, 11, 55, RV_ObfuscationFunction00B, 316, 42, 21))
+#define RV_kSecMatchLimit_003901ED ((__RV_kSecMatchLimit) RV_LookupFunction015(RV_ObfuscationFunction007, 57, 208, 55, RV_ObfuscationFunction00A, 493, 119, 16))
+#define RV_kSecMatchLimit_00EF01ED ((__RV_kSecMatchLimit) RV_LookupFunction015(RV_ObfuscationFunction003, 239, 11, 55, RV_ObfuscationFunction00A, 493, 119, 16))
+#define RV_kSecMatchLimitAll_009E01AB ((__RV_kSecMatchLimitAll) RV_LookupFunction015(RV_ObfuscationFunction009, 158, 217, 55, RV_ObfuscationFunction004, 427, 112, 18))
+#define RV_kSecMatchLimitAll_00EF01AB ((__RV_kSecMatchLimitAll) RV_LookupFunction015(RV_ObfuscationFunction003, 239, 11, 55, RV_ObfuscationFunction004, 427, 112, 18))
+#define RV_kSecMatchSearchList_009E0167 ((__RV_kSecMatchSearchList) RV_LookupFunction015(RV_ObfuscationFunction009, 158, 217, 55, RV_ObfuscationFunction00B, 359, 101, 20))
+#define RV_kSecMatchSubjectContains_0039017B ((__RV_kSecMatchSubjectContains) RV_LookupFunction015(RV_ObfuscationFunction007, 57, 208, 55, RV_ObfuscationFunction004, 379, 233, 33))
+#define RV_kSecMatchSubjectContains_009E017B ((__RV_kSecMatchSubjectContains) RV_LookupFunction015(RV_ObfuscationFunction009, 158, 217, 55, RV_ObfuscationFunction004, 379, 233, 33))
+#define RV_kSecReturnRef_0039008E ((__RV_kSecReturnRef) RV_LookupFunction015(RV_ObfuscationFunction007, 57, 208, 55, RV_ObfuscationFunction003, 142, 48, 16))
+#define RV_kSecReturnRef_00390173 ((__RV_kSecReturnRef) RV_LookupFunction015(RV_ObfuscationFunction007, 57, 208, 55, RV_ObfuscationFunction00A, 371, 238, 16))
+#define RV_longjmp_00590037 ((__RV_longjmp) RV_LookupFunction015(RV_ObfuscationFunction004, 89, 254, 33, RV_ObfuscationFunction007, 55, 177, 16))
+#define RV_longjmp_00590189 ((__RV_longjmp) RV_LookupFunction015(RV_ObfuscationFunction004, 89, 254, 33, RV_ObfuscationFunction00C, 393, 30, 16))
+#define RV_longjmp_01180037 ((__RV_longjmp) RV_LookupFunction015(RV_ObfuscationFunction009, 280, 26, 33, RV_ObfuscationFunction007, 55, 177, 16))
+#define RV_longjmp_01180189 ((__RV_longjmp) RV_LookupFunction015(RV_ObfuscationFunction009, 280, 26, 33, RV_ObfuscationFunction00C, 393, 30, 16))
+#define RV_longjmp_01E90029 ((__RV_longjmp) RV_LookupFunction015(RV_ObfuscationFunction00A, 489, 8, 33, RV_ObfuscationFunction00A, 41, 46, 16))
+#define RV_longjmp_01E90037 ((__RV_longjmp) RV_LookupFunction015(RV_ObfuscationFunction00A, 489, 8, 33, RV_ObfuscationFunction007, 55, 177, 16))
+#define RV_longjmp_01E90189 ((__RV_longjmp) RV_LookupFunction015(RV_ObfuscationFunction00A, 489, 8, 33, RV_ObfuscationFunction00C, 393, 30, 16))
+#define RV_OBJ_txt2obj_002D012D ((__RV_OBJ_txt2obj) RV_LookupFunction015(RV_ObfuscationFunction008, 45, 63, 16, RV_ObfuscationFunction009, 301, 45, 16))
+#define RV_objc_getClass_00490004 ((__RV_objc_getClass) RV_LookupFunction015(RV_ObfuscationFunction008, 73, 207, 23, RV_ObfuscationFunction009, 4, 140, 16))
+#define RV_objc_getClass_004900D1 ((__RV_objc_getClass) RV_LookupFunction015(RV_ObfuscationFunction008, 73, 207, 23, RV_ObfuscationFunction007, 209, 157, 16))
+#define RV_objc_getClass_004901C6 ((__RV_objc_getClass) RV_LookupFunction015(RV_ObfuscationFunction008, 73, 207, 23, RV_ObfuscationFunction005, 454, 85, 16))
+#define RV_objc_getClass_01C800D1 ((__RV_objc_getClass) RV_LookupFunction015(RV_ObfuscationFunction00C, 456, 186, 23, RV_ObfuscationFunction007, 209, 157, 16))
+#define RV_objc_getClass_01C801C6 ((__RV_objc_getClass) RV_LookupFunction015(RV_ObfuscationFunction00C, 456, 186, 23, RV_ObfuscationFunction005, 454, 85, 16))
+#define RV_objc_getClass_01CF0004 ((__RV_objc_getClass) RV_LookupFunction015(RV_ObfuscationFunction009, 463, 80, 23, RV_ObfuscationFunction009, 4, 140, 16))
+#define RV_objc_getClass_01CF01C6 ((__RV_objc_getClass) RV_LookupFunction015(RV_ObfuscationFunction009, 463, 80, 23, RV_ObfuscationFunction005, 454, 85, 16))
+#define RV_objc_msgSend_00490065 ((__RV_objc_msgSend) RV_LookupFunction015(RV_ObfuscationFunction008, 73, 207, 23, RV_ObfuscationFunction005, 101, 106, 16))
+#define RV_objc_msgSend_0049015D ((__RV_objc_msgSend) RV_LookupFunction015(RV_ObfuscationFunction008, 73, 207, 23, RV_ObfuscationFunction006, 349, 171, 16))
+#define RV_objc_msgSend_01C800C1 ((__RV_objc_msgSend) RV_LookupFunction015(RV_ObfuscationFunction00C, 456, 186, 23, RV_ObfuscationFunction006, 193, 222, 16))
+#define RV_objc_msgSend_01C8015D ((__RV_objc_msgSend) RV_LookupFunction015(RV_ObfuscationFunction00C, 456, 186, 23, RV_ObfuscationFunction006, 349, 171, 16))
+#define RV_objc_msgSend_01CF0065 ((__RV_objc_msgSend) RV_LookupFunction015(RV_ObfuscationFunction009, 463, 80, 23, RV_ObfuscationFunction005, 101, 106, 16))
+#define RV_objc_msgSend_01CF015D ((__RV_objc_msgSend) RV_LookupFunction015(RV_ObfuscationFunction009, 463, 80, 23, RV_ObfuscationFunction006, 349, 171, 16))
+#define RV_OpenSSL_add_all_digests_018201E2 ((__RV_OpenSSL_add_all_digests) RV_LookupFunction015(RV_ObfuscationFunction003, 386, 220, 16, RV_ObfuscationFunction006, 482, 175, 32))
+#define RV_PKCS7_free_0068003C ((__RV_PKCS7_free) RV_LookupFunction015(RV_ObfuscationFunction005, 104, 241, 16, RV_ObfuscationFunction003, 60, 31, 16))
+#define RV_PKCS7_free_0182006A ((__RV_PKCS7_free) RV_LookupFunction015(RV_ObfuscationFunction003, 386, 220, 16, RV_ObfuscationFunction009, 106, 246, 16))
+#define RV_PKCS7_free_018201EC ((__RV_PKCS7_free) RV_LookupFunction015(RV_ObfuscationFunction003, 386, 220, 16, RV_ObfuscationFunction009, 492, 201, 16))
+#define RV_PKCS7_get0_signers_018201B1 ((__RV_PKCS7_get0_signers) RV_LookupFunction015(RV_ObfuscationFunction003, 386, 220, 16, RV_ObfuscationFunction00A, 433, 214, 19))
+#define RV_PKCS7_verify_018200AE ((__RV_PKCS7_verify) RV_LookupFunction015(RV_ObfuscationFunction003, 386, 220, 16, RV_ObfuscationFunction006, 174, 99, 16))
+#define RV_SecItemCopyMatching_00390191 ((__RV_SecItemCopyMatching) RV_LookupFunction015(RV_ObfuscationFunction007, 57, 208, 55, RV_ObfuscationFunction007, 401, 34, 20))
+#define RV_SecItemCopyMatching_003901E8 ((__RV_SecItemCopyMatching) RV_LookupFunction015(RV_ObfuscationFunction007, 57, 208, 55, RV_ObfuscationFunction00C, 488, 121, 20))
+#define RV_SecKeychainOpen_003900B9 ((__RV_SecKeychainOpen) RV_LookupFunction015(RV_ObfuscationFunction007, 57, 208, 55, RV_ObfuscationFunction00A, 185, 31, 16))
+#define RV_SecKeychainOpen_00EF0158 ((__RV_SecKeychainOpen) RV_LookupFunction015(RV_ObfuscationFunction003, 239, 11, 55, RV_ObfuscationFunction007, 344, 194, 16))
+#define RV_sel_registerName_0049009B ((__RV_sel_registerName) RV_LookupFunction015(RV_ObfuscationFunction008, 73, 207, 23, RV_ObfuscationFunction00B, 155, 50, 17))
+#define RV_sel_registerName_01C800E5 ((__RV_sel_registerName) RV_LookupFunction015(RV_ObfuscationFunction00C, 456, 186, 23, RV_ObfuscationFunction003, 229, 160, 17))
+#define RV_sel_registerName_01C801C5 ((__RV_sel_registerName) RV_LookupFunction015(RV_ObfuscationFunction00C, 456, 186, 23, RV_ObfuscationFunction003, 453, 92, 17))
+#define RV_sel_registerName_01CF009B ((__RV_sel_registerName) RV_LookupFunction015(RV_ObfuscationFunction009, 463, 80, 23, RV_ObfuscationFunction00B, 155, 50, 17))
+#define RV_sel_registerName_01CF00E5 ((__RV_sel_registerName) RV_LookupFunction015(RV_ObfuscationFunction009, 463, 80, 23, RV_ObfuscationFunction003, 229, 160, 17))
+#define RV_sel_registerName_01CF01C5 ((__RV_sel_registerName) RV_LookupFunction015(RV_ObfuscationFunction009, 463, 80, 23, RV_ObfuscationFunction003, 453, 92, 17))
+#define RV_setjmp_01E9009D ((__RV_setjmp) RV_LookupFunction015(RV_ObfuscationFunction00A, 489, 8, 33, RV_ObfuscationFunction005, 157, 128, 16))
+#define RV_SHA1_01820194 ((__RV_SHA1) RV_LookupFunction015(RV_ObfuscationFunction003, 386, 220, 16, RV_ObfuscationFunction005, 404, 221, 16))
+#define RV_SHA1_Final_01820201 ((__RV_SHA1_Final) RV_LookupFunction015(RV_ObfuscationFunction003, 386, 220, 16, RV_ObfuscationFunction00A, 513, 189, 16))
+#define RV_SHA1_Init_002D00DC ((__RV_SHA1_Init) RV_LookupFunction015(RV_ObfuscationFunction008, 45, 63, 16, RV_ObfuscationFunction008, 220, 24, 16))
+#define RV_SHA1_Update_018201D3 ((__RV_SHA1_Update) RV_LookupFunction015(RV_ObfuscationFunction003, 386, 220, 16, RV_ObfuscationFunction008, 467, 121, 16))
+#define RV_sk_free_01820056 ((__RV_sk_free) RV_LookupFunction015(RV_ObfuscationFunction003, 386, 220, 16, RV_ObfuscationFunction005, 86, 39, 16))
+#define RV_sk_num_00680207 ((__RV_sk_num) RV_LookupFunction015(RV_ObfuscationFunction005, 104, 241, 16, RV_ObfuscationFunction00C, 519, 51, 16))
+#define RV_sk_value_01820153 ((__RV_sk_value) RV_LookupFunction015(RV_ObfuscationFunction003, 386, 220, 16, RV_ObfuscationFunction009, 339, 24, 16))
+#define RV_X509_digest_002D0176 ((__RV_X509_digest) RV_LookupFunction015(RV_ObfuscationFunction008, 45, 63, 16, RV_ObfuscationFunction003, 374, 230, 16))
+#define RV_X509_free_01820011 ((__RV_X509_free) RV_LookupFunction015(RV_ObfuscationFunction003, 386, 220, 16, RV_ObfuscationFunction004, 17, 203, 16))
+#define RV_X509_get_ext_by_OBJ_002D0036 ((__RV_X509_get_ext_by_OBJ) RV_LookupFunction015(RV_ObfuscationFunction008, 45, 63, 16, RV_ObfuscationFunction004, 54, 134, 20))
+#define RV_X509_NAME_get_text_by_NID_006800F7 ((__RV_X509_NAME_get_text_by_NID) RV_LookupFunction015(RV_ObfuscationFunction005, 104, 241, 16, RV_ObfuscationFunction004, 247, 137, 34))
+#define RV_X509_STORE_add_cert_00680101 ((__RV_X509_STORE_add_cert) RV_LookupFunction015(RV_ObfuscationFunction005, 104, 241, 16, RV_ObfuscationFunction003, 257, 237, 20))
+#define RV_X509_STORE_free_002D00FE ((__RV_X509_STORE_free) RV_LookupFunction015(RV_ObfuscationFunction008, 45, 63, 16, RV_ObfuscationFunction008, 254, 215, 16))
+#define RV_X509_STORE_new_0068004C ((__RV_X509_STORE_new) RV_LookupFunction015(RV_ObfuscationFunction005, 104, 241, 16, RV_ObfuscationFunction00A, 76, 7, 16))
     
     
     // CodeBlock ObfuscationFunction / M(Rot)
@@ -2386,11 +2307,11 @@ extern "C" {
     }
     
     __RETURN_RETAINED inline static CFStringRef RV_ObfuscationFunction003CF(const char *RV_p1, int RV_p3, int RV_p4) {
-        char RV_tmp1[565];
+        char RV_tmp1[542];
         char *RV_tmp2 = RV_tmp1;
         RV_ObfuscationFunction003(RV_p1, RV_tmp1, RV_p3, RV_p4);
         while(*RV_tmp2) { RV_tmp2++; }
-        CFStringRef RV_str1 = ((__RV_CFStringCreateWithBytes) RV_Pointers[172])(NULL, (const UInt8 *) RV_tmp1, (CFIndex) (RV_tmp2 - RV_tmp1), kCFStringEncodingUTF8, false);
+        CFStringRef RV_str1 = ((__RV_CFStringCreateWithBytes) RV_Pointers[327])(NULL, (const UInt8 *) RV_tmp1, (CFIndex) (RV_tmp2 - RV_tmp1), kCFStringEncodingUTF8, false);
         return RV_str1;
     }
     
@@ -2402,9 +2323,9 @@ extern "C" {
     }
     
     __RETURN_RETAINED inline static CFStringRef RV_ObfuscationFunction004CF(const char *RV_p1, int RV_p3, int RV_p4) {
-        char RV_tmp1[565];
+        char RV_tmp1[542];
         RV_ObfuscationFunction004(RV_p1, RV_tmp1, RV_p3, RV_p4);
-        CFStringRef RV_str1 = ((__RV_CFStringCreateWithCString) RV_Pointers[503])(NULL, RV_tmp1, kCFStringEncodingUTF8);
+        CFStringRef RV_str1 = ((__RV_CFStringCreateWithCString) RV_Pointers[473])(NULL, RV_tmp1, kCFStringEncodingUTF8);
         return RV_str1;
     }
     
@@ -2416,11 +2337,11 @@ extern "C" {
     }
     
     __RETURN_RETAINED inline static CFStringRef RV_ObfuscationFunction005CF(const char *RV_p1, int RV_p3, int RV_p4) {
-        char RV_tmp1[565];
+        char RV_tmp1[542];
         char *RV_tmp2 = RV_tmp1;
         RV_ObfuscationFunction005(RV_p1, RV_tmp1, RV_p3, RV_p4);
         while(*RV_tmp2) { RV_tmp2++; }
-        CFStringRef RV_str1 = ((__RV_CFStringCreateWithBytes) RV_Pointers[280])(NULL, (const UInt8 *) RV_tmp1, (CFIndex) (RV_tmp2 - RV_tmp1), kCFStringEncodingUTF8, false);
+        CFStringRef RV_str1 = ((__RV_CFStringCreateWithBytes) RV_Pointers[213])(NULL, (const UInt8 *) RV_tmp1, (CFIndex) (RV_tmp2 - RV_tmp1), kCFStringEncodingUTF8, false);
         return RV_str1;
     }
     
@@ -2432,9 +2353,9 @@ extern "C" {
     }
     
     __RETURN_RETAINED inline static CFStringRef RV_ObfuscationFunction006CF(const char *RV_p1, int RV_p3, int RV_p4) {
-        char RV_tmp1[565];
+        char RV_tmp1[542];
         RV_ObfuscationFunction006(RV_p1, RV_tmp1, RV_p3, RV_p4);
-        CFStringRef RV_str1 = ((__RV_CFStringCreateWithCString) RV_Pointers[310])(NULL, RV_tmp1, kCFStringEncodingUTF8);
+        CFStringRef RV_str1 = ((__RV_CFStringCreateWithCString) RV_Pointers[180])(NULL, RV_tmp1, kCFStringEncodingUTF8);
         return RV_str1;
     }
     
@@ -2446,11 +2367,11 @@ extern "C" {
     }
     
     __RETURN_RETAINED inline static CFStringRef RV_ObfuscationFunction007CF(const char *RV_p1, int RV_p3, int RV_p4) {
-        char RV_tmp1[565];
+        char RV_tmp1[542];
         char *RV_tmp2 = RV_tmp1;
         RV_ObfuscationFunction007(RV_p1, RV_tmp1, RV_p3, RV_p4);
         while(*RV_tmp2) { RV_tmp2++; }
-        CFStringRef RV_str1 = ((__RV_CFStringCreateWithBytes) RV_Pointers[172])(NULL, (const UInt8 *) RV_tmp1, (CFIndex) (RV_tmp2 - RV_tmp1), kCFStringEncodingUTF8, false);
+        CFStringRef RV_str1 = ((__RV_CFStringCreateWithBytes) RV_Pointers[449])(NULL, (const UInt8 *) RV_tmp1, (CFIndex) (RV_tmp2 - RV_tmp1), kCFStringEncodingUTF8, false);
         return RV_str1;
     }
     
@@ -2462,9 +2383,9 @@ extern "C" {
     }
     
     __RETURN_RETAINED inline static CFStringRef RV_ObfuscationFunction008CF(const char *RV_p1, int RV_p3, int RV_p4) {
-        char RV_tmp1[565];
+        char RV_tmp1[542];
         RV_ObfuscationFunction008(RV_p1, RV_tmp1, RV_p3, RV_p4);
-        CFStringRef RV_str1 = ((__RV_CFStringCreateWithCString) RV_Pointers[503])(NULL, RV_tmp1, kCFStringEncodingUTF8);
+        CFStringRef RV_str1 = ((__RV_CFStringCreateWithCString) RV_Pointers[528])(NULL, RV_tmp1, kCFStringEncodingUTF8);
         return RV_str1;
     }
     
@@ -2476,11 +2397,11 @@ extern "C" {
     }
     
     __RETURN_RETAINED inline static CFStringRef RV_ObfuscationFunction009CF(const char *RV_p1, int RV_p3, int RV_p4) {
-        char RV_tmp1[565];
+        char RV_tmp1[542];
         char *RV_tmp2 = RV_tmp1;
         RV_ObfuscationFunction009(RV_p1, RV_tmp1, RV_p3, RV_p4);
         while(*RV_tmp2) { RV_tmp2++; }
-        CFStringRef RV_str1 = ((__RV_CFStringCreateWithBytes) RV_Pointers[55])(NULL, (const UInt8 *) RV_tmp1, (CFIndex) (RV_tmp2 - RV_tmp1), kCFStringEncodingUTF8, false);
+        CFStringRef RV_str1 = ((__RV_CFStringCreateWithBytes) RV_Pointers[213])(NULL, (const UInt8 *) RV_tmp1, (CFIndex) (RV_tmp2 - RV_tmp1), kCFStringEncodingUTF8, false);
         return RV_str1;
     }
     
@@ -2492,9 +2413,9 @@ extern "C" {
     }
     
     __RETURN_RETAINED inline static CFStringRef RV_ObfuscationFunction00ACF(const char *RV_p1, int RV_p3, int RV_p4) {
-        char RV_tmp1[565];
+        char RV_tmp1[542];
         RV_ObfuscationFunction00A(RV_p1, RV_tmp1, RV_p3, RV_p4);
-        CFStringRef RV_str1 = ((__RV_CFStringCreateWithCString) RV_Pointers[272])(NULL, RV_tmp1, kCFStringEncodingUTF8);
+        CFStringRef RV_str1 = ((__RV_CFStringCreateWithCString) RV_Pointers[180])(NULL, RV_tmp1, kCFStringEncodingUTF8);
         return RV_str1;
     }
     
@@ -2506,11 +2427,11 @@ extern "C" {
     }
     
     __RETURN_RETAINED inline static CFStringRef RV_ObfuscationFunction00BCF(const char *RV_p1, int RV_p3, int RV_p4) {
-        char RV_tmp1[565];
+        char RV_tmp1[542];
         char *RV_tmp2 = RV_tmp1;
         RV_ObfuscationFunction00B(RV_p1, RV_tmp1, RV_p3, RV_p4);
         while(*RV_tmp2) { RV_tmp2++; }
-        CFStringRef RV_str1 = ((__RV_CFStringCreateWithBytes) RV_Pointers[172])(NULL, (const UInt8 *) RV_tmp1, (CFIndex) (RV_tmp2 - RV_tmp1), kCFStringEncodingUTF8, false);
+        CFStringRef RV_str1 = ((__RV_CFStringCreateWithBytes) RV_Pointers[327])(NULL, (const UInt8 *) RV_tmp1, (CFIndex) (RV_tmp2 - RV_tmp1), kCFStringEncodingUTF8, false);
         return RV_str1;
     }
     
@@ -2522,25 +2443,25 @@ extern "C" {
     }
     
     __RETURN_RETAINED inline static CFStringRef RV_ObfuscationFunction00CCF(const char *RV_p1, int RV_p3, int RV_p4) {
-        char RV_tmp1[565];
+        char RV_tmp1[542];
         RV_ObfuscationFunction00C(RV_p1, RV_tmp1, RV_p3, RV_p4);
-        CFStringRef RV_str1 = ((__RV_CFStringCreateWithCString) RV_Pointers[503])(NULL, RV_tmp1, kCFStringEncodingUTF8);
+        CFStringRef RV_str1 = ((__RV_CFStringCreateWithCString) RV_Pointers[528])(NULL, RV_tmp1, kCFStringEncodingUTF8);
         return RV_str1;
     }
     
     
     // CodeBlock LookupFunction
     inline static void *RV_LookupFunction015(RV_decrypt RV_func1, int RV_index1, int RV_val1, int RV_len1, RV_decrypt RV_func2, int RV_index2, int RV_val2, int RV_len2) {
-        char RV_tmp1[565], RV_tmp2[565];
+        char RV_tmp1[542], RV_tmp2[542];
         // Load the library if needed
         if (RV_Pointers[RV_index1] == NULL) {
             RV_func1(RV_Strings[RV_index1], RV_tmp1, RV_val1, RV_len1);
-            RV_Pointers[RV_index1] = ((__RV_dlopen) RV_Pointers[415])(RV_tmp1, RTLD_NOW | RTLD_FIRST);
+            RV_Pointers[RV_index1] = ((__RV_dlopen) RV_Pointers[451])(RV_tmp1, RTLD_NOW | RTLD_FIRST);
         }
         // Load the function if needed
         if (RV_Pointers[RV_index2] == NULL) {
             RV_func2(RV_Strings[RV_index2], RV_tmp2, RV_val2, RV_len2);
-            RV_Pointers[RV_index2] = ((__RV_dlsym) RV_Pointers[6])(RV_Pointers[RV_index1], RV_tmp2);
+            RV_Pointers[RV_index2] = ((__RV_dlsym) RV_Pointers[96])(RV_Pointers[RV_index1], RV_tmp2);
         }
         return RV_Pointers[RV_index2];
     }
@@ -2553,46 +2474,46 @@ extern "C" {
     inline static void RV_GetMainBundle016(RV_CheckingContext *RV_ctx) {
         __RV_RECEIPT_LOG("RV - Retrieving main bundle");
         // Retrieve the main bundle
-        RV_ctx->main_bundle = RV_CFBundleGetMainBundle_00910083();
+        RV_ctx->main_bundle = RV_CFBundleGetMainBundle_007E0135();
         if (!RV_ctx->main_bundle) {
             // Dead code
-            RV_CFRelease_00910137(RV_ctx->main_bundle);
-            RV_CFBundleUnloadExecutable_003F0227((CFBundleRef) RV_ctx->main_bundle);
+            RV_CFRelease_007E00CE(RV_ctx->main_bundle);
+            RV_CFBundleUnloadExecutable_007E01EB((CFBundleRef) RV_ctx->main_bundle);
         }
         // Global variables computation
-        // Set to 342
-        RV_QTQIYYKDHZUX = 342;
-        // Set to 23
-        RV_WZFOWZREXLHB = 23;
-        // Set to 476
-        RV_KYEHJWKNZEEB = 476;
-        // Set to 246
-        RV_QWQFLAFLIXCL = 246;
-        // Set to 75
-        RV_WVGZWQTCUMDX = 75;
-        // Set to 101
-        RV_HOMCOURKRIMK = 101;
-        // Set to 87
-        RV_CVYYOQHHDSEM = 87;
-        // Set to 85
-        RV_OVBWQJKFFITA = 85;
+        // Set to 154
+        RV_NMCRJBPXHTDH = 154;
+        // Set to 400
+        RV_SJPVPZSFHYYD = 400;
+        // Set to 5
+        RV_JCTZLPASYXCW = 5;
+        // Set to 313
+        RV_QBGASNEBJQIE = 313;
+        // Set to 446
+        RV_ULDQRPYUOEON = 446;
+        // Set to 147
+        RV_LNQGAPCQAYML = 147;
+        // Set to 436
+        RV_EHCQHJFPOOLY = 436;
+        // Set to 394
+        RV_EMCRXNTABHOH = 394;
     }
 #else
 #define RV_GetMainBundle016(RV_ctx) { \
 __RV_RECEIPT_LOG("RV - Retrieving main bundle"); \
-RV_ctx->main_bundle = RV_CFBundleGetMainBundle_00910083(); \
+RV_ctx->main_bundle = RV_CFBundleGetMainBundle_007E0135(); \
 if (!RV_ctx->main_bundle) { \
-RV_CFRelease_00910137(RV_ctx->main_bundle); \
-RV_CFBundleUnloadExecutable_003F0227((CFBundleRef) RV_ctx->main_bundle); \
+RV_CFRelease_007E00CE(RV_ctx->main_bundle); \
+RV_CFBundleUnloadExecutable_007E01EB((CFBundleRef) RV_ctx->main_bundle); \
 } \
-RV_QTQIYYKDHZUX = 342; \
-RV_WZFOWZREXLHB = 23; \
-RV_KYEHJWKNZEEB = 476; \
-RV_QWQFLAFLIXCL = 246; \
-RV_WVGZWQTCUMDX = 75; \
-RV_HOMCOURKRIMK = 101; \
-RV_CVYYOQHHDSEM = 87; \
-RV_OVBWQJKFFITA = 85; \
+RV_NMCRJBPXHTDH = 154; \
+RV_SJPVPZSFHYYD = 400; \
+RV_JCTZLPASYXCW = 5; \
+RV_QBGASNEBJQIE = 313; \
+RV_ULDQRPYUOEON = 446; \
+RV_LNQGAPCQAYML = 147; \
+RV_EHCQHJFPOOLY = 436; \
+RV_EMCRXNTABHOH = 394; \
 }
 #endif
     
@@ -2600,255 +2521,243 @@ RV_OVBWQJKFFITA = 85; \
     // CodeBlock LoadReceipt
 #ifndef RECEIGEN_EXTERNAL_RECEIPT
 #if DEBUG
-    inline static void RV_LoadReceipt023(RV_CheckingContext *RV_ctx) {
+    inline static void RV_LoadReceipt038(RV_CheckingContext *RV_ctx) {
         CFStringRef RV_str1;
         CFURLRef RV_url1, RV_url2;
         CFReadStreamRef RV_stream;
         CFMutableDataRef RV_data;
         CFIndex RV_count;
-        uint8_t RV_buffer[565];
+        uint8_t RV_buffer[542];
         __RV_RECEIPT_LOG("RV - Loading receipt");
         // Compute the path to the receipt
-        RV_url1 = RV_WVGZWQTCUMDX_003F004B((CFBundleRef) RV_ctx->main_bundle);
-        RV_str1 = RV_ObfuscationFunction007CF((RV_Strings[160]), 170, 37);
-        RV_url2 = RV_CFURLCreateWithFileSystemPathRelativeToBase_009101C7(NULL, RV_str1, kCFURLPOSIXPathStyle, false, RV_url1);
-        RV_CFRelease_0168008F(RV_str1);
-        RV_CFRelease_0168008F(RV_url1);
+        RV_url1 = RV_NMCRJBPXHTDH_007E009A((CFBundleRef) RV_ctx->main_bundle);
+        RV_str1 = RV_ObfuscationFunction008CF((RV_Strings[80]), 93, 16);
+        RV_url2 = RV_CFURLCreateCopyAppendingPathComponent_007E01C2(NULL, RV_url1, RV_str1, true);
+        RV_CFRelease_00960019(RV_str1);
+        RV_CFRelease_00960019(RV_url1);
+        RV_str1 = RV_ObfuscationFunction00CCF((RV_Strings[68]), 6, 20);
+        RV_url1 = RV_CFURLCreateCopyAppendingPathComponent_007E01C2(NULL, RV_url2, RV_str1, true);
+        RV_CFRelease_00960019(RV_str1);
+        RV_CFRelease_00960019(RV_url2);
+        RV_url2 = RV_url1;
+        RV_url1 = NULL;
         // Create a stream from the receipt file
-        RV_stream = RV_WZFOWZREXLHB_00910017(kCFAllocatorDefault, RV_url2);
-        if (RV_stream == NULL || !RV_CFReadStreamOpen_016800A2(RV_stream)) {
+        RV_stream = RV_CFReadStreamCreateWithFile_009601B8(kCFAllocatorDefault, RV_url2);
+        if (RV_stream == NULL || !RV_EMCRXNTABHOH_007E018A(RV_stream)) {
             __RV_RECEIPT_LOG("RV - Error while opening receipt");
-            RV_longjmp_00770103(RV_JumpBuf, 1);
+            RV_longjmp_01180037(RV_JumpBuf, 1);
             // Dead code
-            RV_CFRelease_0168008F(RV_str1);
-            RV_CFRelease_0168008F(RV_url1);
-            RV_CFRelease_0168008F(RV_str1);
-            goto RV_LoadReceipt023_RV_bail;
+            RV_CFRelease_00960019(RV_str1);
+            RV_CFRelease_00960019(RV_url1);
+            RV_CFRelease_00960019(RV_str1);
+            goto RV_LoadReceipt038_RV_bail;
         }
         // Create the data object that will contains receipt data
-        RV_data = RV_QWQFLAFLIXCL_016800F6(kCFAllocatorDefault, 0);
+        RV_data = RV_ULDQRPYUOEON_01EE01BE(kCFAllocatorDefault, 0);
         // Read the receipt by chunks
         do {
-            RV_count = RV_OVBWQJKFFITA_003F0055(RV_stream, &RV_buffer[0], 565);
+            RV_count = RV_SJPVPZSFHYYD_00960190(RV_stream, &RV_buffer[0], 542);
             if (RV_count > 0) {
-                RV_CVYYOQHHDSEM_00910057(RV_data, RV_buffer, RV_count);
+                RV_JCTZLPASYXCW_01EE0005(RV_data, RV_buffer, RV_count);
             }
         } while (RV_count > 0);
         // Close the stream
-        RV_CFReadStreamClose_003F006B(RV_stream);
-        if (RV_ctx->receipt_data) RV_CFRelease_0168008F(RV_ctx->receipt_data);
+        RV_EHCQHJFPOOLY_007E01B4(RV_stream);
+        if (RV_ctx->receipt_data) RV_CFRelease_00960019(RV_ctx->receipt_data);
         RV_ctx->receipt_data = RV_data;
         // Global variables computation
-        // From 23 to 446
-        RV_WZFOWZREXLHB -= 2; RV_WZFOWZREXLHB *= 21; RV_WZFOWZREXLHB += 5;
-        // From 476 to 439
-        RV_KYEHJWKNZEEB += 402; RV_KYEHJWKNZEEB /= 2;
-        // From 75 to 166
-        RV_WVGZWQTCUMDX -= 34; RV_WVGZWQTCUMDX *= 4; RV_WVGZWQTCUMDX += 2;
-        // From 101 to 457
-        RV_HOMCOURKRIMK -= 25; RV_HOMCOURKRIMK *= 6; RV_HOMCOURKRIMK += 1;
-        // Set to 345
-        RV_CVYYOQHHDSEM = 345;
-        // From 85 to 207
-        RV_OVBWQJKFFITA -= 34; RV_OVBWQJKFFITA *= 4; RV_OVBWQJKFFITA += 3;
-    RV_LoadReceipt023_RV_bail:
-        if (RV_stream) RV_CFRelease_0168008F(RV_stream);
-        RV_CFRelease_0168008F(RV_url2);
+        // From 5 to 452
+        RV_JCTZLPASYXCW -= 1; RV_JCTZLPASYXCW *= 92; RV_JCTZLPASYXCW += 84;
+        // From 446 to 58
+        RV_ULDQRPYUOEON += 76; RV_ULDQRPYUOEON /= 9;
+        // From 147 to 443
+        RV_LNQGAPCQAYML -= 59; RV_LNQGAPCQAYML *= 5; RV_LNQGAPCQAYML += 3;
+    RV_LoadReceipt038_RV_bail:
+        if (RV_stream) RV_CFRelease_00960019(RV_stream);
+        RV_CFRelease_00960019(RV_url2);
     }
 #else
-#define RV_LoadReceipt023(RV_ctx) { \
+#define RV_LoadReceipt038(RV_ctx) { \
 CFStringRef RV_str1; \
 CFURLRef RV_url1, RV_url2; \
 CFReadStreamRef RV_stream; \
 CFMutableDataRef RV_data; \
 CFIndex RV_count; \
-uint8_t RV_buffer[565]; \
+uint8_t RV_buffer[542]; \
 __RV_RECEIPT_LOG("RV - Loading receipt"); \
-RV_url1 = RV_WVGZWQTCUMDX_003F004B((CFBundleRef) RV_ctx->main_bundle); \
-RV_str1 = RV_ObfuscationFunction007CF((RV_Strings[160]), 170, 37); \
-RV_url2 = RV_CFURLCreateWithFileSystemPathRelativeToBase_009101C7(NULL, RV_str1, kCFURLPOSIXPathStyle, false, RV_url1); \
-RV_CFRelease_0168008F(RV_str1); \
-RV_CFRelease_0168008F(RV_url1); \
-RV_stream = RV_WZFOWZREXLHB_00910017(kCFAllocatorDefault, RV_url2); \
-if (RV_stream == NULL || !RV_CFReadStreamOpen_016800A2(RV_stream)) { \
+RV_url1 = RV_NMCRJBPXHTDH_007E009A((CFBundleRef) RV_ctx->main_bundle); \
+RV_str1 = RV_ObfuscationFunction008CF((RV_Strings[80]), 93, 16); \
+RV_url2 = RV_CFURLCreateCopyAppendingPathComponent_007E01C2(NULL, RV_url1, RV_str1, true); \
+RV_CFRelease_00960019(RV_str1); \
+RV_CFRelease_00960019(RV_url1); \
+RV_str1 = RV_ObfuscationFunction00CCF((RV_Strings[68]), 6, 20); \
+RV_url1 = RV_CFURLCreateCopyAppendingPathComponent_007E01C2(NULL, RV_url2, RV_str1, true); \
+RV_CFRelease_00960019(RV_str1); \
+RV_CFRelease_00960019(RV_url2); \
+RV_url2 = RV_url1; \
+RV_url1 = NULL; \
+RV_stream = RV_CFReadStreamCreateWithFile_009601B8(kCFAllocatorDefault, RV_url2); \
+if (RV_stream == NULL || !RV_EMCRXNTABHOH_007E018A(RV_stream)) { \
 __RV_RECEIPT_LOG("RV - Error while opening receipt"); \
-RV_longjmp_00770103(RV_JumpBuf, 1); \
-RV_CFRelease_0168008F(RV_str1); \
-RV_CFRelease_0168008F(RV_url1); \
-RV_CFRelease_0168008F(RV_str1); \
-goto RV_LoadReceipt023_RV_bail; \
+RV_longjmp_01180037(RV_JumpBuf, 1); \
+RV_CFRelease_00960019(RV_str1); \
+RV_CFRelease_00960019(RV_url1); \
+RV_CFRelease_00960019(RV_str1); \
+goto RV_LoadReceipt038_RV_bail; \
 } \
-RV_data = RV_QWQFLAFLIXCL_016800F6(kCFAllocatorDefault, 0); \
+RV_data = RV_ULDQRPYUOEON_01EE01BE(kCFAllocatorDefault, 0); \
 do { \
-RV_count = RV_OVBWQJKFFITA_003F0055(RV_stream, &RV_buffer[0], 565); \
+RV_count = RV_SJPVPZSFHYYD_00960190(RV_stream, &RV_buffer[0], 542); \
 if (RV_count > 0) { \
-RV_CVYYOQHHDSEM_00910057(RV_data, RV_buffer, RV_count); \
+RV_JCTZLPASYXCW_01EE0005(RV_data, RV_buffer, RV_count); \
 } \
 } while (RV_count > 0); \
-RV_CFReadStreamClose_003F006B(RV_stream); \
-if (RV_ctx->receipt_data) RV_CFRelease_0168008F(RV_ctx->receipt_data); \
+RV_EHCQHJFPOOLY_007E01B4(RV_stream); \
+if (RV_ctx->receipt_data) RV_CFRelease_00960019(RV_ctx->receipt_data); \
 RV_ctx->receipt_data = RV_data; \
-RV_WZFOWZREXLHB -= 2; RV_WZFOWZREXLHB *= 21; RV_WZFOWZREXLHB += 5;  \
-RV_KYEHJWKNZEEB += 402; RV_KYEHJWKNZEEB /= 2;  \
-RV_WVGZWQTCUMDX -= 34; RV_WVGZWQTCUMDX *= 4; RV_WVGZWQTCUMDX += 2;  \
-RV_HOMCOURKRIMK -= 25; RV_HOMCOURKRIMK *= 6; RV_HOMCOURKRIMK += 1;  \
-RV_CVYYOQHHDSEM = 345; \
-RV_OVBWQJKFFITA -= 34; RV_OVBWQJKFFITA *= 4; RV_OVBWQJKFFITA += 3;  \
-RV_LoadReceipt023_RV_bail: \
-if (RV_stream) RV_CFRelease_0168008F(RV_stream);     \
-RV_CFRelease_0168008F(RV_url2); \
+RV_JCTZLPASYXCW -= 1; RV_JCTZLPASYXCW *= 92; RV_JCTZLPASYXCW += 84;  \
+RV_ULDQRPYUOEON += 76; RV_ULDQRPYUOEON /= 9;  \
+RV_LNQGAPCQAYML -= 59; RV_LNQGAPCQAYML *= 5; RV_LNQGAPCQAYML += 3;  \
+RV_LoadReceipt038_RV_bail: \
+if (RV_stream) RV_CFRelease_00960019(RV_stream);     \
+RV_CFRelease_00960019(RV_url2); \
 }
 #endif
 #endif
     
 #ifdef RECEIGEN_EXTERNAL_RECEIPT
 #if DEBUG
-    inline static void RV_LoadReceipt023(RV_CheckingContext *RV_ctx) {
+    inline static void RV_LoadReceipt038(RV_CheckingContext *RV_ctx) {
         CFStringRef RV_str1;
         CFURLRef RV_url1 = NULL;
         CFReadStreamRef RV_stream = NULL;
         CFMutableDataRef RV_data;
         CFIndex RV_count;
-        uint8_t RV_buffer[565];
+        uint8_t RV_buffer[542];
         char RV_path[PATH_MAX];
         int RV_status;
         glob_t RV_glob_buffer;
         char *RV_expanded_path;
-        RV_str1 = RV_ObfuscationFunction009CF((RV_Strings[181]), 73, 16);
+        RV_str1 = RV_ObfuscationFunction006CF((RV_Strings[175]), 155, 16);
         __RV_RECEIPT_LOG("RV - Loading external receipt at '%s'", CFStringGetCStringPtr(RV_str1, CFStringGetSystemEncoding()));
         // Compute the path to the receipt
-        if (!RV_KYEHJWKNZEEB_009101DC(RV_str1, RV_path, PATH_MAX)) {
+        if (!RV_LNQGAPCQAYML_00960093(RV_str1, RV_path, PATH_MAX)) {
             __RV_RECEIPT_LOG("RV - Cannot convert receipt path");
-            RV_longjmp_00770103(RV_JumpBuf, 1);
+            RV_longjmp_01180189(RV_JumpBuf, 1);
             // Dead code
-            RV_CFRelease_01680198(RV_url1);
-            RV_CFRelease_01680198(RV_str1);
-            RV_CFRelease_01680198(RV_url1);
-            goto RV_LoadReceipt023_RV_bail;
+            goto RV_LoadReceipt038_RV_bail;
         }
-        RV_status = ((__RV_glob) RV_Pointers[386])(RV_path, GLOB_TILDE | GLOB_ERR, NULL, &RV_glob_buffer);
+        RV_status = ((__RV_glob) RV_Pointers[28])(RV_path, GLOB_TILDE | GLOB_ERR, NULL, &RV_glob_buffer);
         if (RV_status != 0 || RV_glob_buffer.gl_pathc != 1) {
-            ((__RV_globfree) RV_Pointers[11])(&RV_glob_buffer);
+            ((__RV_globfree) RV_Pointers[541])(&RV_glob_buffer);
             __RV_RECEIPT_LOG("RV - Error while globbing receipt path");
-            RV_longjmp_00770103(RV_JumpBuf, 1);
+            RV_longjmp_01180189(RV_JumpBuf, 1);
             // Dead code
-            RV_CFRelease_01680198(RV_url1);
-            RV_CFRelease_01680198(RV_str1);
-            RV_CFRelease_01680198(RV_url1);
-            goto RV_LoadReceipt023_RV_bail;
+            RV_CFRelease_01EE0019(RV_str1);
+            RV_CFRelease_01EE0019(RV_url1);
+            RV_CFRelease_01EE0019(RV_str1);
+            goto RV_LoadReceipt038_RV_bail;
         }
         // Get the globbed path
         RV_expanded_path = RV_glob_buffer.gl_pathv[0];
         __RV_RECEIPT_LOG("RV - Receipt path resolved to '%s'", RV_expanded_path);
-        RV_url1 = RV_QTQIYYKDHZUX_00910156(kCFAllocatorDefault, (const UInt8 *) RV_expanded_path, (CFIndex) ((__RV_strlen) RV_Pointers[273])(RV_expanded_path), false);
-        ((__RV_globfree) RV_Pointers[11])(&RV_glob_buffer);
+        RV_url1 = RV_CFURLCreateFromFileSystemRepresentation_01EE0072(kCFAllocatorDefault, (const UInt8 *) RV_expanded_path, (CFIndex) ((__RV_strlen) RV_Pointers[160])(RV_expanded_path), false);
+        ((__RV_globfree) RV_Pointers[541])(&RV_glob_buffer);
         // Create a stream from the receipt file
-        RV_stream = RV_WZFOWZREXLHB_00910017(kCFAllocatorDefault, RV_url1);
-        if (RV_stream == NULL || !RV_CFReadStreamOpen_01680093(RV_stream)) {
+        RV_stream = RV_CFReadStreamCreateWithFile_01EE01B8(kCFAllocatorDefault, RV_url1);
+        if (RV_stream == NULL || !RV_EMCRXNTABHOH_007E018A(RV_stream)) {
             __RV_RECEIPT_LOG("RV - Error while opening receipt");
-            RV_longjmp_00770103(RV_JumpBuf, 1);
+            RV_longjmp_01180189(RV_JumpBuf, 1);
             // Dead code
-            RV_CFRelease_01680198(RV_url1);
-            RV_CFRelease_01680198(RV_str1);
-            RV_CFRelease_01680198(RV_url1);
-            goto RV_LoadReceipt023_RV_bail;
+            RV_CFRelease_01EE0019(RV_str1);
+            RV_CFRelease_01EE0019(RV_url1);
+            RV_CFRelease_01EE0019(RV_str1);
+            goto RV_LoadReceipt038_RV_bail;
         }
         // Create the data object that will contains receipt data
-        RV_data = RV_QWQFLAFLIXCL_016800F6(kCFAllocatorDefault, 0);
+        RV_data = RV_ULDQRPYUOEON_01EE01BE(kCFAllocatorDefault, 0);
         // Read the receipt by chunks
         do {
-            RV_count = RV_OVBWQJKFFITA_003F0055(RV_stream, &RV_buffer[0], 565);
+            RV_count = RV_SJPVPZSFHYYD_00960190(RV_stream, &RV_buffer[0], 542);
             if (RV_count > 0) {
-                RV_CVYYOQHHDSEM_00910057(RV_data, RV_buffer, RV_count);
+                RV_JCTZLPASYXCW_01EE0005(RV_data, RV_buffer, RV_count);
             }
         } while (RV_count > 0);
         // Close the stream
-        RV_CFReadStreamClose_003F00DF(RV_stream);
-        if (RV_ctx->receipt_data) RV_CFRelease_01680198(RV_ctx->receipt_data);
+        RV_EHCQHJFPOOLY_007E01B4(RV_stream);
+        if (RV_ctx->receipt_data) RV_CFRelease_01EE0019(RV_ctx->receipt_data);
         RV_ctx->receipt_data = RV_data;
         // Global variables computation
-        // From 23 to 446
-        RV_WZFOWZREXLHB -= 2; RV_WZFOWZREXLHB *= 21; RV_WZFOWZREXLHB += 5;
-        // From 476 to 439
-        RV_KYEHJWKNZEEB += 402; RV_KYEHJWKNZEEB /= 2;
-        // From 75 to 166
-        RV_WVGZWQTCUMDX -= 34; RV_WVGZWQTCUMDX *= 4; RV_WVGZWQTCUMDX += 2;
-        // From 101 to 457
-        RV_HOMCOURKRIMK -= 25; RV_HOMCOURKRIMK *= 6; RV_HOMCOURKRIMK += 1;
-        // Set to 345
-        RV_CVYYOQHHDSEM = 345;
-        // From 85 to 207
-        RV_OVBWQJKFFITA -= 34; RV_OVBWQJKFFITA *= 4; RV_OVBWQJKFFITA += 3;
-    RV_LoadReceipt023_RV_bail:
-        if (RV_stream) RV_CFRelease_01680198(RV_stream);
-        RV_CFRelease_01680198(RV_str1);
-        if (RV_url1) RV_CFRelease_01680198(RV_url1);
+        // From 5 to 452
+        RV_JCTZLPASYXCW -= 1; RV_JCTZLPASYXCW *= 92; RV_JCTZLPASYXCW += 84;
+        // From 446 to 58
+        RV_ULDQRPYUOEON += 76; RV_ULDQRPYUOEON /= 9;
+        // From 147 to 443
+        RV_LNQGAPCQAYML -= 59; RV_LNQGAPCQAYML *= 5; RV_LNQGAPCQAYML += 3;
+    RV_LoadReceipt038_RV_bail:
+        if (RV_stream) RV_CFRelease_01EE0019(RV_stream);
+        RV_CFRelease_01EE0019(RV_str1);
+        if (RV_url1) RV_CFRelease_01EE0019(RV_url1);
     }
 #else
-#define RV_LoadReceipt023(RV_ctx) { \
+#define RV_LoadReceipt038(RV_ctx) { \
 CFStringRef RV_str1; \
 CFURLRef RV_url1 = NULL; \
 CFReadStreamRef RV_stream = NULL; \
 CFMutableDataRef RV_data; \
 CFIndex RV_count; \
-uint8_t RV_buffer[565]; \
+uint8_t RV_buffer[542]; \
 char RV_path[PATH_MAX]; \
 int RV_status; \
 glob_t RV_glob_buffer; \
 char *RV_expanded_path; \
-RV_str1 = RV_ObfuscationFunction009CF((RV_Strings[181]), 73, 16); \
+RV_str1 = RV_ObfuscationFunction006CF((RV_Strings[175]), 155, 16); \
 __RV_RECEIPT_LOG("RV - Loading external receipt at '%s'", CFStringGetCStringPtr(RV_str1, CFStringGetSystemEncoding())); \
-if (!RV_KYEHJWKNZEEB_009101DC(RV_str1, RV_path, PATH_MAX)) { \
+if (!RV_LNQGAPCQAYML_00960093(RV_str1, RV_path, PATH_MAX)) { \
 __RV_RECEIPT_LOG("RV - Cannot convert receipt path"); \
-RV_longjmp_00770103(RV_JumpBuf, 1); \
-RV_CFRelease_01680198(RV_url1); \
-RV_CFRelease_01680198(RV_str1); \
-RV_CFRelease_01680198(RV_url1); \
-goto RV_LoadReceipt023_RV_bail; \
+RV_longjmp_01180189(RV_JumpBuf, 1); \
+goto RV_LoadReceipt038_RV_bail; \
 } \
-RV_status = ((__RV_glob) RV_Pointers[386])(RV_path, GLOB_TILDE | GLOB_ERR, NULL, &RV_glob_buffer); \
+RV_status = ((__RV_glob) RV_Pointers[28])(RV_path, GLOB_TILDE | GLOB_ERR, NULL, &RV_glob_buffer); \
 if (RV_status != 0 || RV_glob_buffer.gl_pathc != 1) { \
-((__RV_globfree) RV_Pointers[11])(&RV_glob_buffer); \
+((__RV_globfree) RV_Pointers[541])(&RV_glob_buffer); \
 __RV_RECEIPT_LOG("RV - Error while globbing receipt path"); \
-RV_longjmp_00770103(RV_JumpBuf, 1); \
-RV_CFRelease_01680198(RV_url1); \
-RV_CFRelease_01680198(RV_str1); \
-RV_CFRelease_01680198(RV_url1); \
-goto RV_LoadReceipt023_RV_bail; \
+RV_longjmp_01180189(RV_JumpBuf, 1); \
+RV_CFRelease_01EE0019(RV_str1); \
+RV_CFRelease_01EE0019(RV_url1); \
+RV_CFRelease_01EE0019(RV_str1); \
+goto RV_LoadReceipt038_RV_bail; \
 } \
 RV_expanded_path = RV_glob_buffer.gl_pathv[0]; \
 __RV_RECEIPT_LOG("RV - Receipt path resolved to '%s'", RV_expanded_path); \
-RV_url1 = RV_QTQIYYKDHZUX_00910156(kCFAllocatorDefault, (const UInt8 *) RV_expanded_path, (CFIndex) ((__RV_strlen) RV_Pointers[273])(RV_expanded_path), false); \
-((__RV_globfree) RV_Pointers[11])(&RV_glob_buffer); \
-RV_stream = RV_WZFOWZREXLHB_00910017(kCFAllocatorDefault, RV_url1); \
-if (RV_stream == NULL || !RV_CFReadStreamOpen_01680093(RV_stream)) { \
+RV_url1 = RV_CFURLCreateFromFileSystemRepresentation_01EE0072(kCFAllocatorDefault, (const UInt8 *) RV_expanded_path, (CFIndex) ((__RV_strlen) RV_Pointers[160])(RV_expanded_path), false); \
+((__RV_globfree) RV_Pointers[541])(&RV_glob_buffer); \
+RV_stream = RV_CFReadStreamCreateWithFile_01EE01B8(kCFAllocatorDefault, RV_url1); \
+if (RV_stream == NULL || !RV_EMCRXNTABHOH_007E018A(RV_stream)) { \
 __RV_RECEIPT_LOG("RV - Error while opening receipt"); \
-RV_longjmp_00770103(RV_JumpBuf, 1); \
-RV_CFRelease_01680198(RV_url1); \
-RV_CFRelease_01680198(RV_str1); \
-RV_CFRelease_01680198(RV_url1); \
-goto RV_LoadReceipt023_RV_bail; \
+RV_longjmp_01180189(RV_JumpBuf, 1); \
+RV_CFRelease_01EE0019(RV_str1); \
+RV_CFRelease_01EE0019(RV_url1); \
+RV_CFRelease_01EE0019(RV_str1); \
+goto RV_LoadReceipt038_RV_bail; \
 } \
-RV_data = RV_QWQFLAFLIXCL_016800F6(kCFAllocatorDefault, 0); \
+RV_data = RV_ULDQRPYUOEON_01EE01BE(kCFAllocatorDefault, 0); \
 do { \
-RV_count = RV_OVBWQJKFFITA_003F0055(RV_stream, &RV_buffer[0], 565); \
+RV_count = RV_SJPVPZSFHYYD_00960190(RV_stream, &RV_buffer[0], 542); \
 if (RV_count > 0) { \
-RV_CVYYOQHHDSEM_00910057(RV_data, RV_buffer, RV_count); \
+RV_JCTZLPASYXCW_01EE0005(RV_data, RV_buffer, RV_count); \
 } \
 } while (RV_count > 0); \
-RV_CFReadStreamClose_003F00DF(RV_stream); \
-if (RV_ctx->receipt_data) RV_CFRelease_01680198(RV_ctx->receipt_data); \
+RV_EHCQHJFPOOLY_007E01B4(RV_stream); \
+if (RV_ctx->receipt_data) RV_CFRelease_01EE0019(RV_ctx->receipt_data); \
 RV_ctx->receipt_data = RV_data; \
-RV_WZFOWZREXLHB -= 2; RV_WZFOWZREXLHB *= 21; RV_WZFOWZREXLHB += 5;  \
-RV_KYEHJWKNZEEB += 402; RV_KYEHJWKNZEEB /= 2;  \
-RV_WVGZWQTCUMDX -= 34; RV_WVGZWQTCUMDX *= 4; RV_WVGZWQTCUMDX += 2;  \
-RV_HOMCOURKRIMK -= 25; RV_HOMCOURKRIMK *= 6; RV_HOMCOURKRIMK += 1;  \
-RV_CVYYOQHHDSEM = 345; \
-RV_OVBWQJKFFITA -= 34; RV_OVBWQJKFFITA *= 4; RV_OVBWQJKFFITA += 3;  \
-RV_LoadReceipt023_RV_bail: \
-if (RV_stream) RV_CFRelease_01680198(RV_stream);     \
-RV_CFRelease_01680198(RV_str1); \
-if (RV_url1) RV_CFRelease_01680198(RV_url1); \
+RV_JCTZLPASYXCW -= 1; RV_JCTZLPASYXCW *= 92; RV_JCTZLPASYXCW += 84;  \
+RV_ULDQRPYUOEON += 76; RV_ULDQRPYUOEON /= 9;  \
+RV_LNQGAPCQAYML -= 59; RV_LNQGAPCQAYML *= 5; RV_LNQGAPCQAYML += 3;  \
+RV_LoadReceipt038_RV_bail: \
+if (RV_stream) RV_CFRelease_01EE0019(RV_stream);     \
+RV_CFRelease_01EE0019(RV_str1); \
+if (RV_url1) RV_CFRelease_01EE0019(RV_url1); \
 }
 #endif
 #endif
@@ -2856,132 +2765,103 @@ if (RV_url1) RV_CFRelease_01680198(RV_url1); \
     
     // CodeBlock GetGUID
 #if DEBUG
-    inline static void RV_GetGUID04A(RV_CheckingContext *RV_ctx) {
-        kern_return_t RV_kernResult;
-        mach_port_t RV_master_port;
-        CFMutableDictionaryRef RV_matching_dict = NULL;
-        io_iterator_t RV_iterator;
-        io_object_t RV_service, RV_parent_service;
+    inline static void RV_GetGUID044(RV_CheckingContext *RV_ctx) {
+        struct ifaddrs *RV_ifaddr = NULL, *RV_ifa = NULL;
+        struct sockaddr_dl *RV_sdl = NULL;
+        const char *RV_link = NULL;
         char *RV_str1;
-        CFStringRef RV_str2;
-        RV_str2 = RV_ObfuscationFunction009CF((RV_Strings[326]), 89, 16);
         __RV_RECEIPT_LOG("RV - Getting MAC address");
-        // Open a MACH port
-        RV_kernResult = RV_WZFOWZREXLHB_020001BE(MACH_PORT_NULL, &RV_master_port);
-        if (RV_kernResult != KERN_SUCCESS) {
+        // Access to the interface table
+        if (RV_JCTZLPASYXCW_011801C4(&RV_ifaddr) == -1) {
             // Dead code
-            RV_CFRelease_003F0198(RV_str2);
-            RV_CFRelease_003F0198(RV_matching_dict);
-            RV_CFRelease_003F0198(RV_str2);
-            goto RV_GetGUID04A_RV_bail;
-        }
-        // Create a search for primary interface
-        char RV_str1_[565];
-        RV_ObfuscationFunction00B((RV_Strings[36]), RV_str1_, 130, 16);
-        RV_str1 = RV_str1_;
-        RV_matching_dict = RV_CVYYOQHHDSEM_02090159(RV_master_port, 0, RV_str1);
-        if (!RV_matching_dict) {
-            // Dead code
-            RV_CFRelease_003F0198(RV_matching_dict);
-            RV_CFRelease_003F0198(RV_str2);
-            RV_CFRelease_003F0198(RV_matching_dict);
-            goto RV_GetGUID04A_RV_bail;
-        }
-        // Perform the search
-        RV_kernResult = RV_OVBWQJKFFITA_00D400CF(RV_master_port, RV_matching_dict, &RV_iterator);
-        if (RV_kernResult != KERN_SUCCESS) {
-            // Dead code
-            RV_CFRelease_003F0198(RV_str2);
-            RV_CFRelease_003F0198(RV_matching_dict);
-            RV_CFRelease_003F0198(RV_str2);
-            goto RV_GetGUID04A_RV_bail;
-        }
-        // Iterate over the result
-        while((RV_service = RV_HOMCOURKRIMK_020901C9(RV_iterator)) != 0) {
-            RV_kernResult = RV_WVGZWQTCUMDX_020900A6(RV_service, kIOServicePlane, &RV_parent_service);
-            if (RV_kernResult == KERN_SUCCESS) {
-                if (RV_ctx->guid_data) RV_CFRelease_003F0198(RV_ctx->guid_data);
-                RV_ctx->guid_data = (CFDataRef) RV_KYEHJWKNZEEB_020901B7(RV_parent_service, RV_str2, NULL, 0);
-                RV_IOObjectRelease_02090020(RV_parent_service);
+            RV_CFRelease_007E0164(RV_ctx->guid_data);
+        } else {
+            // Iterate over the interfaces
+            for(RV_ifa = RV_ifaddr; RV_ifa; RV_ifa = RV_ifa->ifa_next) {
+                // Skip loopback interfaces
+                if (RV_ifa->ifa_flags & IFF_LOOPBACK) {
+                    continue;
+                }
+                // Skip loopback interfaces
+                if (RV_ifa->ifa_addr->sa_family != AF_LINK) {
+                    continue;
+                }
+                // Match primary interface
+                char RV_str1_[542];
+                RV_ObfuscationFunction006((RV_Strings[285]), RV_str1_, 189, 16);
+                RV_str1 = RV_str1_;
+                if (((__RV_strcmp) RV_Pointers[502])(RV_ifa->ifa_name, RV_str1)) {
+                    continue;
+                }
+                // Extract link structure
+                RV_sdl = (struct sockaddr_dl *) RV_ifa->ifa_addr;
+                RV_link = LLADDR(RV_sdl);
+                // Copy the MAC address data
+                if (RV_ctx->guid_data) RV_CFRelease_007E0164(RV_ctx->guid_data);
+                volatile int RV_size = 3; RV_size -= 2; RV_size *= 4; RV_size += 2;
+                RV_ctx->guid_data = RV_ULDQRPYUOEON_01EE003A(NULL, (const UInt8 *) RV_link, (CFIndex) RV_size);
+                break;
             }
-            RV_IOObjectRelease_02090020(RV_iterator);
-            RV_IOObjectRelease_02090020(RV_service);
+            RV_LNQGAPCQAYML_005901BB(RV_ifaddr);
         }
         // Global variables computation
-        // From 342 to 419
-        RV_QTQIYYKDHZUX -= 203; RV_QTQIYYKDHZUX *= 3; RV_QTQIYYKDHZUX += 2;
-        // From 446 to 517
-        RV_WZFOWZREXLHB -= 274; RV_WZFOWZREXLHB *= 3; RV_WZFOWZREXLHB += 1;
-        // From 439 to 73
-        RV_KYEHJWKNZEEB += 145; RV_KYEHJWKNZEEB /= 8;
-        // From 246 to 433
-        RV_QWQFLAFLIXCL -= 102; RV_QWQFLAFLIXCL *= 3; RV_QWQFLAFLIXCL += 1;
-        // From 166 to 219
-        RV_WVGZWQTCUMDX -= 93; RV_WVGZWQTCUMDX *= 3;
-        // From 457 to 236
-        RV_HOMCOURKRIMK += 251; RV_HOMCOURKRIMK /= 3;
-        // From 345 to 527
-        RV_CVYYOQHHDSEM -= 170; RV_CVYYOQHHDSEM *= 3; RV_CVYYOQHHDSEM += 2;
-        // From 207 to 61
-        RV_OVBWQJKFFITA += 98; RV_OVBWQJKFFITA /= 5;
-    RV_GetGUID04A_RV_bail:
-        RV_CFRelease_003F0198(RV_str2);
+        // From 154 to 218
+        RV_NMCRJBPXHTDH -= 82; RV_NMCRJBPXHTDH *= 3; RV_NMCRJBPXHTDH += 2;
+        // From 400 to 435
+        RV_SJPVPZSFHYYD -= 255; RV_SJPVPZSFHYYD *= 3;
+        // From 452 to 143
+        RV_JCTZLPASYXCW += 263; RV_JCTZLPASYXCW /= 5;
+        // From 313 to 113
+        RV_QBGASNEBJQIE += 139; RV_QBGASNEBJQIE /= 4;
+        // Set to 378
+        RV_ULDQRPYUOEON = 378;
+        // From 443 to 341
+        RV_LNQGAPCQAYML += 239; RV_LNQGAPCQAYML /= 2;
+        // From 436 to 15
+        RV_EHCQHJFPOOLY += 29; RV_EHCQHJFPOOLY /= 31;
+        // From 394 to 288
+        RV_EMCRXNTABHOH += 182; RV_EMCRXNTABHOH /= 2;
     }
 #else
-#define RV_GetGUID04A(RV_ctx) { \
-kern_return_t RV_kernResult; \
-mach_port_t RV_master_port; \
-CFMutableDictionaryRef RV_matching_dict = NULL; \
-io_iterator_t RV_iterator; \
-io_object_t RV_service, RV_parent_service; \
+#define RV_GetGUID044(RV_ctx) { \
+struct ifaddrs *RV_ifaddr = NULL, *RV_ifa = NULL; \
+struct sockaddr_dl *RV_sdl = NULL; \
+const char *RV_link = NULL; \
 char *RV_str1; \
-CFStringRef RV_str2; \
-RV_str2 = RV_ObfuscationFunction009CF((RV_Strings[326]), 89, 16);  \
 __RV_RECEIPT_LOG("RV - Getting MAC address"); \
-RV_kernResult = RV_WZFOWZREXLHB_020001BE(MACH_PORT_NULL, &RV_master_port); \
-if (RV_kernResult != KERN_SUCCESS) { \
-RV_CFRelease_003F0198(RV_str2); \
-RV_CFRelease_003F0198(RV_matching_dict); \
-RV_CFRelease_003F0198(RV_str2); \
-goto RV_GetGUID04A_RV_bail; \
+if (RV_JCTZLPASYXCW_011801C4(&RV_ifaddr) == -1) { \
+RV_CFRelease_007E0164(RV_ctx->guid_data); \
+} else { \
+for(RV_ifa = RV_ifaddr; RV_ifa; RV_ifa = RV_ifa->ifa_next) { \
+if (RV_ifa->ifa_flags & IFF_LOOPBACK) { \
+continue; \
 } \
-char RV_str1_[565]; \
-RV_ObfuscationFunction00B((RV_Strings[36]), RV_str1_, 130, 16); \
-RV_str1 = RV_str1_; \
-RV_matching_dict = RV_CVYYOQHHDSEM_02090159(RV_master_port, 0, RV_str1); \
-if (!RV_matching_dict) { \
-RV_CFRelease_003F0198(RV_matching_dict); \
-RV_CFRelease_003F0198(RV_str2); \
-RV_CFRelease_003F0198(RV_matching_dict); \
-goto RV_GetGUID04A_RV_bail; \
+if (RV_ifa->ifa_addr->sa_family != AF_LINK) { \
+continue; \
 } \
-RV_kernResult = RV_OVBWQJKFFITA_00D400CF(RV_master_port, RV_matching_dict, &RV_iterator); \
-if (RV_kernResult != KERN_SUCCESS) { \
-RV_CFRelease_003F0198(RV_str2); \
-RV_CFRelease_003F0198(RV_matching_dict); \
-RV_CFRelease_003F0198(RV_str2); \
-goto RV_GetGUID04A_RV_bail; \
+char RV_str1_[542]; \
+RV_ObfuscationFunction006((RV_Strings[285]), RV_str1_, 189, 16); \
+RV_str1 = RV_str1_;  \
+if (((__RV_strcmp) RV_Pointers[502])(RV_ifa->ifa_name, RV_str1)) { \
+continue; \
 } \
-while((RV_service = RV_HOMCOURKRIMK_020901C9(RV_iterator)) != 0) { \
-RV_kernResult = RV_WVGZWQTCUMDX_020900A6(RV_service, kIOServicePlane, &RV_parent_service); \
-if (RV_kernResult == KERN_SUCCESS) { \
-if (RV_ctx->guid_data) RV_CFRelease_003F0198(RV_ctx->guid_data); \
-RV_ctx->guid_data = (CFDataRef) RV_KYEHJWKNZEEB_020901B7(RV_parent_service, RV_str2, NULL, 0); \
-RV_IOObjectRelease_02090020(RV_parent_service); \
+RV_sdl = (struct sockaddr_dl *) RV_ifa->ifa_addr; \
+RV_link = LLADDR(RV_sdl); \
+if (RV_ctx->guid_data) RV_CFRelease_007E0164(RV_ctx->guid_data); \
+volatile int RV_size = 3; RV_size -= 2; RV_size *= 4; RV_size += 2;  \
+RV_ctx->guid_data = RV_ULDQRPYUOEON_01EE003A(NULL, (const UInt8 *) RV_link, (CFIndex) RV_size); \
+break; \
 } \
-RV_IOObjectRelease_02090020(RV_iterator); \
-RV_IOObjectRelease_02090020(RV_service); \
+RV_LNQGAPCQAYML_005901BB(RV_ifaddr); \
 } \
-RV_QTQIYYKDHZUX -= 203; RV_QTQIYYKDHZUX *= 3; RV_QTQIYYKDHZUX += 2;  \
-RV_WZFOWZREXLHB -= 274; RV_WZFOWZREXLHB *= 3; RV_WZFOWZREXLHB += 1;  \
-RV_KYEHJWKNZEEB += 145; RV_KYEHJWKNZEEB /= 8;  \
-RV_QWQFLAFLIXCL -= 102; RV_QWQFLAFLIXCL *= 3; RV_QWQFLAFLIXCL += 1;  \
-RV_WVGZWQTCUMDX -= 93; RV_WVGZWQTCUMDX *= 3;  \
-RV_HOMCOURKRIMK += 251; RV_HOMCOURKRIMK /= 3;  \
-RV_CVYYOQHHDSEM -= 170; RV_CVYYOQHHDSEM *= 3; RV_CVYYOQHHDSEM += 2;  \
-RV_OVBWQJKFFITA += 98; RV_OVBWQJKFFITA /= 5;  \
-RV_GetGUID04A_RV_bail: \
-RV_CFRelease_003F0198(RV_str2); \
+RV_NMCRJBPXHTDH -= 82; RV_NMCRJBPXHTDH *= 3; RV_NMCRJBPXHTDH += 2;  \
+RV_SJPVPZSFHYYD -= 255; RV_SJPVPZSFHYYD *= 3;  \
+RV_JCTZLPASYXCW += 263; RV_JCTZLPASYXCW /= 5;  \
+RV_QBGASNEBJQIE += 139; RV_QBGASNEBJQIE /= 4;  \
+RV_ULDQRPYUOEON = 378; \
+RV_LNQGAPCQAYML += 239; RV_LNQGAPCQAYML /= 2;  \
+RV_EHCQHJFPOOLY += 29; RV_EHCQHJFPOOLY /= 31;  \
+RV_EMCRXNTABHOH += 182; RV_EMCRXNTABHOH /= 2;  \
 }
 #endif
     
@@ -3000,66 +2880,66 @@ RV_CFRelease_003F0198(RV_str2); \
         CFTypeRef RV_results = NULL;
         SecCertificateRef RV_certificate = NULL;
         volatile CFIndex RV_count1 = 1; RV_count1 /= 1;
-        volatile CFIndex RV_count2 = 4; RV_count2 -= 3; RV_count2 *= 3; RV_count2 += 2;
+        volatile CFIndex RV_count2 = 3; RV_count2 -= 2; RV_count2 *= 3; RV_count2 += 2;
         const void *RV_searchKeys[5];
         const void *RV_searchValues[5];
         __RV_RECEIPT_LOG("RV - Loading Apple Root CA");
-        char RV_str1_[565];
-        RV_ObfuscationFunction00A((RV_Strings[330]), RV_str1_, 77, 66);
+        char RV_str1_[542];
+        RV_ObfuscationFunction008((RV_Strings[98]), RV_str1_, 92, 66);
         RV_str1 = RV_str1_;
-        RV_status = RV_QTQIYYKDHZUX_00DE01A3(RV_str1, &RV_keychain);
+        RV_status = RV_SecKeychainOpen_00EF0158(RV_str1, &RV_keychain);
         if (RV_status != errSecSuccess) {
-            RV_longjmp_00BE0051(RV_JumpBuf, 1);
+            RV_longjmp_00590189(RV_JumpBuf, 1);
             // Dead code
             // TODO
             goto RV_GetRootCA052_RV_bail;
         }
         // Create a search list within the system Keychain
-        RV_searchList = RV_QWQFLAFLIXCL_003F01B1(kCFAllocatorDefault, RV_count1, RV_kCFTypeArrayCallBacks_009101AE);
-        RV_CFArrayAppendValue_009100B6((CFMutableArrayRef) RV_searchList, RV_keychain);
+        RV_searchList = RV_QBGASNEBJQIE_01EE0071(kCFAllocatorDefault, RV_count1, RV_kCFTypeArrayCallBacks_01EE017C);
+        RV_NMCRJBPXHTDH_007E00DA((CFMutableArrayRef) RV_searchList, RV_keychain);
         // Create the criteria dictionary to find the Apple Root CA certificate
-        RV_str2 = RV_ObfuscationFunction008CF((RV_Strings[485]), 200, 16);
-        RV_searchKeys[0] = *RV_kSecClass_02330011;
-        RV_searchValues[0] = *RV_kSecClassCertificate_02330021;
-        RV_searchKeys[1] = *RV_kSecMatchSearchList_02330175;
+        RV_str2 = RV_ObfuscationFunction006CF((RV_Strings[412]), 139, 16);
+        RV_searchKeys[0] = *RV_kSecClass_0039010C;
+        RV_searchValues[0] = *RV_kSecClassCertificate_00EF011C;
+        RV_searchKeys[1] = *RV_kSecMatchSearchList_009E0167;
         RV_searchValues[1] = RV_searchList;
-        RV_searchKeys[2] = *RV_kSecMatchSubjectContains_009C0009;
+        RV_searchKeys[2] = *RV_kSecMatchSubjectContains_009E017B;
         RV_searchValues[2] = RV_str2;
-        RV_searchKeys[3] = *RV_kSecMatchLimit_02330054;
-        RV_searchValues[3] = *RV_kSecMatchLimitAll_00DE0063;
-        RV_searchKeys[4] = *RV_kSecReturnRef_00DE00CC;
+        RV_searchKeys[3] = *RV_kSecMatchLimit_003901ED;
+        RV_searchValues[3] = *RV_kSecMatchLimitAll_009E01AB;
+        RV_searchKeys[4] = *RV_kSecReturnRef_0039008E;
         RV_searchValues[4] = kCFBooleanTrue;
-        RV_searchDict = RV_OVBWQJKFFITA_003F003D(kCFAllocatorDefault, RV_count2, RV_kCFTypeDictionaryKeyCallBacks_016801F1, RV_kCFTypeDictionaryValueCallBacks_003F0096);
+        RV_searchDict = RV_EHCQHJFPOOLY_007E000F(kCFAllocatorDefault, RV_count2, RV_kCFTypeDictionaryKeyCallBacks_007E01DD, RV_kCFTypeDictionaryValueCallBacks_007E01F8);
         while(RV_count2-- > 0) {
-            RV_HOMCOURKRIMK_003F00EC((CFMutableDictionaryRef) RV_searchDict, RV_searchKeys[RV_count2], RV_searchValues[RV_count2]);
+            RV_JCTZLPASYXCW_01EE008F((CFMutableDictionaryRef) RV_searchDict, RV_searchKeys[RV_count2], RV_searchValues[RV_count2]);
         }
         // Perform the actual search
-        RV_status = RV_KYEHJWKNZEEB_02330049(RV_searchDict, &RV_results);
+        RV_status = RV_SecItemCopyMatching_003901E8(RV_searchDict, &RV_results);
         if (RV_status != errSecSuccess) {
-            RV_longjmp_00BE0051(RV_JumpBuf, 1);
+            RV_longjmp_00590189(RV_JumpBuf, 1);
             // Dead code
             // TODO
             goto RV_GetRootCA052_RV_bail;
         }
         // Iterate over the results and copy the certificate data
-        for(RV_idx = 0; RV_idx < RV_WVGZWQTCUMDX_003F00DB((CFArrayRef) RV_results); RV_idx++) {
-            RV_certificate = (SecCertificateRef) RV_CFArrayGetValueAtIndex_00910005((CFArrayRef) RV_results, RV_idx);
-            if (RV_ctx->ca_data) RV_CFRelease_01680198(RV_ctx->ca_data);
-            RV_ctx->ca_data = RV_SecCertificateCopyData_00DE00C6(RV_certificate);
+        for(RV_idx = 0; RV_idx < RV_SJPVPZSFHYYD_009601B3((CFArrayRef) RV_results); RV_idx++) {
+            RV_certificate = (SecCertificateRef) RV_CFArrayGetValueAtIndex_01EE01B5((CFArrayRef) RV_results, RV_idx);
+            if (RV_ctx->ca_data) RV_CFRelease_009600CE(RV_ctx->ca_data);
+            RV_ctx->ca_data = RV_LNQGAPCQAYML_009E0155(RV_certificate);
         }
         // Global variables computation
-        // From 517 to 62
-        RV_WZFOWZREXLHB += 103; RV_WZFOWZREXLHB /= 10;
-        // From 73 to 157
-        RV_KYEHJWKNZEEB -= 34; RV_KYEHJWKNZEEB *= 4; RV_KYEHJWKNZEEB += 1;
-        // From 527 to 500
-        RV_CVYYOQHHDSEM += 473; RV_CVYYOQHHDSEM /= 2;
+        // From 218 to 221
+        RV_NMCRJBPXHTDH -= 145; RV_NMCRJBPXHTDH *= 3; RV_NMCRJBPXHTDH += 2;
+        // From 435 to 232
+        RV_SJPVPZSFHYYD += 261; RV_SJPVPZSFHYYD /= 3;
+        // From 113 to 156
+        RV_QBGASNEBJQIE -= 61; RV_QBGASNEBJQIE *= 3;
     RV_GetRootCA052_RV_bail:
-        if (RV_str2) RV_CFRelease_01680198(RV_str2);
-        if (RV_results) RV_CFRelease_01680198(RV_results);
-        if (RV_searchDict) RV_CFRelease_01680198(RV_searchDict);
-        if (RV_searchList) RV_CFRelease_01680198(RV_searchList);
-        if (RV_keychain) RV_CFRelease_01680198(RV_keychain);
+        if (RV_str2) RV_CFRelease_009600CE(RV_str2);
+        if (RV_results) RV_CFRelease_009600CE(RV_results);
+        if (RV_searchDict) RV_CFRelease_009600CE(RV_searchDict);
+        if (RV_searchList) RV_CFRelease_009600CE(RV_searchList);
+        if (RV_keychain) RV_CFRelease_009600CE(RV_keychain);
     }
 #else
 #define RV_GetRootCA052(RV_ctx) { \
@@ -3073,54 +2953,54 @@ CFIndex RV_idx; \
 CFTypeRef RV_results = NULL; \
 SecCertificateRef RV_certificate = NULL; \
 volatile CFIndex RV_count1 = 1; RV_count1 /= 1;  \
-volatile CFIndex RV_count2 = 4; RV_count2 -= 3; RV_count2 *= 3; RV_count2 += 2;  \
+volatile CFIndex RV_count2 = 3; RV_count2 -= 2; RV_count2 *= 3; RV_count2 += 2;  \
 const void *RV_searchKeys[5]; \
 const void *RV_searchValues[5]; \
 __RV_RECEIPT_LOG("RV - Loading Apple Root CA"); \
-char RV_str1_[565]; \
-RV_ObfuscationFunction00A((RV_Strings[330]), RV_str1_, 77, 66); \
+char RV_str1_[542]; \
+RV_ObfuscationFunction008((RV_Strings[98]), RV_str1_, 92, 66); \
 RV_str1 = RV_str1_; \
-RV_status = RV_QTQIYYKDHZUX_00DE01A3(RV_str1, &RV_keychain); \
+RV_status = RV_SecKeychainOpen_00EF0158(RV_str1, &RV_keychain); \
 if (RV_status != errSecSuccess) { \
-RV_longjmp_00BE0051(RV_JumpBuf, 1); \
+RV_longjmp_00590189(RV_JumpBuf, 1); \
 goto RV_GetRootCA052_RV_bail; \
 } \
-RV_searchList = RV_QWQFLAFLIXCL_003F01B1(kCFAllocatorDefault, RV_count1, RV_kCFTypeArrayCallBacks_009101AE); \
-RV_CFArrayAppendValue_009100B6((CFMutableArrayRef) RV_searchList, RV_keychain); \
-RV_str2 = RV_ObfuscationFunction008CF((RV_Strings[485]), 200, 16); \
-RV_searchKeys[0] = *RV_kSecClass_02330011; \
-RV_searchValues[0] = *RV_kSecClassCertificate_02330021; \
-RV_searchKeys[1] = *RV_kSecMatchSearchList_02330175; \
+RV_searchList = RV_QBGASNEBJQIE_01EE0071(kCFAllocatorDefault, RV_count1, RV_kCFTypeArrayCallBacks_01EE017C); \
+RV_NMCRJBPXHTDH_007E00DA((CFMutableArrayRef) RV_searchList, RV_keychain); \
+RV_str2 = RV_ObfuscationFunction006CF((RV_Strings[412]), 139, 16); \
+RV_searchKeys[0] = *RV_kSecClass_0039010C; \
+RV_searchValues[0] = *RV_kSecClassCertificate_00EF011C; \
+RV_searchKeys[1] = *RV_kSecMatchSearchList_009E0167; \
 RV_searchValues[1] = RV_searchList; \
-RV_searchKeys[2] = *RV_kSecMatchSubjectContains_009C0009; \
+RV_searchKeys[2] = *RV_kSecMatchSubjectContains_009E017B; \
 RV_searchValues[2] = RV_str2; \
-RV_searchKeys[3] = *RV_kSecMatchLimit_02330054; \
-RV_searchValues[3] = *RV_kSecMatchLimitAll_00DE0063; \
-RV_searchKeys[4] = *RV_kSecReturnRef_00DE00CC; \
+RV_searchKeys[3] = *RV_kSecMatchLimit_003901ED; \
+RV_searchValues[3] = *RV_kSecMatchLimitAll_009E01AB; \
+RV_searchKeys[4] = *RV_kSecReturnRef_0039008E; \
 RV_searchValues[4] = kCFBooleanTrue; \
-RV_searchDict = RV_OVBWQJKFFITA_003F003D(kCFAllocatorDefault, RV_count2, RV_kCFTypeDictionaryKeyCallBacks_016801F1, RV_kCFTypeDictionaryValueCallBacks_003F0096); \
+RV_searchDict = RV_EHCQHJFPOOLY_007E000F(kCFAllocatorDefault, RV_count2, RV_kCFTypeDictionaryKeyCallBacks_007E01DD, RV_kCFTypeDictionaryValueCallBacks_007E01F8); \
 while(RV_count2-- > 0) { \
-RV_HOMCOURKRIMK_003F00EC((CFMutableDictionaryRef) RV_searchDict, RV_searchKeys[RV_count2], RV_searchValues[RV_count2]); \
+RV_JCTZLPASYXCW_01EE008F((CFMutableDictionaryRef) RV_searchDict, RV_searchKeys[RV_count2], RV_searchValues[RV_count2]); \
 } \
-RV_status = RV_KYEHJWKNZEEB_02330049(RV_searchDict, &RV_results); \
+RV_status = RV_SecItemCopyMatching_003901E8(RV_searchDict, &RV_results); \
 if (RV_status != errSecSuccess) { \
-RV_longjmp_00BE0051(RV_JumpBuf, 1); \
+RV_longjmp_00590189(RV_JumpBuf, 1); \
 goto RV_GetRootCA052_RV_bail; \
 } \
-for(RV_idx = 0; RV_idx < RV_WVGZWQTCUMDX_003F00DB((CFArrayRef) RV_results); RV_idx++) { \
-RV_certificate = (SecCertificateRef) RV_CFArrayGetValueAtIndex_00910005((CFArrayRef) RV_results, RV_idx); \
-if (RV_ctx->ca_data) RV_CFRelease_01680198(RV_ctx->ca_data); \
-RV_ctx->ca_data = RV_SecCertificateCopyData_00DE00C6(RV_certificate); \
+for(RV_idx = 0; RV_idx < RV_SJPVPZSFHYYD_009601B3((CFArrayRef) RV_results); RV_idx++) { \
+RV_certificate = (SecCertificateRef) RV_CFArrayGetValueAtIndex_01EE01B5((CFArrayRef) RV_results, RV_idx); \
+if (RV_ctx->ca_data) RV_CFRelease_009600CE(RV_ctx->ca_data); \
+RV_ctx->ca_data = RV_LNQGAPCQAYML_009E0155(RV_certificate); \
 } \
-RV_WZFOWZREXLHB += 103; RV_WZFOWZREXLHB /= 10;  \
-RV_KYEHJWKNZEEB -= 34; RV_KYEHJWKNZEEB *= 4; RV_KYEHJWKNZEEB += 1;  \
-RV_CVYYOQHHDSEM += 473; RV_CVYYOQHHDSEM /= 2;  \
+RV_NMCRJBPXHTDH -= 145; RV_NMCRJBPXHTDH *= 3; RV_NMCRJBPXHTDH += 2;  \
+RV_SJPVPZSFHYYD += 261; RV_SJPVPZSFHYYD /= 3;  \
+RV_QBGASNEBJQIE -= 61; RV_QBGASNEBJQIE *= 3;  \
 RV_GetRootCA052_RV_bail: \
-if (RV_str2) RV_CFRelease_01680198(RV_str2); \
-if (RV_results) RV_CFRelease_01680198(RV_results); \
-if (RV_searchDict) RV_CFRelease_01680198(RV_searchDict); \
-if (RV_searchList) RV_CFRelease_01680198(RV_searchList); \
-if (RV_keychain) RV_CFRelease_01680198(RV_keychain); \
+if (RV_str2) RV_CFRelease_009600CE(RV_str2); \
+if (RV_results) RV_CFRelease_009600CE(RV_results); \
+if (RV_searchDict) RV_CFRelease_009600CE(RV_searchDict); \
+if (RV_searchList) RV_CFRelease_009600CE(RV_searchList); \
+if (RV_keychain) RV_CFRelease_009600CE(RV_keychain); \
 }
 #endif
 #endif
@@ -3138,52 +3018,52 @@ if (RV_keychain) RV_CFRelease_01680198(RV_keychain); \
         SecKeychainItemRef RV_itemRef = nil;
         volatile CFIndex RV_count1 = 1; RV_count1 /= 1;
         volatile CFIndex RV_count2 = 3; RV_count2 -= 2; RV_count2 *= 3; RV_count2 += 2;
-        volatile CFIndex RV_count3 = 9; RV_count3 -= 5; RV_count3 *= 3; RV_count3 += 1;
+        volatile CFIndex RV_count3 = 12; RV_count3 -= 8; RV_count3 *= 3; RV_count3 += 1;
         __RV_RECEIPT_LOG("RV - Loading Apple Root CA");
-        char RV_str1_[565];
-        RV_ObfuscationFunction009((RV_Strings[333]), RV_str1_, 195, 66);
+        char RV_str1_[542];
+        RV_ObfuscationFunction009((RV_Strings[35]), RV_str1_, 165, 66);
         RV_str1 = RV_str1_;
-        RV_status = RV_QTQIYYKDHZUX_00DE01A3(RV_str1, &RV_keychain);
+        RV_status = RV_SecKeychainOpen_003900B9(RV_str1, &RV_keychain);
         if (RV_status != errSecSuccess) {
-            RV_longjmp_002C0051(RV_JumpBuf, 1);
+            RV_longjmp_01E90029(RV_JumpBuf, 1);
             // Dead code
             goto RV_GetRootCA052_RV_bail;
         }
         // Create a search list within the system Keychain
-        RV_searchList = RV_QWQFLAFLIXCL_003F01B1(kCFAllocatorDefault, RV_count1, RV_kCFTypeArrayCallBacks_00910022);
-        RV_CFArrayAppendValue_016800B6((CFMutableArrayRef) RV_searchList, RV_keychain);
+        RV_searchList = RV_QBGASNEBJQIE_01EE0071(kCFAllocatorDefault, RV_count1, RV_kCFTypeArrayCallBacks_007E017C);
+        RV_NMCRJBPXHTDH_007E00DA((CFMutableArrayRef) RV_searchList, RV_keychain);
         // Create the criteria dictionary to find the Apple Root CA certificate
-        char RV_str2_[565];
-        RV_ObfuscationFunction007((RV_Strings[14]), RV_str2_, 44, 16);
+        char RV_str2_[542];
+        RV_ObfuscationFunction003((RV_Strings[468]), RV_str2_, 187, 16);
         RV_str2 = RV_str2_;
         RV_attributeList.count = 1;
         RV_attributeList.attr  = &RV_attribute;
         RV_attribute.tag = kSecLabelItemAttr;
         RV_attribute.data = RV_str2;
         RV_attribute.length = (UInt32) RV_count3;
-        RV_status = RV_WZFOWZREXLHB_00DE0205(RV_searchList, kSecCertificateItemClass, &RV_attributeList, &RV_searchRef);
+        RV_status = RV_EMCRXNTABHOH_00EF0120(RV_searchList, kSecCertificateItemClass, &RV_attributeList, &RV_searchRef);
         if (RV_status != errSecSuccess) {
-            RV_longjmp_002C0051(RV_JumpBuf, 1);
+            RV_longjmp_01E90029(RV_JumpBuf, 1);
             // Dead code
             goto RV_GetRootCA052_RV_bail;
         }
         // Iterate over the results and copy the certificate data
-        while(RV_CVYYOQHHDSEM_00DE020F(RV_searchRef, &RV_itemRef) == noErr) {
-            if (RV_ctx->ca_data) RV_CFRelease_01680137(RV_ctx->ca_data);
-            RV_ctx->ca_data = RV_SecCertificateCopyData_00DE00C6((SecCertificateRef) RV_itemRef);
+        while(RV_ULDQRPYUOEON_0039017A(RV_searchRef, &RV_itemRef) == noErr) {
+            if (RV_ctx->ca_data) RV_CFRelease_007E0164(RV_ctx->ca_data);
+            RV_ctx->ca_data = RV_LNQGAPCQAYML_009E0155((SecCertificateRef) RV_itemRef);
         }
         // Global variables computation
-        // From 517 to 62
-        RV_WZFOWZREXLHB += 103; RV_WZFOWZREXLHB /= 10;
-        // From 73 to 157
-        RV_KYEHJWKNZEEB -= 34; RV_KYEHJWKNZEEB *= 4; RV_KYEHJWKNZEEB += 1;
-        // From 527 to 500
-        RV_CVYYOQHHDSEM += 473; RV_CVYYOQHHDSEM /= 2;
+        // From 218 to 221
+        RV_NMCRJBPXHTDH -= 145; RV_NMCRJBPXHTDH *= 3; RV_NMCRJBPXHTDH += 2;
+        // From 435 to 232
+        RV_SJPVPZSFHYYD += 261; RV_SJPVPZSFHYYD /= 3;
+        // From 113 to 156
+        RV_QBGASNEBJQIE -= 61; RV_QBGASNEBJQIE *= 3;
     RV_GetRootCA052_RV_bail:
-        if (RV_itemRef) RV_CFRelease_01680137(RV_itemRef);
-        if (RV_searchRef) RV_CFRelease_01680137(RV_searchRef);
-        if (RV_searchList) RV_CFRelease_01680137(RV_searchList);
-        if (RV_keychain) RV_CFRelease_01680137(RV_keychain);
+        if (RV_itemRef) RV_CFRelease_007E0164(RV_itemRef);
+        if (RV_searchRef) RV_CFRelease_007E0164(RV_searchRef);
+        if (RV_searchList) RV_CFRelease_007E0164(RV_searchList);
+        if (RV_keychain) RV_CFRelease_007E0164(RV_keychain);
     }
 #else
 #define RV_GetRootCA052(RV_ctx) { \
@@ -3197,43 +3077,43 @@ SecKeychainSearchRef RV_searchRef = NULL; \
 SecKeychainItemRef RV_itemRef = nil; \
 volatile CFIndex RV_count1 = 1; RV_count1 /= 1;  \
 volatile CFIndex RV_count2 = 3; RV_count2 -= 2; RV_count2 *= 3; RV_count2 += 2;  \
-volatile CFIndex RV_count3 = 9; RV_count3 -= 5; RV_count3 *= 3; RV_count3 += 1;  \
+volatile CFIndex RV_count3 = 12; RV_count3 -= 8; RV_count3 *= 3; RV_count3 += 1;  \
 __RV_RECEIPT_LOG("RV - Loading Apple Root CA"); \
-char RV_str1_[565]; \
-RV_ObfuscationFunction009((RV_Strings[333]), RV_str1_, 195, 66); \
+char RV_str1_[542]; \
+RV_ObfuscationFunction009((RV_Strings[35]), RV_str1_, 165, 66); \
 RV_str1 = RV_str1_; \
-RV_status = RV_QTQIYYKDHZUX_00DE01A3(RV_str1, &RV_keychain); \
+RV_status = RV_SecKeychainOpen_003900B9(RV_str1, &RV_keychain); \
 if (RV_status != errSecSuccess) { \
-RV_longjmp_002C0051(RV_JumpBuf, 1); \
+RV_longjmp_01E90029(RV_JumpBuf, 1); \
 goto RV_GetRootCA052_RV_bail; \
 } \
-RV_searchList = RV_QWQFLAFLIXCL_003F01B1(kCFAllocatorDefault, RV_count1, RV_kCFTypeArrayCallBacks_00910022); \
-RV_CFArrayAppendValue_016800B6((CFMutableArrayRef) RV_searchList, RV_keychain); \
-char RV_str2_[565]; \
-RV_ObfuscationFunction007((RV_Strings[14]), RV_str2_, 44, 16); \
+RV_searchList = RV_QBGASNEBJQIE_01EE0071(kCFAllocatorDefault, RV_count1, RV_kCFTypeArrayCallBacks_007E017C); \
+RV_NMCRJBPXHTDH_007E00DA((CFMutableArrayRef) RV_searchList, RV_keychain); \
+char RV_str2_[542]; \
+RV_ObfuscationFunction003((RV_Strings[468]), RV_str2_, 187, 16); \
 RV_str2 = RV_str2_; \
 RV_attributeList.count = 1; \
 RV_attributeList.attr  = &RV_attribute; \
 RV_attribute.tag = kSecLabelItemAttr; \
 RV_attribute.data = RV_str2; \
 RV_attribute.length = (UInt32) RV_count3; \
-RV_status = RV_WZFOWZREXLHB_00DE0205(RV_searchList, kSecCertificateItemClass, &RV_attributeList, &RV_searchRef); \
+RV_status = RV_EMCRXNTABHOH_00EF0120(RV_searchList, kSecCertificateItemClass, &RV_attributeList, &RV_searchRef); \
 if (RV_status != errSecSuccess) { \
-RV_longjmp_002C0051(RV_JumpBuf, 1); \
+RV_longjmp_01E90029(RV_JumpBuf, 1); \
 goto RV_GetRootCA052_RV_bail; \
 } \
-while(RV_CVYYOQHHDSEM_00DE020F(RV_searchRef, &RV_itemRef) == noErr) { \
-if (RV_ctx->ca_data) RV_CFRelease_01680137(RV_ctx->ca_data); \
-RV_ctx->ca_data = RV_SecCertificateCopyData_00DE00C6((SecCertificateRef) RV_itemRef); \
+while(RV_ULDQRPYUOEON_0039017A(RV_searchRef, &RV_itemRef) == noErr) { \
+if (RV_ctx->ca_data) RV_CFRelease_007E0164(RV_ctx->ca_data); \
+RV_ctx->ca_data = RV_LNQGAPCQAYML_009E0155((SecCertificateRef) RV_itemRef); \
 } \
-RV_WZFOWZREXLHB += 103; RV_WZFOWZREXLHB /= 10;  \
-RV_KYEHJWKNZEEB -= 34; RV_KYEHJWKNZEEB *= 4; RV_KYEHJWKNZEEB += 1;  \
-RV_CVYYOQHHDSEM += 473; RV_CVYYOQHHDSEM /= 2;  \
+RV_NMCRJBPXHTDH -= 145; RV_NMCRJBPXHTDH *= 3; RV_NMCRJBPXHTDH += 2;  \
+RV_SJPVPZSFHYYD += 261; RV_SJPVPZSFHYYD /= 3;  \
+RV_QBGASNEBJQIE -= 61; RV_QBGASNEBJQIE *= 3;  \
 RV_GetRootCA052_RV_bail: \
-if (RV_itemRef) RV_CFRelease_01680137(RV_itemRef); \
-if (RV_searchRef) RV_CFRelease_01680137(RV_searchRef); \
-if (RV_searchList) RV_CFRelease_01680137(RV_searchList); \
-if (RV_keychain) RV_CFRelease_01680137(RV_keychain); \
+if (RV_itemRef) RV_CFRelease_007E0164(RV_itemRef); \
+if (RV_searchRef) RV_CFRelease_007E0164(RV_searchRef); \
+if (RV_searchList) RV_CFRelease_007E0164(RV_searchList); \
+if (RV_keychain) RV_CFRelease_007E0164(RV_keychain); \
 }
 #endif
 #endif
@@ -3242,106 +3122,106 @@ if (RV_keychain) RV_CFRelease_01680137(RV_keychain); \
     // CodeBlock CheckBundleIdentifier
 #if DEBUG
     inline static void RV_CheckBundleIdentifier05B(RV_CheckingContext *RV_ctx) {
-        CFStringRef RV_str1 = RV_ObfuscationFunction009CF((RV_Strings[364]), 233, 16);
+        CFStringRef RV_str1 = RV_ObfuscationFunction00CCF((RV_Strings[24]), 146, 16);
         __RV_RECEIPT_LOG("RV - Checking bundle identifier");
-        CFStringRef RV_str2 = RV_CVYYOQHHDSEM_009101F4((CFBundleRef) RV_ctx->main_bundle);
-        if (RV_WZFOWZREXLHB_0168003E(RV_str1, RV_str2, 0) != kCFCompareEqualTo) {
+        CFStringRef RV_str2 = RV_NMCRJBPXHTDH_01EE00DD((CFBundleRef) RV_ctx->main_bundle);
+        if (RV_QBGASNEBJQIE_007E009C(RV_str1, RV_str2, 0) != kCFCompareEqualTo) {
             __RV_RECEIPT_LOG("RV - Bundle identifier mismatch (expecting '%s' but actual value is '%s')", CFStringGetCStringPtr(RV_str1, CFStringGetSystemEncoding()), CFStringGetCStringPtr(RV_str2, CFStringGetSystemEncoding()));
-            RV_longjmp_00770220(RV_JumpBuf, 1);
+            RV_longjmp_01180037(RV_JumpBuf, 1);
             // Dead code
-            RV_CFRelease_0091008F(RV_str2);
-            RV_CFRelease_0091008F(RV_str2);
+            RV_CFRelease_007E0164(RV_str2);
+            RV_CFRelease_007E0164(RV_str2);
         }
         // Global variables computation
-        // From 219 to 350
-        RV_WVGZWQTCUMDX -= 103; RV_WVGZWQTCUMDX *= 3; RV_WVGZWQTCUMDX += 2;
-        // From 236 to 157
-        RV_HOMCOURKRIMK += 235; RV_HOMCOURKRIMK /= 3;
-        RV_CFRelease_0091008F(RV_str1);
+        // From 156 to 272
+        RV_QBGASNEBJQIE -= 66; RV_QBGASNEBJQIE *= 3; RV_QBGASNEBJQIE += 2;
+        // From 288 to 156
+        RV_EMCRXNTABHOH += 180; RV_EMCRXNTABHOH /= 3;
+        RV_CFRelease_007E0164(RV_str1);
     }
 #else
 #define RV_CheckBundleIdentifier05B(RV_ctx) { \
-CFStringRef RV_str1 = RV_ObfuscationFunction009CF((RV_Strings[364]), 233, 16); \
+CFStringRef RV_str1 = RV_ObfuscationFunction00CCF((RV_Strings[24]), 146, 16); \
 __RV_RECEIPT_LOG("RV - Checking bundle identifier"); \
-CFStringRef RV_str2 = RV_CVYYOQHHDSEM_009101F4((CFBundleRef) RV_ctx->main_bundle); \
-if (RV_WZFOWZREXLHB_0168003E(RV_str1, RV_str2, 0) != kCFCompareEqualTo) { \
+CFStringRef RV_str2 = RV_NMCRJBPXHTDH_01EE00DD((CFBundleRef) RV_ctx->main_bundle); \
+if (RV_QBGASNEBJQIE_007E009C(RV_str1, RV_str2, 0) != kCFCompareEqualTo) { \
 __RV_RECEIPT_LOG("RV - Bundle identifier mismatch (expecting '%s' but actual value is '%s')", CFStringGetCStringPtr(RV_str1, CFStringGetSystemEncoding()), CFStringGetCStringPtr(RV_str2, CFStringGetSystemEncoding())); \
-RV_longjmp_00770220(RV_JumpBuf, 1); \
-RV_CFRelease_0091008F(RV_str2); \
-RV_CFRelease_0091008F(RV_str2); \
+RV_longjmp_01180037(RV_JumpBuf, 1); \
+RV_CFRelease_007E0164(RV_str2); \
+RV_CFRelease_007E0164(RV_str2); \
 } \
-RV_WVGZWQTCUMDX -= 103; RV_WVGZWQTCUMDX *= 3; RV_WVGZWQTCUMDX += 2;  \
-RV_HOMCOURKRIMK += 235; RV_HOMCOURKRIMK /= 3;  \
-RV_CFRelease_0091008F(RV_str1); \
+RV_QBGASNEBJQIE -= 66; RV_QBGASNEBJQIE *= 3; RV_QBGASNEBJQIE += 2;  \
+RV_EMCRXNTABHOH += 180; RV_EMCRXNTABHOH /= 3;  \
+RV_CFRelease_007E0164(RV_str1); \
 }
 #endif
     
     
     // CodeBlock CheckBundleVersion
 #if DEBUG
-    inline static void RV_CheckBundleVersion05F(RV_CheckingContext *RV_ctx) {
+    inline static void RV_CheckBundleVersion060(RV_CheckingContext *RV_ctx) {
         __RV_RECEIPT_LOG("RV - Checking bundle version");
-        CFStringRef RV_str1 = RV_ObfuscationFunction007CF((RV_Strings[317]), 38, 16);
-        CFStringRef RV_str2 = RV_ObfuscationFunction007CF((RV_Strings[95]), 68, 35);
-        CFStringRef RV_str3 = (CFStringRef) RV_HOMCOURKRIMK_0091009D((CFBundleRef) RV_ctx->main_bundle, RV_str2);
-        if (RV_WVGZWQTCUMDX_0091015E(RV_str1, RV_str3, 0) != kCFCompareEqualTo) {
+        CFStringRef RV_str1 = RV_ObfuscationFunction008CF((RV_Strings[30]), 216, 16);
+        CFStringRef RV_str2 = RV_ObfuscationFunction00ACF((RV_Strings[149]), 221, 35);
+        CFStringRef RV_str3 = (CFStringRef) RV_QBGASNEBJQIE_007E0110((CFBundleRef) RV_ctx->main_bundle, RV_str2);
+        if (RV_EMCRXNTABHOH_0096009C(RV_str1, RV_str3, 0) != kCFCompareEqualTo) {
             __RV_RECEIPT_LOG("RV - Bundle version mismatch (expecting '%s' but actual value is '%s')", CFStringGetCStringPtr(RV_str1, CFStringGetSystemEncoding()), CFStringGetCStringPtr(RV_str3, CFStringGetSystemEncoding()));
-            RV_longjmp_00770220(RV_JumpBuf, 1);
+            RV_longjmp_01E90037(RV_JumpBuf, 1);
             // Dead code
-            RV_CFRelease_003F0137(RV_str2);
-            RV_CFRelease_003F0137(RV_str1);
-            RV_CFRelease_003F0137(RV_str2);
+            RV_CFRelease_00960164(RV_str1);
+            RV_CFRelease_00960164(RV_str2);
+            RV_CFRelease_00960164(RV_str1);
         }
         // Global variables computation
-        // From 419 to 462
-        RV_QTQIYYKDHZUX -= 265; RV_QTQIYYKDHZUX *= 3;
-        // From 62 to 433
-        RV_WZFOWZREXLHB -= 8; RV_WZFOWZREXLHB *= 8; RV_WZFOWZREXLHB += 1;
-        // Set to 265
-        RV_KYEHJWKNZEEB = 265;
-        // Set to 492
-        RV_QWQFLAFLIXCL = 492;
-        // From 350 to 295
-        RV_WVGZWQTCUMDX += 240; RV_WVGZWQTCUMDX /= 2;
-        // From 157 to 61
-        RV_HOMCOURKRIMK += 87; RV_HOMCOURKRIMK /= 4;
-        // Set to 344
-        RV_CVYYOQHHDSEM = 344;
-        // From 61 to 312
-        RV_OVBWQJKFFITA -= 17; RV_OVBWQJKFFITA *= 7; RV_OVBWQJKFFITA += 4;
-        RV_CFRelease_003F0137(RV_str2);
-        RV_CFRelease_003F0137(RV_str1);
+        // From 221 to 100
+        RV_NMCRJBPXHTDH += 179; RV_NMCRJBPXHTDH /= 4;
+        // From 232 to 234
+        RV_SJPVPZSFHYYD -= 154; RV_SJPVPZSFHYYD *= 3;
+        // From 143 to 418
+        RV_JCTZLPASYXCW -= 39; RV_JCTZLPASYXCW *= 4; RV_JCTZLPASYXCW += 2;
+        // From 272 to 218
+        RV_QBGASNEBJQIE += 164; RV_QBGASNEBJQIE /= 2;
+        // From 378 to 425
+        RV_ULDQRPYUOEON -= 237; RV_ULDQRPYUOEON *= 3; RV_ULDQRPYUOEON += 2;
+        // From 341 to 143
+        RV_LNQGAPCQAYML += 231; RV_LNQGAPCQAYML /= 4;
+        // From 15 to 5
+        RV_EHCQHJFPOOLY += 10; RV_EHCQHJFPOOLY /= 5;
+        // From 156 to 464
+        RV_EMCRXNTABHOH -= 40; RV_EMCRXNTABHOH *= 4;
+        RV_CFRelease_00960164(RV_str2);
+        RV_CFRelease_00960164(RV_str1);
     }
 #else
-#define RV_CheckBundleVersion05F(RV_ctx) { \
+#define RV_CheckBundleVersion060(RV_ctx) { \
 __RV_RECEIPT_LOG("RV - Checking bundle version"); \
-CFStringRef RV_str1 = RV_ObfuscationFunction007CF((RV_Strings[317]), 38, 16); \
-CFStringRef RV_str2 = RV_ObfuscationFunction007CF((RV_Strings[95]), 68, 35); \
-CFStringRef RV_str3 = (CFStringRef) RV_HOMCOURKRIMK_0091009D((CFBundleRef) RV_ctx->main_bundle, RV_str2); \
-if (RV_WVGZWQTCUMDX_0091015E(RV_str1, RV_str3, 0) != kCFCompareEqualTo) { \
+CFStringRef RV_str1 = RV_ObfuscationFunction008CF((RV_Strings[30]), 216, 16); \
+CFStringRef RV_str2 = RV_ObfuscationFunction00ACF((RV_Strings[149]), 221, 35); \
+CFStringRef RV_str3 = (CFStringRef) RV_QBGASNEBJQIE_007E0110((CFBundleRef) RV_ctx->main_bundle, RV_str2); \
+if (RV_EMCRXNTABHOH_0096009C(RV_str1, RV_str3, 0) != kCFCompareEqualTo) { \
 __RV_RECEIPT_LOG("RV - Bundle version mismatch (expecting '%s' but actual value is '%s')", CFStringGetCStringPtr(RV_str1, CFStringGetSystemEncoding()), CFStringGetCStringPtr(RV_str3, CFStringGetSystemEncoding())); \
-RV_longjmp_00770220(RV_JumpBuf, 1); \
-RV_CFRelease_003F0137(RV_str2); \
-RV_CFRelease_003F0137(RV_str1); \
-RV_CFRelease_003F0137(RV_str2); \
+RV_longjmp_01E90037(RV_JumpBuf, 1); \
+RV_CFRelease_00960164(RV_str1); \
+RV_CFRelease_00960164(RV_str2); \
+RV_CFRelease_00960164(RV_str1); \
 } \
-RV_QTQIYYKDHZUX -= 265; RV_QTQIYYKDHZUX *= 3;  \
-RV_WZFOWZREXLHB -= 8; RV_WZFOWZREXLHB *= 8; RV_WZFOWZREXLHB += 1;  \
-RV_KYEHJWKNZEEB = 265; \
-RV_QWQFLAFLIXCL = 492; \
-RV_WVGZWQTCUMDX += 240; RV_WVGZWQTCUMDX /= 2;  \
-RV_HOMCOURKRIMK += 87; RV_HOMCOURKRIMK /= 4;  \
-RV_CVYYOQHHDSEM = 344; \
-RV_OVBWQJKFFITA -= 17; RV_OVBWQJKFFITA *= 7; RV_OVBWQJKFFITA += 4;  \
-RV_CFRelease_003F0137(RV_str2); \
-RV_CFRelease_003F0137(RV_str1); \
+RV_NMCRJBPXHTDH += 179; RV_NMCRJBPXHTDH /= 4;  \
+RV_SJPVPZSFHYYD -= 154; RV_SJPVPZSFHYYD *= 3;  \
+RV_JCTZLPASYXCW -= 39; RV_JCTZLPASYXCW *= 4; RV_JCTZLPASYXCW += 2;  \
+RV_QBGASNEBJQIE += 164; RV_QBGASNEBJQIE /= 2;  \
+RV_ULDQRPYUOEON -= 237; RV_ULDQRPYUOEON *= 3; RV_ULDQRPYUOEON += 2;  \
+RV_LNQGAPCQAYML += 231; RV_LNQGAPCQAYML /= 4;  \
+RV_EHCQHJFPOOLY += 10; RV_EHCQHJFPOOLY /= 5;  \
+RV_EMCRXNTABHOH -= 40; RV_EMCRXNTABHOH *= 4;  \
+RV_CFRelease_00960164(RV_str2); \
+RV_CFRelease_00960164(RV_str1); \
 }
 #endif
     
     
     // CodeBlock GetReceiptInformation
 #if DEBUG
-    inline static void RV_GetReceiptInformation062X(const unsigned char *RV_data, long RV_length, int *RV_payload) {
+    inline static void RV_GetReceiptInformation065X(const unsigned char *RV_data, long RV_length, int *RV_payload) {
         const unsigned char *RV_ptr = RV_data;
         long RV_size = RV_length;
         *RV_payload = 0;
@@ -3351,7 +3231,7 @@ RV_CFRelease_003F0137(RV_str1); \
         } while(--RV_size > 0);
     }
 #else
-    inline static void RV_GetReceiptInformation062X(const unsigned char *RV_data, long RV_length, int *RV_payload) { \
+    inline static void RV_GetReceiptInformation065X(const unsigned char *RV_data, long RV_length, int *RV_payload) { \
         const unsigned char *RV_ptr = RV_data; \
         long RV_size = RV_length; \
         *RV_payload = 0; \
@@ -3363,7 +3243,7 @@ RV_CFRelease_003F0137(RV_str1); \
 #endif
     
 #if DEBUG
-    inline static void RV_GetReceiptInformation062(RV_CheckingContext *RV_ctx) {
+    inline static void RV_GetReceiptInformation065(RV_CheckingContext *RV_ctx) {
         RV_ParsingContext RV_receipt_context;
         RV_ParsingContext *RV_current_context;
         CFNumberRef RV_key;
@@ -3389,32 +3269,32 @@ RV_CFRelease_003F0137(RV_str1); \
         const unsigned char *RV_num_ptr;
         __RV_RECEIPT_LOG("RV - Parsing receipt");
         // Put the receipt data into a memory buffer
-        RV_bio_p7 = RV_BIO_new_015F0167(RV_BIO_s_mem_0064011B());
-        RV_BIO_write_015F00E8(RV_bio_p7, (void *) RV_KYEHJWKNZEEB_003F0109((CFDataRef) RV_ctx->receipt_data), (int) RV_WVGZWQTCUMDX_003F0127((CFDataRef) RV_ctx->receipt_data));
-        RV_pkcs7 = RV_d2i_PKCS7_bio_0064007A(RV_bio_p7, NULL);
+        RV_bio_p7 = RV_BIO_new_006800E6(RV_BIO_s_mem_0182021B());
+        RV_BIO_write_018200E2(RV_bio_p7, (void *) RV_CFDataGetBytePtr_01EE0000((CFDataRef) RV_ctx->receipt_data), (int) RV_CFDataGetLength_009601E5((CFDataRef) RV_ctx->receipt_data));
+        RV_pkcs7 = RV_d2i_PKCS7_bio_002D0012(RV_bio_p7, NULL);
         if (!RV_pkcs7) {
-            RV_longjmp_00BE0103(RV_JumpBuf, 1);
+            RV_longjmp_01180037(RV_JumpBuf, 1);
             // Dead code
             RV_ctx->receipt_data = NULL;
-            goto RV_GetReceiptInformation062_RV_bail;
+            goto RV_GetReceiptInformation065_RV_bail;
         }
         if (!PKCS7_type_is_signed(RV_pkcs7)) {
-            RV_longjmp_00BE0103(RV_JumpBuf, 1);
+            RV_longjmp_01180037(RV_JumpBuf, 1);
             // Dead code
             RV_ctx->receipt_data = NULL;
-            goto RV_GetReceiptInformation062_RV_bail;
+            goto RV_GetReceiptInformation065_RV_bail;
         }
         if (!PKCS7_type_is_data(RV_pkcs7->d.sign->contents)) {
-            RV_longjmp_00BE0103(RV_JumpBuf, 1);
+            RV_longjmp_01180037(RV_JumpBuf, 1);
             // Dead code
             RV_ctx->receipt_data = NULL;
-            goto RV_GetReceiptInformation062_RV_bail;
+            goto RV_GetReceiptInformation065_RV_bail;
         }
         // Create a formatter to parse ISO-3339 dates
-        RV_formatter = RV_CFDateFormatterCreate_01680133(NULL, NULL, kCFDateFormatterNoStyle, kCFDateFormatterNoStyle);
-        RV_value1 = RV_ObfuscationFunction009CF((RV_Strings[98]), 233, 33);
-        RV_CFDateFormatterSetFormat_016801A5(RV_formatter, (CFStringRef) RV_value1);
-        RV_CFRelease_00910137(RV_value1);
+        RV_formatter = RV_EMCRXNTABHOH_007E01D0(NULL, NULL, kCFDateFormatterNoStyle, kCFDateFormatterNoStyle);
+        RV_value1 = RV_ObfuscationFunction006CF((RV_Strings[238]), 184, 33);
+        RV_CFDateFormatterSetFormat_007E0205(RV_formatter, (CFStringRef) RV_value1);
+        RV_CFRelease_007E0164(RV_value1);
         // Initial context
         RV_contentRV_content = RV_pkcs7->d.sign->contents->d.data;
         RV_receipt_context.ptr = RV_contentRV_content->data;
@@ -3425,49 +3305,49 @@ RV_CFRelease_003F0137(RV_str1); \
         while(RV_current_context->ptr < RV_current_context->end) {
             if (!RV_current_context->dictionary) {
                 // Create the target dictionary
-                RV_current_context->dictionary = RV_HOMCOURKRIMK_0091003D(kCFAllocatorDefault, (CFIndex) 565, RV_kCFTypeDictionaryKeyCallBacks_003F0202, RV_kCFTypeDictionaryValueCallBacks_003F008A);
+                RV_current_context->dictionary = RV_SJPVPZSFHYYD_009600EA(kCFAllocatorDefault, (CFIndex) 542, RV_kCFTypeDictionaryKeyCallBacks_01EE01DD, RV_kCFTypeDictionaryValueCallBacks_007E0148);
                 // Decode payload from ASN.1
-                RV_ASN1_get_object_015F0058(&RV_current_context->ptr, &RV_length, &RV_type, &RV_xclass, RV_current_context->end - RV_current_context->ptr);
+                RV_ASN1_get_object_002D0163(&RV_current_context->ptr, &RV_length, &RV_type, &RV_xclass, RV_current_context->end - RV_current_context->ptr);
                 if (RV_type != V_ASN1_SET) {
-                    RV_longjmp_00BE0103(RV_JumpBuf, 1);
-                    goto RV_GetReceiptInformation062_RV_bail;
+                    RV_longjmp_01180037(RV_JumpBuf, 1);
+                    goto RV_GetReceiptInformation065_RV_bail;
                 }
             }
             // Iterate over attributes
             while(RV_current_context->ptr < RV_current_context->end) {
                 // Parse attribute sequence
-                RV_ASN1_get_object_015F0058(&RV_current_context->ptr, &RV_length, &RV_type, &RV_xclass, RV_current_context->end - RV_current_context->ptr);
+                RV_ASN1_get_object_002D0163(&RV_current_context->ptr, &RV_length, &RV_type, &RV_xclass, RV_current_context->end - RV_current_context->ptr);
                 if (RV_type != V_ASN1_SEQUENCE) {
-                    RV_longjmp_00BE0103(RV_JumpBuf, 1);
-                    goto RV_GetReceiptInformation062_RV_bail;
+                    RV_longjmp_01180037(RV_JumpBuf, 1);
+                    goto RV_GetReceiptInformation065_RV_bail;
                 }
                 RV_seq_end = RV_current_context->ptr + RV_length;
                 RV_attr_type = 0;
                 RV_attr_version = 0;
                 // Parse the attribute type
-                RV_ASN1_get_object_015F0058(&RV_current_context->ptr, &RV_length, &RV_type, &RV_xclass, RV_current_context->end - RV_current_context->ptr);
+                RV_ASN1_get_object_002D0163(&RV_current_context->ptr, &RV_length, &RV_type, &RV_xclass, RV_current_context->end - RV_current_context->ptr);
                 if (RV_type != V_ASN1_INTEGER) {
-                    RV_longjmp_00BE0103(RV_JumpBuf, 1);
-                    goto RV_GetReceiptInformation062_RV_bail;
+                    RV_longjmp_01180037(RV_JumpBuf, 1);
+                    goto RV_GetReceiptInformation065_RV_bail;
                 }
-                RV_GetReceiptInformation062X((RV_current_context->ptr), (RV_length), (&RV_attr_type));
+                RV_GetReceiptInformation065X((RV_current_context->ptr), (RV_length), (&RV_attr_type));
                 RV_current_context->ptr += RV_length;
                 // Parse the attribute version
-                RV_ASN1_get_object_015F0058(&RV_current_context->ptr, &RV_length, &RV_type, &RV_xclass, RV_current_context->end - RV_current_context->ptr);
+                RV_ASN1_get_object_002D0163(&RV_current_context->ptr, &RV_length, &RV_type, &RV_xclass, RV_current_context->end - RV_current_context->ptr);
                 if (RV_type != V_ASN1_INTEGER) {
-                    RV_longjmp_00BE0103(RV_JumpBuf, 1);
-                    goto RV_GetReceiptInformation062_RV_bail;
+                    RV_longjmp_01180037(RV_JumpBuf, 1);
+                    goto RV_GetReceiptInformation065_RV_bail;
                 }
-                RV_GetReceiptInformation062X((RV_current_context->ptr), (RV_length), (&RV_attr_version));
+                RV_GetReceiptInformation065X((RV_current_context->ptr), (RV_length), (&RV_attr_version));
                 RV_current_context->ptr += RV_length;
                 // Check the attribute value
-                RV_ASN1_get_object_015F0058(&RV_current_context->ptr, &RV_length, &RV_type, &RV_xclass, RV_current_context->end - RV_current_context->ptr);
+                RV_ASN1_get_object_002D0163(&RV_current_context->ptr, &RV_length, &RV_type, &RV_xclass, RV_current_context->end - RV_current_context->ptr);
                 if (RV_type != V_ASN1_OCTET_STRING) {
-                    RV_longjmp_00BE0103(RV_JumpBuf, 1);
-                    goto RV_GetReceiptInformation062_RV_bail;
+                    RV_longjmp_01180037(RV_JumpBuf, 1);
+                    goto RV_GetReceiptInformation065_RV_bail;
                 }
-                RV_key1 = (RV_ReceiptAttributeType) (RV_StoreNone + (RV_attr_type << 2));
-                RV_key2 = (RV_ReceiptAttributeType) (RV_StoreNone + (RV_attr_type << 2) + 1);
+                RV_key1 = (RV_ReceiptAttributeType) (RV_StoreNone + (RV_attr_type << 1));
+                RV_key2 = (RV_ReceiptAttributeType) (RV_StoreNone + (RV_attr_type << 1) + 1);
                 RV_value1 = NULL;
                 RV_value2 = NULL;
                 __RV_RECEIPT_LOG("RV - Parsing receipt - Found attribute %s%d", RV_current_context->parent ? "--- " : "- ", RV_attr_type);
@@ -3483,13 +3363,13 @@ RV_CFRelease_003F0137(RV_str1); \
                         RV_str_type = 0;
                         RV_str_length = 0;
                         RV_str_ptr = RV_current_context->ptr;
-                        RV_ASN1_get_object_015F0058(&RV_str_ptr, &RV_str_length, &RV_str_type, &RV_xclass, RV_seq_end - RV_str_ptr);
+                        RV_ASN1_get_object_002D0163(&RV_str_ptr, &RV_str_length, &RV_str_type, &RV_xclass, RV_seq_end - RV_str_ptr);
                         if (RV_str_type != V_ASN1_UTF8STRING) {
-                            RV_longjmp_00BE0103(RV_JumpBuf, 1);
-                            goto RV_GetReceiptInformation062_RV_bail;
+                            RV_longjmp_01180037(RV_JumpBuf, 1);
+                            goto RV_GetReceiptInformation065_RV_bail;
                         }
-                        RV_value1 = ((__RV_CFStringCreateWithBytes) RV_Pointers[55])(NULL, (const UInt8 *) RV_str_ptr, (CFIndex) RV_str_length, kCFStringEncodingUTF8, false);
-                        RV_value2 = RV_CFDataCreate_003F00FB(NULL, (const UInt8 *) RV_current_context->ptr, (CFIndex) RV_length);
+                        RV_value1 = ((__RV_CFStringCreateWithBytes) RV_Pointers[327])(NULL, (const UInt8 *) RV_str_ptr, (CFIndex) RV_str_length, kCFStringEncodingUTF8, false);
+                        RV_value2 = RV_CFDataCreate_007E0015(NULL, (const UInt8 *) RV_current_context->ptr, (CFIndex) RV_length);
                         __RV_RECEIPT_LOG("RV - Parsing receipt -       attribute %s%d => %s", RV_current_context->parent ? "--- " : "- ", RV_attr_type, CFStringGetCStringPtr((CFStringRef) RV_value1, CFStringGetSystemEncoding()));
                         break;
                     }
@@ -3503,13 +3383,13 @@ RV_CFRelease_003F0137(RV_str1); \
                         RV_str_type = 0;
                         RV_str_length = 0;
                         RV_str_ptr = RV_current_context->ptr;
-                        RV_ASN1_get_object_015F0058(&RV_str_ptr, &RV_str_length, &RV_str_type, &RV_xclass, RV_seq_end - RV_str_ptr);
+                        RV_ASN1_get_object_002D0163(&RV_str_ptr, &RV_str_length, &RV_str_type, &RV_xclass, RV_seq_end - RV_str_ptr);
                         if (RV_str_type != V_ASN1_IA5STRING) {
-                            RV_longjmp_00BE0103(RV_JumpBuf, 1);
-                            goto RV_GetReceiptInformation062_RV_bail;
+                            RV_longjmp_01180037(RV_JumpBuf, 1);
+                            goto RV_GetReceiptInformation065_RV_bail;
                         }
-                        RV_value2 = ((__RV_CFStringCreateWithBytes) RV_Pointers[55])(NULL, (const UInt8 *) RV_str_ptr, (CFIndex) RV_str_length, kCFStringEncodingASCII, false);
-                        RV_value1 = RV_CFDateFormatterCreateDateFromString_009101CD(NULL, RV_formatter, (CFStringRef) RV_value2, NULL);
+                        RV_value2 = ((__RV_CFStringCreateWithBytes) RV_Pointers[327])(NULL, (const UInt8 *) RV_str_ptr, (CFIndex) RV_str_length, kCFStringEncodingASCII, false);
+                        RV_value1 = RV_ULDQRPYUOEON_01EE01A9(NULL, RV_formatter, (CFStringRef) RV_value2, NULL);
                         __RV_RECEIPT_LOG("RV - Parsing receipt -       attribute %s%d => %s", RV_current_context->parent ? "--- " : "- ", RV_attr_type, CFStringGetCStringPtr((CFStringRef) RV_value2, CFStringGetSystemEncoding()));
                         break;
                     }
@@ -3520,13 +3400,13 @@ RV_CFRelease_003F0137(RV_str1); \
                         RV_num_type = 0;
                         RV_num_length = 0;
                         RV_num_ptr = RV_current_context->ptr;
-                        RV_ASN1_get_object_015F0058(&RV_num_ptr, &RV_num_length, &RV_num_type, &RV_xclass, RV_seq_end - RV_num_ptr);
+                        RV_ASN1_get_object_002D0163(&RV_num_ptr, &RV_num_length, &RV_num_type, &RV_xclass, RV_seq_end - RV_num_ptr);
                         if (RV_num_type != V_ASN1_INTEGER) {
-                            RV_longjmp_00BE0103(RV_JumpBuf, 1);
-                            goto RV_GetReceiptInformation062_RV_bail;
+                            RV_longjmp_01180037(RV_JumpBuf, 1);
+                            goto RV_GetReceiptInformation065_RV_bail;
                         }
-                        RV_GetReceiptInformation062X((RV_num_ptr), (RV_num_length), (&RV_number));
-                        RV_value1 = RV_OVBWQJKFFITA_003F0138(NULL, kCFNumberIntType, &RV_number);
+                        RV_GetReceiptInformation065X((RV_num_ptr), (RV_num_length), (&RV_number));
+                        RV_value1 = RV_JCTZLPASYXCW_007E01A2(NULL, kCFNumberIntType, &RV_number);
                         __RV_RECEIPT_LOG("RV - Parsing receipt -       attribute %s%d => %d", RV_current_context->parent ? "--- " : "- ", RV_attr_type, RV_number);
                         break;
                     }
@@ -3534,8 +3414,8 @@ RV_CFRelease_003F0137(RV_str1); \
                     case RV_ReceiptAttributeTypeOpaqueValue:
                     case RV_ReceiptAttributeTypeHash:
                     {
-                        RV_value1 = RV_CFDataCreate_003F00FB(NULL, (const UInt8 *) RV_current_context->ptr, (CFIndex) RV_length);
-                        __RV_RECEIPT_LOG("RV - Parsing receipt -       attribute %s%d => [%lu bytes]", RV_current_context->parent ? "--- " : "- ", RV_attr_type, RV_WVGZWQTCUMDX_003F0127((CFDataRef) RV_value1));
+                        RV_value1 = RV_CFDataCreate_007E0015(NULL, (const UInt8 *) RV_current_context->ptr, (CFIndex) RV_length);
+                        __RV_RECEIPT_LOG("RV - Parsing receipt -       attribute %s%d => [%lu bytes]", RV_current_context->parent ? "--- " : "- ", RV_attr_type, RV_CFDataGetLength_009601E5((CFDataRef) RV_value1));
                         break;
                     }
                         // Attributes encoded as ASN.1 SET
@@ -3547,27 +3427,27 @@ RV_CFRelease_003F0137(RV_str1); \
                         RV_inapp_context.dictionary = NULL;
                         RV_inapp_context.parent = RV_current_context;
                         RV_current_context = &RV_inapp_context;
-                        goto RV_GetReceiptInformation062_RV_key;
+                        goto RV_GetReceiptInformation065_RV_key;
                     }
                     default:
                         break;
                 }
                 if (RV_value1) {
-                    RV_key = RV_OVBWQJKFFITA_003F0138(NULL, kCFNumberIntType, &RV_key1);
-                    RV_QTQIYYKDHZUX_003F01CE((CFMutableDictionaryRef) RV_current_context->dictionary, RV_key, RV_value1);
-                    RV_CFRelease_00910137(RV_key);
-                    RV_CFRelease_00910137(RV_value1);
+                    RV_key = RV_JCTZLPASYXCW_007E01A2(NULL, kCFNumberIntType, &RV_key1);
+                    RV_LNQGAPCQAYML_01EE008F((CFMutableDictionaryRef) RV_current_context->dictionary, RV_key, RV_value1);
+                    RV_CFRelease_007E0164(RV_key);
+                    RV_CFRelease_007E0164(RV_value1);
                 }
                 if (RV_value2) {
-                    RV_key = RV_OVBWQJKFFITA_003F0138(NULL, kCFNumberIntType, &RV_key2);
-                    RV_QTQIYYKDHZUX_003F01CE((CFMutableDictionaryRef) RV_current_context->dictionary, RV_key, RV_value2);
-                    RV_CFRelease_00910137(RV_key);
-                    RV_CFRelease_00910137(RV_value2);
+                    RV_key = RV_JCTZLPASYXCW_007E01A2(NULL, kCFNumberIntType, &RV_key2);
+                    RV_LNQGAPCQAYML_01EE008F((CFMutableDictionaryRef) RV_current_context->dictionary, RV_key, RV_value2);
+                    RV_CFRelease_007E0164(RV_key);
+                    RV_CFRelease_007E0164(RV_value2);
                 }
                 // Move past the attribute
                 RV_current_context->ptr += RV_length;
             }
-        RV_GetReceiptInformation062_RV_key:
+        RV_GetReceiptInformation065_RV_key:
             // If the current context is a new one, continue parsing
             if (!RV_current_context->dictionary) {
                 continue;
@@ -3576,36 +3456,36 @@ RV_CFRelease_003F0137(RV_str1); \
             if (RV_current_context->parent) {
                 __RV_RECEIPT_LOG("RV - Parsing receipt - Add an InApp purchase");
                 RV_key1 = RV_StoreReceiptAttributeTypeInAppPurchase;
-                RV_key = RV_OVBWQJKFFITA_003F0138(NULL, kCFNumberIntType, &RV_key1);
-                RV_value1 = RV_CFDictionaryGetValue_0168011D((CFDictionaryRef) RV_current_context->parent->dictionary, RV_key);
+                RV_key = RV_JCTZLPASYXCW_007E01A2(NULL, kCFNumberIntType, &RV_key1);
+                RV_value1 = RV_CFDictionaryGetValue_0096002A((CFDictionaryRef) RV_current_context->parent->dictionary, RV_key);
                 if (!RV_value1) {
-                    RV_value1 = RV_WZFOWZREXLHB_009101B1(kCFAllocatorDefault, 0, RV_kCFTypeArrayCallBacks_003F0022);
-                    RV_CVYYOQHHDSEM_01680158((CFMutableDictionaryRef) RV_current_context->parent->dictionary, RV_key, RV_value1);
-                    RV_CFRelease_00910137(RV_value1);
+                    RV_value1 = RV_NMCRJBPXHTDH_00960064(kCFAllocatorDefault, 0, RV_kCFTypeArrayCallBacks_01EE017C);
+                    RV_CFDictionarySetValue_01EE01F4((CFMutableDictionaryRef) RV_current_context->parent->dictionary, RV_key, RV_value1);
+                    RV_CFRelease_007E0164(RV_value1);
                 }
-                RV_QWQFLAFLIXCL_016801EC((CFMutableArrayRef) RV_value1, RV_current_context->dictionary);
-                RV_CFRelease_00910137(RV_current_context->dictionary);
-                RV_CFRelease_00910137(RV_key);
+                RV_QBGASNEBJQIE_007E00DA((CFMutableArrayRef) RV_value1, RV_current_context->dictionary);
+                RV_CFRelease_007E0164(RV_current_context->dictionary);
+                RV_CFRelease_007E0164(RV_key);
                 // Switch to parent context
                 RV_current_context = RV_current_context->parent;
                 // Move past the child context
                 RV_current_context->ptr = RV_inapp_context.end;
             }
         }
-        if (RV_ctx->receipt_dict) RV_CFRelease_00910137(RV_ctx->receipt_dict);
+        if (RV_ctx->receipt_dict) RV_CFRelease_007E0164(RV_ctx->receipt_dict);
         RV_ctx->receipt_dict = RV_receipt_context.dictionary;
         // Global variables computation
-        // From 344 to 265
-        RV_CVYYOQHHDSEM += 186; RV_CVYYOQHHDSEM /= 2;
-        // From 312 to 228
-        RV_OVBWQJKFFITA += 144; RV_OVBWQJKFFITA /= 2;
-    RV_GetReceiptInformation062_RV_bail:
-        if (RV_pkcs7) RV_PKCS7_free_022900E1(RV_pkcs7);
-        if (RV_bio_p7) RV_BIO_free_00640173(RV_bio_p7);
-        if (RV_formatter) RV_CFRelease_00910137(RV_formatter);
+        // From 218 to 47
+        RV_QBGASNEBJQIE += 64; RV_QBGASNEBJQIE /= 6;
+        // From 5 to 407
+        RV_EHCQHJFPOOLY -= 1; RV_EHCQHJFPOOLY *= 83; RV_EHCQHJFPOOLY += 75;
+    RV_GetReceiptInformation065_RV_bail:
+        if (RV_pkcs7) RV_PKCS7_free_0068003C(RV_pkcs7);
+        if (RV_bio_p7) RV_BIO_free_018201F5(RV_bio_p7);
+        if (RV_formatter) RV_CFRelease_007E0164(RV_formatter);
     }
 #else
-#define RV_GetReceiptInformation062(RV_ctx) { \
+#define RV_GetReceiptInformation065(RV_ctx) { \
 RV_ParsingContext RV_receipt_context; \
 RV_ParsingContext *RV_current_context; \
 CFNumberRef RV_key; \
@@ -3630,28 +3510,28 @@ int RV_num_type; \
 long RV_num_length; \
 const unsigned char *RV_num_ptr; \
 __RV_RECEIPT_LOG("RV - Parsing receipt"); \
-RV_bio_p7 = RV_BIO_new_015F0167(RV_BIO_s_mem_0064011B()); \
-RV_BIO_write_015F00E8(RV_bio_p7, (void *) RV_KYEHJWKNZEEB_003F0109((CFDataRef) RV_ctx->receipt_data), (int) RV_WVGZWQTCUMDX_003F0127((CFDataRef) RV_ctx->receipt_data)); \
-RV_pkcs7 = RV_d2i_PKCS7_bio_0064007A(RV_bio_p7, NULL); \
+RV_bio_p7 = RV_BIO_new_006800E6(RV_BIO_s_mem_0182021B()); \
+RV_BIO_write_018200E2(RV_bio_p7, (void *) RV_CFDataGetBytePtr_01EE0000((CFDataRef) RV_ctx->receipt_data), (int) RV_CFDataGetLength_009601E5((CFDataRef) RV_ctx->receipt_data)); \
+RV_pkcs7 = RV_d2i_PKCS7_bio_002D0012(RV_bio_p7, NULL); \
 if (!RV_pkcs7) { \
-RV_longjmp_00BE0103(RV_JumpBuf, 1); \
+RV_longjmp_01180037(RV_JumpBuf, 1); \
 RV_ctx->receipt_data = NULL; \
-goto RV_GetReceiptInformation062_RV_bail; \
+goto RV_GetReceiptInformation065_RV_bail; \
 } \
 if (!PKCS7_type_is_signed(RV_pkcs7)) { \
-RV_longjmp_00BE0103(RV_JumpBuf, 1); \
+RV_longjmp_01180037(RV_JumpBuf, 1); \
 RV_ctx->receipt_data = NULL; \
-goto RV_GetReceiptInformation062_RV_bail; \
+goto RV_GetReceiptInformation065_RV_bail; \
 } \
 if (!PKCS7_type_is_data(RV_pkcs7->d.sign->contents)) { \
-RV_longjmp_00BE0103(RV_JumpBuf, 1); \
+RV_longjmp_01180037(RV_JumpBuf, 1); \
 RV_ctx->receipt_data = NULL; \
-goto RV_GetReceiptInformation062_RV_bail; \
+goto RV_GetReceiptInformation065_RV_bail; \
 } \
-RV_formatter = RV_CFDateFormatterCreate_01680133(NULL, NULL, kCFDateFormatterNoStyle, kCFDateFormatterNoStyle); \
-RV_value1 = RV_ObfuscationFunction009CF((RV_Strings[98]), 233, 33);  \
-RV_CFDateFormatterSetFormat_016801A5(RV_formatter, (CFStringRef) RV_value1); \
-RV_CFRelease_00910137(RV_value1); \
+RV_formatter = RV_EMCRXNTABHOH_007E01D0(NULL, NULL, kCFDateFormatterNoStyle, kCFDateFormatterNoStyle); \
+RV_value1 = RV_ObfuscationFunction006CF((RV_Strings[238]), 184, 33);  \
+RV_CFDateFormatterSetFormat_007E0205(RV_formatter, (CFStringRef) RV_value1); \
+RV_CFRelease_007E0164(RV_value1); \
 RV_contentRV_content = RV_pkcs7->d.sign->contents->d.data; \
 RV_receipt_context.ptr = RV_contentRV_content->data; \
 RV_receipt_context.end = RV_receipt_context.ptr + RV_contentRV_content->length; \
@@ -3660,43 +3540,43 @@ RV_receipt_context.dictionary = NULL; \
 RV_current_context = &RV_receipt_context; \
 while(RV_current_context->ptr < RV_current_context->end) { \
 if (!RV_current_context->dictionary) { \
-RV_current_context->dictionary = RV_HOMCOURKRIMK_0091003D(kCFAllocatorDefault, (CFIndex) 565, RV_kCFTypeDictionaryKeyCallBacks_003F0202, RV_kCFTypeDictionaryValueCallBacks_003F008A); \
-RV_ASN1_get_object_015F0058(&RV_current_context->ptr, &RV_length, &RV_type, &RV_xclass, RV_current_context->end - RV_current_context->ptr); \
+RV_current_context->dictionary = RV_SJPVPZSFHYYD_009600EA(kCFAllocatorDefault, (CFIndex) 542, RV_kCFTypeDictionaryKeyCallBacks_01EE01DD, RV_kCFTypeDictionaryValueCallBacks_007E0148); \
+RV_ASN1_get_object_002D0163(&RV_current_context->ptr, &RV_length, &RV_type, &RV_xclass, RV_current_context->end - RV_current_context->ptr); \
 if (RV_type != V_ASN1_SET) { \
-RV_longjmp_00BE0103(RV_JumpBuf, 1); \
-goto RV_GetReceiptInformation062_RV_bail; \
+RV_longjmp_01180037(RV_JumpBuf, 1); \
+goto RV_GetReceiptInformation065_RV_bail; \
 } \
 } \
 while(RV_current_context->ptr < RV_current_context->end) { \
-RV_ASN1_get_object_015F0058(&RV_current_context->ptr, &RV_length, &RV_type, &RV_xclass, RV_current_context->end - RV_current_context->ptr); \
+RV_ASN1_get_object_002D0163(&RV_current_context->ptr, &RV_length, &RV_type, &RV_xclass, RV_current_context->end - RV_current_context->ptr); \
 if (RV_type != V_ASN1_SEQUENCE) { \
-RV_longjmp_00BE0103(RV_JumpBuf, 1); \
-goto RV_GetReceiptInformation062_RV_bail; \
+RV_longjmp_01180037(RV_JumpBuf, 1); \
+goto RV_GetReceiptInformation065_RV_bail; \
 } \
 RV_seq_end = RV_current_context->ptr + RV_length; \
 RV_attr_type = 0; \
 RV_attr_version = 0; \
-RV_ASN1_get_object_015F0058(&RV_current_context->ptr, &RV_length, &RV_type, &RV_xclass, RV_current_context->end - RV_current_context->ptr); \
+RV_ASN1_get_object_002D0163(&RV_current_context->ptr, &RV_length, &RV_type, &RV_xclass, RV_current_context->end - RV_current_context->ptr); \
 if (RV_type != V_ASN1_INTEGER) { \
-RV_longjmp_00BE0103(RV_JumpBuf, 1); \
-goto RV_GetReceiptInformation062_RV_bail; \
+RV_longjmp_01180037(RV_JumpBuf, 1); \
+goto RV_GetReceiptInformation065_RV_bail; \
 } \
-RV_GetReceiptInformation062X((RV_current_context->ptr), (RV_length), (&RV_attr_type)); \
+RV_GetReceiptInformation065X((RV_current_context->ptr), (RV_length), (&RV_attr_type)); \
 RV_current_context->ptr += RV_length; \
-RV_ASN1_get_object_015F0058(&RV_current_context->ptr, &RV_length, &RV_type, &RV_xclass, RV_current_context->end - RV_current_context->ptr); \
+RV_ASN1_get_object_002D0163(&RV_current_context->ptr, &RV_length, &RV_type, &RV_xclass, RV_current_context->end - RV_current_context->ptr); \
 if (RV_type != V_ASN1_INTEGER) { \
-RV_longjmp_00BE0103(RV_JumpBuf, 1); \
-goto RV_GetReceiptInformation062_RV_bail; \
+RV_longjmp_01180037(RV_JumpBuf, 1); \
+goto RV_GetReceiptInformation065_RV_bail; \
 } \
-RV_GetReceiptInformation062X((RV_current_context->ptr), (RV_length), (&RV_attr_version)); \
+RV_GetReceiptInformation065X((RV_current_context->ptr), (RV_length), (&RV_attr_version)); \
 RV_current_context->ptr += RV_length; \
-RV_ASN1_get_object_015F0058(&RV_current_context->ptr, &RV_length, &RV_type, &RV_xclass, RV_current_context->end - RV_current_context->ptr); \
+RV_ASN1_get_object_002D0163(&RV_current_context->ptr, &RV_length, &RV_type, &RV_xclass, RV_current_context->end - RV_current_context->ptr); \
 if (RV_type != V_ASN1_OCTET_STRING) { \
-RV_longjmp_00BE0103(RV_JumpBuf, 1); \
-goto RV_GetReceiptInformation062_RV_bail; \
+RV_longjmp_01180037(RV_JumpBuf, 1); \
+goto RV_GetReceiptInformation065_RV_bail; \
 } \
-RV_key1 = (RV_ReceiptAttributeType) (RV_StoreNone + (RV_attr_type << 2)); \
-RV_key2 = (RV_ReceiptAttributeType) (RV_StoreNone + (RV_attr_type << 2) + 1); \
+RV_key1 = (RV_ReceiptAttributeType) (RV_StoreNone + (RV_attr_type << 1)); \
+RV_key2 = (RV_ReceiptAttributeType) (RV_StoreNone + (RV_attr_type << 1) + 1); \
 RV_value1 = NULL; \
 RV_value2 = NULL; \
 __RV_RECEIPT_LOG("RV - Parsing receipt - Found attribute %s%d", RV_current_context->parent ? "--- " : "- ", RV_attr_type); \
@@ -3711,13 +3591,13 @@ case RV_InAppAttributeTypeOriginalTransactionIdentifer: \
 RV_str_type = 0; \
 RV_str_length = 0; \
 RV_str_ptr = RV_current_context->ptr; \
-RV_ASN1_get_object_015F0058(&RV_str_ptr, &RV_str_length, &RV_str_type, &RV_xclass, RV_seq_end - RV_str_ptr); \
+RV_ASN1_get_object_002D0163(&RV_str_ptr, &RV_str_length, &RV_str_type, &RV_xclass, RV_seq_end - RV_str_ptr); \
 if (RV_str_type != V_ASN1_UTF8STRING) { \
-RV_longjmp_00BE0103(RV_JumpBuf, 1); \
-goto RV_GetReceiptInformation062_RV_bail; \
+RV_longjmp_01180037(RV_JumpBuf, 1); \
+goto RV_GetReceiptInformation065_RV_bail; \
 } \
-RV_value1 = ((__RV_CFStringCreateWithBytes) RV_Pointers[55])(NULL, (const UInt8 *) RV_str_ptr, (CFIndex) RV_str_length, kCFStringEncodingUTF8, false); \
-RV_value2 = RV_CFDataCreate_003F00FB(NULL, (const UInt8 *) RV_current_context->ptr, (CFIndex) RV_length); \
+RV_value1 = ((__RV_CFStringCreateWithBytes) RV_Pointers[327])(NULL, (const UInt8 *) RV_str_ptr, (CFIndex) RV_str_length, kCFStringEncodingUTF8, false); \
+RV_value2 = RV_CFDataCreate_007E0015(NULL, (const UInt8 *) RV_current_context->ptr, (CFIndex) RV_length); \
 __RV_RECEIPT_LOG("RV - Parsing receipt -       attribute %s%d => %s", RV_current_context->parent ? "--- " : "- ", RV_attr_type, CFStringGetCStringPtr((CFStringRef) RV_value1, CFStringGetSystemEncoding())); \
 break; \
 } \
@@ -3730,13 +3610,13 @@ case RV_InAppAttributeTypeSubscriptionExpirationDate: \
 RV_str_type = 0; \
 RV_str_length = 0; \
 RV_str_ptr = RV_current_context->ptr; \
-RV_ASN1_get_object_015F0058(&RV_str_ptr, &RV_str_length, &RV_str_type, &RV_xclass, RV_seq_end - RV_str_ptr); \
+RV_ASN1_get_object_002D0163(&RV_str_ptr, &RV_str_length, &RV_str_type, &RV_xclass, RV_seq_end - RV_str_ptr); \
 if (RV_str_type != V_ASN1_IA5STRING) { \
-RV_longjmp_00BE0103(RV_JumpBuf, 1); \
-goto RV_GetReceiptInformation062_RV_bail; \
+RV_longjmp_01180037(RV_JumpBuf, 1); \
+goto RV_GetReceiptInformation065_RV_bail; \
 } \
-RV_value2 = ((__RV_CFStringCreateWithBytes) RV_Pointers[55])(NULL, (const UInt8 *) RV_str_ptr, (CFIndex) RV_str_length, kCFStringEncodingASCII, false); \
-RV_value1 = RV_CFDateFormatterCreateDateFromString_009101CD(NULL, RV_formatter, (CFStringRef) RV_value2, NULL); \
+RV_value2 = ((__RV_CFStringCreateWithBytes) RV_Pointers[327])(NULL, (const UInt8 *) RV_str_ptr, (CFIndex) RV_str_length, kCFStringEncodingASCII, false); \
+RV_value1 = RV_ULDQRPYUOEON_01EE01A9(NULL, RV_formatter, (CFStringRef) RV_value2, NULL); \
 __RV_RECEIPT_LOG("RV - Parsing receipt -       attribute %s%d => %s", RV_current_context->parent ? "--- " : "- ", RV_attr_type, CFStringGetCStringPtr((CFStringRef) RV_value2, CFStringGetSystemEncoding())); \
 break; \
 } \
@@ -3746,21 +3626,21 @@ case RV_InAppAttributeTypeWebOrderLineItemId: \
 RV_num_type = 0; \
 RV_num_length = 0; \
 RV_num_ptr = RV_current_context->ptr; \
-RV_ASN1_get_object_015F0058(&RV_num_ptr, &RV_num_length, &RV_num_type, &RV_xclass, RV_seq_end - RV_num_ptr); \
+RV_ASN1_get_object_002D0163(&RV_num_ptr, &RV_num_length, &RV_num_type, &RV_xclass, RV_seq_end - RV_num_ptr); \
 if (RV_num_type != V_ASN1_INTEGER) { \
-RV_longjmp_00BE0103(RV_JumpBuf, 1); \
-goto RV_GetReceiptInformation062_RV_bail; \
+RV_longjmp_01180037(RV_JumpBuf, 1); \
+goto RV_GetReceiptInformation065_RV_bail; \
 } \
-RV_GetReceiptInformation062X((RV_num_ptr), (RV_num_length), (&RV_number)); \
-RV_value1 = RV_OVBWQJKFFITA_003F0138(NULL, kCFNumberIntType, &RV_number); \
+RV_GetReceiptInformation065X((RV_num_ptr), (RV_num_length), (&RV_number)); \
+RV_value1 = RV_JCTZLPASYXCW_007E01A2(NULL, kCFNumberIntType, &RV_number); \
 __RV_RECEIPT_LOG("RV - Parsing receipt -       attribute %s%d => %d", RV_current_context->parent ? "--- " : "- ", RV_attr_type, RV_number); \
 break; \
 } \
 case RV_ReceiptAttributeTypeOpaqueValue: \
 case RV_ReceiptAttributeTypeHash: \
 { \
-RV_value1 = RV_CFDataCreate_003F00FB(NULL, (const UInt8 *) RV_current_context->ptr, (CFIndex) RV_length); \
-__RV_RECEIPT_LOG("RV - Parsing receipt -       attribute %s%d => [%lu bytes]", RV_current_context->parent ? "--- " : "- ", RV_attr_type, RV_WVGZWQTCUMDX_003F0127((CFDataRef) RV_value1)); \
+RV_value1 = RV_CFDataCreate_007E0015(NULL, (const UInt8 *) RV_current_context->ptr, (CFIndex) RV_length); \
+__RV_RECEIPT_LOG("RV - Parsing receipt -       attribute %s%d => [%lu bytes]", RV_current_context->parent ? "--- " : "- ", RV_attr_type, RV_CFDataGetLength_009601E5((CFDataRef) RV_value1)); \
 break; \
 } \
 case RV_ReceiptAttributeTypeInAppPurchase: \
@@ -3770,61 +3650,61 @@ RV_inapp_context.end = RV_inapp_context.ptr + RV_length; \
 RV_inapp_context.dictionary = NULL; \
 RV_inapp_context.parent = RV_current_context; \
 RV_current_context = &RV_inapp_context; \
-goto RV_GetReceiptInformation062_RV_key; \
+goto RV_GetReceiptInformation065_RV_key; \
 } \
 default: \
 break; \
 } \
 if (RV_value1) { \
-RV_key = RV_OVBWQJKFFITA_003F0138(NULL, kCFNumberIntType, &RV_key1); \
-RV_QTQIYYKDHZUX_003F01CE((CFMutableDictionaryRef) RV_current_context->dictionary, RV_key, RV_value1); \
-RV_CFRelease_00910137(RV_key); \
-RV_CFRelease_00910137(RV_value1); \
+RV_key = RV_JCTZLPASYXCW_007E01A2(NULL, kCFNumberIntType, &RV_key1); \
+RV_LNQGAPCQAYML_01EE008F((CFMutableDictionaryRef) RV_current_context->dictionary, RV_key, RV_value1); \
+RV_CFRelease_007E0164(RV_key); \
+RV_CFRelease_007E0164(RV_value1); \
 } \
 if (RV_value2) { \
-RV_key = RV_OVBWQJKFFITA_003F0138(NULL, kCFNumberIntType, &RV_key2); \
-RV_QTQIYYKDHZUX_003F01CE((CFMutableDictionaryRef) RV_current_context->dictionary, RV_key, RV_value2); \
-RV_CFRelease_00910137(RV_key); \
-RV_CFRelease_00910137(RV_value2); \
+RV_key = RV_JCTZLPASYXCW_007E01A2(NULL, kCFNumberIntType, &RV_key2); \
+RV_LNQGAPCQAYML_01EE008F((CFMutableDictionaryRef) RV_current_context->dictionary, RV_key, RV_value2); \
+RV_CFRelease_007E0164(RV_key); \
+RV_CFRelease_007E0164(RV_value2); \
 } \
 RV_current_context->ptr += RV_length; \
 } \
-RV_GetReceiptInformation062_RV_key: \
+RV_GetReceiptInformation065_RV_key: \
 if (!RV_current_context->dictionary) { \
 continue; \
 } \
 if (RV_current_context->parent) { \
 __RV_RECEIPT_LOG("RV - Parsing receipt - Add an InApp purchase"); \
 RV_key1 = RV_StoreReceiptAttributeTypeInAppPurchase; \
-RV_key = RV_OVBWQJKFFITA_003F0138(NULL, kCFNumberIntType, &RV_key1); \
-RV_value1 = RV_CFDictionaryGetValue_0168011D((CFDictionaryRef) RV_current_context->parent->dictionary, RV_key); \
+RV_key = RV_JCTZLPASYXCW_007E01A2(NULL, kCFNumberIntType, &RV_key1); \
+RV_value1 = RV_CFDictionaryGetValue_0096002A((CFDictionaryRef) RV_current_context->parent->dictionary, RV_key); \
 if (!RV_value1) { \
-RV_value1 = RV_WZFOWZREXLHB_009101B1(kCFAllocatorDefault, 0, RV_kCFTypeArrayCallBacks_003F0022); \
-RV_CVYYOQHHDSEM_01680158((CFMutableDictionaryRef) RV_current_context->parent->dictionary, RV_key, RV_value1); \
-RV_CFRelease_00910137(RV_value1); \
+RV_value1 = RV_NMCRJBPXHTDH_00960064(kCFAllocatorDefault, 0, RV_kCFTypeArrayCallBacks_01EE017C); \
+RV_CFDictionarySetValue_01EE01F4((CFMutableDictionaryRef) RV_current_context->parent->dictionary, RV_key, RV_value1); \
+RV_CFRelease_007E0164(RV_value1); \
 } \
-RV_QWQFLAFLIXCL_016801EC((CFMutableArrayRef) RV_value1, RV_current_context->dictionary); \
-RV_CFRelease_00910137(RV_current_context->dictionary); \
-RV_CFRelease_00910137(RV_key); \
+RV_QBGASNEBJQIE_007E00DA((CFMutableArrayRef) RV_value1, RV_current_context->dictionary); \
+RV_CFRelease_007E0164(RV_current_context->dictionary); \
+RV_CFRelease_007E0164(RV_key); \
 RV_current_context = RV_current_context->parent; \
 RV_current_context->ptr = RV_inapp_context.end; \
 } \
 } \
-if (RV_ctx->receipt_dict) RV_CFRelease_00910137(RV_ctx->receipt_dict); \
+if (RV_ctx->receipt_dict) RV_CFRelease_007E0164(RV_ctx->receipt_dict); \
 RV_ctx->receipt_dict = RV_receipt_context.dictionary; \
-RV_CVYYOQHHDSEM += 186; RV_CVYYOQHHDSEM /= 2;  \
-RV_OVBWQJKFFITA += 144; RV_OVBWQJKFFITA /= 2;  \
-RV_GetReceiptInformation062_RV_bail: \
-if (RV_pkcs7) RV_PKCS7_free_022900E1(RV_pkcs7); \
-if (RV_bio_p7) RV_BIO_free_00640173(RV_bio_p7); \
-if (RV_formatter) RV_CFRelease_00910137(RV_formatter); \
+RV_QBGASNEBJQIE += 64; RV_QBGASNEBJQIE /= 6;  \
+RV_EHCQHJFPOOLY -= 1; RV_EHCQHJFPOOLY *= 83; RV_EHCQHJFPOOLY += 75;  \
+RV_GetReceiptInformation065_RV_bail: \
+if (RV_pkcs7) RV_PKCS7_free_0068003C(RV_pkcs7); \
+if (RV_bio_p7) RV_BIO_free_018201F5(RV_bio_p7); \
+if (RV_formatter) RV_CFRelease_007E0164(RV_formatter); \
 }
 #endif
     
     
     // CodeBlock CheckReceiptSignature
 #if DEBUG
-    inline static void RV_CheckReceiptSignature067(RV_CheckingContext *RV_ctx) {
+    inline static void RV_CheckReceiptSignature076(RV_CheckingContext *RV_ctx) {
         BIO *RV_bio_p7 = NULL;
         PKCS7 *RV_pkcs7 = NULL;
         STACK_OF(X509) *RV_certificates = NULL;
@@ -3833,7 +3713,6 @@ if (RV_formatter) RV_CFRelease_00910137(RV_formatter); \
         unsigned int RV_index2;
         ASN1_OBJECT *RV_oid = NULL;
         char *RV_str1;
-        char *RV_str2;
         char *RV_str3;
         char *RV_str4;
         char *RV_str5;
@@ -3843,133 +3722,130 @@ if (RV_formatter) RV_CFRelease_00910137(RV_formatter); \
         X509_STORE *RV_store = NULL;
         __RV_RECEIPT_LOG("RV - Checking receipt signature");
         // Put the receipt data into a memory buffer
-        RV_bio_p7 = RV_BIO_new_015F0122(RV_BIO_s_mem_015F011B());
-        RV_BIO_write_02290130(RV_bio_p7, (void *) RV_CVYYOQHHDSEM_01680109((CFDataRef) RV_ctx->receipt_data), (int) RV_OVBWQJKFFITA_009100E4((CFDataRef) RV_ctx->receipt_data));
-        RV_pkcs7 = RV_d2i_PKCS7_bio_015F0217(RV_bio_p7, NULL);
+        RV_bio_p7 = RV_BIO_new_002D014D(RV_BIO_s_mem_018200F2());
+        RV_BIO_write_002D00E2(RV_bio_p7, (void *) RV_EHCQHJFPOOLY_01EE0197((CFDataRef) RV_ctx->receipt_data), (int) RV_QBGASNEBJQIE_01EE002F((CFDataRef) RV_ctx->receipt_data));
+        RV_pkcs7 = RV_d2i_PKCS7_bio_006800BA(RV_bio_p7, NULL);
         if (!RV_pkcs7) {
-            RV_longjmp_00770220(RV_JumpBuf, 1);
+            RV_longjmp_00590037(RV_JumpBuf, 1);
             RV_ctx->receipt_dict = NULL;
-            goto RV_CheckReceiptSignature067_RV_bail;
+            goto RV_CheckReceiptSignature076_RV_bail;
         }
         if (!PKCS7_type_is_signed(RV_pkcs7)) {
-            RV_longjmp_00770220(RV_JumpBuf, 1);
+            RV_longjmp_00590037(RV_JumpBuf, 1);
             RV_ctx->receipt_dict = NULL;
-            goto RV_CheckReceiptSignature067_RV_bail;
+            goto RV_CheckReceiptSignature076_RV_bail;
         }
         if (!PKCS7_type_is_data(RV_pkcs7->d.sign->contents)) {
-            RV_longjmp_00770220(RV_JumpBuf, 1);
+            RV_longjmp_00590037(RV_JumpBuf, 1);
             RV_ctx->receipt_dict = NULL;
-            goto RV_CheckReceiptSignature067_RV_bail;
+            goto RV_CheckReceiptSignature076_RV_bail;
         }
-        RV_OpenSSL_add_all_digests_015F022C();
+        RV_OpenSSL_add_all_digests_018201E2();
         // If the Apple Root CA certificate has been loaded, then check the receipt against it.
         if (RV_ctx->ca_data) {
-            RV_bio_apple = RV_BIO_new_015F0122(RV_BIO_s_mem_015F011B());
-            RV_BIO_write_02290130(RV_bio_apple, (void *) RV_CVYYOQHHDSEM_01680109((CFDataRef) RV_ctx->ca_data), (int) RV_OVBWQJKFFITA_009100E4((CFDataRef) RV_ctx->ca_data));
-            RV_apple = RV_d2i_X509_bio_015F00FD(RV_bio_apple, NULL);
+            RV_bio_apple = RV_BIO_new_002D014D(RV_BIO_s_mem_018200F2());
+            RV_BIO_write_002D00E2(RV_bio_apple, (void *) RV_EHCQHJFPOOLY_01EE0197((CFDataRef) RV_ctx->ca_data), (int) RV_QBGASNEBJQIE_01EE002F((CFDataRef) RV_ctx->ca_data));
+            RV_apple = RV_d2i_X509_bio_002D0043(RV_bio_apple, NULL);
             if (!RV_apple) {
-                RV_longjmp_00770220(RV_JumpBuf, 1);
-                goto RV_CheckReceiptSignature067_RV_bail;
+                RV_longjmp_00590037(RV_JumpBuf, 1);
+                goto RV_CheckReceiptSignature076_RV_bail;
             }
-            RV_store = RV_X509_STORE_new_0064015D();
-            RV_X509_STORE_add_cert_02290195(RV_store, RV_apple);
+            RV_store = RV_X509_STORE_new_0068004C();
+            RV_X509_STORE_add_cert_00680101(RV_store, RV_apple);
             // Check that the PKCS7_verify function is not tampered with
-            RV_verify = RV_PKCS7_verify_00640178(NULL, NULL, RV_store, NULL, NULL, 0) * 696;
-            if (RV_verify == 696) {
-                RV_longjmp_00770220(RV_JumpBuf, 1);
-                goto RV_CheckReceiptSignature067_RV_bail;
+            RV_verify = RV_PKCS7_verify_018200AE(NULL, NULL, NULL, NULL, NULL, 0) * 1515;
+            if (RV_verify == 1515) {
+                RV_longjmp_00590037(RV_JumpBuf, 1);
+                goto RV_CheckReceiptSignature076_RV_bail;
             }
             // Check that the PKCS7 content is signed by the Apple Root CA certificate
-            RV_verify = RV_PKCS7_verify_00640178(RV_pkcs7, NULL, RV_store, NULL, NULL, 0) * 696;
-            if (RV_verify != 696) {
-                RV_longjmp_00770220(RV_JumpBuf, 1);
-                goto RV_CheckReceiptSignature067_RV_bail;
+            RV_verify = RV_PKCS7_verify_018200AE(RV_pkcs7, NULL, RV_store, NULL, NULL, 0) * 1515;
+            if (RV_verify != 1515) {
+                RV_longjmp_00590037(RV_JumpBuf, 1);
+                goto RV_CheckReceiptSignature076_RV_bail;
             }
         }
         // Extract the certificates from the receipt.
         // One of them must be the Apple Root CA certificate with the correct fingerprint.
         RV_verify = 0;
         RV_certificates = RV_pkcs7->d.sign->cert;
-        RV_count = RV_sk_num_02290150((const _STACK *) RV_certificates);
+        RV_count = RV_sk_num_00680207((const _STACK *) RV_certificates);
         for(RV_index1 = 0; RV_index1 < RV_count; RV_index1++) {
-            RV_certificate = (X509 *) RV_sk_value_00640072((const _STACK *) RV_certificates, RV_index1);
-            char RV_common_name[565];
+            RV_certificate = (X509 *) RV_sk_value_01820153((const _STACK *) RV_certificates, RV_index1);
+            char RV_common_name[542];
             // Check that the X509_NAME_get_text_by_NID function is not tampered with
-            RV_status = RV_X509_NAME_get_text_by_NID_015F0001(NULL, NID_commonName, NULL, 0);
+            RV_status = RV_X509_NAME_get_text_by_NID_006800F7(NULL, NID_commonName, RV_common_name, 420);
             if (RV_status > 0) {
-                RV_longjmp_00770220(RV_JumpBuf, 1);
-                goto RV_CheckReceiptSignature067_RV_bail;
+                RV_longjmp_00590037(RV_JumpBuf, 1);
+                goto RV_CheckReceiptSignature076_RV_bail;
             }
             // Retrieve the common name
-            RV_status = RV_X509_NAME_get_text_by_NID_015F0001(RV_certificate->cert_info->subject, NID_commonName, RV_common_name, 565);
+            RV_status = RV_X509_NAME_get_text_by_NID_006800F7(RV_certificate->cert_info->subject, NID_commonName, RV_common_name, 542);
             if (RV_status <= 0) {
-                RV_longjmp_00770220(RV_JumpBuf, 1);
-                goto RV_CheckReceiptSignature067_RV_bail;
+                RV_longjmp_00590037(RV_JumpBuf, 1);
+                goto RV_CheckReceiptSignature076_RV_bail;
             }
-            volatile unsigned int RV_digest_length = 13; RV_digest_length -= 7; RV_digest_length *= 3; RV_digest_length += 2;
-            char RV_str2_[565];
-            RV_ObfuscationFunction00A((RV_Strings[215]), RV_str2_, 17, 16);
-            RV_str2 = RV_str2_;
-            const EVP_MD *RV_digester = RV_EVP_get_digestbyname_015F01F3(RV_str2);
+            volatile unsigned int RV_digest_length = 17; RV_digest_length -= 11; RV_digest_length *= 3; RV_digest_length += 2;
+            const EVP_MD *RV_digester = EVP_sha1();
             unsigned char RV_digest[EVP_MAX_MD_SIZE];
             unsigned int RV_len = 0;
             // Check that the X509_digest function is not tampered with
-            RV_status = RV_X509_digest_022900C3(NULL, RV_digester, RV_digest, &RV_len) * 696;
-            if (RV_status == 696 || RV_len > 0) {
-                RV_longjmp_00770220(RV_JumpBuf, 1);
-                goto RV_CheckReceiptSignature067_RV_bail;
+            RV_status = RV_X509_digest_002D0176(NULL, NULL, RV_digest, &RV_len) * 1515;
+            if (RV_status == 1515 || RV_len > 0) {
+                RV_longjmp_00590037(RV_JumpBuf, 1);
+                goto RV_CheckReceiptSignature076_RV_bail;
             }
-            RV_status = RV_X509_digest_022900C3(RV_certificate, RV_digester, RV_digest, &RV_len) * 696;
-            if (RV_status != 696 || RV_len != RV_digest_length) {
-                RV_longjmp_00770220(RV_JumpBuf, 1);
-                goto RV_CheckReceiptSignature067_RV_bail;
+            RV_status = RV_X509_digest_002D0176(RV_certificate, RV_digester, RV_digest, &RV_len) * 1515;
+            if (RV_status != 1515 || RV_len != RV_digest_length) {
+                RV_longjmp_00590037(RV_JumpBuf, 1);
+                goto RV_CheckReceiptSignature076_RV_bail;
             }
-            char RV_fingerprint[565];
+            char RV_fingerprint[542];
             volatile unsigned int RV_increment = 1; RV_increment -= 1; RV_increment *= 5; RV_increment += 3;
             for(RV_index2 = 0; RV_index2 < RV_digest_length; RV_index2++) {
-                snprintf(&RV_fingerprint[RV_index2 * RV_increment], RV_increment + 1, "%02X:", RV_digest[RV_index2]);
+                snprintf(&RV_fingerprint[RV_index2 * RV_increment], RV_increment + 1, "%02x:", RV_digest[RV_index2]);
             }
-            char RV_str3_[565];
-            RV_ObfuscationFunction00A((RV_Strings[533]), RV_str3_, 3, 68);
+            char RV_str3_[542];
+            RV_ObfuscationFunction00C((RV_Strings[496]), RV_str3_, 129, 68);
             RV_str3 = RV_str3_;
             // Check the common name and the fingerprint
-            char RV_str1_[565];
-            RV_ObfuscationFunction007((RV_Strings[14]), RV_str1_, 44, 16);
+            char RV_str1_[542];
+            RV_ObfuscationFunction006((RV_Strings[412]), RV_str1_, 139, 16);
             RV_str1 = RV_str1_;
-            volatile size_t RV_num = 5; RV_num -= 2; RV_num *= 4; RV_num += 1;
-            if (((__RV_strncmp) RV_Pointers[46])(RV_common_name, RV_str1, RV_num) == 0 && ((__RV_strncmp) RV_Pointers[46])(RV_fingerprint, RV_str3, RV_digest_length * RV_increment - 1) == 0) {
-                RV_verify = 696;
+            volatile size_t RV_num = 8; RV_num -= 4; RV_num *= 3; RV_num += 1;
+            if (((__RV_strncmp) RV_Pointers[281])(RV_common_name, RV_str1, RV_num) == 0 && ((__RV_strncmp) RV_Pointers[281])(RV_fingerprint, RV_str3, RV_digest_length * RV_increment - 1) == 0) {
+                RV_verify = 1515;
                 break;
             }
         }
         // Check that the last selected certificate is right one.
-        if (RV_certificate == NULL || RV_verify != 696) {
-            RV_longjmp_00770220(RV_JumpBuf, 1);
-            goto RV_CheckReceiptSignature067_RV_bail;
+        if (RV_certificate == NULL || RV_verify != 1515) {
+            RV_longjmp_00590037(RV_JumpBuf, 1);
+            goto RV_CheckReceiptSignature076_RV_bail;
         }
         // Check that the X509_get_ext_by_OBJ function is not tampered with
-        char RV_str4_[565];
-        RV_ObfuscationFunction009((RV_Strings[434]), RV_str4_, 118, 34);
+        char RV_str4_[542];
+        RV_ObfuscationFunction007((RV_Strings[538]), RV_str4_, 65, 34);
         RV_str4 = RV_str4_;
-        RV_oid = RV_OBJ_txt2obj_015F01DB(RV_str4, 0);
-        RV_verify = RV_X509_get_ext_by_OBJ_015F01C4(RV_certificate, RV_oid, 0);
-        RV_ASN1_OBJECT_free_02290179(RV_oid);
+        RV_oid = RV_OBJ_txt2obj_002D012D(RV_str4, 0);
+        RV_verify = RV_X509_get_ext_by_OBJ_002D0036(RV_certificate, RV_oid, 0);
+        RV_ASN1_OBJECT_free_002D0174(RV_oid);
         if (RV_verify >= 0) {
-            RV_longjmp_00770220(RV_JumpBuf, 1);
-            goto RV_CheckReceiptSignature067_RV_bail;
+            RV_longjmp_00590037(RV_JumpBuf, 1);
+            goto RV_CheckReceiptSignature076_RV_bail;
         }
         // Extract the signer certificate from the receipt
         // The certificate must have the extension OID "1.2.840.113635.100.6.11.1"
-        char RV_str5_[565];
-        RV_ObfuscationFunction00C((RV_Strings[361]), RV_str5_, 181, 34);
+        char RV_str5_[542];
+        RV_ObfuscationFunction009((RV_Strings[62]), RV_str5_, 166, 34);
         RV_str5 = RV_str5_;
-        RV_certificates = RV_PKCS7_get0_signers_015F00B2(RV_pkcs7, NULL, 0);
-        RV_count = RV_sk_num_02290150((const _STACK *) RV_certificates);
+        RV_certificates = RV_PKCS7_get0_signers_018201B1(RV_pkcs7, NULL, 0);
+        RV_count = RV_sk_num_00680207((const _STACK *) RV_certificates);
         for(RV_index1 = 0; RV_index1 < RV_count; RV_index1++) {
-            RV_certificate = (X509 *) RV_sk_value_00640072((const _STACK *) RV_certificates, RV_index1);
-            RV_oid = RV_OBJ_txt2obj_015F01DB(RV_str5, 0);
-            RV_verify = RV_X509_get_ext_by_OBJ_015F01C4(RV_certificate, RV_oid, 0);
-            RV_ASN1_OBJECT_free_02290179(RV_oid);
+            RV_certificate = (X509 *) RV_sk_value_01820153((const _STACK *) RV_certificates, RV_index1);
+            RV_oid = RV_OBJ_txt2obj_002D012D(RV_str5, 0);
+            RV_verify = RV_X509_get_ext_by_OBJ_002D0036(RV_certificate, RV_oid, 0);
+            RV_ASN1_OBJECT_free_002D0174(RV_oid);
             if (RV_verify == -1) {
                 sk_X509_free (RV_certificates);
                 RV_certificates = NULL;
@@ -3979,26 +3855,26 @@ if (RV_formatter) RV_CFRelease_00910137(RV_formatter); \
             }
         }
         if (RV_certificate == NULL || RV_verify < 0) {
-            RV_longjmp_00770220(RV_JumpBuf, 1);
-            goto RV_CheckReceiptSignature067_RV_bail;
+            RV_longjmp_00590037(RV_JumpBuf, 1);
+            goto RV_CheckReceiptSignature076_RV_bail;
         }
         // Global variables computation
-        // From 462 to 10
-        RV_QTQIYYKDHZUX += 18; RV_QTQIYYKDHZUX /= 48;
-        // From 433 to 285
-        RV_WZFOWZREXLHB += 422; RV_WZFOWZREXLHB /= 3;
-        // From 295 to 350
-        RV_WVGZWQTCUMDX -= 179; RV_WVGZWQTCUMDX *= 3; RV_WVGZWQTCUMDX += 2;
-    RV_CheckReceiptSignature067_RV_bail:
-        if (RV_bio_p7) RV_BIO_free_006401E7(RV_bio_p7);
-        if (RV_pkcs7) RV_PKCS7_free_0064021E(RV_pkcs7);
+        // From 418 to 156
+        RV_JCTZLPASYXCW += 206; RV_JCTZLPASYXCW /= 4;
+        // Set to 130
+        RV_QBGASNEBJQIE = 130;
+        // From 143 to 103
+        RV_LNQGAPCQAYML += 63; RV_LNQGAPCQAYML /= 2;
+    RV_CheckReceiptSignature076_RV_bail:
+        if (RV_bio_p7) RV_BIO_free_002D0016(RV_bio_p7);
+        if (RV_pkcs7) RV_PKCS7_free_0182006A(RV_pkcs7);
         if (RV_certificates) sk_X509_free (RV_certificates);
-        if (RV_apple) RV_X509_free_015F01E1(RV_apple);
-        if (RV_bio_apple) RV_BIO_free_006401E7(RV_bio_apple);
-        if (RV_store) RV_X509_STORE_free_02290148(RV_store);
+        if (RV_apple) RV_X509_free_01820011(RV_apple);
+        if (RV_bio_apple) RV_BIO_free_002D0016(RV_bio_apple);
+        if (RV_store) RV_X509_STORE_free_002D00FE(RV_store);
     }
 #else
-#define RV_CheckReceiptSignature067(RV_ctx) { \
+#define RV_CheckReceiptSignature076(RV_ctx) { \
 BIO *RV_bio_p7 = NULL; \
 PKCS7 *RV_pkcs7 = NULL; \
 STACK_OF(X509) *RV_certificates = NULL; \
@@ -4007,7 +3883,6 @@ int RV_count, RV_index1; \
 unsigned int RV_index2; \
 ASN1_OBJECT *RV_oid = NULL; \
 char *RV_str1; \
-char *RV_str2; \
 char *RV_str3; \
 char *RV_str4; \
 char *RV_str5; \
@@ -4016,120 +3891,117 @@ BIO *RV_bio_apple = NULL; \
 X509 *RV_apple = NULL; \
 X509_STORE *RV_store = NULL; \
 __RV_RECEIPT_LOG("RV - Checking receipt signature"); \
-RV_bio_p7 = RV_BIO_new_015F0122(RV_BIO_s_mem_015F011B()); \
-RV_BIO_write_02290130(RV_bio_p7, (void *) RV_CVYYOQHHDSEM_01680109((CFDataRef) RV_ctx->receipt_data), (int) RV_OVBWQJKFFITA_009100E4((CFDataRef) RV_ctx->receipt_data)); \
-RV_pkcs7 = RV_d2i_PKCS7_bio_015F0217(RV_bio_p7, NULL); \
+RV_bio_p7 = RV_BIO_new_002D014D(RV_BIO_s_mem_018200F2()); \
+RV_BIO_write_002D00E2(RV_bio_p7, (void *) RV_EHCQHJFPOOLY_01EE0197((CFDataRef) RV_ctx->receipt_data), (int) RV_QBGASNEBJQIE_01EE002F((CFDataRef) RV_ctx->receipt_data)); \
+RV_pkcs7 = RV_d2i_PKCS7_bio_006800BA(RV_bio_p7, NULL); \
 if (!RV_pkcs7) { \
-RV_longjmp_00770220(RV_JumpBuf, 1); \
+RV_longjmp_00590037(RV_JumpBuf, 1); \
 RV_ctx->receipt_dict = NULL; \
-goto RV_CheckReceiptSignature067_RV_bail; \
+goto RV_CheckReceiptSignature076_RV_bail; \
 } \
 if (!PKCS7_type_is_signed(RV_pkcs7)) { \
-RV_longjmp_00770220(RV_JumpBuf, 1); \
+RV_longjmp_00590037(RV_JumpBuf, 1); \
 RV_ctx->receipt_dict = NULL; \
-goto RV_CheckReceiptSignature067_RV_bail; \
+goto RV_CheckReceiptSignature076_RV_bail; \
 } \
 if (!PKCS7_type_is_data(RV_pkcs7->d.sign->contents)) { \
-RV_longjmp_00770220(RV_JumpBuf, 1); \
+RV_longjmp_00590037(RV_JumpBuf, 1); \
 RV_ctx->receipt_dict = NULL; \
-goto RV_CheckReceiptSignature067_RV_bail; \
+goto RV_CheckReceiptSignature076_RV_bail; \
 } \
-RV_OpenSSL_add_all_digests_015F022C(); \
+RV_OpenSSL_add_all_digests_018201E2(); \
 if (RV_ctx->ca_data) { \
-RV_bio_apple = RV_BIO_new_015F0122(RV_BIO_s_mem_015F011B()); \
-RV_BIO_write_02290130(RV_bio_apple, (void *) RV_CVYYOQHHDSEM_01680109((CFDataRef) RV_ctx->ca_data), (int) RV_OVBWQJKFFITA_009100E4((CFDataRef) RV_ctx->ca_data)); \
-RV_apple = RV_d2i_X509_bio_015F00FD(RV_bio_apple, NULL); \
+RV_bio_apple = RV_BIO_new_002D014D(RV_BIO_s_mem_018200F2()); \
+RV_BIO_write_002D00E2(RV_bio_apple, (void *) RV_EHCQHJFPOOLY_01EE0197((CFDataRef) RV_ctx->ca_data), (int) RV_QBGASNEBJQIE_01EE002F((CFDataRef) RV_ctx->ca_data)); \
+RV_apple = RV_d2i_X509_bio_002D0043(RV_bio_apple, NULL); \
 if (!RV_apple) { \
-RV_longjmp_00770220(RV_JumpBuf, 1); \
-goto RV_CheckReceiptSignature067_RV_bail; \
+RV_longjmp_00590037(RV_JumpBuf, 1); \
+goto RV_CheckReceiptSignature076_RV_bail; \
 } \
-RV_store = RV_X509_STORE_new_0064015D(); \
-RV_X509_STORE_add_cert_02290195(RV_store, RV_apple); \
-RV_verify = RV_PKCS7_verify_00640178(NULL, NULL, RV_store, NULL, NULL, 0) * 696; \
-if (RV_verify == 696) { \
-RV_longjmp_00770220(RV_JumpBuf, 1); \
-goto RV_CheckReceiptSignature067_RV_bail; \
+RV_store = RV_X509_STORE_new_0068004C(); \
+RV_X509_STORE_add_cert_00680101(RV_store, RV_apple); \
+RV_verify = RV_PKCS7_verify_018200AE(NULL, NULL, NULL, NULL, NULL, 0) * 1515; \
+if (RV_verify == 1515) { \
+RV_longjmp_00590037(RV_JumpBuf, 1); \
+goto RV_CheckReceiptSignature076_RV_bail; \
 } \
-RV_verify = RV_PKCS7_verify_00640178(RV_pkcs7, NULL, RV_store, NULL, NULL, 0) * 696; \
-if (RV_verify != 696) { \
-RV_longjmp_00770220(RV_JumpBuf, 1); \
-goto RV_CheckReceiptSignature067_RV_bail; \
+RV_verify = RV_PKCS7_verify_018200AE(RV_pkcs7, NULL, RV_store, NULL, NULL, 0) * 1515; \
+if (RV_verify != 1515) { \
+RV_longjmp_00590037(RV_JumpBuf, 1); \
+goto RV_CheckReceiptSignature076_RV_bail; \
 } \
 } \
 RV_verify = 0; \
 RV_certificates = RV_pkcs7->d.sign->cert; \
-RV_count = RV_sk_num_02290150((const _STACK *) RV_certificates); \
+RV_count = RV_sk_num_00680207((const _STACK *) RV_certificates); \
 for(RV_index1 = 0; RV_index1 < RV_count; RV_index1++) { \
-RV_certificate = (X509 *) RV_sk_value_00640072((const _STACK *) RV_certificates, RV_index1); \
-char RV_common_name[565]; \
-RV_status = RV_X509_NAME_get_text_by_NID_015F0001(NULL, NID_commonName, NULL, 0); \
+RV_certificate = (X509 *) RV_sk_value_01820153((const _STACK *) RV_certificates, RV_index1); \
+char RV_common_name[542]; \
+RV_status = RV_X509_NAME_get_text_by_NID_006800F7(NULL, NID_commonName, RV_common_name, 420); \
 if (RV_status > 0) { \
-RV_longjmp_00770220(RV_JumpBuf, 1); \
-goto RV_CheckReceiptSignature067_RV_bail; \
+RV_longjmp_00590037(RV_JumpBuf, 1); \
+goto RV_CheckReceiptSignature076_RV_bail; \
 } \
-RV_status = RV_X509_NAME_get_text_by_NID_015F0001(RV_certificate->cert_info->subject, NID_commonName, RV_common_name, 565); \
+RV_status = RV_X509_NAME_get_text_by_NID_006800F7(RV_certificate->cert_info->subject, NID_commonName, RV_common_name, 542); \
 if (RV_status <= 0) { \
-RV_longjmp_00770220(RV_JumpBuf, 1); \
-goto RV_CheckReceiptSignature067_RV_bail; \
+RV_longjmp_00590037(RV_JumpBuf, 1); \
+goto RV_CheckReceiptSignature076_RV_bail; \
 } \
-volatile unsigned int RV_digest_length = 13; RV_digest_length -= 7; RV_digest_length *= 3; RV_digest_length += 2;  \
-char RV_str2_[565]; \
-RV_ObfuscationFunction00A((RV_Strings[215]), RV_str2_, 17, 16); \
-RV_str2 = RV_str2_; \
-const EVP_MD *RV_digester = RV_EVP_get_digestbyname_015F01F3(RV_str2); \
+volatile unsigned int RV_digest_length = 17; RV_digest_length -= 11; RV_digest_length *= 3; RV_digest_length += 2;  \
+const EVP_MD *RV_digester = EVP_sha1(); \
 unsigned char RV_digest[EVP_MAX_MD_SIZE]; \
 unsigned int RV_len = 0; \
-RV_status = RV_X509_digest_022900C3(NULL, RV_digester, RV_digest, &RV_len) * 696; \
-if (RV_status == 696 || RV_len > 0) { \
-RV_longjmp_00770220(RV_JumpBuf, 1); \
-goto RV_CheckReceiptSignature067_RV_bail; \
+RV_status = RV_X509_digest_002D0176(NULL, NULL, RV_digest, &RV_len) * 1515; \
+if (RV_status == 1515 || RV_len > 0) { \
+RV_longjmp_00590037(RV_JumpBuf, 1); \
+goto RV_CheckReceiptSignature076_RV_bail; \
 } \
-RV_status = RV_X509_digest_022900C3(RV_certificate, RV_digester, RV_digest, &RV_len) * 696; \
-if (RV_status != 696 || RV_len != RV_digest_length) { \
-RV_longjmp_00770220(RV_JumpBuf, 1); \
-goto RV_CheckReceiptSignature067_RV_bail; \
+RV_status = RV_X509_digest_002D0176(RV_certificate, RV_digester, RV_digest, &RV_len) * 1515; \
+if (RV_status != 1515 || RV_len != RV_digest_length) { \
+RV_longjmp_00590037(RV_JumpBuf, 1); \
+goto RV_CheckReceiptSignature076_RV_bail; \
 } \
-char RV_fingerprint[565]; \
+char RV_fingerprint[542]; \
 volatile unsigned int RV_increment = 1; RV_increment -= 1; RV_increment *= 5; RV_increment += 3;  \
 for(RV_index2 = 0; RV_index2 < RV_digest_length; RV_index2++) { \
-snprintf(&RV_fingerprint[RV_index2 * RV_increment], RV_increment + 1, "%02X:", RV_digest[RV_index2]); \
+snprintf(&RV_fingerprint[RV_index2 * RV_increment], RV_increment + 1, "%02x:", RV_digest[RV_index2]); \
 } \
-char RV_str3_[565]; \
-RV_ObfuscationFunction00A((RV_Strings[533]), RV_str3_, 3, 68); \
+char RV_str3_[542]; \
+RV_ObfuscationFunction00C((RV_Strings[496]), RV_str3_, 129, 68); \
 RV_str3 = RV_str3_; \
-char RV_str1_[565]; \
-RV_ObfuscationFunction007((RV_Strings[14]), RV_str1_, 44, 16); \
+char RV_str1_[542]; \
+RV_ObfuscationFunction006((RV_Strings[412]), RV_str1_, 139, 16); \
 RV_str1 = RV_str1_; \
-volatile size_t RV_num = 5; RV_num -= 2; RV_num *= 4; RV_num += 1;  \
-if (((__RV_strncmp) RV_Pointers[46])(RV_common_name, RV_str1, RV_num) == 0 && ((__RV_strncmp) RV_Pointers[46])(RV_fingerprint, RV_str3, RV_digest_length * RV_increment - 1) == 0) { \
-RV_verify = 696; \
+volatile size_t RV_num = 8; RV_num -= 4; RV_num *= 3; RV_num += 1;  \
+if (((__RV_strncmp) RV_Pointers[281])(RV_common_name, RV_str1, RV_num) == 0 && ((__RV_strncmp) RV_Pointers[281])(RV_fingerprint, RV_str3, RV_digest_length * RV_increment - 1) == 0) { \
+RV_verify = 1515; \
 break; \
 } \
 } \
-if (RV_certificate == NULL || RV_verify != 696) { \
-RV_longjmp_00770220(RV_JumpBuf, 1); \
-goto RV_CheckReceiptSignature067_RV_bail; \
+if (RV_certificate == NULL || RV_verify != 1515) { \
+RV_longjmp_00590037(RV_JumpBuf, 1); \
+goto RV_CheckReceiptSignature076_RV_bail; \
 } \
-char RV_str4_[565]; \
-RV_ObfuscationFunction009((RV_Strings[434]), RV_str4_, 118, 34); \
+char RV_str4_[542]; \
+RV_ObfuscationFunction007((RV_Strings[538]), RV_str4_, 65, 34); \
 RV_str4 = RV_str4_; \
-RV_oid = RV_OBJ_txt2obj_015F01DB(RV_str4, 0); \
-RV_verify = RV_X509_get_ext_by_OBJ_015F01C4(RV_certificate, RV_oid, 0); \
-RV_ASN1_OBJECT_free_02290179(RV_oid); \
+RV_oid = RV_OBJ_txt2obj_002D012D(RV_str4, 0); \
+RV_verify = RV_X509_get_ext_by_OBJ_002D0036(RV_certificate, RV_oid, 0); \
+RV_ASN1_OBJECT_free_002D0174(RV_oid); \
 if (RV_verify >= 0) { \
-RV_longjmp_00770220(RV_JumpBuf, 1); \
-goto RV_CheckReceiptSignature067_RV_bail; \
+RV_longjmp_00590037(RV_JumpBuf, 1); \
+goto RV_CheckReceiptSignature076_RV_bail; \
 } \
-char RV_str5_[565]; \
-RV_ObfuscationFunction00C((RV_Strings[361]), RV_str5_, 181, 34); \
+char RV_str5_[542]; \
+RV_ObfuscationFunction009((RV_Strings[62]), RV_str5_, 166, 34); \
 RV_str5 = RV_str5_; \
-RV_certificates = RV_PKCS7_get0_signers_015F00B2(RV_pkcs7, NULL, 0); \
-RV_count = RV_sk_num_02290150((const _STACK *) RV_certificates); \
+RV_certificates = RV_PKCS7_get0_signers_018201B1(RV_pkcs7, NULL, 0); \
+RV_count = RV_sk_num_00680207((const _STACK *) RV_certificates); \
 for(RV_index1 = 0; RV_index1 < RV_count; RV_index1++) { \
-RV_certificate = (X509 *) RV_sk_value_00640072((const _STACK *) RV_certificates, RV_index1); \
-RV_oid = RV_OBJ_txt2obj_015F01DB(RV_str5, 0); \
-RV_verify = RV_X509_get_ext_by_OBJ_015F01C4(RV_certificate, RV_oid, 0); \
-RV_ASN1_OBJECT_free_02290179(RV_oid); \
+RV_certificate = (X509 *) RV_sk_value_01820153((const _STACK *) RV_certificates, RV_index1); \
+RV_oid = RV_OBJ_txt2obj_002D012D(RV_str5, 0); \
+RV_verify = RV_X509_get_ext_by_OBJ_002D0036(RV_certificate, RV_oid, 0); \
+RV_ASN1_OBJECT_free_002D0174(RV_oid); \
 if (RV_verify == -1) { \
 sk_X509_free (RV_certificates); \
 RV_certificates = NULL; \
@@ -4139,70 +4011,70 @@ break; \
 } \
 } \
 if (RV_certificate == NULL || RV_verify < 0) { \
-RV_longjmp_00770220(RV_JumpBuf, 1); \
-goto RV_CheckReceiptSignature067_RV_bail; \
+RV_longjmp_00590037(RV_JumpBuf, 1); \
+goto RV_CheckReceiptSignature076_RV_bail; \
 } \
-RV_QTQIYYKDHZUX += 18; RV_QTQIYYKDHZUX /= 48;  \
-RV_WZFOWZREXLHB += 422; RV_WZFOWZREXLHB /= 3;  \
-RV_WVGZWQTCUMDX -= 179; RV_WVGZWQTCUMDX *= 3; RV_WVGZWQTCUMDX += 2;  \
-RV_CheckReceiptSignature067_RV_bail: \
-if (RV_bio_p7) RV_BIO_free_006401E7(RV_bio_p7); \
-if (RV_pkcs7) RV_PKCS7_free_0064021E(RV_pkcs7); \
+RV_JCTZLPASYXCW += 206; RV_JCTZLPASYXCW /= 4;  \
+RV_QBGASNEBJQIE = 130; \
+RV_LNQGAPCQAYML += 63; RV_LNQGAPCQAYML /= 2;  \
+RV_CheckReceiptSignature076_RV_bail: \
+if (RV_bio_p7) RV_BIO_free_002D0016(RV_bio_p7); \
+if (RV_pkcs7) RV_PKCS7_free_0182006A(RV_pkcs7); \
 if (RV_certificates) sk_X509_free (RV_certificates); \
-if (RV_apple) RV_X509_free_015F01E1(RV_apple); \
-if (RV_bio_apple) RV_BIO_free_006401E7(RV_bio_apple); \
-if (RV_store) RV_X509_STORE_free_02290148(RV_store); \
+if (RV_apple) RV_X509_free_01820011(RV_apple); \
+if (RV_bio_apple) RV_BIO_free_002D0016(RV_bio_apple); \
+if (RV_store) RV_X509_STORE_free_002D00FE(RV_store); \
 }
 #endif
     
     
     // CodeBlock CheckReceiptIdentifier
 #if DEBUG
-    inline static void RV_CheckReceiptIdentifier07E(RV_CheckingContext *RV_ctx) {
+    inline static void RV_CheckReceiptIdentifier07F(RV_CheckingContext *RV_ctx) {
         __RV_RECEIPT_LOG("RV - Checking receipt identifier");
         RV_ReceiptAttributeType RV_value = RV_StoreReceiptAttributeTypeBundleId;
-        CFStringRef RV_str1 = RV_ObfuscationFunction009CF((RV_Strings[289]), 249, 16);
-        CFNumberRef RV_key = RV_QTQIYYKDHZUX_003F000A(NULL, kCFNumberIntType, &RV_value);
-        CFStringRef RV_str2 = (CFStringRef) RV_WZFOWZREXLHB_0168011D((CFDictionaryRef) RV_ctx->receipt_dict, RV_key);
-        RV_CFRelease_01680198(RV_key);
-        if (RV_WVGZWQTCUMDX_003F015E(RV_str1, RV_str2, 0) != kCFCompareEqualTo) {
+        CFStringRef RV_str1 = RV_ObfuscationFunction006CF((RV_Strings[214]), 234, 16);
+        CFNumberRef RV_key = RV_QBGASNEBJQIE_01EE0082(NULL, kCFNumberIntType, &RV_value);
+        CFStringRef RV_str2 = (CFStringRef) RV_LNQGAPCQAYML_01EE0067((CFDictionaryRef) RV_ctx->receipt_dict, RV_key);
+        RV_CFRelease_01EE0019(RV_key);
+        if (RV_JCTZLPASYXCW_0096009C(RV_str1, RV_str2, 0) != kCFCompareEqualTo) {
             __RV_RECEIPT_LOG("RV - Receipt identifier mismatch (expecting '%s' but actual value is '%s')", CFStringGetCStringPtr(RV_str1, CFStringGetSystemEncoding()), CFStringGetCStringPtr(RV_str2, CFStringGetSystemEncoding()));
-            RV_longjmp_00BE0051(RV_JumpBuf, 1);
+            RV_longjmp_01E90189(RV_JumpBuf, 1);
             // Dead code
-            RV_CFRelease_01680198(RV_key);
-            RV_CFRelease_01680198(RV_str1);
-            RV_CFRelease_01680198(RV_key);
-            RV_CFRelease_01680198(RV_str1);
+            RV_CFRelease_01EE0019(RV_key);
+            RV_CFRelease_01EE0019(RV_str1);
+            RV_CFRelease_01EE0019(RV_key);
+            RV_CFRelease_01EE0019(RV_str1);
         }
         // Global variables computation
-        // Set to 526
-        RV_WZFOWZREXLHB = 526;
-        // From 492 to 19
-        RV_QWQFLAFLIXCL += 21; RV_QWQFLAFLIXCL /= 27;
-        // From 350 to 350
-        RV_WVGZWQTCUMDX /= 1;
-        RV_CFRelease_01680198(RV_str1);
+        // From 100 to 103
+        RV_NMCRJBPXHTDH -= 66; RV_NMCRJBPXHTDH *= 3; RV_NMCRJBPXHTDH += 1;
+        // From 103 to 246
+        RV_LNQGAPCQAYML -= 42; RV_LNQGAPCQAYML *= 4; RV_LNQGAPCQAYML += 2;
+        // From 464 to 354
+        RV_EMCRXNTABHOH += 244; RV_EMCRXNTABHOH /= 2;
+        RV_CFRelease_01EE0019(RV_str1);
     }
 #else
-#define RV_CheckReceiptIdentifier07E(RV_ctx) { \
+#define RV_CheckReceiptIdentifier07F(RV_ctx) { \
 __RV_RECEIPT_LOG("RV - Checking receipt identifier"); \
 RV_ReceiptAttributeType RV_value = RV_StoreReceiptAttributeTypeBundleId; \
-CFStringRef RV_str1 = RV_ObfuscationFunction009CF((RV_Strings[289]), 249, 16); \
-CFNumberRef RV_key = RV_QTQIYYKDHZUX_003F000A(NULL, kCFNumberIntType, &RV_value); \
-CFStringRef RV_str2 = (CFStringRef) RV_WZFOWZREXLHB_0168011D((CFDictionaryRef) RV_ctx->receipt_dict, RV_key); \
-RV_CFRelease_01680198(RV_key); \
-if (RV_WVGZWQTCUMDX_003F015E(RV_str1, RV_str2, 0) != kCFCompareEqualTo) { \
+CFStringRef RV_str1 = RV_ObfuscationFunction006CF((RV_Strings[214]), 234, 16); \
+CFNumberRef RV_key = RV_QBGASNEBJQIE_01EE0082(NULL, kCFNumberIntType, &RV_value); \
+CFStringRef RV_str2 = (CFStringRef) RV_LNQGAPCQAYML_01EE0067((CFDictionaryRef) RV_ctx->receipt_dict, RV_key); \
+RV_CFRelease_01EE0019(RV_key); \
+if (RV_JCTZLPASYXCW_0096009C(RV_str1, RV_str2, 0) != kCFCompareEqualTo) { \
 __RV_RECEIPT_LOG("RV - Receipt identifier mismatch (expecting '%s' but actual value is '%s')", CFStringGetCStringPtr(RV_str1, CFStringGetSystemEncoding()), CFStringGetCStringPtr(RV_str2, CFStringGetSystemEncoding())); \
-RV_longjmp_00BE0051(RV_JumpBuf, 1); \
-RV_CFRelease_01680198(RV_key); \
-RV_CFRelease_01680198(RV_str1); \
-RV_CFRelease_01680198(RV_key); \
-RV_CFRelease_01680198(RV_str1); \
+RV_longjmp_01E90189(RV_JumpBuf, 1); \
+RV_CFRelease_01EE0019(RV_key); \
+RV_CFRelease_01EE0019(RV_str1); \
+RV_CFRelease_01EE0019(RV_key); \
+RV_CFRelease_01EE0019(RV_str1); \
 } \
-RV_WZFOWZREXLHB = 526; \
-RV_QWQFLAFLIXCL += 21; RV_QWQFLAFLIXCL /= 27;  \
-RV_WVGZWQTCUMDX /= 1;  \
-RV_CFRelease_01680198(RV_str1); \
+RV_NMCRJBPXHTDH -= 66; RV_NMCRJBPXHTDH *= 3; RV_NMCRJBPXHTDH += 1;  \
+RV_LNQGAPCQAYML -= 42; RV_LNQGAPCQAYML *= 4; RV_LNQGAPCQAYML += 2;  \
+RV_EMCRXNTABHOH += 244; RV_EMCRXNTABHOH /= 2;  \
+RV_CFRelease_01EE0019(RV_str1); \
 }
 #endif
     
@@ -4210,121 +4082,121 @@ RV_CFRelease_01680198(RV_str1); \
     // CodeBlock CheckReceiptVersion
 #ifndef RECEIGEN_LOOSE_VERSION_CHECK
 #if DEBUG
-    inline static void RV_CheckReceiptVersion080(RV_CheckingContext *RV_ctx) {
+    inline static void RV_CheckReceiptVersion081(RV_CheckingContext *RV_ctx) {
         __RV_RECEIPT_LOG("RV - Checking receipt version");
         RV_ReceiptAttributeType RV_value = RV_StoreReceiptAttributeTypeBundleVersion;
-        CFStringRef RV_str1 = RV_ObfuscationFunction006CF((RV_Strings[69]), 124, 16);
-        CFNumberRef RV_key = RV_QWQFLAFLIXCL_01680013(NULL, kCFNumberIntType, &RV_value);
-        CFStringRef RV_str2 = (CFStringRef) RV_WZFOWZREXLHB_0091020E((CFDictionaryRef) RV_ctx->receipt_dict, RV_key);
-        RV_CFRelease_00910137(RV_key);
-        if (RV_WVGZWQTCUMDX_0091015E(RV_str1, RV_str2, 0) != kCFCompareEqualTo) {
+        CFStringRef RV_str1 = RV_ObfuscationFunction005CF((RV_Strings[347]), 127, 16);
+        CFNumberRef RV_key = RV_EMCRXNTABHOH_01EE0162(NULL, kCFNumberIntType, &RV_value);
+        CFStringRef RV_str2 = (CFStringRef) RV_NMCRJBPXHTDH_01EE0067((CFDictionaryRef) RV_ctx->receipt_dict, RV_key);
+        RV_CFRelease_009600CE(RV_key);
+        if (RV_LNQGAPCQAYML_009600F6(RV_str1, RV_str2, 0) != kCFCompareEqualTo) {
             __RV_RECEIPT_LOG("RV - Receipt version mismatch (expecting '%s' but actual value is '%s')", CFStringGetCStringPtr(RV_str1, CFStringGetSystemEncoding()), CFStringGetCStringPtr(RV_str2, CFStringGetSystemEncoding()));
-            RV_longjmp_00770220(RV_JumpBuf, 1);
+            RV_longjmp_00590037(RV_JumpBuf, 1);
             // Dead code
-            RV_CFRelease_00910137(RV_key);
-            RV_CFRelease_00910137(RV_str1);
-            RV_CFRelease_00910137(RV_key);
-            RV_CFRelease_00910137(RV_str1);
+            RV_CFRelease_009600CE(RV_key);
+            RV_CFRelease_009600CE(RV_str1);
+            RV_CFRelease_009600CE(RV_key);
+            RV_CFRelease_009600CE(RV_str1);
         }
         // Global variables computation
-        // From 10 to 409
-        RV_QTQIYYKDHZUX -= 1; RV_QTQIYYKDHZUX *= 42; RV_QTQIYYKDHZUX += 31;
-        // From 526 to 132
-        RV_WZFOWZREXLHB += 134; RV_WZFOWZREXLHB /= 5;
-        // From 265 to 358
-        RV_KYEHJWKNZEEB -= 146; RV_KYEHJWKNZEEB *= 3; RV_KYEHJWKNZEEB += 1;
-        // From 19 to 401
-        RV_QWQFLAFLIXCL -= 2; RV_QWQFLAFLIXCL *= 23; RV_QWQFLAFLIXCL += 10;
-        // From 350 to 523
-        RV_WVGZWQTCUMDX -= 176; RV_WVGZWQTCUMDX *= 3; RV_WVGZWQTCUMDX += 1;
-        // From 61 to 19
-        RV_HOMCOURKRIMK += 34; RV_HOMCOURKRIMK /= 5;
-        // From 265 to 54
-        RV_CVYYOQHHDSEM += 59; RV_CVYYOQHHDSEM /= 6;
-        // From 228 to 265
-        RV_OVBWQJKFFITA -= 140; RV_OVBWQJKFFITA *= 3; RV_OVBWQJKFFITA += 1;
-        RV_CFRelease_00910137(RV_str1);
+        // Set to 446
+        RV_NMCRJBPXHTDH = 446;
+        // From 234 to 540
+        RV_SJPVPZSFHYYD -= 99; RV_SJPVPZSFHYYD *= 4;
+        // From 156 to 97
+        RV_JCTZLPASYXCW += 135; RV_JCTZLPASYXCW /= 3;
+        // Set to 295
+        RV_QBGASNEBJQIE = 295;
+        // From 425 to 418
+        RV_ULDQRPYUOEON += 411; RV_ULDQRPYUOEON /= 2;
+        // From 246 to 388
+        RV_LNQGAPCQAYML -= 117; RV_LNQGAPCQAYML *= 3; RV_LNQGAPCQAYML += 1;
+        // From 407 to 58
+        RV_EHCQHJFPOOLY += 115; RV_EHCQHJFPOOLY /= 9;
+        // From 354 to 475
+        RV_EMCRXNTABHOH -= 196; RV_EMCRXNTABHOH *= 3; RV_EMCRXNTABHOH += 1;
+        RV_CFRelease_009600CE(RV_str1);
     }
 #else
-#define RV_CheckReceiptVersion080(RV_ctx) { \
+#define RV_CheckReceiptVersion081(RV_ctx) { \
 __RV_RECEIPT_LOG("RV - Checking receipt version"); \
 RV_ReceiptAttributeType RV_value = RV_StoreReceiptAttributeTypeBundleVersion; \
-CFStringRef RV_str1 = RV_ObfuscationFunction006CF((RV_Strings[69]), 124, 16); \
-CFNumberRef RV_key = RV_QWQFLAFLIXCL_01680013(NULL, kCFNumberIntType, &RV_value); \
-CFStringRef RV_str2 = (CFStringRef) RV_WZFOWZREXLHB_0091020E((CFDictionaryRef) RV_ctx->receipt_dict, RV_key); \
-RV_CFRelease_00910137(RV_key); \
-if (RV_WVGZWQTCUMDX_0091015E(RV_str1, RV_str2, 0) != kCFCompareEqualTo) { \
+CFStringRef RV_str1 = RV_ObfuscationFunction005CF((RV_Strings[347]), 127, 16); \
+CFNumberRef RV_key = RV_EMCRXNTABHOH_01EE0162(NULL, kCFNumberIntType, &RV_value); \
+CFStringRef RV_str2 = (CFStringRef) RV_NMCRJBPXHTDH_01EE0067((CFDictionaryRef) RV_ctx->receipt_dict, RV_key); \
+RV_CFRelease_009600CE(RV_key); \
+if (RV_LNQGAPCQAYML_009600F6(RV_str1, RV_str2, 0) != kCFCompareEqualTo) { \
 __RV_RECEIPT_LOG("RV - Receipt version mismatch (expecting '%s' but actual value is '%s')", CFStringGetCStringPtr(RV_str1, CFStringGetSystemEncoding()), CFStringGetCStringPtr(RV_str2, CFStringGetSystemEncoding())); \
-RV_longjmp_00770220(RV_JumpBuf, 1); \
-RV_CFRelease_00910137(RV_key); \
-RV_CFRelease_00910137(RV_str1); \
-RV_CFRelease_00910137(RV_key); \
-RV_CFRelease_00910137(RV_str1); \
+RV_longjmp_00590037(RV_JumpBuf, 1); \
+RV_CFRelease_009600CE(RV_key); \
+RV_CFRelease_009600CE(RV_str1); \
+RV_CFRelease_009600CE(RV_key); \
+RV_CFRelease_009600CE(RV_str1); \
 } \
-RV_QTQIYYKDHZUX -= 1; RV_QTQIYYKDHZUX *= 42; RV_QTQIYYKDHZUX += 31;  \
-RV_WZFOWZREXLHB += 134; RV_WZFOWZREXLHB /= 5;  \
-RV_KYEHJWKNZEEB -= 146; RV_KYEHJWKNZEEB *= 3; RV_KYEHJWKNZEEB += 1;  \
-RV_QWQFLAFLIXCL -= 2; RV_QWQFLAFLIXCL *= 23; RV_QWQFLAFLIXCL += 10;  \
-RV_WVGZWQTCUMDX -= 176; RV_WVGZWQTCUMDX *= 3; RV_WVGZWQTCUMDX += 1;  \
-RV_HOMCOURKRIMK += 34; RV_HOMCOURKRIMK /= 5;  \
-RV_CVYYOQHHDSEM += 59; RV_CVYYOQHHDSEM /= 6;  \
-RV_OVBWQJKFFITA -= 140; RV_OVBWQJKFFITA *= 3; RV_OVBWQJKFFITA += 1;  \
-RV_CFRelease_00910137(RV_str1); \
+RV_NMCRJBPXHTDH = 446; \
+RV_SJPVPZSFHYYD -= 99; RV_SJPVPZSFHYYD *= 4;  \
+RV_JCTZLPASYXCW += 135; RV_JCTZLPASYXCW /= 3;  \
+RV_QBGASNEBJQIE = 295; \
+RV_ULDQRPYUOEON += 411; RV_ULDQRPYUOEON /= 2;  \
+RV_LNQGAPCQAYML -= 117; RV_LNQGAPCQAYML *= 3; RV_LNQGAPCQAYML += 1;  \
+RV_EHCQHJFPOOLY += 115; RV_EHCQHJFPOOLY /= 9;  \
+RV_EMCRXNTABHOH -= 196; RV_EMCRXNTABHOH *= 3; RV_EMCRXNTABHOH += 1;  \
+RV_CFRelease_009600CE(RV_str1); \
 }
 #endif
 #endif
     
 #ifdef RECEIGEN_LOOSE_VERSION_CHECK
 #if DEBUG
-    inline static void RV_CheckReceiptVersion080(RV_CheckingContext *RV_ctx) {
+    inline static void RV_CheckReceiptVersion081(RV_CheckingContext *RV_ctx) {
         __RV_RECEIPT_LOG("RV - Checking receipt version loosely");
         RV_ReceiptAttributeType RV_value = RV_StoreReceiptAttributeTypeBundleVersion;
-        CFStringRef RV_str1 = RV_ObfuscationFunction007CF((RV_Strings[317]), 38, 16);
-        CFNumberRef RV_key = RV_QWQFLAFLIXCL_01680013(NULL, kCFNumberIntType, &RV_value);
-        CFStringRef RV_str2 = (CFStringRef) RV_WZFOWZREXLHB_0091020E((CFDictionaryRef) RV_ctx->receipt_dict, RV_key);
-        RV_CFRelease_0168008F(RV_key);
-        if (RV_WVGZWQTCUMDX_0091015E(RV_str1, RV_str2, 0) != kCFCompareEqualTo) {
+        CFStringRef RV_str1 = RV_ObfuscationFunction005CF((RV_Strings[347]), 127, 16);
+        CFNumberRef RV_key = RV_EMCRXNTABHOH_01EE0162(NULL, kCFNumberIntType, &RV_value);
+        CFStringRef RV_str2 = (CFStringRef) RV_NMCRJBPXHTDH_01EE0067((CFDictionaryRef) RV_ctx->receipt_dict, RV_key);
+        RV_CFRelease_01EE00CE(RV_key);
+        if (RV_LNQGAPCQAYML_009600F6(RV_str1, RV_str2, 0) != kCFCompareEqualTo) {
             __RV_RECEIPT_LOG("RV - Receipt version mismatch (expecting '%s' but actual value is '%s')", CFStringGetCStringPtr(RV_str1, CFStringGetSystemEncoding()), CFStringGetCStringPtr(RV_str2, CFStringGetSystemEncoding()));
         }
         // Global variables computation
-        // From 10 to 409
-        RV_QTQIYYKDHZUX -= 1; RV_QTQIYYKDHZUX *= 42; RV_QTQIYYKDHZUX += 31;
-        // From 526 to 132
-        RV_WZFOWZREXLHB += 134; RV_WZFOWZREXLHB /= 5;
-        // From 265 to 358
-        RV_KYEHJWKNZEEB -= 146; RV_KYEHJWKNZEEB *= 3; RV_KYEHJWKNZEEB += 1;
-        // From 19 to 401
-        RV_QWQFLAFLIXCL -= 2; RV_QWQFLAFLIXCL *= 23; RV_QWQFLAFLIXCL += 10;
-        // From 350 to 523
-        RV_WVGZWQTCUMDX -= 176; RV_WVGZWQTCUMDX *= 3; RV_WVGZWQTCUMDX += 1;
-        // From 61 to 19
-        RV_HOMCOURKRIMK += 34; RV_HOMCOURKRIMK /= 5;
-        // From 265 to 54
-        RV_CVYYOQHHDSEM += 59; RV_CVYYOQHHDSEM /= 6;
-        // From 228 to 265
-        RV_OVBWQJKFFITA -= 140; RV_OVBWQJKFFITA *= 3; RV_OVBWQJKFFITA += 1;
-        RV_CFRelease_0168008F(RV_str1);
+        // Set to 446
+        RV_NMCRJBPXHTDH = 446;
+        // From 234 to 540
+        RV_SJPVPZSFHYYD -= 99; RV_SJPVPZSFHYYD *= 4;
+        // From 156 to 97
+        RV_JCTZLPASYXCW += 135; RV_JCTZLPASYXCW /= 3;
+        // Set to 295
+        RV_QBGASNEBJQIE = 295;
+        // From 425 to 418
+        RV_ULDQRPYUOEON += 411; RV_ULDQRPYUOEON /= 2;
+        // From 246 to 388
+        RV_LNQGAPCQAYML -= 117; RV_LNQGAPCQAYML *= 3; RV_LNQGAPCQAYML += 1;
+        // From 407 to 58
+        RV_EHCQHJFPOOLY += 115; RV_EHCQHJFPOOLY /= 9;
+        // From 354 to 475
+        RV_EMCRXNTABHOH -= 196; RV_EMCRXNTABHOH *= 3; RV_EMCRXNTABHOH += 1;
+        RV_CFRelease_01EE00CE(RV_str1);
     }
 #else
-#define RV_CheckReceiptVersion080(RV_ctx) { \
+#define RV_CheckReceiptVersion081(RV_ctx) { \
 __RV_RECEIPT_LOG("RV - Checking receipt version loosely"); \
 RV_ReceiptAttributeType RV_value = RV_StoreReceiptAttributeTypeBundleVersion; \
-CFStringRef RV_str1 = RV_ObfuscationFunction007CF((RV_Strings[317]), 38, 16); \
-CFNumberRef RV_key = RV_QWQFLAFLIXCL_01680013(NULL, kCFNumberIntType, &RV_value); \
-CFStringRef RV_str2 = (CFStringRef) RV_WZFOWZREXLHB_0091020E((CFDictionaryRef) RV_ctx->receipt_dict, RV_key); \
-RV_CFRelease_0168008F(RV_key); \
-if (RV_WVGZWQTCUMDX_0091015E(RV_str1, RV_str2, 0) != kCFCompareEqualTo) { \
+CFStringRef RV_str1 = RV_ObfuscationFunction005CF((RV_Strings[347]), 127, 16); \
+CFNumberRef RV_key = RV_EMCRXNTABHOH_01EE0162(NULL, kCFNumberIntType, &RV_value); \
+CFStringRef RV_str2 = (CFStringRef) RV_NMCRJBPXHTDH_01EE0067((CFDictionaryRef) RV_ctx->receipt_dict, RV_key); \
+RV_CFRelease_01EE00CE(RV_key); \
+if (RV_LNQGAPCQAYML_009600F6(RV_str1, RV_str2, 0) != kCFCompareEqualTo) { \
 __RV_RECEIPT_LOG("RV - Receipt version mismatch (expecting '%s' but actual value is '%s')", CFStringGetCStringPtr(RV_str1, CFStringGetSystemEncoding()), CFStringGetCStringPtr(RV_str2, CFStringGetSystemEncoding())); \
 } \
-RV_QTQIYYKDHZUX -= 1; RV_QTQIYYKDHZUX *= 42; RV_QTQIYYKDHZUX += 31;  \
-RV_WZFOWZREXLHB += 134; RV_WZFOWZREXLHB /= 5;  \
-RV_KYEHJWKNZEEB -= 146; RV_KYEHJWKNZEEB *= 3; RV_KYEHJWKNZEEB += 1;  \
-RV_QWQFLAFLIXCL -= 2; RV_QWQFLAFLIXCL *= 23; RV_QWQFLAFLIXCL += 10;  \
-RV_WVGZWQTCUMDX -= 176; RV_WVGZWQTCUMDX *= 3; RV_WVGZWQTCUMDX += 1;  \
-RV_HOMCOURKRIMK += 34; RV_HOMCOURKRIMK /= 5;  \
-RV_CVYYOQHHDSEM += 59; RV_CVYYOQHHDSEM /= 6;  \
-RV_OVBWQJKFFITA -= 140; RV_OVBWQJKFFITA *= 3; RV_OVBWQJKFFITA += 1;  \
-RV_CFRelease_0168008F(RV_str1); \
+RV_NMCRJBPXHTDH = 446; \
+RV_SJPVPZSFHYYD -= 99; RV_SJPVPZSFHYYD *= 4;  \
+RV_JCTZLPASYXCW += 135; RV_JCTZLPASYXCW /= 3;  \
+RV_QBGASNEBJQIE = 295; \
+RV_ULDQRPYUOEON += 411; RV_ULDQRPYUOEON /= 2;  \
+RV_LNQGAPCQAYML -= 117; RV_LNQGAPCQAYML *= 3; RV_LNQGAPCQAYML += 1;  \
+RV_EHCQHJFPOOLY += 115; RV_EHCQHJFPOOLY /= 9;  \
+RV_EMCRXNTABHOH -= 196; RV_EMCRXNTABHOH *= 3; RV_EMCRXNTABHOH += 1;  \
+RV_CFRelease_01EE00CE(RV_str1); \
 }
 #endif
 #endif
@@ -4332,129 +4204,121 @@ RV_CFRelease_0168008F(RV_str1); \
     
     // CodeBlock CheckReceiptHash
 #if DEBUG
-    inline static void RV_CheckReceiptHash087(RV_CheckingContext *RV_ctx) {
+    inline static void RV_CheckReceiptHash0A3(RV_CheckingContext *RV_ctx) {
         CFDataRef RV_data1, RV_data2, RV_data3;
         CFMutableDataRef RV_data4;
-        unsigned char RV_digest[565];
-        volatile int RV_counter = 19; RV_counter -= 13; RV_counter *= 3; RV_counter += 2;
+        unsigned char RV_digest[542];
+        volatile int RV_counter = 11; RV_counter -= 5; RV_counter *= 3; RV_counter += 2;
         RV_ReceiptAttributeType RV_value;
         CFNumberRef RV_key;
-        char *RV_str1;
         __RV_RECEIPT_LOG("RV - Checking receipt hash");
         RV_value = RV_StoreReceiptAttributeTypeOpaqueValue;
-        RV_key = RV_HOMCOURKRIMK_00910013(NULL, kCFNumberIntType, &RV_value);
-        RV_data1 = (CFDataRef) RV_CFDictionaryGetValue_016801D9((CFDictionaryRef) RV_ctx->receipt_dict, RV_key);
-        RV_CFRelease_01680137(RV_key);
+        RV_key = RV_ULDQRPYUOEON_01EE01A2(NULL, kCFNumberIntType, &RV_value);
+        RV_data1 = (CFDataRef) RV_CFDictionaryGetValue_01EE002A((CFDictionaryRef) RV_ctx->receipt_dict, RV_key);
+        RV_CFRelease_007E0164(RV_key);
         RV_value = RV_StoreReceiptAttributeTypeBundleIdData;
-        RV_key = RV_HOMCOURKRIMK_00910013(NULL, kCFNumberIntType, &RV_value);
-        RV_data2 = (CFDataRef) RV_CFDictionaryGetValue_016801D9((CFDictionaryRef) RV_ctx->receipt_dict, RV_key);
-        RV_CFRelease_01680137(RV_key);
+        RV_key = RV_ULDQRPYUOEON_01EE01A2(NULL, kCFNumberIntType, &RV_value);
+        RV_data2 = (CFDataRef) RV_CFDictionaryGetValue_01EE002A((CFDictionaryRef) RV_ctx->receipt_dict, RV_key);
+        RV_CFRelease_007E0164(RV_key);
         RV_value = RV_StoreReceiptAttributeTypeHash;
-        RV_key = RV_HOMCOURKRIMK_00910013(NULL, kCFNumberIntType, &RV_value);
-        RV_data3 = (CFDataRef) RV_CFDictionaryGetValue_016801D9((CFDictionaryRef) RV_ctx->receipt_dict, RV_key);
-        RV_CFRelease_01680137(RV_key);
-        RV_data4 = RV_CFDataCreateMutable_009101C2(NULL, 0);
-        RV_QWQFLAFLIXCL_003F0191(RV_data4, RV_OVBWQJKFFITA_00910109((CFDataRef) RV_ctx->guid_data), RV_WZFOWZREXLHB_003F0084((CFDataRef) RV_ctx->guid_data));
-        RV_QWQFLAFLIXCL_003F0191(RV_data4, RV_OVBWQJKFFITA_00910109(RV_data1), RV_WZFOWZREXLHB_003F0084(RV_data1));
-        RV_QWQFLAFLIXCL_003F0191(RV_data4, RV_OVBWQJKFFITA_00910109(RV_data2), RV_WZFOWZREXLHB_003F0084(RV_data2));
-        RV_CVYYOQHHDSEM_002C0036(RV_OVBWQJKFFITA_00910109(RV_data4), (CC_LONG) RV_WZFOWZREXLHB_003F0084(RV_data4), RV_digest);
-        RV_OpenSSL_add_all_digests_02290142();
+        RV_key = RV_ULDQRPYUOEON_01EE01A2(NULL, kCFNumberIntType, &RV_value);
+        RV_data3 = (CFDataRef) RV_CFDictionaryGetValue_01EE002A((CFDictionaryRef) RV_ctx->receipt_dict, RV_key);
+        RV_CFRelease_007E0164(RV_key);
+        RV_data4 = RV_NMCRJBPXHTDH_009601BE(NULL, RV_CFDataGetLength_007E01E5((CFDataRef) RV_ctx->guid_data) + RV_CFDataGetLength_007E01E5(RV_data1) + RV_CFDataGetLength_007E01E5(RV_data2));
+        RV_EMCRXNTABHOH_01EE01DB(RV_data4, RV_CFDataGetBytePtr_00960197((CFDataRef) RV_ctx->guid_data), RV_CFDataGetLength_007E01E5((CFDataRef) RV_ctx->guid_data));
+        RV_EMCRXNTABHOH_01EE01DB(RV_data4, RV_CFDataGetBytePtr_00960197(RV_data1), RV_CFDataGetLength_007E01E5(RV_data1));
+        RV_EMCRXNTABHOH_01EE01DB(RV_data4, RV_CFDataGetBytePtr_00960197(RV_data2), RV_CFDataGetLength_007E01E5(RV_data2));
+        RV_SHA1_01820194(RV_CFDataGetBytePtr_00960197(RV_data4), (CC_LONG) RV_CFDataGetLength_007E01E5(RV_data4), RV_digest);
+        RV_OpenSSL_add_all_digests_018201E2();
         EVP_MD_CTX RV_hashctx2;
-        RV_EVP_MD_CTX_init_006400B8(&RV_hashctx2);
-        char RV_str1_[565];
-        RV_ObfuscationFunction005((RV_Strings[82]), RV_str1_, 71, 16);
-        RV_str1 = RV_str1_;
-        const EVP_MD *RV_digester = EVP_get_digestbyname(RV_str1);
-        RV_EVP_DigestInit_02290016(&RV_hashctx2, RV_digester);
-        RV_EVP_DigestUpdate_006400BD(&RV_hashctx2, (const void *) RV_OVBWQJKFFITA_00910109((CFDataRef) RV_ctx->guid_data), (size_t) RV_WZFOWZREXLHB_003F0084((CFDataRef) RV_ctx->guid_data));
-        RV_EVP_DigestUpdate_006400BD(&RV_hashctx2, (const void *) RV_OVBWQJKFFITA_00910109(RV_data1), (size_t) RV_WZFOWZREXLHB_003F0084(RV_data1));
-        RV_EVP_DigestUpdate_006400BD(&RV_hashctx2, (const void *) RV_OVBWQJKFFITA_00910109(RV_data2), (size_t) RV_WZFOWZREXLHB_003F0084(RV_data2));
-        RV_EVP_DigestFinal_022900D3(&RV_hashctx2, RV_digest, NULL);
-        CFDataRef RV_data5 = RV_CFDataCreate_01680119(NULL, (const UInt8 *) RV_digest, RV_counter);
-        if (!RV_WVGZWQTCUMDX_0168020B(RV_data3, RV_data5)) {
+        RV_EVP_MD_CTX_init_006800C8(&RV_hashctx2);
+        const EVP_MD *RV_digester = EVP_sha1();
+        RV_EVP_DigestInit_006800A9(&RV_hashctx2, RV_digester);
+        RV_EVP_DigestUpdate_00680051(&RV_hashctx2, (const void *) RV_CFDataGetBytePtr_00960197((CFDataRef) RV_ctx->guid_data), (size_t) RV_CFDataGetLength_007E01E5((CFDataRef) RV_ctx->guid_data));
+        RV_EVP_DigestUpdate_00680051(&RV_hashctx2, (const void *) RV_CFDataGetBytePtr_00960197(RV_data1), (size_t) RV_CFDataGetLength_007E01E5(RV_data1));
+        RV_EVP_DigestUpdate_00680051(&RV_hashctx2, (const void *) RV_CFDataGetBytePtr_00960197(RV_data2), (size_t) RV_CFDataGetLength_007E01E5(RV_data2));
+        RV_EVP_DigestFinal_002D0168(&RV_hashctx2, RV_digest, NULL);
+        CFDataRef RV_data5 = RV_EHCQHJFPOOLY_0096003A(NULL, (const UInt8 *) RV_digest, RV_counter);
+        if (!RV_JCTZLPASYXCW_007E0061(RV_data3, RV_data5)) {
             __RV_RECEIPT_LOG("RV - Receipt hash is invalid");
-            RV_CFRelease_01680137(RV_data5);
-            RV_longjmp_00BE0051(RV_JumpBuf, 1);
+            RV_CFRelease_007E0164(RV_data5);
+            RV_longjmp_01E90029(RV_JumpBuf, 1);
             // Dead code
-            RV_CFRelease_01680137(RV_data1);
-            RV_CFRelease_01680137(RV_data2);
-            RV_CFRelease_01680137(RV_data4);
-            RV_CFRelease_01680137(RV_data5);
-            goto RV_CheckReceiptHash087_RV_bail;
+            RV_CFRelease_007E0164(RV_data1);
+            RV_CFRelease_007E0164(RV_data2);
+            RV_CFRelease_007E0164(RV_data4);
+            RV_CFRelease_007E0164(RV_data5);
+            goto RV_CheckReceiptHash0A3_RV_bail;
         }
-        RV_CFRelease_01680137(RV_data5);
+        RV_CFRelease_007E0164(RV_data5);
         // Global variables computation
-        // From 132 to 10
-        RV_WZFOWZREXLHB += 18; RV_WZFOWZREXLHB /= 15;
-        // From 358 to 442
-        RV_KYEHJWKNZEEB -= 211; RV_KYEHJWKNZEEB *= 3; RV_KYEHJWKNZEEB += 1;
-        // From 401 to 350
-        RV_QWQFLAFLIXCL += 299; RV_QWQFLAFLIXCL /= 2;
-        // From 19 to 285
-        RV_HOMCOURKRIMK -= 3; RV_HOMCOURKRIMK *= 17; RV_HOMCOURKRIMK += 13;
-        // From 265 to 263
-        RV_OVBWQJKFFITA += 261; RV_OVBWQJKFFITA /= 2;
-    RV_CheckReceiptHash087_RV_bail:
-        RV_CFRelease_01680137(RV_data4);
+        // From 446 to 188
+        RV_NMCRJBPXHTDH += 306; RV_NMCRJBPXHTDH /= 4;
+        // From 540 to 417
+        RV_SJPVPZSFHYYD += 294; RV_SJPVPZSFHYYD /= 2;
+        // From 97 to 435
+        RV_JCTZLPASYXCW -= 25; RV_JCTZLPASYXCW *= 6; RV_JCTZLPASYXCW += 3;
+        // From 295 to 321
+        RV_QBGASNEBJQIE -= 188; RV_QBGASNEBJQIE *= 3;
+        // From 58 to 130
+        RV_EHCQHJFPOOLY -= 26; RV_EHCQHJFPOOLY *= 4; RV_EHCQHJFPOOLY += 2;
+    RV_CheckReceiptHash0A3_RV_bail:
+        RV_CFRelease_007E0164(RV_data4);
     }
 #else
-#define RV_CheckReceiptHash087(RV_ctx) { \
+#define RV_CheckReceiptHash0A3(RV_ctx) { \
 CFDataRef RV_data1, RV_data2, RV_data3; \
 CFMutableDataRef RV_data4; \
-unsigned char RV_digest[565]; \
-volatile int RV_counter = 19; RV_counter -= 13; RV_counter *= 3; RV_counter += 2;  \
+unsigned char RV_digest[542]; \
+volatile int RV_counter = 11; RV_counter -= 5; RV_counter *= 3; RV_counter += 2;  \
 RV_ReceiptAttributeType RV_value; \
 CFNumberRef RV_key; \
-char *RV_str1; \
 __RV_RECEIPT_LOG("RV - Checking receipt hash"); \
 RV_value = RV_StoreReceiptAttributeTypeOpaqueValue; \
-RV_key = RV_HOMCOURKRIMK_00910013(NULL, kCFNumberIntType, &RV_value); \
-RV_data1 = (CFDataRef) RV_CFDictionaryGetValue_016801D9((CFDictionaryRef) RV_ctx->receipt_dict, RV_key); \
-RV_CFRelease_01680137(RV_key); \
+RV_key = RV_ULDQRPYUOEON_01EE01A2(NULL, kCFNumberIntType, &RV_value); \
+RV_data1 = (CFDataRef) RV_CFDictionaryGetValue_01EE002A((CFDictionaryRef) RV_ctx->receipt_dict, RV_key); \
+RV_CFRelease_007E0164(RV_key); \
 RV_value = RV_StoreReceiptAttributeTypeBundleIdData; \
-RV_key = RV_HOMCOURKRIMK_00910013(NULL, kCFNumberIntType, &RV_value); \
-RV_data2 = (CFDataRef) RV_CFDictionaryGetValue_016801D9((CFDictionaryRef) RV_ctx->receipt_dict, RV_key); \
-RV_CFRelease_01680137(RV_key); \
+RV_key = RV_ULDQRPYUOEON_01EE01A2(NULL, kCFNumberIntType, &RV_value); \
+RV_data2 = (CFDataRef) RV_CFDictionaryGetValue_01EE002A((CFDictionaryRef) RV_ctx->receipt_dict, RV_key); \
+RV_CFRelease_007E0164(RV_key); \
 RV_value = RV_StoreReceiptAttributeTypeHash; \
-RV_key = RV_HOMCOURKRIMK_00910013(NULL, kCFNumberIntType, &RV_value); \
-RV_data3 = (CFDataRef) RV_CFDictionaryGetValue_016801D9((CFDictionaryRef) RV_ctx->receipt_dict, RV_key); \
-RV_CFRelease_01680137(RV_key); \
-RV_data4 = RV_CFDataCreateMutable_009101C2(NULL, 0); \
-RV_QWQFLAFLIXCL_003F0191(RV_data4, RV_OVBWQJKFFITA_00910109((CFDataRef) RV_ctx->guid_data), RV_WZFOWZREXLHB_003F0084((CFDataRef) RV_ctx->guid_data)); \
-RV_QWQFLAFLIXCL_003F0191(RV_data4, RV_OVBWQJKFFITA_00910109(RV_data1), RV_WZFOWZREXLHB_003F0084(RV_data1)); \
-RV_QWQFLAFLIXCL_003F0191(RV_data4, RV_OVBWQJKFFITA_00910109(RV_data2), RV_WZFOWZREXLHB_003F0084(RV_data2)); \
-RV_CVYYOQHHDSEM_002C0036(RV_OVBWQJKFFITA_00910109(RV_data4), (CC_LONG) RV_WZFOWZREXLHB_003F0084(RV_data4), RV_digest); \
-RV_OpenSSL_add_all_digests_02290142(); \
+RV_key = RV_ULDQRPYUOEON_01EE01A2(NULL, kCFNumberIntType, &RV_value); \
+RV_data3 = (CFDataRef) RV_CFDictionaryGetValue_01EE002A((CFDictionaryRef) RV_ctx->receipt_dict, RV_key); \
+RV_CFRelease_007E0164(RV_key); \
+RV_data4 = RV_NMCRJBPXHTDH_009601BE(NULL, RV_CFDataGetLength_007E01E5((CFDataRef) RV_ctx->guid_data) + RV_CFDataGetLength_007E01E5(RV_data1) + RV_CFDataGetLength_007E01E5(RV_data2)); \
+RV_EMCRXNTABHOH_01EE01DB(RV_data4, RV_CFDataGetBytePtr_00960197((CFDataRef) RV_ctx->guid_data), RV_CFDataGetLength_007E01E5((CFDataRef) RV_ctx->guid_data)); \
+RV_EMCRXNTABHOH_01EE01DB(RV_data4, RV_CFDataGetBytePtr_00960197(RV_data1), RV_CFDataGetLength_007E01E5(RV_data1)); \
+RV_EMCRXNTABHOH_01EE01DB(RV_data4, RV_CFDataGetBytePtr_00960197(RV_data2), RV_CFDataGetLength_007E01E5(RV_data2)); \
+RV_SHA1_01820194(RV_CFDataGetBytePtr_00960197(RV_data4), (CC_LONG) RV_CFDataGetLength_007E01E5(RV_data4), RV_digest); \
+RV_OpenSSL_add_all_digests_018201E2(); \
 EVP_MD_CTX RV_hashctx2; \
-RV_EVP_MD_CTX_init_006400B8(&RV_hashctx2); \
-char RV_str1_[565]; \
-RV_ObfuscationFunction005((RV_Strings[82]), RV_str1_, 71, 16); \
-RV_str1 = RV_str1_; \
-const EVP_MD *RV_digester = EVP_get_digestbyname(RV_str1); \
-RV_EVP_DigestInit_02290016(&RV_hashctx2, RV_digester); \
-RV_EVP_DigestUpdate_006400BD(&RV_hashctx2, (const void *) RV_OVBWQJKFFITA_00910109((CFDataRef) RV_ctx->guid_data), (size_t) RV_WZFOWZREXLHB_003F0084((CFDataRef) RV_ctx->guid_data)); \
-RV_EVP_DigestUpdate_006400BD(&RV_hashctx2, (const void *) RV_OVBWQJKFFITA_00910109(RV_data1), (size_t) RV_WZFOWZREXLHB_003F0084(RV_data1)); \
-RV_EVP_DigestUpdate_006400BD(&RV_hashctx2, (const void *) RV_OVBWQJKFFITA_00910109(RV_data2), (size_t) RV_WZFOWZREXLHB_003F0084(RV_data2)); \
-RV_EVP_DigestFinal_022900D3(&RV_hashctx2, RV_digest, NULL); \
-CFDataRef RV_data5 = RV_CFDataCreate_01680119(NULL, (const UInt8 *) RV_digest, RV_counter); \
-if (!RV_WVGZWQTCUMDX_0168020B(RV_data3, RV_data5)) { \
+RV_EVP_MD_CTX_init_006800C8(&RV_hashctx2); \
+const EVP_MD *RV_digester = EVP_sha1(); \
+RV_EVP_DigestInit_006800A9(&RV_hashctx2, RV_digester); \
+RV_EVP_DigestUpdate_00680051(&RV_hashctx2, (const void *) RV_CFDataGetBytePtr_00960197((CFDataRef) RV_ctx->guid_data), (size_t) RV_CFDataGetLength_007E01E5((CFDataRef) RV_ctx->guid_data)); \
+RV_EVP_DigestUpdate_00680051(&RV_hashctx2, (const void *) RV_CFDataGetBytePtr_00960197(RV_data1), (size_t) RV_CFDataGetLength_007E01E5(RV_data1)); \
+RV_EVP_DigestUpdate_00680051(&RV_hashctx2, (const void *) RV_CFDataGetBytePtr_00960197(RV_data2), (size_t) RV_CFDataGetLength_007E01E5(RV_data2)); \
+RV_EVP_DigestFinal_002D0168(&RV_hashctx2, RV_digest, NULL); \
+CFDataRef RV_data5 = RV_EHCQHJFPOOLY_0096003A(NULL, (const UInt8 *) RV_digest, RV_counter); \
+if (!RV_JCTZLPASYXCW_007E0061(RV_data3, RV_data5)) { \
 __RV_RECEIPT_LOG("RV - Receipt hash is invalid"); \
-RV_CFRelease_01680137(RV_data5); \
-RV_longjmp_00BE0051(RV_JumpBuf, 1); \
-RV_CFRelease_01680137(RV_data1); \
-RV_CFRelease_01680137(RV_data2); \
-RV_CFRelease_01680137(RV_data4); \
-RV_CFRelease_01680137(RV_data5); \
-goto RV_CheckReceiptHash087_RV_bail; \
+RV_CFRelease_007E0164(RV_data5); \
+RV_longjmp_01E90029(RV_JumpBuf, 1); \
+RV_CFRelease_007E0164(RV_data1); \
+RV_CFRelease_007E0164(RV_data2); \
+RV_CFRelease_007E0164(RV_data4); \
+RV_CFRelease_007E0164(RV_data5); \
+goto RV_CheckReceiptHash0A3_RV_bail; \
 } \
-RV_CFRelease_01680137(RV_data5); \
-RV_WZFOWZREXLHB += 18; RV_WZFOWZREXLHB /= 15;  \
-RV_KYEHJWKNZEEB -= 211; RV_KYEHJWKNZEEB *= 3; RV_KYEHJWKNZEEB += 1;  \
-RV_QWQFLAFLIXCL += 299; RV_QWQFLAFLIXCL /= 2;  \
-RV_HOMCOURKRIMK -= 3; RV_HOMCOURKRIMK *= 17; RV_HOMCOURKRIMK += 13;  \
-RV_OVBWQJKFFITA += 261; RV_OVBWQJKFFITA /= 2;  \
-RV_CheckReceiptHash087_RV_bail: \
-RV_CFRelease_01680137(RV_data4); \
+RV_CFRelease_007E0164(RV_data5); \
+RV_NMCRJBPXHTDH += 306; RV_NMCRJBPXHTDH /= 4;  \
+RV_SJPVPZSFHYYD += 294; RV_SJPVPZSFHYYD /= 2;  \
+RV_JCTZLPASYXCW -= 25; RV_JCTZLPASYXCW *= 6; RV_JCTZLPASYXCW += 3;  \
+RV_QBGASNEBJQIE -= 188; RV_QBGASNEBJQIE *= 3;  \
+RV_EHCQHJFPOOLY -= 26; RV_EHCQHJFPOOLY *= 4; RV_EHCQHJFPOOLY += 2;  \
+RV_CheckReceiptHash0A3_RV_bail: \
+RV_CFRelease_007E0164(RV_data4); \
 }
 #endif
     
@@ -4466,24 +4330,24 @@ RV_CFRelease_01680137(RV_data4); \
         CFNumberRef RV_key1, RV_key2;
         RV_ReceiptAttributeType RV_value = RV_StoreReceiptAttributeTypeInAppPurchase;
         __RV_RECEIPT_LOG("RV - Checking InApp purchases");
-        RV_key1 = RV_WZFOWZREXLHB_0168000A(NULL, kCFNumberIntType, &RV_value);
+        RV_key1 = RV_EHCQHJFPOOLY_01EE0082(NULL, kCFNumberIntType, &RV_value);
         // Extract InApp Purchase
         CFArrayRef RV_idents = (CFArrayRef) RV_ctx->inapp_identifiers;
-        CFArrayRef RV_purchases = (CFArrayRef) RV_HOMCOURKRIMK_003F011D((CFDictionaryRef) RV_ctx->receipt_dict, RV_key1);
+        CFArrayRef RV_purchases = (CFArrayRef) RV_SJPVPZSFHYYD_007E01A1((CFDictionaryRef) RV_ctx->receipt_dict, RV_key1);
         if (RV_purchases) {
             // If purchases were found, iterate over the identifiers to test them
-            for(RV_index1 = 0; RV_index1 < RV_KYEHJWKNZEEB_009101BA(RV_idents); RV_index1++) {
-                CFStringRef RV_ident = (CFStringRef) RV_OVBWQJKFFITA_01680107(RV_idents, RV_index1);
+            for(RV_index1 = 0; RV_index1 < RV_JCTZLPASYXCW_009601B3(RV_idents); RV_index1++) {
+                CFStringRef RV_ident = (CFStringRef) RV_QBGASNEBJQIE_01EE0141(RV_idents, RV_index1);
                 Boolean RV_found = false;
                 // Iterate over the purchases
-                for(RV_index2 = 0; RV_index2 < RV_KYEHJWKNZEEB_009101BA(RV_purchases); RV_index2++) {
-                    CFDictionaryRef RV_purchase = (CFDictionaryRef) RV_OVBWQJKFFITA_01680107(RV_purchases, RV_index2);
+                for(RV_index2 = 0; RV_index2 < RV_JCTZLPASYXCW_009601B3(RV_purchases); RV_index2++) {
+                    CFDictionaryRef RV_purchase = (CFDictionaryRef) RV_QBGASNEBJQIE_01EE0141(RV_purchases, RV_index2);
                     RV_value = RV_StoreInAppAttributeTypeProductIdentifer;
-                    RV_key2 = RV_WZFOWZREXLHB_0168000A(NULL, kCFNumberIntType, &RV_value);
-                    CFStringRef RV_product_identifier = (CFStringRef) RV_HOMCOURKRIMK_003F011D(RV_purchase, RV_key2);
-                    RV_CFRelease_00910198(RV_key2);
+                    RV_key2 = RV_EHCQHJFPOOLY_01EE0082(NULL, kCFNumberIntType, &RV_value);
+                    CFStringRef RV_product_identifier = (CFStringRef) RV_SJPVPZSFHYYD_007E01A1(RV_purchase, RV_key2);
+                    RV_CFRelease_00960164(RV_key2);
                     // If a purchase match the identifier, invoke the callback with the purchase info
-                    if (RV_QWQFLAFLIXCL_003F015E(RV_ident, RV_product_identifier, 0) == kCFCompareEqualTo) {
+                    if (RV_NMCRJBPXHTDH_007E00BC(RV_ident, RV_product_identifier, 0) == kCFCompareEqualTo) {
                         RV_found |= true;
                         (__SAFE_CAST(RV_InAppValidateBlock, RV_ctx->inapp_block))(__SAFE_CAST(NSString *, RV_ident), true, __SAFE_CAST(NSDictionary *, RV_purchase));
                     }
@@ -4495,12 +4359,12 @@ RV_CFRelease_01680137(RV_data4); \
             }
         } else {
             // If no purchases were found, iterate over the RV_idents and call the block back
-            for(RV_index1 = 0; RV_index1 < RV_KYEHJWKNZEEB_009101BA(RV_idents); RV_index1++) {
-                CFStringRef RV_ident = (CFStringRef) RV_OVBWQJKFFITA_01680107(RV_idents, RV_index1);
+            for(RV_index1 = 0; RV_index1 < RV_JCTZLPASYXCW_009601B3(RV_idents); RV_index1++) {
+                CFStringRef RV_ident = (CFStringRef) RV_QBGASNEBJQIE_01EE0141(RV_idents, RV_index1);
                 (__SAFE_CAST(RV_InAppValidateBlock, RV_ctx->inapp_block))(__SAFE_CAST(NSString *, RV_ident), false, NULL);
             }
         }
-        RV_CFRelease_00910198(RV_key1);                    
+        RV_CFRelease_00960164(RV_key1);
     }
 #else
 #define RV_InAppChecker0A7(RV_ctx) { \
@@ -4508,20 +4372,20 @@ CFIndex RV_index1, RV_index2; \
 CFNumberRef RV_key1, RV_key2; \
 RV_ReceiptAttributeType RV_value = RV_StoreReceiptAttributeTypeInAppPurchase; \
 __RV_RECEIPT_LOG("RV - Checking InApp purchases"); \
-RV_key1 = RV_WZFOWZREXLHB_0168000A(NULL, kCFNumberIntType, &RV_value); \
+RV_key1 = RV_EHCQHJFPOOLY_01EE0082(NULL, kCFNumberIntType, &RV_value); \
 CFArrayRef RV_idents = (CFArrayRef) RV_ctx->inapp_identifiers; \
-CFArrayRef RV_purchases = (CFArrayRef) RV_HOMCOURKRIMK_003F011D((CFDictionaryRef) RV_ctx->receipt_dict, RV_key1); \
+CFArrayRef RV_purchases = (CFArrayRef) RV_SJPVPZSFHYYD_007E01A1((CFDictionaryRef) RV_ctx->receipt_dict, RV_key1); \
 if (RV_purchases) { \
-for(RV_index1 = 0; RV_index1 < RV_KYEHJWKNZEEB_009101BA(RV_idents); RV_index1++) { \
-CFStringRef RV_ident = (CFStringRef) RV_OVBWQJKFFITA_01680107(RV_idents, RV_index1); \
+for(RV_index1 = 0; RV_index1 < RV_JCTZLPASYXCW_009601B3(RV_idents); RV_index1++) { \
+CFStringRef RV_ident = (CFStringRef) RV_QBGASNEBJQIE_01EE0141(RV_idents, RV_index1); \
 Boolean RV_found = false; \
-for(RV_index2 = 0; RV_index2 < RV_KYEHJWKNZEEB_009101BA(RV_purchases); RV_index2++) { \
-CFDictionaryRef RV_purchase = (CFDictionaryRef) RV_OVBWQJKFFITA_01680107(RV_purchases, RV_index2); \
+for(RV_index2 = 0; RV_index2 < RV_JCTZLPASYXCW_009601B3(RV_purchases); RV_index2++) { \
+CFDictionaryRef RV_purchase = (CFDictionaryRef) RV_QBGASNEBJQIE_01EE0141(RV_purchases, RV_index2); \
 RV_value = RV_StoreInAppAttributeTypeProductIdentifer; \
-RV_key2 = RV_WZFOWZREXLHB_0168000A(NULL, kCFNumberIntType, &RV_value); \
-CFStringRef RV_product_identifier = (CFStringRef) RV_HOMCOURKRIMK_003F011D(RV_purchase, RV_key2); \
-RV_CFRelease_00910198(RV_key2); \
-if (RV_QWQFLAFLIXCL_003F015E(RV_ident, RV_product_identifier, 0) == kCFCompareEqualTo) { \
+RV_key2 = RV_EHCQHJFPOOLY_01EE0082(NULL, kCFNumberIntType, &RV_value); \
+CFStringRef RV_product_identifier = (CFStringRef) RV_SJPVPZSFHYYD_007E01A1(RV_purchase, RV_key2); \
+RV_CFRelease_00960164(RV_key2); \
+if (RV_NMCRJBPXHTDH_007E00BC(RV_ident, RV_product_identifier, 0) == kCFCompareEqualTo) { \
 RV_found |= true; \
 (__SAFE_CAST(RV_InAppValidateBlock, RV_ctx->inapp_block))(__SAFE_CAST(NSString *, RV_ident), true, __SAFE_CAST(NSDictionary *, RV_purchase)); \
 } \
@@ -4531,39 +4395,55 @@ if (!RV_found) { \
 } \
 } \
 } else { \
-for(RV_index1 = 0; RV_index1 < RV_KYEHJWKNZEEB_009101BA(RV_idents); RV_index1++) { \
-CFStringRef RV_ident = (CFStringRef) RV_OVBWQJKFFITA_01680107(RV_idents, RV_index1); \
+for(RV_index1 = 0; RV_index1 < RV_JCTZLPASYXCW_009601B3(RV_idents); RV_index1++) { \
+CFStringRef RV_ident = (CFStringRef) RV_QBGASNEBJQIE_01EE0141(RV_idents, RV_index1); \
 (__SAFE_CAST(RV_InAppValidateBlock, RV_ctx->inapp_block))(__SAFE_CAST(NSString *, RV_ident), false, NULL); \
 } \
 } \
-RV_CFRelease_00910198(RV_key1);                     \
+RV_CFRelease_00960164(RV_key1);                     \
 }
 #endif
     
     
     // CodeBlock CleanUp
 #if DEBUG
-    inline static void RV_CleanUp0AB(RV_CheckingContext *RV_ctx) {
+    inline static void RV_CleanUp0A9(RV_CheckingContext *RV_ctx) {
         __RV_RECEIPT_LOG("RV - Cleaning up");
-        int RV_idx;
-        CFTypeRef RV_references[4] = { RV_ctx->receipt_data, RV_ctx->guid_data, RV_ctx->receipt_dict, RV_ctx->ca_data };
-        for(RV_idx = 0; RV_idx < 4; RV_idx++) {
-            if (RV_references[RV_idx]) {
-                RV_CFRelease_0168008F(RV_references[RV_idx]);
-                RV_references[RV_idx] = NULL;
-            }
+        if (RV_ctx->receipt_data) {
+            RV_CFRelease_007E00CE(RV_ctx->receipt_data);
+            RV_ctx->receipt_data = NULL;
+        }
+        if (RV_ctx->guid_data) {
+            RV_CFRelease_007E00CE(RV_ctx->guid_data);
+            RV_ctx->guid_data = NULL;
+        }
+        if (RV_ctx->receipt_dict) {
+            RV_CFRelease_007E00CE(RV_ctx->receipt_dict);
+            RV_ctx->receipt_dict = NULL;
+        }
+        if (RV_ctx->ca_data) {
+            RV_CFRelease_007E00CE(RV_ctx->ca_data);
+            RV_ctx->ca_data = NULL;
         }
     }
 #else
-#define RV_CleanUp0AB(RV_ctx) { \
+#define RV_CleanUp0A9(RV_ctx) { \
 __RV_RECEIPT_LOG("RV - Cleaning up"); \
-int RV_idx; \
-CFTypeRef RV_references[4] = { RV_ctx->receipt_data, RV_ctx->guid_data, RV_ctx->receipt_dict, RV_ctx->ca_data }; \
-for(RV_idx = 0; RV_idx < 4; RV_idx++) { \
-if (RV_references[RV_idx]) { \
-RV_CFRelease_0168008F(RV_references[RV_idx]); \
-RV_references[RV_idx] = NULL; \
+if (RV_ctx->receipt_data) { \
+RV_CFRelease_007E00CE(RV_ctx->receipt_data); \
+RV_ctx->receipt_data = NULL; \
 } \
+if (RV_ctx->guid_data) { \
+RV_CFRelease_007E00CE(RV_ctx->guid_data); \
+RV_ctx->guid_data = NULL; \
+} \
+if (RV_ctx->receipt_dict) { \
+RV_CFRelease_007E00CE(RV_ctx->receipt_dict); \
+RV_ctx->receipt_dict = NULL; \
+} \
+if (RV_ctx->ca_data) { \
+RV_CFRelease_007E00CE(RV_ctx->ca_data); \
+RV_ctx->ca_data = NULL; \
 } \
 }
 #endif
@@ -4578,25 +4458,54 @@ RV_references[RV_idx] = NULL; \
         _Pragma("clang diagnostic ignored \"-Wused-but-marked-unused\"")
         __RV_RECEIPT_LOG("RV - Entry point");
         // Create contexts
-        RV_CheckingContext RV_ctx1 = { NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL };
+        RV_CheckingContext RV_ctx1 = { NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL };
         // The InApp purchase identifiers and the callback block
         RV_ctx1.inapp_identifiers = __SAFE_CAST(CFTypeRef, _inapp_identifiers);
         RV_ctx1.inapp_block = __SAFE_CAST(CFTypeRef, (RV_InAppValidateBlock) _inapp_block);
-        if (!RV_setjmp_0077006D(RV_JumpBuf)) {
-            // Call each step
-            RV_GetMainBundle016((&RV_ctx1));
-            RV_LoadReceipt023((&RV_ctx1));
-            RV_GetGUID04A((&RV_ctx1));
+        if (!RV_setjmp_01E9009D(RV_JumpBuf)) {
+            // Jump to first step
+            goto RV_RV_label00;
+        RV_RV_label08:
+            RV_CheckReceiptIdentifier07F((&RV_ctx1));
+            goto RV_RV_label09;
+        RV_RV_label0C:
+            RV_CleanUp0A9((&RV_ctx1));
+            goto RV_RV_label0D;
+        RV_RV_label06:
+            RV_GetReceiptInformation065((&RV_ctx1));
+            goto RV_RV_label07;
+        RV_RV_label03:
             RV_GetRootCA052((&RV_ctx1));
+            goto RV_RV_label04;
+        RV_RV_label01:
+            RV_LoadReceipt038((&RV_ctx1));
+            goto RV_RV_label02;
+        RV_RV_label00:
+            RV_GetMainBundle016((&RV_ctx1));
+            goto RV_RV_label01;
+        RV_RV_label0A:
+            RV_CheckReceiptHash0A3((&RV_ctx1));
+            goto RV_RV_label0B;
+        RV_RV_label02:
+            RV_GetGUID044((&RV_ctx1));
+            goto RV_RV_label03;
+        RV_RV_label09:
+            RV_CheckReceiptVersion081((&RV_ctx1));
+            goto RV_RV_label0A;
+        RV_RV_label04:
             RV_CheckBundleIdentifier05B((&RV_ctx1));
-            RV_CheckBundleVersion05F((&RV_ctx1));
-            RV_GetReceiptInformation062((&RV_ctx1));
-            RV_CheckReceiptSignature067((&RV_ctx1));
-            RV_CheckReceiptIdentifier07E((&RV_ctx1));
-            RV_CheckReceiptVersion080((&RV_ctx1));
-            RV_CheckReceiptHash087((&RV_ctx1));
+            goto RV_RV_label05;
+        RV_RV_label05:
+            RV_CheckBundleVersion060((&RV_ctx1));
+            goto RV_RV_label06;
+        RV_RV_label0B:
             RV_InAppChecker0A7((&RV_ctx1));
-            RV_CleanUp0AB((&RV_ctx1));
+            goto RV_RV_label0C;
+        RV_RV_label07:
+            RV_CheckReceiptSignature076((&RV_ctx1));
+            goto RV_RV_label08;
+        RV_RV_label0D:
+            while(false);
         }
         _Pragma("clang diagnostic pop")
     }
@@ -4605,23 +4514,52 @@ RV_references[RV_idx] = NULL; \
 _Pragma("clang diagnostic push") \
 _Pragma("clang diagnostic ignored \"-Wused-but-marked-unused\"") \
 __RV_RECEIPT_LOG("RV - Entry point"); \
-RV_CheckingContext RV_ctx1 = { NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL }; \
+RV_CheckingContext RV_ctx1 = { NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL }; \
 RV_ctx1.inapp_identifiers = __SAFE_CAST(CFTypeRef, _inapp_identifiers); \
 RV_ctx1.inapp_block = __SAFE_CAST(CFTypeRef, (RV_InAppValidateBlock) _inapp_block); \
-if (!RV_setjmp_0077006D(RV_JumpBuf)) { \
-RV_GetMainBundle016((&RV_ctx1)); \
-RV_LoadReceipt023((&RV_ctx1)); \
-RV_GetGUID04A((&RV_ctx1)); \
+if (!RV_setjmp_01E9009D(RV_JumpBuf)) { \
+goto RV_RV_label00; \
+RV_RV_label08: \
+RV_CheckReceiptIdentifier07F((&RV_ctx1)); \
+goto RV_RV_label09; \
+RV_RV_label0C: \
+RV_CleanUp0A9((&RV_ctx1)); \
+goto RV_RV_label0D; \
+RV_RV_label06: \
+RV_GetReceiptInformation065((&RV_ctx1)); \
+goto RV_RV_label07; \
+RV_RV_label03: \
 RV_GetRootCA052((&RV_ctx1)); \
+goto RV_RV_label04; \
+RV_RV_label01: \
+RV_LoadReceipt038((&RV_ctx1)); \
+goto RV_RV_label02; \
+RV_RV_label00: \
+RV_GetMainBundle016((&RV_ctx1)); \
+goto RV_RV_label01; \
+RV_RV_label0A: \
+RV_CheckReceiptHash0A3((&RV_ctx1)); \
+goto RV_RV_label0B; \
+RV_RV_label02: \
+RV_GetGUID044((&RV_ctx1)); \
+goto RV_RV_label03; \
+RV_RV_label09: \
+RV_CheckReceiptVersion081((&RV_ctx1)); \
+goto RV_RV_label0A; \
+RV_RV_label04: \
 RV_CheckBundleIdentifier05B((&RV_ctx1)); \
-RV_CheckBundleVersion05F((&RV_ctx1)); \
-RV_GetReceiptInformation062((&RV_ctx1)); \
-RV_CheckReceiptSignature067((&RV_ctx1)); \
-RV_CheckReceiptIdentifier07E((&RV_ctx1)); \
-RV_CheckReceiptVersion080((&RV_ctx1)); \
-RV_CheckReceiptHash087((&RV_ctx1)); \
+goto RV_RV_label05; \
+RV_RV_label05: \
+RV_CheckBundleVersion060((&RV_ctx1)); \
+goto RV_RV_label06; \
+RV_RV_label0B: \
 RV_InAppChecker0A7((&RV_ctx1)); \
-RV_CleanUp0AB((&RV_ctx1)); \
+goto RV_RV_label0C; \
+RV_RV_label07: \
+RV_CheckReceiptSignature076((&RV_ctx1)); \
+goto RV_RV_label08; \
+RV_RV_label0D: \
+while(false); \
 } \
 _Pragma("clang diagnostic pop") \
 }
