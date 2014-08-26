@@ -615,7 +615,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Turms/Turms.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -630,7 +629,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_NAME = "Janus Notes 2";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "1a811b0b-ae57-49c9-b462-1d146d8a9b98";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../common/openssl-1.0.1g/include";
 				WRAPPER_EXTENSION = app;
 			};
@@ -675,7 +674,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Turms/Turms.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -692,7 +691,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_NAME = "Janus Notes 2";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "1a811b0b-ae57-49c9-b462-1d146d8a9b98";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../common/openssl-1.0.1g/include";
 				WRAPPER_EXTENSION = app;
 			};
@@ -762,7 +761,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Turms/Turms.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -775,7 +774,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_NAME = "Janus Notes 2";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "1a811b0b-ae57-49c9-b462-1d146d8a9b98";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../common/openssl-1.0.1g/include";
 				WRAPPER_EXTENSION = app;
 			};
@@ -788,7 +787,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Turms/Turms.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -802,7 +800,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_NAME = "Janus Notes 2";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "1a811b0b-ae57-49c9-b462-1d146d8a9b98";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../common/openssl-1.0.1g/include";
 				WRAPPER_EXTENSION = app;
 			};
