@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="7ep-k0-Kpd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="14A343f" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="7ep-k0-Kpd">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -837,12 +837,14 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                     <size key="freeformSize" width="400" height="720"/>
                     <connections>
                         <outlet property="cryptPasswordField" destination="Jhd-OB-gkc" id="LUC-ST-eLw"/>
+                        <outlet property="dateSelector" destination="vuc-aV-5j3" id="ZdH-oF-nHj"/>
                         <outlet property="lockSwitch" destination="TRL-n5-Gjw" id="0Bf-Jj-k6b"/>
                         <outlet property="productCoffeeCell" destination="qSa-Cx-oZX" id="1Xu-Dh-gZc"/>
                         <outlet property="productCoffeeLabel" destination="shu-RN-3qb" id="Mie-q2-TyO"/>
                         <outlet property="productCoffeePriceLabel" destination="i8j-YX-ZSD" id="VvR-6o-vlq"/>
                         <outlet property="restoreCell" destination="WCn-C2-CXd" id="9oB-ba-SbN"/>
                         <outlet property="restoreCellLabel" destination="0Ts-TH-gjg" id="rUY-nG-61E"/>
+                        <outlet property="sortSelector" destination="CQf-Fx-ZKS" id="Nu0-Xr-HtE"/>
                         <outlet property="versionLabel" destination="nTn-jp-e2J" id="boC-EM-6Aj"/>
                     </connections>
                 </tableViewController>
