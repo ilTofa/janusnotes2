@@ -34,6 +34,7 @@
 - (IBAction)showBooksAction:(id)sender;
 
 // Last resort save (for use in quitting app)
+- (NSUInteger)countOfOpenedNotes;
 - (void)saveAllOpenNotes;
 
 // Called directly from main menu

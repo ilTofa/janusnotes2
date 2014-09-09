@@ -536,7 +536,7 @@
         return NSTerminateNow;
     }
     
-    if (self.collectionController.noteEditorIsShown) {
+    if ([self.collectionController countOfOpenedNotes] > 0) {
         NSString *question = NSLocalizedString(@"Do you want to save opened notes?", @"Quit with editors open");
         NSString *info = NSLocalizedString(@"Quitting now will lose any changes you have made to opened notes since the last successful save", @"Quit with editors open question info");
         NSString *quitButton = NSLocalizedString(@"Quit anyway", @"Quit anyway button title");

@@ -166,6 +166,10 @@
     [noteEditor showWindow:self];
 }
 
+- (NSUInteger)countOfOpenedNotes {
+    return [self.noteWindowControllers count];
+}
+
 - (void)saveAllOpenNotes {
     for (IAMNoteEditorWC *editor in self.noteWindowControllers) {
         [editor saveAndContinue:self];
