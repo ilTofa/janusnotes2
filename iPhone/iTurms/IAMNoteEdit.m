@@ -603,7 +603,7 @@
 {
 	NSLog(@"This is voiceMail: handler");
 	// Check for audio... (only on actual device)
-	if(![[AVAudioSession sharedInstance] inputIsAvailable])
+	if(![[AVAudioSession sharedInstance] isInputAvailable])
 	{
 		UIAlertView *theAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", @"")
                                                            message:NSLocalizedString(@"No audio input available", @"")
