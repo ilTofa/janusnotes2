@@ -10,7 +10,8 @@
                 <outlet property="arrayController" destination="216" id="218"/>
                 <outlet property="booksArrayController" destination="8XF-GB-eMM" id="OoN-1q-t7X"/>
                 <outlet property="freeRiderButton" destination="svB-eQ-H0E" id="NLU-Ht-j6k"/>
-                <outlet property="freeRiderView" destination="so7-58-ckS" id="rOV-XT-YJy"/>
+                <outlet property="freeRiderView" destination="svB-eQ-H0E" id="nKC-jk-QTc"/>
+                <outlet property="freeRiderViewController" destination="4Ja-Wt-DrR" id="G8v-AP-E9w"/>
                 <outlet property="searchField" destination="85" id="240"/>
                 <outlet property="theBookController" destination="o4J-zF-bjD" id="SGx-75-ms0"/>
                 <outlet property="theTable" destination="94" id="217"/>
@@ -284,6 +285,7 @@ label riga 4</string>
                     <toolbarItem reference="bzh-ql-OHC"/>
                     <toolbarItem reference="490"/>
                     <toolbarItem reference="UyV-lb-wnR"/>
+                    <toolbarItem reference="490"/>
                     <toolbarItem reference="493"/>
                     <toolbarItem reference="byL-bJ-fVw"/>
                     <toolbarItem reference="493"/>
@@ -507,6 +509,11 @@ label riga 4</string>
                 <constraint firstItem="svB-eQ-H0E" firstAttribute="top" secondItem="so7-58-ckS" secondAttribute="top" constant="3" id="uVx-b9-sdr"/>
             </constraints>
         </customView>
+        <viewController id="4Ja-Wt-DrR" customClass="IAMTitleAccessoryView">
+            <connections>
+                <outlet property="view" destination="so7-58-ckS" id="0Cg-4R-CgR"/>
+            </connections>
+        </viewController>
     </objects>
     <resources>
         <image name="books_Template" width="32" height="32"/>

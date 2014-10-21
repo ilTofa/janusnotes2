@@ -14,6 +14,7 @@
 #import "NSManagedObject+Serialization.h"
 #import "Attachment.h"
 #import "Books.h"
+#import "IAMTitleAccessoryView.h"
 
 @interface IAMTableUIWindowController () <IAMNoteEditorWCDelegate, NSWindowDelegate>
 
@@ -28,6 +29,8 @@
 
 @property (strong) IBOutlet NSView *freeRiderView;
 @property (weak) IBOutlet NSButton *freeRiderButton;
+
+@property (strong) IBOutlet IAMTitleAccessoryView *freeRiderViewController;
 
 @end
 
@@ -46,6 +49,18 @@
 - (void)windowDidLoad
 {
     [super windowDidLoad];
+    if ([NSWindow instancesRespondToSelector:@selector(addTitlebarAccessoryViewController:)] && ![(IAMAppDelegate *)[[NSApplication sharedApplication] delegate] skipAds]) {
+        self.window.titleVisibility = NSWindowTitleHidden;
+        self.freeRiderViewController.layoutAttribute = NSLayoutAttributeRight;
+        NSMutableParagraphStyle *paragrapStyle = [[NSMutableParagraphStyle alloc] init];
+        paragrapStyle.alignment = kCTTextAlignmentCenter;
+        NSDictionary *attrsDictionary = @{NSFontAttributeName: [NSFont boldSystemFontOfSize:12.0],
+                                          NSForegroundColorAttributeName: [NSColor redColor],
+                                          NSParagraphStyleAttributeName: paragrapStyle};
+        NSMutableAttributedString *attrTitle = [[NSMutableAttributedString alloc] initWithString:@"Free Ride Version" attributes:attrsDictionary];
+        [self.freeRiderButton setAttributedTitle:attrTitle];
+        [self.window addTitlebarAccessoryViewController:self.freeRiderViewController];
+    }
     [self.window setExcludedFromWindowsMenu:YES];
     [self.notesWindowMenuItem setState:NSOnState];
     [self.theTable setTarget:self];
@@ -54,31 +69,6 @@
     self.sharedManagedObjectContext = ((IAMAppDelegate *)[[NSApplication sharedApplication] delegate]).managedObjectContext;
     [self.arrayController setSortDescriptors:@[[[NSSortDescriptor alloc] initWithKey:@"timeStamp" ascending:NO]]];
 }
-
-/*
-- (void)addTagWindowIfNeeded {
-    INAppStoreWindow *aWindow = (INAppStoreWindow *)[self window];
-    aWindow.showsTitle = YES;
-    if ([(IAMAppDelegate *)[[NSApplication sharedApplication] delegate] skipAds]) {
-        return;
-    }
-    // Free rider window init
-    self.freeRiderView.frame = CGRectMake(NSWidth(aWindow.titleBarView.bounds) - NSWidth(self.freeRiderView.frame),
-                                          (NSHeight(aWindow.titleBarView.bounds) - NSHeight(self.freeRiderView.frame)) / 2,
-                                          NSWidth(self.freeRiderView.frame),
-                                          NSHeight(self.freeRiderView.frame));
-    NSMutableParagraphStyle *paragrapStyle = [[NSMutableParagraphStyle alloc] init];
-    paragrapStyle.alignment = kCTTextAlignmentCenter;
-    self.freeRiderView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
-    NSDictionary *attrsDictionary = @{NSFontAttributeName: [NSFont boldSystemFontOfSize:12.0],
-                                      NSForegroundColorAttributeName: [NSColor redColor],
-                                      NSParagraphStyleAttributeName: paragrapStyle};
-    NSMutableAttributedString *attrTitle = [[NSMutableAttributedString alloc] initWithString:@"Free Ride Version" attributes:attrsDictionary];
-    [self.freeRiderButton setAttributedTitle:attrTitle];
-    [aWindow.titleBarView addSubview:self.freeRiderView];
-    DLog(@"bounds: %@\ncoords: %@", NSStringFromRect(aWindow.titleBarView.bounds), NSStringFromRect(self.freeRiderView.frame));
-}
-*/
 
 - (IBAction)showUIWindow:(id)sender {
     DLog(@"called.");

@@ -43,6 +43,7 @@
 		64CB192A1738EFF20014F35F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CB19291738EFF20014F35F /* SystemConfiguration.framework */; };
 		64D8C9B71740F7F1005D87DC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64D8C9B61740F7F1005D87DC /* Security.framework */; };
 		64D985CF197B23C7006D008E /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64D985CE197B23C7006D008E /* Carbon.framework */; };
+		64E773F219F70B060076C273 /* IAMTitleAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 64E773F119F70B060076C273 /* IAMTitleAccessoryView.m */; };
 		64EA621016F7110300F4838E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64EA620F16F7110300F4838E /* Cocoa.framework */; };
 		64EA621A16F7110300F4838E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64EA621816F7110300F4838E /* InfoPlist.strings */; };
 		64EA621C16F7110300F4838E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 64EA621B16F7110300F4838E /* main.m */; };
@@ -124,6 +125,8 @@
 		64CB19291738EFF20014F35F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		64D8C9B61740F7F1005D87DC /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		64D985CE197B23C7006D008E /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
+		64E773F019F70B060076C273 /* IAMTitleAccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMTitleAccessoryView.h; sourceTree = "<group>"; };
+		64E773F119F70B060076C273 /* IAMTitleAccessoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMTitleAccessoryView.m; sourceTree = "<group>"; };
 		64EA620C16F7110300F4838E /* Janus Notes 2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Janus Notes 2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		64EA620F16F7110300F4838E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		64EA621216F7110300F4838E /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -197,6 +200,8 @@
 				64522F421847F87800D65289 /* IAMAddBookWindowController.h */,
 				64522F431847F87800D65289 /* IAMAddBookWindowController.m */,
 				64522F441847F87800D65289 /* IAMAddBookWindowController.xib */,
+				64E773F019F70B060076C273 /* IAMTitleAccessoryView.h */,
+				64E773F119F70B060076C273 /* IAMTitleAccessoryView.m */,
 			);
 			name = "Main UI";
 			path = ../Turms;
@@ -499,6 +504,7 @@
 			files = (
 				64EE7C7F180C58B9004B94E2 /* html_smartypants.c in Sources */,
 				64522F2F18476C1A00D65289 /* Books.m in Sources */,
+				64E773F219F70B060076C273 /* IAMTitleAccessoryView.m in Sources */,
 				64EA621C16F7110300F4838E /* main.m in Sources */,
 				64EE7C76180C54EC004B94E2 /* markdown.c in Sources */,
 				647EF40618918D1C0045F273 /* RNDecryptor.m in Sources */,

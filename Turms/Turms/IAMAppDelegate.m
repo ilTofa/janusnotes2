@@ -169,9 +169,6 @@
 
 #pragma mark - iAD
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-
 - (void)whatever {
     // An array of the product identifiers to query in the receipt
     DLog(@"starting whatever.");
@@ -189,8 +186,6 @@
         }
     });
 }
-
-#pragma clang diagnostic pop
 
 - (void)setSkipAds:(BOOL)skipAds {
     [[NSUserDefaults standardUserDefaults] setBool:skipAds forKey:@"skipAds"];
@@ -226,12 +221,19 @@
         DLog(@"Still early");
         return NO;
     }
-    // Nag only 25%...
-    if (arc4random() % 4 != 0) {
+    int nagDivisor;
+    if ([NSWindow instancesRespondToSelector:@selector(addTitlebarAccessoryViewController:)]) {
+        // Nag only 25%...
+        nagDivisor = 4;
+    } else {
+        // nag 50% of the time (no visual indicator)
+        nagDivisor = 2;
+    }
+    if (arc4random() % nagDivisor != 0) {
         return NO;
     }
     NSString *question = NSLocalizedString(@"Thank you!", @"");
-    NSString *info = @"If you're happy with the app and you're using it regularly, show your appreciation by building the Full Version.\nThis will stop the app from nagging you from time to time and will give the developers reasons to continue development of the app.";
+    NSString *info = @"If you're happy with the app and you're using it regularly, show your appreciation by building the Full Version.\nThis will stop the app from nagging you from time to time and will give the developer reasons to continue development of the app.";
     NSString *buyButton = @"Buy Now";
     NSString *cancelButton = @"Later";
     NSAlert *alert = [[NSAlert alloc] init];
