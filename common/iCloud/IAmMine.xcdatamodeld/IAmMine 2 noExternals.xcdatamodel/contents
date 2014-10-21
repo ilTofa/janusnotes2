@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6252" systemVersion="14A389" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13B42" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Attachment" representedClassName="Attachment" syncable="YES">
         <attribute name="creationDate" attributeType="Date" indexed="YES" syncable="YES"/>
         <attribute name="data" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
@@ -20,9 +20,9 @@
         <attribute name="creationIdentifier" optional="YES" transient="YES" attributeType="String" syncable="YES"/>
         <attribute name="encryptedText" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="sectionIdentifier" optional="YES" transient="YES" attributeType="String" syncable="YES"/>
-        <attribute name="text" optional="YES" transient="YES" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="text" optional="YES" transient="YES" attributeType="String" spotlightIndexingEnabled="YES" storedInTruthFile="YES" syncable="YES"/>
         <attribute name="timeStamp" attributeType="Date" indexed="YES" syncable="YES"/>
-        <attribute name="title" attributeType="String" defaultValueString="Title" indexed="YES" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="title" attributeType="String" defaultValueString="Title" indexed="YES" spotlightIndexingEnabled="YES" storedInTruthFile="YES" syncable="YES"/>
         <attribute name="uuid" attributeType="String" indexed="YES" syncable="YES"/>
         <relationship name="attachment" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Attachment" inverseName="note" inverseEntity="Attachment" syncable="YES"/>
         <relationship name="book" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Books" inverseName="note" inverseEntity="Books" syncable="YES"/>
@@ -50,11 +50,11 @@
         <relationship name="notes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Note" inverseName="tags" inverseEntity="Note" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Attachment" positionX="0" positionY="0" width="128" height="180"/>
-        <element name="Books" positionX="0" positionY="0" width="128" height="75"/>
-        <element name="Note" positionX="0" positionY="0" width="128" height="30"/>
-        <element name="PublishedOn" positionX="0" positionY="0" width="128" height="120"/>
-        <element name="Site" positionX="0" positionY="0" width="128" height="150"/>
-        <element name="Tags" positionX="0" positionY="0" width="128" height="75"/>
+        <element name="Attachment" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Books" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Note" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="PublishedOn" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Site" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Tags" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

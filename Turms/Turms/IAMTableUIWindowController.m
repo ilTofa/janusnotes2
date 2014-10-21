@@ -375,7 +375,7 @@
     if (savedNotesCount == 0) {
         return;
     }
-    NSData *data=[NSKeyedArchiver archivedDataWithRootObject:notesToBeSerialized];
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:notesToBeSerialized];
     DLog(@"Should save to a file %lu bytes of data", (unsigned long)[data length]);
     NSSavePanel *savePanel = [NSSavePanel savePanel];
     [savePanel setAllowedFileTypes:@[@"it.iltofa.turms.archive"]];

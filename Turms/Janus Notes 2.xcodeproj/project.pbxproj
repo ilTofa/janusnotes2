@@ -170,6 +170,7 @@
 		64EE7C7B180C58B9004B94E2 /* html.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = html.c; sourceTree = "<group>"; };
 		64EE7C7C180C58B9004B94E2 /* html.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = html.h; sourceTree = "<group>"; };
 		64EE7C81180C5981004B94E2 /* houdini.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = houdini.h; sourceTree = "<group>"; };
+		64F5A03219F6708A00CB76B8 /* IAmMine 2 noExternals.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "IAmMine 2 noExternals.xcdatamodel"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -615,6 +616,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Turms/Turms.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -629,7 +631,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_NAME = "Janus Notes 2";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "274d84b9-0f07-4b45-ba83-45a82cd2d419";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../common/openssl-1.0.1g/include";
 				WRAPPER_EXTENSION = app;
 			};
@@ -674,6 +676,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Turms/Turms.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -690,7 +693,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_NAME = "Janus Notes 2";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "274d84b9-0f07-4b45-ba83-45a82cd2d419";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../common/openssl-1.0.1g/include";
 				WRAPPER_EXTENSION = app;
 			};
@@ -760,6 +763,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Turms/Turms.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -772,7 +776,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_NAME = "Janus Notes 2";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "274d84b9-0f07-4b45-ba83-45a82cd2d419";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../common/openssl-1.0.1g/include";
 				WRAPPER_EXTENSION = app;
 			};
@@ -785,6 +789,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Turms/Turms.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -798,7 +803,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_NAME = "Janus Notes 2";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "274d84b9-0f07-4b45-ba83-45a82cd2d419";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../common/openssl-1.0.1g/include";
 				WRAPPER_EXTENSION = app;
 			};
@@ -835,6 +840,7 @@
 		64EA627016F71E1400F4838E /* IAmMine.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				64F5A03219F6708A00CB76B8 /* IAmMine 2 noExternals.xcdatamodel */,
 				64EA627116F71E1400F4838E /* IAmMine.xcdatamodel */,
 			);
 			currentVersion = 64EA627116F71E1400F4838E /* IAmMine.xcdatamodel */;
