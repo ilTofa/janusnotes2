@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1090" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="IAMPrefsWindowController">
@@ -15,12 +15,12 @@
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="-3" userLabel="Application"/>
-        <window title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" frameAutosaveName="PreferencesWindow" animationBehavior="default" id="1" customClass="INAppStoreWindow">
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" frameAutosaveName="PreferencesWindow" animationBehavior="default" id="1">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="494" height="218"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1366" height="768"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
             <value key="minSize" type="size" width="480" height="218"/>
             <view key="contentView" id="2">
                 <rect key="frame" x="0.0" y="0.0" width="494" height="218"/>
@@ -28,7 +28,6 @@
                 <subviews>
                     <tabView translatesAutoresizingMaskIntoConstraints="NO" id="Jj0-1c-8Ga">
                         <rect key="frame" x="13" y="10" width="468" height="202"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <font key="font" metaFont="system"/>
                         <tabViewItems>
                             <tabViewItem label="Purchase" identifier="" id="szN-1x-dOg">
@@ -38,7 +37,6 @@
                                     <subviews>
                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="53C-AQ-cpl">
                                             <rect key="frame" x="15" y="86" width="418" height="56"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="56" id="05V-Lp-pIP"/>
                                                 <constraint firstAttribute="width" constant="414" id="7b1-53-gK9"/>
@@ -53,7 +51,6 @@ This will stop the app from nagging you from time to time and will give the deve
                                         </textField>
                                         <button translatesAutoresizingMaskIntoConstraints="NO" id="scW-Kk-ALX">
                                             <rect key="frame" x="209" y="47" width="224" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="25" id="Q22-ct-sz9"/>
                                                 <constraint firstAttribute="width" constant="220" id="rOH-Ie-Ljm"/>
@@ -68,7 +65,6 @@ This will stop the app from nagging you from time to time and will give the deve
                                         </button>
                                         <button translatesAutoresizingMaskIntoConstraints="NO" id="7Uy-Fw-XhV">
                                             <rect key="frame" x="209" y="14" width="224" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="25" id="LAx-To-BMZ"/>
                                                 <constraint firstAttribute="width" constant="220" id="lMx-6m-DVw"/>
@@ -83,7 +79,6 @@ This will stop the app from nagging you from time to time and will give the deve
                                         </button>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uCX-vX-q1O">
                                             <rect key="frame" x="3" y="17" width="202" height="40"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="198" id="lxh-dr-wyp"/>
                                                 <constraint firstAttribute="height" constant="40" id="miB-LL-L3y"/>
@@ -114,7 +109,6 @@ This will stop the app from nagging you from time to time and will give the deve
                                     <subviews>
                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5dh-91-DuF">
                                             <rect key="frame" x="15" y="71" width="418" height="42"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="42" id="05M-0X-mUI"/>
                                             </constraints>
@@ -127,7 +121,6 @@ This will stop the app from nagging you from time to time and will give the deve
                                         </textField>
                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QEA-h6-FLN">
                                             <rect key="frame" x="17" y="121" width="414" height="22"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="414" id="u5n-ng-jiV"/>
                                             </constraints>
@@ -139,7 +132,6 @@ This will stop the app from nagging you from time to time and will give the deve
                                         </textField>
                                         <button translatesAutoresizingMaskIntoConstraints="NO" id="rTZ-Y7-Asi">
                                             <rect key="frame" x="156" y="14" width="136" height="52"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="47" id="jWY-qT-pSA"/>
                                                 <constraint firstAttribute="width" constant="132" id="q1F-Nw-09g"/>
@@ -172,7 +164,6 @@ This will stop the app from nagging you from time to time and will give the deve
                                     <subviews>
                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="149">
                                             <rect key="frame" x="15" y="136" width="418" height="17"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="414" id="S53-og-iKM"/>
                                             </constraints>
@@ -187,7 +178,6 @@ This will stop the app from nagging you from time to time and will give the deve
                                         </textField>
                                         <button translatesAutoresizingMaskIntoConstraints="NO" id="154">
                                             <rect key="frame" x="156" y="14" width="136" height="50"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="132" id="77L-0D-8RN"/>
                                                 <constraint firstAttribute="height" constant="45" id="NFx-rv-Acn"/>

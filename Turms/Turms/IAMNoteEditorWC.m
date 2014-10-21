@@ -14,7 +14,6 @@
 #import "Attachment.h"
 #import "IAMOpenWithWC.h"
 #import "Books.h"
-#import "INAppStoreWindow.h"
 
 @interface IAMNoteEditorWC () <NSWindowDelegate, NSCollectionViewDelegate> {
     BOOL _userConsentedToClose;
@@ -115,32 +114,8 @@
         self.editedNote = (Note *)[self.noteEditorMOC existingObjectWithID:self.idForTheNoteToBeEdited error:&error];
         NSAssert1(self.editedNote, @"Tragedy! Invalid ObjectID. Error: %@", [error description]);
     }
-    [self addTagWindowIfNeeded];
     [self refreshAttachments];
     [self refreshBooks];
-}
-
-- (void)addTagWindowIfNeeded {
-    INAppStoreWindow *aWindow = (INAppStoreWindow *)[self window];
-    aWindow.showsTitle = YES;
-    if ([(IAMAppDelegate *)[[NSApplication sharedApplication] delegate] skipAds]) {
-        return;
-    }
-    // Free rider window init
-    self.freeRiderView.frame = CGRectMake(NSWidth(aWindow.titleBarView.bounds) - NSWidth(self.freeRiderView.frame),
-                                          (NSHeight(aWindow.titleBarView.bounds) - NSHeight(self.freeRiderView.frame)) / 2,
-                                          NSWidth(self.freeRiderView.frame),
-                                          NSHeight(self.freeRiderView.frame));
-    NSMutableParagraphStyle *paragrapStyle = [[NSMutableParagraphStyle alloc] init];
-    paragrapStyle.alignment = kCTTextAlignmentCenter;
-    self.freeRiderView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
-    NSDictionary *attrsDictionary = @{NSFontAttributeName: [NSFont boldSystemFontOfSize:12.0],
-                                      NSForegroundColorAttributeName: [NSColor redColor],
-                                      NSParagraphStyleAttributeName: paragrapStyle};
-    NSMutableAttributedString *attrTitle = [[NSMutableAttributedString alloc] initWithString:@"Free Ride Version" attributes:attrsDictionary];
-    [self.freeRiderButton setAttributedTitle:attrTitle];
-    [aWindow.titleBarView addSubview:self.freeRiderView];
-    DLog(@"bounds: %@\ncoords: %@", NSStringFromRect(aWindow.titleBarView.bounds), NSStringFromRect(self.freeRiderView.frame));
 }
 
 - (IBAction)saveAndContinue:(id)sender

@@ -14,7 +14,6 @@
 #import "NSManagedObject+Serialization.h"
 #import "Attachment.h"
 #import "Books.h"
-#import "INAppStoreWindow.h"
 
 @interface IAMTableUIWindowController () <IAMNoteEditorWCDelegate, NSWindowDelegate>
 
@@ -47,7 +46,6 @@
 - (void)windowDidLoad
 {
     [super windowDidLoad];
-    [self addTagWindowIfNeeded];
     [self.window setExcludedFromWindowsMenu:YES];
     [self.notesWindowMenuItem setState:NSOnState];
     [self.theTable setTarget:self];
@@ -57,6 +55,7 @@
     [self.arrayController setSortDescriptors:@[[[NSSortDescriptor alloc] initWithKey:@"timeStamp" ascending:NO]]];
 }
 
+/*
 - (void)addTagWindowIfNeeded {
     INAppStoreWindow *aWindow = (INAppStoreWindow *)[self window];
     aWindow.showsTitle = YES;
@@ -79,6 +78,7 @@
     [aWindow.titleBarView addSubview:self.freeRiderView];
     DLog(@"bounds: %@\ncoords: %@", NSStringFromRect(aWindow.titleBarView.bounds), NSStringFromRect(self.freeRiderView.frame));
 }
+*/
 
 - (IBAction)showUIWindow:(id)sender {
     DLog(@"called.");

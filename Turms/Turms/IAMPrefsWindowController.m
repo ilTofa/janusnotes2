@@ -9,7 +9,6 @@
 #import "IAMPrefsWindowController.h"
 
 #import "IAMAppDelegate.h"
-#import "INAppStoreWindow.h"
 
 @interface IAMPrefsWindowController () <SKProductsRequestDelegate>
 
@@ -34,8 +33,6 @@
 - (void)windowDidLoad
 {
     [super windowDidLoad];
-    INAppStoreWindow *aWindow = (INAppStoreWindow *)[self window];
-    aWindow.showsTitle = YES;
     NSString *fontName = [[NSUserDefaults standardUserDefaults] stringForKey:@"fontName"];
     NSAssert(fontName, @"Default font not set in user defaults");
     double fontSize = [[NSUserDefaults standardUserDefaults] doubleForKey:@"fontSize"];
