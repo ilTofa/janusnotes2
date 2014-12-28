@@ -389,7 +389,12 @@
     }
     UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
     activityVC.excludedActivityTypes = @[UIActivityTypeSaveToCameraRoll, UIActivityTypeAssignToContact, UIActivityTypePrint, UIActivityTypePostToWeibo];
-    [self presentViewController:activityVC animated:TRUE completion:nil];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        [self presentViewController:activityVC animated:TRUE completion:nil];
+    } else {
+        self.popover = [[UIPopoverController alloc] initWithContentViewController:activityVC];
+        [self.popover presentPopoverFromBarButtonItem:(UIBarButtonItem *)sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    }
 }
 
 #pragma mark - IAMAddLinkViewControllerDelegate
