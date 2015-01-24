@@ -193,9 +193,7 @@
 - (void)keyboardWillShow:(NSNotification *)aNotification {
     NSDictionary* info = [aNotification userInfo];
     CGSize kbSize = [info[UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-    BOOL isPortrait = UIDeviceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation);
-    CGFloat height = isPortrait ? kbSize.height : kbSize.width;
-    self.textToToolbarConstraint.constant = height - self.theToolbar.frame.size.height;
+    self.textToToolbarConstraint.constant = kbSize.height - self.theToolbar.frame.size.height;
     NSTimeInterval animationDuration = [info[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     [UIView animateWithDuration:animationDuration animations:^{
         [self.view layoutIfNeeded];
