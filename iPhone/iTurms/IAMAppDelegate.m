@@ -9,6 +9,7 @@
 #import "IAMAppDelegate.h"
 
 #import <MobileCoreServices/MobileCoreServices.h>
+@import LocalAuthentication;
 #import "GTThemer.h"
 #import "GTTransientMessage.h"
 #import "Note.h"
@@ -126,11 +127,32 @@
     return NO;
 }
 
-- (void)getPinOnWindow:(UIViewController<THPinViewControllerDelegate> *)parentViewController {
+- (void)authenticateWithTouchID:(UIViewController *)parentViewController {
+    // Check if we have local authentication
+    // Get the local authentication context:
+    LAContext *context = [[LAContext alloc] init];
+    [context evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics localizedReason:@"Authenticate to access the notes" reply:^(BOOL success, NSError *authenticationError){
+        if (success) {
+            // Dismiss also the background PIN controller
+            DLog(@"Fingerprint validated.");
+            self.pinRequestNeeded = NO;
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [parentViewController dismissViewControllerAnimated:YES completion:nil];
+            });
+        }
+        else {
+            // Just fallback to the pin view.
+            DLog(@"Fingerprint validation failed: %@.", authenticationError.localizedDescription);
+        }
+    }];
+}
+
+- (void)getPinOnWindow:(UIViewController *)parentViewController {
     if (!self.pinRequestNeeded) {
         DLog(@"Call was not valid.");
         return;
     }
+    // No touchID (or failed, go ahead)
     THPinViewController *pinViewController = [[THPinViewController alloc] initWithDelegate:self];
     pinViewController.backgroundColor = [UIColor whiteColor];
     pinViewController.promptTitle = @"Enter PIN";
@@ -138,6 +160,11 @@
     pinViewController.view.tintColor = [UIColor colorWithRed:1.000 green:0.671 blue:0.051 alpha:1.000];
     pinViewController.hideLetters = YES;
     [parentViewController presentViewController:pinViewController animated:YES completion:nil];
+    // Test if fingerprint authentication is available on the device and a fingerprint has been enrolled.
+    LAContext *context = [[LAContext alloc] init];
+    if ([context canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:nil]) {
+        [self authenticateWithTouchID:parentViewController];
+    }
 }
 
 #pragma mark - Readme file

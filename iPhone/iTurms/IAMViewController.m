@@ -98,6 +98,8 @@
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kSkipAdProcessingChanged object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kViewControllerShouldShowPINRequest object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kCoreDataStoreExternallyChanged object:nil];
 }
 
 -(void)dealloc {
