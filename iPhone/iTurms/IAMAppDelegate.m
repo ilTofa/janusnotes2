@@ -9,7 +9,7 @@
 #import "IAMAppDelegate.h"
 
 #import <MobileCoreServices/MobileCoreServices.h>
-@import LocalAuthentication;
+#import <LocalAuthentication/LocalAuthentication.h>
 #import "GTThemer.h"
 #import "GTTransientMessage.h"
 #import "Note.h"
@@ -152,7 +152,6 @@
         DLog(@"Call was not valid.");
         return;
     }
-    // No touchID (or failed, go ahead)
     THPinViewController *pinViewController = [[THPinViewController alloc] initWithDelegate:self];
     pinViewController.backgroundColor = [UIColor whiteColor];
     pinViewController.promptTitle = @"Enter PIN";

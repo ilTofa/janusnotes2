@@ -27,6 +27,7 @@
 		6421B4731892DCC4008C7E46 /* NSManagedObject+Serialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 6421B4721892DCC4008C7E46 /* NSManagedObject+Serialization.m */; };
 		6447056E16DD0FC4000A0262 /* SmallRow.png in Resources */ = {isa = PBXBuildFile; fileRef = 6447056C16DD0FC4000A0262 /* SmallRow.png */; };
 		6447056F16DD0FC4000A0262 /* SmallRow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6447056D16DD0FC4000A0262 /* SmallRow@2x.png */; };
+		645094991A74663A00B2B331 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 645094981A74663A00B2B331 /* LocalAuthentication.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		64522F3E18476D9900D65289 /* Books.m in Sources */ = {isa = PBXBuildFile; fileRef = 64522F3718476D9900D65289 /* Books.m */; };
 		64522F3F18476D9900D65289 /* PublishedOn.m in Sources */ = {isa = PBXBuildFile; fileRef = 64522F3918476D9900D65289 /* PublishedOn.m */; };
 		64522F4018476D9900D65289 /* Site.m in Sources */ = {isa = PBXBuildFile; fileRef = 64522F3B18476D9900D65289 /* Site.m */; };
@@ -145,6 +146,7 @@
 		6421B4721892DCC4008C7E46 /* NSManagedObject+Serialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSManagedObject+Serialization.m"; path = "../common/iCloud/NSManagedObject+Serialization.m"; sourceTree = "<group>"; };
 		6447056C16DD0FC4000A0262 /* SmallRow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SmallRow.png; path = Images/SmallRow.png; sourceTree = "<group>"; };
 		6447056D16DD0FC4000A0262 /* SmallRow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SmallRow@2x.png"; path = "Images/SmallRow@2x.png"; sourceTree = "<group>"; };
+		645094981A74663A00B2B331 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		64522F3618476D9900D65289 /* Books.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Books.h; path = ../common/iCloud/Books.h; sourceTree = "<group>"; };
 		64522F3718476D9900D65289 /* Books.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Books.m; path = ../common/iCloud/Books.m; sourceTree = "<group>"; };
 		64522F3818476D9900D65289 /* PublishedOn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PublishedOn.h; path = ../common/iCloud/PublishedOn.h; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				645094991A74663A00B2B331 /* LocalAuthentication.framework in Frameworks */,
 				647DEAF417E701D900D3EE57 /* MessageUI.framework in Frameworks */,
 				6476C11017E0CE270094C4AB /* iAd.framework in Frameworks */,
 				64CEF2BE17D1F70900D3A58B /* libc++.dylib in Frameworks */,
@@ -496,6 +499,7 @@
 		64A0506E16D28CCA0025E179 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				645094981A74663A00B2B331 /* LocalAuthentication.framework */,
 				64CEF2BD17D1F70900D3A58B /* libc++.dylib */,
 				64CB194A17392BAD0014F35F /* iAd.framework */,
 				64CB194817392B860014F35F /* AdSupport.framework */,
@@ -853,7 +857,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -877,7 +881,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -900,10 +904,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iTurms/iTurms-Prefix.pch";
 				INFOPLIST_FILE = "iTurms/iTurms-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = iTurms;
-				PROVISIONING_PROFILE = "eed6f384-15f4-47b3-9522-d3682b39ec07";
+				PROVISIONING_PROFILE = "a6a30401-adb3-4c31-ad79-560b2c538350";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -925,11 +929,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iTurms/iTurms-Prefix.pch";
 				INFOPLIST_FILE = "iTurms/iTurms-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = iTurms;
-				PROVISIONING_PROFILE = "eed6f384-15f4-47b3-9522-d3682b39ec07";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "a6a30401-adb3-4c31-ad79-560b2c538350";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};

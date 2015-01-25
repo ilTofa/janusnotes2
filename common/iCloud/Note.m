@@ -105,7 +105,7 @@
     if (!tmp) {
         // Sections are organized by month and year. Create the section identifier as a string representing the number (year * 1000) + month; this way they will be correctly ordered chronologically regardless of the actual name of the month.
         NSCalendar *calendar = [NSCalendar currentCalendar];
-        NSDateComponents *components = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit) fromDate:[self timeStamp]];
+        NSDateComponents *components = [calendar components:(NSCalendarUnitYear | NSCalendarUnitMonth) fromDate:[self timeStamp]];
         tmp = [NSString stringWithFormat:@"%d", (int)(([components year] * 1000) + [components month])];
         [self setPrimitiveSectionIdentifier:tmp];
     }
@@ -121,7 +121,7 @@
     if (!tmp) {
         // Sections are organized by month and year. Create the section identifier as a string representing the number (year * 1000) + month; this way they will be correctly ordered chronologically regardless of the actual name of the month.
         NSCalendar *calendar = [NSCalendar currentCalendar];
-        NSDateComponents *components = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit) fromDate:[self creationDate]];
+        NSDateComponents *components = [calendar components:(NSCalendarUnitYear | NSCalendarUnitMonth) fromDate:[self creationDate]];
         tmp = [NSString stringWithFormat:@"%d", (int)(([components year] * 1000) + [components month])];
         [self setPrimitiveCreationIdentifier:tmp];
     }
