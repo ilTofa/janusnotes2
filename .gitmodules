@@ -1,3 +1,6 @@
 [submodule "INAppStoreWindow"]
 	path = INAppStoreWindow
 	url = https://github.com/indragiek/INAppStoreWindow
+[submodule "Libraries/THPinViewController"]
+	path = Libraries/THPinViewController
+	url = https://ilTofa@github.com/ilTofa/THPinViewController.git

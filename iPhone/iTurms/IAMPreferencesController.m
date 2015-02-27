@@ -293,10 +293,11 @@ typedef enum {
 - (IBAction)lockCodeAction:(id)sender {
     if(self.lockSwitch.on) {
         THPinViewController *pinViewController = [[THPinViewController alloc] initWithDelegate:self];
+        pinViewController.promptTitle = @"Set Pin for Janus Notes";
+        pinViewController.squareButtons = YES;
+        pinViewController.promptColor = [UIColor colorWithRed:1.000 green:0.671 blue:0.051 alpha:1.000];
+        pinViewController.view.tintColor = [UIColor colorWithRed:1.000 green:0.671 blue:0.051 alpha:1.000];
         pinViewController.backgroundColor = [UIColor whiteColor];
-        pinViewController.promptTitle = @"Enter PIN";
-        pinViewController.promptColor = [UIColor colorWithRed:0.000 green:0.455 blue:0.780 alpha:1.000];
-        pinViewController.view.tintColor = [UIColor colorWithRed:0.000 green:0.455 blue:0.780 alpha:1.000];
         pinViewController.hideLetters = YES;
         [self presentViewController:pinViewController animated:YES completion:nil];
     } else {

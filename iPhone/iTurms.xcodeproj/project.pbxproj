@@ -43,6 +43,14 @@
 		647DEAF417E701D900D3EE57 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CB194617392B7C0014F35F /* MessageUI.framework */; };
 		64896D2D184F336800AE5EEF /* IAMBooksSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64896D2C184F336800AE5EEF /* IAMBooksSelectionViewController.m */; };
 		648A2773171D875000338218 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 648A2772171D875000338218 /* MBProgressHUD.m */; };
+		648F745F1AA06D57004F20BF /* THPinInputCirclesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 648F74501AA06D57004F20BF /* THPinInputCirclesView.m */; };
+		648F74601AA06D57004F20BF /* THPinInputCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 648F74521AA06D57004F20BF /* THPinInputCircleView.m */; };
+		648F74611AA06D57004F20BF /* THPinNumButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 648F74541AA06D57004F20BF /* THPinNumButton.m */; };
+		648F74621AA06D57004F20BF /* THPinNumPadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 648F74561AA06D57004F20BF /* THPinNumPadView.m */; };
+		648F74631AA06D57004F20BF /* THPinView.m in Sources */ = {isa = PBXBuildFile; fileRef = 648F74581AA06D57004F20BF /* THPinView.m */; };
+		648F74641AA06D57004F20BF /* THPinViewController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 648F74591AA06D57004F20BF /* THPinViewController.bundle */; };
+		648F74651AA06D57004F20BF /* THPinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 648F745B1AA06D57004F20BF /* THPinViewController.m */; };
+		648F74661AA06D57004F20BF /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 648F745E1AA06D57004F20BF /* UIImage+ImageEffects.m */; };
 		649DCEA016D28DB8003F5A83 /* IAmMine.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 649DCE9E16D28DB7003F5A83 /* IAmMine.xcdatamodeld */; };
 		64A0507016D28CCA0025E179 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64A0506F16D28CCA0025E179 /* UIKit.framework */; };
 		64A0507216D28CCA0025E179 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64A0507116D28CCA0025E179 /* Foundation.framework */; };
@@ -159,6 +167,22 @@
 		64896D2C184F336800AE5EEF /* IAMBooksSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMBooksSelectionViewController.m; sourceTree = "<group>"; };
 		648A2771171D875000338218 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		648A2772171D875000338218 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		648F744F1AA06D57004F20BF /* THPinInputCirclesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPinInputCirclesView.h; sourceTree = "<group>"; };
+		648F74501AA06D57004F20BF /* THPinInputCirclesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPinInputCirclesView.m; sourceTree = "<group>"; };
+		648F74511AA06D57004F20BF /* THPinInputCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPinInputCircleView.h; sourceTree = "<group>"; };
+		648F74521AA06D57004F20BF /* THPinInputCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPinInputCircleView.m; sourceTree = "<group>"; };
+		648F74531AA06D57004F20BF /* THPinNumButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPinNumButton.h; sourceTree = "<group>"; };
+		648F74541AA06D57004F20BF /* THPinNumButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPinNumButton.m; sourceTree = "<group>"; };
+		648F74551AA06D57004F20BF /* THPinNumPadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPinNumPadView.h; sourceTree = "<group>"; };
+		648F74561AA06D57004F20BF /* THPinNumPadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPinNumPadView.m; sourceTree = "<group>"; };
+		648F74571AA06D57004F20BF /* THPinView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPinView.h; sourceTree = "<group>"; };
+		648F74581AA06D57004F20BF /* THPinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPinView.m; sourceTree = "<group>"; };
+		648F74591AA06D57004F20BF /* THPinViewController.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = THPinViewController.bundle; sourceTree = "<group>"; };
+		648F745A1AA06D57004F20BF /* THPinViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPinViewController.h; sourceTree = "<group>"; };
+		648F745B1AA06D57004F20BF /* THPinViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPinViewController.m; sourceTree = "<group>"; };
+		648F745C1AA06D57004F20BF /* THPinViewControllerMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPinViewControllerMacros.h; sourceTree = "<group>"; };
+		648F745D1AA06D57004F20BF /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
+		648F745E1AA06D57004F20BF /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		649DCE9F16D28DB7003F5A83 /* IAmMine.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = IAmMine.xcdatamodel; sourceTree = "<group>"; };
 		64A0506C16D28CCA0025E179 /* iTurms.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTurms.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64A0506F16D28CCA0025E179 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -341,6 +365,7 @@
 		6433103F16E0A8950064EC5C /* Utilities (iOS) */ = {
 			isa = PBXGroup;
 			children = (
+				648F744E1AA06D57004F20BF /* THPinViewController */,
 				6410E1C917E85D2000B568D0 /* GTTransientMessage.h */,
 				6410E1CA17E85D2000B568D0 /* GTTransientMessage.m */,
 				648A2771171D875000338218 /* MBProgressHUD.h */,
@@ -405,6 +430,30 @@
 				641858C11850DC8D00E855F0 /* IAMAddBookViewController.m */,
 			);
 			name = "Books Selection";
+			sourceTree = "<group>";
+		};
+		648F744E1AA06D57004F20BF /* THPinViewController */ = {
+			isa = PBXGroup;
+			children = (
+				648F744F1AA06D57004F20BF /* THPinInputCirclesView.h */,
+				648F74501AA06D57004F20BF /* THPinInputCirclesView.m */,
+				648F74511AA06D57004F20BF /* THPinInputCircleView.h */,
+				648F74521AA06D57004F20BF /* THPinInputCircleView.m */,
+				648F74531AA06D57004F20BF /* THPinNumButton.h */,
+				648F74541AA06D57004F20BF /* THPinNumButton.m */,
+				648F74551AA06D57004F20BF /* THPinNumPadView.h */,
+				648F74561AA06D57004F20BF /* THPinNumPadView.m */,
+				648F74571AA06D57004F20BF /* THPinView.h */,
+				648F74581AA06D57004F20BF /* THPinView.m */,
+				648F74591AA06D57004F20BF /* THPinViewController.bundle */,
+				648F745A1AA06D57004F20BF /* THPinViewController.h */,
+				648F745B1AA06D57004F20BF /* THPinViewController.m */,
+				648F745C1AA06D57004F20BF /* THPinViewControllerMacros.h */,
+				648F745D1AA06D57004F20BF /* UIImage+ImageEffects.h */,
+				648F745E1AA06D57004F20BF /* UIImage+ImageEffects.m */,
+			);
+			name = THPinViewController;
+			path = ../../../Libraries/THPinViewController/THPinViewController;
 			sourceTree = "<group>";
 		};
 		649DCE9A16D28D30003F5A83 /* CoreData (common) */ = {
@@ -658,6 +707,7 @@
 				64A8A7EE16E7BCF90013AFFF /* link-unknown-big@2x.png in Resources */,
 				641A5EFC16ED463B00D3440C /* MainStoryboard_iPad.storyboard in Resources */,
 				64A75566170212A40085933D /* link-microphone.png in Resources */,
+				648F74641AA06D57004F20BF /* THPinViewController.bundle in Resources */,
 				64A75567170212A40085933D /* link-microphone@2x.png in Resources */,
 				64A7557D1702137A0085933D /* BigMic.png in Resources */,
 				645A7E6818183846003C9D5A /* link-browser.png in Resources */,
@@ -703,10 +753,12 @@
 				649DCEA016D28DB8003F5A83 /* IAmMine.xcdatamodeld in Sources */,
 				64522F3E18476D9900D65289 /* Books.m in Sources */,
 				640D40BE16D5128B003034B3 /* IAMNoteCell.m in Sources */,
+				648F74621AA06D57004F20BF /* THPinNumPadView.m in Sources */,
 				641858C21850DC8D00E855F0 /* IAMAddBookViewController.m in Sources */,
 				64B9B4A516D7801100607F39 /* IAMNoteEdit.m in Sources */,
 				6421B46B1892DC7E008C7E46 /* RNDecryptor.m in Sources */,
 				6416315716D7DB830004CB52 /* IAMViewController.m in Sources */,
+				648F74651AA06D57004F20BF /* THPinViewController.m in Sources */,
 				6416315D16D8345F0004CB52 /* UIImage+RoundedCorner.m in Sources */,
 				64027D7B16DD7CB800DEA647 /* IAMPreferencesController.m in Sources */,
 				64522F3F18476D9900D65289 /* PublishedOn.m in Sources */,
@@ -717,6 +769,8 @@
 				64A8A7E316E781EB0013AFFF /* IAMAddLinkViewController.m in Sources */,
 				64EB0F081819144E00DD9924 /* houdini_href_e.c in Sources */,
 				6421B4731892DCC4008C7E46 /* NSManagedObject+Serialization.m in Sources */,
+				648F74661AA06D57004F20BF /* UIImage+ImageEffects.m in Sources */,
+				648F74631AA06D57004F20BF /* THPinView.m in Sources */,
 				64EB0F0D1819144E00DD9924 /* stack.c in Sources */,
 				6421B46F1892DC8F008C7E46 /* STKeychain.m in Sources */,
 				64A8A7E616E7B4770013AFFF /* IAMAttachmentCell.m in Sources */,
@@ -726,10 +780,13 @@
 				64EB0F0A1819144E00DD9924 /* html.c in Sources */,
 				64BB200F16EA000E00FE6C77 /* GTThemer.m in Sources */,
 				64A755831702137A0085933D /* MicrophoneWindow.m in Sources */,
+				648F745F1AA06D57004F20BF /* THPinInputCirclesView.m in Sources */,
 				64F9AC4D1704544800299C1B /* UIImage+FixOrientation.m in Sources */,
 				648A2773171D875000338218 /* MBProgressHUD.m in Sources */,
+				648F74601AA06D57004F20BF /* THPinInputCircleView.m in Sources */,
 				64DE6C261727E5320031183A /* NSManagedObjectContext+FetchedObjectFromURI.m in Sources */,
 				64EB0F0C1819144E00DD9924 /* markdown.c in Sources */,
+				648F74611AA06D57004F20BF /* THPinNumButton.m in Sources */,
 				640A176A18190D9500DB5788 /* IAMMarkdownPreViewController.m in Sources */,
 				64EB0F071819144E00DD9924 /* buffer.c in Sources */,
 			);

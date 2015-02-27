@@ -154,10 +154,11 @@
     }
     THPinViewController *pinViewController = [[THPinViewController alloc] initWithDelegate:self];
     pinViewController.promptTitle = @"Unlock Janus Notes";
+    pinViewController.squareButtons = YES;
     pinViewController.promptColor = [UIColor colorWithRed:1.000 green:0.671 blue:0.051 alpha:1.000];
     pinViewController.view.tintColor = [UIColor colorWithRed:1.000 green:0.671 blue:0.051 alpha:1.000];
     pinViewController.backgroundColor = [UIColor whiteColor];
-    pinViewController.hideLetters = NO;
+    pinViewController.hideLetters = YES;
     [parentViewController presentViewController:pinViewController animated:YES completion:nil];
     // Test if fingerprint authentication is available on the device and a fingerprint has been enrolled.
     LAContext *context = [[LAContext alloc] init];
