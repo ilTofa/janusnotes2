@@ -1,9 +1,3 @@
-[submodule "THPinViewController"]
-	path = THPinViewController
-url=https://github.com/ilTofa/THPinViewController
 [submodule "INAppStoreWindow"]
 	path = INAppStoreWindow
 	url = https://github.com/indragiek/INAppStoreWindow
-[submodule "submodules"]
-	path = submodules
-	url = https://ilTofa@github.com/antiraum/THPinViewController.git
