@@ -25,3 +25,4 @@ Pods
 
 version.txt
 DropboxKeys.h
+*.xcscmblueprint
