@@ -634,7 +634,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = IAM;
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Giacomo Tufano";
 				TargetAttributes = {
 					64A0506B16D28CCA0025E179 = {
@@ -838,6 +838,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -898,8 +899,9 @@
 				INFOPLIST_FILE = "iTurms/iTurms-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = "it.iltofa.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = iTurms;
-				PROVISIONING_PROFILE = "a6a30401-adb3-4c31-ad79-560b2c538350";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -923,8 +925,9 @@
 				INFOPLIST_FILE = "iTurms/iTurms-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = "it.iltofa.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = iTurms;
-				PROVISIONING_PROFILE = "a6a30401-adb3-4c31-ad79-560b2c538350";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
