@@ -10,8 +10,6 @@
 		641A9BC818440F5800C2EE74 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64EA621316F7110300F4838E /* CoreData.framework */; };
 		6421B45918928939008C7E46 /* NSManagedObject+Serialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 6421B45818928939008C7E46 /* NSManagedObject+Serialization.m */; };
 		6421B45D1892CC5B008C7E46 /* it.iltofa.turms.archive.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6421B45C1892CC5B008C7E46 /* it.iltofa.turms.archive.icns */; };
-		642660171BECC7B7006D923C /* Ensembles.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 642660141BECC795006D923C /* Ensembles.framework */; };
-		642660191BECC7F3006D923C /* Ensembles.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642660141BECC795006D923C /* Ensembles.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		643BA050173D26E300A6C437 /* IAMOpenWithWC.m in Sources */ = {isa = PBXBuildFile; fileRef = 643BA04E173D26E300A6C437 /* IAMOpenWithWC.m */; };
 		643BA051173D26E300A6C437 /* IAMOpenWithWC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 643BA04F173D26E300A6C437 /* IAMOpenWithWC.xib */; };
 		644AC25B17257FE4007B51FF /* IAMTableUIWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 644AC25917257FE4007B51FF /* IAMTableUIWindowController.m */; };
@@ -67,41 +65,10 @@
 		64EE7C80180C58B9004B94E2 /* html.c in Sources */ = {isa = PBXBuildFile; fileRef = 64EE7C7B180C58B9004B94E2 /* html.c */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		642660131BECC795006D923C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6426600E1BECC795006D923C /* Ensembles Mac.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 6DAD10F918CA067900237084;
-			remoteInfo = Ensembles;
-		};
-		642660151BECC795006D923C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6426600E1BECC795006D923C /* Ensembles Mac.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 07592CA6177F2D1000816034;
-			remoteInfo = "Tests Mac";
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		642660181BECC7D5006D923C /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				642660191BECC7F3006D923C /* Ensembles.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		6421B45718928939008C7E46 /* NSManagedObject+Serialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSManagedObject+Serialization.h"; path = "../common/iCloud/NSManagedObject+Serialization.h"; sourceTree = "<group>"; };
 		6421B45818928939008C7E46 /* NSManagedObject+Serialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSManagedObject+Serialization.m"; path = "../common/iCloud/NSManagedObject+Serialization.m"; sourceTree = "<group>"; };
 		6421B45C1892CC5B008C7E46 /* it.iltofa.turms.archive.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = it.iltofa.turms.archive.icns; sourceTree = "<group>"; };
-		6426600E1BECC795006D923C /* Ensembles Mac.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "Ensembles Mac.xcodeproj"; path = "../Libraries/Ensembles/Framework/Ensembles Mac.xcodeproj"; sourceTree = "<group>"; };
 		643BA04D173D26E300A6C437 /* IAMOpenWithWC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMOpenWithWC.h; sourceTree = "<group>"; };
 		643BA04E173D26E300A6C437 /* IAMOpenWithWC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMOpenWithWC.m; sourceTree = "<group>"; };
 		643BA04F173D26E300A6C437 /* IAMOpenWithWC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IAMOpenWithWC.xib; sourceTree = "<group>"; };
@@ -208,7 +175,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				642660171BECC7B7006D923C /* Ensembles.framework in Frameworks */,
 				64D985CF197B23C7006D008E /* Carbon.framework in Frameworks */,
 				64766FAB1927D7BF00EFF249 /* libcrypto.a in Frameworks */,
 				64C8DD0919267C50007DF53E /* StoreKit.framework in Frameworks */,
@@ -223,15 +189,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		6426600F1BECC795006D923C /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				642660141BECC795006D923C /* Ensembles.framework */,
-				642660161BECC795006D923C /* Tests Mac.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		644AC25D17257FEB007B51FF /* Main UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -311,7 +268,6 @@
 		64EA620316F7110300F4838E = {
 			isa = PBXGroup;
 			children = (
-				6426600E1BECC795006D923C /* Ensembles Mac.xcodeproj */,
 				64EA621516F7110300F4838E /* Turms */,
 				64EA620E16F7110300F4838E /* Frameworks */,
 				64EA620D16F7110300F4838E /* Products */,
@@ -462,7 +418,6 @@
 				64EA620816F7110300F4838E /* Sources */,
 				64EA620916F7110300F4838E /* Frameworks */,
 				64EA620A16F7110300F4838E /* Resources */,
-				642660181BECC7D5006D923C /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -511,35 +466,12 @@
 			mainGroup = 64EA620316F7110300F4838E;
 			productRefGroup = 64EA620D16F7110300F4838E /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 6426600F1BECC795006D923C /* Products */;
-					ProjectRef = 6426600E1BECC795006D923C /* Ensembles Mac.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				64EA620B16F7110300F4838E /* Janus Notes 2 */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		642660141BECC795006D923C /* Ensembles.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Ensembles.framework;
-			remoteRef = 642660131BECC795006D923C /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		642660161BECC795006D923C /* Tests Mac.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "Tests Mac.xctest";
-			remoteRef = 642660151BECC795006D923C /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		64EA620A16F7110300F4838E /* Resources */ = {
@@ -669,7 +601,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Turms/Turms.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -677,7 +608,6 @@
 				GCC_PREFIX_HEADER = "Turms/Janus Notes 2-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = "DEMO=1";
 				INFOPLIST_FILE = "Turms/Janus Notes 2-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/../common/openssl-1.0.1g/lib",
@@ -732,7 +662,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Turms/Turms.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -742,7 +671,6 @@
 					"DEMO=1",
 				);
 				INFOPLIST_FILE = "Turms/Janus Notes 2-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/../common/openssl-1.0.1g/lib",
@@ -822,13 +750,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Turms/Turms.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Turms/Janus Notes 2-Prefix.pch";
 				INFOPLIST_FILE = "Turms/Janus Notes 2-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/../common/openssl-1.0.1g/lib",
@@ -850,14 +776,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Turms/Turms.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Turms/Janus Notes 2-Prefix.pch";
 				INFOPLIST_FILE = "Turms/Janus Notes 2-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/../common/openssl-1.0.1g/lib",

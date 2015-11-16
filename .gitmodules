@@ -4,6 +4,3 @@
 [submodule "Libraries/THPinViewController"]
 	path = Libraries/THPinViewController
 	url = https://ilTofa@github.com/ilTofa/THPinViewController.git
-[submodule "Libraries/Ensembles"]
-	path = Libraries/Ensembles
-	url = https://ilTofa@github.com/drewmccormack/ensembles.git

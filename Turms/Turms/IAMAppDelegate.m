@@ -14,13 +14,10 @@
 #import "Note.h"
 #import "Attachment.h"
 #import "validation.h"
-#import "Ensembles/Ensembles.h"
 
-@interface IAMAppDelegate () <SKPaymentTransactionObserver, CDEPersistentStoreEnsembleDelegate>
+@interface IAMAppDelegate () <SKPaymentTransactionObserver>
 
 @property (strong) IAMPrefsWindowController *prefsController;
-
-@property (strong) CDEPersistentStoreEnsemble *ensemble;
 
 - (IBAction)showFAQs:(id)sender;
 - (IBAction)showMarkdownHelp:(id)sender;
@@ -68,10 +65,7 @@
     [self addReadmeIfNeeded];
     // Check receipt
     [self whatever];
-    // Init Ensembles
-    [self ensemblesInit];
 }
-
 
 - (BOOL)application:(NSApplication *)theApplication openFile:(NSString *)filename {
     DLog(@"App called to open %@", filename);
@@ -321,48 +315,6 @@
 
 - (void)paymentQueue:(SKPaymentQueue *)queue updatedDownloads:(NSArray *)downloads {
     DLog(@"Called with %@", downloads);
-}
-
-#pragma mark - Ensembles
-
-- (void)ensemblesInit {
-    DLog(@"Initing Ensembles");
-    CDEICloudFileSystem *cloudFileSystem = [[CDEICloudFileSystem alloc] initWithUbiquityContainerIdentifier:@"iCloud.it.iltofa.Turms"];
-    NSURL *persistentStoreURL = [[self applicationFilesDirectory] URLByAppendingPathComponent:@"store.sqlite"];
-    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"IAmMine" withExtension:@"momd"];
-    self.ensemble = [[CDEPersistentStoreEnsemble alloc] initWithEnsembleIdentifier:@"MainStore" persistentStoreURL:persistentStoreURL managedObjectModelURL:modelURL cloudFileSystem:cloudFileSystem];
-    [self.ensemble setDelegate:self];
-    DLog(@"Persistent Store inited: %@", self.ensemble);
-    if (!self.ensemble.isLeeched) {
-        DLog(@"Leeching persistent store...");
-        [self.ensemble leechPersistentStoreWithCompletion:^(NSError *error) {
-            if (error) {
-                ALog(@"Could not leech to ensemble: %@", error);
-            } else {
-                DLog(@"Persistent store successfully leeched.");
-            }
-        }];
-    }
-    // the merge will be queued by the framework.
-    [self.ensemble mergeWithCompletion:^(NSError *error) {
-        if (error) {
-            ALog(@"Error merging: %@", error);
-        } else {
-            DLog(@"Changed merged.");
-        }
-    }];
-}
-
-- (void)persistentStoreEnsemble:(CDEPersistentStoreEnsemble *)ensemble didSaveMergeChangesWithNotification:(NSNotification *)notification {
-    [self.managedObjectContext performBlock:^{
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.managedObjectContext mergeChangesFromContextDidSaveNotification:notification];
-        });
-    }];
-}
-
-- (NSArray *)persistentStoreEnsemble:(CDEPersistentStoreEnsemble *)ensemble globalIdentifiersForManagedObjects:(NSArray *)objects {
-    return [objects valueForKeyPath:@"uuid"];
 }
 
 #pragma mark - Core Data
