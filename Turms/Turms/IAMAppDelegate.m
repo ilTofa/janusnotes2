@@ -145,6 +145,15 @@
     }
 }
 
+- (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication hasVisibleWindows:(BOOL)flag {
+    if (!flag) {
+        DLog(@"User clicked on dock. Show main window.");
+        [self.collectionController showWindow:self];
+        return NO;
+    }
+    return YES;
+}
+
 #pragma mark - Readme file
 
 -(void)addReadmeIfNeeded {
