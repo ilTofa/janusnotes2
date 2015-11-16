@@ -11,6 +11,7 @@
 #import "GTThemer.h"
 #import <MessageUI/MessageUI.h>
 #import <StoreKit/StoreKit.h>
+#import <LocalAuthentication/LocalAuthentication.h>
 #import "IAMAppDelegate.h"
 #import "THPinViewController.h"
 #import "STKeychain.h"
@@ -34,6 +35,7 @@ typedef enum {
 
 @property NSArray *products;
 @property NSString *oldEncryptionKey;
+@property BOOL deviceHaveFingerprintReader;
 
 @property UIAlertView *lockCodeAlert;
 
@@ -53,14 +55,30 @@ typedef enum {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NSError *error;
+    LAContext *context = [[LAContext alloc] init];
+    if ([context canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:nil]) {
+        self.deviceHaveFingerprintReader = YES;
+    } else {
+        self.deviceHaveFingerprintReader = NO;
+    }
     self.versionLabel.text = [NSString stringWithFormat:@"This is Janus Notes 2 %@ (%@)\n©2013 Giacomo Tufano - All rights reserved.\nIcons from icons8, licensed CC BY-ND 3.0", [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"], [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"]];
     // Load base values
     self.sortSelector.selectedSegmentIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"sortBy"];
     self.dateSelector.selectedSegmentIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"dateShown"];
     [self.tableView setContentOffset:CGPointZero animated:YES];
     self.cryptPasswordField.text = self.oldEncryptionKey = [(IAMAppDelegate *)[[UIApplication sharedApplication] delegate] cryptPassword];
-    NSError *error;
     self.lockSwitch.on = ([STKeychain getPasswordForUsername:@"lockCode" andServiceName:@"it.iltofa.turms" error:&error] != nil);
+    self.fingerprintSwitch.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"useFingerprint"];
+    if (self.deviceHaveFingerprintReader) {
+        if (self.lockSwitch.on) {
+            [self.fingerprintSwitch setEnabled:YES];
+        } else {
+            [self.fingerprintSwitch setEnabled:NO];
+        }
+    } else {
+        [self.fingerprintSwitch setEnabled:NO];
+    }
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -234,6 +252,9 @@ typedef enum {
                                                        delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
     lastAlert.alertViewStyle = UIAlertViewStyleDefault;
     [lastAlert show];
+    if (self.deviceHaveFingerprintReader) {
+        [self.fingerprintSwitch setEnabled:YES];
+    }
     return YES;
 }
 
@@ -304,6 +325,17 @@ typedef enum {
     } else {
         NSError *error;
         [STKeychain deleteItemForUsername:@"lockCode" andServiceName:@"it.iltofa.turms" error:&error];
+        [self.fingerprintSwitch setEnabled:NO];
+    }
+}
+
+- (IBAction)fingerprintAction:(id)sender {
+    if (self.fingerprintSwitch.on) {
+        DLog(@"Set useFingerprint");
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"useFingerprint"];
+    } else {
+        DLog(@"Set useFingerprint to NO");
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"useFingerprint"];
     }
 }
 

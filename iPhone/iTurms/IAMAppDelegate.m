@@ -170,7 +170,11 @@
 }
 
 - (void)authenticateWithTouchID:(UIViewController *)parentViewController {
-    // Check if we have local authentication
+    // Check if we want local authentication
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"useFingerprint"]) {
+        DLog(@"User don't want to use fingerptinting, so bail out");
+        return;
+    }
     // Get the local authentication context:
     LAContext *context = [[LAContext alloc] init];
     [context evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics localizedReason:@"Authenticate to access the notes" reply:^(BOOL success, NSError *authenticationError){
