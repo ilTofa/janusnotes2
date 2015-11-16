@@ -401,8 +401,8 @@ label riga 4</string>
                                                     <rect key="frame" x="1" y="1" width="197" height="40"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
-                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CmF-cu-fU9">
-                                                            <rect key="frame" x="1" y="11" width="196" height="18"/>
+                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="CmF-cu-fU9">
+                                                            <rect key="frame" x="1" y="11" width="196" height="19"/>
                                                             <animations/>
                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="Table View Cell" id="QZM-fp-IIz">
                                                                 <font key="font" metaFont="system" size="15"/>
