@@ -130,6 +130,10 @@
 
 - (IBAction)editNote:(id)sender {
 //    DLog(@"Selected note for editing is: %@", [self.arrayController selectedObjects][0]);
+    if ([[self.arrayController selectedObjects] firstObject] == nil) {
+        DLog(@"editNote called on an empty selection.");
+        return;
+    }
     if([(IAMAppDelegate *)[[NSApplication sharedApplication] delegate] nagUser]) {
         return;
     }
