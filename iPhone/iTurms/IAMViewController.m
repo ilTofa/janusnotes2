@@ -26,8 +26,6 @@
 
 @property (nonatomic) NSDateFormatter *dateFormatter;
 
-@property BOOL dropboxSyncStillPending;
-@property (atomic) NSDate *lastDropboxSync;
 @property NSTimer *pendingRefreshTimer;
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *booksSelectionButton;
@@ -49,13 +47,15 @@
 
 @implementation IAMViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-    self.dropboxSyncStillPending = NO;
+    self.appDelegate = (IAMAppDelegate *)[[UIApplication sharedApplication] delegate];
+    if (self.appDelegate.pinRequestNeeded) {
+        DLog(@"App wants PIN, show the dialog, then");
+        [self getPin:nil];
+    }
     [self loadPreviousSearchKeys];
     // Load & set some sane defaults
-    self.appDelegate = (IAMAppDelegate *)[[UIApplication sharedApplication] delegate];
     self.managedObjectContext = ((IAMAppDelegate *)[[UIApplication sharedApplication] delegate]).managedObjectContext;
     self.dateFormatter = [[NSDateFormatter alloc] init];
 	[self.dateFormatter setLocale:[NSLocale currentLocale]];
@@ -88,9 +88,6 @@
     [self sortAgain];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(processAds:) name:kSkipAdProcessingChanged object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(iCloudChangesComing:) name:kCoreDataStoreExternallyChanged object:nil];
-    if (self.appDelegate.pinRequestNeeded) {
-        [self getPin:nil];
-    }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getPin:) name:kViewControllerShouldShowPINRequest object:nil];
     // Ad support
     [self processAds:nil];

@@ -37,6 +37,12 @@
 {
     // Starting, so we want PIN request (if any) later
     self.userInitedShutdown = YES;
+    NSError *error;
+    NSString *pin = [STKeychain getPasswordForUsername:@"lockCode" andServiceName:@"it.iltofa.turms" error:&error];
+    if(pin) {
+        DLog(@"PIN (%@) is required!", pin);
+        self.pinRequestNeeded = YES;
+    }
    // Core Location init: get number of times user denied location use in app lifetime...
 	self.nLocationUseDenies = [[NSUserDefaults standardUserDefaults] integerForKey:@"userDeny"];
 	self.isLocationDenied = NO;
