@@ -268,7 +268,7 @@
 		64EA620316F7110300F4838E = {
 			isa = PBXGroup;
 			children = (
-				64EA621516F7110300F4838E /* Turms */,
+				64EA621516F7110300F4838E /* Janus Notes */,
 				64EA620E16F7110300F4838E /* Frameworks */,
 				64EA620D16F7110300F4838E /* Products */,
 			);
@@ -311,7 +311,7 @@
 			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
-		64EA621516F7110300F4838E /* Turms */ = {
+		64EA621516F7110300F4838E /* Janus Notes */ = {
 			isa = PBXGroup;
 			children = (
 				64629F64183F79F300753313 /* Images.xcassets */,
@@ -325,6 +325,7 @@
 				644AC25D17257FEB007B51FF /* Main UI */,
 				644AC27A1726CFB1007B51FF /* Preferences */,
 			);
+			name = "Janus Notes";
 			path = Turms;
 			sourceTree = "<group>";
 		};
