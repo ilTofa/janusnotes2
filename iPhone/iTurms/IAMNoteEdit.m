@@ -94,12 +94,14 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    [(IAMAppDelegate *)[[UIApplication sharedApplication] delegate] setCurrentController:self];
     [self.navigationController setToolbarHidden:YES animated:NO];
     [self bookButtonSetup];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getPin:) name:kViewControllerShouldShowPINRequest object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kViewControllerShouldShowPINRequest object:nil];
     if (![self.originalText isEqualToString:self.textEdit.text] || ![self.originalTitle isEqualToString:self.titleEdit.text]) {
         DLog(@"Note is changed, save it in any case.");
         [self save:nil];

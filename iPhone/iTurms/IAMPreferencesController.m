@@ -66,6 +66,7 @@ typedef enum {
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    [(IAMAppDelegate *)[[UIApplication sharedApplication] delegate] setCurrentController:self];
     [self.navigationController setToolbarHidden:YES animated:YES];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(skipAdProcessed:) name:kSkipAdProcessingChanged object:nil];
     [self updateStoreUI];

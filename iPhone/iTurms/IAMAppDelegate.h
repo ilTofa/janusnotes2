@@ -39,6 +39,7 @@
 // PIN support
 @property BOOL pinRequestNeeded;
 - (void)getPinOnWindow:(UIViewController *)parentViewController;
+@property (weak) UIViewController *currentController;
 
 // Ads
 @property (nonatomic) BOOL skipAds;

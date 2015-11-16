@@ -83,6 +83,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    [(IAMAppDelegate *)[[UIApplication sharedApplication] delegate] setCurrentController:self];
     [self.navigationController setToolbarHidden:NO animated:YES];
     [self sortAgain];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(processAds:) name:kSkipAdProcessingChanged object:nil];

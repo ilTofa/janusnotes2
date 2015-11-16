@@ -21,6 +21,7 @@
 @interface IAMAppDelegate() <THPinViewControllerDelegate>
 
 @property (atomic) BOOL userInitedShutdown;
+@property BOOL pinRequestedAtShutdown;
 
 @end
 
@@ -55,12 +56,28 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    DLog(@"Marking user inited app shutdown.");
     self.userInitedShutdown = YES;
+    NSError *error;
+    NSString *pin = [STKeychain getPasswordForUsername:@"lockCode" andServiceName:@"it.iltofa.turms" error:&error];
+    if(pin) {
+        DLog(@"PIN (%@) is required!", pin);
+        self.pinRequestNeeded = YES;
+        if (self.currentController) {
+            DLog(@"Requesting PIN and marking user inited app shutdown.");
+            self.pinRequestedAtShutdown = YES;
+            [self getPinOnWindow:self.currentController];
+        } else {
+            DLog(@"No controller, marking user inited app shutdown.");
+            self.pinRequestedAtShutdown = NO;
+        }
+    } else {
+        DLog(@"PIN (%@) not required!", pin);
+        self.pinRequestNeeded = NO;
+        self.pinRequestedAtShutdown = NO;
+    }
 }
 
-- (void)applicationWillEnterForeground:(UIApplication *)application
-{
+- (void)applicationWillEnterForeground:(UIApplication *)application {
     DLog(@"Here we are.");
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
@@ -79,8 +96,26 @@
     NSString *pin = [STKeychain getPasswordForUsername:@"lockCode" andServiceName:@"it.iltofa.turms" error:&error];
     if(pin) {
         DLog(@"PIN (%@) is required!", pin);
-        self.pinRequestNeeded = YES;
-        [[NSNotificationCenter defaultCenter] postNotificationName:kViewControllerShouldShowPINRequest object:self userInfo:nil];
+        if (self.pinRequestedAtShutdown) {
+            DLog(@"UI is already in place, tough... will try to use TouchID");
+            if (self.currentController) {
+                if (self.pinRequestedAtShutdown) {
+                    LAContext *context = [[LAContext alloc] init];
+                    if ([context canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:nil]) {
+                        [self authenticateWithTouchID:self.currentController];
+                    }
+                }
+            }
+        } else {
+            self.pinRequestNeeded = YES;
+            if (self.currentController) {
+                DLog(@"loading the form on current controller.");
+                [self getPinOnWindow:self.currentController];
+            } else {
+                DLog(@"posting a notification");
+                [[NSNotificationCenter defaultCenter] postNotificationName:kViewControllerShouldShowPINRequest object:self userInfo:nil];
+            }
+        }
     } else {
         DLog(@"PIN (%@) not required!", pin);
         self.pinRequestNeeded = NO;
@@ -115,6 +150,7 @@
         return NO;
     } else {
         self.pinRequestNeeded = NO;
+        self.pinRequestedAtShutdown = NO;
         return YES;
     }
 }
@@ -161,9 +197,11 @@
     pinViewController.hideLetters = YES;
     [parentViewController presentViewController:pinViewController animated:YES completion:nil];
     // Test if fingerprint authentication is available on the device and a fingerprint has been enrolled.
-    LAContext *context = [[LAContext alloc] init];
-    if ([context canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:nil]) {
-        [self authenticateWithTouchID:parentViewController];
+    if (!self.pinRequestedAtShutdown) {
+        LAContext *context = [[LAContext alloc] init];
+        if ([context canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:nil]) {
+            [self authenticateWithTouchID:parentViewController];
+        }
     }
 }
 
@@ -537,7 +575,7 @@
     // If it's a relatively recent event and accuracy is satisfactory, turn off updates to save power (only if we're using standard location)
     NSDate* eventDate = newLocation.timestamp;
     NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
-    if (abs(howRecent) < 5.0 && newLocation.horizontalAccuracy < 501) {
+    if (fabs(howRecent) < 5.0 && newLocation.horizontalAccuracy < 501) {
         DLog(@"It's a relatively recent event and accuracy is satisfactory, turning off GPS");
         [manager stopUpdatingLocation];
         manager = nil;
