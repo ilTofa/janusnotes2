@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Books Selection View Controller-->
@@ -836,7 +837,7 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ng4-na-vR4">
-                                                    <rect key="frame" x="20" y="7" width="560" height="30"/>
+                                                    <rect key="frame" x="20" y="7" width="560" height="33"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" returnKeyType="done"/>
@@ -844,8 +845,8 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                                         <outlet property="delegate" destination="mV7-Kq-sdp" id="r2w-jW-at6"/>
                                                     </connections>
                                                 </textField>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LX2-Cm-qfa">
-                                                    <rect key="frame" x="20" y="45" width="280" height="30"/>
+                                                <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LX2-Cm-qfa">
+                                                    <rect key="frame" x="20" y="48" width="560" height="30"/>
                                                     <animations/>
                                                     <state key="normal" title="Change the Key">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -854,8 +855,8 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                                         <action selector="cryptPasswordChangeAction:" destination="mV7-Kq-sdp" eventType="touchUpInside" id="cgN-3S-O6z"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="nQL-V2-rKf">
-                                                    <rect key="frame" x="20" y="73" width="280" height="76"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="nQL-V2-rKf">
+                                                    <rect key="frame" x="20" y="86" width="560" height="63"/>
                                                     <animations/>
                                                     <string key="text">Please wait for the sync to end before changing the encryption Key. We strongly recommend to backup the data (on a Macintosh) before trying to change the value.</string>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
@@ -865,9 +866,18 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                                             </subviews>
                                             <animations/>
                                             <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="nQL-V2-rKf" secondAttribute="trailing" constant="12" id="62m-g5-jMJ"/>
                                                 <constraint firstAttribute="trailing" secondItem="ng4-na-vR4" secondAttribute="trailing" constant="20" symbolic="YES" id="9rS-oP-deB"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="LX2-Cm-qfa" secondAttribute="trailing" constant="12" id="HDl-fs-W1q"/>
                                                 <constraint firstItem="ng4-na-vR4" firstAttribute="leading" secondItem="5rE-yo-Ht7" secondAttribute="leading" constant="20" symbolic="YES" id="JUD-Bw-lac"/>
+                                                <constraint firstItem="nQL-V2-rKf" firstAttribute="top" secondItem="LX2-Cm-qfa" secondAttribute="bottom" constant="8" id="Q0u-GI-mPN"/>
+                                                <constraint firstItem="ng4-na-vR4" firstAttribute="top" secondItem="5rE-yo-Ht7" secondAttribute="topMargin" constant="-1" id="Ty9-ag-6ZI"/>
                                                 <constraint firstItem="ng4-na-vR4" firstAttribute="top" secondItem="5rE-yo-Ht7" secondAttribute="top" constant="7" id="aoA-qA-Gqx"/>
+                                                <constraint firstItem="LX2-Cm-qfa" firstAttribute="leading" secondItem="5rE-yo-Ht7" secondAttribute="leadingMargin" constant="12" id="d2I-Oi-7Ra"/>
+                                                <constraint firstItem="LX2-Cm-qfa" firstAttribute="top" secondItem="ng4-na-vR4" secondAttribute="bottom" constant="8" id="hKA-Ye-YJt"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="nQL-V2-rKf" secondAttribute="bottom" constant="-8" id="nu0-73-RcL"/>
+                                                <constraint firstItem="nQL-V2-rKf" firstAttribute="top" secondItem="LX2-Cm-qfa" secondAttribute="bottom" constant="8" id="rnu-K6-MCF"/>
+                                                <constraint firstItem="nQL-V2-rKf" firstAttribute="leading" secondItem="5rE-yo-Ht7" secondAttribute="leadingMargin" constant="12" id="ry0-Es-2KB"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <animations/>
@@ -1043,7 +1053,7 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RTV-Z7-fDX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="840" y="917.95774647887322"/>
+            <point key="canvasLocation" x="840" y="917"/>
         </scene>
     </scenes>
     <resources>
