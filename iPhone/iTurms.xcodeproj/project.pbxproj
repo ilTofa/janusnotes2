@@ -17,7 +17,7 @@
 		6416315916D831DB0004CB52 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6416315816D831DB0004CB52 /* MobileCoreServices.framework */; };
 		6416315D16D8345F0004CB52 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 6416315C16D8345F0004CB52 /* UIImage+RoundedCorner.m */; };
 		641858C21850DC8D00E855F0 /* IAMAddBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 641858C11850DC8D00E855F0 /* IAMAddBookViewController.m */; };
-		641A5EFC16ED463B00D3440C /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 641A5EFB16ED463B00D3440C /* MainStoryboard_iPad.storyboard */; };
+		641A5EFC16ED463B00D3440C /* MainStoryboard_Old4iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 641A5EFB16ED463B00D3440C /* MainStoryboard_Old4iPad.storyboard */; };
 		641D954416E8CF6E00A253E3 /* IAMAttachmentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 641D954316E8CF6E00A253E3 /* IAMAttachmentDetailViewController.m */; };
 		6421B4691892DC7E008C7E46 /* RNCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6421B4621892DC7E008C7E46 /* RNCryptor.m */; };
 		6421B46A1892DC7E008C7E46 /* RNCryptorEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 6421B4641892DC7E008C7E46 /* RNCryptorEngine.m */; };
@@ -128,7 +128,7 @@
 		6416315C16D8345F0004CB52 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
 		641858C01850DC8D00E855F0 /* IAMAddBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMAddBookViewController.h; sourceTree = "<group>"; };
 		641858C11850DC8D00E855F0 /* IAMAddBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMAddBookViewController.m; sourceTree = "<group>"; };
-		641A5EFB16ED463B00D3440C /* MainStoryboard_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		641A5EFB16ED463B00D3440C /* MainStoryboard_Old4iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_Old4iPad.storyboard; sourceTree = "<group>"; };
 		641D954216E8CF6E00A253E3 /* IAMAttachmentDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMAttachmentDetailViewController.h; sourceTree = "<group>"; };
 		641D954316E8CF6E00A253E3 /* IAMAttachmentDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMAttachmentDetailViewController.m; sourceTree = "<group>"; };
 		6421B45F1892DC7E008C7E46 /* RNCryptor+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor+Private.h"; sourceTree = "<group>"; };
@@ -536,7 +536,7 @@
 				64A0507F16D28CCA0025E179 /* IAMAppDelegate.m */,
 				64101E2816F087CF0086AD5F /* Themes */,
 				64A0508716D28CCA0025E179 /* MainStoryboard.storyboard */,
-				641A5EFB16ED463B00D3440C /* MainStoryboard_iPad.storyboard */,
+				641A5EFB16ED463B00D3440C /* MainStoryboard_Old4iPad.storyboard */,
 				641D954116E8CD8200A253E3 /* Note Edit */,
 				64896D2A184F334C00AE5EEF /* Preferences */,
 				64A0507616D28CCA0025E179 /* Supporting Files */,
@@ -705,7 +705,7 @@
 				64A8A7EA16E7B6010013AFFF /* link-icon-big@2x.png in Resources */,
 				64A8A7ED16E7BCF90013AFFF /* link-unknown-big.png in Resources */,
 				64A8A7EE16E7BCF90013AFFF /* link-unknown-big@2x.png in Resources */,
-				641A5EFC16ED463B00D3440C /* MainStoryboard_iPad.storyboard in Resources */,
+				641A5EFC16ED463B00D3440C /* MainStoryboard_Old4iPad.storyboard in Resources */,
 				64A75566170212A40085933D /* link-microphone.png in Resources */,
 				648F74641AA06D57004F20BF /* THPinViewController.bundle in Resources */,
 				64A75567170212A40085933D /* link-microphone@2x.png in Resources */,

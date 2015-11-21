@@ -445,19 +445,10 @@
     }
     if ([[segue identifier] isEqualToString:@"BooksSelection"]) {
         IAMBooksSelectionViewController *booksSelector;
-        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-            booksSelector = [segue destinationViewController];
-        } else {
-            UINavigationController *navigationController = (UINavigationController *)segue.destinationViewController;
-            booksSelector = [[navigationController viewControllers] lastObject];
-        }
+        booksSelector = [segue destinationViewController];
         booksSelector.delegate = self;
         booksSelector.selectedBooks = self.selectedBooks;
         booksSelector.multiSelectionAllowed = YES;
-        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-            self.popSegue = ((UIStoryboardPopoverSegue *)segue).popoverController;
-            self.popSegue.delegate = self;
-        }
     }
 }
 
