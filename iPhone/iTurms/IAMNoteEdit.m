@@ -11,7 +11,6 @@
 #import "IAMNoteEdit.h"
 
 #import <MobileCoreServices/MobileCoreServices.h>
-#import <iAd/iAd.h>
 
 #import "IAMAppDelegate.h"
 #import "Attachment.h"
@@ -87,7 +86,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dynamicFontChanged:) name:UIContentSizeCategoryDidChangeNotification object:nil];
     self.attachmensAreHidden = NO;
     [self refreshAttachments];
-    [self processAds:nil];
     [self setupTitleBar];
     // If this is a new note, set the cursor on title field
     if([self.titleEdit.text isEqualToString:@""])
@@ -127,21 +125,6 @@
         DLog(@"Called from notification.");
     }
     [(IAMAppDelegate *)[[UIApplication sharedApplication] delegate] getPinOnWindow:self];
-}
-
-- (void)processAds:(NSNotification *)note {
-    if (note) {
-        DLog(@"Called by notification...");
-    }
-    if ([self respondsToSelector:@selector(setCanDisplayBannerAds:)]) {
-        if (!((IAMAppDelegate *)[[UIApplication sharedApplication] delegate]).skipAds) {
-            DLog(@"Preparing Ads");
-            self.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
-        } else {
-            DLog(@"Skipping ads");
-            self.interstitialPresentationPolicy = ADInterstitialPresentationPolicyNone;
-        }
-    }
 }
 
 - (void)dynamicFontChanged:(NSNotification *)notification {

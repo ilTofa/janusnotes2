@@ -64,14 +64,11 @@
 	[self.dateFormatter setDateStyle:NSDateFormatterMediumStyle];
 	[self.dateFormatter setTimeStyle:NSDateFormatterShortStyle];
     [self.dateFormatter setDoesRelativeDateFormatting:YES];
-    // Ad support
-    [self processAds:nil];
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
     // Notifications to be honored during controller lifecycle
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismissPopoverRequested:) name:kPreferencesPopoverCanBeDismissed object:nil];
     }
-    [self processAds:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dynamicFontChanged:) name:UIContentSizeCategoryDidChangeNotification object:nil];
     [self setupFetchExecAndReload];
 }
@@ -88,16 +85,13 @@
     [(IAMAppDelegate *)[[UIApplication sharedApplication] delegate] setCurrentController:self];
     [self.navigationController setToolbarHidden:NO animated:YES];
     [self sortAgain];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(processAds:) name:kSkipAdProcessingChanged object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(iCloudChangesComing:) name:kCoreDataStoreExternallyChanged object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getPin:) name:kViewControllerShouldShowPINRequest object:nil];
     // Ad support
-    [self processAds:nil];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:kSkipAdProcessingChanged object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kViewControllerShouldShowPINRequest object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kCoreDataStoreExternallyChanged object:nil];
 }
@@ -109,21 +103,6 @@
 - (void)iCloudChangesComing:(NSNotification *)note {
     DLog(@"Detected core data icloud changes, reloading.");
     [self sortAgain];
-}
-
-- (void)processAds:(NSNotification *)note {
-    if (note) {
-        DLog(@"Called by notification...");
-    }
-    if (!((IAMAppDelegate *)[[UIApplication sharedApplication] delegate]).skipAds) {
-        DLog(@"Preparing Ads");
-        self.canDisplayBannerAds = YES;
-        self.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
-    } else {
-        DLog(@"Skipping ads");
-        self.canDisplayBannerAds = NO;
-        self.interstitialPresentationPolicy = ADInterstitialPresentationPolicyNone;
-    }
 }
 
 - (void)dynamicFontChanged:(NSNotification *)aNotification {

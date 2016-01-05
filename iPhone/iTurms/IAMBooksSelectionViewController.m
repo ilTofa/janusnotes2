@@ -47,9 +47,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self.navigationController setToolbarHidden:NO animated:YES];
-    [self processAds:nil];
     [self setupFetchExecAndReload];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(processAds:) name:kSkipAdProcessingChanged object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dynamicFontChanged:) name:UIContentSizeCategoryDidChangeNotification object:nil];
 }
 
@@ -61,21 +59,6 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)processAds:(NSNotification *)note {
-    if (note) {
-        DLog(@"Called by notification...");
-    }
-    if (!((IAMAppDelegate *)[[UIApplication sharedApplication] delegate]).skipAds) {
-        DLog(@"Preparing Ads");
-        self.canDisplayBannerAds = YES;
-        self.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
-    } else {
-        DLog(@"Skipping ads");
-        self.canDisplayBannerAds = NO;
-        self.interstitialPresentationPolicy = ADInterstitialPresentationPolicyNone;
-    }
 }
 
 - (void)dynamicFontChanged:(NSNotification *)aNotification {

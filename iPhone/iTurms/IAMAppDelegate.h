@@ -10,16 +10,14 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
-#import <StoreKit/StoreKit.h>
 #import <CoreData/CoreData.h>
 
 #define kGotLocation @"gotLocation"
-#define kSkipAdProcessingChanged @"skipAdChanged"
 #define kCoreDataStoreExternallyChanged @"kCoreDataStoreExternallyChanged"
 #define kViewControllerShouldShowPINRequest @"kViewControllerShouldShowPINRequest"
 
 
-@interface IAMAppDelegate : UIResponder <UIApplicationDelegate, CLLocationManagerDelegate, SKPaymentTransactionObserver>
+@interface IAMAppDelegate : UIResponder <UIApplicationDelegate, CLLocationManagerDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
@@ -42,9 +40,5 @@
 @property BOOL pinRequestNeeded;
 - (void)getPinOnWindow:(UIViewController *)parentViewController;
 @property (weak) UIViewController *currentController;
-
-// Ads
-@property (nonatomic) BOOL skipAds;
-@property (atomic) BOOL processingPurchase;
 
 @end

@@ -36,10 +36,8 @@
 		645A7E6718183846003C9D5A /* link-browser-big@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 645A7E6318183846003C9D5A /* link-browser-big@2x.png */; };
 		645A7E6818183846003C9D5A /* link-browser.png in Resources */ = {isa = PBXBuildFile; fileRef = 645A7E6418183846003C9D5A /* link-browser.png */; };
 		645A7E6918183846003C9D5A /* link-browser@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 645A7E6518183846003C9D5A /* link-browser@2x.png */; };
-		645ED8AC1754F1640070F83B /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CB194417392B710014F35F /* StoreKit.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		645ED8AF1754F7730070F83B /* link-microphone-big.png in Resources */ = {isa = PBXBuildFile; fileRef = 645ED8AD1754F7730070F83B /* link-microphone-big.png */; };
 		645ED8B01754F7730070F83B /* link-microphone-big@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 645ED8AE1754F7730070F83B /* link-microphone-big@2x.png */; };
-		6476C11017E0CE270094C4AB /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CB194A17392BAD0014F35F /* iAd.framework */; };
 		647DEAF417E701D900D3EE57 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CB194617392B7C0014F35F /* MessageUI.framework */; };
 		64896D2D184F336800AE5EEF /* IAMBooksSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64896D2C184F336800AE5EEF /* IAMBooksSelectionViewController.m */; };
 		648A2773171D875000338218 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 648A2772171D875000338218 /* MBProgressHUD.m */; };
@@ -238,10 +236,8 @@
 		64BF705E19D6CD30001F8BCC /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/MicrophoneStrings.strings; sourceTree = "<group>"; };
 		64BF705F19D6CD34001F8BCC /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/MicrophoneStrings.strings; sourceTree = "<group>"; };
 		64CB194217392B520014F35F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		64CB194417392B710014F35F /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		64CB194617392B7C0014F35F /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		64CB194817392B860014F35F /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
-		64CB194A17392BAD0014F35F /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		64CEF2BB17D0E65900D3A58B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		64CEF2BD17D1F70900D3A58B /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		64DE6C241727E5320031183A /* NSManagedObjectContext+FetchedObjectFromURI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSManagedObjectContext+FetchedObjectFromURI.h"; path = "../common/iCloud/NSManagedObjectContext+FetchedObjectFromURI.h"; sourceTree = "<group>"; };
@@ -278,9 +274,7 @@
 			files = (
 				645094991A74663A00B2B331 /* LocalAuthentication.framework in Frameworks */,
 				647DEAF417E701D900D3EE57 /* MessageUI.framework in Frameworks */,
-				6476C11017E0CE270094C4AB /* iAd.framework in Frameworks */,
 				64CEF2BE17D1F70900D3A58B /* libc++.dylib in Frameworks */,
-				645ED8AC1754F1640070F83B /* StoreKit.framework in Frameworks */,
 				64BB69F41715BB6600875601 /* QuartzCore.framework in Frameworks */,
 				64BB69F21715BB5F00875601 /* SystemConfiguration.framework in Frameworks */,
 				64BB69F01715BB5700875601 /* Security.framework in Frameworks */,
@@ -504,10 +498,8 @@
 			children = (
 				645094981A74663A00B2B331 /* LocalAuthentication.framework */,
 				64CEF2BD17D1F70900D3A58B /* libc++.dylib */,
-				64CB194A17392BAD0014F35F /* iAd.framework */,
 				64CB194817392B860014F35F /* AdSupport.framework */,
 				64CB194617392B7C0014F35F /* MessageUI.framework */,
-				64CB194417392B710014F35F /* StoreKit.framework */,
 				64CB194217392B520014F35F /* AudioToolbox.framework */,
 				64BB69F31715BB6600875601 /* QuartzCore.framework */,
 				64BB69F11715BB5F00875601 /* SystemConfiguration.framework */,

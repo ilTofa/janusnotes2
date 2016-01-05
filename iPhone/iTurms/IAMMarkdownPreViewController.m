@@ -14,7 +14,6 @@
 #import "html.h"
 
 #import "IAMAppDelegate.h"
-#import <iAd/iAd.h>
 
 @interface IAMMarkdownPreViewController ()
 
@@ -41,17 +40,6 @@
     self.cacheDirectory = [[NSFileManager defaultManager] URLForDirectory:NSCachesDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:&error];
     self.cacheFile = [self.cacheDirectory URLByAppendingPathComponent:@"preview.html"];
     self.titleLabel.text = self.markdownTitle;
-    if ([self respondsToSelector:@selector(setCanDisplayBannerAds:)]) {
-        if (!((IAMAppDelegate *)[[UIApplication sharedApplication] delegate]).skipAds) {
-            DLog(@"Preparing Ads");
-            self.canDisplayBannerAds = YES;
-            self.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
-        } else {
-            DLog(@"Skipping ads");
-            self.canDisplayBannerAds = NO;
-            self.interstitialPresentationPolicy = ADInterstitialPresentationPolicyNone;
-        }
-    }
     [self loadMarkdownPreview];
 }
 

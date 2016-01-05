@@ -12,7 +12,6 @@
 
 #import "GTThemer.h"
 #import <MessageUI/MessageUI.h>
-#import <StoreKit/StoreKit.h>
 #import <LocalAuthentication/LocalAuthentication.h>
 #import "IAMAppDelegate.h"
 #import "THPinViewController.h"
@@ -29,11 +28,9 @@ typedef enum {
     supportHelp = 0,
     supportUnsatisfied,
     supportSatisfied,
-    supportCoffee,
-    supportRestore
 } supportOptions;
 
-@interface IAMPreferencesController () <MFMailComposeViewControllerDelegate, SKProductsRequestDelegate, THPinViewControllerDelegate>
+@interface IAMPreferencesController () <MFMailComposeViewControllerDelegate, THPinViewControllerDelegate>
 
 @property NSArray *products;
 @property NSString *oldEncryptionKey;
@@ -64,7 +61,7 @@ typedef enum {
     } else {
         self.deviceHaveFingerprintReader = NO;
     }
-    self.versionLabel.text = [NSString stringWithFormat:@"This is Janus Notes 2 %@ (%@)\n©2013 Giacomo Tufano - All rights reserved.\nIcons from icons8, licensed CC BY-ND 3.0", [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"], [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"]];
+    self.versionLabel.text = [NSString stringWithFormat:@"This is Janus Notes 2 %@ (%@)\n©2013 Giacomo Tufano - Licensed with MIT License.\nIcons from icons8, licensed CC BY-ND 3.0", [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"], [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"]];
     // Load base values
     self.sortSelector.selectedSegmentIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"sortBy"];
     self.dateSelector.selectedSegmentIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"dateShown"];
@@ -88,80 +85,11 @@ typedef enum {
     [super viewDidAppear:animated];
     [(IAMAppDelegate *)[[UIApplication sharedApplication] delegate] setCurrentController:self];
     [self.navigationController setToolbarHidden:YES animated:YES];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(skipAdProcessed:) name:kSkipAdProcessingChanged object:nil];
-    [self updateStoreUI];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [super viewDidDisappear:animated];
-}
-
-- (void)skipAdProcessed:(NSNotification *)aNotification {
-    DLog(@"Got a notifaction for store processing");
-    [self updateStoreUI];
-}
-
-- (void)disableAllStoreUIOptions {
-    self.productCoffeeCell.userInteractionEnabled = self.restoreCell.userInteractionEnabled = NO;
-    self.productCoffeeLabel.enabled = self.restoreCellLabel.enabled = NO;
-    self.productCoffeePriceLabel.enabled = NO;
-    self.productCoffeePriceLabel.text = @"-";
-}
-
-- (void)updateStoreUI {
-    // Disable store while we look for the products
-    [self disableAllStoreUIOptions];
-    // No money? No products!
-    if (![SKPaymentQueue canMakePayments]) {
-        self.productCoffeePriceLabel.text = @"Payments disabled.";
-        return;
-    }
-    // If user already paid, leave disabled
-    if (((IAMAppDelegate *)[[UIApplication sharedApplication] delegate]).skipAds) {
-        self.productCoffeePriceLabel.text = @"Already bought.";
-        return;
-    }
-    // If a transaction is already in progress, leave disabled
-    if (((IAMAppDelegate *)[[UIApplication sharedApplication] delegate]).processingPurchase) {
-        self.productCoffeePriceLabel.text = @"Transaction still in progress.";
-        return;
-    }
-    DLog(@"starting request for products.");
-    NSURL *url = [[NSBundle mainBundle] URLForResource:@"In-App-Products" withExtension:@"plist"];
-    NSArray *productIdentifiers = [NSArray arrayWithContentsOfURL:url];
-    SKProductsRequest *productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithArray:productIdentifiers]];
-    productsRequest.delegate = self;
-    [productsRequest start];
-}
-
-// SKProductsRequestDelegate protocol method
-- (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response
-{
-    self.products = response.products;
-    for (NSString __unused * invalidProductIdentifier in response.invalidProductIdentifiers) {
-        // Handle any invalid product identifiers.
-    }
-    DLog(@"%@", self.products);
-     // Custom method
-    if ([self.products count] == 0) {
-        DLog(@"Void or invalid product array, returning");
-        return;
-    }
-    SKProduct *product = self.products[0];
-    self.productCoffeeLabel.text = product.localizedTitle;
-    NSNumberFormatter * numberFormatter = [[NSNumberFormatter alloc] init];
-    [numberFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
-    [numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
-    [numberFormatter setLocale:product.priceLocale];
-    NSString * formattedPrice = [numberFormatter stringFromNumber:product.price];
-    self.productCoffeePriceLabel.text = formattedPrice;
-    self.productCoffeeCell.userInteractionEnabled = self.productCoffeeLabel.enabled = self.productCoffeePriceLabel.enabled = YES;
-    self.restoreCell.userInteractionEnabled = self.restoreCellLabel.enabled = YES;
-}
-
-- (void)request:(SKRequest *)request didFailWithError:(NSError *)error {
-    DLog(@"request failed: %@,  %@", request, error);
 }
 
 - (void)didReceiveMemoryWarning
@@ -189,14 +117,6 @@ typedef enum {
         } else if (indexPath.row == supportSatisfied) {
             DLog(@"Call iRate for rating");
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=879143273&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8"]];
-        } else if (indexPath.row == supportCoffee) {
-            DLog(@"Buy Ads Removal");
-            SKPayment *payment = [SKPayment paymentWithProduct:self.products[0]];
-            [[SKPaymentQueue defaultQueue] addPayment:payment];
-        } else if (indexPath.row == supportRestore) {
-            DLog(@"Restore Ads Removal");
-            [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
-            [self disableAllStoreUIOptions];
         }
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
