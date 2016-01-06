@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="IAMPrefsWindowController">
             <connections>
                 <outlet property="encryptionKeyField" destination="QEA-h6-FLN" id="6Se-ls-acZ"/>
-                <outlet property="productCoffeeLabel" destination="scW-Kk-ALX" id="HAH-mb-lvH"/>
-                <outlet property="productCoffeePriceLabel" destination="uCX-vX-q1O" id="KsI-qO-633"/>
-                <outlet property="restoreCellLabel" destination="7Uy-Fw-XhV" id="4M2-Bf-6Ib"/>
                 <outlet property="window" destination="1" id="3"/>
             </connections>
         </customObject>
@@ -30,78 +27,6 @@
                         <rect key="frame" x="13" y="10" width="468" height="202"/>
                         <font key="font" metaFont="system"/>
                         <tabViewItems>
-                            <tabViewItem label="Purchase" identifier="" id="szN-1x-dOg">
-                                <view key="view" id="ei9-Rw-b2C">
-                                    <rect key="frame" x="10" y="33" width="448" height="156"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="53C-AQ-cpl">
-                                            <rect key="frame" x="15" y="86" width="418" height="56"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="56" id="05V-Lp-pIP"/>
-                                                <constraint firstAttribute="width" constant="414" id="7b1-53-gK9"/>
-                                            </constraints>
-                                            <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" id="e4s-iZ-LJt">
-                                                <font key="font" metaFont="smallSystem"/>
-                                                <string key="title">If you're happy with the app and you're using it regularly, show your appreciation by building the Full Version.
-This will stop the app from nagging you from time to time and will give the developers reasons to continue development of the app.</string>
-                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
-                                        <button translatesAutoresizingMaskIntoConstraints="NO" id="scW-Kk-ALX">
-                                            <rect key="frame" x="209" y="47" width="224" height="30"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="25" id="Q22-ct-sz9"/>
-                                                <constraint firstAttribute="width" constant="220" id="rOH-Ie-Ljm"/>
-                                            </constraints>
-                                            <buttonCell key="cell" type="bevel" title="Happy? Buy Full Version!" bezelStyle="regularSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Uqm-jP-7Ks">
-                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="removeAds:" target="-2" id="wmL-gR-bh8"/>
-                                            </connections>
-                                        </button>
-                                        <button translatesAutoresizingMaskIntoConstraints="NO" id="7Uy-Fw-XhV">
-                                            <rect key="frame" x="209" y="14" width="224" height="30"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="25" id="LAx-To-BMZ"/>
-                                                <constraint firstAttribute="width" constant="220" id="lMx-6m-DVw"/>
-                                            </constraints>
-                                            <buttonCell key="cell" type="bevel" title="Restore Purchase" bezelStyle="regularSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1qJ-i3-WVJ">
-                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="restorePurchase:" target="-2" id="AmG-dl-u6P"/>
-                                            </connections>
-                                        </button>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uCX-vX-q1O">
-                                            <rect key="frame" x="3" y="17" width="202" height="40"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="198" id="lxh-dr-wyp"/>
-                                                <constraint firstAttribute="height" constant="40" id="miB-LL-L3y"/>
-                                            </constraints>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="center" title="$ 1,99" id="evo-9i-fa5">
-                                                <font key="font" metaFont="system"/>
-                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="53C-AQ-cpl" firstAttribute="top" secondItem="ei9-Rw-b2C" secondAttribute="top" constant="14" id="Faa-6h-7aK"/>
-                                        <constraint firstAttribute="centerX" secondItem="53C-AQ-cpl" secondAttribute="centerX" id="Jug-3b-VTq"/>
-                                        <constraint firstItem="7Uy-Fw-XhV" firstAttribute="top" secondItem="scW-Kk-ALX" secondAttribute="bottom" constant="8" id="SVs-BX-RY3"/>
-                                        <constraint firstAttribute="bottom" secondItem="uCX-vX-q1O" secondAttribute="bottom" constant="17" id="eYk-fG-MXZ"/>
-                                        <constraint firstAttribute="bottom" secondItem="7Uy-Fw-XhV" secondAttribute="bottom" constant="17" id="oZP-sY-Vcq"/>
-                                        <constraint firstAttribute="trailing" secondItem="7Uy-Fw-XhV" secondAttribute="trailing" constant="17" id="phj-XE-dlr"/>
-                                        <constraint firstItem="uCX-vX-q1O" firstAttribute="leading" secondItem="ei9-Rw-b2C" secondAttribute="leading" constant="5" id="qyg-C6-wgf"/>
-                                        <constraint firstAttribute="trailing" secondItem="scW-Kk-ALX" secondAttribute="trailing" constant="17" id="wxI-DH-c4i"/>
-                                    </constraints>
-                                </view>
-                            </tabViewItem>
                             <tabViewItem label="Encryption" identifier="2" id="pRc-ad-b3e">
                                 <view key="view" id="pbu-kD-bso">
                                     <rect key="frame" x="10" y="33" width="448" height="156"/>

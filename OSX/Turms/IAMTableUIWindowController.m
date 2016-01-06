@@ -51,18 +51,6 @@
 - (void)windowDidLoad
 {
     [super windowDidLoad];
-    if ([NSWindow instancesRespondToSelector:@selector(addTitlebarAccessoryViewController:)] && ![(IAMAppDelegate *)[[NSApplication sharedApplication] delegate] skipAds]) {
-        self.window.titleVisibility = NSWindowTitleHidden;
-        self.freeRiderViewController.layoutAttribute = NSLayoutAttributeRight;
-        NSMutableParagraphStyle *paragrapStyle = [[NSMutableParagraphStyle alloc] init];
-        paragrapStyle.alignment = kCTTextAlignmentCenter;
-        NSDictionary *attrsDictionary = @{NSFontAttributeName: [NSFont boldSystemFontOfSize:12.0],
-                                          NSForegroundColorAttributeName: [NSColor redColor],
-                                          NSParagraphStyleAttributeName: paragrapStyle};
-        NSMutableAttributedString *attrTitle = [[NSMutableAttributedString alloc] initWithString:@"Free Ride Version" attributes:attrsDictionary];
-        [self.freeRiderButton setAttributedTitle:attrTitle];
-        [self.window addTitlebarAccessoryViewController:self.freeRiderViewController];
-    }
     [self.window setExcludedFromWindowsMenu:YES];
     [self.notesWindowMenuItem setState:NSOnState];
     [self.theTable setTarget:self];
@@ -119,9 +107,6 @@
 
 - (IBAction)addNote:(id)sender {
     DLog(@"This is addNote handler in MainWindowController");
-    if([(IAMAppDelegate *)[[NSApplication sharedApplication] delegate] nagUser]) {
-        return;
-    }
     IAMNoteEditorWC *noteEditor = [[IAMNoteEditorWC alloc] initWithWindowNibName:@"IAMNoteEditorWC"];
     [noteEditor setDelegate:self];
     // Preserve a reference to the controller to keep ARC happy
@@ -134,9 +119,6 @@
 //    DLog(@"Selected note for editing is: %@", [self.arrayController selectedObjects][0]);
     if ([[self.arrayController selectedObjects] firstObject] == nil) {
         DLog(@"editNote called on an empty selection.");
-        return;
-    }
-    if([(IAMAppDelegate *)[[NSApplication sharedApplication] delegate] nagUser]) {
         return;
     }
     IAMNoteEditorWC *noteEditor = [[IAMNoteEditorWC alloc] initWithWindowNibName:@"IAMNoteEditorWC"];

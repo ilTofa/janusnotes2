@@ -15,9 +15,8 @@
 #import "STKeychain.h"
 #import "Note.h"
 #import "Attachment.h"
-#import "validation.h"
 
-@interface IAMAppDelegate () <SKPaymentTransactionObserver>
+@interface IAMAppDelegate ()
 
 @property (strong) IAMPrefsWindowController *prefsController;
 
@@ -55,8 +54,6 @@
     // Count executions
     NSInteger count = [[NSUserDefaults standardUserDefaults] integerForKey:@"count"];
     [[NSUserDefaults standardUserDefaults] setInteger:++count forKey:@"count"];
-    // Set itself as store observer
-    [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
     // Now set for the iCloud notification
     NSNotificationCenter *dc = [NSNotificationCenter defaultCenter];
     [dc addObserver:self selector:@selector(storesWillChange:) name:NSPersistentStoreCoordinatorStoresWillChangeNotification object:self.persistentStoreCoordinator];
@@ -65,8 +62,6 @@
     [self deleteCache];
     // Check first note
     [self addReadmeIfNeeded];
-    // Check receipt
-    [self whatever];
 }
 
 - (BOOL)application:(NSApplication *)theApplication openFile:(NSString *)filename {
@@ -176,156 +171,6 @@
             ALog(@"Error reading readme text from bundle: %@", [error description]);
         }
     }
-}
-
-#pragma mark - iAD
-
-- (void)whatever {
-    // An array of the product identifiers to query in the receipt
-    DLog(@"starting whatever.");
-    [self setSkipAds:NO];
-    NSURL *url = [[NSBundle mainBundle] URLForResource:@"In-App-Products" withExtension:@"plist"];
-    NSArray *identifiers = [NSArray arrayWithContentsOfURL:url];
-    // The validation code that enumerates the InApp purchases
-    RV_CheckInAppPurchases(identifiers, ^(NSString *identifier, BOOL isPresent, NSDictionary *purchaseInfo) {
-        DLog(@"%@ isPresent: %hhd.\n%@", identifier, isPresent, purchaseInfo);
-        if (isPresent) {
-            DLog(@">>> %@ x %d", identifier, [[purchaseInfo objectForKey:RV_INAPP_ATTRIBUTETYPE_QUANTITY] intValue]);
-            [self setSkipAds:YES];
-        } else {
-            DLog(@">>> %@ missing", identifier);
-        }
-    });
-}
-
-- (void)setSkipAds:(BOOL)skipAds {
-    [[NSUserDefaults standardUserDefaults] setBool:skipAds forKey:@"skipAds"];
-}
-
-- (BOOL)skipAds {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:@"skipAds"];
-}
-
-- (BOOL)isTimeToNag {
-    // Get first run time.
-    NSDate *firstDate = [[NSUserDefaults standardUserDefaults] objectForKey:@"firstDate"];
-    if (!firstDate) {
-        DLog(@"First time");
-        [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"firstDate"];
-        return NO;
-    }
-    NSInteger count = [[NSUserDefaults standardUserDefaults] integerForKey:@"count"];
-    DLog(@"Time to nag? %.0f, %ld", [firstDate timeIntervalSinceNow], (long)count);
-    // Wait 7 days && 15 app executions
-    if ((-[firstDate timeIntervalSinceNow] > 86400 * 7) && count > 15) {
-        return YES;
-    }
-    return NO;
-}
-
-- (BOOL)nagUser {
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"skipAds"]) {
-        DLog(@"no Ads, no nag");
-        return NO;
-    }
-    if (![self isTimeToNag]) {
-        DLog(@"Still early");
-        return NO;
-    }
-    int nagDivisor;
-    if ([NSWindow instancesRespondToSelector:@selector(addTitlebarAccessoryViewController:)]) {
-        // Nag only 25%...
-        nagDivisor = 4;
-    } else {
-        // nag 50% of the time (no visual indicator)
-        nagDivisor = 2;
-    }
-    if (arc4random() % nagDivisor != 0) {
-        return NO;
-    }
-    NSString *question = NSLocalizedString(@"Thank you!", @"");
-    NSString *info = @"If you're happy with the app and you're using it regularly, show your appreciation by building the Full Version.\nThis will stop the app from nagging you from time to time and will give the developer reasons to continue development of the app.";
-    NSString *buyButton = @"Buy Now";
-    NSString *cancelButton = @"Later";
-    NSAlert *alert = [[NSAlert alloc] init];
-    [alert setMessageText:question];
-    [alert setInformativeText:info];
-    [alert addButtonWithTitle:cancelButton];
-    [alert addButtonWithTitle:buyButton];
-    NSInteger answer = [alert runModal];
-    DLog(@"%ld", (long)answer);
-    if (answer == NSAlertSecondButtonReturn) {
-        [self preferencesAction:self];
-        return YES;
-    }
-    return NO;
-}
-
-#pragma mark - SKPaymentTransactionObserver
-
-- (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions {
-    for (SKPaymentTransaction *transaction in transactions)
-    {
-        switch (transaction.transactionState)
-        {
-            case SKPaymentTransactionStatePurchased: {
-                DLog(@"SKPaymentTransactionStatePurchased");
-                self.skipAds = YES;
-                self.processingPurchase = NO;
-                [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kSkipAdProcessingChanged object:self]];
-                [queue finishTransaction:transaction];
-                NSString *question = NSLocalizedString(@"Thank you!", @"");
-                NSString *info = NSLocalizedString(@"Restart the app to get rid of the window tag.", @"");
-                NSString *cancelButton = NSLocalizedString(@"OK", @"");
-                NSAlert *alert = [[NSAlert alloc] init];
-                [alert setMessageText:question];
-                [alert setInformativeText:info];
-                [alert addButtonWithTitle:cancelButton];
-                [alert runModal];
-            }
-                break;
-            case SKPaymentTransactionStateFailed: {
-                DLog(@"SKPaymentTransactionStateFailed: %@", transaction.error);
-                NSAlert *alert = [NSAlert alertWithError:transaction.error];
-                [alert runModal];
-                self.processingPurchase = NO;
-                [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kSkipAdProcessingChanged object:self]];
-                [queue finishTransaction:transaction];
-            }
-                break;
-            case SKPaymentTransactionStateRestored:
-                DLog(@"SKPaymentTransactionStateRestored");
-                self.skipAds = YES;
-                self.processingPurchase = NO;
-                [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kSkipAdProcessingChanged object:self]];
-                [queue finishTransaction:transaction];
-            case SKPaymentTransactionStatePurchasing:
-                DLog(@"SKPaymentTransactionStatePurchasing");
-                self.processingPurchase = YES;
-                [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kSkipAdProcessingChanged object:self]];
-                break;
-            default:
-                break;
-        }
-    }
-}
-
-- (void)paymentQueue:(SKPaymentQueue *)queue restoreCompletedTransactionsFailedWithError:(NSError *)error {
-    DLog(@"Error restoring purchase: %@.", [error localizedDescription]);
-    NSAlert *alert = [NSAlert alertWithError:error];
-    [alert runModal];
-    self.processingPurchase = NO;
-    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kSkipAdProcessingChanged object:self]];
-}
-
-- (void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue {
-    DLog(@"Restore finished");
-    self.processingPurchase = NO;
-    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kSkipAdProcessingChanged object:self]];
-}
-
-- (void)paymentQueue:(SKPaymentQueue *)queue updatedDownloads:(NSArray *)downloads {
-    DLog(@"Called with %@", downloads);
 }
 
 #pragma mark - Core Data
