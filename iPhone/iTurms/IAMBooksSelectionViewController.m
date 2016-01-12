@@ -191,12 +191,8 @@
             [returnArray addObject:book];
         }
     }
-    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-        [self.delegate booksSelectionController:self didSelectBooks:returnArray];
-        [self.navigationController popViewControllerAnimated:YES];
-    } else {
-        self.selectedBooks = [NSArray arrayWithArray:returnArray];
-    }
+    [self.delegate booksSelectionController:self didSelectBooks:returnArray];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

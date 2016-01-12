@@ -923,8 +923,8 @@ Icons from icons8, licensed CC BY-ND 3.0</string>
         <image name="link-microphone.png" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="dqI-DI-Oq0"/>
         <segue reference="nBs-C7-sJp"/>
+        <segue reference="YAx-7o-fYC"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.67141443489999997" blue="0.050752736630000003" alpha="1" colorSpace="deviceRGB"/>
 </document>
