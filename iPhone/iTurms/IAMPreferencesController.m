@@ -192,13 +192,13 @@ typedef enum {
 
 #pragma mark - Actions
 
-- (IBAction)done:(id)sender
-{
+- (IBAction)done:(id)sender {
     // Dismiss (or ask for dismissing)
-    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-        [[NSNotificationCenter defaultCenter] postNotificationName:kPreferencesPopoverCanBeDismissed object:self];
-    else
-        [self.navigationController popToRootViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
+//    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+//        [[NSNotificationCenter defaultCenter] postNotificationName:kPreferencesPopoverCanBeDismissed object:self];
+//    else
+//        [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (IBAction)sortSelectorAction:(id)sender {
