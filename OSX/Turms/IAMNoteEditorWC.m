@@ -514,6 +514,27 @@
     }];
 }
 
+- (IBAction)exportMarkdownForHugo:(id)sender {
+    NSOpenPanel* panel = [NSOpenPanel openPanel];
+    [panel setCanChooseDirectories:YES];
+    [panel setCanCreateDirectories:YES];
+    [panel setCanChooseFiles:NO];
+    [panel setAllowsMultipleSelection:NO];
+    [panel setNameFieldLabel:@"Export Markdown To"];
+    [panel setPrompt:@"Export"];
+    [panel beginSheetModalForWindow:[self window] completionHandler:^(NSInteger result) {
+        if (result == NSFileHandlingPanelOKButton) {
+            NSURL* url = [panel URL];
+            DLog(@"User selected URL %@, now we should export to it.", url);
+            NSError *error;
+            if (![self.editedNote exportAsMarkdownForHugo:url error:&error]) {
+                ALog(@"Error exporting markdown: %@", error);
+                NSAlert *alert = [NSAlert alertWithError:error];
+                [alert runModal];
+            }
+        }
+    }];
+}
 
 #pragma mark - markdown support
 

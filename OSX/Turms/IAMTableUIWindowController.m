@@ -256,6 +256,28 @@
     }];
 }
 
+- (IBAction)exportMarkdownForHugo:(id)sender {
+    NSAssert([[self.arrayController selectedObjects] firstObject], @"No note is selected in exportMarkdownForHugo:. This should never happen.");
+    Note *currentNote = [self.arrayController selectedObjects][0];
+    NSOpenPanel* panel = [NSOpenPanel openPanel];
+    [panel setCanChooseDirectories:YES];
+    [panel setCanCreateDirectories:YES];
+    [panel setCanChooseFiles:NO];
+    [panel setAllowsMultipleSelection:NO];
+    [panel setNameFieldLabel:@"Export (Hugo) Markdown To"];
+    [panel setPrompt:@"Export"];
+    [panel beginSheetModalForWindow:[self window] completionHandler:^(NSInteger result) {
+        NSURL* url = [panel URL];
+        DLog(@"User selected URL %@, now we should export to it.", url);
+        NSError *error;
+        if (![currentNote exportAsMarkdownForHugo:url error:&error]) {
+            ALog(@"Error exporting markdown: %@", error);
+            NSAlert *alert = [NSAlert alertWithError:error];
+            [alert runModal];
+        }
+    }];
+}
+
 - (IBAction)deleteNote:(id)sender {
     NSAlert *alert = [[NSAlert alloc] init];
     [alert setInformativeText:NSLocalizedString(@"Are you sure you want to delete the note?", nil)];

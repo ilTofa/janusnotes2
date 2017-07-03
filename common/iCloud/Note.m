@@ -316,5 +316,48 @@
     return retValue;
 }
 
+- (BOOL)exportAsMarkdownForHugo:(NSURL *)exportDirectory error:(NSError **)error {
+    NSString * const attachmentsSubfolder = @"/img/";
+    NSError *localError;
+    // Save attachments (if any)
+    if (self.attachment && [self.attachment count] > 0) {
+        NSURL *attachmentDirectory = [exportDirectory URLByAppendingPathComponent:attachmentsSubfolder isDirectory:YES];
+        // Create directory
+        if (![[NSFileManager defaultManager] createDirectoryAtURL:attachmentDirectory withIntermediateDirectories:YES attributes:nil error:&localError]) {
+            ALog(@"Error creating attachment directory: %@", localError);
+            *error = localError;
+            return NO;
+        }
+        for (Attachment *attachment in self.attachment) {
+            [attachment generateFileToDirectory:attachmentDirectory error:error];
+        }
+    }
+    NSMutableString *mdString = [NSMutableString new];
+    [mdString appendString:[NSString stringWithFormat:@"---\ntitle: %@\n", self.title]];
+    [mdString appendString:[NSString stringWithFormat:@"description: %@\n", self.title]];
+    NSDate *date = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setLocale:[NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"]];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZZ"];
+    NSString *dateString = [dateFormatter stringFromDate:date];
+    [mdString appendString:[NSString stringWithFormat:@"date: %@\n", dateString]];
+    if (self.book && ![self.book.name isEqualToString:@""]) {
+        [mdString appendString:[NSString stringWithFormat:@"categories:\n - %@\n", self.book.name]];
+    }
+    [mdString appendString:@"tags: ["];
+    if (self.tags && [self.tags count] > 0) {
+        for (Tags *tag in self.tags) {
+            [mdString appendString:[NSString stringWithFormat:@" \"%@\",", tag]];
+        }
+    }
+    [mdString appendString:@"]\n"];
+    NSString *slug = [self.title stringByReplacingOccurrencesOfString:@" " withString:@"-"];
+    [mdString appendString:[NSString stringWithFormat:@"Slug: %@\n---\n", slug]];
+    [mdString appendString:self.text];
+    [mdString replaceOccurrencesOfString:@"$attachment$!" withString:attachmentsSubfolder options:NSLiteralSearch range:NSMakeRange(0, [mdString length])];
+    NSURL *exportUrl = [exportDirectory URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.md", self.title]];
+    BOOL retValue = [mdString writeToURL:exportUrl atomically:NO encoding:NSUTF8StringEncoding error:error];
+    return retValue;
+}
 
 @end
