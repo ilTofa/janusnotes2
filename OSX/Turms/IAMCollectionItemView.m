@@ -39,7 +39,7 @@
 	if([theEvent clickCount] > 1) {
 		DLog(@"double click!");
         // NSApplication will find the doubleClick method in the NSWindowController automatically since the controller is in the responder chain
-        [NSApp sendAction:@selector(collectionItemViewDoubleClick:) to:nil from:self];
+        [NSApp sendAction:NSSelectorFromString(@"collectionItemViewDoubleClick:") to:nil from:self];
 	}
 }
 

@@ -105,6 +105,8 @@
     return dict;
 }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
 - (NSDictionary*) toDictionary {
     // Check to see there are any objects that should be skipped in the traversal.
     // This method can be optionally implemented by NSManagedObject subclasses.
@@ -114,6 +116,7 @@
     }
     return [self toDictionaryWithTraversalHistory:traversedObjects];
 }
+#pragma clang diagnostic pop
 
 + (id) decodedValueFrom:(id)codedValue forKey:(NSString*)key {
     if ([key hasPrefix:DATE_ATTR_PREFIX] == YES) {
