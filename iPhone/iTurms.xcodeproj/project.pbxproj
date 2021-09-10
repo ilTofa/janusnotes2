@@ -163,8 +163,8 @@
 		645ED8AE1754F7730070F83B /* link-microphone-big@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "link-microphone-big@2x.png"; path = "Images/link-microphone-big@2x.png"; sourceTree = "<group>"; };
 		64896D2B184F336800AE5EEF /* IAMBooksSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAMBooksSelectionViewController.h; sourceTree = "<group>"; };
 		64896D2C184F336800AE5EEF /* IAMBooksSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAMBooksSelectionViewController.m; sourceTree = "<group>"; };
-		648A2771171D875000338218 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
-		648A2772171D875000338218 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		648A2771171D875000338218 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = ../../../Libraries/MBProgressHUD/MBProgressHUD.h; sourceTree = "<group>"; };
+		648A2772171D875000338218 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = ../../../Libraries/MBProgressHUD/MBProgressHUD.m; sourceTree = "<group>"; };
 		648F744F1AA06D57004F20BF /* THPinInputCirclesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPinInputCirclesView.h; sourceTree = "<group>"; };
 		648F74501AA06D57004F20BF /* THPinInputCirclesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPinInputCirclesView.m; sourceTree = "<group>"; };
 		648F74511AA06D57004F20BF /* THPinInputCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPinInputCircleView.h; sourceTree = "<group>"; };

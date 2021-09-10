@@ -16,15 +16,13 @@
 + (void)showWithTitle:(NSString *)title andSubTitle:(NSString *)subTitle forSeconds:(double)secondsDelay {
     UIView *topView = [[[[UIApplication sharedApplication] keyWindow] subviews] lastObject];
     if(topView) {
-//        dispatch_sync(dispatch_get_main_queue(), ^{
-            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:topView animated:YES];
-            hud.mode = MBProgressHUDModeText;
-            hud.labelText = title;
-            if (subTitle) {
-                hud.detailsLabelText = subTitle;
-            }
-            [hud hide:YES afterDelay:secondsDelay];
-//        });
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:topView animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.label.text = title;
+        if (subTitle) {
+            hud.detailsLabel.text = subTitle;
+        }
+        [hud hideAnimated:YES afterDelay:secondsDelay];
     }
 }
 

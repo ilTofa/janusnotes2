@@ -4,3 +4,6 @@
 [submodule "Libraries/THPinViewController"]
 	path = Libraries/THPinViewController
 	url = https://ilTofa@github.com/ilTofa/THPinViewController.git
+[submodule "Libraries/MBProgressHUD"]
+	path = Libraries/MBProgressHUD
+	url = https://github.com/jdg/MBProgressHUD
