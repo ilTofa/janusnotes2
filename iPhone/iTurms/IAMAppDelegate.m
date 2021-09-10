@@ -251,9 +251,9 @@
             ALog(@"Parsing go wrong: %@", components);
             return NO;
         } else {
-            NSString *URL = [components[0] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-            NSString *title = [components[1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-            NSString *text = [components[2] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            NSString *URL = [components[0] stringByRemovingPercentEncoding];
+            NSString *title = [components[1] stringByRemovingPercentEncoding];
+            NSString *text = [components[2] stringByRemovingPercentEncoding];
             DLog(@"URL: '%@'. Title: '%@'. Text: '%@'.", URL, title, text);
             // Creating new note
             Note *newNote = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:self.managedObjectContext];
@@ -407,8 +407,7 @@
         if (!fetchResults) {
             NSString *errorMessage = [NSString stringWithFormat:@"Error loading notes from db. Please restore from a backup on a Macintosh. Error: %@", [error description]];
             ALog(@"%@", errorMessage);
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:errorMessage delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
-            [alert show];
+            [self presentError:errorMessage];
             return;
         }
         DLog(@"Re-encrypting %lu notes.", (unsigned long)[fetchResults count]);
@@ -418,11 +417,22 @@
         if (![self.managedObjectContext save:&error]) {
             NSString *errorMessage = [NSString stringWithFormat:@"Error saving notes after re-encryption. Please restore from a backup on a Mac. Error: %@", [error description]];
             ALog(@"%@", errorMessage);
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:errorMessage delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
-            [alert show];
+            [self presentError:errorMessage];
         }
         [[NSNotificationCenter defaultCenter] postNotificationName:kCoreDataStoreExternallyChanged object:self.persistentStoreCoordinator userInfo:@{@"reason": NSPersistentStoreCoordinatorStoresWillChangeNotification}];
     }
+}
+
+- (void)presentError:(NSString *)errorMessage {
+    UIWindow* topWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    topWindow.rootViewController = [UIViewController new];
+    topWindow.windowLevel = UIWindowLevelAlert + 1;
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Error" message:errorMessage preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        topWindow.hidden = YES;
+    }]];
+    [topWindow makeKeyAndVisible];
+    [topWindow.rootViewController presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark - iCloud

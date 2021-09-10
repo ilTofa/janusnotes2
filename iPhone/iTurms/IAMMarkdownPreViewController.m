@@ -50,7 +50,7 @@
     if ((navigationType == UIWebViewNavigationTypeLinkClicked) ||
         (navigationType == UIWebViewNavigationTypeOther && ![request.URL isFileURL])) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            [[UIApplication sharedApplication] openURL:request.URL];
+            [[UIApplication sharedApplication] openURL:request.URL options:@{} completionHandler:nil];
         });
         return NO;
     }

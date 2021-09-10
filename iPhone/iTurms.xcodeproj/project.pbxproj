@@ -14,7 +14,6 @@
 		640D40C216D6DFAF003034B3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 640D40C116D6DFAF003034B3 /* CoreLocation.framework */; };
 		6410E1CB17E85D2000B568D0 /* GTTransientMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6410E1CA17E85D2000B568D0 /* GTTransientMessage.m */; };
 		6416315716D7DB830004CB52 /* IAMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6416315616D7DB830004CB52 /* IAMViewController.m */; };
-		6416315916D831DB0004CB52 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6416315816D831DB0004CB52 /* MobileCoreServices.framework */; };
 		6416315D16D8345F0004CB52 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 6416315C16D8345F0004CB52 /* UIImage+RoundedCorner.m */; };
 		641858C21850DC8D00E855F0 /* IAMAddBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 641858C11850DC8D00E855F0 /* IAMAddBookViewController.m */; };
 		641A5EFC16ED463B00D3440C /* MainStoryboard_Old4iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 641A5EFB16ED463B00D3440C /* MainStoryboard_Old4iPad.storyboard */; };
@@ -49,6 +48,7 @@
 		648F74641AA06D57004F20BF /* THPinViewController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 648F74591AA06D57004F20BF /* THPinViewController.bundle */; };
 		648F74651AA06D57004F20BF /* THPinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 648F745B1AA06D57004F20BF /* THPinViewController.m */; };
 		648F74661AA06D57004F20BF /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 648F745E1AA06D57004F20BF /* UIImage+ImageEffects.m */; };
+		649136C626EBC326003FD322 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 649136C526EBC326003FD322 /* CoreServices.framework */; };
 		649DCEA016D28DB8003F5A83 /* IAmMine.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 649DCE9E16D28DB7003F5A83 /* IAmMine.xcdatamodeld */; };
 		64A0507016D28CCA0025E179 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64A0506F16D28CCA0025E179 /* UIKit.framework */; };
 		64A0507216D28CCA0025E179 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64A0507116D28CCA0025E179 /* Foundation.framework */; };
@@ -182,6 +182,7 @@
 		648F745D1AA06D57004F20BF /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
 		648F745E1AA06D57004F20BF /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		649136C426EBC280003FD322 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		649136C526EBC326003FD322 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		649DCE9F16D28DB7003F5A83 /* IAmMine.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = IAmMine.xcdatamodel; sourceTree = "<group>"; };
 		64A0506C16D28CCA0025E179 /* iTurms.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTurms.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64A0506F16D28CCA0025E179 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -277,10 +278,10 @@
 				64CEF2BE17D1F70900D3A58B /* libc++.dylib in Frameworks */,
 				64BB69F41715BB6600875601 /* QuartzCore.framework in Frameworks */,
 				64BB69F21715BB5F00875601 /* SystemConfiguration.framework in Frameworks */,
+				649136C626EBC326003FD322 /* CoreServices.framework in Frameworks */,
 				64BB69F01715BB5700875601 /* Security.framework in Frameworks */,
 				64BB69EE1715BB4A00875601 /* CFNetwork.framework in Frameworks */,
 				64A7558E1702EFA70085933D /* AVFoundation.framework in Frameworks */,
-				6416315916D831DB0004CB52 /* MobileCoreServices.framework in Frameworks */,
 				640D40C216D6DFAF003034B3 /* CoreLocation.framework in Frameworks */,
 				640D40C016D6DF92003034B3 /* CoreData.framework in Frameworks */,
 				64A0507016D28CCA0025E179 /* UIKit.framework in Frameworks */,
@@ -496,6 +497,7 @@
 		64A0506E16D28CCA0025E179 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				649136C526EBC326003FD322 /* CoreServices.framework */,
 				645094981A74663A00B2B331 /* LocalAuthentication.framework */,
 				64CEF2BD17D1F70900D3A58B /* libc++.dylib */,
 				64CB194817392B860014F35F /* AdSupport.framework */,

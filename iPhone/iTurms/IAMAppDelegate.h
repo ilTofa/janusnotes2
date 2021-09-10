@@ -36,6 +36,9 @@
 - (NSURL *)applicationDocumentsDirectory;
 - (void)saveContext;
 
+// Error helper
+- (void)presentError:(NSString *)errorMessage;
+
 // PIN support
 @property BOOL pinRequestNeeded;
 - (void)getPinOnWindow:(UIViewController *)parentViewController;

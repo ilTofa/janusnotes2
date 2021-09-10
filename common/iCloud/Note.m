@@ -200,8 +200,7 @@
                 NSString *errorMessage = [NSString stringWithFormat:@"Cannot decrypt note '%@' with both old and new crypt password. It's probably better to restore from the backup.", self.title];
                 ALog(@"%@", errorMessage);
 #if TARGET_OS_IPHONE
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:errorMessage delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
-                [alert show];
+                [(IAMAppDelegate *)[[UIApplication sharedApplication] delegate] presentError:errorMessage];
 #else
                 NSAlert *alert = [[NSAlert alloc] init];
                 [alert setInformativeText:errorMessage];

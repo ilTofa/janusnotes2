@@ -75,7 +75,7 @@
         self.interationController.delegate = self;
         self.interationController.UTI = self.theAttachment.uti;
         if([self.theAttachment.type isEqualToString:@"Image"]) {
-            [self.theWebView loadData:self.theAttachment.data MIMEType:@"image/jpeg" textEncodingName:nil baseURL:nil];
+            [self.theWebView loadData:self.theAttachment.data MIMEType:@"image/jpeg" textEncodingName:@"utf-8" baseURL:[NSURL URLWithString:@""]];
         } else {
             [self.interationController presentOptionsMenuFromBarButtonItem:self.shareButton animated:YES];
         }
@@ -145,7 +145,7 @@
     if(self.interationController)
         [self.interationController presentOptionsMenuFromBarButtonItem:self.shareButton animated:YES];
     else
-        [[UIApplication sharedApplication] openURL:self.theWebView.request.URL];
+        [[UIApplication sharedApplication] openURL:self.theWebView.request.URL options:@{} completionHandler:nil];
 }
 
 - (IBAction)done:(id)sender

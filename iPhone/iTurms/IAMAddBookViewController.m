@@ -63,8 +63,10 @@
     if (![moc save:&error]) {
         ALog(@"Unresolved error saving book %@, %@", error, [error userInfo]);
         NSString *errorMessage = [NSString stringWithFormat:@"Unresolved error saving book %@", error];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:errorMessage delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
-        [alert show];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:errorMessage preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okButton = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) { }];
+        [alert addAction:okButton];
+        [self presentViewController:alert animated:YES completion:nil];
     } else {
         [self dismissViewControllerAnimated:YES completion:nil];
     }

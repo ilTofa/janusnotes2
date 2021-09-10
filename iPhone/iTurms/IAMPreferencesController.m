@@ -36,8 +36,6 @@ typedef enum {
 @property NSString *oldEncryptionKey;
 @property BOOL deviceHaveFingerprintReader;
 
-@property UIAlertView *lockCodeAlert;
-
 @end
 
 @implementation IAMPreferencesController
@@ -110,13 +108,13 @@ typedef enum {
     if (indexPath.section == supportTurms) {
         if (indexPath.row == supportHelp) {
             DLog(@"Call help site.");
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.janusnotes.com/"]];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.janusnotes.com/"] options:@{} completionHandler:nil];
         } else if (indexPath.row == supportUnsatisfied) {
             DLog(@"Prepare email to support");
             [self sendCommentAction:self];
         } else if (indexPath.row == supportSatisfied) {
             DLog(@"Call iRate for rating");
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=879143273&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8"]];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=879143273&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8"] options:@{} completionHandler:nil];
         }
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
@@ -149,8 +147,10 @@ typedef enum {
         dismiss = YES;
     }
     if (text) {
-        UIAlertView *alertBox = [[UIAlertView alloc] initWithTitle:title message:text delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alertBox show];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:text preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okButton = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"") style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) { }];
+        [alert addAction:okButton];
+        [self presentViewController:alert animated:YES completion:nil];
     }
     if(dismiss) {
         [self dismissViewControllerAnimated:YES completion:nil];
@@ -169,11 +169,12 @@ typedef enum {
     DLog(@"PIN is: %@", pin);
     NSError *error;
     [STKeychain storeUsername:@"lockCode" andPassword:pin forServiceName:@"it.iltofa.turms" updateExisting:YES error:&error];
-    UIAlertView *lastAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Lock Code Set", nil)
-                                                        message:[NSString stringWithFormat:NSLocalizedString(@"You just set the application lock code to %@.", nil), pin]
-                                                       delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
-    lastAlert.alertViewStyle = UIAlertViewStyleDefault;
-    [lastAlert show];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Lock Code Set", nil)
+                                                                   message:[NSString stringWithFormat:NSLocalizedString(@"You just set the application lock code to %@.", @"application code locked to pin"), pin]
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okButton = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"") style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) { }];
+    [alert addAction:okButton];
+    [self presentViewController:alert animated:YES completion:nil];
     if (self.deviceHaveFingerprintReader) {
         [self.fingerprintSwitch setEnabled:YES];
     }
@@ -213,25 +214,25 @@ typedef enum {
     if ([self.oldEncryptionKey isEqualToString:self.cryptPasswordField.text]) {
         return;
     }
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Warning" message: @"Are you sure you want to change the encryption key?" delegate: self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Change It",nil];
-    [alert show];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Warning" message:NSLocalizedString(@"Are you sure you want to change the encryption key?", @"") preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancelButton = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", @"") style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {
+        self.cryptPasswordField.text = self.oldEncryptionKey;
+    }];
+    UIAlertAction *changeButton = [UIAlertAction actionWithTitle:NSLocalizedString(@"Change It", @"change the encryption key") style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
+        DLog(@"User confirmed changing the key, now really changing it from: '%@' to '%@'", self.oldEncryptionKey, self.cryptPasswordField.text);
+        [(IAMAppDelegate *)[[UIApplication sharedApplication] delegate] setCryptPassword:self.cryptPasswordField.text];
+        self.oldEncryptionKey = [(IAMAppDelegate *)[[UIApplication sharedApplication] delegate] cryptPassword];
+        [self.cryptPasswordField resignFirstResponder];
+    }];
+    [alert addAction:cancelButton];
+    [alert addAction:changeButton];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     [self cryptPasswordChangeAction:self];
     return NO;
-}
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-	if (buttonIndex != alertView.cancelButtonIndex) {
-        DLog(@"User confirmed changing the key, now really changing it from: '%@' to '%@'", self.oldEncryptionKey, self.cryptPasswordField.text);
-        [(IAMAppDelegate *)[[UIApplication sharedApplication] delegate] setCryptPassword:self.cryptPasswordField.text];
-        self.oldEncryptionKey = [(IAMAppDelegate *)[[UIApplication sharedApplication] delegate] cryptPassword];
-        [self.cryptPasswordField resignFirstResponder];
-	} else {
-        self.cryptPasswordField.text = self.oldEncryptionKey;
-    }
 }
 
 - (IBAction)lockCodeAction:(id)sender {

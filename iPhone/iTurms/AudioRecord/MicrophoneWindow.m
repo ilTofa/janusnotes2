@@ -167,12 +167,10 @@ int countDown;
 		if(self.theRecorder == nil)
 		{
             NSString *errorString = [NSString stringWithFormat:@"Error: %@", [outError localizedDescription]];
-			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                             message:errorString
-                                                            delegate:nil
-                                                   cancelButtonTitle:@"OK"
-                                                   otherButtonTitles:nil];
-            [alert show];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:errorString preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okButton = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"") style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) { }];
+            [alert addAction:okButton];
+            [self presentViewController:alert animated:YES completion:nil];
 			DLog(@"Error initing recorder for URL %@: %@", self.recordingURL, errorString);
             return;
 		}

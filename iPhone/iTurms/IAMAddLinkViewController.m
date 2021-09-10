@@ -80,8 +80,10 @@
         [self cancel:nil];
     }
     else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:NSLocalizedString(@"Link is not a valid URL, please edit it or tap cancel.", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
-        [alert show];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Warning" message:NSLocalizedString(@"Link is not a valid URL, please edit it or tap cancel.", @"") preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okButton = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"") style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) { }];
+        [alert addAction:okButton];
+        [self presentViewController:alert animated:YES completion:nil];
     }
 }
 

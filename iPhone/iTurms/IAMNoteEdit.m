@@ -63,7 +63,7 @@
     [super viewDidLoad];
     // The NSManagedObjectContext instance should change for a local (to the controller instance) one.
     // We need to migrate the passed object to the new moc.
-    self.noteEditorMOC = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSConfinementConcurrencyType];
+    self.noteEditorMOC = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
     self.parentMOC = ((IAMAppDelegate *)[[UIApplication sharedApplication] delegate]).managedObjectContext;
     [self.noteEditorMOC setParentContext:self.parentMOC];
     if(!self.idForTheNoteToBeEdited) {
@@ -264,37 +264,31 @@
     BOOL camera = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
     if(library && camera) {
         // Let the user choose
-        UIActionSheet *chooseIt = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"New Attachment", nil)
-                                                              delegate:self
-                                                     cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
-                                                destructiveButtonTitle:nil
-                                                     otherButtonTitles:NSLocalizedString(@"Image from Library", nil), NSLocalizedString(@"Image from Camera", nil), nil];
-        [chooseIt showInView:self.view];
+        UIAlertController *sheet = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"New Attachment", nil) message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertAction *cancelButton = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", @"") style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) { }];
+        [sheet addAction:cancelButton];
+        UIAlertAction *cameraButton = [UIAlertAction actionWithTitle:NSLocalizedString(@"Image from Camera", @"") style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+            DLog(@"Camera requested");
+            [self showMediaPickerFor:UIImagePickerControllerSourceTypeCamera];
+        }];
+        [sheet addAction:cameraButton];
+        UIAlertAction *libraryButton = [UIAlertAction actionWithTitle:NSLocalizedString(@"Image from Camera", @"") style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+            DLog(@"Library requested");
+            [self showMediaPickerFor:UIImagePickerControllerSourceTypePhotoLibrary];
+        }];
+        [sheet addAction:libraryButton];
+        [self presentViewController:sheet animated:YES completion:nil];
     } else if (camera) {
         [self showMediaPickerFor:UIImagePickerControllerSourceTypeCamera];
     } else if (library) {
         [self showMediaPickerFor:UIImagePickerControllerSourceTypePhotoLibrary];
     } else {
         // If no images available, tell user and disable button...
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:NSLocalizedString(@"No images available on this device", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
-        [alert show];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error", nil) message:NSLocalizedString(@"No images available on this device", @"") preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okButton = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"") style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) { }];
+        [alert addAction:okButton];
+        [self presentViewController:alert animated:YES completion:nil];
         [self.addImageButton setEnabled:NO];
-    }
-}
-
-#pragma mark - UIActionSheetDelegate
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    DLog(@"Clicked button at index %ld", (long)buttonIndex);
-    if (buttonIndex == 0) {
-        DLog(@"Library requested");
-        [self showMediaPickerFor:UIImagePickerControllerSourceTypePhotoLibrary];
-    } else if (buttonIndex == 1) {
-        DLog(@"Camera requested");
-        [self showMediaPickerFor:UIImagePickerControllerSourceTypeCamera];
-    } else {
-        DLog(@"Cancel selected");
     }
 }
 
@@ -585,12 +579,10 @@
 	// Check for audio... (only on actual device)
 	if(![[AVAudioSession sharedInstance] isInputAvailable])
 	{
-		UIAlertView *theAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", @"")
-                                                           message:NSLocalizedString(@"No audio input available", @"")
-                                                          delegate:nil
-                                                 cancelButtonTitle:@"OK"
-                                                 otherButtonTitles:nil];
-		[theAlert show];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:NSLocalizedString(@"No audio input available", @"") preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okButton = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"") style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) { }];
+        [alert addAction:okButton];
+        [self presentViewController:alert animated:YES completion:nil];
 		return;
 	}
 	if(self.recordView == nil)
