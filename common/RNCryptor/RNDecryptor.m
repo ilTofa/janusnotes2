@@ -120,7 +120,7 @@ static const NSUInteger kPreambleSize = 2;
 {
   dispatch_async(self.queue, ^{
     if (self.hasHMAC) {
-      CCHmacUpdate(&_HMACContext, data.bytes, data.length);
+        CCHmacUpdate(&self->_HMACContext, data.bytes, data.length);
     }
 
     NSError *error = nil;
@@ -257,7 +257,7 @@ static const NSUInteger kPreambleSize = 2;
 
     if (self.hasHMAC) {
       NSMutableData *HMACData = [NSMutableData dataWithLength:self.HMACLength];
-      CCHmacFinal(&_HMACContext, [HMACData mutableBytes]);
+        CCHmacFinal(&self->_HMACContext, [HMACData mutableBytes]);
 
       if (![HMACData isEqualToData:self.inData]) {
         [self cleanupAndNotifyWithError:[NSError errorWithDomain:kRNCryptorErrorDomain
